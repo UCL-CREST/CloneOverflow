@@ -1,9 +1,14 @@
 package eu.giuswhite;
 
 import eu.giuswhite.utils.CommonUtils;
+import org.apache.commons.cli.*;
 
 public class Main {
+    private static Options options = new Options();
+    private static String fileDir;
+
     public static void main(String[] args) {
+        processCommandLine(args);
 //        ParserManager.getInstance().stackoverflowParser();
 //        Map map = LineCounter.getInstance().getMapOfLinesStat(CommonUtils.PROJECT_FOLDER_PATH + "\\data_four_split\\0\\");
 //        Map smallest = LineCounter.getInstance().getTopSmallestFile();
@@ -31,5 +36,43 @@ public class Main {
         String gcfDir = CommonUtils.PROJECT_FOLDER_PATH + "gcf_results";
         ParserManager.getInstance().simianLogsFilterParser(gcfDir);
         // ParserManager.getInstance().usefulSimianFragmentStatisticParser();
+    }
+
+    private static void processCommandLine(String[] args) {
+        // create the command line parser
+        CommandLineParser parser = new DefaultParser();
+
+        options.addOption("d", "dir", true, "File's directory");
+        options.addOption("h", "help", false, "Print help");
+
+        // check if no parameter given, print help and quit
+        if (args.length == 0) {
+            showHelp();
+            System.exit(0);
+        }
+
+        try {
+            // parse the command line arguments
+            CommandLine line = parser.parse(options, args);
+
+            if (line.hasOption("h")) {
+                showHelp();
+            }
+
+            if (line.hasOption("d")) {
+                fileDir = line.getOptionValue("d");
+            } else {
+                showHelp();
+                throw new ParseException("No file directory provided.");
+            }
+        } catch (ParseException exp) {
+            System.out.println("Warning: " + exp.getMessage());
+        }
+    }
+
+    private static void showHelp() {
+        HelpFormatter formater = new HelpFormatter();
+        formater.printHelp("(v 0.1) java -jar stackanalyzer.jar", options);
+        System.exit(0);
     }
 }
