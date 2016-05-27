@@ -1,7 +1,8 @@
 package eu.giuswhite;
 
-import eu.giuswhite.utils.CommonUtils;
 import org.apache.commons.cli.*;
+
+import java.io.File;
 
 public class Main {
     private static Options options = new Options();
@@ -33,8 +34,13 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        String gcfDir = CommonUtils.PROJECT_FOLDER_PATH + "gcf_results";
-        ParserManager.getInstance().simianLogsFilterParser(gcfDir);
+        String gcfDir = fileDir;
+        File f = new File(gcfDir);
+        if (f.exists() && f.isDirectory()) {
+            ParserManager.getInstance().simianLogsFilterParser(gcfDir);
+        } else {
+            System.err.println("Error: the given directory " + gcfDir + " does not exist.");
+        }
         // ParserManager.getInstance().usefulSimianFragmentStatisticParser();
     }
 

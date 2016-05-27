@@ -94,7 +94,7 @@ public class SimianLogsFilterHandler extends DefaultHandler {
             if(this.simianLog.isUseful()){
                 this.usefulSimianLog.add(this.simianLog);
             } else {
-                System.out.println("SCARTATO: " + this.simianLog.id);
+                System.out.println("DONE: " + this.simianLog.id);
             }
         }
     }

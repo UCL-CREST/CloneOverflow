@@ -77,14 +77,18 @@ public class ParserManager {
         try {
             List<String> simianResults = new ArrayList<>();
             FileManager.getDirectoryContents(new File(gcfDir), simianResults, true);
-            List<SimianLog> usefulFragment = new ArrayList<>();
-            for (String fileName : simianResults) {
-                this.handler = new SimianLogsFilterHandler(usefulFragment);
-                File testFile = new File(gcfDir + "/" + fileName);
-                this.saxParser.parse(testFile, handler);
+            if (simianResults.size() != 0) { // has result files
+                List<SimianLog> usefulFragment = new ArrayList<>();
+                for (String fileName : simianResults) {
+                    this.handler = new SimianLogsFilterHandler(usefulFragment);
+                    File testFile = new File(gcfDir + "/" + fileName);
+                    this.saxParser.parse(testFile, handler);
+                }
+                //Only file name. Extension is added automatically
+                XmlFileWriter.writeSimianUsefulFragmentsToXml("useful_fragments", usefulFragment);
+            } else {
+                System.err.println("Warning: no results file found.");
             }
-            //Only file name. Extension is added automatically
-            XmlFileWriter.writeSimianUsefulFragmentsToXml("useful_fragments", usefulFragment);
         } catch (SAXException | IOException e) {
             e.printStackTrace();
         } catch (SaxTerminatorException allDone) {

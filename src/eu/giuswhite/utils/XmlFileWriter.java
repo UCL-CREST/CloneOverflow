@@ -38,7 +38,7 @@ public class XmlFileWriter {
             doc.setRootElement(root);
             XMLOutputter outter = new XMLOutputter();
             outter.setFormat(Format.getPrettyFormat());
-            outter.output(doc, new FileWriter(new File(CommonUtils.PROJECT_FOLDER_PATH + filename + ".xml")));
+            outter.output(doc, new FileWriter(new File(filename + ".xml")));
         } catch (IOException e) {
             e.printStackTrace();
         }
