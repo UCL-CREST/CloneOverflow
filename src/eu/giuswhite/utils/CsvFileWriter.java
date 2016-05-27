@@ -25,7 +25,7 @@ public class CsvFileWriter {
             e.printStackTrace();
         }
         String result = header + "\n" + output.toString();
-        FileManager.getInstance().createAndWriteFile(CommonUtils.PROJECT_FOLDER_PATH, filename + ".csv", result, false);
+        FileManager.getInstance().createAndWriteFile(CommonUtils.PROJECT_FOLDER_PATH + "/stats", filename + ".csv", result, false);
     }
 
     public static void writeHashMapToCsv(String destinationPath, String header, Map<?, ?> map, String filename) {
@@ -74,6 +74,6 @@ public class CsvFileWriter {
             e.printStackTrace();
         }
         String result = "Fragment Name, Used, In Projects\n" + output.toString();
-        FileManager.getInstance().createAndWriteFile(CommonUtils.PROJECT_FOLDER_PATH, filename + ".csv", result, false);
+        FileManager.getInstance().createAndWriteFile(CommonUtils.PROJECT_FOLDER_PATH + "/stats", filename + ".csv", result, false);
     }
 }

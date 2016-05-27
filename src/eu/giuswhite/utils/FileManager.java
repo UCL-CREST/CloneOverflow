@@ -24,7 +24,8 @@ public class FileManager {
     }
 
     public void createAndWriteFile(String path, String fileName, String body, boolean reformatCode) {
-        File file = new File(path + fileName);
+        System.out.println("Writing to " + path + "/" + fileName);
+        File file = new File(path + "/" + fileName);
         try {
             if (!Files.exists(Paths.get(path))) {
                 File f = new File(path);

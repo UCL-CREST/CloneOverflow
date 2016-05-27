@@ -1,53 +1,66 @@
 package eu.giuswhite;
 
+import eu.giuswhite.utils.CommonUtils;
+import eu.giuswhite.utils.CsvFileWriter;
 import org.apache.commons.cli.*;
-
 import java.io.File;
+import java.util.Map;
 
 public class Main {
     private static Options options = new Options();
     private static String fileDir;
+    private static String mode;
 
     public static void main(String[] args) {
         processCommandLine(args);
-//        ParserManager.getInstance().stackoverflowParser();
-//        Map map = LineCounter.getInstance().getMapOfLinesStat(CommonUtils.PROJECT_FOLDER_PATH + "\\data_four_split\\0\\");
-//        Map smallest = LineCounter.getInstance().getTopSmallestFile();
-//        Map biggest = LineCounter.getInstance().getTopBiggestFile();
-//        CsvFileWriter.sortHashMapByKey("first_half_stats", CommonUtils.CODE_LINES_STAT_CSV_HEADER, map);
-//        CsvFileWriter.writeHashMapToCsv("Post ID, # of lines", smallest, "first_half_5_smallest_code");
-//        CsvFileWriter.writeHashMapToCsv("Post ID, # of lines", biggest, "first_half_5_sbiggest_code");
 
-       /* Map map = new HashMap<>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            System.out.println("Path of projects folder:");
-            String path = br.readLine();
-            System.out.println("Destination path:");
-            String destinatioPath = br.readLine();
-            System.out.println("Result file name:");
-            String resultFileName = br.readLine();
-            FileManager.getDirectoryContents(new File(path), map);
-            map = FileManager.randomizeMap(map);
-            CsvFileWriter.writeHashMapToCsv(destinatioPath,"File Name, File Path", map, resultFileName);
+        if (mode.equals("p")) {
+            ParserManager.getInstance().stackoverflowParser();
+            Map map = LineCounter.getInstance().getMapOfLinesStat(CommonUtils.PROJECT_FOLDER_PATH + "/data_four_split/0/");
+            Map smallest = LineCounter.getInstance().getTopSmallestFile();
+            Map biggest = LineCounter.getInstance().getTopBiggestFile();
+//            CsvFileWriter.sortHashMapByKey("first_half_stats", CommonUtils.CODE_LINES_STAT_CSV_HEADER, map);
+            CsvFileWriter.sortHashMapByKey(map);
+            CsvFileWriter.writeHashMapToCsv("Post ID, # of lines", smallest, "first_half_5_smallest_code");
+            CsvFileWriter.writeHashMapToCsv("Post ID, # of lines", biggest, "first_half_5_sbiggest_code");
+            /*
+            Map map = new HashMap<>();
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                System.out.println("Path of projects folder:");
+                String path = br.readLine();
+                System.out.println("Destination path:");
+                String destinatioPath = br.readLine();
+                System.out.println("Result file name:");
+                String resultFileName = br.readLine();
+                FileManager.getDirectoryContents(new File(path), map);
+                map = FileManager.randomizeMap(map);
+                CsvFileWriter.writeHashMapToCsv(destinatioPath, "File Name, File Path", map, resultFileName);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        String gcfDir = fileDir;
-        File f = new File(gcfDir);
-        if (f.exists() && f.isDirectory()) {
-            ParserManager.getInstance().simianLogsFilterParser(gcfDir);
-        } else {
-            System.err.println("Error: the given directory " + gcfDir + " does not exist.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            */
         }
-        // ParserManager.getInstance().usefulSimianFragmentStatisticParser();
+
+        else if (mode.equals("f")) { // filter
+            String gcfDir = fileDir;
+            File f = new File(gcfDir);
+            if (f.exists() && f.isDirectory()) {
+                ParserManager.getInstance().simianLogsFilterParser(gcfDir);
+            } else {
+                System.err.println("Error: the given directory " + gcfDir + " does not exist.");
+            }
+        } else if (mode.equals("s")) { // stats
+            ParserManager.getInstance().usefulSimianFragmentStatisticParser("useful_fragments.xml");
+        }
     }
 
     private static void processCommandLine(String[] args) {
         // create the command line parser
         CommandLineParser parser = new DefaultParser();
 
+        options.addOption("m", "mode", true, "Mode [p=parse, f=filter, s=stats]");
         options.addOption("d", "dir", true, "File's directory");
         options.addOption("h", "help", false, "Print help");
 
@@ -68,8 +81,15 @@ public class Main {
             if (line.hasOption("d")) {
                 fileDir = line.getOptionValue("d");
             } else {
+                System.err.println("Error: No file directory provided.");
                 showHelp();
-                throw new ParseException("No file directory provided.");
+            }
+
+            if (line.hasOption("m")) {
+                mode = line.getOptionValue("m");
+            } else {
+                System.err.println("Error: No mode provided.");
+                showHelp();
             }
         } catch (ParseException exp) {
             System.out.println("Warning: " + exp.getMessage());

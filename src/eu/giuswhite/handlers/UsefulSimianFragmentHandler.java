@@ -91,12 +91,12 @@ public class UsefulSimianFragmentHandler extends DefaultHandler {
             SimianLog.LogFragment logFragment = actualSimianLog.getEmptyFragment();
             String filePath = attributes.getValue("filePath");
             String[] parts = filePath.split("/");
-            if(filePath.contains("/extracted_data_full/")){
+            if(filePath.contains(CommonUtils.stackoverflow_path)){
                 logFragment.filePath = parts[parts.length - 1];
             } else {
                 logFragment.filePath = parts[5];
             }
-            logFragment.isStackoverflowFragment = filePath.contains("extracted_data_full");
+            logFragment.isStackoverflowFragment = filePath.contains(CommonUtils.stackoverflow_path);
             logFragment.start = Integer.parseInt(attributes.getValue("start"));
             logFragment.end = Integer.parseInt(attributes.getValue("end"));
         }

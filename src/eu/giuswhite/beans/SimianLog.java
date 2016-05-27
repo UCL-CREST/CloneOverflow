@@ -1,6 +1,7 @@
 package eu.giuswhite.beans;
 
 import eu.giuswhite.comparators.SimianLogComparator;
+import eu.giuswhite.utils.CommonUtils;
 
 import java.util.*;
 
@@ -26,9 +27,9 @@ public class SimianLog {
         boolean thereIsSrcFile = false;
         for (LogFragment logFragment : this.fragmentList
                 ) {
-            if (logFragment.getFilePath().contains("/extracted_data_full/")) {
+            if (logFragment.getFilePath().contains(CommonUtils.stackoverflow_path)) {
                 thereIsStackOverflowFile = true;
-            } else if (logFragment.getFilePath().contains("/src/")) {
+            } else if (logFragment.getFilePath().contains(CommonUtils.qualitas_path)) {
                 thereIsSrcFile = true;
             }
         }
