@@ -3,6 +3,7 @@ package eu.giuswhite.beans;
 import eu.giuswhite.comparators.SimianLogComparator;
 import eu.giuswhite.utils.CommonUtils;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -49,7 +50,7 @@ public class SimianLog {
         List<SimianStackoverflowFragment> result = new ArrayList<>();
         for(SimianLog s : simianLogs){
             for(LogFragment lF : s.fragmentList){
-                /*Controllo se esiste nella lista risultato.*/
+                /* Check if it exists in the result list.*/
                 if(lF.isStackoverflowFragment){
                     boolean exist = false;
                     SimianStackoverflowFragment simianStackoverflowFragment = new SimianStackoverflowFragment();
@@ -60,11 +61,20 @@ public class SimianLog {
                             break;
                         }
                     }
-                    /* Se non esiste, lo creo e lo aggiungo*/
+                    /* If it is not in the list, add it */
                     if(!exist){
                         simianStackoverflowFragment.fragmentName = lF.filePath;
+                        try {
+                            simianStackoverflowFragment.setSLOC(lF.filePath);
+                            simianStackoverflowFragment.setCloneLines(lF.getStart(), lF.getEnd());
+                        } catch (IOException e) {
+                            System.err.println("Error: can't find the fragment file.");
+                            e.printStackTrace();
+                        }
                         result.add(simianStackoverflowFragment);
                     }
+
+                    // add the projects that use this fragment
                     for(LogFragment lF2: s.fragmentList){
                         if(!lF2.isStackoverflowFragment){
                             simianStackoverflowFragment.numberOfTimeIsUsed++;

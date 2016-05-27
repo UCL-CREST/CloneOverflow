@@ -68,12 +68,14 @@ public class CsvFileWriter {
         try (ICsvListWriter listWriter = new CsvListWriter(output,
                 CsvPreference.STANDARD_PREFERENCE)) {
             for (SimianStackoverflowFragment fragment : list) {
-                listWriter.write(fragment.fragmentName, fragment.numberOfTimeIsUsed, fragment.projectsWhereIsUsed.size());
+                listWriter.write(fragment.fragmentName, fragment.numberOfTimeIsUsed,
+                        fragment.projectsWhereIsUsed.size(), fragment.getSLOC(), fragment.getCloneLines(),
+                        ((double)fragment.getCloneLines())/fragment.getSLOC());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String result = "Fragment Name, Used, In Projects\n" + output.toString();
+        String result = "fragment, used, inprojects, sloc, usedsloc, percent\n" + output.toString();
         FileManager.getInstance().createAndWriteFile(CommonUtils.PROJECT_FOLDER_PATH + "/stats", filename + ".csv", result, false);
     }
 }

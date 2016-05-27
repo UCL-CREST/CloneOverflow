@@ -101,7 +101,7 @@ public class ParserManager {
     public void usefulSimianFragmentStatisticParser(String file) {
         try {
             List<SimianLog> simianLogs = new ArrayList<>();
-            File inputFile = new File(CommonUtils.PROJECT_FOLDER_PATH + "/" + "useful_fragments.xml");
+            File inputFile = new File(CommonUtils.PROJECT_FOLDER_PATH + "//useful_fragments.xml");
             this.handler = new UsefulSimianFragmentHandler(simianLogs);
             this.saxParser.parse(inputFile, handler);
             List<SimianStackoverflowFragment> result = SimianLog.getSimianLogStats(simianLogs);
@@ -112,7 +112,7 @@ public class ParserManager {
             CsvFileWriter.writeHashMapToCsv("Used, Number of Fragments", CsvFileWriter.sortHashMapByKey(SimianLog.getDistributionBy(result, SimianLogComparator.PROJECTS)),"fragment_distribution_by_projects");
             CsvFileWriter.writeHashMapToCsv("No. of LOC, Occurrences", CsvFileWriter.sortHashMapByKey(SimianLog.getSimianLogLOCStats(simianLogs)),"fragment_loc_statistics");
             CsvFileWriter.writeHashMapToCsv("No. of LOC, Occurrences", CsvFileWriter.sortHashMapByKey(SimianLog.getSimianLogProjectsStats(simianLogs)),"fragment_project_statistics");
-            System.out.println("Done writing stats to: " + CommonUtils.PROJECT_FOLDER_PATH + "/stats");
+
         } catch (SAXException | IOException e) {
             e.printStackTrace();
         } catch (SaxTerminatorException allDone) {
