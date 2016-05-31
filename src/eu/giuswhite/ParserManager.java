@@ -101,7 +101,7 @@ public class ParserManager {
     public void usefulSimianFragmentStatisticParser(String file) {
         try {
             List<SimianLog> simianLogs = new ArrayList<>();
-            File inputFile = new File(CommonUtils.PROJECT_FOLDER_PATH + "//useful_fragments.xml");
+            File inputFile = new File(file);
             this.handler = new UsefulSimianFragmentHandler(simianLogs);
             this.saxParser.parse(inputFile, handler);
             List<SimianStackoverflowFragment> result = SimianLog.getSimianLogStats(simianLogs);

@@ -11,7 +11,7 @@ public class CommonUtils {
     public static final String OPEN_CODE_PATTERN = "<pre><code>";
     public static final String CLOSED_CODE_PATTERN = "</code></pre>";
     public static final String CODE_LINES_STAT_CSV_HEADER = "# of lines, # of posts";
-    public static final String stackoverflow_path = "/stackoverflow_formatted/";
+    public static final String stackoverflow_path = "stackoverflow_formatted/";
     public static final String SF_FRAG_LOCATION = "/Users/Chaiyong/Documents/stackoverflow/stackoverflow_formatted";
     public static final String qualitas_path = "src/";
 }

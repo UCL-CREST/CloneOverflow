@@ -52,7 +52,7 @@ public class Main {
                 System.err.println("Error: the given directory " + gcfDir + " does not exist.");
             }
         } else if (mode.equals("s")) { // stats
-            ParserManager.getInstance().usefulSimianFragmentStatisticParser("useful_fragments.xml");
+            ParserManager.getInstance().usefulSimianFragmentStatisticParser(fileDir);
         }
     }
 

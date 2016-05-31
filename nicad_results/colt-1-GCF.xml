@@ -1,0 +1,19 @@
+<CloneClasses>
+    <CloneClass>
+    <ID>1</ID>
+        <Clone>
+            <Fragment>
+                <File>stackoverflow_formatted/5498898_0.java</File>
+                <Start>57</Start>
+                <End>65</End>
+            </Fragment>
+        </Clone>
+        <Clone>
+            <Fragment>
+                <File>colt-1/colt/src/cern/colt/matrix/linalg/EigenvalueDecomposition.java</File>
+                <Start>85</Start>
+                <End>98</End>
+            </Fragment>
+        </Clone>
+    </CloneClass>
+</CloneClasses>

@@ -94,7 +94,8 @@ public class UsefulSimianFragmentHandler extends DefaultHandler {
             if(filePath.contains(CommonUtils.stackoverflow_path)){
                 logFragment.filePath = parts[parts.length - 1];
             } else {
-                logFragment.filePath = parts[5];
+                // logFragment.filePath = parts[5];
+                logFragment.filePath = filePath;
             }
             logFragment.isStackoverflowFragment = filePath.contains(CommonUtils.stackoverflow_path);
             logFragment.start = Integer.parseInt(attributes.getValue("start"));
