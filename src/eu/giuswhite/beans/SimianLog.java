@@ -48,6 +48,7 @@ public class SimianLog {
 
     public static List<SimianStackoverflowFragment> getSimianLogStats(List<SimianLog> simianLogs){
         List<SimianStackoverflowFragment> result = new ArrayList<>();
+        System.out.println("Reading from simian fragments ...");
         for(SimianLog s : simianLogs){
             for(LogFragment lF : s.fragmentList){
                 /* Check if it exists in the result list.*/
@@ -72,6 +73,7 @@ public class SimianLog {
                             e.printStackTrace();
                         }
                         result.add(simianStackoverflowFragment);
+                        System.out.print(simianStackoverflowFragment.fragmentName + ", ");
                     }
 
                     // add the projects that use this fragment

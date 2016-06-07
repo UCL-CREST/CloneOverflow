@@ -14,4 +14,20 @@ public class CommonUtils {
     public static final String stackoverflow_path = "stackoverflow_formatted/";
     public static final String SF_FRAG_LOCATION = "/Users/Chaiyong/Documents/stackoverflow/stackoverflow_formatted";
     public static final String qualitas_path = "src/";
+
+    public static boolean isError(String fragId) {
+        // 16327677_0.java
+        // 25018225_0.java
+        // 21535828_0.java
+        // 22041769_1.java
+        // "12124636_0.java"
+        // "21655588_0.java"
+        //if (fragId.contains("16327677_0.java") || fragId.contains("25018225_0.java")
+        //        || fragId.contains("21535828_0.java") || fragId.contains("22041769_1.java")
+        //        || fragId.contains("12124636_0.java") || fragId.contains("21655588_0.java")) {
+        //    return true;
+        //} else
+        //    return false;
+        return false;
+    }
 }

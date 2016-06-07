@@ -26,11 +26,15 @@ public class XmlFileWriter {
                 sL.setAttribute("ID", String.valueOf(simianLog.id));
 
                 for (SimianLog.LogFragment logFragment : simianLog.fragmentList) {
-                    Element lF = new Element("FRAGMENT_LOG");
-                    lF.setAttribute("filePath", logFragment.filePath);
-                    lF.setAttribute("start", String.valueOf(logFragment.start));
-                    lF.setAttribute("end", String.valueOf(logFragment.end));
-                    sL.addContent(lF);
+                    // TODO: have to check this list of error fragments everytime before running!
+                    // check if the fragment is in the error list, skip it
+                    if (! CommonUtils.isError(logFragment.filePath)) {
+                        Element lF = new Element("FRAGMENT_LOG");
+                        lF.setAttribute("filePath", logFragment.filePath);
+                        lF.setAttribute("start", String.valueOf(logFragment.start));
+                        lF.setAttribute("end", String.valueOf(logFragment.end));
+                        sL.addContent(lF);
+                    }
                 }
                 root.addContent(sL);
             }

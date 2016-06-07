@@ -80,6 +80,7 @@ public class ParserManager {
             if (simianResults.size() != 0) { // has result files
                 List<SimianLog> usefulFragment = new ArrayList<>();
                 for (String fileName : simianResults) {
+                    System.out.println("file: " + fileName);
                     this.handler = new SimianLogsFilterHandler(usefulFragment);
                     File testFile = new File(gcfDir + "/" + fileName);
                     this.saxParser.parse(testFile, handler);
@@ -102,16 +103,17 @@ public class ParserManager {
         try {
             List<SimianLog> simianLogs = new ArrayList<>();
             File inputFile = new File(file);
+            System.out.println("File: " + inputFile.getName());
             this.handler = new UsefulSimianFragmentHandler(simianLogs);
             this.saxParser.parse(inputFile, handler);
             List<SimianStackoverflowFragment> result = SimianLog.getSimianLogStats(simianLogs);
             CsvFileWriter.writeSimianLogsStatsOnCsv(result, "fragment_stats");
-            CsvFileWriter.writeSimianLogsStatsOnCsv(SimianLog.sortByUsage(result), "fragment_stats_sorted_by_usage");
-            CsvFileWriter.writeSimianLogsStatsOnCsv(SimianLog.sortByProjects(result), "fragment_stats_sorted_by_projects");
-            CsvFileWriter.writeHashMapToCsv("Used, Number of Fragments", CsvFileWriter.sortHashMapByKey(SimianLog.getDistributionBy(result, SimianLogComparator.USAGE)),"fragment_distribution_by_usage");
-            CsvFileWriter.writeHashMapToCsv("Used, Number of Fragments", CsvFileWriter.sortHashMapByKey(SimianLog.getDistributionBy(result, SimianLogComparator.PROJECTS)),"fragment_distribution_by_projects");
-            CsvFileWriter.writeHashMapToCsv("No. of LOC, Occurrences", CsvFileWriter.sortHashMapByKey(SimianLog.getSimianLogLOCStats(simianLogs)),"fragment_loc_statistics");
-            CsvFileWriter.writeHashMapToCsv("No. of LOC, Occurrences", CsvFileWriter.sortHashMapByKey(SimianLog.getSimianLogProjectsStats(simianLogs)),"fragment_project_statistics");
+//            CsvFileWriter.writeSimianLogsStatsOnCsv(SimianLog.sortByUsage(result), "fragment_stats_sorted_by_usage");
+//            CsvFileWriter.writeSimianLogsStatsOnCsv(SimianLog.sortByProjects(result), "fragment_stats_sorted_by_projects");
+//            CsvFileWriter.writeHashMapToCsv("Used, Number of Fragments", CsvFileWriter.sortHashMapByKey(SimianLog.getDistributionBy(result, SimianLogComparator.USAGE)),"fragment_distribution_by_usage");
+//            CsvFileWriter.writeHashMapToCsv("Used, Number of Fragments", CsvFileWriter.sortHashMapByKey(SimianLog.getDistributionBy(result, SimianLogComparator.PROJECTS)),"fragment_distribution_by_projects");
+//            CsvFileWriter.writeHashMapToCsv("No. of LOC, Occurrences", CsvFileWriter.sortHashMapByKey(SimianLog.getSimianLogLOCStats(simianLogs)),"fragment_loc_statistics");
+//            CsvFileWriter.writeHashMapToCsv("No. of LOC, Occurrences", CsvFileWriter.sortHashMapByKey(SimianLog.getSimianLogProjectsStats(simianLogs)),"fragment_project_statistics");
 
         } catch (SAXException | IOException e) {
             e.printStackTrace();
