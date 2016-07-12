@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,18 +16,18 @@ import java.util.List;
 public class SimianStackoverflowFragment {
     public String fragmentName;
     public int numberOfTimeIsUsed;
-    public List<String> projectsWhereIsUsed;
+    public HashMap<Integer, Boolean> projectsWhereIsUsed;
     public boolean[] cloneLines;
     public int SLOC;
 
     public SimianStackoverflowFragment(){
         this.numberOfTimeIsUsed = 0;
-        this.projectsWhereIsUsed = new ArrayList<>();
+        this.projectsWhereIsUsed = new HashMap<>();
     }
 
     public SimianStackoverflowFragment(String filePath){
         this.numberOfTimeIsUsed = 0;
-        this.projectsWhereIsUsed = new ArrayList<>();
+        this.projectsWhereIsUsed = new HashMap<>();
         try {
             this.setSLOC(filePath);
         } catch (IOException e) {

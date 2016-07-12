@@ -64,15 +64,18 @@ public class CsvFileWriter {
     }
 
     public static void writeSimianLogsStatsOnCsv(List<SimianStackoverflowFragment> list, String filename) {
-        System.out.println("Start writing to csv ...");
+        System.out.println("\nStart writing to csv ...");
         StringWriter output = new StringWriter();
         try (ICsvListWriter listWriter = new CsvListWriter(output,
                 CsvPreference.STANDARD_PREFERENCE)) {
             for (SimianStackoverflowFragment fragment : list) {
                 System.out.print(".");
-                listWriter.write(fragment.fragmentName, fragment.numberOfTimeIsUsed,
-                        fragment.projectsWhereIsUsed.size(), fragment.getSLOC(), fragment.getCloneLines(),
-                        ((double)fragment.getCloneLines())/fragment.getSLOC());
+                // skip if they're false clones generated from simian's bug
+                if (! CommonUtils.isError(fragment.fragmentName)) {
+                    listWriter.write(fragment.fragmentName, fragment.numberOfTimeIsUsed,
+                            fragment.projectsWhereIsUsed.size(), fragment.getSLOC(), fragment.getCloneLines(),
+                            ((double) fragment.getCloneLines()) / fragment.getSLOC());
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

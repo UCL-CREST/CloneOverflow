@@ -47,20 +47,24 @@ public class SimianLog {
     }
 
     public static List<SimianStackoverflowFragment> getSimianLogStats(List<SimianLog> simianLogs){
-        List<SimianStackoverflowFragment> result = new ArrayList<>();
+        HashMap<String, SimianStackoverflowFragment> result = new HashMap<>();
+        HashMap<String, Integer> projectFileMap = new HashMap<>();
+        int projectFileId = 0;
+
         System.out.println("Reading from simian fragments ...");
+        int count = 1;
         for(SimianLog s : simianLogs){
+            System.out.println(count + "/" + simianLogs.size());
+            count++;
             for(LogFragment lF : s.fragmentList){
+                // System.out.println("Checking fragment: " + lF.filePath);
                 /* Check if it exists in the result list.*/
                 if(lF.isStackoverflowFragment){
                     boolean exist = false;
                     SimianStackoverflowFragment simianStackoverflowFragment = new SimianStackoverflowFragment();
-                    for (SimianStackoverflowFragment sSF : result){
-                        if(sSF.fragmentName.equals(lF.filePath)){
-                            exist = true;
-                            simianStackoverflowFragment = sSF;
-                            break;
-                        }
+                    if (result.containsKey(lF.filePath)) {
+                        exist = true;
+                        simianStackoverflowFragment = result.get(lF.filePath);
                     }
                     /* If it is not in the list, add it */
                     if(!exist){
@@ -72,22 +76,39 @@ public class SimianLog {
                             System.err.println("Error: can't find the fragment file.");
                             e.printStackTrace();
                         }
-                        result.add(simianStackoverflowFragment);
-                        System.out.print(simianStackoverflowFragment.fragmentName + ", ");
+                        result.put(lF.filePath, simianStackoverflowFragment);
+                        // System.out.print(simianStackoverflowFragment.fragmentName + ", ");
                     }
 
                     // add the projects that use this fragment
+                    // System.out.println("Checking projects for this fragment ... ");
                     for(LogFragment lF2: s.fragmentList){
                         if(!lF2.isStackoverflowFragment){
+//                            System.out.println("Adding: " + lF2.filePath
+//                                    + " to " + simianStackoverflowFragment.fragmentName);
                             simianStackoverflowFragment.numberOfTimeIsUsed++;
-                            exist = false;
-                            for (String projectName: simianStackoverflowFragment.projectsWhereIsUsed){
-                                if(projectName.equals(lF2.filePath)){
-                                    exist = true;
-                                }
+
+                            // check if the project file is already in the map
+                            int projectFileKey = -1;
+                            // exist, get the key
+                            if (projectFileMap.containsKey(lF2.filePath)) {
+                                projectFileKey = projectFileMap.get(lF2.filePath);
+                            } else {
+                                // not exist, add a new key
+                                projectFileMap.put(lF2.filePath, new Integer(projectFileId));
+                                projectFileKey = projectFileId;
+                                projectFileId++;
                             }
+
+                            // System.out.print(projectFileKey + ", ");
+
+                            exist = false;
+                            if (simianStackoverflowFragment.projectsWhereIsUsed.containsKey(projectFileKey)) {
+                                exist = true;
+                            }
+
                             if(!exist){
-                                simianStackoverflowFragment.projectsWhereIsUsed.add(lF2.filePath);
+                                simianStackoverflowFragment.projectsWhereIsUsed.put(projectFileKey, true);
                             }
                         }
                     }
@@ -95,7 +116,7 @@ public class SimianLog {
             }
 
         }
-        return result;
+        return new ArrayList<SimianStackoverflowFragment>(result.values());
     }
 
     public static List<SimianStackoverflowFragment> sortByUsage(List<SimianStackoverflowFragment> list){
