@@ -135,7 +135,7 @@ Relationships between the cloned fragments are displayed in Fig.~\ref{fig:venn4}
 \end{figure}
 
 \section*{Agreed Clone Pairs}
-The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \textit{ok-match(p)} criteria are listed in  Table \ref{t_agreed_good_clone_pairs} and Table \ref{t_agreed_ok_clone_pairs}. We use the threshold \textit{p} of 0.7 for both \textit{good-match} and \textit{ok-match}. Visualisation of \textit{good-match} common clone pairs between sets of parameter settings can be seen from Figure \ref{fig:venn4_pairs}. There are 14 \textit{good-match} pairs. The \textit{ok-match} subsumes the \textit{good-match} resulting in totally 528 common clone pairs. I think I can manually investigate all of the \textit{good-match} ones and 86 samples of the \textit{ok-match} ones.
+The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \textit{ok-match(p)} criteria are listed in  Table \ref{t_agreed_good_clone_pairs} and Table \ref{t_agreed_ok_clone_pairs}. We use the threshold \textit{p} of 0.7 for both \textit{good-match} and \textit{ok-match}. Visualisation of \textit{good-match} common clone pairs between sets of parameter settings can be seen from Figure \ref{fig:venn4_pairs}. There are 14 \textit{good-match} pairs. The \textit{ok-match} subsumes the \textit{good-match} resulting in totally 528 common clone pairs.
 
 \begin{table}[h]
 	\centering
@@ -173,6 +173,96 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 	\caption[Agreed clone pairs reported by Simian and NiCad with default and FSE'13 settings using good-match(0.7) criterion]{Agreed clone pairs reported by Simian and NiCad with default and FSE'13 settings using good-match(0.7) criterion}
 	\label{fig:venn4_pairs}
 \end{figure}
+
+I have manually investigated all of the 14 \textit{good-match} ones and 183 samples of the \textit{ok-match} ones. The classification results are shown in Table \ref{tab:classification}. The selected 183 pairs are results of filtering fragments with the same starting and ending clone lines by keeping only one of them (i.e. strict version). Then, we found a lot of similar clone pairs having the same classification results. If we only keep unique Stackoverflow fragments (with the largest Qualitas clone size), it results in 82 pairs (i.e. loose version).
+
+\begin{table}
+	\centering
+	\caption{Classification results of 14 \textit{good} and 183 \textit{ok}-matches (excluding the subsumed \textit{good}-match pairs).}
+	\label{tab:classification}
+		\begin{tabular}{|l|r|r|r|r|r|r|r|}
+			\hline 
+			Classification & A & B & C & D & E & F & Total \\ 
+			\hline 
+		    \multirow{2}{*}{\textit{good-match(0.7)}} & 1 & 2 & 2 & 2 & 7 & 0 & 14 \\ \cline{2-8}
+			 & 7.14\%	& 14.29\%	& 14.29\%	& 14.29\%	& 50.00\%	& 0.00\%	& 100.00\% \\ 
+			\hline
+			\multirow{2}{*}{\textit{ok-match(0.7) - strict}} & 2 & 2 & 2 & 21 & 146 & 10 & 183 \\ \cline{2-8}
+			& 1.09\%	& 1.09\%	&	1.09\%	&	11.48\%	&	79.78\%	&	5.46\%	&	100.00\%  \\ 
+			\hline
+			\multirow{2}{*}{\textit{ok-match(0.7) - loose}}  & 1 & 2 & 2 & 20 & 48 & 9 & 82 \\ \cline{2-8}
+			& 1.22\%	&	2.44\%	&	2.44\%	&	24.39\%	&	58.54\%	&	10.98\%	&	100.00\% \\
+			\hline 
+		\end{tabular} 
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Classifications of clone creation}
+\begin{tabular}{|c|p{13cm}|}
+	\hline 
+	Category & Descriptions \\ 
+	\hline 
+	A & Code in Stackoverflow is copied from Qualitas (S ← Q). \\ 
+	\hline 
+	B & Code is copied either from each other or a third source (unknown) (S ←→ Q).
+	\\ 
+	\hline 
+	C & Code in both places are copied from a third source T (known) (S, Q ← T ).
+	\\ 
+	\hline 
+	D & Code is a boiler-plate or IDE auto-generated.
+	\\ 
+	\hline 
+	E & Code in both places initialise a similar/the same object; extend the same class/its subclass; implement the same interface.
+	\\ 
+	\hline 
+	F & Accidental similarity  \\ 
+	\hline 
+\end{tabular} 
+\end{table}
+
+\section*{Investigation of Missing A/B Clone Pairs Reported by Simian (df)}
+We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{fse13}$, NiCad$_{df}$, NiCad$_{fse13}$. The investigation results are shown in Table \ref{tab:search}.
+
+\begin{table}[H]
+	\centering
+	\caption{Search results of 41 Simian(df) pairs in the new 4 result sets}
+	\label{tab:search}
+\begin{tabular}{l|r|r}
+	\hline 
+	Settings & Found & Not found \\ 
+	\hline 
+	Simian$_{df}$  &  40 & 1 \\ 
+	\hline 
+	Simian$_{fse13}$ & 0 & 41  \\ 
+	\hline 
+	NiCad$_{df}$  & 9 & 32 \\ 
+	\hline 
+	NiCad$_{fse13}$ &  9 & 32 \\ 
+	\hline 
+\end{tabular} 
+\end{table}
+
+Figure \ref{fig:1} shows a clone pairs that is reported by only Simian$_{df}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{images/1}
+\caption{A clone pair solely reported by Simian$_{df}$}
+\label{fig:1}
+\end{figure}
+
+Figure \ref{fig:2} shows a clone pair that is reported by Simian$_{df}$, NiCad$_{df}$, NiCad$_{fse13}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[angle=90,origin=c,width=0.6\linewidth]{images/2}
+\caption{A clone pair that is reported by Simian$_{df}$, NiCad$_{df}$, NiCad$_{fse13}$.}
+\label{fig:2}
+\end{figure}
+
+\newpage
 
 \section*{Simian's Parameters}
 
