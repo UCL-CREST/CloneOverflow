@@ -107,32 +107,32 @@ Manual investigation of Simian's clone report showed that there were problematic
 		\end{tabular} 
 \end{table*}
 
-\section*{Agreed Cloned Fragments}
-The results from both tools are compared to find clone pairs that they mutually agree.  Theses agreed clone pairs will be manually investigated. The results of agreed clone pairs found by different parameter settings of Simian and NiCad are shown in Table \ref{t_agreed_clone}.
+%\section*{Agreed Cloned Fragments}
+%The results from both tools are compared to find clone pairs that they mutually agree.  Theses agreed clone pairs will be manually investigated. The results of agreed clone pairs found by different parameter settings of Simian and NiCad are shown in Table \ref{t_agreed_clone}.
 
-\begin{table}[h]
-	\centering
-	\caption{Agreed cloned fragments between Simian and Nicad}
-	\label{t_agreed_clone}
-	\begin{tabular}{l|r|r}
-		\hline
-		& Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
-		\hline
-		NiCad$_{\mathrm{\textit{default}}}$ & 92          & 1        \\%      & 709             \\
-		NiCad$_{\mathrm{\textit{fse13}}}$   & 155         & 25           \\ % & 4680            \\
+%\begin{table}[h]
+%	\centering
+%	\caption{Agreed cloned fragments between Simian and Nicad}
+%	\label{t_agreed_clone}
+%	\begin{tabular}{l|r|r}
+%		\hline
+%		& Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+%		\hline
+%		NiCad$_{\mathrm{\textit{default}}}$ & 92          & 1        \\%      & 709             \\
+%		NiCad$_{\mathrm{\textit{fse13}}}$   & 155         & 25           \\ % & 4680            \\
 		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
-		\hline
-	\end{tabular}
-\end{table}
+%		\hline
+%	\end{tabular}
+%\end{table}
 
-Relationships between the cloned fragments are displayed in Fig.~\ref{fig:venn4}.
+%Relationships between the cloned fragments are displayed in Fig.~\ref{fig:venn4}.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.5\linewidth]{venn4}
-\caption[Agreed clone fragments reported by Simian and NiCad with default and FSE'13 settings]{Agreed clone fragments reported by Simian and NiCad with default and FSE'13 settings}
-\label{fig:venn4}
-\end{figure}
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=0.5\linewidth]{venn4}
+%\caption[Agreed clone fragments reported by Simian and NiCad with default and FSE'13 settings]{Agreed clone fragments reported by Simian and NiCad with default and FSE'13 settings}
+%\label{fig:venn4}
+%\end{figure}
 
 \section*{Agreed Clone Pairs}
 The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \textit{ok-match(p)} criteria are listed in  Table \ref{t_agreed_good_clone_pairs} and Table \ref{t_agreed_ok_clone_pairs}. We use the threshold \textit{p} of 0.7 for both \textit{good-match} and \textit{ok-match}. Visualisation of \textit{good-match} common clone pairs between sets of parameter settings can be seen from Figure \ref{fig:venn4_pairs}. There are 14 \textit{good-match} pairs. The \textit{ok-match} subsumes the \textit{good-match} resulting in totally 528 common clone pairs.
@@ -167,10 +167,54 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 	\end{tabular}
 \end{table}
 
+\section*{Duplicated Agreed Clone Pairs}
+
+\begin{table}[H]
+	\centering
+	\caption{Duplicated agreed \textit{good}-pairs between pairs of Simian and NiCad settings}
+	\label{t_dup_agreed_good_clone_pairs}
+	\begin{tabular}{l|r|r|r|r}
+		\hline
+		& $S_dN_d$ & $S_dN_f$ & $S_fN_d$ & $S_fN_f$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+		\hline
+		$S_dN_d$ & 9 & 3 & 0 & 0 \\%      & 709             \\
+		$S_dN_f$ & 3 & 3 & 0 & 0 \\ % & 4680            \\
+		$S_fN_d$ & 0 & 0 & 1 & 1 \\
+		$S_fN_f$ & 0 & 0 & 1 & 5 \\	
+		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\linewidth]{venn4_pairs}
+	\includegraphics[width=0.5\linewidth]{venn4_pairs_good}
 	\caption[Agreed clone pairs reported by Simian and NiCad with default and FSE'13 settings using good-match(0.7) criterion]{Agreed clone pairs reported by Simian and NiCad with default and FSE'13 settings using good-match(0.7) criterion}
+	\label{fig:venn4_pairs}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\caption{Duplicated agreed \textit{ok}-pairs between Simian and NiCad settings}
+	\label{t_dup_agreed_ok_clone_pairs}
+	\begin{tabular}{l|r|r|r|r}
+		\hline
+		& $S_dN_d$ & $S_dN_f$ & $S_fN_d$ & $S_fN_f$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+		\hline
+		$S_dN_d$ & 373 & 17 & 0 & 0 \\%      & 709             \\
+		$S_dN_f$ & 17 & 118 & 0 & 0 \\ % & 4680            \\
+		$S_fN_d$ & 0 & 0 & 1 & 1 \\
+		$S_fN_f$ & 0 & 0 & 1 & 36 \\	
+		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{venn4_pairs_ok}
+	\caption[Agreed clone pairs reported by Simian and NiCad with default and FSE'13 settings using ok-match(0.7) criterion]{Agreed clone pairs reported by Simian and NiCad with default and FSE'13 settings using ok-match(0.7) criterion}
 	\label{fig:venn4_pairs}
 \end{figure}
 
@@ -187,12 +231,9 @@ I have manually investigated all of the 14 \textit{good-match} ones and 183 samp
 		    \multirow{2}{*}{\textit{good-match(0.7)}} & 1 & 2 & 2 & 2 & 7 & 0 & 14 \\ \cline{2-8}
 			 & 7.14\%	& 14.29\%	& 14.29\%	& 14.29\%	& 50.00\%	& 0.00\%	& 100.00\% \\ 
 			\hline
-			\multirow{2}{*}{\textit{ok-match(0.7) - strict}} & 2 & 2 & 2 & 21 & 146 & 10 & 183 \\ \cline{2-8}
-			& 1.09\%	& 1.09\%	&	1.09\%	&	11.48\%	&	79.78\%	&	5.46\%	&	100.00\%  \\ 
+			\multirow{2}{*}{\textit{ok-match(0.7)}} & 4 & 42 & 8 & 351 & 28 & 77 & 510 \\ \cline{2-8}
+			& 0.78\%	& 8.24\%	&	1.57\%	&	68.82\%	&	5.49\%	&	15.10\%	&	100.00\%  \\ 
 			\hline
-			\multirow{2}{*}{\textit{ok-match(0.7) - loose}}  & 1 & 2 & 2 & 20 & 48 & 9 & 82 \\ \cline{2-8}
-			& 1.22\%	&	2.44\%	&	2.44\%	&	24.39\%	&	58.54\%	&	10.98\%	&	100.00\% \\
-			\hline 
 		\end{tabular} 
 \end{table}
 
