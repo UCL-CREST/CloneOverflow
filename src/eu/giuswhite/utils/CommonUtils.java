@@ -22,16 +22,16 @@ public class CommonUtils {
         // 22041769_1.java
         // "12124636_0.java"
         // "21655588_0.java"
-//        if (fragId.contains("16327677_0.java") || fragId.contains("25018225_0.java")
-//                || fragId.contains("21535828_0.java") || fragId.contains("22041769_1.java")
-//                || fragId.contains("12124636_0.java") || fragId.contains("21655588_0.java")
-//                || fragId.contains("5066587_0.java")  || fragId.contains("19051537_0.java")
-//                || fragId.contains("18877151_0.java") || fragId.contains("3215448_0.java")
-//                || fragId.contains("25703453_0.java")) {
-//            System.out.println("Found error fragment: skipping ... ");
-//            return true;
-//        } else
-//            return false;
-        return false;
+        if (fragId.contains("16327677_0.java") || fragId.contains("25018225_0.java")
+                || fragId.contains("21535828_0.java") || fragId.contains("22041769_1.java")
+                || fragId.contains("12124636_0.java") || fragId.contains("21655588_0.java")
+                || fragId.contains("5066587_0.java")  || fragId.contains("19051537_0.java")
+                || fragId.contains("18877151_0.java") || fragId.contains("3215448_0.java")
+                || fragId.contains("25703453_0.java")) {
+            System.out.println("Found error fragment: skipping ... ");
+            return true;
+        } else
+            return false;
+//        return false;
     }
 }

@@ -24,7 +24,7 @@ public class XmlFileWriter {
             for (SimianLog simianLog : content) {
                 Element sL = new Element("SIMIAN_LOG");
                 sL.setAttribute("ID", String.valueOf(simianLog.id));
-
+                boolean foundErrorFrag = false;
                 for (SimianLog.LogFragment logFragment : simianLog.fragmentList) {
                     // TODO: have to check this list of error fragments everytime before running!
                     // check if the fragment is in the error list, skip it
@@ -35,8 +35,14 @@ public class XmlFileWriter {
                         lF.setAttribute("end", String.valueOf(logFragment.end));
                         sL.addContent(lF);
                     }
+                    else {
+                        // found error pairs, skip the whole cluster
+                        foundErrorFrag = true;
+                    }
                 }
-                root.addContent(sL);
+
+                if (!foundErrorFrag)
+                    root.addContent(sL);
             }
 
             doc.setRootElement(root);

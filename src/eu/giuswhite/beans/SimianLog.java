@@ -26,8 +26,11 @@ public class SimianLog {
         boolean result = false;
         boolean thereIsStackOverflowFile = false;
         boolean thereIsSrcFile = false;
-        for (LogFragment logFragment : this.fragmentList
-                ) {
+        for (LogFragment logFragment : this.fragmentList) {
+//            if (logFragment.getFilePath().contains("19051537_0.java"))
+//                System.out.println("**** YES: 19051537_0.java ****");
+//            if (logFragment.getFilePath().contains("src/apache-ant-1.8.4/src/main/org/apache/tools/bzip2/CRC.java"))
+//                System.out.println("**** YES: " + logFragment.getFilePath() + " ****");
             if (logFragment.getFilePath().contains(CommonUtils.stackoverflow_path)) {
                 thereIsStackOverflowFile = true;
             } else if (logFragment.getFilePath().contains(CommonUtils.qualitas_path)) {
@@ -35,6 +38,7 @@ public class SimianLog {
             }
         }
         result = thereIsSrcFile && thereIsStackOverflowFile;
+
         return result;
     }
 
