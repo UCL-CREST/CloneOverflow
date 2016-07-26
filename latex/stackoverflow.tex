@@ -152,23 +152,6 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 	\end{tabular}
 \end{table}
 
-\begin{table}[h]
-	\centering
-	\caption{528 agreed ok-match(0.7) cloned pairs between Simian and Nicad (510 are unique)}
-	\label{t_agreed_ok_clone_pairs}
-	\begin{tabular}{l|r|r}
-		\hline
-		& Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
-		\hline
-		NiCad$_{\mathrm{\textit{default}}}$ & 373 & 1 \\%      & 709             \\
-		NiCad$_{\mathrm{\textit{fse13}}}$   & 118 & 36 \\ % & 4680            \\
-		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
-		\hline
-	\end{tabular}
-\end{table}
-
-\section*{Duplicated Agreed Clone Pairs}
-
 \begin{table}[H]
 	\centering
 	\caption{Duplicated agreed \textit{good}-pairs between pairs of Simian and NiCad settings}
@@ -186,7 +169,6 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 	\end{tabular}
 \end{table}
 
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{venn4_pairs_good}
@@ -196,7 +178,22 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 
 \begin{table}[h]
 	\centering
-	\caption{Duplicated agreed \textit{ok}-pairs between Simian and NiCad settings}
+	\caption{528 agreed ok-match(0.7) cloned pairs between Simian and Nicad (510 are unique)}
+	\label{t_agreed_ok_clone_pairs}
+	\begin{tabular}{l|r|r}
+		\hline
+		& Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+		\hline
+		NiCad$_{\mathrm{\textit{default}}}$ & 373 & 1 \\%      & 709             \\
+		NiCad$_{\mathrm{\textit{fse13}}}$   & 118 & 36 \\ % & 4680            \\
+		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{Duplicated agreed \textit{ok}-pairs between Simian and NiCad settings  (510 are unique)}
 	\label{t_dup_agreed_ok_clone_pairs}
 	\begin{tabular}{l|r|r|r|r}
 		\hline
@@ -218,71 +215,87 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 	\label{fig:venn4_pairs}
 \end{figure}
 
-I have manually investigated all of the 14 \textit{good-match} ones and 183 samples of the \textit{ok-match} ones. The classification results are shown in Table \ref{tab:classification}. The selected 183 pairs are results of filtering fragments with the same starting and ending clone lines by keeping only one of them (i.e. strict version). Then, we found a lot of similar clone pairs having the same classification results. If we only keep unique Stackoverflow fragments (with the largest Qualitas clone size), it results in 82 pairs (i.e. loose version).
-
-\begin{table}
-	\centering
-	\caption{Classification results of 14 \textit{good} and 183 \textit{ok}-matches (excluding the subsumed \textit{good}-match pairs).}
-	\label{tab:classification}
-		\begin{tabular}{|l|r|r|r|r|r|r|r|}
-			\hline 
-			Classification & A & B & C & D & E & F & Total \\ 
-			\hline 
-		    \multirow{2}{*}{\textit{good-match(0.7)}} & 1 & 2 & 2 & 2 & 7 & 0 & 14 \\ \cline{2-8}
-			 & 7.14\%	& 14.29\%	& 14.29\%	& 14.29\%	& 50.00\%	& 0.00\%	& 100.00\% \\ 
-			\hline
-			\multirow{2}{*}{\textit{ok-match(0.7)}} & 4 & 42 & 8 & 351 & 28 & 77 & 510 \\ \cline{2-8}
-			& 0.78\%	& 8.24\%	&	1.57\%	&	68.82\%	&	5.49\%	&	15.10\%	&	100.00\%  \\ 
-			\hline
-		\end{tabular} 
-\end{table}
-
-\begin{table}
-	\centering
-	\caption{Classifications of clone creation}
-\begin{tabular}{|c|p{13cm}|}
-	\hline 
-	Category & Descriptions \\ 
-	\hline 
-	A & Code in Stackoverflow is copied from Qualitas (S ← Q). \\ 
-	\hline 
-	B & Code is copied either from each other or a third source (unknown) (S ←→ Q).
-	\\ 
-	\hline 
-	C & Code in both places are copied from a third source T (known) (S, Q ← T ).
-	\\ 
-	\hline 
-	D & Code is a boiler-plate or IDE auto-generated.
-	\\ 
-	\hline 
-	E & Code in both places initialise a similar/the same object; extend the same class/its subclass; implement the same interface.
-	\\ 
-	\hline 
-	F & Accidental similarity  \\ 
-	\hline 
-\end{tabular} 
-\end{table}
-
 \section*{Investigation of Missing A/B Clone Pairs Reported by Simian (df)}
 We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{fse13}$, NiCad$_{df}$, NiCad$_{fse13}$. The investigation results are shown in Table \ref{tab:search}.
 
 \begin{table}[H]
 	\centering
-	\caption{Search results of 41 Simian(df) pairs in the new 4 result sets}
+	\caption{Results of matching the original 41 Simian(default) pairs in the pretty-printed result sets}
 	\label{tab:search}
-\begin{tabular}{l|r|r}
-	\hline 
-	Settings & Found & Not found \\ 
-	\hline 
-	Simian$_{df}$  &  40 & 1 \\ 
-	\hline 
-	Simian$_{fse13}$ & 0 & 41  \\ 
-	\hline 
-	NiCad$_{df}$  & 9 & 32 \\ 
-	\hline 
-	NiCad$_{fse13}$ &  9 & 32 \\ 
-	\hline 
-\end{tabular} 
+	\begin{tabular}{l|r|r}
+		\hline 
+		Settings & Found & Not found \\ 
+		\hline 
+		Simian$_{df}$  &  40 & 1* \\ 
+		\hline 
+		Simian$_{fse13}$ & 0 & 41  \\ 
+		\hline 
+		NiCad$_{df}$  & 9 & 32 \\ 
+		\hline 
+		NiCad$_{fse13}$ &  9 & 32 \\ 
+		\hline 
+	\end{tabular} 
+\end{table}
+
+The single missing Stackoverflow fragment (19051537\_0.java) (denoted by *) is one of the 6 false clones generated by Simian. It is removed from the results of the pretty-printed version because it is an outlier. The rest are missing because of different parameter settings.
+
+
+\section*{Manual Investigation}
+
+\subsection{Investigation of agreed \textit{good} and \textit{ok}-match clone pairs}
+I have manually investigated all of the 14 \textit{good-match} ones and 510 \textit{ok-match} ones. The classification schems is described in Table \ref{tab:classification_scheme} and the classification results are shown in Table \ref{tab:classification}. 
+
+Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) S $\leftarrow$ Q or (2) from a third source to both S and Q independently.
+
+\subsection{Investigation of extra 100 clone pairs}
+In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations classified in . However, only 10 of them appear in the new agreement-based results. Thus, we decided to investigate clone pairs reported by Simian and NiCad without agreement from each other. With our 4 settings, we investigated the largest 25 clone pairs (according to their average SLOC) resulting in 100 more manually investigated pairs. The classification results are shown in Table \ref{tab:classification}.
+
+
+\begin{table}[H]
+	\centering
+	\caption{Classification results of 14 \textit{good} and 510 \textit{ok}-matches (including the subsumed \textit{good}-match pairs).}
+	\label{tab:classification}
+	\begin{tabular}{|l|r|r|r|r|r|r|r|}
+		\hline 
+		Classification & A & B & C & D & E & F & Total \\ 
+		\hline 
+		\multirow{2}{*}{\textit{good-match(0.7)}} & 1 & 2 & 2 & 2 & 7 & 0 & 14 \\ \cline{2-8}
+		& 7.14\%	& 14.29\%	& 14.29\%	& 14.29\%	& 50.00\%	& 0.00\%	& 100.00\% \\ 
+		\hline
+		\multirow{2}{*}{\textit{ok-match(0.7)}} & 4 & 42 & 8 & 351 & 28 & 77 & 510 \\ \cline{2-8}
+		& 0.78\%	& 8.24\%	&	1.57\%	&	68.82\%	&	5.49\%	&	15.10\%	&	100.00\%  \\ 
+		\hline
+		\multirow{2}{*}{100 indv. pairs} & 12 & 6 & 1 & 18 & 1 & 62 & 100 \\ \cline{2-8}
+		& 12\%	& 6\%	&	1\%	&	18\%	&	1\%	&	62\%	&	100\%  \\ 
+		\hline
+	\end{tabular} 
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Classifications of clone creation}
+	\label{tab:classification_scheme}
+	\begin{tabular}{|c|p{13cm}|}
+		\hline 
+		Category & Descriptions \\ 
+		\hline 
+		A & Code in Stackoverflow is copied from Qualitas (S $\leftarrow$ Q). \\ 
+		\hline 
+		B & Code is copied either from each other or a third source (unknown) (S $\leftrightarrow$ Q).
+		\\ 
+		\hline 
+		C & Code in both places are copied from a third source T (known) (S, Q $\leftarrow$ T ).
+		\\ 
+		\hline 
+		D & Code is a boiler-plate or IDE auto-generated.
+		\\ 
+		\hline 
+		E & Code in both places initialise a similar/the same object; extend the same class/its subclass; implement the same interface.
+		\\ 
+		\hline 
+		F & Accidental similarity  \\ 
+		\hline 
+	\end{tabular} 
 \end{table}
 
 \section*{Simian's Parameters}
