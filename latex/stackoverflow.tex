@@ -248,7 +248,7 @@ I have manually investigated all of the 14 \textit{good-match} ones and 510 \tex
 Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) S $\leftarrow$ Q or (2) from a third source to both S and Q independently.
 
 \subsection{Investigation of extra 100 clone pairs}
-In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations classified in . However, only 10 of them appear in the new agreement-based results. Thus, we decided to investigate clone pairs reported by Simian and NiCad without agreement from each other. With our 4 settings, we investigated the largest 25 clone pairs (according to their average SLOC) resulting in 100 more manually investigated pairs. The classification results are shown in Table \ref{tab:classification}.
+In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. With our 4 settings, we investigated the largest 25 clone pairs (according to their average SLOC) resulting in 100 more manually investigated pairs. The classification results are shown in Table \ref{tab:classification} and Table \ref{tab:classification_breakdown}.
 
 
 \begin{table}[H]
@@ -267,6 +267,27 @@ In the preliminary stage of our experiment, we found that there are 41 Stackover
 		\hline
 		\multirow{2}{*}{100 indv. pairs} & 12 & 6 & 1 & 18 & 1 & 62 & 100 \\ \cline{2-8}
 		& 12\%	& 6\%	&	1\%	&	18\%	&	1\%	&	62\%	&	100\%  \\ 
+		\hline
+	\end{tabular} 
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Breakdowns of 100 individual clone pairs}
+	\label{tab:classification_breakdown}
+	\begin{tabular}{|l|r|r|r|r|r|r|r|}
+		\hline 
+		Classification & A & B & C & D & E & F & Total \\ 
+		\hline 
+		Simian$_df$ & 12 & 6 & 1 & 2 & 0 & 4 & 25 \\ 
+		\hline
+		Simian$_fse13$ & 0 & 0 & 0 & 0 & 0 & 25 & 25 \\
+		\hline
+		NiCad$_df$ & 0 & 0 & 0 & 11 & 0 & 14 & 25 \\
+		\hline
+		NiCad$_fse13$ & 0 & 0 & 0 & 5 & 1 & 19 & 25 \\
+		\hline
+		Total & 12 & 6 & 1 & 18 & 1 & 62 & 100 \\
 		\hline
 	\end{tabular} 
 \end{table}
@@ -297,6 +318,8 @@ In the preliminary stage of our experiment, we found that there are 41 Stackover
 		\hline 
 	\end{tabular} 
 \end{table}
+
+\newpage
 
 \section*{Simian's Parameters}
 
