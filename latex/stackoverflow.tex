@@ -42,7 +42,7 @@
 
 \onecolumn
 
-\title{Online Source Code Reuse: A Case Study of Stackoverflow \textit{vs.~}Qualitas OSS}
+\title{Code Overflow: An empirical study of online code reuse between Stackoverflow \textit{vs.~}Qualitas OSS}
 \maketitle
 
 \section*{Raw statistics}
@@ -52,87 +52,195 @@ Manual investigation of Simian's clone report showed that there were problematic
 
 \begin{table*}[h]
 	\centering
-	\caption{Simian clone results}
+	\caption{Qualitas (2013-09-01r): Simian and NiCad clone results}
 	\label{t_simian_raw_results}
-	\begin{tabular}{l|r|r|r|r|r|r|r|r|r|r|r|r}
+	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
 		\hline
-		\multirow{4}{*}{} 
-		& \multicolumn{4}{c|}{Default settings} 
-		& \multicolumn{4}{c|}{Default settings*} 
-		& \multicolumn{4}{c}{FSE'13 settings} \\ \cline{2-13} % & \multicolumn{4}{c}{CloPlag settings} \\
+		\multirow{4}{*}{Statistics} 
+		& \multicolumn{4}{c|}{Simian Default settings} 
+		& \multicolumn{4}{c|}{Simian FSE'13 settings}
+		& \multicolumn{4}{c|}{Simian Default settings} 
+		& \multicolumn{4}{c}{Simian FSE'13 settings} \\ \cline{2-17} % & \multicolumn{4}{c}{CloPlag settings} \\
 		& \multicolumn{4}{c|}{threshold=6} 
-		& \multicolumn{4}{c|}{threshold=6} 
-		& \multicolumn{4}{c}{threshold=5}  \\  % & \multicolumn{4}{c}{threshold=5} \\
-		& \multicolumn{4}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC} &
-		\multicolumn{4}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC,bSqBrck} & \multicolumn{4}{c}{iCurlB,iId,iIdC,iStr,iChar,iSbtNm,bSqBrck} \\\cline{2-13}  %  & \multicolumn{4}{c}{iId} \\
+		& \multicolumn{4}{c|}{threshold=5}  
+		& \multicolumn{4}{c|}{threshold=6, UPI=0.30} 
+		& \multicolumn{4}{c}{threshold=5, UPI=0.2} \\  % & \multicolumn{4}{c}{threshold=5} \\
+		& \multicolumn{4}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC} 
+		& \multicolumn{4}{c|}{iCurlB,iId,iIdC,iStr,iChar,iSbtNm,bSqBrck} 
+		& \multicolumn{4}{c|}{rename=none,abstract=none} 
+		& \multicolumn{4}{c}{rename=blind,abstract=literal} \\\cline{2-17}  %  & \multicolumn{4}{c}{iId} \\
 		% \hline
 		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
 		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
+		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$
 		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ % & Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\
 		\hline
-		Removed & 6 & -- & -- & -- & 0 & -- & -- & -- & 0 & -- & -- & -- \\ %& 11 & -- & -- & -- \\
-		Total          & 647       & 24,802       & --         & --  & 3   & 10 & -- & -- &  152 & 7,289,272 & -- & --  \\ % & 26,699 & 24,9702,821 & -- & --  \\
-		Mean           & --        & 38           & 7.53       & 0.27   & -- & 3.33 & 8 & 0.29 & -- & 47,956 & 4.76 & 0.27 \\ % & -- & 9,356 & 4.74 & 0.26 \\
-		Std Dev.       & -- 		  & 87		& 3.87 & 0.22 & -- & 2.62 & 1.41 & 0.18 & -- & 433,467 & 0.93 & 0.18 \\ % & -- & 96,038	& 0.99 & 0.18 \\
-		Max            & --       & 551         & 63          & 0.94  & -- & 7	& 10 & 0.54 & -- & 5,278,408 & 8 & 0.83 \\ % & -- & 7,837,204 & 28 & 0.94 \\
-		Min            & --       & 1           & 5           & 0.01  & -- & 1 & 7 & 0.10 & -- & 1 & 4 & 0.01 \\ % & -- & 1 & 4 & 0.002 \\
-		Median         & --       & 3           & 7           & 0.22  & -- & 2 & 7 & 0.24 & -- & 22.5 & 4 & 0.23 \\ % & -- & 27 & 4 & 0.22 \\
-		Mode           & --       & 1           & 7           & 0.25  & -- & N/A & 7 & N/A & -- & 1 & 4 & 0.50 \\ % & -- & 1 & 4 & 0.50 \\
+		%Removed & 11 & -- & -- & -- & 0 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- \\ %& 11 & -- & -- & -- \\
+		Total & 647 & 24,802 & -- & -- &  152 & 7,289,272 & -- & -- & 983 & 106,091 & -- & -- & 8,100 & 31,141,599 & -- & --  \\ % & 26,699 & 24,9702,821 & -- & --  \\
+		Mean & -- & 38 & 7.53 & 0.27 & -- & 47,956 & 4.76 & 0.27 & -- & 108 & 9.48 & 0.25 & -- & 3,845 & 5.52 & 0.19 \\ % & -- & 9,356 & 4.74 & 0.26 \\
+		Std Dev. & -- & 87 & 3.87 & 0.22 & -- & 433,467 & 0.93 & 0.18 & 	& 200 & 3.04	& 0.18 & -- & 4,305 & 2.49 & 0.15 \\ % & -- & 96,038	& 0.99 & 0.18 \\
+		Max & -- & 551 & 63 & 0.94 & -- & 5,278,408 & 8 & 0.83 & -- & 1,816 & 39 & 0.80 & -- & 46,469 & 111 & 0.88\\ % & -- & 7,837,204 & 28 & 0.94 \\
+		Min & -- & 1 & 5 & 0.01 & -- & 1 & 4 & 0.01 & -- & 1 & 7 & 0.02 & -- & 1 & 3 & 0.01 \\ % & -- & 1 & 4 & 0.002 \\
+		Median & -- & 3 & 7 & 0.22 & -- & 22.5 & 4 & 0.23 & -- & 14 & 8 & 0.19 & -- & 3,095 & 5 & 0.14 \\ % & -- & 27 & 4 & 0.22 \\
+		Mode & -- & 1 & 7 & 0.25 & -- & 1 & 4 & 0.50 & -- & 1 & 8 & 0.53 & -- & 1 & 4 & 0.33 \\ % & -- & 1 & 4 & 0.50 \\
 		\hline
-	\end{tabular} 
+	\end{tabular} %
+}
 \end{table*}
 
 \begin{table*}[h]
 	\centering
-	\caption{NiCad clone results}
-	\label{t_nicad_raw_results}
-		\begin{tabular}{l|r|r|r|r|r|r|r|r}
-			\hline
-			\multirow{4}{*}{} & \multicolumn{4}{c|}{Default settings} & \multicolumn{4}{c}{FSE'13 settings} \\ \cline{2-9} 
-			%& \multicolumn{4}{c|}{Default settings} & \multicolumn{4}{c|}{FSE'13 settings}  & \multicolumn{4}{c}{CloPlag settings} \\
-			%\hline
-			& \multicolumn{4}{c|}{threshold=6, UPI=0.30} & \multicolumn{4}{c}{threshold=5, UPI=0.2} \\ % & \multicolumn{4}{c}{threshold=6, UPI=0.4} \\
-			& \multicolumn{4}{c|}{rename=none,abstract=none} & \multicolumn{4}{c}{rename=blind,abstract=literal} \\ \cline{2-9} % & \multicolumn{4}{c}{rename=blind,abstract=declaration} \\
-			%\hline
-			& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ & Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ % & Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\
-			\hline
-			Total & 983 & 106,091 & -- & -- & 8,100 & 31,141,599 & -- & --    \\
-			Mean & -- & 108 & 9.48 & 0.25 & -- & 3,845 & 5.52 & 0.19 \\
-			Std Dev. & 	& 200.49 & 3.04	& 0.18 & -- & 4,305 & 2.49 & 0.15 \\
-			Max & -- & 1816 & 39 & 0.80 & -- & 46,469 & 111 & 0.88 \\
-			Min & -- & 1 & 7 & 0.02 & -- & 1 & 3	 & 0.01 \\
-			Median & -- & 14 & 8 & 0.19 & -- & 3,095 & 5 & 0.14 \\
-			Mode & -- & 1 & 8 & 0.53 & -- & 1 & 4 & 0.33 \\
-			\hline
-		\end{tabular} 
+	\caption{Qualitas (2016-08-05): Simian and NiCad clone results (45 new + 18 old Qualitas projects)}
+	\label{t_simian_raw_results}
+	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
+		\hline
+		\multirow{4}{*}{Statistics} 
+		& \multicolumn{4}{c|}{Simian Default settings} 
+		& \multicolumn{4}{c|}{Simian FSE'13 settings} 
+		& \multicolumn{4}{c|}{NiCad Default settings} 
+		& \multicolumn{4}{c}{NiCad FSE'13 settings} \\ \cline{2-17} % & \multicolumn{4}{c}{CloPlag settings} \\
+		& \multicolumn{4}{c|}{threshold=6} 
+		& \multicolumn{4}{c|}{threshold=5} 
+		& \multicolumn{4}{c|}{threshold=6, UPI=0.30} 
+		& \multicolumn{4}{c}{threshold=5, UPI=0.2} \\  % & \multicolumn{4}{c}{threshold=5} \\
+		& \multicolumn{4}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC} 
+		& \multicolumn{4}{c|}{iCurlB,iId,iIdC,iStr,iChar,iSbtNm,bSqBrck} 
+		& \multicolumn{4}{c|}{rename=none,abstract=none} 
+		& \multicolumn{4}{c}{rename=blind,abstract=literal} \\\cline{2-17}  %  & \multicolumn{4}{c}{iId} \\
+		% \hline
+		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
+		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$
+		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
+		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ % & Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\
+		\hline
+		%Removed & 11 	& -- 	& -- 	& -- 	& 0 & -- & -- & -- \\ %& 11 & -- & -- & -- \\
+		Total 	& 789 	& 61,164 & -- 	& -- 	&  170 	& 11,915,544 & -- 	& --  \\ % & 26,699 & 24,9702,821 & -- & --  \\
+		Mean 	& -- 	& 78 	& 7.32 	& 0.26 	& -- 	& 70,091 	& 4.76 	& 0.29 \\ % & -- & 9,356 & 4.74 & 0.26 \\
+		Std Dev. & -- 	& 208 	& 2.71 	& 0.21 	& -- 	& 703,788 	& 0.89 	& 0.19 \\ % & -- & 96,038	& 0.99 & 0.18 \\
+		Max 	& -- 	& 1,300 & 49 	& 0.94 	& -- 	& 9,065,774 & 9		& 0.83 \\ % & -- & 7,837,204 & 28 & 0.94 \\
+		Min 	& -- 	& 1 	& 5 	& 0.01 	& -- 	& 1 		& 4 	& 0.01 \\ % & -- & 1 & 4 & 0.002 \\
+		Median 	& -- 	& 2 	& 7 	& 0.20 	& -- 	& 17 		& 5 	& 0.26 \\ % & -- & 27 & 4 & 0.22 \\
+		Mode 	& -- 	& 1 	& 7 	& 0.33 	& -- 	& 1 		& 4 	& 0.33 \\ % & -- & 1 & 4 & 0.50 \\
+		\hline
+	\end{tabular} %
+}
 \end{table*}
 
-%\section*{Agreed Cloned Fragments}
-%The results from both tools are compared to find clone pairs that they mutually agree.  Theses agreed clone pairs will be manually investigated. The results of agreed clone pairs found by different parameter settings of Simian and NiCad are shown in Table \ref{t_agreed_clone}.
+\begin{table*}[h]
+	\centering
+	\caption{Qualitas (2016-08-05): Simian and NiCad clone results (only 45 new Qualitas projects)}
+	\label{t_simian_raw_results}
+	\resizebox{\columnwidth}{!}{%
+		\begin{tabular}{l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
+			\hline
+			\multirow{4}{*}{Statistics} 
+			& \multicolumn{4}{c|}{Simian Default settings} 
+			& \multicolumn{4}{c|}{Simian FSE'13 settings} 
+			& \multicolumn{4}{c|}{NiCad Default settings} 
+			& \multicolumn{4}{c}{NiCad FSE'13 settings} \\ \cline{2-17} % & \multicolumn{4}{c}{CloPlag settings} \\
+			& \multicolumn{4}{c|}{threshold=6} 
+			& \multicolumn{4}{c|}{threshold=5} 
+			& \multicolumn{4}{c|}{threshold=6, UPI=0.30} 
+			& \multicolumn{4}{c}{threshold=5, UPI=0.2} \\  % & \multicolumn{4}{c}{threshold=5} \\
+			& \multicolumn{4}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC} 
+			& \multicolumn{4}{c|}{iCurlB,iId,iIdC,iStr,iChar,iSbtNm,bSqBrck} 
+			& \multicolumn{4}{c|}{rename=none,abstract=none} 
+			& \multicolumn{4}{c}{rename=blind,abstract=literal} \\\cline{2-17}  %  & \multicolumn{4}{c}{iId} \\
+			% \hline
+			& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
+			& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$
+			& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
+			& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ % & Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\
+			\hline
+			%Removed & 11 	& -- 	& -- 	& -- 	& 0 & -- & -- & -- \\ %& 11 & -- & -- & -- \\
+			Total 	& 736 	& 60,678 & -- 	& -- 	&  166 	& 10,273,534 & -- 	& --  \\ % & 26,699 & 24,9702,821 & -- & --  \\
+			Mean 	& -- 	& 82 	& 7.26 	& 0.26 	& -- 	& 61,889 	& 4.77 	& 0.28 \\ % & -- & 9,356 & 4.74 & 0.26 \\
+			Std Dev. & -- 	& 214 	& 2.24 	& 0.21 	& -- 	& 607,074 	& 0.89 	& 0.18 \\ % & -- & 96,038	& 0.99 & 0.18 \\
+			Max 	& -- 	& 1,298 & 32 	& 0.94 	& -- 	& 7,720,970 & 9		& 0.83 \\ % & -- & 7,837,204 & 28 & 0.94 \\
+			Min 	& -- 	& 1 	& 5 	& 0.01 	& -- 	& 1 		& 4 	& 0.01 \\ % & -- & 1 & 4 & 0.002 \\
+			Median 	& -- 	& 2 	& 7 	& 0.20 	& -- 	& 16.5 		& 5 	& 0.26 \\ % & -- & 27 & 4 & 0.22 \\
+			Mode 	& -- 	& 1 	& 7 	& 0.33 	& -- 	& 1 		& 4 	& 0.33 \\ % & -- & 1 & 4 & 0.50 \\
+			\hline
+		\end{tabular} %
+	}
+\end{table*}
 
-%\begin{table}[h]
-%	\centering
-%	\caption{Agreed cloned fragments between Simian and Nicad}
-%	\label{t_agreed_clone}
-%	\begin{tabular}{l|r|r}
-%		\hline
-%		& Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
-%		\hline
-%		NiCad$_{\mathrm{\textit{default}}}$ & 92          & 1        \\%      & 709             \\
-%		NiCad$_{\mathrm{\textit{fse13}}}$   & 155         & 25           \\ % & 4680            \\
-		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
-%		\hline
-%	\end{tabular}
-%\end{table}
-
-%Relationships between the cloned fragments are displayed in Fig.~\ref{fig:venn4}.
-
-%\begin{figure}[H]
-%\centering
-%\includegraphics[width=0.5\linewidth]{venn4}
-%\caption[Agreed clone fragments reported by Simian and NiCad with default and FSE'13 settings]{Agreed clone fragments reported by Simian and NiCad with default and FSE'13 settings}
-%\label{fig:venn4}
-%\end{figure}
+\begin{table}[h]
+	\centering
+	\caption{63 Qualitas projects (new versions checked on 2016-08-05)}
+	\label{t:new_and_old}
+\begin{tabular}{l|r|r|l}
+	\hline 
+	Projects & Old version & New versions & License \\
+	\hline
+	ArgoUML & 0.34 & \\
+	Compiere & 330 & \\
+	FitLibrary20100806 & & \\
+	JGroups & 2 & \\
+	Vuze & 4812 & \\
+	antlr & 4-4.0 & \\
+	aoisrc & 281 & \\
+	apache-ant & 1.8.4 & \\
+	aspectj & 1.6.9 & \\
+	axion & 1.0-M2 & \\
+	batik & 1.7 & \\
+	c-jdbc & 2 & \\
+	castor & 1 & \\
+	cayenne & 3 & \\
+	checkstyle & 5 & \\
+	cobertura & 1 & \\
+	colt & 1 & \\
+	columba & 1 & \\
+	commons-collections & 3 & \\
+	db-derby & 10 & \\
+	displaytag & 1 & \\
+	drawswf & 1 & \\
+	drjava & 20100913-r5387-src & \\
+	eXoPortal & v1 & \\
+	emma & 2 & \\
+	findbugs & 1 & \\
+	fit-java & 1 & \\
+	freecol & 0 & \\
+	freecs & 1 & \\
+	freemind & 0 & \\
+	galleon & 2 & \\
+	ganttproject & 2 & \\
+	geotools & 2 & \\
+	hadoop & 1 & \\
+	heritrix & 1 & \\
+	hibernate & release-4 & \\
+	hsqldb & 2 & \\
+	htmlunit & 2 & \\
+	iReport & 3 & \\
+	iText & 5 & \\
+	informa & 0 & \\
+	ivatagroupware & 0 & \\
+	jFin DateMath & R1\_0\_1 & \\
+	jOggPlayer & 114s & \\
+	jag & 6 & \\
+	james & 2 & \\
+	jasml & 0 & \\
+	jasperreports & 3 & \\
+	javacc & 5 & \\
+	jboss & 5 & \\
+	jchempaint & 3 & \\
+	jedit & 4 & \\
+	jena & 2 & \\
+	jext & 5 & \\
+	jfreechart & 1 & \\
+	jgraph & latest-bsd & \\
+	jgraphpad & 5 & \\
+	jgrapht & 0 & \\
+	jmoney & 0 & \\
+	jparse & & \\
+	jpf & 1 & \\
+	junit & 4 & \\
+	shiftone-jrat & 0 & \\
+	\hline 
+\end{tabular} 
+\end{table}
 
 \section*{Agreed Clone Pairs}
 The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \textit{ok-match(p)} criteria are listed in  Table \ref{t_agreed_good_clone_pairs} and Table \ref{t_agreed_ok_clone_pairs}. We use the threshold \textit{p} of 0.7 for both \textit{good-match} and \textit{ok-match}. Visualisation of \textit{good-match} common clone pairs between sets of parameter settings can be seen from Figure \ref{fig:venn4_pairs}. There are 14 \textit{good-match} pairs. The \textit{ok-match} subsumes the \textit{good-match} resulting in totally 528 common clone pairs.
@@ -237,7 +345,7 @@ We investigated the 41 clone pairs previously reported by Simian with default co
 	\end{tabular} 
 \end{table}
 
-The single missing Stackoverflow fragment (19051537\_0.java) (denoted by *) is one of the 6 false clones generated by Simian. It is removed from the results of the pretty-printed version because it is an outlier. The rest are missing because of different parameter settings.
+The single missing Stackoverflow fragment (19051537\_0.java) (denoted by *) is one of the 11 false clones generated by Simian. It is removed from the results of the pretty-printed version because it is an outlier. The rest are missing because of different parameter settings.
 
 
 \section*{Manual Investigation}
@@ -245,10 +353,10 @@ The single missing Stackoverflow fragment (19051537\_0.java) (denoted by *) is o
 \subsection{Investigation of agreed \textit{good} and \textit{ok}-match clone pairs}
 I have manually investigated all of the 14 \textit{good-match} ones and 510 \textit{ok-match} ones. The classification schems is described in Table \ref{tab:classification_scheme} and the classification results are shown in Table \ref{tab:classification}. 
 
-Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) S $\leftarrow$ Q or (2) from a third source to both S and Q independently.
+Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) Q $\rightarrow$ S or (2) from a third source to both S and Q independently.
 
-\subsection{Investigation of extra 100 clone pairs}
-In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. With our 4 settings, we investigated the largest 25 clone pairs (according to their average SLOC) resulting in 100 more manually investigated pairs. The classification results are shown in Table \ref{tab:classification} and Table \ref{tab:classification_breakdown}.
+\subsection{Investigation of the largest unique 172 clone pairs}
+In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. With our 4 settings, we investigated the largest 172 clone pairs according to their average SLOC (larger than or equals to 15 SLOC). These clone pairs are pairs of Stackoverflow fragments and Java files from Qualitas projects that NEVER been looked at before in the previous investigation. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stackoverflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification} and Table \ref{tab:classification_breakdown}.
 
 
 \begin{table}[H]
@@ -265,29 +373,29 @@ In the preliminary stage of our experiment, we found that there are 41 Stackover
 		\multirow{2}{*}{\textit{ok-match(0.7)}} & 4 & 42 & 8 & 351 & 28 & 77 & 510 \\ \cline{2-8}
 		& 0.78\%	& 8.24\%	&	1.57\%	&	68.82\%	&	5.49\%	&	15.10\%	&	100.00\%  \\ 
 		\hline
-		\multirow{2}{*}{100 indv. pairs} & 12 & 6 & 1 & 18 & 1 & 62 & 100 \\ \cline{2-8}
-		& 12\%	& 6\%	&	1\%	&	18\%	&	1\%	&	62\%	&	100\%  \\ 
+		\multirow{2}{*}{172 indv. pairs} & 17 & 7 & 3 & 21 & 5 & 119 & 172 \\ \cline{2-8}
+		& 9.88\% & 4.07\% & 1.74\% & 12.21\% & 2.91\% & 69.19\% & 100.00\%  \\ 
 		\hline
 	\end{tabular} 
 \end{table}
 
 \begin{table}[H]
 	\centering
-	\caption{Breakdowns of 100 individual clone pairs}
+	\caption{Breakdowns of the biggest 172 individual clone pairs}
 	\label{tab:classification_breakdown}
 	\begin{tabular}{|l|r|r|r|r|r|r|r|}
 		\hline 
 		Classification & A & B & C & D & E & F & Total \\ 
 		\hline 
-		Simian$_df$ & 12 & 6 & 1 & 2 & 0 & 4 & 25 \\ 
+		Simian$_{df}$ & 16 & 7 & 3 & 7 & 4 & 3 & 40 \\ 
 		\hline
-		Simian$_fse13$ & 0 & 0 & 0 & 0 & 0 & 25 & 25 \\
+		Simian$_{fse13}$ & 1 & 0 & 0 & 1 & 0 & 53 & 55 \\
 		\hline
-		NiCad$_df$ & 0 & 0 & 0 & 11 & 0 & 14 & 25 \\
+		NiCad$_{df}$ & 0 & 0 & 0 & 13 & 0 & 22 & 35 \\
 		\hline
-		NiCad$_fse13$ & 0 & 0 & 0 & 5 & 1 & 19 & 25 \\
+		NiCad$_{fse13}$ & 0 & 0 & 0 & 0 & 1 & 41 & 42 \\
 		\hline
-		Total & 12 & 6 & 1 & 18 & 1 & 62 & 100 \\
+		Total & 17 & 7 & 3 & 21 & 5 & 119 & 172 \\
 		\hline
 	\end{tabular} 
 \end{table}
@@ -300,12 +408,14 @@ In the preliminary stage of our experiment, we found that there are 41 Stackover
 		\hline 
 		Category & Descriptions \\ 
 		\hline 
-		A & Code in Stackoverflow is copied from Qualitas (S $\leftarrow$ Q). \\ 
+		A & Code in Stackoverflow is copied from Qualitas (Q $\rightarrow$ S). \\ 
 		\hline 
-		B & Code is copied either from each other or a third source (unknown) (S $\leftrightarrow$ Q).
+		A' & Code in Qualitas is copied from Stackoverflow (S $\rightarrow$ Q). \\ 
+		\hline 
+		B & Code is copied either from each other or a third source (unknown) (S $\leftrightarrow$ Q $\vee$ (T $\rightarrow$ S $\wedge$ T $\rightarrow$ Q)).
 		\\ 
 		\hline 
-		C & Code in both places are copied from a third source T (known) (S, Q $\leftarrow$ T ).
+		C & Code in both places are copied from a third source T (known) (T $\rightarrow$ S $\wedge$ T $\rightarrow$ Q).
 		\\ 
 		\hline 
 		D & Code is a boiler-plate or IDE auto-generated.
@@ -314,7 +424,7 @@ In the preliminary stage of our experiment, we found that there are 41 Stackover
 		E & Code in both places initialise a similar/the same object; extend the same class/its subclass; implement the same interface.
 		\\ 
 		\hline 
-		F & Accidental similarity  \\ 
+		F & Accidental similarity, false clone \\ 
 		\hline 
 	\end{tabular} 
 \end{table}

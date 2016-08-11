@@ -28,7 +28,7 @@ public class CommonUtils {
                 || fragId.contains("5066587_0.java")  || fragId.contains("19051537_0.java")
                 || fragId.contains("18877151_0.java") || fragId.contains("3215448_0.java")
                 || fragId.contains("25703453_0.java")) {
-            System.out.println("Found error fragment: skipping ... ");
+            System.out.println("Found error fragment " + fragId + ": skipping ... ");
             return true;
         } else
             return false;
