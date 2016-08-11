@@ -71,7 +71,7 @@ public class CsvFileWriter {
             for (SimianStackoverflowFragment fragment : list) {
                 System.out.print(".");
                 // skip if they're false clones generated from simian's bug
-                if (! CommonUtils.isError(fragment.fragmentName)) {
+                if (!CommonUtils.isError(fragment.fragmentName)) {
                     listWriter.write(fragment.fragmentName, fragment.numberOfTimeIsUsed,
                             fragment.projectsWhereIsUsed.size(), fragment.getSLOC(), fragment.getCloneLines(),
                             ((double) fragment.getCloneLines()) / fragment.getSLOC());
