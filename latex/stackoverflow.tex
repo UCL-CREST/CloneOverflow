@@ -47,9 +47,9 @@
 \maketitle
 
 \section*{Raw statistics}
-The results of running 2 clone detectors: Simian and NiCad, to detect clones between 144,075 Stackoverflow fragments (Java accepted answers) and 63 open-source projects in Qualitas dataset is presented below. There are 2 tools selected: Simian and NiCad. They are configured using three different settings: default settings, settings from FSE'13 paper, and settings from CloPlag experiment. Full Simian's parameter names can be found from the footnote\footnote{Simian's parameters: iChar = ignoreCharacters, iCurlB = ignoreCurlyBraces, iId = ignoreIdentifiers, iIdC = ignoreIdentifierCase, iMod = ignoreModifiers \newline iStrC = ignoreStringCase, iStr = ignoreStrings, iSbtNm = ignoreSubtypeNames, bSqBrck=balanceSquareBrackets}.
+The results of running 2 clone detectors: Simian and NiCad, to detect clones between 144,075 Stackoverflow fragments (Java accepted answers) and 63 open-source projects in Qualitas dataset is presented below. There are 2 tools selected: Simian and NiCad. They are configured using three different settings: default settings, settings from FSE'13 paper, and settings from CloPlag experiment. Full Simian's parameter names can be found from the footnote\footnote{Simian's parameters: iChar = ignoreCharacters, iCurlB = ignoreCurlyBraces, iId = ignoreIdentifiers, iIdC = ignoreIdentifierCase, iMod = ignoreModifiers \newline iStrC = ignoreStringCase, iStr = ignoreStrings, iSbtNm = ignoreSubtypeNames, bSqBrck=balanceSquareBrackets}. 
 
-Manual investigation of Simian's clone report showed that there were problematic fragments (6 for defaults, 0 for FSE'13, and 11 for CloPlag). These fragments generate false clone containing array initialisation. Hence, they were removed from the result set before analysis.
+Manual investigation of Simian's clone report showed that there were problematic 11 fragments. These fragments generate false clone containing array initialisation. Hence, they were removed from the result set before analysis.
 
 \begin{table*}[h]
 	\centering
@@ -78,13 +78,13 @@ Manual investigation of Simian's clone report showed that there were problematic
 		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ % & Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\
 		\hline
 		%Removed & 11 & -- & -- & -- & 0 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- \\ %& 11 & -- & -- & -- \\
-		Total & 647 & 24,802 & -- & -- &  152 & 7,289,272 & -- & -- & 983 & 106,091 & -- & -- & 8,100 & 31,141,599 & -- & --  \\ % & 26,699 & 24,9702,821 & -- & --  \\
-		Mean & -- & 38 & 7.53 & 0.27 & -- & 47,956 & 4.76 & 0.27 & -- & 108 & 9.48 & 0.25 & -- & 3,845 & 5.52 & 0.19 \\ % & -- & 9,356 & 4.74 & 0.26 \\
-		Std Dev. & -- & 87 & 3.87 & 0.22 & -- & 433,467 & 0.93 & 0.18 & 	& 200 & 3.04	& 0.18 & -- & 4,305 & 2.49 & 0.15 \\ % & -- & 96,038	& 0.99 & 0.18 \\
-		Max & -- & 551 & 63 & 0.94 & -- & 5,278,408 & 8 & 0.83 & -- & 1,816 & 39 & 0.80 & -- & 46,469 & 111 & 0.88\\ % & -- & 7,837,204 & 28 & 0.94 \\
-		Min & -- & 1 & 5 & 0.01 & -- & 1 & 4 & 0.01 & -- & 1 & 7 & 0.02 & -- & 1 & 3 & 0.01 \\ % & -- & 1 & 4 & 0.002 \\
-		Median & -- & 3 & 7 & 0.22 & -- & 22.5 & 4 & 0.23 & -- & 14 & 8 & 0.19 & -- & 3,095 & 5 & 0.14 \\ % & -- & 27 & 4 & 0.22 \\
-		Mode & -- & 1 & 7 & 0.25 & -- & 1 & 4 & 0.50 & -- & 1 & 8 & 0.53 & -- & 1 & 4 & 0.33 \\ % & -- & 1 & 4 & 0.50 \\
+		Total  	& 654 	& 24,929 	& -- 	& --	& 1,175 & 16,957,362 & --	& --	& 985 	& 105,118 	& --	& --	& 12,084	& 113,557,298 & --		& -- \\
+		Mean  	& --	& 38 		& 7.54 	& 0.27 	& --	& 14,444 	& 4.80 	& 0.28 	& --	& 107 		& 9.52 	& 0.25 	& -- 		& 9,397 	& 5.21 		& 0.20 \\
+		Std Dev. & --  	& 87 		& 3.21 	& 0.22 	& --	& 281,747 	& 1.22 	& 0.18 	& --	& 198 		& 3.07 	& 0.18 	& --		& 12,098 	& 1.73 		& 0.16 \\
+		Max  	& --	& 551 		& 49.00 & 0.94 	& --	& 9,599,676 & 18.00 & 0.89 	& --	& 1,792 	& 39.00 & 0.80 	& --		& 227,077 	& 44.00 	& 0.86 \\
+		Min  	& --	& 1 		& 5.00 	& 0.01 	& --	& 1 		& 4.00 	& 0.02 	& --	& 1 		& 7.00 	& 0.02 	& --		& 1 		& 3.00 		& 0.01 \\
+		Median  & --	& 3 		& 7.00 	& 0.23 	& --	& 22 		& 5.00 & 0.24 	& --	& 15 		& 8.00 	& 0.19 	& --		& 6,105 	& 5.00 		& 0.15 \\
+		Mode  	& --	& 1 		& 7.00 	& 0.25 	& --	& 1 		& 4.00 	& 0.50 	& --	& 1 		& 8.00 	& 0.53 	& --		& 1 		& 4.00 		& 0.33 \\
 		\hline
 	\end{tabular} %
 }
@@ -176,68 +176,68 @@ Manual investigation of Simian's clone report showed that there were problematic
 	\hline 
 	Projects & Old version & New versions & Latest change & License & Notes \\
 	\hline
-	ArgoUML & 0.34 & 0.35.1 & 15/01/2014 & Eclipse Public License v.1.0 & \\
+	ArgoUML & 0.34 & 0.35.1 & 15/01/2014 & Eclipse Public License v.1.0 \\
 	Compiere & 330 & -- & 01/06/2010 &  GNU General Public License v.2.0 & No longer OSS \\
-	FitLibrary & 20100806 & 20111026 & 12/07/2014 & GNU General Public License v.2.0 & \\
-	JGroups & 2.10.0.GA & 3.6.10 & 27/06/2016  & Apache License, v.2.0 & \\
+	FitLibrary & 20100806 & 20111026 & 12/07/2014 & GNU General Public License v.2.0 \\
+	JGroups & 2.10.0.GA & 3.6.10 & 27/06/2016  & Apache License, v.2.0 \\
 	Vuze & 4812 & 5721-20 & 12/05/2016 & GNU General Public License v.2.0 &  \\
-	antlr4 & 4.0 & 4.2.1 & 15/01/2014 & BSD License & \\
-	aoisrc & 281 & 302 & 12/01/2015 &  GNU General Public License v.2.0 & \\
-	apache-ant & 1.8.4 & 1.10.0 & 09/04/2016 & Apache License, v.2.0 & \\
-	aspectj & 1.6.9 & 1.8.9 & 14/03/2015 & Eclipse Public License 1.0 & \\
-	axion & 1.0-M2 & -- & 08/03/2013 & Proprietary (BSD/Apache-style) & \\
-	batik & 1.7 & 1.8 & 16/03/2015 & Apache License, v.2.0 & \\
-	c-jdbc & 2.0.2 & -- & 16/09/2005 & GNU Lesser General Public License, v.2.1 & \\
-	castor & 1.3.1 & 1.4.2 & 20/06/2016 & Apache License, v.2.0 & \\
-	cayenne & 3.0.1 & 4.0.M4 &  27/07/2016 & Apache License, v.2.0 & \\
+	antlr4 & 4.0 & 4.2.1 & 15/01/2014 & BSD License \\
+	aoisrc & 281 & 302 & 12/01/2015 &  GNU General Public License v.2.0 \\
+	apache-ant & 1.8.4 & 1.10.0 & 09/04/2016 & Apache License, v.2.0 \\
+	aspectj & 1.6.9 & 1.8.9 & 14/03/2015 & Eclipse Public License 1.0 \\
+	axion & 1.0-M2 & -- & 08/03/2013 & Proprietary (BSD/Apache-style) \\
+	batik & 1.7 & 1.8 & 16/03/2015 & Apache License, v.2.0 \\
+	c-jdbc & 2.0.2 & -- & 16/09/2005 & GNU Lesser General Public License, v.2.1 \\
+	castor & 1.3.1 & 1.4.2 & 20/06/2016 & Apache License, v.2.0 \\
+	cayenne & 3.0.1 & 4.0.M4 &  27/07/2016 & Apache License, v.2.0 \\
 	checkstyle & 5.1 & 7.2  & 04/08/2016 & GNU Lesser General Public License, v.2.1 \& Apache License, v.2.0 & \textit{Cli, Logging and Beanutils} packages are from the Apache Commons project. \\
-	cobertura & 1.9.4.1 & 2.1.2 & 01/06/2015 & GNU General Public License v.2.0  & \\
-	colt & 1.2.0 & -- & 09/09/2014 &  Proprietary (CERN) & \\
-	columba & 1.4 & -- & 20/04/2007 & Mozilla Public License 1.1  & \\
-	commons-collections & 3.2.1 & 4.1 & 25/11/2015 & Apache License, v.2.0 & \\
-	db-derby & 10.6.1.0 & 10.12.1.1 & 13/09/2015 & Apache License, v.2.0 & \\
-	displaytag & 1.2 & 2.0 & 17/08/2014 & MIT License & \\
-	drawswf & 1.2.9 & -- & 02/04/2013 & GNU General Public License v.2.0 & \\
-	drjava & 20100913-r5387 & 20140826-r5761 & 26/08/2014 & BSD License & \\
-	eXoPortal & ??? & 4.4 & 24/06/2016 & GNU Lesser General Public License v.3.0 \& proprietary & \\
-	emma & 2.0.5312 & 2.0.5312 & 09/05/2013  & Common Public License 1.0 & \\
-	findbugs & 1.3.9 & 3.0.1 & 06/03/2015 & GNU Lesser General Public License, v.2.0 & \\
-	fit-java & 1.1 & -- & 04/06/2013 & GNU General Public License v.2.0 & \\
+	cobertura & 1.9.4.1 & 2.1.2 & 01/06/2015 & GNU General Public License v.2.0  \\
+	colt & 1.2.0 & -- & 09/09/2014 &  Proprietary (CERN) \\
+	columba & 1.4 & -- & 20/04/2007 & Mozilla Public License 1.1  \\
+	commons-collections & 3.2.1 & 4.1 & 25/11/2015 & Apache License, v.2.0 \\
+	db-derby & 10.6.1.0 & 10.12.1.1 & 13/09/2015 & Apache License, v.2.0 \\
+	displaytag & 1.2 & 2.0 & 17/08/2014 & MIT License \\
+	drawswf & 1.2.9 & -- & 02/04/2013 & GNU General Public License v.2.0 \\
+	drjava & 20100913-r5387 & 20140826-r5761 & 26/08/2014 & BSD License \\
+	eXoPortal & ??? & 4.4 & 24/06/2016 & GNU Lesser General Public License v.3.0 \& proprietary \\
+	emma & 2.0.5312 & 2.0.5312 & 09/05/2013  & Common Public License 1.0 \\
+	findbugs & 1.3.9 & 3.0.1 & 06/03/2015 & GNU Lesser General Public License, v.2.0 \\
+	fit-java & 1.1 & -- & 04/06/2013 & GNU General Public License v.2.0 \\
 	freecol & 0.10.7 & 0.11.6 & 04/08/2016 & GNU General Public License v.2.0 &  \\
 	freecs & 1.3.20100406 & -- & 22/04/2013 & GNU General Public License v.3.0 &   \\
 	freemind & 0.9.0 & 1.0.0 & 26/06/2016 & GNU General Public License v.2.0+ &  \\
-	galleon & 2.3.0 & 2.5.6 & 29/04/2013 & GNU General Public License v.2.0 & \\
+	galleon & 2.3.0 & 2.5.6 & 29/04/2013 & GNU General Public License v.2.0 \\
 	ganttproject & 2.0.9 & 2.8.1 & 05/08/2016 & GNU General Public License v.3.0 &  \\
-	geotools & 2.7-M3 & 16 & 02/08/2016 & GNU Lesser General Public License, v.2.0 & \\
-	hadoop & 1.0.0 & 2.6.4 & 11/02/2016 & Apache License, v.2.0 & \\
-	heritrix & 1.14.4 & -- & 05/06/2013 & GNU Lesser General Public License, v.2.1 & \\
-	hibernate & 4.2.2 & 5.2.2 & 04/08/2016 & GNU Lesser General Public License, v.2.1+ & \\
-	hsqldb & 2.0.0 & 2.3.4 & 16/05/2016 & BSD License & \\
-	htmlunit & 2.8 & 2.24 & 27/07/2016 & Apache License, v.2.0 & \\
-	iReport & 3.7.5 & -- & 28/05/2014 & Affero GNU Public License, v.3.0 & \\
-	iText & 5.0.3 & 7.0.0 & 02/05/2016 & Affero GNU Public License, v.3.0 & \\
-	informa & 0.7.0-alpha2 & -- & 07/11/2008 & GNU Lesser General Public License, v.2.1 \& Apache Software License, v.1.1 & \\
-	ivatagroupware & 0.11.3 & -- & 27/02/2013  & GNU General Public License v.2.0 & \\
-	jFin DateMath & R1\_0\_1 & -- & 25/04/2013  & GNU General Public License v.2.0 & \\
-	jOggPlayer & 114s & -- &  15/04/2013   & GNU General Public License v.2.0 & \\
+	geotools & 2.7-M3 & 16 & 02/08/2016 & GNU Lesser General Public License, v.2.0 \\
+	hadoop & 1.0.0 & 2.6.4 & 11/02/2016 & Apache License, v.2.0 \\
+	heritrix & 1.14.4 & -- & 05/06/2013 & GNU Lesser General Public License, v.2.1 \\
+	hibernate & 4.2.2 & 5.2.2 & 04/08/2016 & GNU Lesser General Public License, v.2.1+ \\
+	hsqldb & 2.0.0 & 2.3.4 & 16/05/2016 & BSD License \\
+	htmlunit & 2.8 & 2.24 & 27/07/2016 & Apache License, v.2.0 \\
+	iReport & 3.7.5 & -- & 28/05/2014 & Affero GNU Public License, v.3.0 \\
+	iText & 5.0.3 & 7.0.0 & 02/05/2016 & Affero GNU Public License, v.3.0 \\
+	informa & 0.7.0-alpha2 & -- & 07/11/2008 & GNU Lesser General Public License, v.2.1 \& Apache Software License, v.1.1 \\
+	ivatagroupware & 0.11.3 & -- & 27/02/2013  & GNU General Public License v.2.0 \\
+	jFin DateMath & R1\_0\_1 & -- & 25/04/2013  & GNU General Public License v.2.0 \\
+	jOggPlayer & 114s & -- &  15/04/2013   & GNU General Public License v.2.0 \\
 	jag & 6.1 & 6.2 & 08/04/2013   & GNU General Public License v.2.0 \& BSD License & BSD License is for libraries they use. \\
-	james & 2.2.0 & 2.3.2.1 & 14/08/2015 & Apache License, v.2.0 & \\
-	jasml & 0.10 & -- & 08/03/2013 & Apache Software License & \\
+	james & 2.2.0 & 2.3.2.1 & 14/08/2015 & Apache License, v.2.0 \\
+	jasml & 0.10 & -- & 08/03/2013 & Apache Software License \\
 	jasperreports & 3.7.4 & 6.3.1 & 20/06/2016 & GNU Lesser General Public License, v.3.0 &  \\
-	javacc & 5.0.0 & 7.0.0 & 07/07/2016 & Proprietary (Sun) & \\
+	javacc & 5.0.0 & 7.0.0 & 07/07/2016 & Proprietary (Sun) \\
 	jboss (Wildfly) & 5.1.0.GA & 10.0.0 & 29/01/2016 & GNU Lesser General Public License, v.2.1 & It is renamed to Wildfly. \\
 	jchempaint & 3.0.1 & 3.1.3 & 18/04/2016 & GNU Lesser General Public License, v.2.1+ &  \\
 	jedit & 4.3.2 & 5.3.0 & 20/10/2015  & GNU General Public License v.2.0 &  \\
-	jena & 2.6.3 & 3.1.0 & 10/05/2016 & Apache License, v.2.0 & \\
+	jena & 2.6.3 & 3.1.0 & 10/05/2016 & Apache License, v.2.0 \\
 	jext & 5.0 & -- & 18/08/2004   & GNU General Public License v.2.0 &  \\
 	jfreechart & 1.0.13 & 1.2.0-ea1 & 08/05/2016  & GNU Lesser General Public License, v.2.0 &   \\
-	jgraph & 5.13.0.0 & 3.5.1.5 & 20/07/2016 & Proprietary (mxGraph License) & \\
-	jgraphpad & 5.10.0.2 & -- & 10/11/2006 & GNU General Public License  \& GNU Lesser General Public License (derivatives) & \\
-	jgrapht & 0.8.1 & 0.9.2 & 03/04/2016 & GNU Lesser General Public License, v.2.1 \& Eclipse Public License, v.1.0 & \\
+	jgraph & 5.13.0.0 & 3.5.1.5 & 20/07/2016 & Proprietary (mxGraph License) \\
+	jgraphpad & 5.10.0.2 & -- & 10/11/2006 & GNU General Public License  \& GNU Lesser General Public License (derivatives) \\
+	jgrapht & 0.8.1 & 0.9.2 & 03/04/2016 & GNU Lesser General Public License, v.2.1 \& Eclipse Public License, v.1.0 \\
 	jmoney & 0.4.4 & -- & 17/04/2016 & GNU General Public License v.2.0 &  \\
-	jparse & 0.96 & -- & 29/07/2004 & GNU Lesser General Public License, v.2.1 & \\
-	jpf & 1.5.1 & ??? & 13/01/2012 & Apache License, v.2.0 & \\
-	junit & 4.11 & 4.12 & 04/12/2014 & Eclipse Public License, v.1.0 & \\
+	jparse & 0.96 & -- & 29/07/2004 & GNU Lesser General Public License, v.2.1 \\
+	jpf & 1.5.1 & ??? & 13/01/2012 & Apache License, v.2.0 \\
+	junit & 4.11 & 4.12 & 04/12/2014 & Eclipse Public License, v.1.0 \\
 	shiftone-jrat & 0.6 & 1-beta-1 & 25/04/2013 & GNU Lesser General Public License, v.2.0 &  \\
 	\hline 
 \end{tabular} 
@@ -246,37 +246,76 @@ Manual investigation of Simian's clone report showed that there were problematic
 \section*{Agreed Clone Pairs}
 The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \textit{ok-match(p)} criteria are listed in  Table \ref{t_agreed_good_clone_pairs} and Table \ref{t_agreed_ok_clone_pairs}. We use the threshold \textit{p} of 0.7 for both \textit{good-match} and \textit{ok-match}. Visualisation of \textit{good-match} common clone pairs between sets of parameter settings can be seen from Figure \ref{fig:venn4_pairs}. There are 14 \textit{good-match} pairs. The \textit{ok-match} subsumes the \textit{good-match} resulting in totally 528 common clone pairs.
 
+However, for the 2 NiCad settings, we found some renaming and clustering errors which resulted in fewer projects having clone reports. For NiCad default settings, 6 projects had clustering failed errors: \textit{cayenne,checkstyle, db-derby, geotools, hibernate, iReport}. For NiCad FSE13 settings, 4 projects had renaming failed errors: \textit{Vuze, aspectj, eXoPortal, hibernate} and 13 projects had clustering failed errors: \textit{ArgoUML, castor, cayenne, checkstyle, db-derby, drjava, ganttproject, geotools, iReport, ivatagroupware, jasperreports, jboss, jchempaint} as depicted in Table \ref{tab:projects_missing}. So these projects are also missing from agreed clone pairs.
+
 \begin{table}[h]
 	\centering
-	\caption{18 agreed good-match(0.7) cloned pairs between Simian and Nicad (14 are unique)}
+	\caption{Qualitas projects successfully analysed by Simian and NiCad}
+	\label{tab:projects_missing}
+	\begin{tabular}{r|r|r|r}
+		\hline
+		Simian$_{df}$ & NiCad$_{df}$ & Simian$_{fse13}$ & NiCad$_{fse13}$ \\ \hline
+		63	& 57 & 63 & 46 \\
+		\hline
+		& \textit{6 clustering failed} &  & \textit{13 clustering failed} \\
+		\hline
+		& cayenne   &	& cayenne \\
+		& checkstyle &  & checkstyle \\
+		& db-derby 	& & db-derby \\
+		& geotools 	& & geotools \\
+		& iReport 	& & iReport \\
+		& hibernate & & ArgoUML \\
+		&			& & castor \\
+		&			& & drjava \\
+		&			& & ganttproject \\
+		&			& & ivatagroupware \\
+		&			& & jasperreports \\
+		&			& & jboss \\
+		&			& & jchempaint \\
+		\hline
+		& \textit{renaming failed} & &  \textit{4 renaming failed} \\
+		\hline
+		&			& & Vuze \\
+		&			& & aspectj \\
+		&			& & eXoPortal \\
+		&			& &  hibernate \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+
+\begin{table}[h]
+	\centering
+	\caption{1,415 agreed good-match(0.7) cloned pairs between Simian and Nicad (1,406 are unique)}
 	\label{t_agreed_good_clone_pairs}
 	\begin{tabular}{l|r|r}
 		\hline
 		& Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
 		\hline
-		NiCad$_{\mathrm{\textit{default}}}$ & 9 & 1 \\ %      & 709             \\
-		NiCad$_{\mathrm{\textit{fse13}}}$   & 3 & 5 \\ % & 4680            \\
+		NiCad$_{\mathrm{\textit{default}}}$ & 9 & 6 \\ %      & 709             \\
+		NiCad$_{\mathrm{\textit{fse13}}}$   & 12 & 1388 \\ % & 4680            \\
 		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
 		\hline
 	\end{tabular}
 \end{table}
 
-\begin{table}[H]
-	\centering
-	\caption{Duplicated agreed \textit{good}-pairs between pairs of Simian and NiCad settings}
-	\label{t_dup_agreed_good_clone_pairs}
-	\begin{tabular}{l|r|r|r|r}
-		\hline
-		& $S_dN_d$ & $S_dN_f$ & $S_fN_d$ & $S_fN_f$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
-		\hline
-		$S_dN_d$ & 9 & 3 & 0 & 0 \\%      & 709             \\
-		$S_dN_f$ & 3 & 3 & 0 & 0 \\ % & 4680            \\
-		$S_fN_d$ & 0 & 0 & 1 & 1 \\
-		$S_fN_f$ & 0 & 0 & 1 & 5 \\	
-		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
-		\hline
-	\end{tabular}
-\end{table}
+%\begin{table}[H]
+%	\centering
+%	\caption{Duplicated agreed \textit{good}-pairs between pairs of Simian and NiCad settings}
+%	\label{t_dup_agreed_good_clone_pairs}
+%	\begin{tabular}{l|r|r|r|r}
+%		\hline
+%		& $S_dN_d$ & $S_dN_f$ & $S_fN_d$ & $S_fN_f$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+%		\hline
+%		$S_dN_d$ & 9 &    &   &      \\%      & 709             \\
+%		$S_dN_f$ & 9 & 12 &   &      \\ % & 4680            \\
+%		$S_fN_d$ & 0 & 0  & 6 &      \\
+%		$S_fN_f$ & 0 & 0  & 0 & 1388 \\	
+%		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
+%		\hline
+%	\end{tabular}
+%\end{table}
 
 \begin{figure}[H]
 	\centering
@@ -287,14 +326,14 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 
 \begin{table}[h]
 	\centering
-	\caption{528 agreed ok-match(0.7) cloned pairs between Simian and Nicad (510 are unique)}
+	\caption{11,165 agreed \textit{ok}-match(0.7) cloned pairs between Simian and Nicad (10,879 are different, 286 are duplicates). They contain all \textit{good}-match pairs}
 	\label{t_agreed_ok_clone_pairs}
 	\begin{tabular}{l|r|r}
 		\hline
 		& Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
 		\hline
-		NiCad$_{\mathrm{\textit{default}}}$ & 373 & 1 \\%      & 709             \\
-		NiCad$_{\mathrm{\textit{fse13}}}$   & 118 & 36 \\ % & 4680            \\
+		NiCad$_{\mathrm{\textit{default}}}$ & 481 & 60 \\%      & 709             \\
+		NiCad$_{\mathrm{\textit{fse13}}}$   & 418 & 10,206 \\ % & 4680            \\
 		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
 		\hline
 	\end{tabular}
@@ -302,16 +341,18 @@ The investigation of the clone pairs using Bellon's \textit{good-match(p)} and \
 
 \begin{table}[h]
 	\centering
-	\caption{Duplicated agreed \textit{ok}-pairs between Simian and NiCad settings  (510 are unique)}
+	\caption{Duplicated agreed \textit{ok}-pairs between Simian and NiCad settings (10,879 are different, 286 are duplicates)}
 	\label{t_dup_agreed_ok_clone_pairs}
-	\begin{tabular}{l|r|r|r|r}
+	\begin{tabular}{l|r|r|r|r|r}
 		\hline
-		& $S_dN_d$ & $S_dN_f$ & $S_fN_d$ & $S_fN_f$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+		& $S_dN_d$ & $S_dN_f$ & $S_fN_d$ & $S_fN_f$ & Total \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
 		\hline
-		$S_dN_d$ & 373 & 17 & 0 & 0 \\%      & 709             \\
-		$S_dN_f$ & 17 & 118 & 0 & 0 \\ % & 4680            \\
-		$S_fN_d$ & 0 & 0 & 1 & 1 \\
-		$S_fN_f$ & 0 & 0 & 1 & 36 \\	
+		$S_dN_d$ & 214 	& 267 	& 0		& 0 		& 481 \\
+		$S_dN_f$ & 267 	& 150 	& 0 	& 1 		& 418 \\ 
+		$S_fN_d$ & 0 	& 0 	& 42 	& 18  		& 60 \\
+		$S_fN_f$ & 0 	& 1 	& 18 	& 10,187 	& 10,206 \\	
+		\hline
+		Total 	 & 481  & 418	& 60	& 10,206	& \\
 		%NiCad$_{\mathrm{\textit{cloplag}}}$ &             &               \\ % &                \\
 		\hline
 	\end{tabular}
@@ -339,9 +380,9 @@ We investigated the 41 clone pairs previously reported by Simian with default co
 		\hline 
 		Simian$_{fse13}$ & 0 & 41  \\ 
 		\hline 
-		NiCad$_{df}$  & 9 & 32 \\ 
+		NiCad$_{df}$  & 17 & 24 \\ 
 		\hline 
-		NiCad$_{fse13}$ &  9 & 32 \\ 
+		NiCad$_{fse13}$ &  24 & 17 \\ 
 		\hline 
 	\end{tabular} 
 \end{table}
