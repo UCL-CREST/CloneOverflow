@@ -73,7 +73,7 @@ public class ParserManager {
         }
     }
 
-    public void simianLogsFilterParser(String gcfDir) {
+    public void simianLogsFilterParser(String gcfDir, String tool, String setting) {
         try {
             List<String> simianResults = new ArrayList<>();
             FileManager.getDirectoryContents(new File(gcfDir), simianResults, true);
@@ -87,7 +87,7 @@ public class ParserManager {
                 }
                 System.out.println("Fragment size: " + usefulFragment.size());
                 //Only file name. Extension is added automatically
-                XmlFileWriter.writeSimianUsefulFragmentsToXml("useful_fragments", usefulFragment);
+                XmlFileWriter.writeSimianUsefulFragmentsToXml("fragments_" + tool + "_" + setting, usefulFragment);
             } else {
                 System.err.println("Warning: no results file found.");
             }
@@ -99,7 +99,7 @@ public class ParserManager {
         }
     }
 
-    public void usefulSimianFragmentStatisticParser(String file) {
+    public void usefulSimianFragmentStatisticParser(String file, String tool, String setting) {
         try {
             List<SimianLog> simianLogs = new ArrayList<>();
             File inputFile = new File(file);
@@ -107,7 +107,7 @@ public class ParserManager {
             this.handler = new UsefulSimianFragmentHandler(simianLogs);
             this.saxParser.parse(inputFile, handler);
             List<SimianStackoverflowFragment> result = SimianLog.getSimianLogStats(simianLogs);
-            CsvFileWriter.writeSimianLogsStatsOnCsv(result, "fragment_stats");
+            CsvFileWriter.writeSimianLogsStatsOnCsv(result, "fragment_stats", tool, setting);
 //            CsvFileWriter.writeSimianLogsStatsOnCsv(SimianLog.sortByUsage(result), "fragment_stats_sorted_by_usage");
 //            CsvFileWriter.writeSimianLogsStatsOnCsv(SimianLog.sortByProjects(result), "fragment_stats_sorted_by_projects");
 //            CsvFileWriter.writeHashMapToCsv("Used, Number of Fragments", CsvFileWriter.sortHashMapByKey(SimianLog.getDistributionBy(result, SimianLogComparator.USAGE)),"fragment_distribution_by_usage");

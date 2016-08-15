@@ -10,6 +10,8 @@ public class Main {
     private static Options options = new Options();
     private static String fileDir;
     private static String mode;
+    private static String TOOL="simian";
+    private static String SETTING="df";
 
     public static void main(String[] args) {
         processCommandLine(args);
@@ -47,12 +49,12 @@ public class Main {
             String gcfDir = fileDir;
             File f = new File(gcfDir);
             if (f.exists() && f.isDirectory()) {
-                ParserManager.getInstance().simianLogsFilterParser(gcfDir);
+                ParserManager.getInstance().simianLogsFilterParser(gcfDir, TOOL, SETTING);
             } else {
                 System.err.println("Error: the given directory " + gcfDir + " does not exist.");
             }
         } else if (mode.equals("s")) { // stats
-            ParserManager.getInstance().usefulSimianFragmentStatisticParser(fileDir);
+            ParserManager.getInstance().usefulSimianFragmentStatisticParser(fileDir, TOOL, SETTING);
         }
     }
 
@@ -63,6 +65,8 @@ public class Main {
         options.addOption("m", "mode", true, "Mode [p=parse, f=filter, s=stats]");
         options.addOption("d", "dir", true, "File's directory");
         options.addOption("h", "help", false, "Print help");
+        options.addOption("t", "tool", true, "Tool's name (simian/nicad)");
+        options.addOption("s", "setting", true, "Tool's settings (df (default)/fse13)");
 
         // check if no parameter given, print help and quit
         if (args.length == 0) {
@@ -91,6 +95,21 @@ public class Main {
                 System.err.println("Error: No mode provided.");
                 showHelp();
             }
+
+            if (line.hasOption("t")) {
+                TOOL = line.getOptionValue("t");
+            } else {
+                System.err.println("Error: No tool provided.");
+                showHelp();
+            }
+
+            if (line.hasOption("s")) {
+                SETTING = line.getOptionValue("s");
+            } else {
+                System.err.println("Error: No settings provided.");
+                showHelp();
+            }
+
         } catch (ParseException exp) {
             System.out.println("Warning: " + exp.getMessage());
         }

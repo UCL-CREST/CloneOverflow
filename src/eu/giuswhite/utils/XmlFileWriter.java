@@ -28,20 +28,23 @@ public class XmlFileWriter {
                 for (SimianLog.LogFragment logFragment : simianLog.fragmentList) {
                     // TODO: have to check this list of error fragments everytime before running!
                     // check if the fragment is in the error list, skip it
-                    if (! CommonUtils.isError(logFragment.filePath)) {
+                     if (! CommonUtils.isError(logFragment.filePath)) {
                         Element lF = new Element("FRAGMENT_LOG");
                         lF.setAttribute("filePath", logFragment.filePath);
                         lF.setAttribute("start", String.valueOf(logFragment.start));
                         lF.setAttribute("end", String.valueOf(logFragment.end));
                         sL.addContent(lF);
-                    }
-                    else {
+                      }
+                     // else {
                         // found error pairs, skip the whole cluster
-                        foundErrorFrag = true;
-                    }
+                         foundErrorFrag = true;
+                     //}
                 }
 
-                if (!foundErrorFrag)
+                // if (!foundErrorFrag)
+
+                // has at least one S-Q clone pair
+                if (sL.getContentSize()>1)
                     root.addContent(sL);
             }
 

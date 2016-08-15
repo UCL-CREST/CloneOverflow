@@ -63,7 +63,7 @@ public class CsvFileWriter {
         return result;
     }
 
-    public static void writeSimianLogsStatsOnCsv(List<SimianStackoverflowFragment> list, String filename) {
+    public static void writeSimianLogsStatsOnCsv(List<SimianStackoverflowFragment> list, String filename, String tool, String setting) {
         System.out.println("\nStart writing to csv ...");
         StringWriter output = new StringWriter();
         try (ICsvListWriter listWriter = new CsvListWriter(output,
@@ -71,7 +71,7 @@ public class CsvFileWriter {
             for (SimianStackoverflowFragment fragment : list) {
                 System.out.print(".");
                 // skip if they're false clones generated from simian's bug
-                if (! CommonUtils.isError(fragment.fragmentName)) {
+                if (!CommonUtils.isError(fragment.fragmentName)) {
                     listWriter.write(fragment.fragmentName, fragment.numberOfTimeIsUsed,
                             fragment.projectsWhereIsUsed.size(), fragment.getSLOC(), fragment.getCloneLines(),
                             ((double) fragment.getCloneLines()) / fragment.getSLOC());
@@ -81,7 +81,7 @@ public class CsvFileWriter {
             e.printStackTrace();
         }
         String result = "fragment, used, inprojects, sloc, usedsloc, percent\n" + output.toString();
-        FileManager.getInstance().createAndWriteFile(CommonUtils.PROJECT_FOLDER_PATH + "/stats", filename + ".csv", result, false);
+        FileManager.getInstance().createAndWriteFile(CommonUtils.PROJECT_FOLDER_PATH + "/stats_" + tool + "_" + setting, filename + ".csv", result, false);
         System.out.println("done");
     }
 }
