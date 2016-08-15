@@ -61,30 +61,28 @@ Manual investigation of Simian's clone report showed that there were problematic
 		\multirow{4}{*}{Statistics} 
 		& \multicolumn{4}{c|}{Simian Default settings} 
 		& \multicolumn{4}{c|}{Simian FSE'13 settings}
-		& \multicolumn{4}{c|}{Simian Default settings} 
-		& \multicolumn{4}{c}{Simian FSE'13 settings} \\ \cline{2-17} % & \multicolumn{4}{c}{CloPlag settings} \\
+		& \multicolumn{4}{c|}{NiCad Default settings} 
+		& \multicolumn{4}{c}{NiCad FSE'13 settings} \\ \cline{2-17} 
 		& \multicolumn{4}{c|}{threshold=6} 
 		& \multicolumn{4}{c|}{threshold=5}  
 		& \multicolumn{4}{c|}{threshold=6, UPI=0.30} 
-		& \multicolumn{4}{c}{threshold=5, UPI=0.2} \\  % & \multicolumn{4}{c}{threshold=5} \\
+		& \multicolumn{4}{c}{threshold=5, UPI=0.2} \\ 
 		& \multicolumn{4}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC} 
 		& \multicolumn{4}{c|}{iCurlB,iId,iIdC,iStr,iChar,iSbtNm,bSqBrck} 
 		& \multicolumn{4}{c|}{rename=none,abstract=none} 
-		& \multicolumn{4}{c}{rename=blind,abstract=literal} \\\cline{2-17}  %  & \multicolumn{4}{c}{iId} \\
-		% \hline
+		& \multicolumn{4}{c}{rename=blind,abstract=literal} \\\cline{2-17}  
 		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
 		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
 		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$
-		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ % & Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\
+		& Frag.~ & $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ 
 		\hline
-		%Removed & 11 & -- & -- & -- & 0 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- \\ %& 11 & -- & -- & -- \\
-		Total & 647 & 24,802 & -- & -- &  152 & 7,289,272 & -- & -- & 983 & 106,091 & -- & -- & 8,100 & 31,141,599 & -- & --  \\ % & 26,699 & 24,9702,821 & -- & --  \\
-		Mean & -- & 38 & 7.53 & 0.27 & -- & 47,956 & 4.76 & 0.27 & -- & 108 & 9.48 & 0.25 & -- & 3,845 & 5.52 & 0.19 \\ % & -- & 9,356 & 4.74 & 0.26 \\
-		Std Dev. & -- & 87 & 3.87 & 0.22 & -- & 433,467 & 0.93 & 0.18 & 	& 200 & 3.04	& 0.18 & -- & 4,305 & 2.49 & 0.15 \\ % & -- & 96,038	& 0.99 & 0.18 \\
-		Max & -- & 551 & 63 & 0.94 & -- & 5,278,408 & 8 & 0.83 & -- & 1,816 & 39 & 0.80 & -- & 46,469 & 111 & 0.88\\ % & -- & 7,837,204 & 28 & 0.94 \\
-		Min & -- & 1 & 5 & 0.01 & -- & 1 & 4 & 0.01 & -- & 1 & 7 & 0.02 & -- & 1 & 3 & 0.01 \\ % & -- & 1 & 4 & 0.002 \\
-		Median & -- & 3 & 7 & 0.22 & -- & 22.5 & 4 & 0.23 & -- & 14 & 8 & 0.19 & -- & 3,095 & 5 & 0.14 \\ % & -- & 27 & 4 & 0.22 \\
-		Mode & -- & 1 & 7 & 0.25 & -- & 1 & 4 & 0.50 & -- & 1 & 8 & 0.53 & -- & 1 & 4 & 0.33 \\ % & -- & 1 & 4 & 0.50 \\
+		Total	   & 654 & 24,929 & -- & -- &  1,175 & 16,957,362 & -- & -- & 983 & 106,091 & -- & -- & 8,100 & 31,141,599 & -- & --  \\ 
+		Mean	  & -- & 38 & 7.54 & 0.27 & -- & 14,444 & 4.80 & 0.28 & -- & 108 & 9.48 & 0.25 & -- & 3,845 & 5.52 & 0.19 \\ 
+		Std Dev. & -- & 87 & 3.21 & 0.22 & -- & 281,747 & 1.22 & 0.18 & 	& 200 & 3.04	& 0.18 & -- & 4,305 & 2.49 & 0.15 \\
+		Max        & -- & 551 & 49 & 0.94 & -- & 9,599,676 & 18 & 0.89 & -- & 1,816 & 39 & 0.80 & -- & 46,469 & 111 & 0.88\\ 
+		Min        & -- & 1 & 5 & 0.01 & -- & 1 & 4 & 0.02 & -- & 1 & 7 & 0.02 & -- & 1 & 3 & 0.01 \\ 
+		Median  & -- & 3 & 7 & 0.23 & -- & 22 & 5 & 0.24 & -- & 14 & 8 & 0.19 & -- & 3,095 & 5 & 0.14 \\ 
+		Mode    & -- & 1 & 7 & 0.25 & -- & 1 & 4 & 0.50 & -- & 1 & 8 & 0.53 & -- & 1 & 4 & 0.33 \\ 
 		\hline
 	\end{tabular} %
 }
@@ -92,7 +90,7 @@ Manual investigation of Simian's clone report showed that there were problematic
 
 \begin{table*}[h]
 	\centering
-	\caption{Qualitas (2016-08-05): Simian and NiCad clone results (45 new + 18 old Qualitas projects)}
+	\caption{Qualitas (2016-08-05): Simian and NiCad clone results (44 new + 19 old Qualitas projects)}
 	\label{t_simian_raw_results}
 	\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
@@ -131,7 +129,7 @@ Manual investigation of Simian's clone report showed that there were problematic
 
 \begin{table*}[h]
 	\centering
-	\caption{Qualitas (2016-08-05): Simian and NiCad clone results (only 45 new Qualitas projects)}
+	\caption{Qualitas (2016-08-05): Simian and NiCad clone results (only 44 new Qualitas projects)}
 	\label{t_simian_raw_results}
 	\resizebox{\columnwidth}{!}{%
 		\begin{tabular}{l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
