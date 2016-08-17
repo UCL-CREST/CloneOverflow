@@ -397,49 +397,67 @@ I have manually investigated all of the 14 \textit{good-match} ones and 510 \tex
 Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) Q $\rightarrow$ S or (2) from a third source to both S and Q independently.
 
 \subsection{Investigation of the largest unique 172 clone pairs}
-In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. With our 4 settings, we investigated the largest 172 clone pairs according to their average SLOC (larger than or equals to 15 SLOC). These clone pairs are pairs of Stackoverflow fragments and Java files from Qualitas projects that NEVER been looked at before in the previous investigation. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stackoverflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification} and Table \ref{tab:classification_breakdown}.
+In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. With our 4 settings, we investigated the largest 172 clone pairs according to their average SLOC (larger than or equals to 15 SLOC). These clone pairs are pairs of Stackoverflow fragments and Java files from Qualitas projects that NEVER been looked at before in the previous investigation. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stackoverflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification} and Table \ref{tab:good_classification}.
 
 
 \begin{table}[H]
 	\centering
-	\caption{Classification results of 14 \textit{good} and 510 \textit{ok}-matches (including the subsumed \textit{good}-match pairs).}
+	\caption{Classification results of 1,406 \textit{good} and ??? \textit{ok}-matches (including the subsumed \textit{good}-match pairs).}
 	\label{tab:classification}
-	\begin{tabular}{|l|r|r|r|r|r|r|r|}
+	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
 		\hline 
-		Classification & A & B & C & D & E & F & Total \\ 
+		Classification & A & A' & B & C & D & E & F & Total \\ 
 		\hline 
-		\multirow{2}{*}{\textit{good-match(0.7)}} & 1 & 2 & 2 & 2 & 7 & 0 & 14 \\ \cline{2-8}
-		& 7.14\%	& 14.29\%	& 14.29\%	& 14.29\%	& 50.00\%	& 0.00\%	& 100.00\% \\ 
+		\multirow{1}{*}{\textit{good-match(0.7)}} & 1 & 0 & 1 & 3 & 26 & 6 & 1,369 & 1,406 \\ \cline{2-8}
+		%& 7.14\%	& & 14.29\%	& 14.29\%	& 14.29\%	& 50.00\%	& 0.00\%	& 100.00\% \\ 
 		\hline
-		\multirow{2}{*}{\textit{ok-match(0.7)}} & 4 & 42 & 8 & 351 & 28 & 77 & 510 \\ \cline{2-8}
-		& 0.78\%	& 8.24\%	&	1.57\%	&	68.82\%	&	5.49\%	&	15.10\%	&	100.00\%  \\ 
+		\multirow{1}{*}{\textit{ok-match(0.7)}} &  & &  &  &  &  &  &  \\ \cline{2-8}
+		%& 0.78\%	& & 8.24\%	&	1.57\%	&	68.82\%	&	5.49\%	&	15.10\%	&	100.00\%  \\ 
 		\hline
-		\multirow{2}{*}{172 indv. pairs} & 17 & 7 & 3 & 21 & 5 & 119 & 172 \\ \cline{2-8}
-		& 9.88\% & 4.07\% & 1.74\% & 12.21\% & 2.91\% & 69.19\% & 100.00\%  \\ 
+		\multirow{1}{*}{172 indv. pairs} &  & &  &  &  &  &  &  \\ \cline{2-8}
+		%& 9.88\% & & 4.07\% & 1.74\% & 12.21\% & 2.91\% & 69.19\% & 100.00\%  \\ 
 		\hline
 	\end{tabular} 
 \end{table}
 
 \begin{table}[H]
 	\centering
-	\caption{Breakdowns of the biggest 172 individual clone pairs}
-	\label{tab:classification_breakdown}
-	\begin{tabular}{|l|r|r|r|r|r|r|r|}
-		\hline 
-		Classification & A & B & C & D & E & F & Total \\ 
-		\hline 
-		Simian$_{df}$ & 16 & 7 & 3 & 7 & 4 & 3 & 40 \\ 
-		\hline
-		Simian$_{fse13}$ & 1 & 0 & 0 & 1 & 0 & 53 & 55 \\
-		\hline
-		NiCad$_{df}$ & 0 & 0 & 0 & 13 & 0 & 22 & 35 \\
-		\hline
-		NiCad$_{fse13}$ & 0 & 0 & 0 & 0 & 1 & 41 & 42 \\
-		\hline
-		Total & 17 & 7 & 3 & 21 & 5 & 119 & 172 \\
-		\hline
-	\end{tabular} 
+	\caption{Breakdown of each category A--F according to agreement}
+	\label{tab:good_classification}
+\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+	\hline 
+	Category   & A   & 	A'   & 	B   & C   & D   &	E   &	F   & Total  \\
+	\hline
+	Simian$_{df}$--NiCad$_{df}$   & 1 & 0 & 1 & 0 & 0 & 4 & 0 & 6 \\
+	Simian$_{df}$--NiCad$_{\textrm{\textit{fse13}}}$   & 0 & 0 & 0 & 3 & 1 & 1 & 1 & 6 \\
+	Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{df}$   & 0 & 0 & 0 & 0 & 7 & 0 & 0 & 7 \\
+	Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{\textrm{\textit{fse13}}}$   & 0 & 0 & 0 & 0 & 18 & 1 & 1,368 & 1,387 \\
+	\hline
+	Total   &   1   &   0   &   1   &   3   &   26   &   6   & 1,369  & 1,406 \\
+	\hline
+\end{tabular} 
 \end{table}
+
+%\begin{table}[H]
+%	\centering
+%	\caption{Breakdowns of the biggest 172 individual clone pairs}
+%	\label{tab:classification_breakdown}
+%	\begin{tabular}{|l|r|r|r|r|r|r|r|}
+%		\hline 
+%		Classification & A & B & C & D & E & F & Total \\ 
+%		\hline 
+%		Simian$_{df}$ & 16 & 7 & 3 & 7 & 4 & 3 & 40 \\ 
+%		\hline
+%		Simian$_{fse13}$ & 1 & 0 & 0 & 1 & 0 & 53 & 55 \\
+%		\hline
+%		NiCad$_{df}$ & 0 & 0 & 0 & 13 & 0 & 22 & 35 \\
+%		\hline
+%		NiCad$_{fse13}$ & 0 & 0 & 0 & 0 & 1 & 41 & 42 \\
+%		\hline
+%		Total & 17 & 7 & 3 & 21 & 5 & 119 & 172 \\
+%		\hline
+%	\end{tabular} 
+%\end{table}
 
 \begin{table}[H]
 	\centering
