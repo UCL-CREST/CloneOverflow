@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['sankey']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Stackoverflow');
+        data.addColumn('string', 'Qualitas projects');
+        data.addColumn('number', 'Weight');
+        data.addRows([
+          ['SO/10274267_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/documentation/src/main/docbook/devguide/en-US/extras/flush_and_clear_session', 1],
+          ['SO/10548630_0', 'jfreechart-1/jfreechart-1.0.13/swt/org/jfree/experimental/swt/SWTUtils', 1],
+          ['SO/10599247_0', 'geotools-2/geotools-2.7-M3/modules/extension/xsd/xsd-wcs/src/main/org/geotools/wcs/bindings/TimeSequenceTypeBinding', 1],
+          ['SO/10737817_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-entitymanager/src/main/org/hibernate/ejb/criteria/QueryStructure', 1],
+          ['SO/11368428_1', 'jfreechart-1/jfreechart-1.0.13/source/org/jfree/chart/demo/BarChartDemo1', 1],
+          ['SO/11825416_0', 'geotools-2/geotools-2.7-M3/modules/unsupported/swing/src/main/org/jdesktop/swingworker/SwingWorker', 1],
+          ['SO/12428601_0', 'c-jdbc-2/c-jdbc-2.0.2-src/src/org/objectweb/cjdbc/common/util/FileManagement', 1],
+          ['SO/12835370_0', 'db-derby-10/db-derby-10.6.1.0-src/testing/org/apache/derbyTesting/functionTests/tests/junitTests/compatibility/CompatibilityCombinations', 1],
+          ['SO/12936580_0', 'jfreechart-1/jfreechart-1.0.13/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer', 1],
+          ['SO/13219118_0', 'Compiere_330_Source/release_330/ad/src/org/compiere/translate/AmtInWords_EN', 2 ],
+          ['SO/13219118_0', 'Compiere_330_Source/release_330/ad/src/org/compiere/translate/AmtInWords_FR', 3 ],
+          ['SO/14845581_1', 'hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapreduce/JobSubmissionFiles', 1],
+          ['SO/15168494_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/service/jdbc/connections/internal/ConnectionProviderInitiator', 1],
+          ['SO/15185345_0', 'Compiere_330_Source/release_330/ad/src/org/compiere/util/CachedRowSetImpl', 1],
+          ['SO/15260207_0', 'freemind-src-0/freemind/accessories/plugins/dialogs/ArrayListTransferHandler', 1],
+          ['SO/15633427_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/cfg/Environment', 1],
+          ['SO/15889119_0', 'jgrapht-0/jgrapht-0.8.1/src/org/jgrapht/experimental/touchgraph/TouchgraphConverter', 1],
+          ['SO/16058183_0', 'jfreechart-1/jfreechart-1.0.13/source/org/jfree/data/KeyToGroupMap', 1],
+          ['SO/16180910_0', 'hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapred/LineRecordReader', 1],
+          ['SO/16930707_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-envers/src/test/org/hibernate/envers/test/integration/basic/RegisterUserEventListenersTest', 1],
+          ['SO/18137301_0', 'antlr4-4.0/tool/test/org/antlr/v4/test/TestPerformance', 1],
+          ['SO/18303692_0', 'aspectj-1.6.9-src/aspectjtools1.6.9-src/org/aspectj/weaver/loadtime/Agent', 1],
+          ['SO/18833798_0', 'hadoop-1/hadoop-1.0.0/src/test/org/apache/hadoop/mapred/TestJobCounters', 1],
+          ['SO/19298607_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/dialect/Oracle9iDialect', 1],
+          ['SO/21099738_0', 'jboss-5/jboss-5.1.0.GA-src/console/src/main/org/jboss/console/plugins/helpers/servlet/ServletHelper', 1],
+          ['SO/21702608_0', 'hadoop-1/hadoop-1.0.0/src/examples/org/apache/hadoop/examples/DBCountPageView', 1],
+          ['SO/21734562_0', 'jboss-5/jboss-5.1.0.GA-src/tomcat/src/main/org/jboss/web/tomcat/security/authenticators/JASPIFormAuthenticator', 1],
+          ['SO/21912294_0', 'iReport-3/iReport-3.7.5-src/jasperserver-plugin/src/com/jaspersoft/ireport/jasperserver/ws/IReportTrustManager', 1],
+          ['SO/21998949_0', 'jfreechart-1/jfreechart-1.0.13/source/org/jfree/chart/plot/SpiderWebPlot', 1],
+          ['SO/22064171_0', 'iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/sheet/editors/box/ShapeStroke', 1],
+          ['SO/22315734_0', 'hadoop-1/hadoop-1.0.0/src/core/org/apache/hadoop/io/WritableComparator', 1],
+          ['SO/23520731_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/tool/hbm2ddl/SchemaUpdate', 1],
+          ['SO/23586872_1', 'junit-4/org/junit/Assert', 1],
+          ['SO/23967852_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/dialect/pagination/SQLServer2005LimitHandler', 1],
+          ['SO/23974103_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/action/internal/BulkOperationCleanupAction', 1],
+          ['SO/24013939_0', 'hsqldb-2/hsqldb-2.0.0/hsqldb/src/org/hsqldb/test/HsqldbTestCase', 1],
+          ['SO/24453994_0', 'iText-src-5/src/core/com/itextpdf/text/pdf/BarcodeEAN', 1],
+          ['SO/24924255_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/criterion/Example', 1],
+          ['SO/2761630_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/documentation/src/main/docbook/devguide/en-US/extras/using_a_StatelessSession', 1],
+          ['SO/3911987_0', 'Compiere_330_Source/release_330/ad/src/org/compiere/translate/AmtInWords_EN', 2 ],
+          ['SO/3911987_0', 'Compiere_330_Source/release_330/ad/src/org/compiere/translate/AmtInWords_FR', 3 ],
+          ['SO/5419632_0', 'freecol-0/freecol/src/net/sf/freecol/client/gui/menu/FreeColMenuTest', 1 ],
+          ['SO/5708120_0', 'hadoop-1/hadoop-1.0.0/src/examples/org/apache/hadoop/examples/WordCount', 4],
+          ['SO/5708120_0', 'hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapreduce/lib/map/TokenCounterMapper', 1],
+          ['SO/5713930_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/documentation/src/main/docbook/devguide/en-US/extras/using_scroll', 1],
+          ['SO/6236324_0', 'aoisrc281/AoIsrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder', 14 ],
+          ['SO/6236324_0', 'aoisrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder', 19 ],
+          ['SO/6722760_1', 'jgraph-latest-bsd-src/examples/org/jgraph/example/HelloWorld', 3],
+          ['SO/7504040_0', 'junit-4/org/junit/rules/ExternalResource', 1],
+          ['SO/801987_0', 'hadoop-1/hadoop-1.0.0/src/core/org/apache/hadoop/util/StringUtils', 1],
+          ['SO/8037824_0', 'jasperreports-3/jasperreports-3.7.4/src/net/sf/jasperreports/engine/design/JRVerifier', 1],
+          ['SO/8257554_0', 'hibernate-release-4/hibernate-release-4.2.2.Final/project/hibernate-core/src/main/org/hibernate/cfg/SettingsFactory', 1],
+          ['SO/8416340_0', 'findbugs-1/findbugs-1.3.9/src/antTask/edu/umd/cs/findbugs/anttask/UnionBugs', 2],
+          ['SO/8713017_0', 'hadoop-1/hadoop-1.0.0/src/core/org/apache/hadoop/io/file/tfile/SimpleBufferedOutputStream', 1],
+          ['SO/8802082_2', 'junit-4/org/junit/internal/runners/statements/ExpectException', 1],
+          ['SO/9291241_1', 'apache-ant-1.8.4/src/main/org/apache/tools/ant/taskdefs/Mkdir', 1],
+          ['SO/92962_0', 'jgraphpad-5/jgraphpad-5.10.0.2-src/src/org/jgraph/pad/graphcellsbase/JGraphSwimlaneView', 1],
+          ['SO/9549009_0', 'Vuze_4812_source/org/bouncycastle/crypto/generators/OpenSSLPBEParametersGenerator', 1]
+        ]);
+
+        // Sets chart options.
+        var options = {
+          width: 1024,
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="sankey_basic" style="width: 1024px; height: 1024px;"></div>
+  </body>
+</html>

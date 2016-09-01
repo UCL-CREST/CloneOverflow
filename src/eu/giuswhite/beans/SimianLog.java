@@ -64,6 +64,8 @@ public class SimianLog {
                 // System.out.println("Checking fragment: " + lF.filePath);
                 /* Check if it exists in the result list.*/
                 if(lF.isStackoverflowFragment){
+                    if (count == 2241)
+                        System.out.println(lF.getFilePath());
                     boolean exist = false;
                     SimianStackoverflowFragment simianStackoverflowFragment = new SimianStackoverflowFragment();
                     if (result.containsKey(lF.filePath)) {

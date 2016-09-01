@@ -1,0 +1,278 @@
+x,stackoverflow_formatted/6286898_0.java,6,42,geotools-16/modules/unsupported/geopkg/src/main/java/org/geotools/geopkg/Tile.java,50,86,37,D,similar equals() methods
+x,stackoverflow_formatted/24652083_0.java,21,54,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/CssRule.java,62,95,34,D,similar equals() methods
+x,stackoverflow_formatted/12707482_0.java,220,248,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/util/BevelArrowIcon.java,102,130,29,,
+x,stackoverflow_formatted/10055548_0.java,53,79,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/Directive.java,30,56,27,D,similar equals() methods
+x,stackoverflow_formatted/13066157_0.java,15,41,geotools-16/modules/library/main/src/main/java/org/geotools/styling/LineSymbolizerImpl.java,69,95,27,D,similar equals() methods
+x,stackoverflow_formatted/9591522_0.java,19,45,geotools-16/modules/library/main/src/main/java/org/geotools/filter/SortByImpl.java,33,59,27,D,similar equals() methods
+x,stackoverflow_formatted/9684751_0.java,11,37,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/Property.java,25,51,27,D,similar equals() methods
+x,stackoverflow_formatted/15850476_0.java,14,40,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/coordinate/LineStringImpl.java,201,227,27,D,similar equals() methods
+x,stackoverflow_formatted/17941176_0.java,73,99,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/primitive/SurfaceBoundaryImpl.java,67,93,27,D,similar equals() methods
+x,stackoverflow_formatted/10194435_0.java,34,60,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/coordinate/PolygonImpl.java,51,77,27,D,similar equals() methods
+x,stackoverflow_formatted/7383847_1.java,39,62,geotools-16/modules/library/referencing/src/main/java/org/geotools/referencing/factory/gridshift/NADCONGridShiftFactory.java,41,67,24,D,similar equals() methods
+x,stackoverflow_formatted/20453802_0.java,46,68,geotools-16/modules/library/api/src/main/java/org/geotools/geometry/jts/CurvedGeometryFactory.java,102,124,23,D,similar equals() methods
+x,stackoverflow_formatted/10702534_0.java,15,35,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/primitive/CurveBoundaryImpl.java,62,88,21,D,similar equals() methods
+x,stackoverflow_formatted/1516601_0.java,20,46,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/selector/Id.java,33,52,20,D,similar equals() methods
+x,stackoverflow_formatted/5764008_1.java,140,159,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/instrument/pass1/CodeFootstamp.java,90,109,20,D,similar equals() methods
+x,stackoverflow_formatted/13435398_0.java,95,114,geotools-16/modules/library/main/src/main/java/org/geotools/filter/capability/SpatialCapabiltiesImpl.java,77,103,20,D,similar equals() methods
+x,stackoverflow_formatted/2265637_0.java,23,42,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/detect/BuildStringPassthruGraph.java,47,69,20,D,similar equals() methods
+x,stackoverflow_formatted/12008316_0.java,12,31,geotools-16/modules/library/main/src/main/java/org/geotools/filter/capability/TemporalCapabilitiesImpl.java,40,59,20,D,similar equals() methods
+x,stackoverflow_formatted/25044969_0.java,32,51,geotools-16/modules/library/main/src/main/java/org/geotools/filter/capability/TemporalOperatorImpl.java,29,55,20,D,similar equals() methods
+x,stackoverflow_formatted/11917735_0.java,23,47,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/selector/Composite.java,22,41,20,D,similar equals() methods
+x,stackoverflow_formatted/4207100_3.java,27,46,geotools-16/modules/library/main/src/main/java/org/geotools/styling/DescriptionImpl.java,53,79,20,D,similar equals() methods
+x,stackoverflow_formatted/5961624_0.java,14,33,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/selector/PseudoClass.java,48,70,20,D,similar equals() methods
+x,stackoverflow_formatted/16688737_0.java,21,40,geotools-16/modules/plugin/shapefile/src/main/java/org/geotools/data/shapefile/files/MemoryMapCache.java,96,121,20,D,similar equals() methods
+x,stackoverflow_formatted/24330611_0.java,78,100,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/filter/Filter.java,34,53,20,D,similar equals() methods
+x,stackoverflow_formatted/24040300_3.java,24,42,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/selector/Data.java,62,81,19,D,similar equals() methods
+x,stackoverflow_formatted/5730232_0.java,6,24,apache-ant-1.10.0/src/main/org/apache/tools/ant/taskdefs/optional/SchemaValidate.java,226,245,19,D,similar equals() methods
+x,stackoverflow_formatted/24772546_0.java,15,33,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/detect/FindNoSideEffectMethods.java,157,175,19,D,similar equals() methods
+x,stackoverflow_formatted/14455624_1.java,13,31,geotools-16/modules/library/main/src/main/java/org/geotools/styling/VendorSymbolizerImpl.java,20,46,19,D,similar equals() methods
+x,stackoverflow_formatted/2376842_1.java,51,69,jpf/src/main/gov/nasa/jpf/vm/AtomicData.java,16,34,19,D,similar equals() methods
+x,stackoverflow_formatted/22264084_0.java,43,61,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/Stylesheet.java,44,70,19,D,similar equals() methods
+x,stackoverflow_formatted/3851674_0.java,23,41,geotools-16/modules/library/main/src/main/java/org/geotools/filter/capability/TemporalOperatorsImpl.java,36,55,19,D,similar equals() methods
+x,stackoverflow_formatted/5338272_0.java,33,49,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/model/repl/InteractionsEditorKit.java,8,24,17,,
+x,stackoverflow_formatted/7901334_0.java,59,75,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/graph/AbstractGraph.java,201,217,17,,
+x,stackoverflow_formatted/23879677_0.java,63,87,geotools-16/modules/plugin/jdbc/jdbc-db2/src/main/java/org/geotools/data/db2/DB2SQLDialect.java,561,577,17,,
+x,stackoverflow_formatted/2953040_0.java,20,35,jgrapht-0.9.2/jgrapht-core/src/main/java/org/jgrapht/util/VertexPair.java,30,46,16,D,similar equals() methods
+x,stackoverflow_formatted/8180925_0.java,25,40,geotools-16/modules/unsupported/swing/src/main/java/org/geotools/swing/event/KeyInfo.java,38,53,16,D,similar equals() methods
+x,stackoverflow_formatted/24682528_2.java,143,158,geotools-16/modules/library/main/src/main/java/org/geotools/feature/type/FeatureTypeImpl.java,59,74,16,D,similar equals() methods
+x,stackoverflow_formatted/23197177_1.java,14,29,geotools-16/modules/unsupported/feature-aggregate/src/main/java/org/geotools/data/aggregate/SourceType.java,28,54,16,D,similar equals() methods
+x,stackoverflow_formatted/3280700_0.java,18,33,geotools-16/modules/extension/xsd/xsd-gml3/src/main/java/org/geotools/gml3/Circle.java,136,152,16,D,similar equals() methods
+x,stackoverflow_formatted/21581988_0.java,125,140,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/DetectorFactory.java,215,230,16,D,similar equals() methods
+x,stackoverflow_formatted/6089206_0.java,13,28,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/primitive/CurveImpl.java,325,351,16,D,similar equals() methods
+x,stackoverflow_formatted/19614645_1.java,16,31,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/Value.java,251,277,16,D,similar equals() methods
+x,stackoverflow_formatted/15095000_0.java,21,36,geotools-16/modules/library/jdbc/src/main/java/org/geotools/jdbc/RegexpValidator.java,29,48,16,D,similar equals() methods
+x,stackoverflow_formatted/8735304_0.java,5,20,geotools-16/modules/library/main/src/main/java/org/geotools/feature/type/ComplexTypeImpl.java,70,85,16,D,similar equals() methods
+x,stackoverflow_formatted/17920930_0.java,20,35,geotools-16/modules/unsupported/css/src/main/java/org/geotools/styling/css/selector/Specificity.java,41,62,16,D,similar equals() methods
+x,stackoverflow_formatted/3181374_1.java,4,19,castor-1.4.1/xml/src/main/java/org/exolab/castor/xml/Namespaces.java,162,177,16,D,similar equals() methods
+x,stackoverflow_formatted/16462678_0.java,23,38,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/ProgramPoint.java,18,40,16,D,similar equals() methods
+x,stackoverflow_formatted/5723813_0.java,15,29,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/ba/BlockType.java,95,109,15,,
+x,stackoverflow_formatted/15924946_0.java,6,20,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/topograph2D/EdgeIntersection.java,16,30,15,,
+x,stackoverflow_formatted/10486257_0.java,9,23,cayenne-4.0.M4/cayenne-server/src/main/java/org/apache/cayenne/reflect/PropertyComparator.java,8,22,15,,
+x,stackoverflow_formatted/21504238_0.java,73,87,castor-1.4.1/xml/src/main/java/org/castor/xml/JavaNamingNGImpl.java,228,242,15,,
+x,stackoverflow_formatted/15915000_0.java,18,32,castor-1.4.1/xml/src/main/java/org/castor/xml/JavaNamingImpl.java,248,262,15,,
+x,stackoverflow_formatted/22888567_0.java,27,41,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/gui/TextFieldAndFileChooserComponent.java,63,77,15,,
+x,stackoverflow_formatted/22030522_0.java,7,22,geotools-16/docs/src/main/java/org/geotools/metadata/Example.java,16,29,14,D,similar equals() methods
+x,stackoverflow_formatted/13462440_1.java,32,45,geotools-16/modules/unsupported/swing/src/main/java/org/geotools/swing/dialog/JTextReporter.java,149,164,14,,
+x,stackoverflow_formatted/4380790_0.java,5,18,jchempaint-3.1.3/core/src/main/java/org/openscience/jchempaint/AbstractJChemPaintPanel.java,172,187,14,,
+x,stackoverflow_formatted/8563446_0.java,28,41,galleon-2.5.6/src/org/lnicholls/galleon/util/JarClassLoader.java,96,109,14,,
+x,stackoverflow_formatted/6021341_0.java,34,47,geotools-16/modules/unsupported/swing/src/main/java/org/geotools/swing/data/JFileDataStoreChooser.java,74,87,14,,
+x,stackoverflow_formatted/12040310_0.java,65,78,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/reporting/html/files/CopyFiles.java,47,60,14,,
+x,stackoverflow_formatted/4705410_0.java,3,19,junit4-r4.12/src/main/java/org/junit/runners/ParentRunner.java,186,199,14,,
+x,stackoverflow_formatted/10207528_0.java,47,62,jasperreports-6.3.1/src/net/sf/jasperreports/engine/util/JRSaver.java,42,55,14,,
+x,stackoverflow_formatted/8556935_0.java,63,77,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/document/webdav/GanttURLChooser.java,237,250,14,,
+x,stackoverflow_formatted/17083737_0.java,20,34,htmlunit-2.24/src/test/java/com/gargoylesoftware/htmlunit/ErrorOutputChecker.java,21,34,14,,
+x,stackoverflow_formatted/13389700_2.java,49,61,geotools-16/modules/library/jdbc/src/main/java/org/geotools/jdbc/InsertionClassifier.java,45,57,13,D,similar equals() methods
+x,stackoverflow_formatted/15922910_0.java,134,146,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/util/Util.java,134,148,13,,
+x,stackoverflow_formatted/25424476_1.java,23,35,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/editor/CallbackType.java,35,47,13,D,similar equals() methods
+x,stackoverflow_formatted/23415361_1.java,11,23,geotools-16/modules/library/referencing/src/main/java/org/geotools/referencing/operation/matrix/Matrix3.java,222,234,13,D,similar equals() methods
+x,stackoverflow_formatted/8907409_0.java,3,20,itext7-7.0.0/kernel/src/main/java/com/itextpdf/kernel/utils/CompareTool.java,432,444,13,,
+x,stackoverflow_formatted/5148985_0.java,4,16,galleon-2.5.6/src/org/lnicholls/galleon/skins/Skin.java,19,31,13,,
+x,stackoverflow_formatted/16361198_0.java,56,68,findbugs-3.0.1/src/gui/edu/umd/cs/findbugs/gui2/MainFrameTree.java,565,578,13,,
+x,stackoverflow_formatted/22393642_0.java,53,65,jgrapht-0.9.2/jgrapht-core/src/test/java/org/jgrapht/graph/SimpleIdentityDirectedGraphTest.java,23,35,13,D,similar equals() methods
+x,stackoverflow_formatted/20512528_0.java,82,94,geotools-16/modules/library/xml/src/main/java/org/geotools/xml/gml/GMLComplexTypes.java,3695,3709,13,,
+x,stackoverflow_formatted/3357300_0.java,8,20,geotools-16/modules/library/referencing/src/main/java/org/geotools/referencing/operation/matrix/GeneralMatrix.java,361,373,13,D,similar equals() methods
+x,stackoverflow_formatted/9154472_0.java,18,30,jag-6.2/stable/src/com/finalist/jag/util/TemplateString.java,62,74,13,D,similar equals() methods
+x,stackoverflow_formatted/18560756_0.java,16,29,geotools-16/modules/plugin/jdbc/jdbc-oracle/src/main/java/org/geotools/data/oracle/OracleFilterToSQL.java,164,176,13,,
+x,stackoverflow_formatted/13300092_0.java,120,132,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/CalendarEventAction.java,36,51,13,,
+x,stackoverflow_formatted/23679954_0.java,112,124,JGroups-3.6.10.Final/src/org/jgroups/auth/Krb5TokenUtils.java,99,110,12,,
+x,stackoverflow_formatted/21841246_0.java,17,28,ganttproject-2.8.1/ganttproject-builder/src/com/googlecode/ant_deb_task/DesktopEntry.java,241,253,12,,
+x,stackoverflow_formatted/20022515_0.java,41,52,jena-3.1.0/jena-elephas/jena-elephas-io/src/test/java/org/apache/jena/hadoop/rdf/io/registry/TestHadoopRdfIORegistry.java,80,93,12,,
+x,stackoverflow_formatted/22180547_2.java,13,24,geotools-16/modules/extension/xsd/xsd-gml2/src/main/java/org/geotools/gml2/bindings/GML2ParsingUtils.java,209,221,12,,
+x,stackoverflow_formatted/3589329_0.java,15,26,drjava-stable-20140826-r5761/src/src/edu/rice/cs/util/swing/UtilitiesTest.java,29,41,12,,
+x,stackoverflow_formatted/6721523_0.java,3,14,geotools-16/modules/unsupported/swing/src/main/java/org/geotools/swing/control/JMapStatusBar.java,62,73,12,,
+x,stackoverflow_formatted/11553528_0.java,14,25,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/model/debug/jpda/EventHandlerThread.java,118,129,12,,
+x,stackoverflow_formatted/3536861_1.java,10,23,geotools-16/modules/plugin/arcsde/datastore/src/main/java/org/geotools/arcsde/data/ArcSDEDataStoreConfig.java,180,191,12,D,similar equals() methods
+x,stackoverflow_formatted/12945678_0.java,39,51,geotools-16/modules/unsupported/swing/src/main/java/org/geotools/swing/dialog/DialogUtils.java,18,29,12,,
+x,stackoverflow_formatted/6610064_0.java,3,14,findbugs-3.0.1/src/gui/edu/umd/cs/findbugs/gui2/AbstractSwingGuiCallback.java,46,57,12,,
+x,stackoverflow_formatted/15052680_0.java,84,95,hsqldb-2.3.4/base/tags/2.2.8/src/org/hsqldb/jdbc/JDBCClobFile.java,252,263,12,,
+x,stackoverflow_formatted/15591458_3.java,24,35,hsqldb-2.3.4/base/tags/2.2.3/src/org/hsqldb/jdbc/JDBCBlobFile.java,178,191,12,,
+x,stackoverflow_formatted/1805249_0.java,28,39,checkstyle-7.2/src/test/java/com/puppycrawl/tools/checkstyle/MainTest.java,85,96,12,,
+x,stackoverflow_formatted/10238216_0.java,16,27,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/coveragedata/JumpData.java,35,46,12,,
+x,stackoverflow_formatted/14069976_0.java,106,117,geotools-16/modules/plugin/coverage-multidim/netcdf/src/test/java/org/geotools/coverage/io/netcdf/CreateIndexer.java,131,144,12,,
+x,stackoverflow_formatted/12102948_0.java,3,16,castor-1.4.1/xml/src/main/java/org/exolab/castor/mapping/handlers/EnumFieldHandler.java,62,73,12,D,similar equals() methods
+x,stackoverflow_formatted/980357_0.java,224,236,FitLibrary-20111026/src/fit/TypeAdapter.java,334,345,12,,
+x,stackoverflow_formatted/17145584_0.java,14,25,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/action/task/TaskActionBase.java,53,64,12,,
+x,stackoverflow_formatted/1315486_0.java,24,35,geotools-16/modules/unsupported/caching/src/main/java/org/geotools/caching/grid/spatialindex/store/DiskStorage.java,373,384,12,,
+x,stackoverflow_formatted/13836362_1.java,15,27,hsqldb-2.3.4/base/tags/2.2.1/src/org/hsqldb/ExpressionColumnAccessor.java,63,74,12,D,similar equals() methods
+x,stackoverflow_formatted/12105090_0.java,9,20,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/model/javadoc/DefaultJavadocModel.java,160,174,12,,
+x,stackoverflow_formatted/24714645_0.java,3,14,geotools-16/modules/unsupported/swing/src/main/java/org/geotools/swing/JMapFrame.java,54,65,12,,
+x,stackoverflow_formatted/13447403_0.java,10,25,castor-1.4.1/xml/src/main/java/org/exolab/castor/xml/handlers/EnumFieldHandler.java,119,130,12,D,similar equals() methods
+x,stackoverflow_formatted/9709633_0.java,156,167,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/util/CellEditorForAttributeTable.java,64,75,12,,
+x,stackoverflow_formatted/14173799_1.java,11,22,geotools-16/modules/unsupported/caching/src/main/java/org/geotools/caching/grid/spatialindex/GridData.java,38,50,12,D,similar equals() methods
+x,stackoverflow_formatted/19588888_0.java,3,15,galleon-2.5.6/src/org/lnicholls/galleon/gui/Galleon.java,167,178,12,,
+x,stackoverflow_formatted/16440232_0.java,13,25,jgrapht-0.9.2/jgrapht-core/src/main/java/org/jgrapht/traverse/ClosestFirstIterator.java,44,55,12,,
+x,stackoverflow_formatted/6099918_0.java,26,37,apache-ant-1.10.0/src/main/org/apache/tools/ant/taskdefs/launcher/VmsCommandLauncher.java,61,72,12,,
+x,stackoverflow_formatted/13194411_0.java,12,22,apache-ant-1.10.0/src/main/org/apache/tools/ant/taskdefs/MacroDef.java,278,290,11,D,similar equals() methods
+x,stackoverflow_formatted/7966989_0.java,29,40,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/model/DefaultGlobalModel.java,312,322,11,,
+x,stackoverflow_formatted/16680540_0.java,5,15,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/ba/Path.java,89,99,11,,
+x,stackoverflow_formatted/2915301_0.java,57,67,geotools-16/modules/library/data/src/test/java/org/geotools/data/memory/MemoryDataStoreTest.java,131,141,11,,
+x,stackoverflow_formatted/14443400_1.java,14,24,checkstyle-7.2/src/test/resources/com/puppycrawl/tools/checkstyle/checks/indentation/InputCaseLevel.java,3,13,11,,
+x,stackoverflow_formatted/1582604_0.java,13,23,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/util/Comparators.java,98,108,11,,
+x,stackoverflow_formatted/24104997_0.java,15,25,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/DrJavaTestCase.java,42,54,11,,
+x,stackoverflow_formatted/12149844_0.java,49,59,geotools-16/modules/plugin/geotiff/src/main/java/org/geotools/gce/geotiff/GeoTiffReader.java,495,506,11,,
+x,stackoverflow_formatted/11171831_0.java,8,18,geotools-16/modules/unsupported/feature-aggregate/src/main/java/org/geotools/data/aggregate/QueueReader.java,60,70,11,,
+x,stackoverflow_formatted/18893527_0.java,2,14,geotools-16/modules/plugin/imageio-ext-gdal/src/test/java/org/geotools/coverageio/gdal/GDALTestCase.java,22,32,11,,
+x,stackoverflow_formatted/16005103_0.java,7,17,JGroups-3.6.10.Final/src/org/jgroups/protocols/FD_ALL.java,229,239,11,,
+x,stackoverflow_formatted/10370970_0.java,53,63,geotools-16/modules/library/main/src/main/java/org/geotools/gml/SubHandlerPolygon.java,80,90,11,,
+x,stackoverflow_formatted/2769554_0.java,2,12,junit4-r4.12/src/main/java/org/junit/rules/ExternalResource.java,8,20,11,,
+x,stackoverflow_formatted/12844115_0.java,128,138,ArgoUML-0.35.1-src/argouml/src/argouml-core-umlpropertypanels/src/org/argouml/core/propertypanels/ui/UMLExpressionModel.java,139,150,11,,
+x,stackoverflow_formatted/12029583_0.java,28,38,jpf/src/peers/gov/nasa/jpf/vm/JPF_java_lang_Class.java,701,712,11,,
+x,stackoverflow_formatted/19618976_0.java,63,73,geotools-16/modules/plugin/jp2k/src/test/java/org/geotools/coverageio/jp2k/BaseJP2K.java,20,30,11,,
+x,stackoverflow_formatted/14801030_1.java,8,18,cayenne-4.0.M4/cayenne-server/src/main/java/org/apache/cayenne/graph/CompoundDiff.java,15,25,11,,
+x,stackoverflow_formatted/21036171_0.java,26,39,geotools-16/modules/plugin/imagemosaic/src/main/java/org/geotools/gce/imagemosaic/catalog/GranuleCatalogStore.java,45,55,11,,
+x,stackoverflow_formatted/3022314_0.java,34,44,cayenne-4.0.M4/cayenne-server/src/main/java/org/apache/cayenne/access/loader/NamePatternMatcher.java,76,86,11,,
+x,stackoverflow_formatted/22367293_0.java,128,138,apache-ant-1.10.0/src/main/org/apache/tools/ant/taskdefs/Concat.java,537,547,11,,
+x,stackoverflow_formatted/11666046_0.java,44,54,ArgoUML-0.35.1-src/argouml/src/argouml-app/src/org/argouml/uml/diagram/ui/FigNodeModelElement.java,833,843,11,,
+x,stackoverflow_formatted/10853132_0.java,10,20,cayenne-4.0.M4/cayenne-server/src/main/java/org/apache/cayenne/log/CommonsJdbcEventLogger.java,205,215,11,,
+x,stackoverflow_formatted/19671616_0.java,35,45,castor-1.4.1/codegen/src/main/java/org/exolab/javasource/JNaming.java,91,101,11,,
+x,stackoverflow_formatted/13426047_0.java,61,72,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/model/GlobalModelTestCase.java,342,352,11,,
+x,stackoverflow_formatted/5819736_0.java,140,150,jasperreports-6.3.1/src/net/sf/jasperreports/engine/export/JRPdfExporter.java,481,492,11,,
+x,stackoverflow_formatted/18004334_0.java,38,48,htmlunit-2.24/src/main/java/com/gargoylesoftware/htmlunit/javascript/host/dom/DOMImplementation.java,213,225,11,,
+x,stackoverflow_formatted/9932954_1.java,43,53,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/editor/EjbqlQueryScriptsTab.java,156,169,11,,
+x,stackoverflow_formatted/16644873_0.java,15,26,AoIsrc302/HelpPlugin/src/HelpPlugin.java,73,83,11,,
+x,stackoverflow_formatted/20537035_0.java,21,33,apache-ant-1.10.0/src/main/org/apache/tools/ant/taskdefs/SubAnt.java,198,208,11,,
+x,stackoverflow_formatted/14688811_0.java,14,26,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/project/ProjectProfile.java,433,443,11,,
+x,stackoverflow_formatted/15260207_0.java,145,155,geotools-16/modules/library/main/src/test/java/org/geotools/data/collection/CollectionDataStoreTest.java,42,52,11,,
+x,stackoverflow_formatted/17160895_0.java,34,44,antlr4-4.2.1/tool/src/org/antlr/v4/tool/Rule.java,249,259,11,,
+x,stackoverflow_formatted/19503683_0.java,19,29,AoIsrc302/SPManager/src/artofillusion/spmanager/SPMObjectInfo.java,324,334,11,,
+x,stackoverflow_formatted/12132967_0.java,8,19,JGroups-3.6.10.Final/src/org/jgroups/protocols/RELAY.java,279,289,11,,
+x,stackoverflow_formatted/20036928_0.java,5,15,castor-1.4.1/xml/src/main/java/org/exolab/castor/xml/parsing/primitive/objects/PrimitiveObjectFactory.java,60,70,11,,
+x,stackoverflow_formatted/16644792_0.java,9,19,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/bcel/BCELUtil.java,82,92,11,,
+x,stackoverflow_formatted/25778305_0.java,75,85,jasperreports-6.3.1/src/net/sf/jasperreports/engine/design/JRJdtCompiler.java,207,217,11,,
+x,stackoverflow_formatted/18067285_0.java,12,22,JGroups-3.6.10.Final/src/org/jgroups/demos/QuoteServer.java,77,87,11,,
+x,stackoverflow_formatted/9732384_0.java,74,84,ganttproject-2.8.1/biz.ganttproject.core/src/org/w3c/util/DateParser.java,9,19,11,,
+x,stackoverflow_formatted/2001205_0.java,11,21,JGroups-3.6.10.Final/src/org/jgroups/protocols/pbcast/NAKACK2.java,798,809,11,,
+x,stackoverflow_formatted/8197126_0.java,7,17,ArgoUML-0.35.1-src/argouml/src/argouml-app/src/org/argouml/util/PredicateType.java,34,44,11,,
+x,stackoverflow_formatted/21209708_1.java,85,95,hsqldb-2.3.4/base/tags/2.2.3/src/org/hsqldb/Constraint.java,472,482,11,,
+x,stackoverflow_formatted/11019829_0.java,33,43,geotools-16/modules/unsupported/geopkg/src/test/java/org/geotools/geopkg/GeoPkgTestSetup.java,63,73,11,,
+x,stackoverflow_formatted/23274660_0.java,14,24,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/model/AbstractGlobalModel.java,3240,3251,11,,
+x,stackoverflow_formatted/24195295_0.java,170,180,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/editor/SelectQueryOrderingTab.java,218,228,11,,
+x,stackoverflow_formatted/2962500_0.java,4,13,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/detect/FindRefComparison.java,173,182,10,D,similar equals() methods
+x,stackoverflow_formatted/20061563_0.java,6,15,jgraph-3.5.1.5/src/com/mxgraph/util/mxXmlUtils.java,15,25,10,,
+x,stackoverflow_formatted/21467966_0.java,9,18,ArgoUML-0.35.1-src/argouml/src/argouml-app/src/org/argouml/moduleloader/SettingsTabModules.java,54,63,10,,
+x,stackoverflow_formatted/14617650_1.java,32,41,checkstyle-7.2/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindentaion/InputIndentationCorrect.java,56,65,10,,
+x,stackoverflow_formatted/3074532_0.java,8,17,jgraph-3.5.1.5/src/com/mxgraph/util/mxUtils.java,611,620,10,,
+x,stackoverflow_formatted/10026804_0.java,28,37,apache-ant-1.10.0/src/main/org/apache/tools/ant/taskdefs/ProcessDestroyer.java,28,39,10,,
+x,stackoverflow_formatted/9834256_0.java,26,35,hsqldb-2.3.4/base/branches/dev-one/3203-snapshot/src/org/hsqldb/persist/DataFileCache.java,697,706,10,,
+x,stackoverflow_formatted/10650434_0.java,85,94,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/TreeTableCellEditorImpl.java,80,89,10,,
+x,stackoverflow_formatted/23558646_0.java,6,15,JGroups-3.6.10.Final/src/org/jgroups/protocols/pbcast/NAKACK.java,665,676,10,,
+x,stackoverflow_formatted/15439073_0.java,4,13,checkstyle-7.2/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule452indentcontinuationlines/InputIndentationCorrect.java,56,65,10,,
+x,stackoverflow_formatted/14617650_0.java,67,76,apache-ant-1.10.0/src/tests/junit/org/apache/tools/ant/util/FileUtilsTest.java,130,141,10,,
+x,stackoverflow_formatted/17164751_0.java,34,45,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/editor/SelectQueryPrefetchTab.java,128,137,10,,
+x,stackoverflow_formatted/24474484_0.java,4,14,apache-ant-1.10.0/src/main/org/apache/tools/ant/types/selectors/modifiedselector/PropertiesfileCache.java,31,40,10,,
+x,stackoverflow_formatted/23634030_0.java,29,38,exo-platform-4.4/plf-exo-tools/src/main/java/org/exoplatform/distributions/tools/JavaVersion.java,35,45,10,D,similar equals() methods
+x,stackoverflow_formatted/22133414_0.java,26,35,geotools-16/modules/plugin/shapefile/src/main/java/org/geotools/data/shapefile/IndexManager.java,108,117,10,,
+x,stackoverflow_formatted/8621919_0.java,49,58,geotools-16/modules/library/render/src/main/java/org/geotools/map/MapViewport.java,203,212,10,,
+x,stackoverflow_formatted/20808104_2.java,29,38,geotools-16/modules/unsupported/caching/src/test/java/org/geotools/caching/grid/featurecache/DemoApp.java,43,52,10,,
+x,stackoverflow_formatted/20055326_2.java,17,26,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/root/GeometryImpl.java,463,472,10,,
+x,stackoverflow_formatted/15141427_0.java,44,53,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/coveragedata/CoverageDataFileHandler.java,78,87,10,,
+x,stackoverflow_formatted/6444002_0.java,19,29,hsqldb-2.3.4/base/branches/j5proxy/src/org/hsqldb/types/Type.java,418,427,10,,
+x,stackoverflow_formatted/356354_0.java,36,45,jena-3.1.0/jena-base/src/main/java/org/apache/jena/atlas/lib/ByteBufferLib.java,42,51,10,,
+x,stackoverflow_formatted/2658663_0.java,16,26,AoIsrc302/SPManager/src/artofillusion/spmanager/HttpSPMFileSystem.java,673,682,10,,
+x,stackoverflow_formatted/1040821_0.java,5,14,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/coveragedata/PackageData.java,16,27,10,,
+x,stackoverflow_formatted/21180275_0.java,72,82,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/search/SearchDialog.java,159,168,10,,
+x,stackoverflow_formatted/24453143_1.java,59,68,checkstyle-7.2/src/test/java/com/puppycrawl/tools/checkstyle/internal/XDocsPagesTest.java,156,165,10,,
+x,stackoverflow_formatted/23030354_2.java,33,43,geotools-16/modules/library/render/src/main/java/org/geotools/map/MapContent.java,275,284,10,,
+x,stackoverflow_formatted/23650692_0.java,6,15,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/ProjectFileChangeTracker.java,130,139,10,,
+x,stackoverflow_formatted/321243_0.java,30,39,geotools-16/modules/plugin/arcsde/common/src/main/java/org/geotools/arcsde/session/SdeRow.java,82,91,10,,
+x,stackoverflow_formatted/23584126_1.java,11,20,jag-6.2/stable/src/com/finalist/jaggenerator/modules/RelationPanel.java,58,67,10,,
+x,stackoverflow_formatted/8234076_0.java,6,16,junit4-r4.12/src/test/java/org/junit/tests/experimental/rules/TestRuleTest.java,317,326,10,,
+x,stackoverflow_formatted/10901164_0.java,8,17,geotools-16/modules/plugin/imagemosaic-jdbc/src/test/java/org/geotools/gce/imagemosaic/jdbc/AbstractTest.java,220,230,10,,
+x,stackoverflow_formatted/18429219_0.java,164,173,apache-ant-1.10.0/src/main/org/apache/tools/ant/types/resources/comparators/Date.java,4,13,10,,
+x,stackoverflow_formatted/22741338_0.java,25,34,AoIsrc302/SPManager/src/artofillusion/spmanager/SPMSplitPane.java,84,93,10,,
+x,stackoverflow_formatted/10883946_0.java,81,90,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/GanttProject.java,245,254,10,,
+x,stackoverflow_formatted/4727745_0.java,36,45,cayenne-4.0.M4/modeler/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/editor/SQLTemplateScriptsTab.java,114,124,10,,
+x,stackoverflow_formatted/7364221_0.java,69,79,cayenne-4.0.M4/cayenne-server/src/main/java/org/apache/cayenne/util/PersistentObjectSet.java,21,30,10,,
+x,stackoverflow_formatted/3380175_0.java,39,48,hsqldb-2.3.4/base-one/tags/START_MOD_DEV3/src/org/hsqldb/Table.java,1855,1865,10,,
+x,stackoverflow_formatted/8658067_1.java,19,28,geotools-16/modules/plugin/epsg-hsql/src/test/java/org/geotools/referencing/CrsCreationDeadlockTest.java,17,27,10,,
+x,stackoverflow_formatted/25270740_0.java,15,24,checkstyle-7.2/src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java,696,705,10,,
+x,stackoverflow_formatted/19784528_0.java,59,68,hsqldb-2.3.4/base-one/tags/hsqldb_1_8_0_2/src/org/hsqldb/Table.java,1855,1865,10,,
+x,stackoverflow_formatted/2484569_1.java,123,132,hsqldb-2.3.4/base/tags/2.2.8/src/org/hsqldb/lib/tar/TarFileInputStream.java,98,107,10,,
+x,stackoverflow_formatted/6025026_0.java,94,103,hsqldb-2.3.4/base/tags/1.9.0-alpha2/src/org/hsqldb/SchemaManager.java,205,214,10,,
+x,stackoverflow_formatted/21658986_0.java,33,42,ArgoUML-0.35.1-src/argouml/src/argouml-app/src/org/argouml/ui/ProjectBrowser.java,1035,1044,10,,
+x,stackoverflow_formatted/152593_1.java,24,33,jag-6.2/stable/src/com/finalist/jag/util/FileUtils.java,8,17,10,,
+x,stackoverflow_formatted/15690431_1.java,50,59,geotools-16/modules/unsupported/geometry/src/main/java/org/geotools/geometry/iso/topograph2D/Depth.java,38,47,10,,
+x,stackoverflow_formatted/14678042_0.java,9,18,itext7-7.0.0/kernel/src/main/java/com/itextpdf/kernel/color/Color.java,124,134,10,D,similar equals() methods
+x,stackoverflow_formatted/11169391_0.java,17,26,JGroups-3.6.10.Final/tests/byteman/org/jgroups/tests/byteman/BecomeServerTest.java,38,47,10,,
+x,stackoverflow_formatted/19566953_0.java,31,40,geotools-16/docs/src/main/java/org/geotools/tutorial/csv/CSVDataStoreFactory.java,24,34,10,,
+x,stackoverflow_formatted/23904845_0.java,80,89,AoIsrc302/SPManager/src/artofillusion/spmanager/SPManagerFrame.java,226,235,10,,
+x,stackoverflow_formatted/11087017_0.java,69,78,hsqldb-2.3.4/base/branches/dev-one/resourcesmod/src/org/hsqldb/persist/DataFileCache.java,697,706,10,,
+x,stackoverflow_formatted/25423980_0.java,52,61,cayenne-4.0.M4/cayenne-server/src/main/java/org/apache/cayenne/access/loader/filters/TableFilter.java,58,68,10,D,similar equals() methods
+x,stackoverflow_formatted/17060728_0.java,92,101,ArgoUML-0.35.1-src/argouml/src/argouml-app/src/org/argouml/persistence/UmlFilePersister.java,73,83,10,,
+x,stackoverflow_formatted/16239541_0.java,35,44,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/coveragedata/SourceFileData.java,19,30,10,,
+x,stackoverflow_formatted/22314620_0.java,96,105,ArgoUML-0.35.1-src/argouml-java/src/org/argouml/language/java/generator/GeneratorJava.java,120,129,10,,
+x,stackoverflow_formatted/15337466_0.java,12,21,JGroups-3.6.10.Final/src/org/jgroups/blocks/BasicConnectionTable.java,494,503,10,,
+x,stackoverflow_formatted/24430415_0.java,85,94,cayenne-4.0.M4/cayenne-server/src/main/java/org/apache/cayenne/access/loader/filters/PatternFilter.java,85,95,10,D,similar equals() methods
+x,stackoverflow_formatted/23301219_0.java,34,43,geotools-16/modules/plugin/coverage-multidim/coverage-api/src/main/java/org/geotools/coverage/io/impl/CoverageIO.java,49,58,10,,
+x,stackoverflow_formatted/15519652_1.java,18,27,antlr4-4.2.1/runtime/Java/src/org/antlr/v4/runtime/atn/SemanticContext.java,141,150,10,D,similar equals() methods
+x,stackoverflow_formatted/19308122_0.java,75,84,geotools-16/modules/ogc/net.opengis.wfs/src/net/opengis/wfs20/impl/Wfs20FactoryImpl.java,662,672,10,,
+x,stackoverflow_formatted/22749699_0.java,23,32,geotools-16/modules/library/main/src/main/java/org/geotools/data/store/FeatureReaderFeatureIterator.java,16,26,10,,
+x,stackoverflow_formatted/15137708_0.java,69,78,hsqldb-2.3.4/base-one/tags/hsqldb_1_8_0_0/src/org/hsqldb/Table.java,1855,1865,10,,
+x,stackoverflow_formatted/20848515_0.java,71,80,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/cloud/username/WebCloudNameLookup.java,41,50,10,,
+x,stackoverflow_formatted/4694155_0.java,10,19,geotools-16/modules/library/main/src/main/java/org/geotools/data/DefaultCloseableIterator.java,52,62,10,,
+x,stackoverflow_formatted/10050701_0.java,13,23,JGroups-3.6.10.Final/src/org/jgroups/demos/Draw.java,358,367,10,,
+x,stackoverflow_formatted/9619126_0.java,12,21,geotools-16/modules/unsupported/geojson/src/main/java/org/geotools/geojson/feature/FeatureJSON.java,362,372,10,,
+x,stackoverflow_formatted/11106168_1.java,2,11,FitLibrary-20111026/src/fitlibrary/traverse/function/RuleTable.java,105,114,10,,
+x,stackoverflow_formatted/15519652_0.java,22,31,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/coveragedata/SwitchData.java,72,83,10,D,similar equals() methods
+x,stackoverflow_formatted/61982_0.java,103,112,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/workflow/Filter.java,445,454,10,,
+x,stackoverflow_formatted/11843165_0.java,25,34,geotools-16/modules/library/data/src/main/java/org/geotools/data/store/ContentFeatureSource.java,164,173,10,,
+x,stackoverflow_formatted/580426_1.java,11,21,JGroups-3.6.10.Final/tests/junit-functional/org/jgroups/protocols/NAKACK_StressTest.java,104,113,10,,
+x,stackoverflow_formatted/20847152_0.java,8,17,geotools-16/modules/library/main/src/main/java/org/geotools/styling/NamedLayerImpl.java,35,44,10,,
+x,stackoverflow_formatted/9109990_0.java,37,46,geotools-16/modules/library/metadata/src/main/java/org/geotools/math/XMath.java,40,49,10,,
+x,stackoverflow_formatted/23105907_0.java,3,12,JGroups-3.6.10.Final/tests/junit-functional/org/jgroups/tests/ExecutingServiceTest2.java,108,117,10,,
+x,stackoverflow_formatted/13286320_0.java,26,35,findbugs-3.0.1/src/gui/edu/umd/cs/findbugs/gui2/SourceDirectoryWizard.java,266,275,10,,
+x,stackoverflow_formatted/19161967_0.java,46,55,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/ba/PruneInfeasibleExceptionEdges.java,17,26,10,,
+x,stackoverflow_formatted/9863464_0.java,57,66,JGroups-3.6.10.Final/src/org/jgroups/demos/JmxDemo.java,93,102,10,,
+x,stackoverflow_formatted/11448623_1.java,15,24,geotools-16/modules/library/main/src/main/java/org/geotools/styling/UserLayerImpl.java,62,71,10,,
+x,stackoverflow_formatted/11949383_0.java,18,27,hsqldb-2.3.4/base/branches/dev-one/fredscopy/src/org/hsqldb/persist/DataFileCache.java,691,700,10,,
+x,stackoverflow_formatted/5773003_0.java,12,21,geotools-16/modules/plugin/arcsde/datastore/src/main/java/org/geotools/arcsde/raster/gce/ArcSDEGridCoverage2DReaderJAI.java,560,571,10,,
+x,stackoverflow_formatted/18676816_0.java,17,26,geotools-16/modules/plugin/imagemosaic/src/main/java/org/geotools/gce/imagemosaic/GranuleDescriptor.java,81,90,10,,
+x,stackoverflow_formatted/23030354_0.java,32,42,geotools-16/modules/unsupported/wfs-ng/src/main/java/org/geotools/data/wfs/internal/GetCapabilitiesResponse.java,72,81,10,,
+x,stackoverflow_formatted/1520960_0.java,3,12,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/ba/obl/ObligationSet.java,36,46,10,D,similar equals() methods
+x,stackoverflow_formatted/18515706_0.java,24,33,geotools-16/modules/library/metadata/src/main/java/org/geotools/resources/XArray.java,305,314,10,,
+x,stackoverflow_formatted/12219623_0.java,184,193,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/action/project/ProjectPropertiesAction.java,17,26,10,,
+x,stackoverflow_formatted/6961714_0.java,4,13,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/util/TestDesktopIntegration.java,33,42,10,,
+x,stackoverflow_formatted/521235_0.java,19,29,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/ba/type/ExceptionObjectType.java,33,42,10,D,similar equals() methods
+x,stackoverflow_formatted/11590083_0.java,33,42,geotools-16/modules/extension/xsd/xsd-gml3/src/main/java/org/geotools/gml3/complex/GmlFeatureTypeRegistryConfiguration.java,176,185,10,,
+x,stackoverflow_formatted/24189866_0.java,25,34,geotools-16/modules/unsupported/app-schema/webservice/src/main/java/org/geotools/data/ws/FreeMarkerConfig.java,8,17,10,,
+x,stackoverflow_formatted/3646601_0.java,37,46,checkstyle-7.2/src/main/java/com/puppycrawl/tools/checkstyle/api/LocalizedMessage.java,206,215,10,,
+x,stackoverflow_formatted/7971540_0.java,38,48,checkstyle-7.2/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputIndentationCorrect.java,56,65,10,,
+x,stackoverflow_formatted/11867360_0.java,120,129,hsqldb-2.3.4/base-one/tags/hsqldb_1_8_0_RC_12/src/org/hsqldb/Table.java,1849,1859,10,,
+x,stackoverflow_formatted/7624649_0.java,13,22,jasperreports-6.3.1/src/net/sf/jasperreports/engine/JRGenericElementType.java,25,35,10,D,similar equals() methods
+x,stackoverflow_formatted/25694838_4.java,11,20,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/Obfuscate.java,9,20,10,,
+x,stackoverflow_formatted/11173036_0.java,6,15,geotools-16/modules/unsupported/wfs/src/main/java/org/geotools/data/wfs/v1_1_0/StreamingParserFeatureReader.java,46,55,10,,
+x,stackoverflow_formatted/11846666_0.java,8,18,junit4-r4.12/src/test/java/org/junit/tests/experimental/rules/MethodRulesTest.java,31,40,10,,
+x,stackoverflow_formatted/21171228_0.java,17,26,jena-3.1.0/jena-core/src/main/java/org/apache/jena/n3/N3JenaWriterPP.java,274,283,10,,
+x,stackoverflow_formatted/24854094_0.java,43,52,jasperreports-6.3.1/src/net/sf/jasperreports/engine/util/Pair.java,26,36,10,D,similar equals() methods
+x,stackoverflow_formatted/5615598_0.java,42,51,galleon-2.5.6/src/org/lnicholls/galleon/util/DummySSLSocketFactory.java,11,20,10,,
+x,stackoverflow_formatted/13131561_0.java,24,33,findbugs-3.0.1/src/gui/edu/umd/cs/findbugs/gui2/AnalyzingDialog.java,128,137,10,,
+x,stackoverflow_formatted/10870918_0.java,13,23,JGroups-3.6.10.Final/tests/other/org/jgroups/tests/mcast.java,127,136,10,,
+x,stackoverflow_formatted/713926_0.java,14,23,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/ba/npe/IsNullValueFrame.java,34,43,10,D,similar equals() methods
+x,stackoverflow_formatted/1267495_0.java,6,15,geotools-16/modules/library/main/src/main/java/org/geotools/feature/FeatureReaderIterator.java,15,25,10,,
+x,stackoverflow_formatted/11439019_0.java,84,93,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/ui/predictive/PredictiveInputModel.java,532,541,10,,
+x,stackoverflow_formatted/7691963_0.java,19,28,hsqldb-2.3.4/base-one/tags/hsqldb_1_8_0_1/src/org/hsqldb/Table.java,1855,1865,10,,
+x,stackoverflow_formatted/23017200_0.java,7,16,ArgoUML-0.35.1-src/argouml/src/argouml-core-model-mdr/src/org/argouml/model/mdr/FacadeMDRImpl.java,487,498,10,,
+x,stackoverflow_formatted/5853992_0.java,42,62,geotools-16/modules/library/render/src/main/java/org/geotools/renderer/lite/ZGroupLayer.java,137,146,10,,
+x,stackoverflow_formatted/21918321_0.java,31,40,geotools-16/modules/library/metadata/src/main/java/org/geotools/util/IntegerList.java,179,188,10,,
+x,stackoverflow_formatted/25776609_1.java,19,28,jasperreports-6.3.1/src/net/sf/jasperreports/engine/component/ComponentKey.java,25,36,10,D,similar equals() methods
+x,stackoverflow_formatted/5963582_0.java,2,11,jena-3.1.0/jena-fuseki2/jena-fuseki-core/src/main/java/org/apache/jena/fuseki/servlets/CrossOriginFilter.java,203,212,10,,
+x,stackoverflow_formatted/15070025_1.java,28,37,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/config/UserPreferences.java,141,150,10,,
+x,stackoverflow_formatted/12120288_1.java,76,85,FitLibrary-20111026/src/fitlibrary/parser/lookup/ParseDelegation.java,58,71,10,,
+x,stackoverflow_formatted/19464022_0.java,10,19,geotools-16/modules/unsupported/efeature/src/main/java/org/geotools/data/efeature/EFeatureContextInfo.java,19,28,10,,
+x,stackoverflow_formatted/10907832_0.java,5,14,ganttproject-2.8.1/ganttproject/src/net/sourceforge/ganttproject/io/GanttXMLOpen.java,65,74,10,,
+x,stackoverflow_formatted/16631200_1.java,5,14,FitLibrary-20111026/src/fit/FitServer.java,186,195,10,,
+x,stackoverflow_formatted/3410864_3.java,117,126,drjava-stable-20140826-r5761/src/src/edu/rice/cs/drjava/ui/FindReplacePanel.java,716,725,10,,
+x,stackoverflow_formatted/21828551_0.java,15,24,cobertura-2.1.2/cobertura/src/main/java/net/sourceforge/cobertura/util/IOUtil.java,54,65,10,,
+x,stackoverflow_formatted/12058906_0.java,46,56,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/filter/LocalMatcher.java,20,29,10,,
+x,stackoverflow_formatted/9005634_0.java,92,101,galleon-2.5.6/src/org/lnicholls/galleon/apps/videocasting/Videocasting.java,189,198,10,,
+x,stackoverflow_formatted/22803872_0.java,2,11,geotools-16/modules/library/main/src/main/java/org/geotools/gml/SubHandlerLinearRing.java,16,25,10,,
+x,stackoverflow_formatted/17272464_0.java,5,14,hsqldb-2.3.4/base-one/tags/hsqldb_1_8_0_RC9/src/org/hsqldb/Table.java,1684,1694,10,,
+x,stackoverflow_formatted/23561941_0.java,93,102,geotools-16/modules/library/api/src/main/java/org/geotools/feature/NameImpl.java,57,66,10,,
+x,stackoverflow_formatted/11585615_0.java,21,30,cobertura-2.1.2/cobertura/src/test/java/net/sourceforge/cobertura/ant/Util.java,21,32,10,,
+x,stackoverflow_formatted/7548924_0.java,11,21,geotools-16/modules/extension/xsd/xsd-wfs/src/main/java/org/geotools/wfs/bindings/InsertElementTypeBinding.java,31,40,10,,
+x,stackoverflow_formatted/13858597_2.java,424,433,geotools-16/modules/unsupported/caching/src/main/java/org/geotools/caching/grid/featurecache/readers/GridCachingFeatureCollection.java,495,504,10,,
+x,stackoverflow_formatted/8105476_0.java,2,11,geotools-16/modules/unsupported/caching/src/main/java/org/geotools/caching/grid/spatialindex/GridNode.java,47,56,10,,
+x,stackoverflow_formatted/7314038_0.java,12,21,geotools-16/modules/plugin/coverage-multidim/netcdf/src/main/java/org/geotools/imageio/netcdf/NetCDFImageReaderSpi.java,111,120,10,,
+x,stackoverflow_formatted/10425061_2.java,15,24,hsqldb-2.3.4/base/branches/dev-two/src/org/hsqldb/DatabaseURL.java,145,154,10,,
+x,stackoverflow_formatted/9753589_0.java,6,15,geotools-16/modules/library/main/src/main/java/org/geotools/styling/SLDParser.java,1303,1312,10,,
+x,stackoverflow_formatted/15190097_0.java,3,12,findbugs-3.0.1/src/java/edu/umd/cs/findbugs/BugCode.java,34,43,10,D,similar equals() methods
