@@ -1,33 +1,48 @@
 @inproceedings{Wang2013,
-abstract = {Clone detection finds application in many software engineering activities such as comprehension and refactoring. However, the confounding configuration choice problem poses a widely-acknowledged threat to the validity of previous empirical analyses. We introduce desktop and parallelised cloud-deployed versions of a search based solution that finds suitable configurations for empirical studies. We evaluate our approach on 6 widely used clone detection tools applied to the Bellon suite of 8 subject systems. Our evaluation reports the results of 9.3 million total executions of a clone tool; the largest study yet reported. Our approach finds significantly better configurations (p {\textless} 0.05) than those currently used, providing evidence that our approach can ameliorate the confounding configuration choice problem.},
 author = {Wang, Tiantian and Harman, Mark and Jia, Yue and Krinke, Jens},
 booktitle = {Proceedings of the 2013 9th Joint Meeting on Foundations of Software Engineering},
-doi = {10.1145/2491411.2491420},
-file = {:Users/Chaiyong/Library/Application Support/Mendeley Desktop/Downloaded/Wang et al. - 2013 - Searching for Better Configurations A Rigorous Approach to Clone Evaluation.pdf:pdf},
-isbn = {978-1-4503-2237-9},
-keywords = {SBSE,clone detection,genetic algorithms},
-mendeley-groups = {Clone Detection},
 pages = {455--465},
 title = {{Searching for Better Configurations: A Rigorous Approach to Clone Evaluation}},
-url = {http://doi.acm.org/10.1145/2491411.2491420},
 year = {2013}
 }
 
 
 @inproceedings{Sajnani2016,
-	abstract = {Despite a decade of active research, there is a marked lack in clone detectors that scale to very large repositories of source code, in particular for detecting near-miss clones where significant editing activities may take place in the cloned code. We present SourcererCC, a token-based clone detector that targets three clone types, and exploits an index to achieve scalability to large inter-project repositories using a standard workstation. SourcererCC uses an optimized inverted-index to quickly query the potential clones of a given code block. Filtering heuristics based on token ordering are used to significantly reduce the size of the index, the number of code-block comparisons needed to detect the clones, as well as the number of required token-comparisons needed to judge a potential clone. We evaluate the scalability, execution time, recall and precision of SourcererCC, and compare it to four publicly available and state-of-the-art tools. To measure recall, we use two recent benchmarks, (1) a large benchmark of real clones, BigCloneBench, and (2) a Mutation/Injection-based framework of thousands of fine-grained artificial clones. We find SourcererCC has both high recall and precision, and is able to scale to a large inter-project repository (250MLOC) using a standard workstation.},
-	address = {New York, New York, USA},
 	author = {Sajnani, Hitesh and Saini, Vaibhav and Svajlenko, Jeffrey and Roy, Chanchal K and Lopes, Cristina V},
 	booktitle = {Proceedings of the 38th International Conference on Software Engineering - ICSE '16},
-	doi = {10.1145/2884781.2884877},
-	file = {:Users/Chaiyong/Library/Application Support/Mendeley Desktop/Downloaded/Sajnani et al. - 2016 - SourcererCC.pdf:pdf},
-	isbn = {9781450339001},
-	mendeley-groups = {Large-scale approaches/Information Retrieval},
-	month = {dec},
 	pages = {1157--1168},
-	publisher = {ACM Press},
 	title = {{SourcererCC: Scaling Code Clone Detection to Big-Code}},
-	url = {http://arxiv.org/abs/1512.06448 http://dl.acm.org/citation.cfm?doid=2884781.2884877},
 	year = {2016}
+}
+
+@inproceedings{Roy2008,
+	author = {Roy, Chanchal K. and Cordy, James R.},
+	booktitle = {2008 16th IEEE International Conference on Program Comprehension},
+	pages = {172--181},
+	title = {{NICAD: Accurate Detection of Near-Miss Intentional Clones Using Flexible Pretty-Printing and Code Normalization}},
+	year = {2008}
+}
+@inproceedings{Cordy,
+	author = {Cordy, James R. and Roy, Chanchal K.},
+	booktitle = {ICPC '11 Proceedings of the 2011 IEEE 19th International Conference on Program Comprehension},
+	pages = {3--4},
+	title = {{The NiCad Clone Detector}},
+	year = {2008}
+}
+
+@electronic{simian, 
+	title={Simian}, 	
+	Howpublished = {http://www.harukizaemon.com/simian},
+	note = {Accessed: 07.04.2016}
+} 
+
+@inproceedings{QualitasCorpus,
+	author = {Tempero, Ewan and Anslow, Craig and Dietrich, Jens and Han, Ted and Li, Jing and Lumpe, Markus and Melton, Hayden and Noble, James},
+	title = {Qualitas Corpus: A Curated Collection of Java Code for Empirical Studies},
+	booktitle = {2010 Asia Pacific Software Engineering Conference (APSEC2010)},
+	pages = {336--345},
+	month = dec,
+	year = {2010},
+	doi = {http://dx.doi.org/10.1109/APSEC.2010.46}
 }
 
