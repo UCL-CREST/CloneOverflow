@@ -59,6 +59,9 @@
 	\item \textbf{RQ4 (Effects of online code clone):} \textit{ Is this phenomenon of online code clone harmful and how?} is there any evidence of problems caused by reusing code between Q\&A sites and open source projects?
 \end{itemize}
 
+\section*{Dataset}
+In our study, we selected Qualitas corpus containing 64 Java open source projects \cite{Qualitas}.
+
 \section*{Experimental Results}
 The results of running 2 clone detectors: Simian and NiCad, to detect clones between 144,075 Stackoverflow fragments (Java accepted answers) and 63 open-source projects in Qualitas dataset is presented below. There are 2 tools selected: Simian and NiCad. They are configured using two different settings: default settings, and settings from another study \cite{Wang2013}. Full Simian's parameter names can be found from the footnote\footnote{Simian's parameters: iChar = ignoreCharacters, iCurlB = ignoreCurlyBraces, iId = ignoreIdentifiers, iIdC = ignoreIdentifierCase, iMod = ignoreModifiers \newline iStrC = ignoreStringCase, iStr = ignoreStrings, iSbtNm = ignoreSubtypeNames, bSqBrck=balanceSquareBrackets}. 
 
@@ -357,7 +360,9 @@ We are interested in discovering reused code in the latest versions of Qualitas 
 \section*{Manual Investigation}
 
 \subsection{Investigation of agreed \textit{good} and \textit{ok}-match clone pairs}
+
 \subsubsection{Qualitas-\textit{O} (v. 2013-09-01r)}
+
 \begin{table}[H]
 	\centering
 	\caption{Classifications of clone creation}
@@ -390,6 +395,8 @@ We are interested in discovering reused code in the latest versions of Qualitas 
 The classification scheme is described in Table \ref{tab:classification_scheme} and the classification results are shown in Table \ref{tab:classification_good_o}. We have manually investigated all of the 1,406 \textit{good-match} ones reported by agreement of four different Simian and NiCad settings.  However, for the \textit{ok-match}, we could not investigate all of the 10,879 pairs manually.  According to the distribution of category from \textit{good-match} results, we can see that Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{\textrm{\textit{fse13}}}$ produces a large number, 1,387, of false positive results (D, E, and F). Thus, we decided to leave them out of the manual investigation of \textit{ok-match} pairs. There are totally 664 \textit{ok-match} pairs that were investigated. The 57 true positive pairs found are combinations of 10 unique Stackoverflow fragments, and 13 unique Qualitas Java files.
 
 Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) Q $\rightarrow$ S or (2) from a third source to both S and Q independently.
+
+\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{fse13}$-NiCad$_{fse13}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{fse13}$, and Simian$_{fse13}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
 
 \begin{table}[H]
 	\centering
@@ -438,7 +445,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 
 \begin{table}[H]
 	\centering
-	\caption{Distribution of classification category A--F according to \textit{good}-match pairs}
+	\caption{Qualitas-\textit{O}: Distribution of classification category A--F according to \textit{good}-match pairs}
 	\label{tab:good_classification}
 	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
 		\hline 
@@ -456,7 +463,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 
 \begin{table}[H]
 	\centering
-	\caption{Distribution of classification category A--F  according to the \textit{ok}-match pairs}
+	\caption{Qualitas-\textit{O}: Distribution of classification category A--F  according to the \textit{ok}-match pairs}
 	\label{tab:ok_classification}
 	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
 		\hline 
@@ -509,7 +516,7 @@ We decided to filter out the agreed clone pairs reported by agreement of Simian$
 
 \begin{table}[H]
 	\centering
-	\caption{Distribution of classification category A--F  according to the \textit{ok}-match pairs}
+	\caption{Qualitas-\textit{N}: Distribution of classification category A--F  according to the \textit{ok}-match pairs}
 	\label{tab:ok_classification_new}
 	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
 		\hline 
@@ -525,7 +532,6 @@ We decided to filter out the agreed clone pairs reported by agreement of Simian$
 		\hline
 	\end{tabular} 
 \end{table}
-
 
 \begin{figure}
 	\centering
@@ -545,6 +551,8 @@ With our 4 settings, we decided to investigate only 2 settings, Simian$_{df}$, a
 For Simian$_{df}$, there were 9,393 clone pairs reported by the tool. Out of 9,393 pairs, 143 of them are the ones found in \textit{ok-}pairs using agreement-based detection. We filtered the results further by removing false positives such as similar equals(), hashCode() methods, getters and setters out by using regular expression. We managed to remove 8,958 pairs using this method. Eventually, there were 292 clone pairs remaining for manual investigation. For NiCad$_{df}$, we obtained 7,062 clone pairs to look at which is infeasible for manual investigation. Hence, result filtering was also needed. However, regular expressions could not be used effectively as in Simian's case since NiCad allowed clones that are different at keywords/variable names or even added/deleted lines. So we decided to filter the results by selecting pairs that pass stricter clone criteria with $\mathrm{UPI} = 0.2$. By reducing the UPI to 0.2, there were totally 171 pairs left. Out of 171, 57 are \textit{ok}-pairs and 114 are remaining pairs for manual check (18 pairs are from \textit{cayenne} and \textit{iReport} that could not be analysed using UPI = 0.3). The statistics of the clones and classification results are reported in Table \ref{tab:classification_indv_stats} and \ref{tab:classification_indv}.
 
 %We selected only Stackoverflow fragment and Qualitas files that have never been looked at before in the previous investigation. If many clone pairs having the same Stackoverflow fragment and Qualitas file, we keep only the largest one. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stackoverflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification_indv}. 
+
+\textbf{Qualitas-N:} 
 
 \begin{table}[H]
 	\centering
@@ -582,11 +590,12 @@ For Simian$_{df}$, there were 9,393 clone pairs reported by the tool. Out of 9,3
 
 \begin{table}[H]
 	\centering
-	\caption{Distributions of true positive pairs from the investigation of Qualitas (2013-09-01r)}
+	\caption{Projects that do not have resutls in Qualitas-\textit{N} but do have results in Qualitas-\textit{O}}
 	\label{tab:tp_pairs}
 	\begin{tabular}{l|r|r|r|r|p{6cm}}
 	\hline
-	Project		& \textit{good}-match & TP & \textit{ok}-match & TP & Reason of missing results \\
+	\multirow{2}{*}{Project} & \multicolumn{4}{c|}{Qualitas-\textit{O}} & \multicolumn{1}{c}{Qualitas-\textit{N}} \\ \cline{2-6}
+			& \textit{good}-match & TP & \textit{ok}-match & TP & Reason of missing results \\
 	\hline
 	%& \multicolumn{5}{c}{\textit{Not included in the latest version}} \\
 	%\hline
@@ -635,9 +644,17 @@ For Simian$_{df}$, there were 9,393 clone pairs reported by the tool. Out of 9,3
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{Sankey}
+	\caption{Relationships between similar code found from Stackoverflow and Qualitas files}
+	\label{fig:sankey}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{Sankey_proj}
 	\caption{Relationships between similar code found from Stackoverflow and Qualitas projects}
 	\label{fig:sankey}
 \end{figure}
+
 
 \newpage
 
@@ -687,7 +704,7 @@ We have carefully investigated the effects of the Simian's parameter \texttt{-ba
 	\label{fig:two_frags}
 \end{figure}
 
-However, the -balanceSquareBrackets+ parameter only works on a small testing environment having toy programs or only small pairs from the full datasets. It does not work with the full complete set of 144,075 Stackoverflow fragments and Qualitas projects. Please find the summary of all the testing scenarios in Table \ref{tab:summary}. %I found that this pair is missing if I turned on \texttt{-balanceSquareBrackets+}.
+However, the \texttt{-balanceSquareBrackets+} parameter only works on a small testing environment having toy programs or only small pairs from the full datasets. It does not work with the full complete set of 144,075 Stackoverflow fragments and Qualitas projects. Please find the summary of all the testing scenarios in Table \ref{tab:summary}. %I found that this pair is missing if I turned on \texttt{-balanceSquareBrackets+}.
 
 \begin{table}[H]
 	\caption{Simian's \texttt{-balanceSquareBrackets+} (\texttt{-bsb+}) is observed to have unpredictable behaviours when running against big datasets. $\textrm{\textit{CP}}_2$ means the reported clone(s) do not contain lines having dislocated brackets ($L_b$) (i.e. $\textrm{\textit{CP}}_2 = \textrm{\textit{CP}}_1 - L_b$).}
