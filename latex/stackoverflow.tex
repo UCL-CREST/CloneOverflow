@@ -266,7 +266,7 @@ Manual investigation of Simian's clone report showed that there were problematic
 
 The agreed clone pairs using Bellon's \textit{good}-match(0.7) and \textit{ok}-match(0.7) criteria are listed in  Table \ref{t_agreed_good_clone_pairs}. We use the threshold of 0.7 for both \textit{good}-match and \textit{ok}-match. Visualisation of \textit{good}-match common clone pairs between sets of parameter settings can be seen from Figure \ref{fig:venn4_orig_good}. There are 1,406 unique \textit{good}-match pairs. The \textit{ok}-match subsumes the \textit{good}-match resulting in totally 10,879 common clone pairs (Figure \ref{fig:venn4_orig_ok}).
 
-However, for NiCad's settings, we found a few renaming and clustering errors which resulted in fewer projects with clone reports. For NiCad default settings (NiCad$_{\textrm{\textit{df}}}$), 6 projects had clustering failed errors. For NiCad FSE13 settings (NiCad$_{\textrm{\textit{fse13}}}$), 4 projects had renaming failed errors and 13 projects had clustering failed errors as depicted in Table \ref{tab:projects_missing}. So these projects are also missing from agreed clone pairs. \FIXME{Report the errors.}
+However, for NiCad's settings, we found a few renaming and clustering errors which resulted in fewer projects with clone reports. For NiCad default settings (NiCad$_{\textrm{\textit{df}}}$), 6 projects had clustering failed errors. For NiCad FSE13 settings (NiCad$_{fse13}$), 4 projects had renaming failed errors and 13 projects had clustering failed errors as depicted in Table \ref{tab:projects_missing}. So these projects are also missing from agreed clone pairs. \FIXME{Report the errors.}
 
 We are interested in discovering reused code in the latest versions of Qualitas projects. So, we downloaded the newest release of each project and found 44 of them having newer updates. Then, we reran the experiment again on these 44 projects. Several projects triggered NiCad problem of clustering and renaming again as listed in Table \ref{tab:projects_missing}. The agreed clone pairs using Bellon's \textit{good}-match(0.7) and \textit{ok}-match(0.7) criteria of this new dataset are also listed in Table \ref{t_agreed_good_clone_pairs}. 
 
@@ -278,7 +278,7 @@ We are interested in discovering reused code in the latest versions of Qualitas 
 		\hline
 		\multicolumn{3}{c|}{Qualitas-\textit{O}} & \multicolumn{3}{c}{Qualitas-\textit{N}} \\
 		\hline
-		Simian$_{\textrm{\textit{df}}}$/Simian$_{\textrm{\textit{fse13}}}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{\textrm{\textit{fse13}}}$ & Simian$_{\textrm{\textit{df}}}$/Simian$_{\textrm{\textit{fse13}}}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{\textrm{\textit{fse13}}}$ \\ \hline
+		Simian$_{\textrm{\textit{df}}}$/Simian$_{fse13}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{fse13}$ & Simian$_{\textrm{\textit{df}}}$/Simian$_{fse13}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{fse13}$ \\ \hline
 		63	& 57 & 46 & 44 & 40 & 34 \\
 		\hline
 		& \textit{6 clustering failed} & \textit{13 clustering failed} & & \textit{4 clustering failed} & \textit{6 clustering failed} \\
@@ -343,22 +343,22 @@ We are interested in discovering reused code in the latest versions of Qualitas 
 		\label{fig:venn4_orig_ok}
 	\end{minipage}
 \end{figure}
-
-\begin{figure}
-	\centering
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=0.7\linewidth]{venn4_pairs_good_new}
-		\captionof{figure}{Qualitas-\textit{N} \textit{good}-match(0.7) pairs}
-		\label{fig:venn4_new_good}
-	\end{minipage}%
-	\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[width=0.7\linewidth]{venn4_pairs_ok_new}
-		\captionof{figure}{Qualitas-\textit{N} \textit{ok}-match(0.7) pairs}
-		\label{fig:venn4_new_ok}
-	\end{minipage}
-\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\begin{minipage}{.5\textwidth}
+%		\centering
+%		\includegraphics[width=0.7\linewidth]{venn4_pairs_good_new}
+%		\captionof{figure}{Qualitas-\textit{N} \textit{good}-match(0.7) pairs}
+%		\label{fig:venn4_new_good}
+%	\end{minipage}%
+%	\begin{minipage}{.5\textwidth}
+%		\centering
+%		\includegraphics[width=0.7\linewidth]{venn4_pairs_ok_new}
+%		\captionof{figure}{Qualitas-\textit{N} \textit{ok}-match(0.7) pairs}
+%		\label{fig:venn4_new_ok}
+%	\end{minipage}
+%\end{figure}
 
 \section*{Manual Investigation}
 
@@ -395,11 +395,11 @@ We are interested in discovering reused code in the latest versions of Qualitas 
 	\end{tabular} 
 \end{table}
 
-The classification scheme is described in Table \ref{tab:classification_scheme} and the classification results are shown in Table \ref{tab:classification_good_o}. We have manually investigated all of the 1,357 \textit{good-match} ones reported by agreement of four different Simian and NiCad settings.  However, for the \textit{ok-match}, we could not investigate all of the 10,139 pairs manually.  According to the distribution of category from \textit{good-match} results, we can see that Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{\textrm{\textit{fse13}}}$ produces a large number, 1,338, of false positive results (D, E, and F). Thus, we decided to leave them out of the manual investigation of \textit{ok-match} pairs. There are totally 608 \textit{ok-match} pairs that were investigated. The 39 true positive pairs found are combinations of 8 unique Stackoverflow fragments, and 9 unique Qualitas Java files from 6 different projects.
+The classification scheme is described in Table \ref{tab:classification_scheme} and the classification results are shown in Table \ref{tab:classification_good_o}. We have manually investigated all of the 1,357 \textit{good-match} ones reported by agreement of four different Simian and NiCad settings.  However, for the \textit{ok-match}, we could not investigate all of the 10,139 pairs manually.  According to the distribution of category from \textit{good-match} results, we can see that Simian$_{fse13}$--NiCad$_{fse13}$ produces a large number, 1,338, of false positive results (D, E, and F). Thus, we decided to leave them out of the manual investigation of \textit{ok-match} pairs. There are totally 608 \textit{ok-match} pairs that were investigated. The 39 true positive pairs found are combinations of 8 unique Stackoverflow fragments, and 9 unique Qualitas Java files from 6 different projects.
 
 Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) Q $\rightarrow$ S or (2) from a third source to both S and Q independently.
 
-\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{fse13}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{\mathrm{\textit{df}}}$-NiCad$_{\mathrm{\textit{df}}}$, Simian$_{\mathrm{\textit{df}}}$-NiCad$_{\mathrm{\textit{fse13}}}$, and Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{df}}}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
+%\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{fse13}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{fse13}}}$, and Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
 
 \begin{table}[H]
 	\centering
@@ -454,10 +454,10 @@ Since we are not certain about the direction of copying in the B-classified pair
 		\hline 
 		Category   & A   & 	A'   & 	B   & C   & D   &	E   &	F   & Total  \\
 		\hline
-		Simian$_{\mathrm{\textit{df}}}$--NiCad$_{\mathrm{\textit{df}}}$   & 1 & 0 & 1 & 3 & 0 & 4 & 0 & 9 \\
-		Simian$_{\mathrm{\textit{df}}}$--NiCad$_{\textrm{\textit{fse13}}}$   & 1 & 0 & 1 & 3 & 1 & 5 & 1 & 12 \\
-		Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{\mathrm{\textit{df}}}$   & 0 & 0 & 0 & 0 & 7 & 0 & 0 & 7 \\
-		Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{\textrm{\textit{fse13}}}$   & 0 & 0 & 0 & 0 & 18 & 1 & 1,319 & 1,338 \\
+		Simian$_{df}$--NiCad$_{df}$   & 1 & 0 & 1 & 3 & 0 & 4 & 0 & 9 \\
+		Simian$_{df}$--NiCad$_{fse13}$   & 1 & 0 & 1 & 3 & 1 & 5 & 1 & 12 \\
+		Simian$_{fse13}$--NiCad$_{df}$   & 0 & 0 & 0 & 0 & 7 & 0 & 0 & 7 \\
+		Simian$_{fse13}$--NiCad$_{fse13}$   & 0 & 0 & 0 & 0 & 18 & 1 & 1,319 & 1,338 \\
 		\hline
 		Total   &   2   &   0   &  2   &  6   &   26   &   10   & 1,320  & 1,366 \\
 		Total (unique)  &   1   &   0   &  1   &  3   &   26   &   6   & 1,320  & 1,352 \\
@@ -473,9 +473,9 @@ Since we are not certain about the direction of copying in the B-classified pair
 		\hline 
 		Category   																										& A   	& 	A' 	& 	B  & C	   & D   	&	E   &	F   & Total  \\
 		\hline
-		Simian$_{\mathrm{\textit{df}}}$--NiCad$_{\mathrm{\textit{df}}}$        & 3 	& 0 	& 10	& 6 	& 433  & 5	& 7  &  464 \\
-		Simian$_{\mathrm{\textit{df}}}$--NiCad$_{\textrm{\textit{fse13}}}$   									& 8 	& 0 	& 22	& 4	& 250 & 25  & 32 &  341 \\
-		Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{\mathrm{\textit{df}}}$   									& 0 	& 0 	& 0 	& 0 	 & 29 	  & 0 		& 24 	& 53 \\
+		Simian$_{df}$--NiCad$_{df}$        & 3 	& 0 	& 10	& 6 	& 433  & 5	& 7  &  464 \\
+		Simian$_{df}$--NiCad$_{fse13}$   									& 8 	& 0 	& 22	& 4	& 250 & 25  & 32 &  341 \\
+		Simian$_{fse13}$--NiCad$_{df}$   									& 0 	& 0 	& 0 	& 0 	 & 29 	  & 0 		& 24 	& 53 \\
 		\hline
 		Total   &   11  &   0   &  32   &  10   &   712   &   30   & 63  & 858 \\
 		Total (unique)  &   8  &   0   &  23   &  8   &  480  &  28  & 61  & 608 \\
@@ -483,26 +483,26 @@ Since we are not certain about the direction of copying in the B-classified pair
 	\end{tabular} 
 \end{table}
 
-\subsubsection{Qualitas-\textit{N} (v. 2016-08-05)}
-We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{fse13}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{\mathrm{\textit{df}}}$-NiCad$_{\mathrm{\textit{df}}}$, Simian$_{\mathrm{\textit{df}}}$-NiCad$_{\mathrm{\textit{fse13}}}$, and Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{df}}}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table \ref{tab:classification_good_n}.
-
-\begin{table}[H]
-	\centering
-	\caption{Qualitas-\textit{N}: Classification results of \textit{good-} and \textit{ok}-matches (excluding the subsumed \textit{good}-match pairs).}
-	\label{tab:classification_good_n}
-	\begin{tabular}{|l"r|r|r|r|r|r|r|r"r|r|r|r|r|r|r"r|r|r|r|}
-		\hline
-		Classificaiton & A & A' & B & C & Sum & S$_{u}$ & Q$_u$ & Q$_{up}$ & D  & E & F & Sum & S$_{u}$ & Q$_u$ & Q$_{up}$ & Total  & S$_{u}$ & Q$_u$ & Q$_{up}$\\ 
-		\hline 
-		\multirow{1}{*}{\textit{good-match(0.7)}}  & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
-		\multirow{1}{*}{\textit{ok-match(0.7)}}  & 2 & 0 & 0 & 0 & & & & & 6676 & 1 & 27 & & & & & 6706 & & & \\
-		\hline
-	\end{tabular} 
-\end{table}
+%\subsubsection{Qualitas-\textit{N} (v. 2016-08-05)}
+%We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{fse13}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{fse13}}}$, and Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table \ref{tab:classification_good_n}.
+%
+%\begin{table}[H]
+%	\centering
+%	\caption{Qualitas-\textit{N}: Classification results of \textit{good-} and \textit{ok}-matches (excluding the subsumed \textit{good}-match pairs).}
+%	\label{tab:classification_good_n}
+%	\begin{tabular}{|l"r|r|r|r|r|r|r|r"r|r|r|r|r|r|r"r|r|r|r|}
+%		\hline
+%		Classificaiton & A & A' & B & C & Sum & S$_{u}$ & Q$_u$ & Q$_{up}$ & D  & E & F & Sum & S$_{u}$ & Q$_u$ & Q$_{up}$ & Total  & S$_{u}$ & Q$_u$ & Q$_{up}$\\ 
+%		\hline 
+%		\multirow{1}{*}{\textit{good-match(0.7)}}  & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - & - \\
+%		\multirow{1}{*}{\textit{ok-match(0.7)}}  & 2 & 0 & 0 & 0 & & & & & 6676 & 1 & 27 & & & & & 6706 & & & \\
+%		\hline
+%	\end{tabular} 
+%\end{table}
 
 %\begin{table}[H]
 %	\centering
-%	\caption{Classification results of 6,706 \textit{ok}-matches of Simian$_{\mathrm{\textit{df}}}$-NiCad$_{\mathrm{\textit{df}}}$, Simian$_{\mathrm{\textit{df}}}$-NiCad$_{\mathrm{\textit{fse13}}}$.}
+%	\caption{Classification results of 6,706 \textit{ok}-matches of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{fse13}}}$.}
 %	\label{tab:classification_new}
 %	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
 %		\hline 
@@ -519,24 +519,24 @@ We decided to filter out the agreed clone pairs reported by agreement of Simian$
 %	\end{tabular} 
 %\end{table}
 
-\begin{table}[H]
-	\centering
-	\caption{Qualitas-\textit{N}: Distribution of classification category A--F  according to the \textit{ok}-match pairs}
-	\label{tab:ok_classification_new}
-	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
-		\hline 
-		Category   																										& A   	& 	A' 	& 	B  & C	   & D   	&	E   &	F   & Total  \\
-		\hline
-		Simian$_{\mathrm{\textit{df}}}$--NiCad$_{\mathrm{\textit{df}}}$ & 0 & 0	& 0 & 0 & 6603 & 1 & 0 & 6604 \\
-		Simian$_{\mathrm{\textit{df}}}$--NiCad$_{\textrm{\textit{fse13}}}$ 
-		& 2 	& 0 	& 0 	& 0 	& 73 	 & 0 	  & 4 		&  79 \\
-		Simian$_{\textrm{\textit{fse13}}}$--NiCad$_{\mathrm{\textit{df}}}$   									
-		& 0 	& 0 	& 0 	& 0 	 & 0 	  & 0 		& 23 	& 23 \\
-		\hline
-		Total   & 2  	&   0   & 0   	&  0   &   6676   &   1   & 27  & 6706 \\
-		\hline
-	\end{tabular} 
-\end{table}
+%\begin{table}[H]
+%	\centering
+%	\caption{Qualitas-\textit{N}: Distribution of classification category A--F  according to the \textit{ok}-match pairs}
+%	\label{tab:ok_classification_new}
+%	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
+%		\hline 
+%		Category   																										& A   	& 	A' 	& 	B  & C	   & D   	&	E   &	F   & Total  \\
+%		\hline
+%		Simian$_{df}$--NiCad$_{df}$ & 0 & 0	& 0 & 0 & 6603 & 1 & 0 & 6604 \\
+%		Simian$_{df}$--NiCad$_{fse13}$ 
+%		& 2 	& 0 	& 0 	& 0 	& 73 	 & 0 	  & 4 		&  79 \\
+%		Simian$_{fse13}$--NiCad$_{df}$   									
+%		& 0 	& 0 	& 0 	& 0 	 & 0 	  & 0 		& 23 	& 23 \\
+%		\hline
+%		Total   & 2  	&   0   & 0   	&  0   &   6676   &   1   & 27  & 6706 \\
+%		\hline
+%	\end{tabular} 
+%\end{table}
 
 \begin{figure}
 	\centering
@@ -549,41 +549,41 @@ We decided to filter out the agreed clone pairs reported by agreement of Simian$
 \subsubsection{Qualitas-\textit{O} (v. 2013-09-01r)}
 In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. 
 
-With our 4 settings, we decided to investigate only 2 settings, Simian$_{\mathrm{\textit{df}}}$, and NiCad$_{\mathrm{\textit{df}}}$, and drop Simian$_{\mathrm{\textit{fse13}}}$ and NiCad$_{\mathrm{\textit{fse13}}}$ due to their large number of false positives as shown in Table \ref{tab:good_classification} and \ref{tab:ok_classification}. With the 2 selected settings, we investigated clone pairs having the minimum clone size of 10 SLOC as they are meaningful and tend to be real clone in modern clone detection \cite{Sajnani2016}. 
+With our 4 settings, we decided to investigate only 2 settings, Simian$_{df}$, and NiCad$_{df}$, and drop Simian$_{\mathrm{\textit{fse13}}}$ and NiCad$_{\mathrm{\textit{fse13}}}$ due to their large number of false positives as shown in Table \ref{tab:good_classification} and \ref{tab:ok_classification}. With the 2 selected settings, we investigated clone pairs having the minimum clone size of 10 SLOC as they are meaningful and tend to be real clone in modern clone detection \cite{Sajnani2016}. 
 
-For Simian$_{\mathrm{\textit{df}}}$, there were 9,393 clone pairs reported by the tool. Out of 9,393 pairs, 143 of them are the ones found in \textit{ok-}pairs using agreement-based detection. We filtered the results further by removing false positives such as similar equals(), hashCode() methods, getters and setters out by using regular expression. We managed to remove 8,958 pairs using this method. Eventually, there were 292 clone pairs remaining for manual investigation. For NiCad$_{\mathrm{\textit{df}}}$, we obtained 7,062 clone pairs to look at which is infeasible for manual investigation. Hence, result filtering was also needed. However, regular expressions could not be used effectively as in Simian's case since NiCad allowed clones that are different at keywords/variable names or even added/deleted lines. So we decided to filter the results by selecting pairs that pass stricter clone criteria with $\mathrm{UPI} = 0.2$. By reducing the UPI to 0.2, there were totally 171 pairs left. Out of 171, 57 are \textit{ok}-pairs and 114 are remaining pairs for manual check (18 pairs are from \textit{cayenne} and \textit{iReport} that could not be analysed using UPI = 0.3). The statistics of the clones and classification results are reported in Table \ref{tab:classification_indv_stats} and \ref{tab:classification_indv}.
+For Simian$_{df}$, there were 9,393 clone pairs reported by the tool. Out of 9,393 pairs, 143 of them are the ones found in \textit{ok-}pairs using agreement-based detection. We filtered the results further by removing false positives such as similar equals(), hashCode() methods, getters and setters out by using regular expression. We managed to remove 8,958 pairs using this method. Eventually, there were 292 clone pairs remaining for manual investigation. For NiCad$_{df}$, we obtained 7,062 clone pairs to look at which is infeasible for manual investigation. Hence, result filtering was also needed. However, regular expressions could not be used effectively as in Simian's case since NiCad allowed clones that are different at keywords/variable names or even added/deleted lines. So we decided to filter the results by selecting pairs that pass stricter clone criteria with $\mathrm{UPI} = 0.2$. By reducing the UPI to 0.2, there were totally 171 pairs left. Out of 171, 57 are \textit{ok}-pairs and 114 are remaining pairs for manual check (18 pairs are from \textit{cayenne} and \textit{iReport} that could not be analysed using UPI = 0.3). The statistics of the clones and classification results are reported in Table \ref{tab:classification_indv_stats} and \ref{tab:classification_indv}.
 
 %We selected only Stackoverflow fragment and Qualitas files that have never been looked at before in the previous investigation. If many clone pairs having the same Stackoverflow fragment and Qualitas file, we keep only the largest one. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stackoverflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification_indv}. 
 
 \begin{table}[H]
 	\centering
-	\caption{Statistics of Simian$_{\mathrm{\textit{df}}}$ and NiCad$_{\mathrm{\textit{df}}}$ clone pairs.}
+	\caption{Statistics of Simian$_{df}$ and NiCad$_{df}$ clone pairs.}
 	\label{tab:classification_indv_stats}
 	\begin{tabular}{l|r|r|r|r}
 		\hline 
 		Tool & Clone pairs & \textit{ok}-pairs & filtered pairs & remaining pairs \\ 
 		\hline 
-		\multirow{1}{*}{\textit{Simian$_{\mathrm{\textit{df}}}$}} & 9393 & 143 & 8958 & 292 \\
+		\multirow{1}{*}{\textit{Simian$_{df}$}} & 9383 & 140 & 8956 & 287 \\
 		\hline
-		\multirow{1}{*}{\textit{NiCad$_{\mathrm{\textit{df}}}$}} & 7062  & 231 & 6717 & 114 \\
+		\multirow{1}{*}{\textit{NiCad$_{df}$}} & 7040  & 226 & 6700 & 114 \\
 		\hline
 	\end{tabular} 
 \end{table}
 
 \begin{table}[H]
 	\centering
-	\caption{Classification results of 292 Simian$_{\mathrm{\textit{df}}}$ and 114 NiCad$_{\mathrm{\textit{df}}}$ individual unique pairs. NiCad$_{\mathrm{\textit{df}}}$* shows the classification without cayenne and iReport.}
+	\caption{Classification results of 292 Simian$_{df}$ and 114 NiCad$_{df}$ individual unique pairs.}
 	\label{tab:classification_indv}
 	\begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r|}
 		\hline 
 		Tool/Classification & A & A' & B & C & \textbf{Sum} & S$_{u}$ & Q$_{u}$ & Q$_{up}$ & D & E & F & \textbf{Sum}  & S$_{u}$ & Q$_{u}$ & Q$_{up}$ & \textbf{Total} & S$_{u}$ & Q$_{u}$  & Q$_{up}$  \\ 
 		\hline 
-		\multirow{1}{*}{\textit{Simian$_{\mathrm{\textit{df}}}$}} & 35 & 0 & 90 & 8 & \textbf{133} & 68 & 59 & 23 & 13 & 12 & 134 & \textbf{159} & 39 & 72 & 23 & \textbf{292} & 103 & 125 & 31 \\
+		\multirow{1}{*}{\textit{Simian$_{df}$}} & 35 & 0 & 90 & 8 & \textbf{133} & 68 & 59 & 23 & 13 & 12 & 134 & \textbf{159} & 39 & 72 & 23 & \textbf{292} & 103 & 125 & 31 \\
 		\hline
-		\multirow{1}{*}{\textit{NiCad$_{\mathrm{\textit{df}}}$}} & 4  & 0 & 5 & 0 & \textbf{9} & 9 & 5 & 4 & 24 & 3 & 78 & \textbf{105} & 41 & 39 & 12 & \textbf{114} & 48 & 44 & 14 \\ 
+		\multirow{1}{*}{\textit{NiCad$_{df}$}} & 4  & 0 & 5 & 0 & \textbf{9} & 9 & 5 & 4 & 24 & 3 & 78 & \textbf{105} & 41 & 39 & 12 & \textbf{114} & 48 & 44 & 14 \\ 
 		\hline
-		\multirow{1}{*}{\textit{NiCad$_{\mathrm{\textit{df}}}$}*} & 4  & 0 & 1 & 0 & \textbf{5} & 4 & 5 & 3 & 23 & 1 & 67 & \textbf{91} & 28 & 31 & 10 & \textbf{96} & 33 & 37 & 13 \\ 
-		\hline
+%		\multirow{1}{*}{\textit{NiCad$_{df}$}*} & 4  & 0 & 1 & 0 & \textbf{5} & 4 & 5 & 3 & 23 & 1 & 67 & \textbf{91} & 28 & 31 & 10 & \textbf{96} & 33 & 37 & 13 \\ 
+%		\hline
 	\end{tabular} 
 \end{table}
 
@@ -593,7 +593,7 @@ For Simian$_{\mathrm{\textit{df}}}$, there were 9,393 clone pairs reported by th
 	\label{tab:classification_indv_summary}
 	\begin{tabular}{r|r|r|r|r}
 		\hline 
-		\textit{good}-pairs & \textit{ok}-pairs & Simian$_{\mathrm{\textit{df}}}$ pairs & NiCad$_{\mathrm{\textit{df}}}$ pairs & Total \\ 
+		\textit{good}-pairs & \textit{ok}-pairs & Simian$_{df}$ pairs & NiCad$_{df}$ pairs & Total \\ 
 		\hline 
 		5 & 52 & 133 & 9 & 183 \\
 		\hline
@@ -603,7 +603,7 @@ For Simian$_{\mathrm{\textit{df}}}$, there were 9,393 clone pairs reported by th
 %\subsubsection{Qualitas-\textit{N} (v. 2016-08-05)}
 
 \subsection{Evolution of clone pairs from Qualitas-\textit{O} to Qualitas-\textit{N}}
-After located and classified all the online clone pairs, we are now interested in analysing the evolution of true online clone pairs. This is to answer RQ4. In this setting, we only focus on 39 projects in the X region in Figure \ref{fig:n+v+g}. We decided to ignore NiCad results from this analysis due to its failure of clone clustering and renaming on some projects.  Thus, the 18 projects are the ones that can be analysed by Simian, have newer versions than the versions in Qualitas-\textit{O}, and have code version control system (either git or svn). After filtering, there are 141 pairs removed because 45 of them do not have new versions (7 from c-jdbc, 21 from Compiere, 7 from heritrix, and 10 from iReport) and 4 of them we could not find source code with version control (2 from findbugs, 1 from jag, and 1 from jgraphpad). Finally there were 134  pairs remaining. %We are interested in clone pairs that were changed after they appeared on Stackoverflow.
+After located and classified all the online clone pairs, we are now interested in analysing the evolution of true online clone pairs. This is to answer RQ4. In this setting, we only focus on 39 projects in the X region in Figure \ref{fig:n+v+g}. We decided to ignore NiCad results from this analysis due to its failure of clone clustering and renaming on some projects.  Thus, the 39 projects are the ones that can be analysed by Simian, have newer versions than the versions in Qualitas-\textit{O}, and have code version control system (either git or svn). %After filtering, there are 141 pairs removed because 45 of them do not have new versions (7 from c-jdbc, 21 from Compiere, 7 from heritrix, and 10 from iReport) and 4 of them we could not find source code with version control (2 from findbugs, 1 from jag, and 1 from jgraphpad). Finally there were 134  pairs remaining. %We are interested in clone pairs that were changed after they appeared on Stackoverflow.
 
 \begin{table}[H]
 	\centering
@@ -669,7 +669,7 @@ After located and classified all the online clone pairs, we are now interested i
 \newpage
 
 \section*{Investigation of Missing A/B Clone Pairs Reported by Simian (df)}
-We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{\mathrm{\textit{df}}}$, Simian$_{\mathrm{\textit{fse13}}}$, NiCad$_{\mathrm{\textit{df}}}$, NiCad$_{\mathrm{\textit{fse13}}}$. The investigation results are shown in Table \ref{tab:search}.
+We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{\mathrm{\textit{fse13}}}$, NiCad$_{df}$, NiCad$_{\mathrm{\textit{fse13}}}$. The investigation results are shown in Table \ref{tab:search}.
 
 \begin{table}[H]
 	\centering
@@ -679,11 +679,11 @@ We investigated the 41 clone pairs previously reported by Simian with default co
 		\hline 
 		Settings & Found & Not found \\ 
 		\hline 
-		Simian$_{\mathrm{\textit{df}}}$  &  40 & 1* \\ 
+		Simian$_{df}$  &  40 & 1* \\ 
 		\hline 
 		Simian$_{\mathrm{\textit{fse13}}}$ & 0 & 41  \\ 
 		\hline 
-		NiCad$_{\mathrm{\textit{df}}}$  & 17 & 24 \\ 
+		NiCad$_{df}$  & 17 & 24 \\ 
 		\hline 
 		NiCad$_{\mathrm{\textit{fse13}}}$ &  24 & 17 \\ 
 		\hline 
