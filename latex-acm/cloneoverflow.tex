@@ -1,4 +1,7 @@
 \documentclass{sig-alternate-05-2015}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{graphics}
 \usepackage{listings}  
@@ -65,15 +68,16 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{Clone Overflow: \\ Code Reuse in Online Corpora and Its Effects}
+\title{CloneOverflow: \\ Discovery of Online Code Clones between \\Stackoverflow and Open Source Projects}
 
 \numberofauthors{1}
 \author{
 	\alignauthor
-	Chaiyong Ragkhitwetsagul, Jens Krinke \\
-	\affaddr{University College London}\\
-	\affaddr{London, UK}
+	$^1$Chaiyong Ragkhitwetsagul, $^1$Jens Krinke, $^2$Giuseppe Bianco \\
+	\affaddr{$^1$University College London, London, UK}\\
+	\affaddr{$^2$Università degli Studi del Molise, Campobasso, Italy}
 }
+
 
 \maketitle
 \begin{abstract}
@@ -102,8 +106,23 @@ is available on the web page to help you with the
 \end{abstract}
 
 \section{Introduction}
+\begin{itemize}
+	\item Definition of code clones, online code clones, pros \& cons
+	\item Roles of Q\&A websites in supporting software development and education
+	\item Problems of code reuse (bug propagation, licensing conflicts)
+\end{itemize}
+
+This paper makes the following  primary contributions:
+
+\vspace{0.5ex}%
+\noindent\textbf{1.~A manual study of online code clone between Stackoverflow and open source projects:} 
+We manually investigate 2,371 clone pairs found between Java code fragments obtained from Stackoverflow accepted answers, and 63 Java open source projects.
+
+\vspace{0.5ex}%
+\noindent\textbf{2.~Addressing the problems of reusing online code clones:} Our study shows that there are at least 48 clones that have been copied from open source projects to Stackoverflow as code examples which may violate their software license. Moreover, out of 48 clones, there are 27 clones in Stackoverflow that are outdated and dangerous for being reused.
 
 \section{Research Questions}
+The study aims to answer the following research questions: \\ 
 \textbf{RQ1 (online code clone):} \textit{How source code are reused between between Q\&A sites and open source projects?} We would like to observe whether this phenomenon has happened and at what scale. \newline
 \textbf{RQ2 (flow of online code clone):} \textit{what are the directions source code have been reused?} If the code reuse between the two locations exist, we would like to discover the which direction the code that have been copied. Is it from Q\&A site to open source projects, or the other way around, or both? \newline
 \textbf{RQ3 (classification of online code clone):} \textit{How and why did these online code clone happen?} Can we categorise them? \newline
@@ -112,10 +131,13 @@ is available on the web page to help you with the
 \section{Experimental Setup}
 
 \subsection{Dataset}
-In our study, we selected Qualitas corpus containing 64 Java open source projects \cite{QualitasCorpus}. However, we found that \textit{eclipse} project does not contain source code so we removed it from the dataset. This results in totally 63 projects being analysed. The details of the 63 Qualitas projects are listed in Table \ref{t:new_and_old}.
+In our study, we selected Qualitas corpus containing 64 Java open source projects \cite{QualitasCorpus}. We found that \textit{eclipse} project does not contain source code so we removed it from the dataset. This results in totally 63 projects being analysed. The details of the 63 Qualitas projects with their respective licenses are listed in Table \ref{t:new_and_old}.
 
-\subsection{Code Similarity Measurement}
+\subsection{Clone Detectors}
 We selected two clone detectors for this study: Simian \cite{simian} and NiCad \cite{Cordy,Roy2008}. \FIXME{Add more info about clone detection tools in general and more details of these two tools} 
+
+\subsection{Agreement-based Clone Detection}
+We adopted an idea of clone agreement normally used in clone research \cite{Wang2013,Funaro2010}.
 
 \section{Results}
 The results of running 2 clone detectors: Simian and NiCad, to detect clones between 144,075 Stackoverflow fragments (Java accepted answers) and 63 open-source projects in Qualitas dataset is presented below. There are 2 tools selected: Simian and NiCad. They are configured using two different settings: default settings, and settings from another study \cite{Wang2013}. Full Simian's parameter names can be found from the footnote\footnote{Simian's parameters: iChar = ignoreCharacters, iCurlB = ignoreCurlyBraces, iId = ignoreIdentifiers, iIdC = ignoreIdentifierCase, iMod = ignoreModifiers \newline iStrC = ignoreStringCase, iStr = ignoreStrings, iSbtNm = ignoreSubtypeNames, bSqBrck=balanceSquareBrackets}. 
@@ -132,9 +154,9 @@ Manual investigation of Simian's clone report showed that there were problematic
 			\hline
 			\multirow{3}{*}{Statistics} 
 			& \multicolumn{3}{c|}{Simian Default settings} 
-			& \multicolumn{3}{c|}{Simian FSE'13 settings}
+			& \multicolumn{3}{c|}{Simian EvaClone settings}
 			& \multicolumn{3}{c|}{NiCad Default settings} 
-			& \multicolumn{3}{c}{NiCad FSE'13 settings} \\ \cline{2-13} 
+			& \multicolumn{3}{c}{NiCad EvaClone settings} \\ \cline{2-13} 
 			& \multicolumn{3}{c|}{792 fragments} 
 			& \multicolumn{3}{c|}{1229 fragments}  
 			& \multicolumn{3}{c|}{1141 fragments} 
@@ -171,9 +193,9 @@ Manual investigation of Simian's clone report showed that there were problematic
 			\hline
 			\multirow{3}{*}{Statistics} 
 			& \multicolumn{3}{c|}{Simian Default settings} 
-			& \multicolumn{3}{c|}{Simian FSE'13 settings} 
+			& \multicolumn{3}{c|}{Simian EvaClone settings} 
 			& \multicolumn{3}{c|}{NiCad Default settings} 
-			& \multicolumn{3}{c}{NiCad FSE'13 settings} \\ \cline{2-13} 
+			& \multicolumn{3}{c}{NiCad EvaClone settings} \\ \cline{2-13} 
 			& \multicolumn{3}{c|}{707 fragments} 
 			& \multicolumn{3}{c|}{1205 fragments} 
 			& \multicolumn{3}{c|}{1068 fragments} 
@@ -197,7 +219,7 @@ Manual investigation of Simian's clone report showed that there were problematic
 
 \begin{table*}
 	\centering
-	\caption{63 Qualitas projects (new versions checked on 2016-09-27)}
+	\caption{63 Qualitas projects (new versions retrieved on 2016-09-27)}
 	\label{t:new_and_old}
 %	\resizebox{\columnwidth}{!}{%
 	\small
@@ -279,9 +301,9 @@ The agreement-based clone pairs are the ones discovered using Bellon's \textit{g
 
 \subsection{Agreement based clone pairs}
 
-For agreement-based clone pairs, we use the threshold of 0.7 for both \textit{good}-match and \textit{ok}-match. Visualisation of \textit{good}-match common clone pairs between sets of parameter settings can be seen from Figure \ref{fig:venn4_orig_good}. There are 1,357 unique \textit{good}-match pairs. The \textit{ok}-match subsumes the \textit{good}-match resulting in totally 10,139 common clone pairs (Figure \ref{fig:venn4_orig_ok}).
+For agreement-based clone pairs, we use a threshold of 0.7 for both \textit{good} and \textit{ok}-match. A visualisation of \textit{good}-match common clone pairs between four sets of parameter settings can be seen from Figure \ref{fig:venn4_orig_good}. There are 1,357 unique \textit{good}-match pairs. The distribution of 10,139 \textit{ok}-match pairs, which subsume the \textit{good}-match pairs, is depicted in Figure \ref{fig:venn4_orig_ok}.
 
-However, for NiCad's settings, we found a few renaming and clustering errors which resulted in fewer projects with clone reports. For NiCad default settings (NiCad$_{\textrm{\textit{df}}}$), 6 projects had clustering failed errors. For NiCad FSE13 settings (NiCad$_{fse13}$), 4 projects had renaming failed errors and 13 projects had clustering failed errors as depicted in Table \ref{tab:projects_missing}. So these projects are also missing from agreed clone pairs. \FIXME{Report the errors to NiCad creator.}
+Nevertheless,  NiCad produced renaming and clustering errors for some of the settings. This resulted in not all 63 projects had NiCad clone reports. For NiCad default settings (NiCad$_{\textrm{\textit{df}}}$), 6 projects had clustering failed errors. For NiCad EvaClone settings (NiCad$_{\textrm{\textit{EvaClone}}}$), 4 projects had renaming failed errors and 13 projects had clustering failed errors as depicted in Table \ref{tab:projects_missing}. So these projects are also missing from agreed clone pairs. \FIXME{Report the errors to NiCad creator.}
 
 \FIXME{Maybe no longer needed?} We are interested in discovering reused code in the latest versions of Qualitas projects. So, we downloaded the newest release of each project and found 44 of them having newer updates. Then, we reran the experiment again on these 44 projects. Several projects triggered NiCad problem of clustering and renaming again as listed in Table \ref{tab:projects_missing}. The agreed clone pairs using Bellon's \textit{good}-match(0.7) and \textit{ok}-match(0.7) criteria of this new dataset are also listed in Table \ref{t_agreed_good_clone_pairs}. 
 
@@ -294,7 +316,7 @@ However, for NiCad's settings, we found a few renaming and clustering errors whi
 		\hline
 		\multicolumn{3}{c|}{Qualitas-\textit{O}} & \multicolumn{3}{c}{Qualitas-\textit{N}} \\
 		\hline
-		Simian$_{\textrm{\textit{df/fse13}}}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{fse13}$ & Simian$_{\textrm{\textit{df/fse13}}}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{fse13}$ \\ \hline
+		Simian$_{\textrm{\textit{df/EvaClone}}}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{\textrm{\textit{EvaClone}}}$ & Simian$_{\textrm{\textit{df/EvaClone}}}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{\textrm{\textit{EvaClone}}}$ \\ \hline
 		63	& 57 & 46 & 44 & 40 & 34 \\
 		\hline
 		& \textit{6 clustering failed} & \textit{13 clustering failed} & & \textit{4 clustering failed} & \textit{6 clustering failed} \\
@@ -331,12 +353,12 @@ However, for NiCad's settings, we found a few renaming and clustering errors whi
 		\hline
 		Simian & NiCad & \textit{good}-match & \textit{ok}-match \\
 		%\hline
-		%Settings & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{fse13}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+		%Settings & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvaClone}}}$ & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvaClone}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
 		\hline
 		\textit{default} & \textit{default} & 9 	& 473 \\ 
-		\textit{default} & \textit{fse13} 	& 12 	& 353 \\ 
-		\textit{fse13} 	& \textit{default} 	& 7 	& 60 \\
-		\textit{fse13} 	& \textit{fse13} 	& 1,338 & 9528 \\ 
+		\textit{default} & \textit{EvaClone} 	& 12 	& 353 \\ 
+		\textit{EvaClone} 	& \textit{default} 	& 7 	& 60 \\
+		\textit{EvaClone} 	& \textit{EvaClone} 	& 1,338 & 9528 \\ 
 		\hline
 		\multicolumn{2}{l|}{Total} & 1,366 & 10,414 \\
 		\multicolumn{2}{l|}{Total (unique)} & 1,357 & 10,139 \\
@@ -349,13 +371,13 @@ However, for NiCad's settings, we found a few renaming and clustering errors whi
 	\begin{minipage}{.5\textwidth}
 		\centering
 		\includegraphics[width=0.9\linewidth]{venn4_pairs_good}
-		\caption{Qualitas-\textit{O} \textit{good}-match(0.7) pairs}
+		\caption{\textit{good}-match(0.7) pairs}
 		\label{fig:venn4_orig_good}
 	\end{minipage}%
 	\begin{minipage}{.5\textwidth}
 		\centering
 		\includegraphics[width=0.9\linewidth]{venn4_pairs_ok}
-		\caption{Qualitas-\textit{O} \textit{ok}-match(0.7) pairs}
+		\caption{\textit{ok}-match(0.7) pairs}
 		\label{fig:venn4_orig_ok}
 	\end{minipage}
 \end{figure*}
@@ -394,15 +416,15 @@ However, for NiCad's settings, we found a few renaming and clustering errors whi
 	\end{tabular} 
 \end{table*}
 
-The classification scheme is described in Table \ref{tab:classification_scheme} and the classification results are shown in Table \ref{tab:classification_good_o}. We have manually investigated all of the 1,357 \textit{good-match} ones reported by agreement of four different Simian and NiCad settings.  However, for the \textit{ok-match}, we could not investigate all of the 10,139 pairs manually.  According to the distribution of category from \textit{good-match} results, we can see that Simian$_{fse13}$--NiCad$_{fse13}$ produces a large number, 1,338, of false positive results (D, E, and F). Thus, we decided to leave them out of the manual investigation of \textit{ok-match} pairs. There are totally 608 \textit{ok-match} pairs that were investigated. The 39 true positive pairs found are combinations of 8 unique Stackoverflow fragments, and 9 unique Qualitas Java files from 6 different projects.
+The classification scheme is described in Table \ref{tab:classification_scheme} and the classification results are shown in Table \ref{tab:classification_good_o}. We have manually investigated all of the 1,357 \textit{good-match} ones reported by agreement of four different Simian and NiCad settings.  However, for the \textit{ok-match}, we could not investigate all of the 10,139 pairs manually.  According to the distribution of category from \textit{good-match} results, we can see that Simian$_{\textrm{\textit{EvaClone}}}$--NiCad$_{\textrm{\textit{EvaClone}}}$ produces a large number, 1,338, of false positive results (D, E, and F). Thus, we decided to leave them out of the manual investigation of \textit{ok-match} pairs. There are totally 608 \textit{ok-match} pairs that were investigated. The 39 true positive pairs found are combinations of 8 unique Stackoverflow fragments, and 9 unique Qualitas Java files from 6 different projects.
 
 Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stackoverflow answers. We found that all Stackoverflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) Q $\rightarrow$ S or (2) from a third source to both S and Q independently.
 
-%\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{fse13}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{fse13}}}$, and Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
+%\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{EvaClone}}}$-NiCad$_{\mathrm{\textit{EvaClone}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{EvaClone}}}$, and Simian$_{\mathrm{\textit{EvaClone}}}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
 
 \begin{table*}
 	\centering
-	\caption{Qualitas-\textit{O}: Classification results of \textit{good-} and \textit{ok}-match pairs which excludes the subsumed \textit{good}-match and Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{fse13}}}$ pairs.}
+	\caption{Qualitas-\textit{O}: Classification results of \textit{good-} and \textit{ok}-match pairs which excludes the subsumed \textit{good}-match and Simian$_{\mathrm{\textit{EvaClone}}}$-NiCad$_{\mathrm{\textit{EvaClone}}}$ pairs.}
 	\label{tab:classification_good_o}
 	\small
 	\begin{tabular}{|l"r|r|r|r|r|r|r|r"r|r|r|r|r|r|r"r|r|r|r|}
@@ -456,9 +478,9 @@ Since we are not certain about the direction of copying in the B-classified pair
 		Category   & A   & 	A'   & 	B   & C   & D   &	E   &	F   & Total  \\
 		\hline
 		Simian$_{df}$--NiCad$_{df}$   & 1 & 0 & 1 & 3 & 0 & 4 & 0 & 9 \\
-		Simian$_{df}$--NiCad$_{fse13}$   & 1 & 0 & 1 & 3 & 1 & 5 & 1 & 12 \\
-		Simian$_{fse13}$--NiCad$_{df}$   & 0 & 0 & 0 & 0 & 7 & 0 & 0 & 7 \\
-		Simian$_{fse13}$--NiCad$_{fse13}$   & 0 & 0 & 0 & 0 & 18 & 1 & 1,319 & 1,338 \\
+		Simian$_{df}$--NiCad$_{\textrm{\textit{EvaClone}}}$   & 1 & 0 & 1 & 3 & 1 & 5 & 1 & 12 \\
+		Simian$_{\textrm{\textit{EvaClone}}}$--NiCad$_{df}$   & 0 & 0 & 0 & 0 & 7 & 0 & 0 & 7 \\
+		Simian$_{\textrm{\textit{EvaClone}}}$--NiCad$_{\textrm{\textit{EvaClone}}}$   & 0 & 0 & 0 & 0 & 18 & 1 & 1,319 & 1,338 \\
 		\hline
 		Total   &   2   &   0   &  2   &  6   &   26   &   10   & 1,320  & 1,366 \\
 		Total (unique)  &   1   &   0   &  1   &  3   &   26   &   6   & 1,320  & 1,352 \\
@@ -476,8 +498,8 @@ Since we are not certain about the direction of copying in the B-classified pair
 		Category   																										& A   	& 	A' 	& 	B  & C	   & D   	&	E   &	F   & Total  \\
 		\hline
 		Simian$_{df}$--NiCad$_{df}$        & 3 	& 0 	& 10	& 6 	& 433  & 5	& 7  &  464 \\
-		Simian$_{df}$--NiCad$_{fse13}$   									& 8 	& 0 	& 22	& 4	& 250 & 25  & 32 &  341 \\
-		Simian$_{fse13}$--NiCad$_{df}$   									& 0 	& 0 	& 0 	& 0 	 & 29 	  & 0 		& 24 	& 53 \\
+		Simian$_{df}$--NiCad$_{\textrm{\textit{EvaClone}}}$   									& 8 	& 0 	& 22	& 4	& 250 & 25  & 32 &  341 \\
+		Simian$_{\textrm{\textit{EvaClone}}}$--NiCad$_{df}$   									& 0 	& 0 	& 0 	& 0 	 & 29 	  & 0 		& 24 	& 53 \\
 		\hline
 		Total   &   11  &   0   &  32   &  10   &   712   &   30   & 63  & 858 \\
 		Total (unique)  &   8  &   0   &  23   &  8   &  480  &  28  & 61  & 608 \\
@@ -486,7 +508,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 \end{table*}
 
 %\subsubsection{Qualitas-\textit{N} (v. 2016-08-05)}
-%We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{\mathrm{\textit{fse13}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{fse13}}}$, and Simian$_{\mathrm{\textit{fse13}}}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table \ref{tab:classification_good_n}.
+%We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{EvaClone}}}$-NiCad$_{\mathrm{\textit{EvaClone}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{EvaClone}}}$, and Simian$_{\mathrm{\textit{EvaClone}}}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table \ref{tab:classification_good_n}.
 %
 %\begin{table}
 %	\centering
@@ -504,7 +526,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 
 %\begin{table}
 %	\centering
-%	\caption{Classification results of 6,706 \textit{ok}-matches of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{fse13}}}$.}
+%	\caption{Classification results of 6,706 \textit{ok}-matches of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{EvaClone}}}$.}
 %	\label{tab:classification_new}
 %	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
 %		\hline 
@@ -530,9 +552,9 @@ Since we are not certain about the direction of copying in the B-classified pair
 %		Category   																										& A   	& 	A' 	& 	B  & C	   & D   	&	E   &	F   & Total  \\
 %		\hline
 %		Simian$_{df}$--NiCad$_{df}$ & 0 & 0	& 0 & 0 & 6603 & 1 & 0 & 6604 \\
-%		Simian$_{df}$--NiCad$_{fse13}$ 
+%		Simian$_{df}$--NiCad$_{\textrm{\textit{EvaClone}}}$ 
 %		& 2 	& 0 	& 0 	& 0 	& 73 	 & 0 	  & 4 		&  79 \\
-%		Simian$_{fse13}$--NiCad$_{df}$   									
+%		Simian$_{\textrm{\textit{EvaClone}}}$--NiCad$_{df}$   									
 %		& 0 	& 0 	& 0 	& 0 	 & 0 	  & 0 		& 23 	& 23 \\
 %		\hline
 %		Total   & 2  	&   0   & 0   	&  0   &   6676   &   1   & 27  & 6706 \\
@@ -550,7 +572,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 \subsection{Non-agreement based clone pairs}
 In the preliminary stage of our experiment, we found that there are 41 Stackoverflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. 
 
-With our 4 settings, we decided to investigate only 2 settings, Simian$_{df}$, and NiCad$_{df}$, and drop Simian$_{\mathrm{\textit{fse13}}}$ and NiCad$_{\mathrm{\textit{fse13}}}$ due to their large number of false positives as shown in Table \ref{tab:good_classification} and \ref{tab:ok_classification}. With the 2 selected settings, we investigated clone pairs having the minimum clone size of 10 SLOC as they are meaningful and tend to be real clone in modern clone detection \cite{Sajnani2016}. 
+With our 4 settings, we decided to investigate only 2 settings, Simian$_{df}$, and NiCad$_{df}$, and drop Simian$_{\mathrm{\textit{EvaClone}}}$ and NiCad$_{\mathrm{\textit{EvaClone}}}$ due to their large number of false positives as shown in Table \ref{tab:good_classification} and \ref{tab:ok_classification}. With the 2 selected settings, we investigated clone pairs having the minimum clone size of 10 SLOC as they are meaningful and tend to be real clone in modern clone detection \cite{Sajnani2016}. 
 
 For Simian$_{df}$, there were 9,383 clone pairs reported by the tool. Out of 9,383 pairs, 140 of them are the ones found in \textit{ok-}pairs using agreement-based detection. We filtered the results further by removing false positives such as similar equals(), hashCode() methods, getters and setters out by using regular expression. We managed to remove 8,956 pairs using this method. Eventually, there were 287 clone pairs remaining for manual investigation. For NiCad$_{df}$, we obtained 7,040 clone pairs to look at which is infeasible for manual investigation. Hence, result filtering was also needed. However, regular expressions could not be used effectively as in Simian's case since NiCad allowed clones that are different at keywords/variable names or even added/deleted lines. So we decided to filter the results by selecting pairs that pass stricter clone criteria with $\mathrm{UPI} = 0.2$. By reducing the UPI to 0.2, there were totally 166 pairs left. Out of 166, 52 are \textit{ok}-pairs and 114 are remaining pairs for manual check (18 pairs are from \textit{cayenne} and \textit{iReport} that could not be analysed using UPI = 0.3). The statistics of the clones and classification results are reported in Table \ref{tab:classification_indv_stats} and \ref{tab:classification_indv}.
 
@@ -624,17 +646,47 @@ We performed manual investigation of the clone pairs reported by Simian$_{df}$ a
 
 \section{Effects of online code clone}
 
-\subsection{Issue~1:~outdated online code}
-After located and classified all the online clone pairs, we are now interested in analysing the true online clone pairs that are copied in the direction of Q $\rightarrow$ S (class-\textit{A} online clone pairs) in Table \ref{tab:classification_true_pairs_summary} which results in 48 pairs selected. We restricted it further to only the ones having versioning system so we can trace changes made to these clone pairs. Fortunately, all of the pairs were from projects with either git or svn so we did not remove any pair from this set. 
+In this study, we are interested in the effects of online code clones to software development. From the manual investigation of 184 true online clone pairs, we found that there are two potential issues: stale online code, and software licensing violation.
 
-Our intuition behind his issue comes from a situation where a piece of code has been copied from a Qualitas project and posted on Stackoverflow. Later, that piece of code has been modified further to accommodate changes in the projects (or any other reasons). However, even the code in Qualitas project is already updated, the one posted on Stackoverflow is not changed. This results in outdated online code which can cause problems when programmers copy and use it in their projects.
+\subsection{Issue~1:~stale online code}
+Stale online code occurs when a piece of code has been copied from a software project to Stackoverflow, and later it has been changed in the original project. However, in this situation, the copy is still unchanged. Since the code were updated due to various possible reasons including bug fixing, this can cause a problem if developers reuse stale online code from Q\&A websites such as Stackoverflow. They might also introduce the same unfixed bug(s) into the software. To discover stale online code, we focus on the true online clone pairs that are copied in the direction of Q $\rightarrow$ S (class-\textit{A} online clone pairs) in Table \ref{tab:classification_true_pairs_summary} which results in 48 pairs selected. We restricted it further to only the ones having versioning system so we can trace changes made to these clone pairs. Fortunately, all of the pairs were from projects with either git or svn so we did not remove any pair from this set. 
+
+%Our intuition behind his issue comes from a situation where a piece of code has been copied from a Qualitas project and posted on Stackoverflow. Later, that piece of code has been modified further to accommodate changes in the projects (or any other reasons). However, even the code in Qualitas project is already updated, the one posted on Stackoverflow is not changed. This results in outdated online code which can cause problems when programmers copy and use it in their projects.
 
 %We decided to ignore NiCad results from this analysis due to its failure of clone clustering and renaming on some projects.  Thus, the 39 projects are the ones that can be analysed by Simian, have newer versions than the versions in Qualitas-\textit{O}, and have code version control system (either git or svn). %After filtering, there are 141 pairs removed because 45 of them do not have new versions (7 from c-jdbc, 21 from Compiere, 7 from heritrix, and 10 from iReport) and 4 of them we could not find source code with version control (2 from findbugs, 1 from jag, and 1 from jgraphpad). Finally there were 134  pairs remaining. %We are interested in clone pairs that were changed after they appeared on Stackoverflow.
+
+The manual investigation of 48 class-A online clone pairs reveals that there are 27 stale clones. They are clone pairs that were copied from Qualitas projects to Stackoverflow and marked as \textit{accepted} answers.  The investigation results are described in Table \ref{tab:stale_code}.
+
+\begin{table}[H]
+	\centering
+	\caption{Investigation of sale code clones from the online clone pairs}
+	\label{tab:stale_code}
+	\begin{tabular}{l|r|r|r}
+		\hline 
+		Project & Pairs & Stale & Fresh \\
+		\hline
+		apache-ant & 1 & 0 & 1 \\
+		aspectj & 2 & 2 & 0 \\
+		hadoop & 14 & 9 & 5 \\
+		hibernate & 16 & 2 & 14 \\
+		jasperreports & 2 & 2 & 0 \\
+		jfreechart & 4 & 4 & 0 \\
+		jgraph & 5 & 5 & 0 \\
+		jgrapht & 1 & 0 & 1 \\
+		junit & 3 & 3 & 0 \\
+		\hline
+		Total & 48 & 27 & 21 \\
+		\hline
+	\end{tabular} 
+\end{table}
+
 \subsection{Issue~2:~software licensing violation}
-\FIXME{Add more content here}
+Software licensing is vital in software industry. Violation of software license can have a major impact to the delivery of the software and also lead to legal issues. It is an emerging area that software engineering research community is paying attention to. For example, there are studies of automatic technique to identify software licensing from source code files \cite{German2010} and the evolution of licenses in open source projects \cite{DiPenta2010}.
+
+In our study, we tackle another possible situation of software licensing issue caused by code cloning to Q\&A websites. We found that there are at least 48 pieces of code have been copied from 9 open source projects to Stackoverflow as examples. These 9 open source projects come with software licenses. However, the licensing information are mostly missing from these clones. If developers copy and reuse these pieces of code in their projects, a licensing conflict can quietly happen without realisation of the developers. 
 
 \section{Investigation of Missing A/B Clone Pairs Reported by Simian$_{df}$}
-We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{\mathrm{\textit{fse13}}}$, NiCad$_{df}$, NiCad$_{\mathrm{\textit{fse13}}}$. The investigation results are shown in Table \ref{tab:search}.
+We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{\mathrm{\textit{EvaClone}}}$, NiCad$_{df}$, NiCad$_{\mathrm{\textit{EvaClone}}}$. The investigation results are shown in Table \ref{tab:search}.
 
 \begin{table}
 	\centering
@@ -646,11 +698,11 @@ We investigated the 41 clone pairs previously reported by Simian with default co
 		\hline 
 		Simian$_{df}$  &  40 & 1* \\ 
 		\hline 
-		Simian$_{\mathrm{\textit{fse13}}}$ & 0 & 41  \\ 
+		Simian$_{\mathrm{\textit{EvaClone}}}$ & 0 & 41  \\ 
 		\hline 
 		NiCad$_{df}$  & 17 & 24 \\ 
 		\hline 
-		NiCad$_{\mathrm{\textit{fse13}}}$ &  24 & 17 \\ 
+		NiCad$_{\mathrm{\textit{EvaClone}}}$ &  24 & 17 \\ 
 		\hline 
 	\end{tabular} 
 \end{table}
@@ -716,6 +768,36 @@ We have carefully investigated the effects of the Simian's parameter \texttt{-ba
 \end{table*}
 
 \section{Threats to Validity}
+
+\section{Related Work}
+\begin{itemize}
+	\item Code clones 
+		\begin{itemize}
+			\item Definition: Baxter et al. \cite{Baxter1998}
+			\item Comparison of clone detectors: \cite{Roy2008, Ragkhitwetsagul2016,Svajlenko2014}
+			\item NiCad \cite{Roy2008,Cordy}
+			\item Simian \cite{simian}
+			\item Clone taxonomy \cite{Kapser2003}
+			\item Clone evolution \cite{Pate2013,Mondal2011}
+			\item Comparing Quality Metrics for Cloned and non cloned Java Methods : A Large Scale Empirical Study \cite{Saini2016}.
+		\end{itemize}
+	\item Agreement-based Clone Detection
+	\begin{itemize}
+		\item Bellon's framework \cite{Bellon2007}.
+		\item EvaClone \cite{Wang2013}
+		\item Hybrid \cite{Funaro2010}
+	\end{itemize}
+	\item Software licensing
+	\begin{itemize}
+		\item Code siblings \cite{German2009}, Ninka -- Automatic indification of SW license \cite{German2010}, Evolution of SW licensing \cite{DiPenta2010}
+	\end{itemize}
+
+	\item Stackoverflow
+	\begin{itemize}
+		\item Code example \cite{Nasehi2012}
+		\item Search for code in Stackoverflow \cite{Diamantopoulos2015,Keivanloo2014,Park2014}
+	\end{itemize}
+\end{itemize}
 
 \section{Conclusions}
 This paragraph will end the body of this sample document.
