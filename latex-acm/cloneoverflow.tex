@@ -655,11 +655,11 @@ Stale online code occurs when a piece of code has been copied from a software pr
 
 %We decided to ignore NiCad results from this analysis due to its failure of clone clustering and renaming on some projects.  Thus, the 39 projects are the ones that can be analysed by Simian, have newer versions than the versions in Qualitas-\textit{O}, and have code version control system (either git or svn). %After filtering, there are 141 pairs removed because 45 of them do not have new versions (7 from c-jdbc, 21 from Compiere, 7 from heritrix, and 10 from iReport) and 4 of them we could not find source code with version control (2 from findbugs, 1 from jag, and 1 from jgraphpad). Finally there were 134  pairs remaining. %We are interested in clone pairs that were changed after they appeared on Stackoverflow.
 
-The manual investigation of 48 class-A online clone pairs reveals that there are 27 stale clones. They are clone pairs that were copied from Qualitas projects to Stackoverflow and marked as \textit{accepted} answers.  The investigation results are described in Table \ref{tab:stale_code}.
+The manual investigation of 48 class-A online clone pairs reveals that there are 30 stale clones. They are clone pairs that were copied from Qualitas projects to Stackoverflow and marked as \textit{accepted} answers.  The investigation results are described in Table \ref{tab:stale_code}.
 
 \begin{table}[H]
 	\centering
-	\caption{Investigation of sale code clones from the online clone pairs}
+	\caption{Investigation of stale code clones from the online clone pairs}
 	\label{tab:stale_code}
 	\begin{tabular}{l|r|r|r}
 		\hline 
@@ -668,17 +668,59 @@ The manual investigation of 48 class-A online clone pairs reveals that there are
 		apache-ant & 1 & 0 & 1 \\
 		aspectj & 2 & 2 & 0 \\
 		hadoop & 14 & 9 & 5 \\
-		hibernate & 16 & 2 & 14 \\
+		hibernate & 16 & 5 & 11 \\
 		jasperreports & 2 & 2 & 0 \\
 		jfreechart & 4 & 4 & 0 \\
 		jgraph & 5 & 5 & 0 \\
 		jgrapht & 1 & 0 & 1 \\
 		junit & 3 & 3 & 0 \\
 		\hline
-		Total & 48 & 27 & 21 \\
+		Total & 48 & 30 & 18 \\
 		\hline
 	\end{tabular} 
 \end{table}
+
+\begin{table*}
+	\centering
+	\caption{30 stale code clones found by a manual investigation}
+	\label{tab:stale_code_details}
+	\begin{tabular}{r|l|r|r}
+		\hline 
+		No. & File & Stackoverflow Q\&A & Change date \\
+		\hline
+		1 & aspectjtools1.6.9-src/../Agent.java & 18303692 & 2015-09-08 \\
+		2 & aspectjweaver1.6.9-src/../Agent.java & 18303692 & 2015-09-08 \\
+		3 & hadoop-1.0.0/../WritableComparator.java & 22315734 & 2014-11-20 \\
+		4 & hadoop-1.0.0/../StringUtils.java & 801987 & 2013-02-04 \\
+		5 & hadoop-1.0.0/../DBCountPageView.java & 21702608 & 2011-06-12 \\
+		6 & hadoop-1.0.0/../DBCountPageView.java & 21702608 & 2011-06-12 \\
+		7 & hadoop-1.0.0/../LineRecordReader.java & 16180910 & 2011-07-25 \\
+		8 & hadoop-1.0.0/../LineRecordReader.java & 16180910 & 2011-07-25 \\
+		9 & hadoop-1.0.0/../JobSubmissionFiles.java & 14845581 & 2012-06-25 \\
+		10 & hadoop-1.0.0/../TextOutputFormat.java & 16928749 & 2011-06-12 \\
+		11 & hadoop-1.0.0/../TestJobCounters.java & 18833798 & 2011-06-12 \\
+		12 & hibernate-release-4.2.2.Final/../SettingsFactory.java & 8257554 & 2011-03-11 (deleted) \\
+		13 & hibernate-release-4.2.2.Final/../Example.java & 24924255 & 2013-04-23 \\
+		14 & hibernate-release-4.2.2.Final/../SQLServer2005LimitHandler.java.java & 23967852 & 2013-04-23 \\
+		15 & hibernate-release-4.2.2.Final/../ConnectionProviderInitiator.java & 15168494 & 2016-02-24 \\
+		16 & hibernate-release-4.2.2.Final/../SchemaUpdate.java & 23520731 & 2016-02-05 \\
+		17 & jasperreports-3.7.4/../JRVerifier.java & 8037824 & 2011-05-20 (deleted) \\
+		18 & jasperreports-3.7.4/../JRVerifier.java & 8037824 & 2013-12-08 \\
+		19 & jasperreports-3.7.4/../SpiderWebPlot.java & 21998949 & 2013-11-22 \\
+		20 & jasperreports-3.7.4/../SpiderWebPlot.java & 21998949 & 2013-11-22 \\
+		21 & jasperreports-3.7.4/../AbstractXYItemRenderer.java & 12936580 & 2016-01-16 \\
+		22 & jfreechart-1.0.13/../KeyToGroupMap.java & 16058183 & 2013-07-03 \\
+		23 & jgraph-latest-bsd-src/../GroupingRemoving.java & 6722760 & 2005-xx-xx (rewritten) \\
+		24 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & 2005-xx-xx (rewritten) \\
+		25 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & 2005-xx-xx (rewritten) \\
+		26 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & 2005-xx-xx (rewritten) \\
+		27 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & 2005-xx-xx (rewritten) \\
+		28 & junit-4/org/junit/Assert.java & 23586872 & 2015-05-12 \\
+		29 & junit-4/../ExpectException.java & 8802082 & 2014-05-26 \\
+		30 & junit-4/../ExternalResource.java & 7504040 & 2016-06-25 \\
+		\hline
+	\end{tabular} 
+\end{table*}
 
 \subsection{Issue~2:~software licensing violation}
 Software licensing is vital in software industry. Violation of software license can have a major impact to the delivery of the software and also lead to legal issues. It is an emerging area that software engineering research community is paying attention to. For example, there are studies of automatic technique to identify software licensing from source code files \cite{German2010} and the evolution of licenses in open source projects \cite{DiPenta2010}.
