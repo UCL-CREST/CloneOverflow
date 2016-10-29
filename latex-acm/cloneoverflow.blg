@@ -1,0 +1,72 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: cloneoverflow.aux
+The style file: abbrv.bst
+Database file #1: sigproc.bib
+Warning--entry type for "simian" isn't style-file defined
+--line 33 of file sigproc.bib
+Repeated entry---line 191 of file sigproc.bib
+ : @inproceedings{Saini2016
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 226 of file sigproc.bib
+ : @article{German2009
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 243 of file sigproc.bib
+ : @misc{simian
+ :             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 254 of file sigproc.bib
+ : @inproceedings{Roy2008
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 261 of file sigproc.bib
+ : @inproceedings{Cordy
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "x"
+Warning--I didn't find a database entry for "something"
+Warning--to sort, need author or key in simian
+You've used 25 entries,
+            2118 wiz_defined-function locations,
+            667 strings with 9360 characters,
+and the built_in function-call counts, 11214 in all, are:
+= -- 1112
+> -- 513
+< -- 20
++ -- 201
+- -- 176
+* -- 737
+:= -- 1667
+add.period$ -- 79
+call.type$ -- 25
+change.case$ -- 163
+chr.to.int$ -- 0
+cite$ -- 26
+duplicate$ -- 484
+empty$ -- 900
+format.name$ -- 176
+if$ -- 2495
+int.to.chr$ -- 0
+int.to.str$ -- 25
+missing$ -- 24
+newline$ -- 128
+num.names$ -- 48
+pop$ -- 220
+preamble$ -- 1
+purify$ -- 138
+quote$ -- 0
+skip$ -- 393
+stack$ -- 0
+substring$ -- 728
+swap$ -- 199
+text.length$ -- 20
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 100
+warning$ -- 1
+while$ -- 109
+width$ -- 27
+write$ -- 279
+(There were 5 error messages)

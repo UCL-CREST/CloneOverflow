@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FRAGMENTS>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13022788_0.java" start="108" end="116" />
+    <FRAGMENT_LOG filePath="temp/antlr4-4.0/runtime/Java/src/org/antlr/v4/runtime/tree/gui/TreeViewer.java" start="263" end="271" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15504653_0.java" start="192" end="200" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/ArtOfIllusion/src/artofillusion/animation/AnimationPreviewer.java" start="207" end="215" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/AoIsrc281/ArtOfIllusion/src/artofillusion/animation/AnimationPreviewer.java" start="207" end="215" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16491917_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/SPManager/src/artofillusion/spmanager/SPMParameters.java" start="314" end="322" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/AoIsrc281/SPManager/src/artofillusion/spmanager/SPMParameters.java" start="314" end="322" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6236324_0.java" start="64" end="80" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/AoIsrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="71" end="88" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="71" end="88" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6236324_0.java" start="83" end="92" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="91" end="100" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/AoIsrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="91" end="100" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6236324_0.java" start="93" end="110" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/AoIsrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="101" end="118" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="101" end="118" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6236324_0.java" start="114" end="123" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/AoIsrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="122" end="131" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="122" end="131" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6236324_0.java" start="124" end="137" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/AoIsrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="132" end="145" />
+    <FRAGMENT_LOG filePath="temp/aoisrc281/ArtOfIllusion/src/artofillusion/image/MovieEncoder.java" start="132" end="145" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10468315_1.java" start="29" end="37" />
+    <FRAGMENT_LOG filePath="temp/apache-ant-1.8.4/src/main/org/apache/tools/ant/taskdefs/CVSPass.java" start="72" end="80" />
+    <FRAGMENT_LOG filePath="temp/apache-ant-1.8.4/src/main/org/apache/tools/ant/taskdefs/cvslib/CvsTagDiff.java" start="124" end="132" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4153095_0.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5841690_0.java" start="25" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4216557_1.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/684137_1.java" start="19" end="27" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11640980_1.java" start="28" end="36" />
+    <FRAGMENT_LOG filePath="temp/apache-ant-1.8.4/src/main/org/apache/tools/ant/taskdefs/optional/EchoProperties.java" start="281" end="289" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17536809_0.java" start="18" end="27" />
+    <FRAGMENT_LOG filePath="temp/apache-ant-1.8.4/src/tests/junit/org/example/junit/ThreadedOutput.java" start="7" end="15" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20848515_0.java" start="28" end="36" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18429219_0.java" start="164" end="173" />
+    <FRAGMENT_LOG filePath="temp/apache-ant-1.8.4/src/main/org/apache/tools/ant/types/resources/comparators/Date.java" start="4" end="13" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10870277_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/aspectj-1.6.9-src/aspectjtools1.6.9-src/org/aspectj/org/eclipse/jdt/internal/core/search/indexing/ReadWriteMonitor.java" start="13" end="21" />
+    <FRAGMENT_LOG filePath="temp/aspectj-1.6.9-src/aspectjtools1.6.9-src/org/aspectj/org/eclipse/jdt/internal/core/search/indexing/ReadWriteMonitor.java" start="4" end="12" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11980059_0.java" start="4" end="11" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23849305_0.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="temp/aspectj-1.6.9-src/aspectjtools1.6.9-src/org/aspectj/ajdt/internal/core/builder/EclipseClassPathManager.java" start="66" end="74" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5595261_0.java" start="8" end="16" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="53" end="61" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3972590_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2392540_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2423183_0.java" start="33" end="41" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12120288_1.java" start="76" end="85" />
+    <FRAGMENT_LOG filePath="temp/axion-1.0-M2-src/axion-1.0-M2/src/org/axiondb/util/ObjectBTree.java" start="117" end="124" />
+    <FRAGMENT_LOG filePath="temp/axion-1.0-M2-src/axion-1.0-M2/src/org/axiondb/util/ObjectBTree.java" start="91" end="98" />
+    <FRAGMENT_LOG filePath="temp/axion-1.0-M2-src/axion-1.0-M2/src/org/axiondb/util/BTree.java" start="325" end="332" />
+    <FRAGMENT_LOG filePath="temp/axion-1.0-M2-src/axion-1.0-M2/src/org/axiondb/util/BTree.java" start="299" end="306" />
+    <FRAGMENT_LOG filePath="temp/axion-1.0-M2-src/axion-1.0-M2/src/org/axiondb/engine/Databases.java" start="55" end="62" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5819736_0.java" start="141" end="148" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="68" end="77" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="31" end="40" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="32" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="67" end="76" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19683102_2.java" start="7" end="15" />
+    <FRAGMENT_LOG filePath="temp/axion-1.0-M2-src/axion-1.0-M2/src/org/axiondb/types/TimestampType.java" start="150" end="158" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20051166_2.java" start="29" end="37" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20051166_2.java" start="13" end="21" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="71" end="79" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="85" end="93" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22598794_0.java" start="158" end="166" />
+    <FRAGMENT_LOG filePath="temp/axion-1.0-M2-src/axion-1.0-M2/src/org/axiondb/types/BooleanType.java" start="39" end="47" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10617251_0.java" start="47" end="55" />
+    <FRAGMENT_LOG filePath="temp/c-jdbc-2/c-jdbc-2.0.2-src/test/src/org/objectweb/cjdbc/requestplayer/ClientEmulator.java" start="177" end="185" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1335826_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17089503_0.java" start="47" end="55" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24963627_0.java" start="25" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/9027454_3.java" start="47" end="55" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3073582_0.java" start="66" end="74" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3507846_0.java" start="16" end="24" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6104847_0.java" start="47" end="55" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3660678_0.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4059041_0.java" start="47" end="55" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3798421_0.java" start="44" end="52" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10870277_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/c-jdbc-2/c-jdbc-2.0.2-src/test/src/org/objectweb/cjdbc/scenario/standalone/jvm/SpeedTest.java" start="41" end="49" />
+    <FRAGMENT_LOG filePath="temp/c-jdbc-2/c-jdbc-2.0.2-src/test/src/org/objectweb/cjdbc/scenario/tools/util/MemoryProfiler.java" start="88" end="97" />
+    <FRAGMENT_LOG filePath="temp/c-jdbc-2/c-jdbc-2.0.2-src/test/src/org/objectweb/cjdbc/scenario/tools/components/ComponentManager.java" start="109" end="118" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11412365_0.java" start="19" end="27" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11412365_0.java" start="40" end="48" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7971540_0.java" start="19" end="27" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23529189_0.java" start="5" end="13" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8752708_0.java" start="6" end="14" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16364639_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13041025_0.java" start="23" end="31" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11187462_0.java" start="45" end="61" />
+    <FRAGMENT_LOG filePath="temp/c-jdbc-2/c-jdbc-2.0.2-src/src/org/objectweb/cjdbc/common/util/LoggingOutputStream.java" start="36" end="52" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12427981_1.java" start="17" end="33" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20593873_1.java" start="13" end="21" />
+    <FRAGMENT_LOG filePath="temp/c-jdbc-2/c-jdbc-2.0.2-src/test/src/org/objectweb/cjdbc/scenario/tools/components/ComponentManager.java" start="44" end="53" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22598794_0.java" start="158" end="166" />
+    <FRAGMENT_LOG filePath="temp/c-jdbc-2/c-jdbc-2.0.2-src/src/org/objectweb/cjdbc/console/wizard/XmlWizard.java" start="39" end="48" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1134420_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/cpa/src/main/java/org/castor/persist/ObjectTracker.java" start="339" end="347" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8632867_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5759745_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14919481_0.java" start="25" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1768123_0.java" start="3" end="11" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13836362_1.java" start="15" end="27" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/ddlgen/src/main/java/org/castor/ddlgen/schemaobject/PrimaryKey.java" start="35" end="49" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/ddlgen/src/main/java/org/castor/ddlgen/schemaobject/KeyGenerator.java" start="37" end="51" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/cpactf/src/test/java/org/castor/cpa/test/test2527/ReferingLogEntry.java" start="25" end="38" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/ddlgen/src/main/java/org/castor/ddlgen/schemaobject/Index.java" start="34" end="48" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/ddlgen/src/main/java/org/castor/ddlgen/schemaobject/Field.java" start="78" end="95" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/ddlgen/src/main/java/org/castor/ddlgen/schemaobject/ForeignKey.java" start="126" end="143" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/cpactf/src/test/java/org/castor/cpa/test/test2527/LogEntry.java" start="58" end="71" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18921519_0.java" start="49" end="57" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/cpa/src/main/java/org/castor/cpa/persistence/sql/keygen/MaxKeyGenerator.java" start="52" end="60" />
+    <FRAGMENT_LOG filePath="temp/castor-1/castor-1.3.1/cpa/src/main/java/org/castor/jdo/util/JDOUtils.java" start="37" end="45" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13389700_2.java" start="49" end="61" />
+    <FRAGMENT_LOG filePath="temp/cayenne-3/cayenne-3.0.1-src/framework/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/editor/CallbackType.java" start="33" end="45" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17164751_0.java" start="34" end="45" />
+    <FRAGMENT_LOG filePath="temp/cayenne-3/cayenne-3.0.1-src/framework/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/editor/SelectQueryOrderingTab.java" start="220" end="230" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20381450_0.java" start="2" end="12" />
+    <FRAGMENT_LOG filePath="temp/cayenne-3/cayenne-3.0.1-src/framework/cayenne-jdk1.5-unpublished/src/main/java/org/apache/cayenne/dba/openbase/OpenBasePkGenerator.java" start="82" end="93" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/9709633_0.java" start="156" end="167" />
+    <FRAGMENT_LOG filePath="temp/cayenne-3/cayenne-3.0.1-src/framework/cayenne-modeler/src/main/java/org/apache/cayenne/modeler/util/CellEditorForAttributeTable.java" start="63" end="74" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18015077_0.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="temp/checkstyle-src-5/checkstyle-src-5.1/src/testinputs/com/puppycrawl/tools/checkstyle/filters/InputSuppressWithNearbyCommentFilter.java" start="32" end="39" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3536659_0.java" start="4" end="11" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10238216_0.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/coveragedata/PackageData.java" start="18" end="29" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/coveragedata/LineData.java" start="223" end="231" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/coveragedata/SourceFileData.java" start="16" end="27" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/coveragedata/LineData.java" start="76" end="84" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16005103_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1040821_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1040821_0.java" start="33" end="41" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11640980_1.java" start="28" end="36" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/coveragedata/CoverageDataFileHandler.java" start="83" end="93" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12040310_0.java" start="65" end="78" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/reporting/html/files/CopyFiles.java" start="46" end="59" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14455624_1.java" start="13" end="31" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/coveragedata/TouchCollector.java" start="52" end="70" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24772546_0.java" start="15" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3851674_0.java" start="23" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22264084_0.java" start="43" end="61" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24040300_3.java" start="24" end="42" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/util/IOUtil.java" start="55" end="63" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22898109_0.java" start="14" end="22" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="68" end="76" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24639004_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="temp/cobertura-1/cobertura-1.9.4.1/src/net/sourceforge/cobertura/util/IOUtil.java" start="67" end="75" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10545384_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/columba/core/org/columba/core/base/ListTools.java" start="7" end="15" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24710850_0.java" start="6" end="14" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22035557_1.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4199588_1.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22573575_0.java" start="38" end="46" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10870277_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/mail/core/org/columba/mail/folder/outbox/SendListManager.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/columba/core/org/columba/core/base/Barrier.java" start="7" end="16" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/columba/core/org/columba/core/base/Mutex.java" start="8" end="16" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11980059_0.java" start="4" end="11" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11851968_0.java" start="13" end="24" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/mail/core/org/columba/mail/spam/spamassassin/IPCHelper.java" start="58" end="70" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/columba/core/org/columba/core/base/StreamThread.java" start="17" end="29" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/columba/core/org/columba/core/base/IPCHelper.java" start="58" end="70" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14165567_1.java" start="9" end="20" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12040310_0.java" start="65" end="78" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/mail/core/org/columba/mail/gui/message/command/ViewMessageSourceCommand.java" start="46" end="59" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1213188_0.java" start="64" end="72" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/mail/core/org/columba/mail/spam/spamassassin/ExternalToolsHelper.java" start="14" end="23" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/61982_0.java" start="94" end="102" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/61982_0.java" start="85" end="93" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/61982_0.java" start="103" end="112" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14673198_1.java" start="14" end="22" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/columba/core/org/columba/core/main/ColumbaServer.java" start="31" end="38" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8326566_1.java" start="8" end="17" />
+    <FRAGMENT_LOG filePath="temp/columba-1/columba-1.0-src/src/mail/core/org/columba/mail/gui/composer/html/util/ExtendedHTMLEditorKit.java" start="15" end="24" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12406627_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="temp/Compiere_330_Source/release_330/base/src/org/compiere/util/ViewUtil.java" start="99" end="107" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23589651_0.java" start="16" end="24" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14222665_0.java" start="48" end="56" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22376041_1.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14656910_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18258223_0.java" start="12" end="20" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12470127_0.java" start="35" end="43" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12984227_8.java" start="81" end="89" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13219118_0.java" start="12" end="27" />
+    <FRAGMENT_LOG filePath="temp/Compiere_330_Source/release_330/ad/src/org/compiere/translate/AmtInWords_EN.java" start="49" end="64" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3911987_0.java" start="38" end="53" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15185345_0.java" start="21" end="33" />
+    <FRAGMENT_LOG filePath="temp/Compiere_330_Source/release_330/ad/src/org/compiere/util/CachedRowSetImpl.java" start="512" end="525" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22861655_0.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="temp/Compiere_330_Source/release_330/ad/src/org/compiere/framework/PO.java" start="1510" end="1518" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10545384_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/engine/org/apache/derby/impl/store/raw/xact/XactId.java" start="47" end="55" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4199588_1.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22573575_0.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24710850_0.java" start="6" end="14" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22035557_1.java" start="3" end="11" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10617251_0.java" start="65" end="73" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/testing/org/apache/derbyTesting/functionTests/util/DerbyJUnitTest.java" start="238" end="246" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/demo/nserverdemo/NsSampleClientThread.java" start="220" end="228" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/demo/nserverdemo/NsSampleClientThread.java" start="110" end="118" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17089503_0.java" start="65" end="73" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3073582_0.java" start="84" end="92" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3507846_0.java" start="34" end="42" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3660678_0.java" start="55" end="63" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3798421_0.java" start="62" end="70" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4059041_0.java" start="65" end="73" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6104847_0.java" start="65" end="73" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6520047_0.java" start="34" end="42" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/9027454_3.java" start="65" end="73" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6520047_0.java" start="43" end="51" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5506007_0.java" start="50" end="58" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11606698_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4982232_0.java" start="30" end="38" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="30" end="38" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23955541_1.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11606698_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/demo/nserverdemo/NsSampleClientThread.java" start="295" end="303" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11867360_0.java" start="120" end="129" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/testing/org/apache/derbyTesting/functionTests/util/DerbyJUnitTest.java" start="256" end="264" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1335826_0.java" start="12" end="20" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/testing/org/apache/derbyTesting/functionTests/util/DerbyJUnitTest.java" start="247" end="255" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5575424_0.java" start="39" end="47" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14732974_0.java" start="46" end="54" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/drda/org/apache/derby/impl/drda/NetworkServerControlImpl.java" start="2342" end="2350" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15484493_0.java" start="49" end="57" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21750833_0.java" start="62" end="70" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16440232_0.java" start="26" end="34" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21674680_0.java" start="238" end="246" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17564672_0.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/engine/org/apache/derby/impl/services/timer/SingletonTimerFactory.java" start="40" end="49" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18526033_0.java" start="7" end="15" />
+    <FRAGMENT_LOG filePath="temp/db-derby-10/db-derby-10.6.1.0-src/java/drda/org/apache/derby/drda/NetServlet.java" start="493" end="500" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20848515_0.java" start="28" end="36" />
+    <FRAGMENT_LOG filePath="temp/drjava-stable-20100913-r5387-src/drjava-stable-20100913-r5387/src/src/edu/rice/cs/drjava/model/MultiThreadedTestCaseTest.java" start="18" end="26" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5338272_0.java" start="33" end="49" />
+    <FRAGMENT_LOG filePath="temp/drjava-stable-20100913-r5387-src/drjava-stable-20100913-r5387/src/src/edu/rice/cs/drjava/model/repl/InteractionsEditorKit.java" start="8" end="24" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10545384_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/graph/AbstractVertex.java" start="27" end="35" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24710850_0.java" start="6" end="14" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22035557_1.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4199588_1.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22573575_0.java" start="38" end="46" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1134420_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/FuzzyBugComparator.java" start="131" end="139" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/VersionInsensitiveBugComparator.java" start="58" end="66" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5759745_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1768123_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8632867_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14919481_0.java" start="25" end="33" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14302328_0.java" start="50" end="58" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/TestDesktopIntegration.java" start="54" end="62" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7028977_0.java" start="7" end="15" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7518675_0.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7014177_0.java" start="4" end="12" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6597223_0.java" start="4" end="12" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6815933_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6610064_0.java" start="4" end="12" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6763960_0.java" start="4" end="12" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6721523_0.java" start="4" end="12" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22128350_0.java" start="10" end="18" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19198757_3.java" start="345" end="354" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/workflow/Filter.java" start="344" end="353" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java5/edu/umd/cs/findbugs/gui2/FindBugsLayoutManagerFactory.java" start="8" end="16" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20399933_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/util/MultiMap.java" start="12" end="20" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21694243_0.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/io/IO.java" start="78" end="86" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/io/IO.java" start="87" end="95" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23955541_1.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/util/Util.java" start="157" end="165" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="8">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="30" end="38" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java/edu/umd/cs/findbugs/util/Util.java" start="184" end="192" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="9">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8416340_0.java" start="5" end="23" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/antTask/edu/umd/cs/findbugs/anttask/UnionBugs.java" start="65" end="81" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="10">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/9240450_1.java" start="80" end="91" />
+    <FRAGMENT_LOG filePath="temp/findbugs-1/findbugs-1.3.9/src/java5/edu/umd/cs/findbugs/gui2/MainFrame.java" start="1430" end="1442" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12120288_1.java" start="76" end="85" />
+    <FRAGMENT_LOG filePath="temp/FitLibrary20100806/fitnesse/lib/src/fitlibrarySrc/fitlibrary/traverse/function/RuleTable.java" start="106" end="115" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="68" end="77" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="67" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="31" end="40" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5819736_0.java" start="141" end="148" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="32" end="41" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24168984_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/FitLibrary20100806/fitnesse/lib/src/fitlibrarySrc/fitlibrary/traverse/function/FunctionTraverse.java" start="19" end="27" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10784241_0.java" start="74" end="82" />
+    <FRAGMENT_LOG filePath="temp/freecol-0/freecol/src/net/sf/freecol/client/gui/menu/FreeColMenuTest.java" start="66" end="74" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/9309361_0.java" start="22" end="30" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8276664_0.java" start="152" end="160" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7836253_0.java" start="5" end="13" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5419632_0.java" start="96" end="104" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7490096_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/freecol-0/freecol/src/net/sf/freecol/server/control/UserConnectionHandler.java" start="68" end="75" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7490096_0.java" start="25" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7791353_0.java" start="2" end="10" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="temp/galleon-2/src/org/lnicholls/galleon/app/AppDescriptor.java" start="85" end="93" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="68" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22898109_0.java" start="14" end="22" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1134420_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/ganttproject-2/ganttproject-2.0.9-src/ganttproject/src/net/sourceforge/ganttproject/GanttCalendar.java" start="143" end="151" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5759745_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8632867_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1768123_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14919481_0.java" start="25" end="33" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12120288_1.java" start="76" end="85" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/test/system/java/org/apache/hadoop/hdfs/TestBalancer.java" start="275" end="284" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/test/org/apache/hadoop/security/authentication/client/AuthenticatorTestCase.java" start="75" end="84" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="31" end="40" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5819736_0.java" start="141" end="148" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="67" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="32" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="68" end="77" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12702036_0.java" start="5" end="14" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/test/org/apache/hadoop/mapred/TestJvmManager.java" start="126" end="135" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14455624_1.java" start="13" end="31" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/core/org/apache/hadoop/io/file/tfile/TFile.java" start="371" end="389" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24040300_3.java" start="24" end="42" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24772546_0.java" start="15" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3851674_0.java" start="23" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22264084_0.java" start="43" end="61" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15425359_0.java" start="4" end="13" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/contrib/eclipse-plugin/src/java/org/apache/hadoop/eclipse/ImageLibrary.java" start="25" end="34" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22818246_0.java" start="3" end="12" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16928749_0.java" start="50" end="66" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapreduce/lib/output/TextOutputFormat.java" start="51" end="67" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapred/TextOutputFormat.java" start="47" end="63" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16928749_0.java" start="69" end="97" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapreduce/lib/output/TextOutputFormat.java" start="75" end="99" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18015077_0.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapreduce/server/tasktracker/userlogs/UserLogManager.java" start="39" end="47" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3536659_0.java" start="4" end="11" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="8">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19683102_2.java" start="7" end="15" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/contrib/fairscheduler/src/java/org/apache/hadoop/mapred/FairScheduler.java" start="661" end="669" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20051166_2.java" start="29" end="37" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="71" end="79" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20051166_2.java" start="13" end="21" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="85" end="93" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="9">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22315734_0.java" start="11" end="21" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/core/org/apache/hadoop/io/WritableComparator.java" start="44" end="54" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/core/org/apache/hadoop/io/serializer/DeserializerComparator.java" start="16" end="26" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="10">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7383847_1.java" start="39" end="62" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/mapred/org/apache/hadoop/mapred/StatisticsCollector.java" start="116" end="141" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="11">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7490096_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/test/org/apache/hadoop/hdfs/MiniDFSCluster.java" start="134" end="142" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7791353_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7490096_0.java" start="25" end="33" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="12">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/9244303_0.java" start="23" end="31" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/contrib/capacity-scheduler/src/test/org/apache/hadoop/mapred/TestCapacityScheduler.java" start="34" end="42" />
+    <FRAGMENT_LOG filePath="temp/hadoop-1/hadoop-1.0.0/src/contrib/capacity-scheduler/src/test/org/apache/hadoop/mapred/TestCapacityScheduler.java" start="59" end="67" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10468315_0.java" start="16" end="24" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/frontier/AbstractFrontier.java" start="378" end="387" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22376041_1.java" start="39" end="47" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12120288_1.java" start="76" end="85" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/apache/commons/pool/impl/GenericObjectPool.java" start="443" end="452" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="68" end="77" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="32" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="31" end="40" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="67" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5819736_0.java" start="141" end="148" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14576798_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/Heritrix.java" start="914" end="922" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15141427_0.java" start="44" end="53" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/admin/StatisticsSummary.java" start="277" end="286" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/admin/StatisticsSummary.java" start="457" end="466" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/admin/StatisticsSummary.java" start="332" end="341" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/admin/StatisticsSummary.java" start="228" end="237" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/admin/StatisticsSummary.java" start="392" end="401" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18193348_0.java" start="88" end="96" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21247344_0.java" start="187" end="195" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20422000_0.java" start="27" end="35" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24079155_0.java" start="22" end="30" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23505496_0.java" start="42" end="50" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18015077_0.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/Heritrix.java" start="1111" end="1119" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20123347_0.java" start="14" end="22" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23417665_0.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19105256_0.java" start="30" end="38" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2372954_0.java" start="29" end="41" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/datamodel/CrawlHost.java" start="59" end="73" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/datamodel/CrawlServer.java" start="58" end="72" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/util/CachedBdbMap.java" start="831" end="845" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/25465723_0.java" start="26" end="38" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6931385_0.java" start="10" end="22" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23849305_0.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/fetcher/FetchHTTP.java" start="931" end="939" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/util/LogReader.java" start="432" end="440" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/fetcher/FetchHTTP.java" start="1010" end="1018" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/framework/WriterPoolProcessor.java" start="373" end="381" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2392540_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2423183_0.java" start="33" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3972590_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="53" end="61" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5595261_0.java" start="8" end="16" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24639004_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="30" end="38" />
+    <FRAGMENT_LOG filePath="temp/heritrix-1/heritrix-1.14.4/src/java/org/archive/crawler/util/BenchmarkUriUniqFilters.java" start="61" end="70" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12406627_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="temp/hsqldb-2/hsqldb-2.0.0/hsqldb/src/org/hsqldb/lib/tar/DbBackup.java" start="125" end="133" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19624981_0.java" start="105" end="113" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14732974_0.java" start="46" end="54" />
+    <FRAGMENT_LOG filePath="temp/hsqldb-2/hsqldb-2.0.0/hsqldb/src/org/hsqldb/lib/ArrayUtil.java" start="446" end="454" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15484493_0.java" start="49" end="57" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21674680_0.java" start="238" end="246" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21750833_0.java" start="62" end="70" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16440232_0.java" start="26" end="34" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2392540_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="temp/hsqldb-2/hsqldb-2.0.0/hsqldb/src/org/hsqldb/cmdline/SqlFile.java" start="2816" end="2824" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2423183_0.java" start="33" end="41" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10870277_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/informa-0/informa-0.7.0-alpha2/test/src/de/nava/informa/utils/manager/TestAbstractPersistenceManager.java" start="456" end="465" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16491917_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/informa-0/informa-0.7.0-alpha2/test/src/de/nava/informa/utils/poller/TestPollerWorkerThread.java" start="70" end="78" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12406627_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/IReportManager.java" start="559" end="567" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14222665_0.java" start="48" end="56" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12984227_8.java" start="81" end="89" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18258223_0.java" start="12" end="20" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23589651_0.java" start="16" end="24" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14656910_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12470127_0.java" start="35" end="43" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22376041_1.java" start="20" end="28" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12921020_0.java" start="24" end="35" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/crosstab/actions/CellSelectionAction.java" start="19" end="31" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12982345_0.java" start="15" end="26" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15652360_0.java" start="33" end="45" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12996718_0.java" start="19" end="30" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17383922_0.java" start="13" end="24" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13220415_0.java" start="21" end="32" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12987522_0.java" start="2" end="11" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/utils/Misc.java" start="822" end="830" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/IReportConnection.java" start="69" end="77" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/utils/Misc.java" start="613" end="621" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/connection/gui/PasswordDialog.java" start="148" end="156" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/connection/JDBCConnection.java" start="154" end="162" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/connection/JDBCNBConnection.java" start="87" end="95" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13141817_0.java" start="130" end="138" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/crosstab/widgets/CrosstabWidget.java" start="308" end="316" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14438385_0.java" start="24" end="32" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13462440_1.java" start="32" end="45" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/fonts/FontLoaderDialog.java" start="60" end="73" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/fonts/FontLoaderDialog.java" start="46" end="59" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/fonts/FontLoaderDialog.java" start="31" end="45" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15373186_0.java" start="104" end="113" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/jasperserver-plugin/src/com/jaspersoft/ireport/jasperserver/ws/IReportTrustManager.java" start="113" end="122" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20513679_0.java" start="103" end="112" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18764836_0.java" start="104" end="113" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21912294_0.java" start="109" end="118" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17966859_0.java" start="8" end="18" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/subreport/TableComboBoxRenderer.java" start="12" end="22" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="8">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23849305_0.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/ReportClassLoader.java" start="247" end="255" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2423183_0.java" start="33" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5595261_0.java" start="8" end="16" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2392540_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="53" end="61" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/3972590_0.java" start="42" end="50" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="9">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4552081_0.java" start="45" end="53" />
+    <FRAGMENT_LOG filePath="temp/iReport-3/iReport-3.7.5-src/ireport-designer/src/com/jaspersoft/ireport/designer/data/FieldsContainerTransferHandler.java" start="35" end="43" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12120288_1.java" start="76" end="85" />
+    <FRAGMENT_LOG filePath="temp/iText-src-5/src/core/com/itextpdf/text/pdf/codec/Base64.java" start="462" end="469" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="67" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="32" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="31" end="40" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="68" end="77" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5819736_0.java" start="141" end="148" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10870277_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/jag-6/jag-6.1/src/com/finalist/jaggenerator/modules/RelationPanel.java" start="58" end="67" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12120288_1.java" start="76" end="85" />
+    <FRAGMENT_LOG filePath="temp/jasperreports-3/jasperreports-3.7.4/src/net/sf/jasperreports/engine/export/JRPdfExporter.java" start="403" end="412" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="68" end="77" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="32" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5819736_0.java" start="141" end="148" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="67" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="31" end="40" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10468315_1.java" start="29" end="37" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/server/src/main/org/jboss/ejb/plugins/cmp/jdbc/JDBCUtil.java" start="75" end="83" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4216557_1.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4153095_0.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5841690_0.java" start="25" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/684137_1.java" start="19" end="27" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10870277_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/threading/ejb/EJBThreadsBean.java" start="37" end="45" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11574637_0.java" start="78" end="89" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/entity/beans/TestEntityBean.java" start="66" end="77" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/entity/beans/TestEntityBean.java" start="39" end="50" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11606698_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/security/src/main/org/jboss/security/integration/password/PasswordTool.java" start="111" end="118" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6520047_0.java" start="43" end="51" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4982232_0.java" start="30" end="38" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="30" end="38" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5506007_0.java" start="50" end="58" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6520047_0.java" start="34" end="42" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11606698_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23955541_1.java" start="2" end="10" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12120288_1.java" start="76" end="85" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/cmp2/lob/LOBUnitTestCase.java" start="345" end="354" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/cmp2/lob/LOBUnitTestCase.java" start="368" end="377" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/perf/test/Setup.java" start="39" end="48" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/jmx/test/DeployServiceUnitTestCase.java" start="275" end="284" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="68" end="77" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_1.java" start="32" end="41" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="31" end="40" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5819736_0.java" start="141" end="148" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14617650_0.java" start="67" end="76" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/13434746_0.java" start="20" end="35" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/jacc/test/portal/PortalObjectPermission.java" start="35" end="50" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/jacc/test/portal/ComponentPermission.java" start="35" end="50" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/jacc/test/portal/InstancePermission.java" start="35" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22009796_0.java" start="25" end="40" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/2953040_0.java" start="20" end="35" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24682528_2.java" start="143" end="158" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/9993817_0.java" start="5" end="20" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/15095000_0.java" start="21" end="36" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/bootstrapdependencies/jbas5349/ejb3/SimpleEntity.java" start="24" end="39" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17920930_0.java" start="20" end="35" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23197177_1.java" start="14" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21581988_0.java" start="125" end="140" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16462678_0.java" start="23" end="38" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19614645_1.java" start="16" end="31" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="8">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1561623_0.java" start="72" end="80" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/jmx-remoting/src/main/javax/management/remote/rmi/RMIConnector.java" start="97" end="105" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="9">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16491917_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/varia/src/main/org/jboss/jdo/castor/CastorJDOImpl.java" start="107" end="115" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="10">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18015077_0.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/varia/src/main/org/jboss/varia/stats/TxStatistics.java" start="69" end="77" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23417665_0.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20123347_0.java" start="14" end="22" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19105256_0.java" start="30" end="38" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="11">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/server/src/main/org/jboss/ejb/plugins/cmp/jdbc/JDBCUtil.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="68" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22898109_0.java" start="14" end="22" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="12">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19198757_3.java" start="345" end="354" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/mbeans/src/main/org/jboss/mx/mxbean/MXBeanUtils.java" start="442" end="451" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="13">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21099738_0.java" start="3" end="29" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/console/src/main/org/jboss/console/plugins/helpers/servlet/ServletHelper.java" start="6" end="30" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="14">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24168984_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/JBossRMIAdaptorHelper.java" start="43" end="51" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="15">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24639004_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/server/src/main/org/jboss/ejb/plugins/cmp/jdbc/JDBCUtil.java" start="66" end="74" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/7094056_0.java" start="23" end="31" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="16">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/25270740_0.java" start="15" end="24" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/server/src/main/org/jboss/ejb/plugins/cmp/jdbc/bridge/JDBCEntityBridge.java" start="830" end="839" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="17">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6586196_1.java" start="117" end="125" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/jmx/src/main/org/jboss/mx/loading/MLetRepositoryClassLoader.java" start="52" end="60" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/jmx/src/main/org/jboss/mx/loading/UnifiedClassLoader.java" start="113" end="121" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="18">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6614317_0.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/management/src/main/org/jboss/management/j2ee/deployers/LocalJBossServerDomain.java" start="79" end="87" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="19">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/8136632_0.java" start="30" end="38" />
+    <FRAGMENT_LOG filePath="temp/jboss-5/jboss-5.1.0.GA-src/testsuite/src/main/org/jboss/test/cluster/web/CacheHelperServletContextListener.java" start="20" end="28" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10099228_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/jchempaint-src-3/cdk/src/main/org/openscience/cdk/qsar/descriptors/bond/AtomicNumberDifferenceDescriptor.java" start="22" end="30" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24079155_0.java" start="22" end="30" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24639004_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23505496_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10468315_0.java" start="35" end="43" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/23303261_0.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4216557_1.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22898109_0.java" start="14" end="22" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/5841690_0.java" start="25" end="33" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/21247344_0.java" start="187" end="195" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20646575_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10468315_1.java" start="29" end="37" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20646575_0.java" start="36" end="44" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4153095_0.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20422000_0.java" start="27" end="35" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10468315_0.java" start="16" end="24" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19802582_0.java" start="40" end="48" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11640980_1.java" start="28" end="36" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="68" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16527460_0.java" start="45" end="53" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17534070_1.java" start="6" end="14" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18193348_0.java" start="88" end="96" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14363506_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="temp/jchempaint-src-3/cdk/src/main/org/openscience/cdk/formula/MassToFormulaTool.java" start="92" end="100" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/17534943_0.java" start="144" end="152" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16441264_0.java" start="43" end="51" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19683102_2.java" start="7" end="15" />
+    <FRAGMENT_LOG filePath="temp/jchempaint-src-3/cdk/src/main/org/openscience/cdk/isomorphism/matchers/smarts/RecursiveSmartsAtom.java" start="53" end="61" />
+    <FRAGMENT_LOG filePath="temp/jchempaint-src-3/cdk/src/main/org/openscience/cdk/tools/ElementComparator.java" start="17" end="25" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="85" end="93" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20051166_2.java" start="13" end="21" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/20051166_2.java" start="29" end="37" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4424905_0.java" start="71" end="79" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14144798_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="temp/jext-sources-5/jext-src-5.0/src/lib/org/jext/misc/PluginDesc.java" start="146" end="154" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/14144832_0.java" start="57" end="65" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4552081_0.java" start="45" end="53" />
+    <FRAGMENT_LOG filePath="temp/jgraph-latest-bsd-src/src/org/jgraph/plaf/basic/BasicGraphTransferable.java" start="157" end="165" />
+    <FRAGMENT_LOG filePath="temp/jgraph-latest-bsd-src/src/org/jgraph/plaf/basic/BasicGraphTransferable.java" start="68" end="76" />
+    <FRAGMENT_LOG filePath="temp/jgraph-latest-bsd-src/src/org/jgraph/plaf/basic/BasicGraphTransferable.java" start="127" end="135" />
+    <FRAGMENT_LOG filePath="temp/jgraph-latest-bsd-src/src/org/jgraph/plaf/basic/BasicGraphTransferable.java" start="142" end="150" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6722760_1.java" start="13" end="37" />
+    <FRAGMENT_LOG filePath="temp/jgraph-latest-bsd-src/examples/org/jgraph/example/HelloWorld.java" start="14" end="37" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/6722760_1.java" start="39" end="56" />
+    <FRAGMENT_LOG filePath="temp/jgraph-latest-bsd-src/examples/org/jgraph/example/GroupingRemoving.java" start="53" end="70" />
+    <FRAGMENT_LOG filePath="temp/jgraph-latest-bsd-src/examples/org/jgraph/example/HelloWorld.java" start="39" end="56" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="temp/jgraphpad-5/jgraphpad-5.10.0.2-src/src/org/microplatform/web/applet/AppletFriendlyXMLDecoder.java" start="45" end="54" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18670004_1.java" start="68" end="76" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22898109_0.java" start="14" end="22" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/92962_0.java" start="22" end="61" />
+    <FRAGMENT_LOG filePath="temp/jgraphpad-5/jgraphpad-5.10.0.2-src/src/org/jgraph/pad/graphcellsbase/JGraphSwimlaneView.java" start="93" end="132" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10238216_0.java" start="37" end="45" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/other/org/jgroups/tests/ViewDeliveryDemo.java" start="156" end="164" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/blocks/AbstractConnectionMap.java" start="36" end="44" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/blocks/GroupRequest.java" start="138" end="146" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/blocks/MultiRequest.java" start="166" end="174" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/util/Metronome.java" start="81" end="89" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/blocks/UnicastRequest.java" start="112" end="120" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/other/org/jgroups/tests/ViewDeliveryDemo.java" start="165" end="173" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/protocols/FD.java" start="197" end="205" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/util/Promise.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/protocols/SFC.java" start="121" end="129" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/16005103_0.java" start="18" end="26" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1040821_0.java" start="42" end="50" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1040821_0.java" start="33" end="41" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/util/Promise.java" start="86" end="95" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/util/Promise.java" start="96" end="105" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/junit/org/jgroups/tests/GossipRouterTest.java" start="97" end="106" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/perf/org/jgroups/tests/perf/IPerf.java" start="310" end="319" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="2">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1040821_0.java" start="5" end="14" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/protocols/FD_ALL.java" start="181" end="190" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/protocols/FD_ALL.java" start="160" end="169" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/1040821_0.java" start="15" end="24" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="3">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10870277_0.java" start="20" end="28" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/junit-functional/org/jgroups/tests/ConnectionTableUnitTest.java" start="149" end="158" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="4">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11843165_0.java" start="25" end="34" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/demos/JmxDemo.java" start="83" end="92" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="5">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/11867360_0.java" start="120" end="129" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/persistence/DBPersistenceManager.java" start="325" end="334" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="6">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12040310_0.java" start="65" end="78" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/util/Proxy.java" start="415" end="428" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18487023_0.java" start="41" end="53" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/protocols/pbcast/NAKACK.java" start="347" end="358" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="8">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24268908_0.java" start="31" end="39" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/junit/org/jgroups/tests/ConcurrentStartupTest.java" start="141" end="149" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="9">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24639004_0.java" start="57" end="65" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/junit/org/jgroups/tests/StateTransferTest.java" start="162" end="170" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="10">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4647305_0.java" start="53" end="61" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/tests/junit/org/jgroups/tests/ReconciliationTest.java" start="330" end="338" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="11">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/670515_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="temp/JGroups-2/JGroups-2.10.0.GA.src/src/org/jgroups/protocols/MERGE2.java" start="165" end="173" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/12968580_0.java" start="15" end="23" />
+    <FRAGMENT_LOG filePath="temp/jOggPlayer114s/src/kiwi/ui/ToolTipManager.java" start="12" end="20" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="1">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/10545384_0.java" start="2" end="10" />
+    <FRAGMENT_LOG filePath="temp/ArgoUML-0.34-src/argouml-documentation/src/docbook-setup/docbook-xsl/extensions/xalan2/com/nwalsh/xalan/Callout.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="temp/ArgoUML-0.34-src/argouml-documentation/src/docbook-setup/docbook-xsl/extensions/saxon643/com/nwalsh/saxon/Callout.java" start="21" end="29" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/24710850_0.java" start="6" end="14" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/4199588_1.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22573575_0.java" start="38" end="46" />
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/22035557_1.java" start="3" end="11" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="7">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/18806139_0.java" start="3" end="11" />
+    <FRAGMENT_LOG filePath="temp/ArgoUML-0.34-src/argouml-java/src/org/argouml/language/java/profile/ProfileJava.java" start="109" end="117" />
+    <FRAGMENT_LOG filePath="temp/Vuze_4812_source/org/gudy/azureus2/ui/console/commands/TorrentStop.java" start="9" end="17" />
+    <FRAGMENT_LOG filePath="temp/Vuze_4812_source/org/gudy/azureus2/ui/console/commands/TorrentForceStart.java" start="9" end="17" />
+  </SIMIAN_LOG>
+  <SIMIAN_LOG ID="8">
+    <FRAGMENT_LOG filePath="stackoverflow_formatted/19624981_0.java" start="70" end="78" />
+    <FRAGMENT_LOG filePath="temp/ArgoUML-0.34-src/argouml-sql/src/org/argouml/language/sql/GeneratorSql.java" start="192" end="200" />
+    <FRAGMENT_LOG filePath="temp/ArgoUML-0.34-src/argouml-cpp/src/org/argouml/language/cpp/generator/GeneratorCpp.java" start="2078" end="2086" />
+    <FRAGMENT_LOG filePath="temp/ArgoUML-0.34-src/argouml-csharp/src/org/argouml/language/csharp/generator/GeneratorCSharp.java" start="111" end="119" />
+  </SIMIAN_LOG>
+</FRAGMENTS>
