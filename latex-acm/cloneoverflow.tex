@@ -204,10 +204,10 @@ Manual investigation of Simian's clone report showed that there were problematic
 			& \multicolumn{3}{c|}{Simian$_{\textrm{\textit{EvCl}}}$}
 			& \multicolumn{3}{c|}{NiCad$_{df}$} 
 			& \multicolumn{3}{c}{NiCad$_{\textrm{\textit{EvCl}}}$} \\ \cline{2-13} 
-			& \multicolumn{3}{c|}{792 fragments} 
-			& \multicolumn{3}{c|}{1229 fragments}  
-			& \multicolumn{3}{c|}{1141 fragments} 
-			& \multicolumn{3}{c}{12400 fragments} \\ \cline{2-13}
+			& \multicolumn{3}{c|}{1406 fragments} 
+			& \multicolumn{3}{c|}{1360 fragments}  
+			& \multicolumn{3}{c|}{1197 fragments} 
+			& \multicolumn{3}{c}{12884 fragments} \\ \cline{2-13}
 			%& \multicolumn{3}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC} 
 			%& \multicolumn{3}{c|}{iCurlB,iId,iIdC,iStr,iChar,iSbtNm,bSqBrck} 
 			%& \multicolumn{3}{c|}{rename=none,abstract=none} 
@@ -218,13 +218,13 @@ Manual investigation of Simian's clone report showed that there were problematic
 			& $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ 
 			\hline
 			%Removed & 11 & -- & -- & -- & 0 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- \\ %& 11 & -- & -- & -- \\
-			Total & 24,929 & -- & -- & 16,957,362 & --	& -- & 105,118 	& -- & -- & 113,557,298 & -- & -- \\
-			Mean & 38 & 7.54 & 0.27 & 14,444 & 4.80 & 0.28 & 107 & 9.52 & 0.25 & 9,397 & 5.21 & 0.20 \\
-			Std Dev. & 87 & 3.21 & 0.22 & 281,747 & 1.22 & 0.18 & 198 & 3.07 & 0.18 & 12,098 & 1.73 & 0.16 \\
-			Max  & 551 & 49.00 & 0.94 & 9,599,676 & 18.00 & 0.89 & 1,792 & 39.00 & 0.80 & 227,077 & 44.00 & 0.86 \\
-			Min  & 1 & 5.00 & 0.01 & 1 & 4.00 & 0.02 & 1 & 7.00 & 0.02 & 1 & 3.00 & 0.01 \\
-			Median  & 3 & 7.00 & 0.23 & 22 & 5.00 & 0.24 & 15 & 8.00 & 0.19 & 6,105 & 5.00 	& 0.15 \\
-			Mode  & 1 & 7.00 & 0.25 & 1 & 4.00 & 0.50 & 1 & 8.00 & 0.53 & 1 & 4.00 & 0.33 \\
+			Total & 54790 & -- & -- 		& 59936722 & --	& -- 		& 127305 	& -- & -- 	& 206718663 & -- & -- \\
+			Mean & 52 & 7.45 & 0.28 		& 44104 & 4.81 & 0.29 		& 106 & 9.54 & 0.25 	& 16046 & 5.31 & 0.21 \\
+			Std Dev. & 147 & 3.22 & 0.23 	& 1040483 & 1.20 & 0.19 	& 209 & 3.10 & 0.18 	& 21890 & 1.92 & 0.16 \\
+			Max  & 1020 & 49.00 & 0.94 		& 38223637 & 18.00 & 0.89 	& 2100 & 39.00 & 0.81 	& 442655 & 50.00 & 0.93 \\
+			Min  & 1 & 5.00 & 0.01 			& 1 & 4.00 & 0.02 			& 1 & 7.00 & 0.02 		& 1 & 3.00 & 0.01 \\
+			Median  & 3 & 7.00 & 0.21 		& 24 & 5.00 & 0.25 			& 20 & 8.00 & 0.19 		& 8003 & 5.00 	& 0.16 \\
+			Mode  & 1 & 7.00 & 0.33 		& 1 & 4.00 & 0.50 			& 1 & 8.00 & 0.67 		& 1 & 4.00 & 0.33 \\
 			\hline
 		\end{tabular} %
 %	}
@@ -266,7 +266,7 @@ Manual investigation of Simian's clone report showed that there were problematic
 
 \begin{table*}
 	\centering
-	\caption{63 Qualitas projects (new versions retrieved on 2016-09-27)}
+	\caption{109 Qualitas projects (new versions retrieved on 2016-09-27)}
 	\label{t:new_and_old}
 %	\resizebox{\columnwidth}{!}{%
 	\small
@@ -366,28 +366,28 @@ Nevertheless,  NiCad produced renaming and clustering errors for some of the set
 		%\hline
 		%Settings & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvaClone}}}$ & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvaClone}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
 		\hline
-		\textit{default} & \textit{default} & 9 	& 473 \\ 
-		\textit{default} & \textit{EvaClone} 	& 12 	& 353 \\ 
-		\textit{EvaClone} 	& \textit{default} 	& 7 	& 60 \\
-		\textit{EvaClone} 	& \textit{EvaClone} 	& 1,338 & 9528 \\ 
+		\textit{default} & \textit{default} & 10 	& 3800 \\ 
+		\textit{default} & \textit{EvaClone} 	& 26 	& 1017 \\ 
+		\textit{EvaClone} 	& \textit{default} 	& 10 	& 88 \\
+		\textit{EvaClone} 	& \textit{EvaClone} 	& 2228 & 19777 \\ 
 		\hline
-		\multicolumn{2}{l|}{Total} & 1,366 & 10,414 \\
+		\multicolumn{2}{l|}{Total} & 2274 & 24682 \\
 		\hline
-		\multicolumn{2}{l|}{Total (unique)} & 1,357 & 10,139 \\
+		\multicolumn{2}{l|}{Total (unique)} & 2261 & 23868 \\
 		\hline
 	\end{tabular}
 \end{table}
 
 \begin{figure}
 		\centering
-		\includegraphics[width=0.9\linewidth]{venn4_pairs_good}
+		\includegraphics[width=0.9\linewidth]{venn4_pairs_good_pt1+2}
 		\caption{\textit{good}-match(0.7) pairs}
 		\label{fig:venn4_orig_good}
 \end{figure}
 
 \begin{figure}
 		\centering
-		\includegraphics[width=0.9\linewidth]{venn4_pairs_ok}
+		\includegraphics[width=0.9\linewidth]{venn4_pairs_ok_pt1+2}
 		\caption{\textit{ok}-match(0.7) pairs}
 		\label{fig:venn4_orig_ok}
 \end{figure}
