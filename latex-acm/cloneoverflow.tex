@@ -266,144 +266,176 @@ Manual investigation of Simian's clone report showed that there were problematic
 %	%}
 %\end{table*}
 
+%\begin{table*}
+%	\centering
+%	\caption{109 Qualitas projects (new versions retrieved on 2016-09-27)}
+%	\label{t:new_and_old}
+%%	\resizebox{\columnwidth}{!}{%
+%	\small
+%		\begin{tabular}{l|r|r|c|c|p{3cm}|p{3cm}}
+%			\hline 
+%			Projects & Old version & New versions & Latest change & CVS & License & Notes \\
+%			\hline
+%			antlr4 & 4.0 & 4.5.4 & 25/09/2016 & git & BSD & \\
+%			apache-ant & 1.8.4 & 1.10.0 & 09/04/2016 & git & Apache2.0 & \\
+%			argouml & 0.34 & 0.35.4 & 11/01/2015 	& svn & Eclipse  1.0 & \\
+%			artofillusion & 2.8.1 & 3.0.2 & 27/08/2016 & svn & GPL 2.0 & \\
+%			aspectj & 1.6.9 & 1.8.9 & 12/05/2016 & git & Eclipse   1.0 & \\
+%			axion & 1.0-M2 & - & 08/03/2013 & - & Proprietary (BSD/Apache-style) & \\
+%			batik & 1.7 & 1.9.0 & 11/05/2016 & svn & Apache , v.2.0 & \\
+%			c-jdbc & 2.0.2 & - & 16/09/2005 & - & GLGPL 2.1 & \\
+%			castor & 1.3.1 & 1.4.2 & 17/08/2016 & git & Apache 2.0 & \\
+%			cayenne & 3.0.1 & 4.0.M4 &  26/09/2016 & git & Apache 2.0 & \\
+%			checkstyle & 5.1 & 7.2  & 23/09/2016 & git & GLGPL 2.1 \& Apache 2.0 & \textit{Cli, Logging and Beanutils} packages are from the Apache Commons project. \\
+%			cobertura & 1.9.4.1 & 2.1.2 & 01/06/2016 & git & GPL 2.0  & \\
+%			colt & 1.2.0 & - & 09/09/2014 & - & Proprietary (CERN) & Found multithreaded v. \\
+%			columba & 1.4 & - & 20/04/2007 & - & Mozilla   1.1  & \\
+%			commons-collections & 3.2.1 & 4.2 & 12/09/2016 & svn & Apache 2.0 & \\
+%			compiere & 330 & - & - & - & GPL 2.0 & No longer OSS \\
+%			db-derby & 10.6.1.0 & 10.12.1 & 13/08/2016 & svn & Apache 2.0 & \\
+%			displaytag & 1.2 & 2.0 & 17/08/2014 & svn & MIT  & \\
+%			drawswf & 1.2.9 & - & 02/04/2013 & - & GPL 2.0 & \\
+%			drjava & 20100913-r5387 & ??? & 03/09/2014 & svn & BSD  & Build to see version? \\
+%			exoportal & ??? & ??? &  & git & GLGPL 3.0 \& proprietary & Too many new projects \\
+%			emma & 2.0.5312 & 2.0.5312 & 09/05/2013  & - & Common   1.0 & \\
+%			findbugs & 1.3.9 & 3.0.1 & 06/03/2015 & - & GLGPL 2.0 & \\
+%			fit-java & 1.1 & - & 04/06/2013 & - & GPL 2.0 & \\
+%			fitlibrary & 20100806 & ??? & 29/07/2014 & git & GPL 2.0 & \\
+%			freecol & 0.10.7 & 0.11.6 & 26/09/2016 & git & GPL 2.0 &  \\
+%			freecs & 1.3.20100406 & - & 22/04/2013 & - & GPL 3.0 &   \\
+%			freemind & 0.9.0 & 1.0.0 & 16/08/2016 & git & GPL 2.0+ &  \\
+%			galleon & 2.3.0 & 2.5.6 & 29/04/2013 & - & GPL 2.0 & \\
+%			ganttproject & 2.0.9 & 2.8.1 & 16/08/2016 & git & GPL 3.0 &  \\
+%			geotools & 2.7-M3 & 16 & 27/09/2016 & git & GLGPL 2.0 & \\
+%			hadoop & 1.0.0 & 3.0.0-alpha2 & 26/09/2016 & git & Apache 2.0 & \\
+%			heritrix & 1.14.4 & - & 05/06/2013 & - & GLGPL 2.1 & \\
+%			hibernate & 4.2.2 & 5.2.3 & 22/09/2016 & git & GLGPL 2.1+ & \\
+%			hsqldb & 2.0.0 & 2.3.4 & 13/09/2016 & svn & BSD  & \\
+%			htmlunit & 2.8 & 2.24 & 26/09/2016 & svn & Apache 2.0 & \\
+%			ireport & 3.7.5 & - & 28/05/2014 & - & Affero GLGPL 3.0 & \\
+%			itext & 5.0.3 & 5.5.9 & 27/09/2016 & git & Affero GLGPL 3.0 & \\
+%			informa & 0.7.0-alpha2 & - & 07/11/2008 & - & GLGPL 2.1 \& Apache Software 1.1 & \\
+%			ivatagroupware & 0.11.3 & - & 27/02/2013 & - & GPL 2.0 & \\
+%			jfin\_datemath & R1\_0\_1 & - & 25/04/2013 & - & GPL 2.0 & \\
+%			joggplayer & 114s & - &  15/04/2013 & - & GPL 2.0 & \\
+%			jag & 6.1 & 6.2 & 08/04/2013  & - & GPL 2.0 \& BSD  & BSD  is for libraries. \\
+%			james & 2.2.0 & 2.3.2.1 & 14/08/2015 & - & Apache 2.0 & \\
+%			jasml & 0.10 & - & 08/03/2013 & - & Apache Software  & \\
+%			jasperreports & 3.7.4 & 6.3.1 & 27/09/2016 & git & GLGPL 3.0 &  \\
+%			javacc & 5.0.0 & 7.0.0 & 15/08/2016 & svn & Proprietary (Sun) & \\
+%			jboss (wildfly) & 5.1.0.GA & 11.0.0.Alpha1 & 27/09/2016 & git & GLGPL 2.1 & Renamed to Wildfly. \\
+%			jchempaint & 3.0.1 & 3.4 & 01/09/2016 & git & GLGPL 2.1+ &  \\
+%			jedit & 4.3.2 & 5.3.1 & 20/09/2016 & svn & GPL 2.0 &  \\
+%			jena & 2.6.3 & 3.1.1 & 16/09/2016 & git & Apache 2.0 & \\
+%			jext & 5.0 & - & 18/08/2004 & - & GPL 2.0 &  \\
+%			jfreechart & 1.0.13 & 1.5.0 & 29/08/2016 & git & GLGPL 2.0 &   \\
+%			jgraph & 5.13.0.0 & 3.6.0.0 & 07/09/2016 & git & Proprietary (mxGraph) & \\
+%			jgraphpad & 5.10.0.2 & - & 10/11/2006 & - & GPL   \& GLGPL (derivatives) & \\
+%			jgrapht & 0.8.1 & 1.0.1 & 23/09/2016 & git & GLGPL 2.1 \& Eclipse  1.0 & \\
+%			jgroups & 2.10.0.GA & 4.0.0 & 26/09/2016 & git & Apache 2.0 & \\
+%			jmoney & 0.4.4 & ??? & 27/12/2015 & git & GPL 2.0 &  \\
+%			jparse & 0.96 & - & 29/07/2004 & - & GLGPL 2.1 & \\
+%			jpf & 1.5.1 & ??? & 13/01/2012 & - & Apache 2.0 & \\
+%			junit & 4.11 & 4.12 & 04/12/2014 & git & Eclipse  1.0 & \\
+%			shiftone-jrat & 0.6 & 1-beta-1 & 17/11/2007 & svn & GLGPL 2.0 &  \\
+%			vuze & 4812 & 5730 & 23/09/2016 & svn & GPL 2.0 & \\
+%			\hline
+%		\end{tabular} %
+%%	}
+%\end{table*}
+
 \begin{table*}
 	\centering
-	\caption{109 Qualitas projects (new versions retrieved on 2016-09-27)}
-	\label{t:new_and_old}
-%	\resizebox{\columnwidth}{!}{%
-	\small
-		\begin{tabular}{l|r|r|c|c|p{3cm}|p{3cm}}
-			\hline 
-			Projects & Old version & New versions & Latest change & CVS & License & Notes \\
-			\hline
-			antlr4 & 4.0 & 4.5.4 & 25/09/2016 & git & BSD & \\
-			apache-ant & 1.8.4 & 1.10.0 & 09/04/2016 & git & Apache2.0 & \\
-			argouml & 0.34 & 0.35.4 & 11/01/2015 	& svn & Eclipse  1.0 & \\
-			artofillusion & 2.8.1 & 3.0.2 & 27/08/2016 & svn & GPL 2.0 & \\
-			aspectj & 1.6.9 & 1.8.9 & 12/05/2016 & git & Eclipse   1.0 & \\
-			axion & 1.0-M2 & - & 08/03/2013 & - & Proprietary (BSD/Apache-style) & \\
-			batik & 1.7 & 1.9.0 & 11/05/2016 & svn & Apache , v.2.0 & \\
-			c-jdbc & 2.0.2 & - & 16/09/2005 & - & GLGPL 2.1 & \\
-			castor & 1.3.1 & 1.4.2 & 17/08/2016 & git & Apache 2.0 & \\
-			cayenne & 3.0.1 & 4.0.M4 &  26/09/2016 & git & Apache 2.0 & \\
-			checkstyle & 5.1 & 7.2  & 23/09/2016 & git & GLGPL 2.1 \& Apache 2.0 & \textit{Cli, Logging and Beanutils} packages are from the Apache Commons project. \\
-			cobertura & 1.9.4.1 & 2.1.2 & 01/06/2016 & git & GPL 2.0  & \\
-			colt & 1.2.0 & - & 09/09/2014 & - & Proprietary (CERN) & Found multithreaded v. \\
-			columba & 1.4 & - & 20/04/2007 & - & Mozilla   1.1  & \\
-			commons-collections & 3.2.1 & 4.2 & 12/09/2016 & svn & Apache 2.0 & \\
-			compiere & 330 & - & - & - & GPL 2.0 & No longer OSS \\
-			db-derby & 10.6.1.0 & 10.12.1 & 13/08/2016 & svn & Apache 2.0 & \\
-			displaytag & 1.2 & 2.0 & 17/08/2014 & svn & MIT  & \\
-			drawswf & 1.2.9 & - & 02/04/2013 & - & GPL 2.0 & \\
-			drjava & 20100913-r5387 & ??? & 03/09/2014 & svn & BSD  & Build to see version? \\
-			exoportal & ??? & ??? &  & git & GLGPL 3.0 \& proprietary & Too many new projects \\
-			emma & 2.0.5312 & 2.0.5312 & 09/05/2013  & - & Common   1.0 & \\
-			findbugs & 1.3.9 & 3.0.1 & 06/03/2015 & - & GLGPL 2.0 & \\
-			fit-java & 1.1 & - & 04/06/2013 & - & GPL 2.0 & \\
-			fitlibrary & 20100806 & ??? & 29/07/2014 & git & GPL 2.0 & \\
-			freecol & 0.10.7 & 0.11.6 & 26/09/2016 & git & GPL 2.0 &  \\
-			freecs & 1.3.20100406 & - & 22/04/2013 & - & GPL 3.0 &   \\
-			freemind & 0.9.0 & 1.0.0 & 16/08/2016 & git & GPL 2.0+ &  \\
-			galleon & 2.3.0 & 2.5.6 & 29/04/2013 & - & GPL 2.0 & \\
-			ganttproject & 2.0.9 & 2.8.1 & 16/08/2016 & git & GPL 3.0 &  \\
-			geotools & 2.7-M3 & 16 & 27/09/2016 & git & GLGPL 2.0 & \\
-			hadoop & 1.0.0 & 3.0.0-alpha2 & 26/09/2016 & git & Apache 2.0 & \\
-			heritrix & 1.14.4 & - & 05/06/2013 & - & GLGPL 2.1 & \\
-			hibernate & 4.2.2 & 5.2.3 & 22/09/2016 & git & GLGPL 2.1+ & \\
-			hsqldb & 2.0.0 & 2.3.4 & 13/09/2016 & svn & BSD  & \\
-			htmlunit & 2.8 & 2.24 & 26/09/2016 & svn & Apache 2.0 & \\
-			ireport & 3.7.5 & - & 28/05/2014 & - & Affero GLGPL 3.0 & \\
-			itext & 5.0.3 & 5.5.9 & 27/09/2016 & git & Affero GLGPL 3.0 & \\
-			informa & 0.7.0-alpha2 & - & 07/11/2008 & - & GLGPL 2.1 \& Apache Software 1.1 & \\
-			ivatagroupware & 0.11.3 & - & 27/02/2013 & - & GPL 2.0 & \\
-			jfin\_datemath & R1\_0\_1 & - & 25/04/2013 & - & GPL 2.0 & \\
-			joggplayer & 114s & - &  15/04/2013 & - & GPL 2.0 & \\
-			jag & 6.1 & 6.2 & 08/04/2013  & - & GPL 2.0 \& BSD  & BSD  is for libraries. \\
-			james & 2.2.0 & 2.3.2.1 & 14/08/2015 & - & Apache 2.0 & \\
-			jasml & 0.10 & - & 08/03/2013 & - & Apache Software  & \\
-			jasperreports & 3.7.4 & 6.3.1 & 27/09/2016 & git & GLGPL 3.0 &  \\
-			javacc & 5.0.0 & 7.0.0 & 15/08/2016 & svn & Proprietary (Sun) & \\
-			jboss (wildfly) & 5.1.0.GA & 11.0.0.Alpha1 & 27/09/2016 & git & GLGPL 2.1 & Renamed to Wildfly. \\
-			jchempaint & 3.0.1 & 3.4 & 01/09/2016 & git & GLGPL 2.1+ &  \\
-			jedit & 4.3.2 & 5.3.1 & 20/09/2016 & svn & GPL 2.0 &  \\
-			jena & 2.6.3 & 3.1.1 & 16/09/2016 & git & Apache 2.0 & \\
-			jext & 5.0 & - & 18/08/2004 & - & GPL 2.0 &  \\
-			jfreechart & 1.0.13 & 1.5.0 & 29/08/2016 & git & GLGPL 2.0 &   \\
-			jgraph & 5.13.0.0 & 3.6.0.0 & 07/09/2016 & git & Proprietary (mxGraph) & \\
-			jgraphpad & 5.10.0.2 & - & 10/11/2006 & - & GPL   \& GLGPL (derivatives) & \\
-			jgrapht & 0.8.1 & 1.0.1 & 23/09/2016 & git & GLGPL 2.1 \& Eclipse  1.0 & \\
-			jgroups & 2.10.0.GA & 4.0.0 & 26/09/2016 & git & Apache 2.0 & \\
-			jmoney & 0.4.4 & ??? & 27/12/2015 & git & GPL 2.0 &  \\
-			jparse & 0.96 & - & 29/07/2004 & - & GLGPL 2.1 & \\
-			jpf & 1.5.1 & ??? & 13/01/2012 & - & Apache 2.0 & \\
-			junit & 4.11 & 4.12 & 04/12/2014 & git & Eclipse  1.0 & \\
-			shiftone-jrat & 0.6 & 1-beta-1 & 17/11/2007 & svn & GLGPL 2.0 &  \\
-			vuze & 4812 & 5730 & 23/09/2016 & svn & GPL 2.0 & \\
-			\hline
-		\end{tabular} %
-%	}
-\end{table*}
-			
-\begin{table*}
-	\centering
-	\caption{109 Qualitas projects (new versions retrieved on 2016-09-27)}
+	\caption{17 selected Qualitas projects (new versions retrieved on 2016-09-27)}
 	\label{t:new_and_old}
 	%	\resizebox{\columnwidth}{!}{%
 	\small
-	\begin{tabular}{l|r|r|c|c|p{3cm}|p{3cm}}
+	\begin{tabular}{l|r|r|c|c|p{3cm}}
 		\hline 
-			Projects & Old version & New versions & Latest change & CVS & License & Notes \\
-			\hline
-			apache-jmeter & 2. 9 & & & & & \\
-			apache-log4j & 1.2.16 & & & & & \\
-			apache-maven & 3.0 & & & & & \\
-			apache-roller & 4.0.1 & & & & & \\
-			apache-tomcat & 7.0.2 & & & & & \\
-			jhotdraw & 7.5.1 & & & & & \\
-			jrefactory & 2.9.19 & & & & & \\
-			jruby & 1.5.2 & & & & & \\
-			jspwiki & 2.8.4 & & & & & \\
-			jstock & 1.0.7c & & & & & \\
-			jsxe & 04\_beta & & & & & \\
-			jtopen & 7\_1 & & & & & \\
-			jung2 & 2\_0\_1 & & & & & \\
-			lucene & 4.3.0 & & & & & \\
-			marauroa & 3.8.1 & & & & & \\
-			megamek & 0.35.18 & & & & & \\
-			mvnforum (mvnad) & 1.2.2 (1.0.1) & & & & & \\
-			myfaces-core & 2.0.2 & & & & & \\
-			nakedobjects & 4.0.0 & & & & & \\
-			nekohtml & 1.9.14 & & & & & \\
-			netbeans & 6.9.1 & & & & & \\
-			openjms & 0.7.7-beta-1 & & & & & \\
-			oscache & 2.4.1 & & & & & \\
-			picocontainer & 2.10.2 & & & & & \\
-			pmd & 4.2.5 & & & & & \\
-			poi & 3.6 & & & & & \\
-			pooka & 080505 & & & & & \\
-			proguard & 4.5.1 & & & & & \\
-			quartz & 1.8.3 & & & & & \\
-			quickserver & 1.4.7 & & & & & \\
-			quilt & 0.6-a-5 & & & & & \\
-			rssowl & 2.0.5 & & & & & \\
-			sablecc & 3.2 & & & & & \\
-			sandmark & & & & & & \\
-			spring-framework & 3.0.5 & & & & & \\
-			struts2 & 2.2.1-all & & & & & \\
-			sunflow & 0.07.2 & & & & & \\
-			tapestry & 5.1.0.5 & & & & & \\
-			trove & 2.1.0 & & & & & \\
-			velocity & 1.6.4 & & & & & \\
-			wct-package & 1.5.2 & & & & & \\
-			webmail & 0.7.10 & & & & & \\
-			weka & 3-7-9 & & & & & \\
-			xalan-j & 2\_7\_1 & & & & & \\
-			xerces-J & 2.10.0 & & & & & \\
-			xmojo & 5.0.0 & & & & & \\
-			\hline 
-		\end{tabular} %
-%	}
+		Projects & Old version & New versions & Latest change & CVS & License  \\
+		\hline
+		apache-ant & 1.8.4 & 1.10.0 & 09/04/2016 & git & Apache2.0 \\
+		apache-log4j & 1.2.16 & & & & \\
+		apache-tomcat & 7.0.2 & & & & \\
+		aspectj & 1.6.9 & 1.8.9 & 12/05/2016 & git & Eclipse 1.0 \\
+		hadoop & 1.0.0 & 3.0.0-alpha2 & 26/09/2016 & git & Apache 2.0\\
+		hibernate & 4.2.2 & 5.2.3 & 22/09/2016 & git & GLGPL 2.1+ \\
+		jasperreports & 3.7.4 & 6.3.1 & 27/09/2016 & git & GLGPL 3.0  \\
+		jfreechart & 1.0.13 & 1.5.0 & 29/08/2016 & git & GLGPL 2.0  \\
+		jgraph & 5.13.0.0 & 3.6.0.0 & 07/09/2016 & git & Proprietary (mxGraph) \\
+		jgrapht & 0.8.1 & 1.0.1 & 23/09/2016 & git & GLGPL 2.1 \& Eclipse  1.0 \\
+		jstock & 1.0.7c & & & & \\
+		jung2 & 2\_0\_1 & & & & \\
+		junit & 4.11 & 4.12 & 04/12/2014 & git & Eclipse  1.0 \\
+		poi & 3.6 & & & & \\
+		spring-framework & 3.0.5 & & & & \\
+		struts2 & 2.2.1-all & & & & \\
+		weka & 3-7-9 & & & & \\
+		\hline
+	\end{tabular} %
+	%	}
 \end{table*}
+			
+%\begin{table*}
+%	\centering
+%	\caption{109 Qualitas projects (new versions retrieved on 2016-09-27)}
+%	\label{t:new_and_old}
+%	%	\resizebox{\columnwidth}{!}{%
+%	\small
+%	\begin{tabular}{l|r|r|c|c|p{3cm}|p{3cm}}
+%		\hline 
+%			Projects & Old version & New versions & Latest change & CVS & License & Notes \\
+%			\hline
+%			apache-jmeter & 2. 9 & & & & & \\
+%			apache-log4j & 1.2.16 & & & & & \\
+%			apache-maven & 3.0 & & & & & \\
+%			apache-roller & 4.0.1 & & & & & \\
+%			apache-tomcat & 7.0.2 & & & & & \\
+%			jhotdraw & 7.5.1 & & & & & \\
+%			jrefactory & 2.9.19 & & & & & \\
+%			jruby & 1.5.2 & & & & & \\
+%			jspwiki & 2.8.4 & & & & & \\
+%			jstock & 1.0.7c & & & & & \\
+%			jsxe & 04\_beta & & & & & \\
+%			jtopen & 7\_1 & & & & & \\
+%			jung2 & 2\_0\_1 & & & & & \\
+%			lucene & 4.3.0 & & & & & \\
+%			marauroa & 3.8.1 & & & & & \\
+%			megamek & 0.35.18 & & & & & \\
+%			mvnforum (mvnad) & 1.2.2 (1.0.1) & & & & & \\
+%			myfaces-core & 2.0.2 & & & & & \\
+%			nakedobjects & 4.0.0 & & & & & \\
+%			nekohtml & 1.9.14 & & & & & \\
+%			netbeans & 6.9.1 & & & & & \\
+%			openjms & 0.7.7-beta-1 & & & & & \\
+%			oscache & 2.4.1 & & & & & \\
+%			picocontainer & 2.10.2 & & & & & \\
+%			pmd & 4.2.5 & & & & & \\
+%			poi & 3.6 & & & & & \\
+%			pooka & 080505 & & & & & \\
+%			proguard & 4.5.1 & & & & & \\
+%			quartz & 1.8.3 & & & & & \\
+%			quickserver & 1.4.7 & & & & & \\
+%			quilt & 0.6-a-5 & & & & & \\
+%			rssowl & 2.0.5 & & & & & \\
+%			sablecc & 3.2 & & & & & \\
+%			sandmark & & & & & & \\
+%			spring-framework & 3.0.5 & & & & & \\
+%			struts2 & 2.2.1-all & & & & & \\
+%			sunflow & 0.07.2 & & & & & \\
+%			tapestry & 5.1.0.5 & & & & & \\
+%			trove & 2.1.0 & & & & & \\
+%			velocity & 1.6.4 & & & & & \\
+%			wct-package & 1.5.2 & & & & & \\
+%			webmail & 0.7.10 & & & & & \\
+%			weka & 3-7-9 & & & & & \\
+%			xalan-j & 2\_7\_1 & & & & & \\
+%			xerces-J & 2.10.0 & & & & & \\
+%			xmojo & 5.0.0 & & & & & \\
+%			\hline 
+%		\end{tabular} %
+%%	}
+%\end{table*}
 
 \subsection{Agreement based clone pairs vs. Non agreement based clone pairs}
 
@@ -629,12 +661,12 @@ We performed manual investigation of the clone pairs reported by Simian$_{df}$ a
 	\end{tabular} 
 \end{table}
 
-\begin{figure*}
+\begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{Sankey_proj}
-	\caption{Relationships between 184 true online code clone found between Stack Overflow and Qualitas projects}
+	\includegraphics[width=1.2\linewidth]{Sankey_proj}
+	\caption{Relationships of 49 outdated clone pairs and 4 deleted clone pairs (depicted using (d) suffix)}
 	\label{fig:sankey}
-\end{figure*}
+\end{figure}
 
 %\subsubsection{Qualitas-\textit{N} (v. 2016-08-05)}
 
@@ -649,71 +681,104 @@ Stale online code occurs when a piece of code has been copied from a software pr
 
 %We decided to ignore NiCad results from this analysis due to its failure of clone clustering and renaming on some projects.  Thus, the 39 projects are the ones that can be analysed by Simian, have newer versions than the versions in Qualitas-\textit{O}, and have code version control system (either git or svn). %After filtering, there are 141 pairs removed because 45 of them do not have new versions (7 from c-jdbc, 21 from Compiere, 7 from heritrix, and 10 from iReport) and 4 of them we could not find source code with version control (2 from findbugs, 1 from jag, and 1 from jgraphpad). Finally there were 134  pairs remaining. %We are interested in clone pairs that were changed after they appeared on Stack Overflow.
 
-The manual investigation of 48 class-A online clone pairs reveals that there are 30 stale clones. They are clone pairs that were copied from Qualitas projects to Stack Overflow and marked as \textit{accepted} answers.  The investigation results are described in Table \ref{tab:stale_code}.
+Table \ref{tab:stale_code} shows the results of manual investigation of 84 class-A online clone pairs. The investigation reveals that there are 50 clone pairs that are outdate (i.e. ``stale clone''). They are clone pairs that were copied from Qualitas projects to Stack Overflow and marked as \textit{accepted} answers, and later have been changed during the development.  
 
 \begin{table}
 	\centering
-	\caption{Summary of stale code clones found}
+	\caption{Results from a manual investigation of 84 class-A online clone pairs}
 	\label{tab:stale_code}
 	\small
-	\begin{tabular}{l|r|r|r}
+	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|r|r|r|r|r}
 		\hline 
-		Project & Pairs & Stale & Fresh \\
+		Project & Pairs & Stale & Fresh & Del. & Others \\
 		\hline
-		apache-ant & 1 & 0 & 1 \\
-		aspectj & 2 & 2 & 0 \\
-		hadoop & 14 & 9 & 5 \\
-		hibernate & 16 & 5 & 11 \\
-		jasperreports & 2 & 2 & 0 \\
-		jfreechart & 4 & 4 & 0 \\
-		jgraph & 5 & 5 & 0 \\
-		jgrapht & 1 & 0 & 1 \\
-		junit & 3 & 3 & 0 \\
+		ant & 1 & 0 & 1 & 0 & 0 \\
+		log4j & 4 & 0 & 4 & 0 & 0 \\
+		tomcat & 7 & 7 & 0 & 0 & 0 \\
+		aspectj & 2 & 2 & 0 & 0 & 0 \\
+		hadoop & 14 & 9 & 5 & 0 & 0 \\
+		hibernate & 16 & 4 & 11 & 1 & 0 \\
+		jasperreports & 2 & 2 & 0 & 0 & 0 \\
+		jfreechart & 4 & 4 & 0 & 0 & 0 \\
+		jgraph & 5 & 4 & 0 & 0 & 1 \\
+		jgrapht & 1 & 0 & 1 & 0 & 0 \\
+		jstock & 2 &  2 & 0 & 0 & 0 \\
+		jung & 2 & 2 & 0 & 0 & 0 \\
+		junit & 3 & 3 & 0 & 0 & 0 \\
+		poi & 3 & 1 & 2 & 0 & 0 \\
+		spring & 14 & 9 & 3 & 2 & 0 \\
+		struts & 1 & 1 & 0 & 0 & 0 \\
+		weka & 3 & 0 & 3 & 0 & 0 \\
 		\hline
-		Total & 48 & 30 & 18 \\
+		Total & 84 & 50 & 30 & 3 & 1 \\
 		\hline
 	\end{tabular} 
+}
 \end{table}
 
 \begin{table*}
 	\centering
-	\caption{30 stale code clones in Stack Overflow found by a manual investigation}
+	\caption{53 code clones in Stack Overflow that were altered, rewritten, or removed from the project after posted}
 	\label{tab:stale_code_details}
 	\small
-	\begin{tabular}{r|l|r|c|l}
+	\begin{tabular}{r|l|l|r|c|l}
 		\hline 
-		No. & File & Stack Overflow Q\&A & Changes made & Date \\
+		No. & Project & File & SO Post & Changes & Date \\
 		\hline
-		1 & aspectjtools1.6.9-src/../Agent.java & 18303692 & alteration & 2015-09-08 \\
-		2 & aspectjweaver1.6.9-src/../Agent.java & 18303692 & alteration & 2015-09-08 \\
-		3 & hadoop-1.0.0/../WritableComparator.java & 22315734 & alteration & 2014-11-20 \\
-		4 & hadoop-1.0.0/../StringUtils.java & 801987 & alteration & 2013-02-04 \\
-		5 & hadoop-1.0.0/../DBCountPageView.java & 21702608 & alteration & 2011-06-12 \\
-		6 & hadoop-1.0.0/../DBCountPageView.java & 21702608 & alteration & 2011-06-12 \\
-		7 & hadoop-1.0.0/../LineRecordReader.java & 16180910 & alteration & 2011-07-25 \\
-		8 & hadoop-1.0.0/../LineRecordReader.java & 16180910 & alteration & 2011-07-25 \\
-		9 & hadoop-1.0.0/../JobSubmissionFiles.java & 14845581 & alteration & 2012-06-25 \\
-		10 & hadoop-1.0.0/../TextOutputFormat.java & 16928749 & alteration & 2011-06-12 \\
-		11 & hadoop-1.0.0/../TestJobCounters.java & 18833798 & alteration & 2011-06-12 \\
-		12 & hibernate-release-4.2.2.Final/../SettingsFactory.java & 8257554 & removal & 2011-03-11 \\
-		13 & hibernate-release-4.2.2.Final/../Example.java & 24924255 & alteration & 2013-04-23 \\
-		14 & hibernate-release-4.2.2.Final/../SQLServer2005LimitHandler.java.java & 23967852 & alteration & 2013-04-23 \\
-		15 & hibernate-release-4.2.2.Final/../ConnectionProviderInitiator.java & 15168494 & alteration & 2016-02-24 \\
-		16 & hibernate-release-4.2.2.Final/../SchemaUpdate.java & 23520731 & alteration & 2016-02-05 \\
-		17 & jasperreports-3.7.4/../JRVerifier.java & 8037824 & removal & 2011-05-20 \\
-		18 & jasperreports-3.7.4/../JRVerifier.java & 8037824 & alteration & 2013-12-08 \\
-		19 & jasperreports-3.7.4/../SpiderWebPlot.java & 21998949 & alteration & 2013-11-22 \\
-		20 & jasperreports-3.7.4/../SpiderWebPlot.java & 21998949 & alteration & 2013-11-22 \\
-		21 & jasperreports-3.7.4/../AbstractXYItemRenderer.java & 12936580 & alteration & 2016-01-16 \\
-		22 & jfreechart-1.0.13/../KeyToGroupMap.java & 16058183 & alteration & 2013-07-03 \\
-		23 & jgraph-latest-bsd-src/../GroupingRemoving.java & 6722760 & rewriting & 2005 \\
-		24 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & rewriting & 2005 \\
-		25 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & rewriting & 2005 \\
-		26 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & rewriting & 2005 \\
-		27 & jgraph-latest-bsd-src/../HelloWorld.java & 6722760 & rewriting & 2005 \\
-		28 & junit-4/org/junit/Assert.java & 23586872 & alteration & 2015-05-12 \\
-		29 & junit-4/../ExpectException.java & 8802082 & alteration & 2014-05-26 \\
-		30 & junit-4/../ExternalResource.java & 7504040 & alteration & 2016-06-25 \\
+		1 &  aspectj-1.6.9  &  Agent.java  & 18303692 &  alteration  & 2015-09-08 \\
+		2 &  aspectj-1.6.9   &  Agent.java  & 18303692 &  alteration  & 2015-09-08 \\
+		3 &  hadoop-1.0.0  &  DBCountPageView.java  & 21702608 &  alteration & 2011-06-12 \\
+		4 &  hadoop-1.0.0  &  DBCountPageView.java  & 21702608 &  alteration  & 2011-06-12 \\
+		5 &  hadoop-1.0.0  &  JobSubmissionFiles.java  & 14845581 &  alteration  & 2012-06-25 \\
+		6 &  hadoop-1.0.0  &  LineRecordReader.java  & 16180910 &  alteration & 2011-07-25 \\
+		7 &  hadoop-1.0.0  &  LineRecordReader.java  & 16180910 &  alteration  & 2011-07-25 \\
+		8 &  hadoop-1.0.0  &  StringUtils.java  & 801987 &  alteration & 2013-02-04 \\
+		9 &  hadoop-1.0.0  &  TestJobCounters.java  & 18833798 &  alteration  & 2011-06-12 \\
+		10 &  hadoop-1.0.0  &  TextOutputFormat.java  & 16928749 &  alteration  & 2011-06-12 \\
+		11 &  hadoop-1.0.0  &  WritableComparator.java  & 22315734 &  alteration & 2014-11-20 \\
+		12 &  hibernate-4.2.2  &  ConnectionProviderInitiator.java  & 15168494 &  alteration  & 2012-06-24 \\
+		13 &  hibernate-4.2.2  &  Example.java  & 24924255 &  alteration  & 2013-04-23 \\
+		14 &  hibernate-4.2.2  &  SchemaUpdate.java  & 23520731 &  alteration & 2016-02-05 \\
+		15 &  hibernate-4.2.2  &  SettingsFactory.java  & 8257554 &  removal & 2011-03-11 \\
+		16 &  hibernate-4.2.2  &  SQLServer2005LimitHandler.java  & 23967852 &  alteration  & 2015-03-12 \\
+		17 &  jasperreports-3.7.4  &  JRVerifier.java  & 8037824 &  alteration  & 2008-04-17 \\
+		18 &  jasperreports-3.7.4  &  JRVerifier.java  & 8037824 &  alteration & 2011-05-20 \\
+		19 &  jfreechart-1.0.13  &  AbstractXYItemRenderer.java  & 12936580 &  alteration  & 2016-02-19 \\
+		20 &  jfreechart-1.0.13  &  KeyToGroupMap.java  & 16058183 &  alteration  & 2013-07-03 \\
+		21 &  jfreechart-1.0.13  &  SpiderWebPlot.java  & 21998949 &  alteration  & 2008-06-02 \\
+		22 &  jfreechart-1.0.13  &  SpiderWebPlot.java  & 21998949 &  alteration  & 2008-06-02 \\
+		23 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
+		24 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
+		25 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
+		26 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
+		27 &  jstock-1.0.7c  &  GoogleMail.java  & 14940863 &  alteration & 2015-12-13 \\
+		28 &  jstock-1.0.7c  &  GoogleMail.java  & 24680923 &  alteration  & 2015-12-13 \\
+		29 &  jung2-2\_0\_1  &  ShortestPathDemo.java  & 6025026 &  alteration  & 2010-04-13 \\
+		30 &  jung2-2\_0\_1  &  ShortestPathDemo.java  & 6025026 &  alteration  & 2010-04-13 \\
+		31 &  junit-4  &  Assert.java  & 23586872 &  alteration  & 2015-05-12 \\
+		32 &  junit-4  &  ExternalResource.java  & 7504040 &  alteration & 2016-06-25 \\
+		33 &  junit-4.11  &  ExpectException.java  & 8802082 &  alteration & 2014-05-26 \\
+		34 &  poi-3.6-20091214  &  WorkbookFactory.java  & 12593810 &  alteration  & 2015-04-29 \\
+		35 &  spring-framework-3.0.5  &  AnnotationMethodHandlerExceptionResolver.java  & 5660519 &  removal & 2012-01-20 \\
+		36 &  spring-framework-3.0.5  &  AutowireUtils.java  & 20913543 &  alteration  & 2014-10-28 \\
+		37 &  spring-framework-3.0.5  &  CustomCollectionEditor.java  & 18623736 &  alteration  & 2013-11-21 \\
+		38 &  spring-framework-3.0.5  &  DefaultAnnotationHandlerMapping.java  & 3758110 &  removal  & 2012-01-20 \\
+		39 &  spring-framework-3.0.5  &  DefaultPropertiesPersister.java  & 6149818 &  alteration  & 2013-03-19 \\
+		40 &  spring-framework-3.0.5  &  DelegatingServletInputStream.java  & 20996373 &  alteration  & 2016-07-15 \\
+		41 &  spring-framework-3.0.5  &  DelegatingServletInputStream.java  & 20996373 &  alteration  & 2008-12-18 \\
+		42 &  spring-framework-3.0.5  &  DelegatingServletInputStream.java  & 20996373 &  alteration  & 2008-12-18 \\
+		43 &  spring-framework-3.0.5  &  DispatcherServlet.java  & 4781746 &  alteration  & 2011-08-08 \\
+		44 &  spring-framework-3.0.5  &  Jaxb2Marshaller.java  & 10924700 &  alteration  & 2012-08-28 \\
+		45 &  spring-framework-3.0.5  &  ScheduledTasksBeanDefinitionParser.java  & 3751463 &  alteration  & 2016-07-05 \\
+		46 &  struts2-2.2.1  &  DefaultActionMapper.java  & 14019840 &  alteration  & 2013-10-18 \\
+		47 &  tomcat-7.0.2  &  BasicAuthenticator.java  & 21734562 &  alteration  & 2016-08-04 \\
+		48 &  tomcat-7.0.2  &  BasicAuthenticator.java  & 21734562 &  alteration & 2016-08-04 \\
+		49 &  tomcat-7.0.2  &  CoyoteAdapter.java  & 24404964 &  alteration  & 2012-11-18 \\
+		50 &  tomcat-7.0.2  &  CoyoteAdapter.java  & 24404964 &  alteration  & 2012-11-18 \\
+		51 &  tomcat-7.0.2  &  FormAuthenticator.java  & 21734562 &  alteration & 2016-08-04 \\
+		52 &  tomcat-7.0.2  &  HttpServlet.java  & 5266856 &  alteration  & 2011-10-22 \\
+		53 &  tomcat-7.0.2  &  JspRuntimeLibrary.java  & 10289462 &  alteration  & 2012-09-12 \\
 		\hline
 	\end{tabular} 
 \end{table*}
