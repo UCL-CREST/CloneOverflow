@@ -15,6 +15,7 @@
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage{cleveref}
+
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
 \lstset{language=Java,tabsize=2,basicstyle=\ttfamily\scriptsize} 
@@ -192,58 +193,59 @@ In the manual inspection process, we classify clones into categories according t
 
 \textbf{Stack Overflow}: we extracted Java code snippets from accepted answers in a snapshot of Stack Overflow dump \footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump is in XML format containing information of \textit{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We are interested in code snippets embedded in posts which are pieces of code located between \texttt{<code></code>} tags. We filtered the snippets with two filtering criteria. First, we ignore snippets that are less than 6 lines since they are usually not considered as clones by clone detection research \cite{something}. Second, we are only interested in code snippets from posts that are marked accepted answer since they have high chances to be reused than snippets in questions and other answers. Each snippet is extracted from the dump using regular expressions and saved to a file using its post ID as the file's name. We use \texttt{.java} extension so that the clone detectors can recognise them. If a Stack Overflow conversation has more than one code snippet in the accepted answer, we append an indexing number starting from zero after the post ID (e.g. 45051109\_0.java, and 45051109\_1.java). With the two filters, we finally obtained 144,075 Java code snippets which contain xxx lines of Java source code excluding comments and blank lines\footnote{measured by cloc: https://github.com/AlDanial/cloc}.
 
-\textbf{Qualitas corpus}: we selected an established corpus for empirical software engineering studies called Qualitas \cite{QualitasCorpus}. \FIXME{more details about Qualitas and why we chose it}. We selected the 20130901r version of Qualitas corpus containing 112 Java open source projects with releases no later than 1st September 2013. We chose the snapshot in 2013 since we are interested in online code clones from old releases of the software. Out of 112 Qualitas projects, there are 3 projects, \textit{eclipse}, \textit{jre}, and \textit{squirrel-sql}, that do not contain source code so they were removed from the study. This results in totally 109 projects analysed in the study. As shown in \Cref{tab:datasets}, the 109 Qualitas project have 138,238 Java files containing 16,081,899 lines of code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
+\textbf{Open source systems}: we selected an established corpus for empirical software engineering studies called \textbf{Qualitas} \cite{QualitasCorpus}. \FIXME{more details about Qualitas and why we chose it}. We selected the 20130901r version of Qualitas corpus containing 112 Java open source projects with releases no later than 1st September 2013. We chose the snapshot late back in 2013 since we are interested in online code clones in the direction from open source projects to Stack Overflow. The 20130901r snapshot provides Java code that is at least 3 years old which is sufficient for a number of code snippets to be copied onto Stack Overflow. Out of 112 Qualitas projects, there are 3 projects, \textit{eclipse}, \textit{jre}, and \textit{squirrel-sql}, that do not contain any Java source code file so they are removed from the study. This results in totally 109 projects analysed in the study. As shown in \Cref{tab:datasets}, the 109 Qualitas project have 138,238 Java files containing 16,081,899 lines of code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
 
 \subsubsection{Clone Detectors}
-There are certain restrictions in terms of choosing clone detection tools for this study. Firstly, they have to compatible with Java. Secondly, due to nature of code snippets posted on Stack Overflow, some of them are not complete Java classes or methods. Hence, the tool must be flexible enough to process code snippets which are not in a complete block or not compilable. Thirdly, since the amount of code that have to be process are in a scale of millions line of source code (as shown in \Cref{tab:datasets}), a clone detector must be scalable enough to be able to successfully complete the execution and report clones in a reasonable amount of time. These restrictions force us to remove three well-known clone detectors; CCFinder \cite{Kamiya2002}, iClones \cite{Gode2009}, and DECKARD \cite{Jiang2007a}; from our study since they failed to detect clones between 144,075 Stack Overflow code snippets and 109 Qualitas projects. We finally selected two clone detectors for this study: \textbf{Simian} \cite{simian} and \textbf{NiCad} \cite{Cordy,Roy2008}. We found that both of them are flexible enough to handle million-SLOC code corpus with method or class incompleteness.
+There are a number of restrictions in terms of choosing clone detection tools for this study. Firstly, they have to compatible with Java. Secondly, due to nature of code snippets posted on Stack Overflow, some of them are not complete Java classes or methods. Hence, the tool must be flexible enough to process code snippets which are not in a complete block or not compilable. Thirdly, since the amount of code that have to be processed are in a scale of millions line of code (as shown in \Cref{tab:datasets}), a clone detector must be scalable enough to successfully complete the execution and report clones in a reasonable amount of time. We have tried running 5 state-of-the-arts clone detectors including Simian \cite{simian}, NiCad \cite{Cordy,Roy2008}, CCFinder \cite{Kamiya2002}, iClones \cite{Gode2009}, and DECKARD \cite{Jiang2007a} against the Stack Overflow and Qualitas datasets. CCFinder, iClones, and DECKARD failed to successfully detect clones between 144,075 Stack Overflow code snippets and 109 Qualitas projects. All of them reported execution errors after running for couple of hours. Thus, we removed them from the study. Simian and NiCad completed the detection with success. We found that both of them are flexible enough to handle million-SLOC code corpus with method or class incompleteness. So, we decided to use both of them.
 
-Simian is a text-based clone detector which locate clones at line-level granularity and has been used extensively in several clone studies \cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015, Krinke2010}. It is a command-line tool which enables us to automate the detection. It also offers normalisation of variable names and literals (strings, and numbers) which enable Simian to detect clones of type 1 and type 2. NiCad is also a text-based clone detector which detects clones at method or code block granularity. It can detect clone up to type 3 and is used in several clone studies \cite{Roy2008, Ragkhitwetsagul2016, Svajlenko2014, Wang2013, Mondal2011, Sajnani2016}. It utilises TXL for parsing and pretty-printing source code. It also provide code normalisation by variable renaming and abstractions. We use a variant of NiCad called \textit{nicadcross}. It offers the same functionalities as the original NiCad but is specialised for detecting code clones between two systems.
+\textbf{Simian} is a text-based clone detector which locate clones at line-level granularity and has been used extensively in several clone studies \cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015, Krinke2010}. It is a command-line tool which enables us to automate the detection. It also offers normalisation of variable names and literals (strings, and numbers) which enable Simian to detect clones of type 1 and type 2. \textbf{NiCad} is also a text-based clone detector which detects clones at either method- or block-level granularity. It can detect clone up to type 3 and is used in several clone studies \cite{Roy2008, Ragkhitwetsagul2016, Svajlenko2014, Wang2013, Mondal2011, Sajnani2016}. It utilises TXL for parsing and pretty-printing source code. It also provide code normalisation by variable renaming and code abstraction. We use a variant of NiCad called \textit{nicadcross}. It offers the same functionalities as the original NiCad but is specialised for detecting code clones between two systems. NiCad is also a command-line tool which makes it suitable for automation.
 
 \subsubsection{Agreement-based Clone Detection}
-Since we do not have clone oracle of the two datasets, we adopted an idea of clone agreement used in clone research \cite{Wang2013,Funaro2010,cr2016ssbse} to help reducing the number of clones for manual investigation. To find agreement of two clone pairs, we resort to an approach proposed by a study by another study~\cite{Bellon2007}. 
+The number of detected clones between the two datasets can be very large and infeasible for human to manually check all of them. Therefore, we adopted an idea of clone agreement which has been used in clone research studies \cite{Wang2013,Funaro2010,cr2016ssbse} in a situation that clone oracle is missing or impossible to establish. Clone pairs agreed by multiple clone detection tools have higher confident to be real clones \cite{cr2016ssbse}. By using this agreement-based clone detection approach, we can reduce the number of clone candidates for manual investigation by paying more attention to the agreed clone pairs. To find agreement of two clone pairs, we resort to an approach proposed by a study by Bellon et al.~\cite{Bellon2007}. Two clone pairs which have overlapping clone lines can be considered as a good-match or an ok-match pair. A good-match clone pair has stronger agreement than an ok-match pair. We follow the same following definitions introduced in the original paper:
 
-According to Bellon et al.~\cite{Bellon2007}, \textit{good} and \textit{ok}-match clone pairs are defined as follows. A clone pair \textit{CP} is formed by two clone fragments \textit{CF$_1$} and \textit{CF$_2$} with a pre-defined similarity threshold \textit{t}: \textit{CP} = (\textit{CF$_1$}, \textit{CF$_2$}, \textit{t}). For each clone pair, we can define \textit{overlap} and \textit{contained} value of two clone pairs as 
-\squeezeup
+%good and ok-match clone pairs are defined as follows. 
+A clone pair \textit{CP} is formed by two clone fragments \textit{CF$_1$} and \textit{CF$_2$} with a pre-defined similarity threshold \textit{t}: \textit{CP} = (\textit{CF$_1$}, \textit{CF$_2$}, \textit{t}).  We can define \textit{overlap} and \textit{contained} value of two clone pairs as 
+%\squeezeup
 \begin{multline}
 	overlap(CP_1, CP_2) = \frac{|lines(CF_1) \cap lines(CF_2)|}{|lines(CF_1) \cup lines(CF_2)|} 
 \end{multline}
-\squeezeup
+%\squeezeup
 \begin{multline}
 	contained(CP_1, CP_2) = \frac{|lines(CF_1) \cap lines(CF_2)|}{|lines(CF_1)|}. 
 \end{multline}
 
-\textit{good-value} is then defined as
-\squeezeup
+\textit{good-value} of two clone pairs is then defined as
+%\squeezeup
 \begin{align*}
 	good(CP_1, CP_2) = min(overlap(CP_1.CF_1,CP_2.CF_1), \\ overlap(CP_1.CF_2,CP_2.CF_2)).
 \end{align*}
 
-And \textit{ok-value} is defined as
-\squeezeup
+Furthermore, \textit{ok-value} is defined as
+%\squeezeup
 \begin{align*}
 	ok(CP_1,CP_2) = min(max(contained(CP_1.CF_1,CP_2.CF_1), \\ contained(CP_2.CF_1,CP_1.CF_1)),
 	\\ max(contained(CP_1.CF_2,CP_2.CF_2), \\contained(CP_2.CF_2,CP_1.CF_2))).
 \end{align*}
 
 Two clone pairs $CP_1$ and $CP_2$ are called a \textit{good-match(p)} iff, for $p \in [0,1]$ holds 
-\squeezeup
+%\squeezeup
 \begin{equation}
 good(CP_1,CP_2) \geq p.
 \end{equation}
 
-Similarly for \textit{ok-match(p)} pair
-\squeezeup
+Similarly for an \textit{ok-match(p)} pair
+%\squeezeup
 \begin{equation}
 ok(CP_1,CP_2) \geq p.
 \end{equation}
 
-Using this \textit{good-match} and \textit{ok-match} criteria, we can prioritise clone pairs for manual investigation. \textit{good-match} pairs are the ones with the highest confident to be true clones followed by \textit{ok-match} pairs. After finishing agreement-based clone pairs, the clone pairs without agreement with be manually looked at.
+Using this good-match and ok-match criteria with a predefined threshold \textit{p}, we prune the detected clone pairs for manual investigation. good-match pairs are the ones with the highest confident to be true clones, followed by ok-match pairs, and followed by clone pairs without agreement.
+
+\subsection{Clone detectors' parameter tuning}
+We are aware of effects of configurations to clone detection results and needs for searching for optimised configurations in empirical clone studies \cite{Wang2013,cr2016ssbse,Ragkhitwetsagul2016,Svajlenko2014}. However, considering the size of the two datasets and search space of at least 15 of Simian's and 5 of NiCad's parameters, we are hindered from finding the best configurations of the tools. Thus, we decided to configure Simian and NiCad using two established settings: 1) the tools' default settings chosen by the tools' creators (denoted as \textit{df}), and 2) the general settings for Java sets from \textit{EvaClone}, a study of optimising clone detectors' configurations based on clone agreement, by Wang et al.~\cite{Wang2013} (denoted by \textit{EvCl}). With our two tools and these two sets of configurations, we look for agreements in four possible pair-wise combinations: Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\textrm{\textit{EvCl}}}$, Simian$_{\textrm{\textit{EvCl}}}$-NiCad$_{df}$, and Simian$_{\textrm{\textit{EvCl}}}$-NiCad$_{\textrm{\textit{EvCl}}}$.
 
 \section{Results}
-
-We are aware of effects of configurations to clone detection results and needs for searching for optimised configurations. However, considering the size of the two datasets and search space of the Simian's and NiCad's parameters, we are hindered from finding the best configurations of the tools. Thus, we decided to configure Simian and NiCad using two established settings: 1) the tools' default settings (denoted as \textit{df}), and 2) settings from \textit{EvaClone}, a study of optimising clone detectors' configurations based on clone agreement, by Wang et al.~\cite{Wang2013} (denoted by \textit{EvCl}). With two tools and two sets of configurations, we look for agreements in four pair-wise combinations: Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{EvCl}$, Simian$_{EvCl}$-NiCad$_{df}$, and Simian$_{EvCl}$-NiCad$_{EvCl}$.
-
-The clone statistics obtained from running Simian and NiCad with \textit{df} and \textit{EvCl} setting are presented in \Cref{tab:raw_stats}. Preliminary manual investigation of Simian's clone report showed that there were problematic 11 fragments. These fragments make Simian generating a large number of false clones involving array initialisation. Hence, they were removed from Simian's clone reports before the analysis. From \Cref{tab:raw_stats}, Simian clones are from approximately 10\% of the full 144,075 Stack Overflow fragments, 1,406 reported by Simain$_{df}$ and 1,360 from Simain$_{EvCl}$ respectively. NiCad$_{df}$ reports clones from 1,197 Stack Overflow fragments while NiCad$_{EvCl}$ reports clones from a large amount of 12,884 fragments due to its relaxed settings. In terms of number of clone pairs, EvaClone configurations prefer recall \cite{Wang2013} so Simian$_{EvCl}$ and NiCad$_{EvCl}$ report a large number of clone pairs of 59,936,722 and 206,718,663 respectively. The average clone size of Simian$_{df}$ is 7.45 which is bigger than the EvaClone counterpart of 4.81. Similarly, NiCad$_{df}$ has an average clone size of 9.54 which is also bigger than 5.31 reported by NiCad$_{EvCl}$. The statistics show that EvaClone tunes the tools in the way that they report smaller clones but result in higher agreements. The percentage of clone size compared to the size of Stack Overflow snippets reported by Simian$_{df}$, Simian$_{EvCl}$, NiCad$_{df}$, and NiCad$_{EvCl}$ is 28\%, 29\%, 25\% and 21\% accordingly.
+The clone statistics obtained from running Simian and NiCad with \textit{df} and \textit{EvCl} settings are presented in \Cref{tab:raw_stats}. Preliminary manual investigation of Simian's clone report showed that there were problematic 11 fragments. These 11 fragments trigger Simian to generate large clone clusters containing a huge number of false clones of array initialisation. Hence, they were removed from Simian's clone reports before the analysis. From \Cref{tab:raw_stats}, Simian clones are from approximately 10\% of the Stack Overflow snippets, 1,406 reported by Simain$_{df}$ and 1,360 from Simain$_{\textrm{\textit{EvCl}}}$ respectively. NiCad$_{df}$ reports clones from 1,197 Stack Overflow code snippets while NiCad$_{\textrm{\textit{EvCl}}}$ reports clones from a large amount of 12,884 snippets due to its relaxed settings. In terms of number of clone pairs, Simian$_{\textrm{\textit{EvCl}}}$ and NiCad$_{\textrm{\textit{EvCl}}}$ report a large number of clone pairs of 59,936,722 and 206,718,663 respectively. This is expected since EvaClone configurations prefer recall \cite{Wang2013}. The average clone size of Simian$_{df}$ is 7.45 which is bigger than its Simian$_{\textrm{\textit{EvCl}}}$ counterpart of 4.81. Similarly, NiCad$_{df}$ has an average clone size of 9.54 which is bigger than 5.31 reported by NiCad$_{\textrm{\textit{EvCl}}}$. We can see from the statistics that EvaClone tunes the tools in the way that they report smaller clones but result in higher agreements. The average percentage of code in Stack Overflow snippets that are clones reported by Simian$_{df}$, Simian$_{\textrm{\textit{EvCl}}}$, NiCad$_{df}$, and NiCad$_{\textrm{\textit{EvCl}}}$ is 28\%, 29\%, 25\% and 21\% accordingly.
 
 \begin{table}[H]
 	\centering
@@ -252,11 +254,9 @@ The clone statistics obtained from running Simian and NiCad with \textit{df} and
 	\small
 	\begin{tabular}{l|r|r|r|r}
 		\hline
-		%		\multicolumn{3}{c|}{Qualitas-\textit{O}} & \multicolumn{3}{c}{Qualitas-\textit{N}} \\
-		%		\hline
-		& Simian$_{\textrm{\textit{df}}}$ & Simian$_{\textrm{\textit{EvCl}}}$  & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{\textrm{\textit{EvCl}}}$ \\ % & Simian$_{\textrm{\textit{df/EvaClone}}}$ & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{\textrm{\textit{EvCl}}}$ \\ \hline
+		& Simian$_{\textrm{\textit{df}}}$ & Simian$_{\textrm{\textit{EvCl}}}$  & NiCad$_{\textrm{\textit{df}}}$ & NiCad$_{\textrm{\textit{EvCl}}}$ \\ 
 		\hline
-		\textit{Successful} & 109 & 109 & 97 & 82 \\ %& 44 & 40 & 34 \\
+		\textit{Successful} & 109 & 109 & 97 & 82 \\ 
 		\textit{Clust.~fail} & -- & -- & 6 & 16 \\
 		\textit{Renm.~fail} & -- &  -- & -- & 11 \\
 		\hline
@@ -280,16 +280,11 @@ The clone statistics obtained from running Simian and NiCad with \textit{df} and
 			& \multicolumn{3}{c|}{1360 fragments}  
 			& \multicolumn{3}{c|}{1197 fragments} 
 			& \multicolumn{3}{c}{12884 fragments} \\ \cline{2-13}
-			%& \multicolumn{3}{c|}{iCharC,iCurlB,iIdC,iMod,iStrC} 
-			%& \multicolumn{3}{c|}{iCurlB,iId,iIdC,iStr,iChar,iSbtNm,bSqBrck} 
-			%& \multicolumn{3}{c|}{rename=none,abstract=none} 
-			%& \multicolumn{3}{c}{rename=blind,abstract=literal} \\ %\cline{2-17}  
 			& $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
 			& $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ 
 			& $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$
 			& $C_{\mathrm{pairs}}$ & $C_{\mathrm{SLOC}}$ & $C_{\mathrm{\%}}$ \\ 
 			\hline
-			%Removed & 11 & -- & -- & -- & 0 & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- & -- \\ %& 11 & -- & -- & -- \\
 			Total & 54790 & -- & -- 		& 59936722 & --	& -- 		& 127305 	& -- & -- 	& 206718663 & -- & -- \\
 			Mean & 52 & 7.45 & 28\% 		& 44104 & 4.81 & 29\% 		& 106 & 9.54 & 25\% 	& 16046 & 5.31 & 21\% \\
 			Std Dev. & 147 & 3.22 & 23\% 	& 1040483 & 1.20 & 19\% 	& 209 & 3.10 & 18\% 	& 21890 & 1.92 & 16\% \\
@@ -382,30 +377,42 @@ The clone statistics obtained from running Simian and NiCad with \textit{df} and
 
 \begin{table}
 	\centering
-	\caption{13 Qualitas projects that have been cloned as examples on Stack Overflow}
+	\caption{13 Qualitas projects that have been cloned as examples on Stack Overflow with their respective licenses}
 	\label{t:new_and_old}
 	%	\resizebox{\columnwidth}{!}{%
 	\small
-	\begin{tabular}{l|r|p{3.5cm}}
+	\begin{tabular}{l|r|p{4cm}}
 		\hline 
-		Project & Version & License  \\
+		Project & Version & Licenses (no.~of files) \\
 		\hline
 %		apache-ant & 1.8.4 & Apache2.0 \\
 %		apache-log4j & 1.2.16 & \\
-		apache-tomcat & 7.0.2 & \\
-		aspectj & 1.6.9 & Eclipse 1.0 \\
-		hadoop & 1.0.0 & Apache 2.0\\
-		hibernate & 4.2.2 & GLGPL 2.1+ \\
-		jasperreports & 3.7.4 & GLGPL 3.0  \\
-		jfreechart & 1.0.13 & GLGPL 2.0  \\
-		jgraph & 5.13.0.0 & Proprietary (mxGraph) \\
+		aspectj & 1.6.9 & Apache-1.1 (182), CPLv1 (3), \newline EPLv1 (2011), None (23), \newline SeeFile (6), Unknown (286) \\
+		\hline
+		hadoop & 1.0.0 & Apache-2 (1,935), \newline spxdBSD/Apache-2 (8) \newline None (33), Unknown (14) \\
+		\hline
+		hibernate & 4.2.2 & Apache-2 (20), \newline GLGPLv2.1+ (31) \newline PublicDomain (1), \newline None (1,850), SeeFile (4), \newline Unknown (4,324) \\
+		\hline
+		jasperreports & 3.7.4 & GLGPLv2.1+ (3), \newline GLGPLv3+ (1,581), \newline None (1), Unknown (4)\\
+		\hline
+		jfreechart & 1.0.13 & GLGPLv2.1+ (989) \\
+		\hline
+		jgraph & 5.13.0.0 & GLGPLv2.1+ (4), \newline spdxBSD (2), Unknown (151), \newline None (24), SeeFile (9) \\
+		\hline
 %		jgrapht & 0.8.1 & GLGPL 2.1 \& Eclipse  1.0 \\
-		jstock & 1.0.7c & \\
-		jung2 & 2\_0\_1 & \\
-		junit & 4.11 & Eclipse  1.0 \\
-		poi & 3.6 & \\
-		spring-framework & 3.0.5 & \\
-		struts2 & 2.2.1-all & \\
+		jstock & 1.0.7c & GLGPLv2.1+ (1), \newline GPLv2+ (239), \newline Apache-2 (1), BSD3 (1), \newline None (23), SeeFile (1), \newline spdxMIT (3), Unknown (5)\\
+		\hline
+		jung2 & 2\_0\_1 & N/A \\
+		\hline
+		junit & 4.11 & None (160), Unknown (4)  \\
+		\hline
+		poi & 3.6 & Apache-2 (2,002), None (5) \\
+		\hline
+		spring & 3.0.5 & Apache-2 (2,982) \\
+		\hline
+		struts2 & 2.2.1-all & Apache-2 (1,717), \newline spdxBSD3 (6), \newline None (118), SeeFile (1), \newline Unknown (2) \\
+		\hline
+		tomcat & 7.0.2 & Apache-2 (1,313), None (11) \\
 %		weka & 3-7-9 & \\
 		\hline
 	\end{tabular} %
@@ -475,33 +482,32 @@ The clone statistics obtained from running Simian and NiCad with \textit{df} and
 
 %\subsection{Agreement based clone pairs vs. Non agreement based clone pairs}
 
-%The agreement-based clone pairs are the ones discovered using Bellon's \textit{good}-match(0.7) and \textit{ok}-match(0.7) criteria as listed in  Table \ref{t_agreed_good_clone_pairs}. Non-agreement based clone pairs are the ones that are solely reported by a single tool. The agreement-based pairs provide higher confident that they are real clones than the non-agreement based ones.
+%The agreement-based clone pairs are the ones discovered using Bellon's good-match(0.7) and \textit{ok}-match(0.7) criteria as listed in  Table \ref{t_agreed_good_clone_pairs}. Non-agreement based clone pairs are the ones that are solely reported by a single tool. The agreement-based pairs provide higher confident that they are real clones than the non-agreement based ones.
 
 \subsection{Agreement based clone pairs}
 
-We use a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok}-match. A visualisation of \textit{good}-match clone pairs between four sets of parameter settings can be seen from \Cref{fig:venn4_orig_good}. There are 2,261 unique \textit{good}-match pairs. The distribution of 23,868 \textit{ok}-match pairs, which subsume the \textit{good}-match pairs, is depicted in \Cref{fig:venn4_orig_ok}.
+We use a threshold \textit{p} of 0.7 for both good and ok-match. A visualisation of good-match clone pairs between four combinations of \textit{df} and \textit{EvCl} settings can be seen from \Cref{fig:venn4_orig_good}. We found that NiCad throws renaming and clustering errors while processing some Qualitas projects as listed in \Cref{tab:projects_missing}. %This resulted in not all 109 projects had NiCad clone reports. 
+NiCad$_{\textrm{\textit{df}}}$, produced clustering errors for 6 projects. NiCad$_{\textrm{\textit{EvCl}}}$ produced renaming error for 4 projects, and clustering error for 13 projects. As a result, we did not have NiCad clone reports for these projects and hence they are missing from agreement-based clone pair calculation. \FIXME{Report the errors to NiCad creator.} There are 2,261 unique good-match pairs consisting of 10 pairs from Simian$_{df}$-NiCad$_{df}$, 26 pairs from Simian$_{df}$-NiCad$_{\textrm{\textit{EvCl}}}$, 10 pairs from Simian$_{\textrm{\textit{EvCl}}}$-NiCad$_{df}$, and 2,228 pairs from Simian$_{\textrm{\textit{EvCl}}}$-NiCad$_{\textrm{\textit{EvCl}}}$. \Cref{fig:venn4_orig_ok} show the distribution of 23,868 unique ok-match pairs, which subsume the good-match pairs. There are 3,800 pairs from Simian$_{df}$-NiCad$_{df}$, 1,017 pairs from Simian$_{df}$-NiCad$_{\textrm{\textit{EvCl}}}$, 88 pairs from Simian$_{\textrm{\textit{EvCl}}}$-NiCad$_{df}$, and 19,777 pairs from Simian$_{\textrm{\textit{EvCl}}}$-NiCad$_{\textrm{\textit{EvCl}}}$. Between the four sets, there are a few clone pairs that are common between two adjacent sets, but there is no clone pair that is agreed by all four combinations.
 
-Nevertheless,  NiCad produced renaming and clustering errors for some of the settings. This resulted in not all 109 projects had NiCad clone reports. For NiCad default settings (NiCad$_{\textrm{\textit{df}}}$), 6 projects had clustering failed errors. For NiCad EvaClone settings (NiCad$_{\textrm{\textit{EvCl}}}$), 4 projects had renaming failed errors and 13 projects had clustering failed errors as depicted in \Cref{tab:projects_missing}. So these projects are also missing from agreed clone pairs. \FIXME{Report the errors to NiCad creator.}
-
-%\FIXME{Maybe no longer needed?} We are interested in discovering reused code in the latest versions of Qualitas projects. So, we downloaded the newest release of each project and found 44 of them having newer updates. Then, we reran the experiment again on these 44 projects. Several projects triggered NiCad problem of clustering and renaming again as listed in Table \{tab:projects_missing}. The agreed clone pairs using Bellon's \textit{good}-match(0.7) and \textit{ok}-match(0.7) criteria of this new dataset are also listed in Table \{t_agreed_good_clone_pairs}. 
+%\FIXME{Maybe no longer needed?} We are interested in discovering reused code in the latest versions of Qualitas projects. So, we downloaded the newest release of each project and found 44 of them having newer updates. Then, we reran the experiment again on these 44 projects. Several projects triggered NiCad problem of clustering and renaming again as listed in Table \{tab:projects_missing}. The agreed clone pairs using Bellon's good-match(0.7) and ok-match(0.7) criteria of this new dataset are also listed in Table \{t_agreed_good_clone_pairs}. 
 
 \begin{table}[H]
 	\centering
-	\caption{Distribution of agreement-based clone pairs using Bellon's criteria}
+	\caption{Distribution of agreement-based clone pairs using Bellon's criteria for \textit{df} and \textit{EvCl} settings}
 	\label{t_agreed_good_clone_pairs}
 	\small
 	\begin{tabular}{l|l|r|r}
 		\hline
 		\multicolumn{2}{c|}{Tool} & \multicolumn{2}{c}{No.~of clone pairs} \\
 		\hline
-		Simian & NiCad & \textit{good}-match & \textit{ok}-match \\
+		Simian & NiCad & good-match & ok-match \\
 		%\hline
-		%Settings & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvaClone}}}$ & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvaClone}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
+		%Settings & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvCl}}}$ & Simian$_{\mathrm{\textit{default}}}$ & Simian$_{\mathrm{\textit{EvCl}}}$ \\ % & Simian$_{\mathrm{\textit{cloplag}}}$ \\
 		\hline
-		\textit{default} & \textit{default} & 10 	& 3800 \\ 
-		\textit{default} & \textit{EvaClone} 	& 26 	& 1017 \\ 
-		\textit{EvaClone} 	& \textit{default} 	& 10 	& 88 \\
-		\textit{EvaClone} 	& \textit{EvaClone} 	& 2228 & 19777 \\ 
+		\textit{df} & \textit{df} & 10 	& 3800 \\ 
+		\textit{df} & \textit{EvCl} 	& 26 	& 1017 \\ 
+		\textit{EvCl} 	& \textit{df} 	& 10 	& 88 \\
+		\textit{EvCl} 	& \textit{EvCl} 	& 2228 & 19777 \\ 
 		\hline
 		\multicolumn{2}{l|}{Total} & 2274 & 24682 \\
 		\hline
@@ -514,13 +520,13 @@ Nevertheless,  NiCad produced renaming and clustering errors for some of the set
 	\begin{minipage}{.5\textwidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{venn4_pairs_good_pt1+2}
-		\caption{Distributions of \textit{good}-match(0.7) pairs}
+		\caption{Distributions of good-match(0.7) pairs}
 		\label{fig:venn4_orig_good}
 	\end{minipage}
 	\begin{minipage}{.5\textwidth}
 		\centering
 		\includegraphics[width=0.8\linewidth]{venn4_pairs_ok_pt1+2}
-		\caption{Distributions of \textit{ok}-match(0.7) pairs}
+		\caption{Distributions of ok-match(0.7) pairs}
 		\label{fig:venn4_orig_ok}
 	\end{minipage}
 \end{figure*}
@@ -556,11 +562,11 @@ Nevertheless,  NiCad produced renaming and clustering errors for some of the set
 	\end{tabular} 
 \end{table*}
 
-The classification scheme is described in \Cref{tab:classification_scheme} and the classification results are shown in \Cref{tab:classification_good_o}. We have manually investigated all of the 2,261 \textit{good-match} ones reported by agreement of four different Simian and NiCad settings.  However, for the \textit{ok-match}, we could not investigate all of the 23,868 pairs manually.  According to the manual investigation of \textit{good-match} results, we found that Simian$_{\textrm{\textit{EvCl}}}$--NiCad$_{\textrm{\textit{EvCl}}}$ produces a large number, 2225 (99.87\%), of false positive results (category D, E, and F). Thus, we decided to leave them out of the manual investigation of \textit{ok-match} pairs. There are totally 608 \textit{ok-match} pairs that were investigated. The 39 true positive pairs found are combinations of 8 unique Stack Overflow fragments, and 9 unique Qualitas Java files from 6 different projects.
+The classification scheme is described in \Cref{tab:classification_scheme} and the classification results are shown in \Cref{tab:classification_good_o}. We have manually investigated all of the 2,261 good-match ones reported by agreement of four different Simian and NiCad settings.  However, for the ok-match, we could not investigate all of the 23,868 pairs manually.  According to the manual investigation of good-match results, we found that Simian$_{\textrm{\textit{EvCl}}}$--NiCad$_{\textrm{\textit{EvCl}}}$ produces a large number, 2225 (99.87\%), of false positive results (category D, E, and F). Thus, we decided to leave them out of the manual investigation of ok-match pairs. There are totally 608 ok-match pairs that were investigated. The 39 true positive pairs found are combinations of 8 unique Stack Overflow fragments, and 9 unique Qualitas Java files from 6 different projects.
 
-Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stack Overflow answers. We found that all Stack Overflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) Q $\rightarrow$ S or (2) from a third source to both S and Q independently.
+Since we are not certain about the direction of copying in the B-classified pairs, we checked the modification time of each Java file in Qualitas project and compare it to the timestamp of Stack Overflow answers. We found that all Stack Overflow code fragments were posted after their respectively similar Java files in Qualitas project. This means that the copying can only be either (1) from Qualitas to Stack Overflow or (2) from a third source to both Stack Overflow and Qualitas independently.
 
-%\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{EvaClone}}}$-NiCad$_{\mathrm{\textit{EvaClone}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed \textit{ok}-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{EvaClone}}}$, and Simian$_{\mathrm{\textit{EvaClone}}}$-NiCad$_{df}$. We had not done any investigation of \textit{good}-match since there were no \textit{good}-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
+%\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{EvCl}}}$-NiCad$_{\mathrm{\textit{EvCl}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed ok-match clone pairs from agreements of Simian$_{df}$-NiCad$_{df}$, Simian$_{df}$-NiCad$_{\mathrm{\textit{EvCl}}}$, and Simian$_{\mathrm{\textit{EvCl}}}$-NiCad$_{df}$. We had not done any investigation of good-match since there were no good-match pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
 
 \begin{table*}
 	\centering
@@ -593,7 +599,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 
 %\begin{table}
 %	\centering
-%	\caption{Distribution of classification category A--F according to \textit{good}- and \textit{ok-}match pairs. S denotes Simian and N denotes NiCad tool.}
+%	\caption{Distribution of classification category A--F according to good- and \textit{ok-}match pairs. S denotes Simian and N denotes NiCad tool.}
 %	\label{tab:good_classification}
 %	\small
 %	\begin{tabular}{|l|r|r|r|r|r|r|r|r|}
@@ -601,7 +607,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 %		Category   & A   & 	A'   & 	B   & C   & D   &	E   &	F   & Total  \\
 %		\hline
 %		\hline
-%		\multicolumn{9}{|c|}{\textit{good}-match pairs} \\
+%		\multicolumn{9}{|c|}{good-match pairs} \\
 %		\hline
 %		S$_{df}$--N$_{df}$   & 1 & 0 & 1 & 0 & 1 & 4 & 0 & 7 \\
 %		S$_{df}$--N$_{\textrm{\textit{EvCl}}}$   & 1 & 0 & 0 & 3 & 14 & 1 & 1 & 20 \\
@@ -614,7 +620,7 @@ Since we are not certain about the direction of copying in the B-classified pair
 %		\hline 
 %%		Category   																										& A   	& 	A' 	& 	B  & C	   & D   	&	E   &	F   & Total  \\
 %%		\hline
-%		\multicolumn{9}{|c|}{\textit{ok}-match pairs} \\
+%		\multicolumn{9}{|c|}{ok-match pairs} \\
 %		\hline
 %		S$_{df}$--N$_{df}$        & 3 	& 0 	& 12	& 6 	& 3755  & 8	& 7  &  3791 \\
 %		S$_{df}$--N$_{\textrm{\textit{EvCl}}}$   	& 8 	& 0 	& 28	& 4	& 904 & 29  & 32 &  1005 \\
@@ -629,9 +635,9 @@ Since we are not certain about the direction of copying in the B-classified pair
 \subsection{Non-agreement based clone pairs}
 In the preliminary stage of our experiment, we found that there are 41 Stack Overflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. 
 
-With our 4 settings, we decided to investigate only 2 settings, Simian$_{df}$, and NiCad$_{df}$, and drop Simian$_{\mathrm{\textit{EvaClone}}}$ and NiCad$_{\mathrm{\textit{EvaClone}}}$ due to their large number of false positives as shown in \Cref{tab:good_classification} and \Cref{tab:ok_classification}. With the 2 selected settings, we investigated clone pairs having the minimum clone size of 10 SLOC as they are meaningful and tend to be real clone in modern clone detection \cite{Sajnani2016}. 
+With our 4 settings, we decided to investigate only 2 settings, Simian$_{df}$, and NiCad$_{df}$, and drop Simian$_{\mathrm{\textit{EvCl}}}$ and NiCad$_{\mathrm{\textit{EvCl}}}$ due to their large number of false positives. With the 2 selected settings, we investigated clone pairs having the minimum clone size of 10 SLOC as they are meaningful and tend to be real clone in modern clone detection \cite{Sajnani2016}. 
 
-For Simian$_{df}$, there were 9,383 clone pairs reported by the tool. Out of 9,383 pairs, 140 of them are the ones found in \textit{ok-}pairs using agreement-based detection. We filtered the results further by removing false positives such as similar equals(), hashCode() methods, getters and setters out by using regular expression. We managed to remove 8,956 pairs using this method. Eventually, there were 287 clone pairs remaining for manual investigation. For NiCad$_{df}$, we obtained 7,040 clone pairs to look at which is infeasible for manual investigation. Hence, result filtering was also needed. However, regular expressions could not be used effectively as in Simian's case since NiCad allowed clones that are different at keywords/variable names or even added/deleted lines. So we decided to filter the results by selecting pairs that pass stricter clone criteria with $\mathrm{UPI} = 0.2$. By reducing the UPI to 0.2, there were totally 166 pairs left. Out of 166, 52 are \textit{ok}-pairs and 114 are remaining pairs for manual check (18 pairs are from \textit{cayenne} and \textit{iReport} that could not be analysed using UPI = 0.3). The statistics of the clones and classification results are reported in \Cref{tab:classification_indv_stats}.
+For Simian$_{df}$, there were 9,383 clone pairs reported by the tool. Out of 9,383 pairs, 140 of them are the ones found in \textit{ok-}pairs using agreement-based detection. We filtered the results further by removing false positives such as similar \textit{equals()}, \textit{hashCode()} methods, getters and setters out by using regular expression. We managed to remove 8,956 pairs using this method. Eventually, there were 287 clone pairs remaining for manual investigation. For NiCad$_{df}$, we obtained 7,040 clone pairs to look at which is infeasible for manual investigation. Hence, result filtering was also needed. However, regular expressions could not be used effectively as in Simian's case since NiCad allowed clones that are different at keywords/variable names or even added/deleted lines. So we decided to filter the results by selecting pairs that pass stricter clone criteria with $\mathrm{UPI} = 0.2$. By reducing the UPI to 0.2, there were totally 166 pairs left. Out of 166, 52 are ok-pairs and 114 are remaining pairs for manual check (18 pairs are from \textit{cayenne} and \textit{iReport} that could not be analysed using UPI = 0.3). The statistics of the clones and classification results are reported in \Cref{tab:classification_indv_stats}.
 
 %We selected only Stack Overflow fragment and Qualitas files that have never been looked at before in the previous investigation. If many clone pairs having the same Stack Overflow fragment and Qualitas file, we keep only the largest one. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stack Overflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification_indv}. 
 
@@ -642,12 +648,12 @@ For Simian$_{df}$, there were 9,383 clone pairs reported by the tool. Out of 9,3
 	\small
 	\begin{tabular}{l|r|r|r|r}
 		\hline 
-		Tool & Clone pairs & \textit{ok}-pairs & filtered & remaining \\ 
+		Tool & Clone pairs & ok-pairs & filtered & remaining \\ 
 		%\hline 
 		%\multirow{1}{*}{\textit{Simian$_{df}$}-1} & 9383 & 140 & 8951 & 292 \\
 		%\multirow{1}{*}{\textit{Simian$_{df}$}-2} & 9042 & 0 & 8539 & 503 \\
 		\hline
-		\multirow{1}{*}{\textit{Simian$_{df}$}} & 18425 & 140 & 17490 & 795 \\
+		\multirow{1}{*}{\textit{Simian$_{df}$}} & 18422 & 140 & 17490 & 792 \\
 		\hline
 %		\multirow{1}{*}{\textit{NiCad$_{df}$}-1} & 7040  & 226 & 6700 & 114 \\
 %		\multirow{1}{*}{\textit{NiCad$_{df}$}-2} & 22187  & 152 & 21990 & 45 \\
@@ -670,16 +676,16 @@ We performed manual investigation and classified the clone pairs reported by Sim
 		\hline 
 		Tool & A & A' & B & C & Total \\
 		\hline
-		\textit{good}-pairs & 1 & 0 & 4 & 3 & 8 \\
-		\textit{ok}-pairs & 8 & 0 & 33 & 8 & 49 \\
+		good-pairs & 1 & 0 & 4 & 3 & 8 \\
+		ok-pairs & 8 & 0 & 33 & 8 & 49 \\
 %		Simian$_{df}$ pairs-1 & 35 & 0 & 90 & 8 & 133 \\
 %		Simian$_{df}$ pairs-2 & 36 & 0 & 229 & 3 & 268 \\
-		Simian$_{df}$ pairs & 71 & 0 & 319 & 11 & 401 \\
+		Simian$_{df}$ pairs & 71 & 0 & 318 & 10 & 399 \\
 %		NiCad$_{df}$ pairs & 4 & 0 & 5 & 0 & 9 \\
 %		NiCad$_{df}$ pairs-2 & 0 & 0 & 10 & 0 & 10 \\
 		NiCad$_{df}$ pairs & 4 & 0 & 15 & 0 & 19 \\
 		\hline 
-		Total & 84 & 0 & 371 & 22 & 477 \\
+		Total & 84 & 0 & 370 & 21 & 475 \\
 		\hline
 	\end{tabular} 
 \end{table}
@@ -742,68 +748,70 @@ Stale online code occurs when a piece of code has been copied from a software pr
 
 \begin{table*}
 	\centering
-	\caption{53 code clones in Stack Overflow that were altered, rewritten, or removed from the project after posted}
+	\caption{53 code clones in Stack Overflow that were altered, rewritten, or removed from the project after posted and their respective licenses}
 	\label{tab:stale_code_details}
 	\small
-	\begin{tabular}{r|l|l|r|c|l}
+	\resizebox{2.1\columnwidth}{!}{%
+	\begin{tabular}{r|l|l|l|l|c|l}
 		\hline 
-		No. & Project & File & SO Post & Changes & Date \\
+		No. & Project & File & License & SO Post & Changes & Date \\
 		\hline
-		1 &  aspectj-1.6.9  &  Agent.java  & 18303692 &  alteration  & 2015-09-08 \\
-		2 &  aspectj-1.6.9   &  Agent.java  & 18303692 &  alteration  & 2015-09-08 \\
-		3 &  hadoop-1.0.0  &  DBCountPageView.java  & 21702608 &  alteration & 2011-06-12 \\
-		4 &  hadoop-1.0.0  &  DBCountPageView.java  & 21702608 &  alteration  & 2011-06-12 \\
-		5 &  hadoop-1.0.0  &  JobSubmissionFiles.java  & 14845581 &  alteration  & 2012-06-25 \\
-		6 &  hadoop-1.0.0  &  LineRecordReader.java  & 16180910 &  alteration & 2011-07-25 \\
-		7 &  hadoop-1.0.0  &  LineRecordReader.java  & 16180910 &  alteration  & 2011-07-25 \\
-		8 &  hadoop-1.0.0  &  StringUtils.java  & 801987 &  alteration & 2013-02-04 \\
-		9 &  hadoop-1.0.0  &  TestJobCounters.java  & 18833798 &  alteration  & 2011-06-12 \\
-		10 &  hadoop-1.0.0  &  TextOutputFormat.java  & 16928749 &  alteration  & 2011-06-12 \\
-		11 &  hadoop-1.0.0  &  WritableComparator.java  & 22315734 &  alteration & 2014-11-20 \\
-		12 &  hibernate-4.2.2  &  ConnectionProviderInitiator.java  & 15168494 &  alteration  & 2012-06-24 \\
-		13 &  hibernate-4.2.2  &  Example.java  & 24924255 &  alteration  & 2013-04-23 \\
-		14 &  hibernate-4.2.2  &  SchemaUpdate.java  & 23520731 &  alteration & 2016-02-05 \\
-		15 &  hibernate-4.2.2  &  SettingsFactory.java  & 8257554 &  removal & 2011-03-11 \\
-		16 &  hibernate-4.2.2  &  SQLServer2005LimitHandler.java  & 23967852 &  alteration  & 2015-03-12 \\
-		17 &  jasperreports-3.7.4  &  JRVerifier.java  & 8037824 &  alteration  & 2008-04-17 \\
-		18 &  jasperreports-3.7.4  &  JRVerifier.java  & 8037824 &  alteration & 2011-05-20 \\
-		19 &  jfreechart-1.0.13  &  AbstractXYItemRenderer.java  & 12936580 &  alteration  & 2016-02-19 \\
-		20 &  jfreechart-1.0.13  &  KeyToGroupMap.java  & 16058183 &  alteration  & 2013-07-03 \\
-		21 &  jfreechart-1.0.13  &  SpiderWebPlot.java  & 21998949 &  alteration  & 2008-06-02 \\
-		22 &  jfreechart-1.0.13  &  SpiderWebPlot.java  & 21998949 &  alteration  & 2008-06-02 \\
-		23 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
-		24 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
-		25 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
-		26 &  jgraph-5.13.0.0  &  HelloWorld.java  & 6722760 &  rewriting  & 2014-04-13 \\
-		27 &  jstock-1.0.7c  &  GoogleMail.java  & 14940863 &  alteration & 2015-12-13 \\
-		28 &  jstock-1.0.7c  &  GoogleMail.java  & 24680923 &  alteration  & 2015-12-13 \\
-		29 &  jung2-2\_0\_1  &  ShortestPathDemo.java  & 6025026 &  alteration  & 2010-04-13 \\
-		30 &  jung2-2\_0\_1  &  ShortestPathDemo.java  & 6025026 &  alteration  & 2010-04-13 \\
-		31 &  junit-4  &  Assert.java  & 23586872 &  alteration  & 2015-05-12 \\
-		32 &  junit-4  &  ExternalResource.java  & 7504040 &  alteration & 2016-06-25 \\
-		33 &  junit-4.11  &  ExpectException.java  & 8802082 &  alteration & 2014-05-26 \\
-		34 &  poi-3.6-20091214  &  WorkbookFactory.java  & 12593810 &  alteration  & 2015-04-29 \\
-		35 &  spring-framework-3.0.5  &  AnnotationMethodHandlerExceptionResolver.java  & 5660519 &  removal & 2012-01-20 \\
-		36 &  spring-framework-3.0.5  &  AutowireUtils.java  & 20913543 &  alteration  & 2014-10-28 \\
-		37 &  spring-framework-3.0.5  &  CustomCollectionEditor.java  & 18623736 &  alteration  & 2013-11-21 \\
-		38 &  spring-framework-3.0.5  &  DefaultAnnotationHandlerMapping.java  & 3758110 &  removal  & 2012-01-20 \\
-		39 &  spring-framework-3.0.5  &  DefaultPropertiesPersister.java  & 6149818 &  alteration  & 2013-03-19 \\
-		40 &  spring-framework-3.0.5  &  DelegatingServletInputStream.java  & 20996373 &  alteration  & 2016-07-15 \\
-		41 &  spring-framework-3.0.5  &  DelegatingServletInputStream.java  & 20996373 &  alteration  & 2008-12-18 \\
-		42 &  spring-framework-3.0.5  &  DelegatingServletInputStream.java  & 20996373 &  alteration  & 2008-12-18 \\
-		43 &  spring-framework-3.0.5  &  DispatcherServlet.java  & 4781746 &  alteration  & 2011-08-08 \\
-		44 &  spring-framework-3.0.5  &  Jaxb2Marshaller.java  & 10924700 &  alteration  & 2012-08-28 \\
-		45 &  spring-framework-3.0.5  &  ScheduledTasksBeanDefinitionParser.java  & 3751463 &  alteration  & 2016-07-05 \\
-		46 &  struts2-2.2.1  &  DefaultActionMapper.java  & 14019840 &  alteration  & 2013-10-18 \\
-		47 &  tomcat-7.0.2  &  BasicAuthenticator.java  & 21734562 &  alteration  & 2016-08-04 \\
-		48 &  tomcat-7.0.2  &  BasicAuthenticator.java  & 21734562 &  alteration & 2016-08-04 \\
-		49 &  tomcat-7.0.2  &  CoyoteAdapter.java  & 24404964 &  alteration  & 2012-11-18 \\
-		50 &  tomcat-7.0.2  &  CoyoteAdapter.java  & 24404964 &  alteration  & 2012-11-18 \\
-		51 &  tomcat-7.0.2  &  FormAuthenticator.java  & 21734562 &  alteration & 2016-08-04 \\
-		52 &  tomcat-7.0.2  &  HttpServlet.java  & 5266856 &  alteration  & 2011-10-22 \\
-		53 &  tomcat-7.0.2  &  JspRuntimeLibrary.java  & 10289462 &  alteration  & 2012-09-12 \\
-		\hline
-	\end{tabular} 
+		1 & aspectj-1.6.9 & Agent.java & -- & 18303692 & alteration & 2015-09-08 \\
+		2 & aspectj-1.6.9 & Agent.java & -- & 18303692 & alteration & 2015-09-08 \\
+		3 & hadoop-1.0.0 & DBCountPageView.java & Apache-2 & 21702608 & alteration & 2011-06-12 \\
+		4 & hadoop-1.0.0 & DBCountPageView.java & Apache-2 & 21702608 & alteration & 2011-06-12 \\
+		5 & hadoop-1.0.0 & JobSubmissionFiles.java & Apache-2 & 14845581 & alteration & 2012-06-25 \\
+		6 & hadoop-1.0.0 & LineRecordReader.java & Apache-2 & 16180910 & alteration & 2011-07-25 \\
+		7 & hadoop-1.0.0 & LineRecordReader.java & Apache-2 & 16180910 & alteration & 2011-07-25 \\
+		8 & hadoop-1.0.0 & StringUtils.java & Apache-2 & 801987 & alteration & 2013-02-04 \\
+		9 & hadoop-1.0.0 & TestJobCounters.java & Apache-2 & 18833798 & alteration & 2011-06-12 \\
+		10 & hadoop-1.0.0 & TextOutputFormat.java & Apache-2 & 16928749 & alteration & 2011-06-12 \\
+		11 & hadoop-1.0.0 & WritableComparator.java & Apache-2 & 22315734 & alteration & 2014-11-20 \\
+		12 & hibernate-4.2.2 & ConnectionProviderInitiator.java & -- & 15168494 & alteration & 2012-06-24 \\
+		13 & hibernate-4.2.2 & Example.java & -- & 24924255 & alteration & 2013-04-23 \\
+		14 & hibernate-4.2.2 & SchemaUpdate.java & -- & 23520731 & alteration & 2016-02-05 \\
+		15 & hibernate-4.2.2 & SettingsFactory.java & -- & 8257554 & removal & 2011-03-11 \\
+		16 & hibernate-4.2.2 & SQLServer2005LimitHandler.java & -- & 23967852 & alteration & 2015-03-12 \\
+		17 & jasperreports-3.7.4 & JRVerifier.java & GLGPLv3+ & 8037824 & alteration & 2008-04-17 \\
+		18 & jasperreports-3.7.4 & JRVerifier.java & GLGPLv3+ & 8037824 & alteration & 2011-05-20 \\
+		19 & jfreechart-1.0.13 & AbstractXYItemRenderer.java & GLGPLv2.1+ & 12936580 & alteration & 2016-02-19 \\
+		20 & jfreechart-1.0.13 & KeyToGroupMap.java & GLGPLv2.1+ & 16058183 & alteration & 2013-07-03 \\
+		21 & jfreechart-1.0.13 & SpiderWebPlot.java & GLGPLv2.1+ & 21998949 & alteration & 2008-06-02 \\
+		22 & jfreechart-1.0.13 & SpiderWebPlot.java & GLGPLv2.1+ & 21998949 & alteration & 2008-06-02 \\
+		23 & jgraph-5.13.0.0 & HelloWorld.java & GLGPLv2.1+ & 6722760 & rewriting & 2014-04-13 \\
+		24 & jgraph-5.13.0.0 & HelloWorld.java & GLGPLv2.1+ & 6722760 & rewriting & 2014-04-13 \\
+		25 & jgraph-5.13.0.0 & HelloWorld.java & GLGPLv2.1+ & 6722760 & rewriting & 2014-04-13 \\
+		26 & jgraph-5.13.0.0 & HelloWorld.java & GLGPLv2.1+ & 6722760 & rewriting & 2014-04-13 \\
+		27 & jstock-1.0.7c & GoogleMail.java & GPLv2+ & 14940863 & alteration & 2015-12-13 \\
+		28 & jstock-1.0.7c & GoogleMail.java & GPLv2+ & 24680923 & alteration & 2015-12-13 \\
+		29 & jung2-2\_0\_1 & ShortestPathDemo.java & -- & 6025026 & alteration & 2010-04-13 \\
+		30 & jung2-2\_0\_1 & ShortestPathDemo.java & -- & 6025026 & alteration & 2010-04-13 \\
+		31 & junit-4 & Assert.java & -- & 23586872 & alteration & 2015-05-12 \\
+		32 & junit-4 & ExternalResource.java & -- & 7504040 & alteration & 2016-06-25 \\
+		33 & junit-4.11 & ExpectException.java & -- & 8802082 & alteration & 2014-05-26 \\
+		34 & poi-3.6-20091214 & WorkbookFactory.java & Apache-2 & 12593810 & alteration & 2015-04-29 \\
+		35 & spring-framework-3.0.5 & AnnotationMethodHandlerExceptionResolver.java & Apache-2 & 5660519 & removal & 2012-01-20 \\
+		36 & spring-framework-3.0.5 & AutowireUtils.java & Apache-2 & 20913543 & alteration & 2014-10-28 \\
+		37 & spring-framework-3.0.5 & CustomCollectionEditor.java & Apache-2 & 18623736 & alteration & 2013-11-21 \\
+		38 & spring-framework-3.0.5 & DefaultAnnotationHandlerMapping.java & Apache-2 & 3758110 & removal & 2012-01-20 \\
+		39 & spring-framework-3.0.5 & DefaultPropertiesPersister.java & Apache-2 & 6149818 & alteration & 2013-03-19 \\
+		40 & spring-framework-3.0.5 & DelegatingServletInputStream.java & Apache-2 & 20996373 & alteration & 2016-07-15 \\
+		41 & spring-framework-3.0.5 & DelegatingServletInputStream.java & Apache-2 & 20996373 & alteration & 2008-12-18 \\
+		42 & spring-framework-3.0.5 & DelegatingServletInputStream.java & Apache-2 & 20996373 & alteration & 2008-12-18 \\
+		43 & spring-framework-3.0.5 & DispatcherServlet.java & Apache-2 & 4781746 & alteration & 2011-08-08 \\
+		44 & spring-framework-3.0.5 & Jaxb2Marshaller.java & Apache-2 & 10924700 & alteration & 2012-08-28 \\
+		45 & spring-framework-3.0.5 & ScheduledTasksBeanDefinitionParser.java & Apache-2 & 3751463 & alteration & 2016-07-05 \\
+		46 & struts2-2.2.1 & DefaultActionMapper.java & Apache-2 & 14019840 & alteration & 2013-10-18 \\
+		47 & tomcat-7.0.2 & BasicAuthenticator.java & Apache-2 & 21734562 & alteration & 2016-08-04 \\
+		48 & tomcat-7.0.2 & BasicAuthenticator.java & Apache-2 & 21734562 & alteration & 2016-08-04 \\
+		49 & tomcat-7.0.2 & CoyoteAdapter.java & Apache-2 & 24404964 & alteration & 2012-11-18 \\
+		50 & tomcat-7.0.2 & CoyoteAdapter.java & Apache-2 & 24404964 & alteration & 2012-11-18 \\
+		51 & tomcat-7.0.2 & FormAuthenticator.java & Apache-2 & 21734562 & alteration & 2016-08-04 \\
+		52 & tomcat-7.0.2 & HttpServlet.java & Apache-2 & 5266856 & alteration & 2011-10-22 \\
+		53 & tomcat-7.0.2 & JspRuntimeLibrary.java & Apache-2 & 10289462 & alteration & 2012-09-12 \\
+		\hline& 
+	\end{tabular} %
+}
 \end{table*}
 
 \subsection{Issue~2 -- software licensing violations}
@@ -812,7 +820,7 @@ Software licensing is a paramount factor in software development. Violation of s
 In our study, we reveal another possible situation of software licensing issue caused by code cloning to Stack Overflow. We found that there are at least 84 pieces of code have been copied from 13 open source projects in Qualitas dataset to Stack Overflow as examples. They are also marked as accepted answers which increase their probability of being reused. These 13 open source projects come with their respective software licenses. However, the licensing information are mostly missing from these clones when they are posted on Stack Overflow. Mostly one or a few methods from the full source file are cloned. This makes the license information at the top of the file mostly left uncopied. If developers copy and reuse these pieces of code in their projects, a licensing conflict can quietly happen without realisation of the developers. 
 
 %\section{Investigation of Missing A/B Clone Pairs Reported by Simian$_{df}$}
-%We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{\mathrm{\textit{EvaClone}}}$, NiCad$_{df}$, NiCad$_{\mathrm{\textit{EvaClone}}}$. The investigation results are shown in Table \ref{tab:search}.
+%We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{\mathrm{\textit{EvCl}}}$, NiCad$_{df}$, NiCad$_{\mathrm{\textit{EvCl}}}$. The investigation results are shown in Table \ref{tab:search}.
 %
 %\begin{table}
 %	\centering
@@ -824,11 +832,11 @@ In our study, we reveal another possible situation of software licensing issue c
 %		\hline 
 %		Simian$_{df}$  &  40 & 1* \\ 
 %		\hline 
-%		Simian$_{\mathrm{\textit{EvaClone}}}$ & 0 & 41  \\ 
+%		Simian$_{\mathrm{\textit{EvCl}}}$ & 0 & 41  \\ 
 %		\hline 
 %		NiCad$_{df}$  & 17 & 24 \\ 
 %		\hline 
-%		NiCad$_{\mathrm{\textit{EvaClone}}}$ &  24 & 17 \\ 
+%		NiCad$_{\mathrm{\textit{EvCl}}}$ &  24 & 17 \\ 
 %		\hline 
 %	\end{tabular} 
 %\end{table}
