@@ -580,7 +580,7 @@ NiCad$_{\textrm{\textit{df}}}$, produced clustering errors for 6 projects. NiCad
 
 \begin{table*}
 	\centering
-	\caption{Classifications of clone creation}
+	\caption{Classifications of online code clones}
 	\label{tab:classification_scheme}
 	\begin{tabular}{|c|p{13cm}|}
 		\hline 
@@ -737,7 +737,7 @@ We performed manual investigation and classified the clone pairs reported by Sim
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\linewidth]{Sankey_proj}
+	\includegraphics[width=0.9\linewidth]{Sankey_proj}
 	\caption{Relationships of 53 Stack Overflow clone pairs to their original projects. 49 are outdated and 4 are deleted (shown using (d) suffix).}
 	\label{fig:sankey}
 \end{figure}
@@ -859,6 +859,8 @@ Stale online code occurs when a piece of code has been copied from a software pr
 }
 \end{table*}
 
+\subsection{Issue~3 -- external clones}
+
 \subsection{Issue~2 -- software licensing violations}
 Software licensing is a paramount factor in software development. Violation of software license can cause a major impact to the delivery of the software and also lead to legal issues. It is an emerging area that software engineering research community is paying attention to. For example, there are studies of automatic technique to identify software licensing from source code files \cite{German2010} and the evolution of licenses in open source projects \cite{DiPenta2010}.
 
@@ -950,6 +952,14 @@ In our study, we reveal another possible situation of software licensing issue c
 
 \section{Related Work}
 \begin{itemize}
+	\item Stack Overflow
+	\begin{itemize}
+		\item Code example \cite{Nasehi2012}
+		\item Search for code in Stack Overflow \cite{Diamantopoulos2015,Keivanloo2014,Park2014, Stolee2014}
+		\item Stack Overflow to help developers \cite{Ponzanelli2013, Ponzanelli2014}
+		\item Improving Stack Oveflow \cite{Diamantopoulos2015, Wang2014, Bosu2013}
+		\item Developers' behaviours on Stack Overlow \cite{Wang2013, Movshovitz-Attias2013}
+	\end{itemize}
 	\item Code clones 
 		\begin{itemize}
 			\item Definition: Baxter et al. \cite{Baxter1998}
@@ -958,7 +968,7 @@ In our study, we reveal another possible situation of software licensing issue c
 			\item Simian \cite{simian}
 			\item Clone taxonomy \cite{Kapser2003}
 			\item Clone evolution \cite{Pate2013,Mondal2011}
-			\item Comparing Quality Metrics for Cloned and non cloned Java Methods : A Large Scale Empirical Study \cite{Saini2016}.
+			\item Comparing Quality Metrics for Cloned and non cloned Java Methods: A Large Scale Empirical Study \cite{Saini2016}.
 		\end{itemize}
 	\item Agreement-based Clone Detection
 	\begin{itemize}
@@ -971,11 +981,6 @@ In our study, we reveal another possible situation of software licensing issue c
 		\item Code siblings \cite{German2009}, Ninka -- Automatic indification of SW license \cite{German2010}, Evolution of SW licensing \cite{DiPenta2010}
 	\end{itemize}
 
-	\item Stack Overflow
-	\begin{itemize}
-		\item Code example \cite{Nasehi2012}
-		\item Search for code in Stack Overflow \cite{Diamantopoulos2015,Keivanloo2014,Park2014}
-	\end{itemize}
 \end{itemize}
 
 \section{Conclusions}
