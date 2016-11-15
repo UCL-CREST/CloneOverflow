@@ -11,50 +11,52 @@
         data.addColumn('string', 'Qualitas projects');
         data.addColumn('number', 'Weight');
         data.addRows([
-          ['18303692_0','aspectj',2],
-          ['14845581_1','hadoop',1],
-          ['16180910_0','hadoop',2],
-          ['16928749_0','hadoop',1],
-          ['18833798_0','hadoop',1],
-          ['21702608_0','hadoop',2],
-          ['22315734_0','hadoop',1],
-          ['801987_0','hadoop',1],
-          ['15168494_0','hibernate',1],
-          ['23520731_0','hibernate',1],
-          ['23967852_0','hibernate',1],
-          ['24924255_0','hibernate',1],
-          ['8257554_0(d)','hibernate',1],
-          ['8037824_0','jasperreports',2],
-          ['12936580_0','jfreechart',1],
-          ['16058183_0','jfreechart',1],
-          ['21998949_0','jfreechart',2],
-          ['6722760_1','jgraph',4],
-          ['14940863_0','jstock',1],
-          ['24680923_0','jstock',1],
-          ['6025026_0','jung2',2],
-          ['23586872_1','junit',1],
-          ['7504040_0','junit',1],
-          ['8802082_2','junit',1],
-          ['12593810_0','poi',1],
-          ['10924700_0','spring',1],
-          ['18623736_0','spring',1],
-          ['20913543_1','spring',1],
-          ['20996373_0','spring',3],
-          ['3751463_0','spring',1],
-          ['3758110_0(d)','spring',1],
-          ['4781746_0','spring',1],
-          ['5660519_0(d)','spring',1],
-          ['6149818_0','spring',1],
-          ['14019840_0','struts2',1],
-          ['10289462_0','tomcat',1],
-          ['21734562_0','tomcat',3],
-          ['24404964_0','tomcat',2],
-          ['5266856_0','tomcat',1]
+          ['aspectj','18303692_0',2],
+          ['eclipse-SDK','2513183_0', 4],
+          ['eclipse-SDK','11861598_0', 1],
+          ['hadoop','14845581_1',1],
+          ['hadoop','16180910_0',2],
+          ['hadoop','16928749_0',1],
+          ['hadoop','18833798_0',1],
+          ['hadoop','21702608_0',2],
+          ['hadoop','22315734_0',1],
+          ['hadoop','801987_0',1],
+          ['hibernate','15168494_0',1],
+          ['hibernate','23520731_0',1],
+          ['hibernate','23967852_0',1],
+          ['hibernate','24924255_0',1],
+          ['hibernate','8257554_0(d)',1],
+          ['jasperreports','8037824_0',2],
+          ['jfreechart','12936580_0',1],
+          ['jfreechart','16058183_0',1],
+          ['jfreechart','21998949_0',2],
+          ['jgraph','6722760_1',4],
+          ['jstock','14940863_0',1],
+          ['jstock','24680923_0',1],
+          ['jung2','6025026_0',2],
+          ['junit','23586872_1',1],
+          ['junit','7504040_0',1],
+          ['junit','8802082_2',1],
+          ['poi','12593810_0',1],
+          ['spring','10924700_0',1],
+          ['spring','18623736_0',1],
+          ['spring','20913543_1',1],
+          ['spring','20996373_0',3],
+          ['spring','3751463_0',1],
+          ['spring','3758110_0(d)',1],
+          ['spring','4781746_0',1],
+          ['spring','5660519_0(d)',1],
+          ['spring','6149818_0',1],
+          ['struts2','14019840_0',1],
+          ['tomcat','10289462_0',1],
+          ['tomcat','21734562_0',3],
+          ['tomcat','24404964_0',2],
+          ['tomcat','5266856_0',1]
         ]);
 
         // Sets chart options.
         var options = {
-          width: 1000,
+          width: 500,
           sankey: {
               node: { label: { 
                          fontSize: 16
@@ -68,6 +70,6 @@
     </script>
   </head>
   <body>
-    <div id="sankey_basic" style="width: 1000px; height: 800px;"></div>
+    <div id="sankey_basic" style="width: 500; height: 800px;"></div>
   </body>
 </html>
