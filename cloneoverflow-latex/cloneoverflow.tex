@@ -669,7 +669,7 @@ To check if the discovered Stack Overflow clones are outdated, we focus on the 9
 %We restricted it further to only the ones having versioning system so we can trace changes made to these clone pairs. Fortunately, all of the pairs were from projects with either git or svn so we did not remove any pair from this set. 
 %Our intuition behind his issue comes from a situation where a piece of code has been copied from a Qualitas project and posted on Stack Overflow. Later, that piece of code has been modified further to accommodate changes in the projects (or any other reasons). However, even the code in Qualitas project is already updated, the one posted on Stack Overflow is not changed. This results in outdated online code which can cause problems when programmers copy and use it in their projects. %We decided to ignore NiCad results from this analysis due to its failure of clone clustering and renaming on some projects.  Thus, the 39 projects are the ones that can be analysed by Simian, have newer versions than the versions in Qualitas-\textit{O}, and have code version control system (either git or svn). %After filtering, there are 141 pairs removed because 45 of them do not have new versions (7 from c-jdbc, 21 from Compiere, 7 from heritrix, and 10 from iReport) and 4 of them we could not find source code with version control (2 from findbugs, 1 from jag, and 1 from jgraphpad). Finally there were 134  pairs remaining. %We are interested in clone pairs that were changed after they appeared on Stack Overflow.
 
-\Cref{tab:stale_code} shows the findings of outdated clone investigation. The comparison with the clones' latest code reveals that there are 55 clone pairs that are outdated. These are clone pairs that were copied from Qualitas projects to Stack Overflow and marked as accepted answers, and later have been changed during the development. \textit{hadoop} and \textit{spring} have the maximum number of 9 outdate code clones, followed by 6 clones from \textit{tomcat}, and 5 clones from \textit{eclipse-SDK}. An example of outdated code in hadoop's \textit{WritableComparator.java} is shown in \Cref{fig:before-after}. The newest version has one line added. We also found outdated code which contains more disruptive changes. The code snippet in Stack Overflow Post 23520731 which is a copy of \textit{SchemaUpdate.java} in \textit{hibernate} has been heavily modified (as shown in \Cref{fig:hibernate_outdated_code}). Moreover, there is a code snippet in Stack Overflow post 3758110 which is a copy of \textit{DefaultAnnotationHandlerMapping.java} in Spring. It was deleted in commit 02a4473c62d8240837bec297f0a1f3cb67ef8a7b by Chris Beams on 20th January 2012 at 22:51:02 two years after it was posted and the latest version of Spring does not contain the Java file anymore. 
+\Cref{fig:outdated} shows the findings of outdated clone investigation. The comparison with the clones' latest code reveals that there are 55 clone pairs that are outdated. These are clone pairs that were copied from Qualitas projects to Stack Overflow and marked as accepted answers, and later have been changed during the development. \textit{hadoop} and \textit{spring} have the maximum number of 9 outdate code clones, followed by 6 clones from \textit{tomcat}, and 5 clones from \textit{eclipse-SDK}. An example of outdated code in hadoop's \textit{WritableComparator.java} is shown in \Cref{fig:before-after}. The newest version has one line added. We also found outdated code which contains more disruptive changes. The code snippet in Stack Overflow Post 23520731 which is a copy of \textit{SchemaUpdate.java} in \textit{hibernate} has been heavily modified (as shown in \Cref{fig:hibernate_outdated_code}). Moreover, there is a code snippet in Stack Overflow post 3758110 which is a copy of \textit{DefaultAnnotationHandlerMapping.java} in Spring. It was deleted in commit 02a4473c62d8240837bec297f0a1f3cb67ef8a7b by Chris Beams on 20th January 2012 at 22:51:02 two years after it was posted and the latest version of Spring does not contain the Java file anymore. 
 
 The outdate code clones without latest changes can cause problems ranging from uncompilable code due to version difference to bug propagation. An outdated code with a subtle change such as the one in \textit{WritableComparator.java} can be copied and reused without awareness from developers. Fortunately, Stack Overflow has a natural voting mechanism that can mitigate this kind of outdated code. Usually when developers reuse a code snippet from a Stack Overflow post and find that it does not work nor compatible with their environment. They can cast a down vote to that answer resulting in low vote for the answer with outdated code. However, if the answer is marked as accepted by the person who asks the question (which is our case), it is still attractive to naive developers who are not aware of the voting mechanism. 
 
@@ -690,40 +690,47 @@ public void execute (Target target) {      public void execute(EnumSet<TargetTyp
 	\label{fig:hibernate_outdated_code}
 \end{figure*}
 
-\begin{table}
+\begin{figure}
 	\centering
-	\caption{Breakdowns of findings from outdated code investigation of 96 category-A online clone pairs}
-	\label{tab:stale_code}
-	\small
-%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|r|r|r|r}
-		\hline 
-		Project & Pairs & Outdated & Fresh & Del. & Others \\
-		\hline
-		ant & 1 & 0 & 1 & 0 & 0 \\
-		log4j & 4 & 0 & 4 & 0 & 0 \\
-		tomcat & 7 & 7 & 0 & 0 & 0 \\
-		aspectj & 2 & 2 & 0 & 0 & 0 \\
-		eclipse-SDK & 12 & 5 & 7 & 0 & 0 \\
-		hadoop & 14 & 9 & 5 & 0 & 0 \\
-		hibernate & 16 & 4 & 11 & 1 & 0 \\
-		jasperreports & 2 & 2 & 0 & 0 & 0 \\
-		jfreechart & 4 & 4 & 0 & 0 & 0 \\
-		jgraph & 5 & 4 & 0 & 0 & 1 \\
-		jgrapht & 1 & 0 & 1 & 0 & 0 \\
-		jstock & 2 &  2 & 0 & 0 & 0 \\
-		jung & 2 & 2 & 0 & 0 & 0 \\
-		junit & 3 & 3 & 0 & 0 & 0 \\
-		poi & 3 & 1 & 2 & 0 & 0 \\
-		spring & 14 & 9 & 3 & 2 & 0 \\
-		struts & 1 & 1 & 0 & 0 & 0 \\
-		weka & 3 & 0 & 3 & 0 & 0 \\
-		\hline
-		Total & 96 & 55 & 37 & 3 & 1 \\
-		\hline
-	\end{tabular} 
-%}
-\end{table}
+	\includegraphics[width=\linewidth]{outdated}
+	\caption{Findings from outdated code investigation of 96 category-A online clone pairs}
+	\label{fig:outdated}
+\end{figure}
+
+%\begin{table}
+%	\centering
+%	\caption{Breakdowns of findings from outdated code investigation of 96 category-A online clone pairs}
+%	\label{tab:stale_code}
+%	\small
+%%	\resizebox{\columnwidth}{!}{%
+%	\begin{tabular}{l|r|r|r|r|r}
+%		\hline 
+%		Project & Pairs & Outdated & Fresh & Del. & Others \\
+%		\hline
+%		ant & 1 & 0 & 1 & 0 & 0 \\
+%		log4j & 4 & 0 & 4 & 0 & 0 \\
+%		tomcat & 7 & 7 & 0 & 0 & 0 \\
+%		aspectj & 2 & 2 & 0 & 0 & 0 \\
+%		eclipse-SDK & 12 & 5 & 7 & 0 & 0 \\
+%		hadoop & 14 & 9 & 5 & 0 & 0 \\
+%		hibernate & 16 & 4 & 11 & 1 & 0 \\
+%		jasperreports & 2 & 2 & 0 & 0 & 0 \\
+%		jfreechart & 4 & 4 & 0 & 0 & 0 \\
+%		jgraph & 5 & 4 & 0 & 0 & 1 \\
+%		jgrapht & 1 & 0 & 1 & 0 & 0 \\
+%		jstock & 2 &  2 & 0 & 0 & 0 \\
+%		jung & 2 & 2 & 0 & 0 & 0 \\
+%		junit & 3 & 3 & 0 & 0 & 0 \\
+%		poi & 3 & 1 & 2 & 0 & 0 \\
+%		spring & 14 & 9 & 3 & 2 & 0 \\
+%		struts & 1 & 1 & 0 & 0 & 0 \\
+%		weka & 3 & 0 & 3 & 0 & 0 \\
+%		\hline
+%		Total & 96 & 55 & 37 & 3 & 1 \\
+%		\hline
+%	\end{tabular} 
+%%}
+%\end{table}
 
 \begin{table*}
 	\centering
@@ -793,7 +800,7 @@ public void execute (Target target) {      public void execute(EnumSet<TargetTyp
 			56 & tomcat-7.0.2  & FormAuthenticator.java  & Apache-2 & 21734562 & alteration  & 2016-08-04 \\
 			57 & tomcat-7.0.2  & HttpServlet.java  & Apache-2 & 5266856 & alteration  & 2011-10-22 \\
 			58 & tomcat-7.0.2  & JspRuntimeLibrary.java  & Apache-2 & 10289462 & alteration  & 2012-09-12 \\
-		\hline& 
+		\hline
 	\end{tabular} %
 }
 \end{table*}
