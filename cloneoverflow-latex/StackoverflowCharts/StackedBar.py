@@ -1,7 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.backends.backend_pdf import PdfPages
 
 raw_data = {'systems': ['ant', 'log4j', 'aspectj', 'eclipse', 'hadoop', 'hibernate', 'jasperreports', 'jfreechart', 'jgraph', 'jgrapht', 'jstock', 'jung', 'junit', 'poi', 'spring', 'struts', 'tomcat', 'weka'],
             'fresh': [1, 4, 0, 7, 5, 11, 0, 0, 0, 1, 0, 0, 0, 2, 3, 0, 0, 3],
@@ -74,15 +72,16 @@ ax1.bar(bar_l,
         color='blue')
 
 # set the x ticks with names
-plt.xticks(tick_pos, df['systems'], rotation=30)
+plt.yticks(fontsize=14)
+plt.xticks(tick_pos, df['systems'], rotation=40, fontsize=14)
 
 # Set the label and legends
-ax1.set_ylabel("Amount")
+ax1.set_ylabel("Amount").set_fontsize(14)
 #ax1.set_xlabel("Systems")
-plt.legend(loc='upper center')
+plt.legend(loc='upper center', fontsize=14)
 
 # Set a buffer around the edge
 plt.xlim([min(tick_pos)-bar_width, max(tick_pos)+bar_width])
-plt.subplots_adjust(bottom=0.2)
+plt.subplots_adjust(bottom=0.3)
 #plt.show()
 plt.savefig(('/Users/Chaiyong/IdeasProjects/StackAnalyzer/cloneoverflow-latex/outdated.pdf'))
