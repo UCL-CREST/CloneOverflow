@@ -734,79 +734,79 @@ public void execute (Target target) {      public void execute(EnumSet<TargetTyp
 
 \begin{table*}
 	\centering
-	\caption{58 code clones in Stack Overflow that were altered, rewritten, or removed from the project after posted and their respective licenses}
+	\caption{58 code clones in Stack Overflow (SO) that were altered, rewritten, or removed from the project after posted and their respective licenses. Files can be changed ($C$) by modifications ($M$), deletion ($D$), and rewriting ($R$).}
 	\label{tab:stale_code_details}
-	\small
-	\resizebox{2.1\columnwidth}{!}{%
-	\begin{tabular}{r|l|l|l|l|c|l}
+	\scriptsize
+%	\resizebox{2.1\columnwidth}{!}{%
+	\begin{tabular}{r|l|p{4.5cm}|r|r|l|l|c|l}
 		\hline 
-		No. & Project & File & License & SO Post & Changes & Date \\
+		No. & Project & File & Start & End & License & SO No. & $C$ & C$_{\textit{\textrm{date}}}$ \\
 		\hline
-			1 & aspectj-1.6.9  & Agent.java  & -- & 18303692 & alteration  & 2015-09-08 \\
-			2 & aspectj-1.6.9  & Agent.java  & -- & 18303692 & alteration  & 2015-09-08 \\
-			3 & eclipse-SDK  & GenerateToStringAction.java  & EPLv1 & 2513183 & alteration  &  2015-03-17 \\
-			4 & eclipse-SDK  & GenerateToStringAction.java  & EPLv1  &  2513183	 & alteration  &  2015-03-17 \\
-			5 & eclipse-SDK  & GenerateToStringAction.java  & EPLv1  &  2513183	 & alteration  &  2015-03-17 \\
-			6 & eclipse-SDK  & GenerateToStringAction.java  & EPLv1  &  2513183	 & alteration  & 2011-03-01 \\
-			7 & eclipse-SDK  & WizardDialog.java  & EPLv1  &   11861598	 & alteration  &  2011-02-03 \\
-			8 & hadoop-1.0.0  & DBCountPageView.java  & Apache-2 & 21702608 & alteration  & 2011-06-12 \\
-			9 & hadoop-1.0.0  & DBCountPageView.java  & Apache-2 & 21702608 & alteration  & 2011-06-12 \\
-			10 & hadoop-1.0.0  & JobSubmissionFiles.java  & Apache-2 & 14845581 & alteration  & 2012-06-25 \\
-			11 & hadoop-1.0.0  & LineRecordReader.java  & Apache-2 & 16180910 & alteration  & 2011-07-25 \\
-			12 & hadoop-1.0.0  & LineRecordReader.java  & Apache-2 & 16180910 & alteration  & 2011-07-25 \\
-			13 & hadoop-1.0.0  & StringUtils.java  & Apache-2 & 801987 & alteration  & 2013-02-04 \\
-			14 & hadoop-1.0.0  & TestJobCounters.java  & Apache-2 & 18833798 & alteration  & 2011-06-12 \\
-			15 & hadoop-1.0.0  & TextOutputFormat.java  & Apache-2 & 16928749 & alteration  & 2011-06-12 \\
-			16 & hadoop-1.0.0  & WritableComparator.java  & Apache-2 & 22315734 & alteration  & 2014-11-20 \\
-			17 & hibernate-4.2.2  & ConnectionProviderInitiator.java  & -- & 15168494 & alteration  & 2012-06-24 \\
-			18 & hibernate-4.2.2  & Example.java  & -- & 24924255 & alteration  & 2013-04-23 \\
-			19 & hibernate-4.2.2  & SchemaUpdate.java  & -- & 23520731 & alteration  & 2016-02-05 \\
-			20 & hibernate-4.2.2  & SettingsFactory.java  & -- & 8257554 & removal  & 2011-03-11 \\
-			21 & hibernate-4.2.2  & SQLServer2005LimitHandler.java  & -- & 23967852 & alteration  & 2015-03-12 \\
-			22 & jasperreports-3.7.4  & JRVerifier.java  & GLGPLv3+ & 8037824 & alteration  & 2008-04-17 \\
-			23 & jasperreports-3.7.4  & JRVerifier.java  & GLGPLv3+ & 8037824 & alteration  & 2011-05-20 \\
-			24 & jfreechart-1.0.13  & AbstractXYItemRenderer.java  & GLGPLv2.1+ & 12936580 & alteration  & 2016-02-19 \\
-			25 & jfreechart-1.0.13  & KeyToGroupMap.java  & GLGPLv2.1+ & 16058183 & alteration  & 2013-07-03 \\
-			26 & jfreechart-1.0.13  & SpiderWebPlot.java  & GLGPLv2.1+ & 21998949 & alteration  & 2008-06-02 \\
-			27 & jfreechart-1.0.13  & SpiderWebPlot.java  & GLGPLv2.1+ & 21998949 & alteration  & 2008-06-02 \\
-			28 & jgraph-5.13.0.0  & HelloWorld.java  & GLGPLv2.1+ & 6722760 & rewriting  & 2014-04-13 \\
-			29 & jgraph-5.13.0.0  & HelloWorld.java  & GLGPLv2.1+ & 6722760 & rewriting  & 2014-04-13 \\
-			30 & jgraph-5.13.0.0  & HelloWorld.java  & GLGPLv2.1+ & 6722760 & rewriting  & 2014-04-13 \\
-			31 & jgraph-5.13.0.0  & HelloWorld.java  & GLGPLv2.1+ & 6722760 & rewriting  & 2014-04-13 \\
-			32 & jstock-1.0.7c  & GoogleMail.java  & GPLv2+ & 14940863 & alteration  & 2015-12-13 \\
-			33 & jstock-1.0.7c  & GoogleMail.java  & GPLv2+ & 24680923 & alteration  & 2015-12-13 \\
-			34 & jung2-2\_0\_1  & ShortestPathDemo.java  & -- & 6025026 & alteration  & 2010-04-13 \\
-			35 & jung2-2\_0\_1  & ShortestPathDemo.java  & -- & 6025026 & alteration  & 2010-04-13 \\
-			36 & junit-4  & Assert.java  & -- & 23586872 & alteration  & 2015-05-12 \\
-			37 & junit-4  & ExternalResource.java  & -- & 7504040 & alteration  & 2016-06-25 \\
-			38 & junit-4.11  & ExpectException.java  & -- & 8802082 & alteration  & 2014-05-26 \\
-			39 & poi-3.6-20091214  & WorkbookFactory.java  & Apache-2 & 12593810 & alteration  & 2015-04-29 \\
-			40 & spring-framework-3.0.5  & AnnotationMethodHandlerExceptionResolver.java  & Apache-2 & 5660519 & removal  & 2012-01-20 \\
-			41 & spring-framework-3.0.5  & AutowireUtils.java  & Apache-2 & 20913543 & alteration  & 2014-10-28 \\
-			42 & spring-framework-3.0.5  & CustomCollectionEditor.java  & Apache-2 & 18623736 & alteration  & 2013-11-21 \\
-			43 & spring-framework-3.0.5  & DefaultAnnotationHandlerMapping.java  & Apache-2 & 3758110 & removal  & 2012-01-20 \\
-			44 & spring-framework-3.0.5  & DefaultPropertiesPersister.java  & Apache-2 & 6149818 & alteration  & 2013-03-19 \\
-			45 & spring-framework-3.0.5  & DelegatingServletInputStream.java  & Apache-2 & 20996373 & alteration  & 2016-07-15 \\
-			46 & spring-framework-3.0.5  & DelegatingServletInputStream.java  & Apache-2 & 20996373 & alteration  & 2008-12-18 \\
-			47 & spring-framework-3.0.5  & DelegatingServletInputStream.java  & Apache-2 & 20996373 & alteration  & 2008-12-18 \\
-			48 & spring-framework-3.0.5  & DispatcherServlet.java  & Apache-2 & 4781746 & alteration  & 2011-08-08 \\
-			49 & spring-framework-3.0.5  & Jaxb2Marshaller.java  & Apache-2 & 10924700 & alteration  & 2012-08-28 \\
-			50 & spring-framework-3.0.5  & ScheduledTasksBeanDefinitionParser.java  & Apache-2 & 3751463 & alteration  & 2016-07-05 \\
-			51 & struts2-2.2.1  & DefaultActionMapper.java  & Apache-2 & 14019840 & alteration  & 2013-10-18 \\
-			52 & tomcat-7.0.2  & BasicAuthenticator.java  & Apache-2 & 21734562 & alteration  & 2016-08-04 \\
-			53 & tomcat-7.0.2  & BasicAuthenticator.java  & Apache-2 & 21734562 & alteration  & 2016-08-04 \\
-			54 & tomcat-7.0.2  & CoyoteAdapter.java  & Apache-2 & 24404964 & alteration  & 2012-11-18 \\
-			55 & tomcat-7.0.2  & CoyoteAdapter.java  & Apache-2 & 24404964 & alteration  & 2012-11-18 \\
-			56 & tomcat-7.0.2  & FormAuthenticator.java  & Apache-2 & 21734562 & alteration  & 2016-08-04 \\
-			57 & tomcat-7.0.2  & HttpServlet.java  & Apache-2 & 5266856 & alteration  & 2011-10-22 \\
-			58 & tomcat-7.0.2  & JspRuntimeLibrary.java  & Apache-2 & 10289462 & alteration  & 2012-09-12 \\
+			1 & aspectj-1.6.9  & aspectjtools/../Agent.java  & 7 & 18 & -- & 18303692 & $M$  & 2015-09-08 \\
+			2 & aspectj-1.6.9  & aspectjweaver/../Agent.java  & 7 & 18 & -- & 18303692 & $M$  & 2015-09-08 \\
+			3 & eclipse-SDK  & GenerateToStringAction.java  & 113 & 166 & EPLv1 & 2513183 & $M$  &  2015-03-17 \\
+			4 & eclipse-SDK  & GenerateToStringAction.java  & 117 & 126 & EPLv1  &  2513183	 & $M$  &  2015-03-17 \\
+			5 & eclipse-SDK  & GenerateToStringAction.java  & 143 & 165 & EPLv1  &  2513183	 & $M$  &  2015-03-17 \\
+			6 & eclipse-SDK  & GenerateToStringAction.java  & 178 & 187 & EPLv1  &  2513183	 & $M$  & 2011-03-01 \\
+			7 & eclipse-SDK  & WizardDialog.java  & 377 & 394 & EPLv1  &   11861598	 & $M$  &  2011-02-03 \\
+			8 & hadoop-1.0.0  & DBCountPageView.java  & 275 & 287 & Apache-2 & 21702608 & $M$  & 2011-06-12 \\
+			9 & hadoop-1.0.0  & DBCountPageView.java  & 289 & 309 & Apache-2 & 21702608 & $M$  & 2011-06-12 \\
+			10 & hadoop-1.0.0  & JobSubmissionFiles.java  & 46 & 55 & Apache-2 & 14845581 & $M$  & 2012-06-25 \\
+			11 & hadoop-1.0.0  & mapred/../LineRecordReader.java  & 47 & 60 & Apache-2 & 16180910 & $M$  & 2011-07-25 \\
+			12 & hadoop-1.0.0  & mapreduce/../LineRecordReader.java  & 75 & 99 & Apache-2 & 16180910 & $M$  & 2011-07-25 \\
+			13 & hadoop-1.0.0  & StringUtils.java  & 40 & 56 & Apache-2 & 801987 & $M$  & 2013-02-04 \\
+			14 & hadoop-1.0.0  & TestJobCounters.java  & 186 & 192 & Apache-2 & 18833798 & $M$  & 2011-06-12 \\
+			15 & hadoop-1.0.0  & TextOutputFormat.java  & 75 & 99 & Apache-2 & 16928749 & $M$  & 2011-06-12 \\
+			16 & hadoop-1.0.0  & WritableComparator.java  & 44 & 54 & Apache-2 & 22315734 & $M$  & 2014-11-20 \\
+			17 & hibernate-4.2.2  & ConnectionProviderInitiator.java  & 65 & 93 & -- & 15168494 & $M$  & 2012-06-24 \\
+			18 & hibernate-4.2.2  & Example.java  & 224 & 243 & -- & 24924255 & $M$  & 2013-04-23 \\
+			19 & hibernate-4.2.2  & SchemaUpdate.java  & 115 & 168 & -- & 23520731 & $M$  & 2016-02-05 \\
+			20 & hibernate-4.2.2  & SettingsFactory.java  & 244 & 255 & -- & 8257554 & $D$  & 2011-03-11 \\
+			21 & hibernate-4.2.2  & SQLServer2005LimitHandler.java  & 43 & 61 & -- & 23967852 & $M$  & 2015-03-12 \\
+			22 & jasperreports-3.7.4  & JRVerifier.java  & 982 & 998 & GLGPLv3+ & 8037824 & $M$  & 2008-04-17 \\
+			23 & jasperreports-3.7.4  & JRVerifier.java  & 1221 & 1240 & GLGPLv3+ & 8037824 & $M$  & 2011-05-20 \\
+			24 & jfreechart-1.0.13  & AbstractXYItemRenderer.java  & 532 & 569 & GLGPLv2.1+ & 12936580 & $M$  & 2016-02-19 \\
+			25 & jfreechart-1.0.13  & KeyToGroupMap.java  & 18 & 30 & GLGPLv2.1+ & 16058183 & $M$  & 2013-07-03 \\
+			26 & jfreechart-1.0.13  & SpiderWebPlot.java  & 502 & 520 & GLGPLv2.1+ & 21998949 & $M$  & 2008-06-02 \\
+			27 & jfreechart-1.0.13  & SpiderWebPlot.java  & 522 & 536 & GLGPLv2.1+ & 21998949 & $M$  & 2008-06-02 \\
+			28 & jgraph-5.13.0.0  & HelloWorld.java  & 16 & 22 & GLGPLv2.1+ & 6722760 & $R$  & 2014-04-13 \\
+			29 & jgraph-5.13.0.0  & HelloWorld.java  & 28 & 40 & GLGPLv2.1+ & 6722760 & $R$  & 2014-04-13 \\
+			30 & jgraph-5.13.0.0  & HelloWorld.java  & 31 & 36 & GLGPLv2.1+ & 6722760 & $R$  & 2014-04-13 \\
+			31 & jgraph-5.13.0.0  & HelloWorld.java  & 39 & 56 & GLGPLv2.1+ & 6722760 & $R$  & 2014-04-13 \\
+			32 & jstock-1.0.7c  & GoogleMail.java  & 18 & 42 & GPLv2+ & 14940863 & $M$  & 2015-12-13 \\
+			33 & jstock-1.0.7c  & GoogleMail.java  & 18 & 42 & GPLv2+ & 24680923 & $M$  & 2015-12-13 \\
+			34 & jung2-2\_0\_1  & ShortestPathDemo.java  & 106 & 117 & -- & 6025026 & $M$  & 2010-04-13 \\
+			35 & jung2-2\_0\_1  & ShortestPathDemo.java  & 158 & 172 & -- & 6025026 & $M$  & 2010-04-13 \\
+			36 & junit-4  & Assert.java  & 33 & 52 & -- & 23586872 & $M$  & 2015-05-12 \\
+			37 & junit-4  & ExternalResource.java  & 4 & 23 & -- & 7504040 & $M$  & 2016-06-25 \\
+			38 & junit-4.11  & ExpectException.java  & 11 & 29 & -- & 8802082 & $M$  & 2014-05-26 \\
+			39 & poi-3.6  & WorkbookFactory.java  & 18 & 28 & Apache-2 & 12593810 & $M$  & 2015-04-29 \\
+			40 & spring-3.0.5  & AnnotationMethodHandler \newline ExceptionResolver.java  & 224 & 233 & Apache-2 & 5660519 & $D$  & 2012-01-20 \\
+			41 & spring-3.0.5  & AutowireUtils.java  & 32 & 42 & Apache-2 & 20913543 & $M$  & 2014-10-28 \\
+			42 & spring-3.0.5  & CustomCollectionEditor.java  & 33 & 71 & Apache-2 & 18623736 & $M$  & 2013-11-21 \\
+			43 & spring-3.0.5  & DefaultAnnotation \newline HandlerMapping.java  & 78 & 92 & Apache-2 & 3758110 & $D$  & 2012-01-20 \\
+			44 & spring-3.0.5  & DefaultPropertiesPersister.java  & 69 & 80 & Apache-2 & 6149818 & $M$  & 2013-03-19 \\
+			45 & spring-3.0.5  & org.springframework.test/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & $M$  & 2016-07-15 \\
+			46 & spring-3.0.5  & org.springframework.web/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & $M$  & 2008-12-18 \\
+			47 & spring-3.0.5  & org.springframework.web.servlet/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & $M$  & 2008-12-18 \\
+			48 & spring-3.0.5  & DispatcherServlet.java  & 91 & 103 & Apache-2 & 4781746 & $M$  & 2011-08-08 \\
+			49 & spring-3.0.5  & Jaxb2Marshaller.java  & 253 & 269 & Apache-2 & 10924700 & $M$  & 2012-08-28 \\
+			50 & spring-3.0.5  & ScheduledTasksBean \newline DefinitionParser.java  & 42 & 52 & Apache-2 & 3751463 & $M$  & 2016-07-05 \\
+			51 & struts2-2.2.1  & DefaultActionMapper.java  & 91 & 103 & Apache-2 & 14019840 & $M$  & 2013-10-18 \\
+			52 & tomcat-7.0.2  & BasicAuthenticator.java  & 25 & 73 & Apache-2 & 21734562 & $M$  & 2016-08-04 \\
+			53 & tomcat-7.0.2  & BasicAuthenticator.java  & 33 & 43 & Apache-2 & 21734562 & $M$  & 2016-08-04 \\
+			54 & tomcat-7.0.2  & CoyoteAdapter.java  & 543 & 553 & Apache-2 & 24404964 & $M$  & 2012-11-18 \\
+			55 & tomcat-7.0.2  & CoyoteAdapter.java  & 557 & 573 & Apache-2 & 24404964 & $M$  & 2012-11-18 \\
+			56 & tomcat-7.0.2  & FormAuthenticator.java  & 51 & 61 & Apache-2 & 21734562 & $M$  & 2016-08-04 \\
+			57 & tomcat-7.0.2  & HttpServlet.java  & 111 & 124 & Apache-2 & 5266856 & $M$  & 2011-10-22 \\
+			58 & tomcat-7.0.2  & JspRuntimeLibrary.java  & 252 & 296 & Apache-2 & 10289462 & $M$  & 2012-09-12 \\
 		\hline
 	\end{tabular} %
-}
+%}
 \end{table*}
 
 \subsubsection{Software licensing violation}
-Software licensing is a paramount factor in software development. Violation of software license can cause a major impact to the delivery of the software and also lead to legal issues. It is an emerging area that software engineering research community is paying attention to. For example, there are studies of automatic technique to identify software licensing from source code files \cite{German2010} and the evolution of licenses in open source projects \cite{DiPenta2010}.
+Software licensing is a paramount factor in software development. Violation of software license can cause a major impact to software delivery and also lead to legal issues. It is an emerging area that software engineering research community is paying attention to. For example, there are studies of automatic technique to identify software licensing from source code files \cite{German2010} and the evolution of licenses in open source projects \cite{DiPenta2010}.
 
 In our study, we reveal another possible situation of software licensing issue caused by code cloning to Stack Overflow. We found that there are at least 84 pieces of code have been copied from 13 open source projects in Qualitas dataset to Stack Overflow as examples. They are also marked as accepted answers which increase their probability of being reused. These 13 open source projects come with their respective software licenses. However, the licensing information are mostly missing from these clones when they are posted on Stack Overflow. Mostly one or a few methods from the full source file are cloned. This makes the license information at the top of the file mostly left uncopied. If developers copy and reuse these pieces of code in their projects, a licensing conflict can quietly happen without realisation of the developers. 
 
