@@ -813,37 +813,34 @@ Software licensing is a paramount factor in software development. Violation of s
 
 \begin{table}[]
 	\centering
-	\caption{Licenses of 488 clone pairs in category A, B, and C}
+	\caption{Licenses of 523 clone pairs in category A, B, and C}
 	\label{tab:license_abc}
 	\small
 	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|l|p{2.2cm}|r|r|r}
+	\begin{tabular}{p{1.5cm}|l|p{2.2cm}|r|r|r}
 		\hline
-		Type                 & SO          & Qualitas          & A & B & C \\
+		Type                                           & SO          & Qualitas          					 	& A & B & C \\
 		\hline
-		No license           & None        & None              & 18 & 61 & 1 \\
+		No license \newline (\textit{NL})                               & None        & None              					&  18 & 62 & 5 \\
 		\hline
-		\multirow{3}{*}{Compatible} & Apache2     & Apache2    & 0  & 1  & 0 \\
-		& EPLv1       & EPLv1                                  & 8  & 0  & 0 \\
-		& CC BY 3.0   & CC BY 3.0                              & 0  & 17 & 0 \\
+		Compatible  							 & Apache2     & Apache2  				      	&  0 & 1 & 0 \\
+		(\textit{CL})	   						     & EPLv1       & EPLv1                                	&  14 &  6 & 0 \\
+															& None        & CC BY 3.0                    		&  0 & 12 & 0 \\
 		\hline
-		\multirow{14}{*}{Incompat.} & None        & Apache2    & 41 & 34 & 1 \\
-		& None        & BSD3                                   & 0  & 1  & 0 \\
-		& None        & CDDLorGPLv2                            & 0  & 62 & 1 \\
-		& None        & EPLv1                                  & 6  & 0  & 0 \\
-		& None        & GPLv2/2+/3+                            & 5  & 57 & 14 \\
-		& None        & LGPL2.1+/3+                            & 18 & 33 & 2 \\
-		& None        & AGPLv3/3+                              & 0  & 9  & 1 \\
-		& None        & MPLv1\_1                               & 0  & 1  & 0 \\
-		& None        & spdxBSD3                               & 0  & 8  & 1 \\
-		& None        & BSD                                    & 0  & 63 & 0 \\
-		& None        & Unidentifiable                         & 0  & 1  & 0 \\
-		& Sun (prop.) & None                                   & 0  & 21 & 0 \\
-		& MIT         & None                                   & 0  & 0  & 1 \\
-		& spdxBSD3/4  & None                                   & 0  & 0  & 0 \\ 
-		& BSD3        & GPLv2+								   & 0  & 1  & 0 \\  
+	    Incompat. 									& None       & Apache2  						   & 41 & 29 & 3 \\
+		(\textit{IL}) 								   & None        & BSD/BSD3                        & 0 & 64 & 0 \\
+															& None        & CDDLorGPLv2                & 0 & 63 & 4 \\
+															& None        & EPLv1                               & 0 & 33 & 0\\
+															& None        & GPLv2/2+/3+                  &  5 & 52 & 14 \\
+															& None        & LGPL2.1+/3+                   &  18 & 33 & 2 \\
+															& None        & AGPLv3/3+                     & 0 & 9 &1  \\
+															& None        & MPLv1\_1                         & 0 & 1 & 0\\
+															& None        & spdxBSD3                      & 0 & 8 & 1 \\
+															& None        & Unidentifiable                 & 0 & 1 & 0 \\
+															& Proprietary & None                            & 0 & 21 & 1 \\
+															& BSD3        & GPLv2+							& 0 & 1 & 0 \\
 		\hline
-		Total 	      &               &                       & 96 & 370 & 22 \\
+		\multicolumn{3}{l|}{Total} 	       																&  96 & 396 & 31 \\
 		\hline
 	\end{tabular} %
 }
@@ -851,89 +848,27 @@ Software licensing is a paramount factor in software development. Violation of s
 
 In our study, we reveal another possible situation of software licensing issue caused by code cloning to Stack Overflow. We found with evidence that 96 pieces of code have been copied from 14 open source projects in Qualitas dataset to Stack Overflow as examples. They are also marked as accepted answers which increase their probability of being reused. The 14 open source projects come with their respective software licenses (shown in \Cref{t:q_projects_license}). However, the licensing information are mostly missing from these clones when they are posted on Stack Overflow. Mostly one or a few methods from the full source file are cloned. This makes the licensing terms at the top of the file mostly left uncopied. If developers copy and reuse these pieces of code in their projects, a licensing conflict can quietly happen without realisation of the developers. 
 
+The summary of licensing information is listed in \Cref{tab:license_abc}. The licenses are extracted by an automatic license identification tool Ninka \cite{German2010}. For the ones that cannot be automatically identified by Ninka and have been reported as SeeFile and Unknown, we look at them manually.  The table shows license of Stack Overflow snippets (denoted as SO) and Qualitas source code. The number of clone pairs according to each pair of license has been categorised by online clone category A, B, and C. In overall, we can see that most of the Stack Overflow snippets do not have licensing terms with them while their clone counterparts in Qualitas project do. 
+
+\textbf{No license or compatible license:} There are 85 clone pairs in type \textit{NL} which do not have licensing information (None vs.~None) and 13 pairs in type \textit{CL} which have compatible licenses (Apache2 vs.~Apache2; EPLv1 vs.~EPLv1; None vs.~CC BY 3.0). They are safe for being reused. Since source code and text on Stack Overflow posted before 1st March 2016 are protected by CC BY 3.0 (and MIT license from 1st March 2016 onwards), we can treat Stack Overflow code snippets without licensing information as having CC BY 3.0 by default. CC BY 3.0 license is relaxed and it only request attribution when reuse. 
+
+\textbf{Incompatible license:} there are a large number of clone pairs in type \textit{IL} which do not contain licensing information after they are posted on Stack Overflow or having different license that its Qualitas clone counterpart. 96 category-A clones are the pairs that we have evidence of being copied from Qualitas to Stack Overflow. 64 of them do not contain licensing terms after posted and are controversial for being reused. 396 clone pairs in category B are highly similar clones that we do not have evidence of copying. 315 of them have incompatible licenses. Interestingly, there are 21 clone pairs that Stack Overflow snippets contain Sun and MIT-like license while Qualitas clones do not have any license information. There is also one clone pair having BSD3 license on Stack Overflow while having GPLv2+ in Qualitas source code. Lastly, 26 out of 31 clone pairs in category C have incompatible license. They are clones that have been identified to be copied from an external source. Again, most of the clones in Qualitas contain license while the Stack Overflow snippets do not. 
+
 \subsubsection{Interesting finding: external clones}
 
-%\section{Investigation of Missing A/B Clone Pairs Reported by Simian$_{df}$}
-%We investigated the 41 clone pairs previously reported by Simian with default configurations and manually investigated. The 41 pairs were searched for in 4 new results sets: Simian$_{df}$, Simian$_{\mathrm{\textit{EvCl}}}$, NiCad$_{df}$, NiCad$_{\mathrm{\textit{EvCl}}}$. The investigation results are shown in Table \ref{tab:search}.
-%
-%\begin{table}
-%	\centering
-%	\caption{Results of matching the original 41 Simian(default) pairs in the pretty-printed result sets}
-%	\label{tab:search}
-%	\begin{tabular}{l|r|r}
-%		\hline 
-%		Settings & Found & Not found \\ 
-%		\hline 
-%		Simian$_{df}$  &  40 & 1* \\ 
-%		\hline 
-%		Simian$_{\mathrm{\textit{EvCl}}}$ & 0 & 41  \\ 
-%		\hline 
-%		NiCad$_{df}$  & 17 & 24 \\ 
-%		\hline 
-%		NiCad$_{\mathrm{\textit{EvCl}}}$ &  24 & 17 \\ 
-%		\hline 
-%	\end{tabular} 
-%\end{table}
-%
-%The single missing Stack Overflow fragment (19051537\) (denoted by *) is one of the 11 false clones generated by Simian. It is removed from the results of the pretty-printed version because it is an outlier. The rest are missing because of different parameter settings.
-%
-%\section{Simian's Parameters}
-%
-%We have carefully investigated the effects of the Simian's parameter \texttt{-balanceSquareBrackets+}. I found that it works in the expected way of handling a pair of brackets (\texttt{[},\texttt{]}) that span over multiple lines. For example, the two code fragments in Figure \ref{fig:two_frags} would match by having \texttt{-balanceSquareBrackets+} enabled. However, the \texttt{-balanceSquareBrackets+} parameter only works on a small testing environment having toy programs or only small pairs from the full datasets. It does not work with the full complete set of 144,075 Stack Overflow fragments and Qualitas projects. Please find the summary of all the testing scenarios in Table \ref{tab:summary}. %I found that this pair is missing if I turned on \texttt{-balanceSquareBrackets+}.
-%
-%\noindent\begin{figure*}
-%	\scriptsize
-%	\begin{lstlisting}[frame=single,style=base]
-%	1   public class MagicSquare {                           public class MagicSquare2 {
-%	2       private int[][] square;                              @private int[@
-%	3       private boolean[] possible;                                      @][@
-%	4       private int totalSqs;                                            @] square;@
-%	5       private int sum;                                     private boolean[] possible;
-%	6       private int numsquares;                              private int totalSqs;
-%	7       public static void main ( String[] args ) {          private int sum;
-%	8       MagicSquare m = new MagicSquare ( 3 );               private int numsquares;
-%	9                                                            public static void main ( String[] args ) {
-%	10                                                           MagicSquare m = new MagicSquare ( 3 );
-%	\end{lstlisting}
-%	\caption{Two identical fragments with only differences in locations of the square brackets. All 7 lines are reported by Simian if \small\texttt{-balanceSquareBrackets+} \normalsize is enabled. If not, the clone pairs is reported as \newline (MagicSquare.java [3,8], MagicSquare2.java [5,10]).} 
-%	\label{fig:two_frags}
-%\end{figure*}
-%
-%\begin{table*}
-%	\caption{Simian's \texttt{-balanceSquareBrackets+} (\texttt{-bsb+}) is observed to have unpredictable behaviours when running against big datasets. $\textrm{\textit{CP}}_2$ means the reported clone(s) do not contain lines having dislocated brackets ($L_b$) (i.e. $\textrm{\textit{CP}}_2 = \textrm{\textit{CP}}_1 - L_b$).}
-%	\label{tab:summary}
-%	\centering
-%	\small\begin{tabular}{l|p{6cm}|c|c|c}
-%		\hline 
-%		\multirow{2}{*}{\textbf{Project 1}} & \multirow{2}{*}{\textbf{Project 2}} & \textbf{Dislocated} & \multirow{2}{*}{\textbf{-bsb+}} & \textbf{Clones pair} \\ 
-%		& & \textbf{brackets?} & & \textbf{reported} \\
-%		\hline
-%		\hline
-%		\multicolumn{5}{l}{\textit{Only run Simian against the pair}} \\
-%		\hline
-%		MagicSquare.java & MagicSquare\_exact\_copy.java & no & 0,1 & $\textrm{\textit{CP}}_1$ \\
-%		MagicSquare.java & MagicSquare2.java & yes & 0 & $\textrm{\textit{CP}}_2$ \\ 
-%		MagicSquare.java & MagicSquare2.java & yes & 1 & $\textrm{\textit{CP}}_1$ \\
-%		\hline
-%		%\hline
-%		%\multicolumn{5}{c}{\textit{Only run Simian against the pair}} \\
-%		%\hline
-%		stackoverflow/4298836\_0.java & Qualitas/aoisrc281/../ExprModule.java & no & 0 & $\textrm{\textit{CP}}_3$ \\ 
-%		stackoverflow/4298836\_0.java & Qualitas/aoisrc281/../ExprModule.java & no & 1 & $\textrm{\textit{CP}}_3$ \\ 
-%		stackoverflow/4533682\_1.java & Qualitas/cobertura-1/../TouchCollector.java & no & 0 & $\textrm{\textit{CP}}_4$ \\ 
-%		stackoverflow/4533682\_1.java & Qualitas/cobertura-1/../TouchCollector.java & no & 1 & $\textrm{\textit{CP}}_4$ \\ 
-%		\hline 
-%		\hline
-%		\multicolumn{5}{l}{\textit{Run Simian against the complete stackoverflow data and the project}} \\
-%		\hline
-%		stackoverflow/4298836\_0.java & Qualitas/aoisrc281/../ExprModule.java & no & 0 & $\textrm{\textit{CP}}_3$ \\ 
-%		\cellcolor{red!10}stackoverflow/4298836\_0.java & \cellcolor{red!10}Qualitas/aoisrc281/../ExprModule.java & \cellcolor{red!10}no & \cellcolor{red!10}1 & \cellcolor{red!10}-- \\ 
-%		\hline
-%		stackoverflow/4533682\_1.java & Qualitas/cobertura-1/../TouchCollector.java & no & 0 & $\textrm{\textit{CP}}_4$ \\ 
-%		\cellcolor{red!10}stackoverflow/4533682\_1.java & \cellcolor{red!10}Qualitas/cobertura-1/../TouchCollector.java & \cellcolor{red!10}no & \cellcolor{red!10}1 & \cellcolor{red!10}-- \\
-%		\hline 
-%	\end{tabular} 
-%\end{table*}
+\begin{table}[]
+	\centering
+	\caption{31 external clones found in Stack Overflow posts}
+	\label{tab:ext_clones}
+	\begin{tabular}{l|r|r}
+		\hline
+		Type        & FOSS & Web \\ \hline
+		StackOverflow only     & 1    & 1   \\
+		StackOverflow + Qualitas & 15   & 14  \\ \hline
+	\end{tabular}
+\end{table}
+
+We found 31 clone pairs which either one of the clones or both of them are found to be a copy of code snippet from somewhere else besides Qualitas project. This compliments the findings of inter clones between software projects \cite{Svajlenko2014} by showing that clones can also be copied over different websites on the Internet. There are 15 clone pairs that are originated from programming websites. For example, we found a clone of code snippet to convert numbers into words which is copied from \url{http://www.rgagnon.com/javadetails/java-0426.html}. Both Stack Overflow and \textit{Compiere} project source code contain attribution to the original source. Another example is a code of algorithm to generate graphical \textit{Perlin noise} copied from \url{http://mrl.nyu.edu/~perlin/noise/}. This code is used in both Stack Overflow and \textit{AoI} project with attribution. The original code of the 15 clone pairs do not have licensing information so these clones do not violate any license. However, there are 4 clone pairs that are cloned from \textit{JUnit} to both Stack Overflow and \textit{Eclipse} and 12 pairs cloned from other Java projects outside Qualitas corpus. They are originated from \textit{zxing} projects, Apache projects (ant, jasper), Java packages (\texttt{java.util}, \texttt{javax.servlet}, JUnit, and \texttt{org.bouncycastle.crypto} project.
 
 \section{Threats to Validity}
 
