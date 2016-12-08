@@ -15,6 +15,7 @@
 \usepackage{array}
 \usepackage{ragged2e}
 \usepackage{cleveref}
+\usepackage{subcaption}
 
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
@@ -577,6 +578,9 @@ For the ok-match clone pairs, we could not feasibly investigate all 23,868 pairs
 			\hline
 			\multirow{1}{*}{\textit{NiCad$_{df}$}} & 8  & 0 & 27 & 1 & \textbf{36} & 16 & 15 & 5 & 77 & 3 & 82 & \textbf{132} & 52 & 55 & 17 & \textbf{168} & 67 & 69 & 19 \\ 
 			\hline
+			\hline
+			Total & 96 & 0 & 396 & 31 & \textbf{523} & -- & -- & -- & 9502 & 107 & 2520 & \textbf{12099} & -- & -- & -- & \textbf{12622} & -- & -- & -- \\ 
+			\hline
 		\end{tabular} 
 	}
 \end{table*}
@@ -845,6 +849,22 @@ Software licensing is a paramount factor in software development. Violation of s
 	\end{tabular} %
 }
 \end{table}
+
+\begin{figure*}
+	\minipage{0.32\textwidth}
+	\includegraphics[width=\linewidth]{heatmap_a}
+	\caption*{(1) category A}\label{fig:heatmap_a}
+	\endminipage\hspace{0.3cm}
+	\minipage{0.32\textwidth}
+	\includegraphics[width=\linewidth]{heatmap_b}
+	\caption*{(2) category B}\label{fig:heatmap_b}
+	\endminipage\hfill
+	\minipage{0.32\textwidth}%
+	\includegraphics[width=\linewidth]{heatmap_c}
+	\caption*{(3) category C}\label{fig:heatmap_c}
+	\endminipage
+	\caption{Licensing between Stack Overflow code snippets and Qualitas Java file of 523 true online clone pairs}
+\end{figure*}
 
 In our study, we reveal another possible situation of software licensing issue caused by code cloning to Stack Overflow. We found with evidence that 96 pieces of code have been copied from 14 open source projects in Qualitas dataset to Stack Overflow as examples. They are also marked as accepted answers which increase their probability of being reused. The 14 open source projects come with their respective software licenses (shown in \Cref{t:q_projects_license}). However, the licensing information are mostly missing from these clones when they are posted on Stack Overflow. Mostly one or a few methods from the full source file are cloned. This makes the licensing terms at the top of the file mostly left uncopied. If developers copy and reuse these pieces of code in their projects, a licensing conflict can quietly happen without realisation of the developers. 
 
