@@ -195,7 +195,7 @@ In the manual inspection process, we classify clones into seven categories accor
 	\end{tabular} 
 \end{table}
 
-\textbf{Stack Overflow}: we extracted Java code snippets from a snapshot of Stack Overflow dump \footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump is in XML format containing information of \textit{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We are interested in code snippets embedded in posts which are pieces of code located between \texttt{<code></code>} tags. We filtered the snippets with two filtering criteria. First, we ignore snippets that are less than 6 lines since they are usually not considered as clones by clone detection research \cite{something}. Second, we are only interested in code snippets from posts that are marked as \textbf{accepted answer}. Posts on Stack Overflow are marked accepted by the questions' posters if the solutions in the posts solve their problems. We choose them because they have high chance to be reused than snippets in questions and other answers. Each snippet is extracted from the dump using regular expressions and saved to a file using its post ID as the file's name. If an accepted answer has more than one code snippet, we append an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we add \texttt{.java} extension to the file's names so that clone detectors can recognise them. We finally obtained 144,075 Java code snippets which contain 2,347,269 lines of Java source code excluding comments and blank lines\footnote{Measured by cloc: https://github.com/AlDanial/cloc}.
+\textbf{Stack Overflow}: we extracted Java code snippets from a snapshot of Stack Overflow dump \footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump is in XML format containing information of \textit{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We are interested in code snippets embedded in posts which are located between \texttt{<code></code>} tags. A Stack Overflow thread contains a post of question and several posts of answers. Every answer has voting score from users. An answer can also be marked as \textbf{accepted answer} by the questioner if the solution fixes his/her problem. We collect Java code snippets using two criteria. First, we are only interested in code snippets with at least six lines. Snippets which are smaller than six lines are usually spurious clones \cite{Bellon2007}. Second, we are only interested in code snippets in accepted answer. We choose snippets in accept answers because they have proofs that they actually solve the problems. Moreover, they are always displayed just below the questions which makes them attractive to be reused than snippets in other answers. Each snippet is extracted from the dump using regular expressions and saved to a file using its post ID as the file's name. If an accepted answer has more than one code snippet, we append an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we add \texttt{.java} extension to the file's names so that clone detectors can recognise them. We finally obtained 144,075 Java code snippets which contain 2,347,269 lines of Java source code excluding comments and blank lines\footnote{Measured by cloc: https://github.com/AlDanial/cloc}.
 
 \textbf{Open source systems}: we selected an established corpus for an empirical software engineering study called \textbf{Qualitas} \cite{QualitasCorpus}. It is a curated Java corpus that has been used in several software engineering studies \cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. The projects in the corpus represent various domains of software systems ranging from programming language to 3D and visualisation \cite{QualitasCorpus}. We selected the 20130901r release of Qualitas corpus containing 112 Java open source projects. This release contains projects with releases no later than 1st September 2013. We chose a snapshot late back in 2013 since we are interested in online code clones in the direction from open source projects to Stack Overflow. The 20130901r snapshot provides Java code that is at least 3 years old from the time of the experiment (January to December 2016). The time difference is sufficiently long for a number of code snippets to be copied onto Stack Overflow. Out of 112 Qualitas projects, there is one project, \textit{jre}, that does not contain Java source code due to its license \cite{QualitasCorpus} so it is removed from the study. This results in totally 111 projects analysed in the study. As shown in \Cref{tab:datasets}, the 111 Qualitas project have 160,937 Java files containing 19,086,883 lines of code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
 
@@ -893,6 +893,9 @@ We found 31 clone pairs which either one of the clones or both of them are found
 \section{Threats to Validity}
 
 \section{Related Work}
+
+Data on Stack Overflow can be exploited to support developers in several ways. Seahawk is an eclipse plug-in that can search and recommend relevant code snippets from Stack Overflow \cite{Ponzanelli2013}. Similarly, Prompter, ... \cite{Ponzanelli2014}.
+
 \begin{itemize}
 	\item Stack Overflow
 	\begin{itemize}
@@ -901,6 +904,7 @@ We found 31 clone pairs which either one of the clones or both of them are found
 		\item Stack Overflow to help developers \cite{Ponzanelli2013, Ponzanelli2014}
 		\item Improving Stack Oveflow \cite{Diamantopoulos2015, Wang2014, Bosu2013}
 		\item Developers' behaviours on Stack Overlow \cite{Wang2013_StackOverflow, Movshovitz-Attias2013}
+		\item Discuss \cite{Treude2016,Ahmed2015}
 	\end{itemize}
 	\item Code clones 
 		\begin{itemize}
@@ -919,6 +923,7 @@ We found 31 clone pairs which either one of the clones or both of them are found
 		\item Hybrid \cite{Funaro2010}
 	\end{itemize}
 	\item Software licensing
+	\item Outdated code \cite{Xia2014}
 	\begin{itemize}
 		\item Code siblings \cite{German2009}, Ninka -- Automatic indification of SW license \cite{German2010}, Evolution of SW licensing \cite{DiPenta2010}
 	\end{itemize}
