@@ -16,6 +16,7 @@
 \usepackage{ragged2e}
 \usepackage{cleveref}
 \usepackage{subcaption}
+\usepackage{tikz}
 
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
@@ -265,22 +266,22 @@ We were aware of effects of configurations to clone detection results and the im
 	\centering
 	\caption{Configurations of Simian and NiCad}
 	\label{t:param_tuning}
-	\resizebox{\columnwidth}{!}{%
-		\scriptsize
-\begin{tabular}{l|p{5.5cm}}
-	\hline 
-	Tool & Parameters \\
-	\hline
-	Simian$_{\textrm{\textit{df}}}$ &  threshold=6, ignoreStringCase, \newline ignoreCharacterCase, ignoreModifiers \\ 
-	\hline
-	$S_E$ & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, ignoreStrings, \newline ignoreCharacters, ignoreSubtypeNames, \newline balanceSquareBrackets  \\ 
-	\hline 
-	$N_D$ & MinLine=10, MaxLine=1000, UPI=0.30 \\
-	\hline
-	$N_E$ & MinLine=5, MaxLine=604, UPI=0.20, \newline blind renaming, literal abstraction \\ 
-	\hline 
-\end{tabular} %
-}
+%	\resizebox{\columnwidth}{!}{%
+	\small
+	\begin{tabular}{l|p{5.5cm}}
+		\hline 
+		Tool & Parameters \\
+		\hline
+		$S_D$ &  threshold=6, ignoreStringCase, \newline ignoreCharacterCase, ignoreModifiers \\ 
+		\hline
+		$S_E$ & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, ignoreStrings, \newline ignoreCharacters, ignoreSubtypeNames, \newline balanceSquareBrackets  \\ 
+		\hline 
+		$N_D$ & MinLine=10, MaxLine=1000, UPI=0.30 \\
+		\hline
+		$N_E$ & MinLine=5, MaxLine=604, UPI=0.20, \newline blind renaming, literal abstraction \\ 
+		\hline 
+	\end{tabular} %
+%}
 \end{table}
 
 \section{Results and Discussion}
@@ -311,22 +312,24 @@ We followed the experimental framework and detected clones between Stack Overflo
 
 \begin{table*}
 	\centering
-	\caption{The number of online clone pair condidates (mutually exclusive) before and after filtering. The last column shows the number of true positive clone pairs after the manual investigation.}
+	\caption{The number of online clone pair condidates (mutually exclusive) before and after filtering. The last column shows the number of true positive clone pairs after the manual investigation. }
 	\label{tab:online_clone_pairs}
 	\small
-	\begin{tabular}{l|r|l|r|r|r|r}
+	\begin{tabular}{l|r|c|c|c|c|r|r|r|r}
 		\hline
-		Clone set & Original & Filter & Candidates & \texttt{equals()} & Manual & TP \\ 
+		\multirow{2}{*}{Clone set} & \multicolumn{1}{c|}{Before} & \multicolumn{4}{c|}{Filters*} & \multirow{2}{*}{Candidates} & \multirow{2}{*}{\texttt{equals()}} & \multirow{2}{*}{Manual} & \multirow{2}{*}{TP} \\ \cline{3-6}
+		        		  & \multicolumn{1}{c|}{Filters} & \textit{L} & \textit{S} & \textit{R} & \textit{G} & & & & \\
 		\hline 
-		\multirow{1}{*}{\textit{good}} & --  & -- & 2,261  & 9 & 2,252 & 8 \\
-		\multirow{1}{*}{\textit{ok}} & --  & -- & 26,838 & 9,122 & 200 & 47 \\
+		\multirow{1}{*}{\textit{good}} & & & & & & 2,261  & 9 & 2,252 & 72 \\
+		\multirow{1}{*}{\textit{ok}} &  & & & & & 9,322 & 9,122 & 200 & 9,240 \\
 		%\multirow{1}{*}{\textit{agreed clone pairs}}        & 29,099 \\
-		\multirow{1}{*}{$S_D$} & 67,570 & $Line \geq 10$, RegEx, good/ok & 17,801 & 16,930 & 871 & 432 \\
-		\multirow{1}{*}{$N_D$} & 229,176 & $Sim \geq 80\%$, RegEx, good/ok & 168 & 41 & 127 & 36 \\ 
+		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & \checkmark & \checkmark & 17,801 & 16,930 & 871 & 704 \\
+		\multirow{1}{*}{$N_D$} & 229,176 & & \checkmark & \checkmark & \checkmark & 168 & 41 & 127 & 116 \\ 
 		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
 		\hline
-		Total  & 296,746 & & 47,068 & 26,102 & 3,450 & 523 \\ 
+		Total  & 296,746 & & & & & 47,068 & 26,102 & 3,450 & 10,132 \\ 
 		\hline
+	 	\multicolumn{10}{l}{\scriptsize{Filters*: \textit{L}=$Line \geq 10$, \textit{S}=$Sim \geq 80\%$, \textit{R}=regular expressions, and \textit{G}=\textit{good}/\textit{ok} pairs.}}
 	\end{tabular} 
 \end{table*}
 
@@ -336,7 +339,7 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 
 \subsubsection{Agreed clone pairs}
 
-Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria and selected for manual investigation. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs \cite{Bellon2007}. The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. We found that NiCad generates errors and stopped processing against some Qualitas projects. \FIXME{Reported the errors to NiCad creator. Add response here.}  $N_D$ could not detect clones in 6 projects due to clustering errors. $N_E$ generated renaming and clustering errors for 11 and 16 projects respectively. As a result, we did not have NiCad clones from these project in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
+Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria and selected for manual investigation. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs \cite{Bellon2007}. The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. We encountered NiCad failures with some Qualitas projects. \FIXME{Reported the errors to NiCad creator. Cordy said it might be a long-path problem. Should we try fixing?}  $N_D$ could not detect clones in 12 projects due to clustering errors. $N_E$ generated renaming and clustering errors for 11 and 17 projects respectively. As a result, we did not have NiCad clones from these project in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
 
 \begin{table}
 	\centering
@@ -347,8 +350,8 @@ Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria
 		\hline
 		Execution & $S_D$ & $S_E$  & $N_D$ & $N_E$ \\ 
 		\hline
-		\textit{Successful} & 111 & 111 & 105 & 84 \\ 
-		\textit{Clustering fail} & -- & -- & 6 & 16 \\
+		\textit{Successful} & 111 & 111 & 99 & 83 \\ 
+		\textit{Clustering fail} & -- & -- & 12 & 17 \\
 		\textit{Renaming fail} & -- &  -- & -- & 11 \\
 		\hline
 	\end{tabular}
