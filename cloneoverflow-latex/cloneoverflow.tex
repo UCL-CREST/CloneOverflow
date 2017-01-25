@@ -333,13 +333,16 @@ We followed the experimental framework and detected clones between Stack Overflo
 	\end{tabular} 
 \end{table*}
 
-The clone statistics obtained from running Simian and NiCad with \textit{D} and \textit{E} configurations are presented in \Cref{tab:raw_stats}. Preliminary manual investigation of Simian's clone report revealed that there were problematic 11 fragments. These 11 fragments triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, they were removed from Simian's clone reports before the analysis. From \Cref{tab:raw_stats}, Simian clones cover approximately 10\% of the 144,075 Stack Overflow snippets, 1,086 reported by $S_D$ and 1,530 from $S_E$ respectively. $N_D$ reports clones in 1,240 Stack Overflow code snippets, while $N_E$ reports clones in a larger number of 12,886 snippets  mainly due to its relaxed configurations. In terms of number of clone pairs, $S_E$ and $N_E$ report a large number of clone pairs of 63,372,599 and 206,760,077 respectively. This is expected since EvaClone configurations prefer recall so it tends to remote more clones \cite{Wang2013}. The average clone size of$S_D$ is 7.72 lines which is bigger than its $S_E$ counterpart of 4.79. Similarly, $N_D$ has an average clone size of 9.64 lines which is bigger than 5.32 reported by $N_E$. We can see from the statistics that EvaClone tunes the tools in the way that they report smaller clones. The average percentage of Stack Overflow code snippets that are cloned according to$S_D$, $S_E$, $N_D$, and $N_E$ is 29\%, 28\%, 25\%, and 21\% accordingly.
+The clone statistics obtained from running Simian and NiCad with \textit{D} and \textit{E} configurations are presented in \Cref{tab:raw_stats}. From \Cref{tab:raw_stats}, Simian clones cover approximately 10\% of the 144,075 Stack Overflow snippets, 1,086 reported by $S_D$ and 1,530 from $S_E$ respectively. $N_D$ reports clones in 1,240 Stack Overflow code snippets, while $N_E$ reports clones in a larger number of 12,886 snippets  mainly due to its relaxed configurations. In terms of number of clone pairs, $S_E$ and $N_E$ report a large number of clone pairs of 63,372,599 and 206,760,077 respectively. This is expected since EvaClone configurations prefer recall so it tends to remote more clones \cite{Wang2013}. The average clone size of$S_D$ is 7.72 lines which is bigger than its $S_E$ counterpart of 4.79. Similarly, $N_D$ has an average clone size of 9.64 lines which is bigger than 5.32 reported by $N_E$. We can see from the statistics that EvaClone tunes the tools in the way that they report smaller clones. The average percentage of Stack Overflow code snippets that are cloned according to$S_D$, $S_E$, $N_D$, and $N_E$ is 29\%, 28\%, 25\%, and 21\% accordingly. Preliminary manual investigation of Simian's clone report revealed that there were problematic 11 fragments. These 11 fragments triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
 
 As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement filtering using Bellon's criteria, the number of \textit{good} agreed clone pairs is 2,261 while \textit{ok} is 26,838. The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 168 for Simian and NiCad respectively. The details are as follows.
 
 \subsubsection{Agreed clone pairs}
 
-Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria and selected for manual investigation. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs \cite{Bellon2007}. The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. We encountered NiCad failures with some Qualitas projects. \FIXME{Reported the errors to NiCad creator. Cordy said it might be a long-path problem. Should we try fixing?}  $N_D$ could not detect clones in 12 projects due to clustering errors. $N_E$ generated renaming and clustering errors for 11 and 17 projects respectively. As a result, we did not have NiCad clones from these project in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
+Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria and selected for manual investigation. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs \cite{Bellon2007}. %The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. 
+We encountered NiCad failures with a few Qualitas projects. 
+%\FIXME{Reported the errors to NiCad creator. Cordy said it might be a long-path problem. Should we try fixing?}  
+$N_D$ could not detect clones in Hibernate due to clustering errors. $N_E$ generated renaming errors for 5 projects including Vuze, Hibernate, Myfaces, Netbeans, and Spring. We had contacted the author of NiCad regarding the issues. They found that it was a problem of long file paths which will be fixed in the next NiCad releases. As a result, we did not have NiCad clones from these project in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
 
 \begin{table}
 	\centering
@@ -350,9 +353,9 @@ Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria
 		\hline
 		Execution & $S_D$ & $S_E$  & $N_D$ & $N_E$ \\ 
 		\hline
-		\textit{Successful} & 111 & 111 & 99 & 83 \\ 
-		\textit{Clustering fail} & -- & -- & 12 & 17 \\
-		\textit{Renaming fail} & -- &  -- & -- & 11 \\
+		\textit{Successful} & 111 & 111 & 100 & 96 \\ 
+		\textit{Clustering fail} & -- & -- & 1 & -- \\
+		\textit{Renaming fail} & -- &  -- & -- & 5 \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -367,8 +370,8 @@ Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria
 		\hline
 		Set & $S_DN_D$ & $S_DN_E$ & $S_EN_D$ & $S_EN_E$ & Total & Unique \\
 		\hline
-		\textit{good} & 10 & 26 & 10 & 2,228 & 2,274 & 2,261 \\
-		\textit{ok} & 9,052 & 991 & 78 & 17,549 & 27,670 & 26,838 \\
+		\textit{good} & 10 & 26 & 10 & 2,228 & 2,321 & 2,308 \\
+		\textit{ok} & 9,042 & 991 & 78 & 17,549 & 27,670 & 26,838 \\
 		\hline
 	\end{tabular} %
 }
@@ -381,13 +384,13 @@ The distributions of \textit{good} clone pairs between four combinations of \tex
 \begin{figure*}
 	\begin{minipage}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.7\linewidth]{venn4_pairs_good_pt1+2+3}
+		\includegraphics[width=0.7\linewidth]{venn4_pairs_good_pt1+2+3+fixed_nicad-crop}
 		\caption{Distributions of \textit{good} pairs}
 		\label{fig:venn4_orig_good}
 	\end{minipage}
 	\begin{minipage}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.7\linewidth]{venn4_pairs_ok_pt1+2+3}
+		\includegraphics[width=0.7\linewidth]{venn4_pairs_ok_pt1+2+3+fixed_nicad-crop}
 		\caption{Distributions of \textit{ok} pairs}
 		\label{fig:venn4_orig_ok}
 	\end{minipage}
@@ -409,7 +412,7 @@ For $N_D$, 10-line threshold is already a minimum NiCad's clone size. However, N
 %However, 10-line threshold is already a minimum NiCad's clone size and regular expressions could not be used effectively as in Simian's case since NiCad detects type-3 clones as well. So . Using 80\% similarity, there are totally 166 pairs left. 
 %There are 450 ok-match pairs which we ignore, thus 168 clone pairs remaining for manual investigation. %The statistics of the clones and classification results are reported in \Cref{tab:classification_indv_stats}.
 
-In our manual investigation process, we used a script to automatically classify \texttt{equals()} clone pairs which helped classifying 26,102 pairs out of 47,068 (more than half of the \texttt{equals()} pairs came from $S_D$). Finally, there are 3,450 pairs remaining which we manually investigated them. \textbf{To answer RQ1, we found 47,068 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. After a manual investigation, we found at least 523 online code clones pairs are true clones.}
+In our manual investigation process, we used a script to automatically classify \texttt{equals()} clone pairs which helped classifying 26,102 pairs out of 47,068 (more than half of the \texttt{equals()} pairs came from $S_D$). Finally, there are 3,450 pairs remaining which we manually investigated them. \textbf{To answer RQ1, we found 47,068 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. They are 2,261 \textit{good} pairs, 26,838 \textit{ok} pairs. XXX After a manual investigation, we found at least 523 online code clones pairs are true clones.}
 
 %We selected only Stack Overflow fragment and Qualitas files that have never been looked at before in the previous investigation. If many clone pairs having the same Stack Overflow fragment and Qualitas file, we keep only the largest one. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stack Overflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification_indv}. 
 
