@@ -334,7 +334,7 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 		\hline
 		Total  & 296,746 & & & & & 28,832 \\ 
 		\hline
-		\multicolumn{7}{l}{\scriptsize{Filters*: \textit{L}=$Line \geq 10$, \textit{S}=$Sim \geq 80\%$,}} \\
+		\multicolumn{7}{l}{\scriptsize{Filters*: \textit{L}=$Line \geq 10$, \textit{S}=$Sim \geq 85\%$,}} \\
 		\multicolumn{7}{l}{\scriptsize{\textit{R}=regular expressions, and \textit{G}=\textit{good}/\textit{ok} pairs.}} \\
 	\end{tabular} %
 %}
@@ -571,7 +571,8 @@ To check if the discovered Stack Overflow clones are outdated, we focused on the
 
 \Cref{fig:outdated} shows the findings of outdated clone investigation. The comparison with the clones' latest versions revealed that 55 clone pairs were outdated. These were clone pairs that were copied from Qualitas to Stack Overflow and later marked as accepted answers. Hadoop and Spring have the maximum number of 9 outdate code clones, followed by 6 clones from Tomcat, and 5 clones from Eclipse-SDK. An example of outdated code in hadoop's \textit{WritableComparator.java} is shown in \Cref{fig:before-after}. The newest version has one line added. We also found outdated code which contained heavy modifications. For example, the code snippet in Stack Overflow post 23520731, a copy of \textit{SchemaUpdate.java} in Hibernate, it had been heavily modified in the latest version (as shown in \Cref{fig:hibernate_outdated_code}). Moreover, the code snippet in Stack Overflow post 3758110, a copy of \textit{DefaultAnnotationHandlerMapping.java} in Spring, was deleted in the commit \texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b} by Chris Beams on 20th January 2012 at 22:51:02 two years after it was posted. The latest version of Spring does not contain the file anymore. 
 
-The outdate online code clones can cause problems ranging from uncompilable code due to different API usage to bug propagation. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Stack Overflow has a voting mechanism that may mitigate this outdated code issue. Usually when developers reuse a code snippet from a Stack Overflow post and find that it does not work nor compatible with their environment. They can cast a down vote to that answer resulting in low votes for the answer (which might be outdated). However, if the answer is marked as accepted by the person who asks the question (which is our case), it is always ranked on the top and still attractive to naive developers who are ignorant. 
+The outdate online code clones can cause problems ranging from uncompilable code due to different API usage to bug propagation. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Although Stack Overflow has a voting mechanism that may mitigate this outdated code issue, the check mark symbol in front of the accepted answer is still attractive to naive developers who are ignorant.
+%Usually when developers reuse a code snippet from a Stack Overflow post and find that it does not work nor compatible with their environment. They can cast a down vote to that answer resulting in low votes for the answer (which might be outdated). However, if the answer is marked as accepted by the person who asks the question, the check mark symbol attached to the answer is still attractive to naive developers who are ignorant. 
 
 \begin{figure*}
 	\begin{lstlisting}
