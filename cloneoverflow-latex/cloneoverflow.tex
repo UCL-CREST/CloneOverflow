@@ -310,9 +310,9 @@ We followed the experimental framework and detected clones between Stack Overflo
 	}
 \end{table}
 
-The clone statistics obtained from running Simian and NiCad with \textit{D} and \textit{E} configurations are presented in \Cref{tab:raw_stats}. From \Cref{tab:raw_stats}, Simian clones cover approximately 10\% of the 144,075 Stack Overflow snippets, 1,086 reported by $S_D$ and 1,530 from $S_E$ respectively. $N_D$ reports clones in 1,240 Stack Overflow code snippets, while $N_E$ reports clones in a larger number of 12,886 snippets  mainly due to its relaxed configurations. In terms of number of clone pairs, $S_E$ and $N_E$ report a large number of clone pairs of 63,372,599 and 206,760,077 respectively. This is expected since EvaClone configurations prefer recall so it tends to remote more clones \cite{Wang2013}. The average clone size of $S_D$ is 7.72 lines which is bigger than its $S_E$ counterpart of 4.79. Similarly, $N_D$ has an average clone size of 9.64 lines which is bigger than 5.32 reported by $N_E$. We can see from the statistics that EvaClone tunes the tools in the way that they report smaller clones. The average percentage of Stack Overflow code snippets that are cloned according to $S_D$, $S_E$, $N_D$, and $N_E$ is 29\%, 28\%, 25\%, and 21\% accordingly. Preliminary manual investigation of Simian's clone report revealed that there were problematic 11 snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
+The clone statistics obtained from running Simian and NiCad with \textit{D} and \textit{E} configurations are presented in \Cref{tab:raw_stats}. From \Cref{tab:raw_stats}, Simian clones cover approximately 1\% of the 144,075 Stack Overflow snippets, 1,086 reported by $S_D$ and 1,531 from $S_E$ respectively. $N_D$ reports clones in 1,392 Stack Overflow code snippets, while $N_E$ reports clones in a larger number of 12,886 snippets  mainly due to its relaxed configurations. In terms of number of clone pairs, $S_E$ and $N_E$ report a large number of clone pairs of 63,635,844 and 251,449,849 respectively. This is expected since EvaClone configurations prefer recall so it tends to remote more clones \cite{Wang2013}. The average clone size of $S_D$ is 7.72 lines which is bigger than its $S_E$ counterpart of 4.79. Similarly, $N_D$ has an average clone size of 9.84 lines which is bigger than 5.33 reported by $N_E$. We can see from the statistics that EvaClone tunes the tools in the way that they report smaller clones. The average percentage of Stack Overflow code snippets that are cloned according to $S_D$, $S_E$, $N_D$, and $N_E$ is 29\%, 28\%, 25\%, and 21\% accordingly. A quick manual check of Simian's clone report revealed that there were problematic 11 snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
 
-As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement filtering using Bellon's criteria, the number of \textit{good} agreed clone pairs is 2,261 while \textit{ok} is 26,838. The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 168 for Simian and NiCad respectively. The details are as follows.
+As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement filtering using Bellon's criteria, the number of \textit{good} agreed clone pairs is 2,308 while \textit{ok} is 11,749. The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 181 for Simian and NiCad respectively. The total number of clone candidates is 32,039 pairs. The details are as follows.
 
 \begin{table}
 	\centering
@@ -325,14 +325,14 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 		\multirow{2}{*}{Set} & \multicolumn{1}{c|}{Before} & \multicolumn{4}{c|}{Filters*} & \multirow{2}{*}{Cand.} \\ \cline{3-6}
 		& \multicolumn{1}{c|}{Filters} & \textit{L} & \textit{S} & \textit{R} & \textit{G} & \\
 		\hline 
-		\multirow{1}{*}{\textit{good}} & 2,261 & & & & & 2,261 \\
-		\multirow{1}{*}{\textit{ok}} & 9,322 & & & & & 9,322 \\
+		\multirow{1}{*}{\textit{good}} & 2,308 & & & & & 2,308 \\
+		\multirow{1}{*}{\textit{ok}} & 11,749 & & & & & 11,749 \\
 		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
 		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & \checkmark & \checkmark & 17,801 \\
-		\multirow{1}{*}{$N_D$} & 229,176 & & \checkmark & \checkmark & \checkmark & 168 \\ 
+		\multirow{1}{*}{$N_D$} & 229,176 & & \checkmark & \checkmark & \checkmark & 181 \\ 
 		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
 		\hline
-		Total  & 296,746 & & & & & 28,832 \\ 
+		Total  & 310,803 & & & & & 32,039 \\ 
 		\hline
 		\multicolumn{7}{l}{\scriptsize{Filters*: \textit{L}=$Line \geq 10$, \textit{S}=$Sim \geq 85\%$,}} \\
 		\multicolumn{7}{l}{\scriptsize{\textit{R}=regular expressions, and \textit{G}=\textit{good}/\textit{ok} pairs.}} \\
@@ -343,7 +343,7 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 \begin{table}
 	\centering
 	\caption{The online clone classification results}
-	\label{tab:online_clone_pairs}
+	\label{tab:online_clone_classification_results}
 	\small
 	%	\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{l|r|r|r|r}
@@ -351,14 +351,14 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 		\multirow{2}{*}{Set} & \multirow{2}{*}{Candidates} & \multicolumn{2}{c|}{Classification} & \multirow{2}{*}{TP} \\ \cline{3-4}
 		& & Auto & Manual & \\
 		\hline 
-		\multirow{1}{*}{\textit{good}} & 2,261 & 9 & 2,252 & 72 \\
-		\multirow{1}{*}{\textit{ok}} & 9,322 & 9,122 & 200 & 9,240 \\
+		\multirow{1}{*}{\textit{good}} & 2,308 & 9 & 2,299 & x \\
+		\multirow{1}{*}{\textit{ok}} & 11,749 & 11,495 & 254 & x \\
 		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
 		\multirow{1}{*}{$S_D$} & 17,801 & 16,930 & 871 & 704 \\
-		\multirow{1}{*}{$N_D$} & 168 & 41 & 127 & 116 \\ 
+		\multirow{1}{*}{$N_D$} & 181 & 10 & 171 & x \\ 
 		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
 		\hline
-		Total  & 28,832 & 26,102 & 3,450 & 10,132 \\ 
+		Total  & 32,039 & 28,444 & 3,595 & x \\ 
 		\hline
 	\end{tabular} %
 	%}
@@ -367,25 +367,7 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 \subsubsection{Agreed clone pairs}
 
 Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria and selected for manual investigation. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs \cite{Bellon2007}. %The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. 
-We encountered NiCad failures with a few Qualitas projects. 
-%\FIXME{Reported the errors to NiCad creator. Cordy said it might be a long-path problem. Should we try fixing?}  
-$N_D$ could not detect clones in Hibernate due to clustering errors. $N_E$ generated renaming errors for 5 projects including Vuze, Hibernate, Myfaces, Netbeans, and Spring. We had contacted the creator of NiCad regarding the issues. They identified them as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases. As a result, we did not have NiCad clones from these project in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
-
-%\begin{table}
-%	\centering
-%	\caption{No.~of successfully analysed Qualitas projects}
-%	\label{tab:projects_missing}
-%	\small
-%	\begin{tabular}{l|r|r|r|r}
-%		\hline
-%		Execution & $S_D$ & $S_E$  & $N_D$ & $N_E$ \\ 
-%		\hline
-%		\textit{Successful} & 111 & 111 & 100 & 96 \\ 
-%		\textit{Clustering fail} & -- & -- & 1 & -- \\
-%		\textit{Renaming fail} & -- &  -- & -- & 5 \\
-%		\hline
-%	\end{tabular}
-%\end{table}
+We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in Hibernate due to clustering errors. $N_E$ generated renaming errors for 5 projects including Vuze, Hibernate, Myfaces, Netbeans, and Spring. We had contacted the creator of NiCad regarding the issues. They identified them as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases. As a result, we did not have NiCad clones from these projects in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
 
 \begin{table}
 	\centering
@@ -397,8 +379,8 @@ $N_D$ could not detect clones in Hibernate due to clustering errors. $N_E$ gener
 		\hline
 		Set & $S_DN_D$ & $S_DN_E$ & $S_EN_D$ & $S_EN_E$ & Total & Unique \\
 		\hline
-		\textit{good} & 10 & 26 & 10 & 2,228 & 2,274 & 2,261 \\
-		\textit{ok} & 9,049 & 993 & 79 & 19,777 & 29,898 & 29,058 \\
+		\textit{good} & 18 & 26 & 10 & 2,267 & 2,321 & 2,308 \\
+		\textit{ok} & 11,467 & 993 & 79 & 20,021 & 32,560 & 31,729  \\
 		\hline
 	\end{tabular} %
 }
@@ -411,42 +393,20 @@ $N_D$ could not detect clones in Hibernate due to clustering errors. $N_E$ gener
 	\label{fig:good-ok-pairs}
 \end{figure}
 
-The distributions of \textit{good} clone pairs between four combinations of \textit{D} and \textit{E} configurations are listed in \Cref{t_agreed_good_clone_pairs} and depicted visually in \Cref{fig:good-ok-pairs}. There are 2,261 unique \textit{good} pairs consisting of 10 pairs from $S_DN_D$, 26 pairs from $S_DN_E$, 10 pairs from $S_EN_D$, and 2,228 pairs from $S_EN_E$. There are 26,838 unique \textit{ok} pairs (excluding the subsumed 2,261 \textit{good} pairs).\footnote{According to the definition, \textit{ok} clone pairs always subsume the \textit{good} pairs.} We obtained 9,052; 991; 78; and 17,549 pairs from $S_DN_D$, $S_DN_E$, $S_EN_D$, and $S_EN_E$ respectively. Between the four configuration sets, there are considerable amount of clone pairs shared between two adjacent sets (as depicted in \Cref{fig:good-ok-pairs}), but there is no clone pair that is agreed by all four combinations. %If we remove duplicates, the number of unique ok-match pairs is 26,838. 
-
-%\FIXME{Maybe no longer needed?} We are interested in discovering reused code in the latest versions of Qualitas projects. So, we downloaded the newest release of each project and found 44 of them having newer updates. Then, we reran the experiment again on these 44 projects. Several projects triggered NiCad problem of clustering and renaming again as listed in Table \{tab:projects_missing}. The agreed clone pairs using Bellon's \textit{good}(0.7) and ok-match(0.7) criteria of this new dataset are also listed in Table \{t_agreed_good_clone_pairs}. 
-
-%\begin{figure*}
-%	\begin{minipage}{.5\textwidth}
-%		\centering
-%		\includegraphics[width=0.7\linewidth]{venn4_pairs_good_pt1+2+3+fixed_nicad-crop}
-%		\caption{Distributions of \textit{good} pairs}
-%		\label{fig:venn4_orig_good}
-%	\end{minipage}
-%	\begin{minipage}{.5\textwidth}
-%		\centering
-%		\includegraphics[width=0.7\linewidth]{venn4_pairs_ok_pt1+2+3+fixed_nicad-crop}
-%		\caption{Distributions of \textit{ok} pairs}
-%		\label{fig:venn4_orig_ok}
-%	\end{minipage}
-%\end{figure*}
+The distributions of \textit{good} clone pairs between four combinations of \textit{D} and \textit{E} configurations are listed in \Cref{t_agreed_good_clone_pairs} and depicted visually in \Cref{fig:good-ok-pairs}. There are 2,321 (2,308 unique) \textit{good} pairs consisting of 18 pairs from $S_DN_D$, 26 pairs from $S_DN_E$, 10 pairs from $S_EN_D$, and 2,267 pairs from $S_EN_E$. There are 32,560 (11,749 unique) \textit{ok} pairs\footnote{This excludes the subsumed 2,308 \textit{good} pairs. According to the definition, \textit{ok} pairs always subsume \textit{good} pairs.} We obtained 11,467; 993; 79; and 20,021 pairs from $S_DN_D$, $S_DN_E$, $S_EN_D$, and $S_EN_E$ respectively. Between the four configuration sets, there are considerable amount of clone pairs shared between two adjacent sets (as depicted in \Cref{fig:good-ok-pairs}), but there is no clone pair that is agreed by all four combinations. 
 
 \subsubsection{Disagreed clone pairs}
-%In the preliminary stage of our experiment, we found that there are 41 Stack Overflow fragments reported by Simian with default configurations. However, only 10 of them appear in the new results using tool's agreement. Thus, we further investigated the clone pairs reported by Simian and NiCad but \textit{without} an agreement. 
 
-The disagreed clone pairs are clone pairs that are reported by a tool, either Simian or NiCad, and do not have agreement with clones from another tool. The disagreement can be from misalignment of clone lines or different configurations that result in dissimilar clones reported. They also cover clone pairs in projects having NiCad's errors (6 projects for $N_D$ and 27 for $N_E$) that are automatically missing from the agreed clone pairs. With the four configuration combinations, we decided to investigate only $S_D$, and $N_D$, and drop $S_E$ and $N_E$ due to their enormous amount of clone pairs (59 and 206 millions respectively). $S_E$ and $N_E$ also have a high possibility of containing a large number of false positives due to relaxation of their EvaClone configurations. 
+The disagreed clone pairs are clone pairs that are reported by a single tool, either Simian or NiCad, and do not have agreement with clones from another tool. The disagreement can be from misalignment of clone lines or totally dissimilar clones due to different configurations. Disagreed pairs from Simian also cover clone pairs in projects having NiCad's errors (1 projects for $N_D$ and 5 for $N_E$) that are automatically missing from the agreed clone pairs. With the four configuration combinations, we decided to investigate only $S_D$, and $N_D$, and drop $S_E$ and $N_E$ due to their enormous amount of clone pairs (60 and 250 millions respectively). Moroever, without clone agreement, $S_E$ and $N_E$ contain a large number of false positives due to the recall preference of their EvaClone configurations. 
 
-Even choosing only the default configurations, the number of clone pair candidates are still very large. We hence apply three filters: \textbf{clone size, regular expression, and similarity threshold}. For the clone size filter, we raise the minimum clone size to 10 line as larger clones tend to be more interesting while smaller ones tend to be false clones \cite{Saini2016}. Moreover, Gabel and Su show that unique code tend to be larger than seven lines \cite{Gabel2010}. The 10--line threshold is already the default configuration for NiCad, thus this filter affects Simian clone pairs only (Simian's default configurations consider a minimum of 6 lines).~The regular expression filter captures uninteresting boiler-plate clones of \verb|hashCode()| methods, getters and setters using regular expressions and removes them. The third filter, similarity threshold, applies only to NiCad clone pairs since Simian does not provide this similarity threshold configuration. %We increase the similarity threshold of NiCad clone pairs from 70\% to 80\%. %Using the filter along with regular expressions to capture boiler-plate code clones such as \verb|equals()| and \verb|hashcode()|, we can reduce the number of Simian clone candidates to a manageable amount of 795 clone pairs. 
+Even choosing only the default configurations, the number of clone pair candidates are still very large for manual inspection (67,570 for $S_D$ and 229,176 pairs for $N_D$). We hence apply four filters: \textbf{clone size, regular expression, similarity threshold, and good/ok pairs}. For the clone size filter, we raise the minimum clone size to 10 line as larger clones tend to be more interesting while smaller ones tend to be false clones \cite{Saini2016}. Moreover, Gabel and Su show that unique code tend to be larger than seven lines \cite{Gabel2010}. The 10--line threshold is already the default configuration for NiCad, thus this filter affects Simian clones only (Simian's default configurations consider a minimum of 6 lines).~The regular expression filter captures uninteresting boiler-plate clones of \verb|hashCode()| methods and some of the obvious getters and setters using regular expressions and removes them. The third filter, similarity threshold, applies only to NiCad clone pairs since Simian does not provide this similarity threshold configuration. The last filter, good/ok pairs, filters the pairs that already exist in \textit{good} or \textit{ok} set to avoid duplicates. 
 
-% It results in 159 clone pairs remaining. The summary of disagreed clone pairs before and after filtering is shown in \Cref{tab:classification_indv_stats}.
-% 9,383 (part 1) + 9,042 (part 2) + 1,923 (part 3) = 20,348 %
-As shown in \Cref{tab:online_clone_pairs}, for $S_D$ we filtered the results using clone size and regular expressions. The combination of the two filters reduce the number of $S_D$ clones to 17,801 pairs for manual investigation. 
-% 7062 + 22187 + 6755 =  36004 %
-For $N_D$, 10-line threshold is already a minimum NiCad's clone size. However, NiCad still reported much more clones than Simian since it can detect type-3 clones. Thus, we filtered NiCad's clones by using similarity threshold and regular expressions. We increase NiCad's similarity threshold from 70\% to 80\% (by adjusting NiCad's $\mathrm{UPI}$ from 0.3 to 0.2). We have tried varying the UPI from 70\%, 80\% and 90\% and we found that 80\% similarity provides the best balance in terms of the amount of reported clones and feasibility for manual investigation. Using the two filters, we reduced the size of $N_D$ clones to 168 pairs. 
+As shown in \Cref{tab:online_clone_pairs}, for $S_D$ we filtered the results using clone size, regular expressions, and gook/ok pairs. The combination of the three filters reduce the number of $S_D$ clones to 17,801 pairs for manual investigation. 
+For $N_D$, 10-line threshold is already a minimum NiCad's clone size. However, NiCad still reported much more clone pairs than Simian since it can detect type-3 clones. Thus, besides regular expressions and good/ok pair filters, we filtered NiCad's clones further by a stricter similarity threshold. We increase NiCad's similarity threshold from 70\% to 85\% (by adjusting NiCad's $\mathrm{UPI}$ from 0.3 to 0.15). We have tried varying the UPI from 70\% (default), 80\%, 85\% and 90\% and we found that 85\% similarity provides the best balance in terms of the amount of reported clones and feasibility for manual investigation. Using the three filters, we reduced the size of $N_D$ clones to 181 pairs.
 
-%However, 10-line threshold is already a minimum NiCad's clone size and regular expressions could not be used effectively as in Simian's case since NiCad detects type-3 clones as well. So . Using 80\% similarity, there are totally 166 pairs left. 
-%There are 450 ok-match pairs which we ignore, thus 168 clone pairs remaining for manual investigation. %The statistics of the clones and classification results are reported in \Cref{tab:classification_indv_stats}.
+In our clone classification process, we used a script to automatically classify \texttt{equals()} clone pairs which helped classifying 28,444 pairs out of 32,039 (more than half of the \texttt{equals()} pairs came from \textit{ok} and $S_D$ pairs). Finally, there are 3,595 pairs remaining which we manually classified them. The classification summary is shown in \Cref{tab:online_clone_classification_results}.
 
-In our manual investigation process, we used a script to automatically classify \texttt{equals()} clone pairs which helped classifying 26,102 pairs out of 47,068 (more than half of the \texttt{equals()} pairs came from $S_D$). Finally, there are 3,450 pairs remaining which we manually investigated them. \textbf{To answer RQ1, we found 47,068 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. They are 2,261 \textit{good} pairs, 26,838 \textit{ok} pairs. After classification, we found at least 523 online code clones pairs that are true clones between Stack Overflow and Qualitas.}
+\textbf{To answer RQ1, we found 32,039 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. They are 2,308 \textit{good}, 11,749 \textit{ok}, 17,801 $S_D$, and 181 $N_D$ pairs. After classification, we found at least \FIXME{NUMBER} online code clones pairs that are clones between Stack Overflow and Qualitas.}
 
 %We selected only Stack Overflow fragment and Qualitas files that have never been looked at before in the previous investigation. If many clone pairs having the same Stack Overflow fragment and Qualitas file, we keep only the largest one. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stack Overflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification_indv}. 
 
@@ -486,48 +446,43 @@ In our manual investigation process, we used a script to automatically classify 
 			\hline 
 			Patt. & Descriptions \\ 
 			\hline 
-			A & Cloned from Qualitas project to Stack Overflow (Q $\rightarrow$ S). \\ 
+			QS & Cloned from Qualitas project to Stack Overflow (Q $\rightarrow$ S). \\ 
 			\hline 
-			A' &Cloned from Stack Overflow to Qualitas project (S $\rightarrow$ Q). \\ 
+			SQ &Cloned from Stack Overflow to Qualitas project (S $\rightarrow$ Q). \\ 
 			\hline 
-			B & Cloned from each other or from an external source \textit{X} outside the project (unknown) (S $\leftrightarrow$ Q $\vee$ (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q)).
+			UD & Cloned from each other or from an external source \textit{X} outside the project (unknown) (S $\leftrightarrow$ Q $\vee$ (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q)).
 			\\ 
 			\hline 
-			C & Cloned from an external source (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q).
+			ES & Cloned from an external source (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q).
 			\\ 
 			\hline 
-			D & Boiler-plate or IDE auto-generated
+			BP & Boiler-plate or IDE auto-generated
 			\\ 
 			\hline 
-			E & Inheritance, interface implementation 
+			IN & Inheritance, interface implementation 
 			\\ 
 			\hline 
-			F & Accidental similarity, false clones by normalisation \\ 
+			FC & Accidental similarity, false clones \\ 
 			\hline 
 		\end{tabular}  %
 	}
 \end{table}
 
-Besides the quantitative analysis, we are also interested in a qualitative analysis of the online clones. Why are they created and how? Due to an absence of clone oracle of the two data sets, we resort to manual investigation to validate the clone pair candidates as either true or false positives. At the same time, we select a reason that stimulates a creation of each online clone pair. %We need an appropriate clone classification scheme to meaningfully categorise the selected clone candidates by hand. 
+Besides the quantitative analysis, we are also interested in a qualitative analysis of the online clones. How are the clone pairs created? %Due to an absence of clone oracle of the two data sets, we resort to a manual investigation to classify the clone pair candidates using our 7 patterns of online code cloning.  
 
-We started by studying the 8 patterns of cloning from Kapser et al.~\cite{Kapser2006,Kapser2008}. We use the patterns to classify 697 clone pairs associated with 34 sampled Stack Overflow snippets. This preliminary investigation aims to evaluate the applicability of Kapser's cloning patterns to our study. Using$S_D$ clone report, snippets are ranked according to (1) frequency, (2) popularity (i.e.~number of associated Qualitas projects), (3) clone size in SLOC, and (4) clone percentage compared to the snippet size. We then picked the top 10 snippets from the 4 groups resulting in 34 Stack Overflow snippets chosen (there were some overlaps). The 34 selected snippets generate 697 clone pairs. Using Kapser's cloning patterns, the 697 clone pairs were categorised into either Customisation or Templating. Clearly \textbf{Kapser's cloning patterns are too broad for our study and a more suitable and fine-grained classification scheme is needed.} 
+We started by a preliminary study of the 8 patterns of cloning from Kapser et al.~\cite{Kapser2006,Kapser2008}. This preliminary investigation aims to evaluate the applicability of Kapser's cloning patterns to our study. Using $S_D$ clone report, snippets are ranked according to (1) frequency, (2) popularity (i.e.~number of associated Qualitas projects), (3) clone size in SLOC, and (4) clone percentage compared to the snippet size. We selected these criteria so that we can cover clones across various aspects. We then picked the top 10 snippets from the 4 groups resulting in 34 unique Stack Overflow snippets chosen. The 34 snippets generate 697 clone pairs with Qualitas projects. Using Kapser's cloning patterns, the clone pairs were categorised into either Customisation or Templating. \textbf{Clearly Kapser's cloning patterns are too broad for our study and a more suitable and fine-grained classification scheme is needed.} 
 
-We adopted one of Kapser's cloning patterns, boiler-plate code and API/library protocol as category D, and added 6 new patterns observed as common cloning patterns from our preliminary investigation. The seven patterns ranging from A--F as presented in \Cref{tab:classification_scheme}. Pattern A is a cloning that has evidence to be copied from Qualitas to Stack Overflow (by having comments in source code and explanation/links in Stack Overflow post). Pattern A' is the opposite of A. Pattern B is a cloning that is exactly identical or highly similar but without any attribution of copying. Pattern C is a cloning that has an evidence of copying from the same external source. Pattern D is either boiler-plate code (e.g.~\verb|equals()| methods, or getters and setters) or IDE-generated (e.g.~GUI initialisation). Pattern E is inheritance of the same super class or implementation of the same interface. They usually share similar overriding methods. The last pattern, F, is a false clone pair. They can be either accidentally similar (e.g.~similar try-catch statements) or similar after code normalisation process. Using this cloning pattern classification scheme, we consider clone pairs in created by pattern A, A', B, C, D, and E as true positive, and F as false positive. 
+Nevertheless, we adopted one of Kapser's cloning patterns, boiler-plate code and API/library protocol as pattern BP. We then added 6 new patterns observed as common cloning patterns from our preliminary study. The seven patterns include QS, SQ, UN, ES, BP, IN, and FC as presented in \Cref{tab:classification_scheme}. QS (\textbf{Q}ualitas to \textbf{S}tack Overflow) represents clones that has evidence to be copied from Qualitas to Stack Overflow (by having comments in source code and explanation/links in Stack Overflow post). Pattern SQ (\textbf{S}tack Overflow to \textbf{Q}ualitas) is the opposite of QS. UD (\textbf{U}nknown \textbf{D}irection) is a cloning that is exactly identical or highly similar but without any attribution of copying. ES (\textbf{E}xternal \textbf{S}ources) is a cloning that has an evidence of copying from an external source(s). Pattern BP (\textbf{B}oiler-\textbf{P}late) represents clones containing boiler-plate code of \verb|equals()| methods, getters and setters, or IDE-generated code (e.g.~GUI components). Pattern IN (\textbf{In}heritance/Interface) is cloning because of inheritance of the same super class or implementation of the same interface. They usually share similar overriding methods. The last pattern, FC (\textbf{F}alse \textbf{C}lones), represents false clone pairs. They can be either accidentally similar clones (e.g.~similar \texttt{try-catch} statements), similar clones after code normalisation, or just false positives of the tools. Using the classification patterns, we can also calculate the number of true and false positives. We are looking for unique and meaningful clones in this study. Thus, we consider clone pairs classified into pattern QS, SQ, and UN as true positive, and BP, IN, and FC as false positive.
 
 \subsubsection{Classification of Clone Candidates}
 
-There were 28,832 online clone pair candidates for classifications as shown in \Cref{tab:online_clone_pairs}. We have use regular expressions to automatically classify \texttt{equals()} methods based on the method signature since they are not very interesting clones. It captured 26,102 clone pairs and classified them into pattern D. With help of the automatic classification, there were 3,450 pairs left for manual classification.
+There were 32,039 online clone pair candidates for classifications as shown in \Cref{tab:online_clone_pairs}. We have use regular expressions to automatically classify \texttt{equals()} methods based on the method signature since they are not very interesting clones. It captured 28,444 clone pairs and classified them into pattern D. With help of the automatic classification, there were 3,595 pairs left for manual classification.
 
-The first author who has been working on clone detection research took the role of a main investigator performing manual classification of all the 3,450 clone pairs. The second author took the role of a second investigator performing 10\% validation of the clone pairs (345 pairs) judged by the main investigator. By consulting the cloning patterns, the main investigator manually went through each agreed clone pair, looked at the clones, and chose the most appropriate cloning pattern for the pair. A relevant and useful observation was also recorded for each clone pair. The two investigators discussed and resolved 51 classification conflicts. There are three conflicts which the investigators could not find consensuses hence the third author was involved to solve the conflicts.
+The first author who has been working on clone detection research for two years took the role of a main investigator performing a manual classification of all the 3,595 clone pairs. By consulting the cloning patterns, the main investigator manually went through each clone pair candidate, looked at the clones, and chose the most appropriate cloning pattern for the pair. A relevant and useful observation was also recorded for each clone pair. The second author took the role of a validating investigator performing 10\% validation (359 pairs) of the clone pairs judged by the main investigator. The two investigators discussed 54 classification conflicts and resolved 51 of them. The 3 conflicts which the two investigators could not find consensuses are resolved after involving the third author. 
 
-\textbf{Agreed clone pairs}: the classification results are shown in \Cref{tab:classification_good_o}. We have manually investigated 2,261 \textit{good} clone pairs. There is one clone pair in pattern A which is found to be copied from a Qualitas project to Stack Overflow. Four pairs are highly similar or identical but without any evidence of copying (no comments in neither Stack Overflow post nor Qualitas source code) and are classified as pattern B. We observed 3 pairs in pattern C since they are copied from external sources. %The rest are boilter-plate, inherit/interface, and false positive clones. 
-58 clone pairs are found to be pattern D: \verb|equals()| methods, or getters and setters. Six pairs are similar code from inheriting the same superclass or implementing the same interface, pattern E. Finally, 2,189 clone pairs are categorised to F which means they are false clones.
+The classification results are shown in \Cref{tab:classification_good_o}. For \textit{good} pairs, 9 pairs were automatically classified by regular expressions and 2,299 pairs were manually classified. This resulted in one clone pair in pattern QS which is found to be copied from a Qualitas project to Stack Overflow. Four pairs are highly similar or identical but without any evidence of copying (no comments in neither Stack Overflow post nor Qualitas source code) and are classified as pattern UD. We observed 3 pairs in pattern ES since they are copied from external sources. 58 clone pairs are found to be pattern BP. Six pairs are similar code from inheriting the same superclass or implementing the same interface, pattern IN. Finally, 2,189 pairs are false clones and classified into FC. No clones were found in pattern SQ. This was expected since we selected a pretty old Qualitas snapshot dated back 2013 and most of the code could be written long before that.  
 
-For the \textit{ok} clone pairs, we could not feasibly investigate all 23,868 pairs manually.  According to the manual investigation of \textit{good} pairs, we found that $S_EN_E$ produces a large number of 2,253 false positive results (accounts for 99.87\% of $S_EN_E$ clone pairs) due to its recall preference. We thus decided to leave this configuration out of the manual investigation. There are totally 4,625 \textit{ok} pairs that were investigated. We found 8, 29, and 10 in pattern A, B, and C respectively. There were 77 boilter-plate pairs, and 3 inherit/interface pairs. 82 pairs were false positives. %The 47 true positive pairs found are combinations of 8, 29, and 10 clone pairs in category A, B, and C respectively.
-
-%\FIXME{Maybe remove?} We cannot be certain about the direction of copying in the category-B pairs, since there is no solid information of copying. We thus checked the timestamp of each Java file in Qualitas project and compared it to their respective timestamp of Stack Overflow posts. We found that all Stack Overflow posts were created after their respectively Qualitas Java files \FIXME{check again since the dataset is updated}. This means that the copying can only be either (1) from Qualitas to Stack Overflow or (2) from an external source to both Stack Overflow and Qualitas independently. There is no clone pairs found in A' category.
-
-%\textbf{Qualitas-\textbf{N}:} We decided to filter out the agreed clone pairs reported by agreement of Simian$_{\mathrm{\textit{EvCl}}}$--NiCad$_{\mathrm{\textit{EvCl}}}$ altogether due to its large number of false positive. With the remaining 3 agreements, we did manual investigation of agreed ok-match clone pairs from agreements of$S_DN_D$,$S_D$--NiCad$_{\mathrm{\textit{EvCl}}}$, and Simian$_{\mathrm{\textit{EvCl}}}N_D$. We had not done any investigation of \textit{good} since there were no \textit{good} pairs for these 3 agreements. The number of pairs that have been looked at is 6,706 (excluding duplicates). The results are shown in Table.
+For the \textit{ok} clone pairs, we could not feasibly investigate all 31,729 pairs manually.  Consulting the classification of \textit{good} pairs, we found that $S_EN_E$ produces a large number of x,xxx false positive results (accounts for xx.xx\% of $S_EN_E$ clone pairs) due to its recall preference. We thus decided to ignore this clone set in our \textit{ok}-pair classification. A large number of 11,495 clone pairs were automatically classified and 254 pairs were done manually. We found xx, xx, xx, xx, xx, and xx in QS, UD, ES, BP, IN and FC respectively. Similarly, no clone pairs were found in SQ. 
 
 \begin{table}
 	\centering
@@ -550,28 +505,23 @@ For the \textit{ok} clone pairs, we could not feasibly investigate all 23,868 pa
 	}
 \end{table}
 
-%\subsubsection*{\textbf{Qualitas-\textit{O} (v. 2013-09-01r)}}
-\textbf{Disagreed clone pairs}: we performed a manual investigation and classification of 871 $S_D$ and 168 $N_D$ clone pairs in the same way as the agreed ones. There were 19 pairs in pattern A, 336 pairs in B, 17 pairs in C, 209 in D, and 63 in E. 167 pairs are false clones. For $N_D$, there are 8 pairs in pattern A, 27 pairs in B, 1 pair in C, 77 pairs in D, and 3 pairs in E. $N_D$ reported 82 false positive clones.
-%The total number of true positive clone pairs is 523 as described in \Cref{tab:classification_good_o}.
-
-%\subsubsection{Qualitas-\textit{N} (v. 2016-08-05)}
+For disagreed clone pairs, an automatic and manual classification of 17,801 $S_D$ and 181 $N_D$ clone pairs results in xx pairs in pattern QS, xx pairs in UD, xx pairs in ES, xx in BP, xx in IN and xx in FC. 
 
 \subsection{RQ3: Outdated Online Code Clones}
 
 %In this study, we are interested in effects of having code clones between open source software systems and Stack Overflow. From the manual investigation, we found 523 true positive online clone pairs. With this set of true clones, we investigated further and found that there are two potential issues, outdated code and software licensing violation.
 
 %\subsubsection{Outdated Clones}
-Outdated code occurs when a piece of code has been copied from its origin to another location and later the original code has been updated \cite{Xia2014}. Usually code clone detection is used to locate clone instances and update them according to their updated original code \cite{Bellon2007}. However, in this situation, the clones are more pervasive on Stack Overflow posts and more difficult to detect due to its large scale and the mix of natural language and source code. Since code can be updated due to various possible reasons, e.g.~bug fixing or API changes, it is risky if developers reuse outdated code snippets from Stack Overflow. %They possibly also introduce vulnerabilities into the software. 
+Outdated code occurs when a piece of code has been copied from its origin to another location and later the original code has been updated \cite{Xia2014}. Usually code clone detection is used to locate clone instances and update them to match with the original code \cite{Bellon2007}. However, in this situation, the clones are pervasive on Stack Overflow posts and are more difficult to detect than in a local project(s) due to its large search space and the mix of natural and programming language combined together in Stack Overflow posts. Moreover, Stack Overflow is not a software. There is no test suite to run and check whether the code snippets are still working as expected. Hence, if any change happens in the original code, our results show that the copies on Stack Overflow are still mostly left outdated. 
+
+As far as we know, our work is possibly the first which discovers outdated code on Stack Overflow. Since code can be updated due to various possible reasons, e.g.~bug fixing or API changes, it is risky if developers reuse outdated code snippets from Stack Overflow.
 They might later find out that the copied code does not work any more due to different API versions. Even worse, they might also introduce bugs or vulnerabilities into their software. 
 
-To check if the discovered Stack Overflow clones are outdated, we focused on the 96 pattern-A clone pairs that are copied in the direction from Qualitas to Stack Overflow (see \Cref{tab:classification_good_o}). For each code snippet, we could track its origin from its Qualitas counterpart. Relying on git repositories of Qualitas projects, we located the latest version of the each file and compared to the Stack Overflow snippet to see if any change has been made to the source code. If we found any change, we used \textit{git blame} command to see who modified the source code and when.
+To check if the discovered Stack Overflow clones are outdated, we focused on the 96 QS clone pairs that are copied in the direction from Qualitas to Stack Overflow (see \Cref{tab:classification_good_o}). For each code snippet, we tracked its original code in Qualitas projects. We located the latest version of the each file and compared to the Stack Overflow snippet to see if any change has been made to the source code. If we found any change, we used \textit{git blame} command to see who modified the source code and when.
 
-%We restricted it further to only the ones having versioning system so we can trace changes made to these clone pairs. Fortunately, all of the pairs were from projects with either git or svn so we did not remove any pair from this set. 
-%Our intuition behind his issue comes from a situation where a piece of code has been copied from a Qualitas project and posted on Stack Overflow. Later, that piece of code has been modified further to accommodate changes in the projects (or any other reasons). However, even the code in Qualitas project is already updated, the one posted on Stack Overflow is not changed. This results in outdated online code which can cause problems when programmers copy and use it in their projects. %We decided to ignore NiCad results from this analysis due to its failure of clone clustering and renaming on some projects.  Thus, the 39 projects are the ones that can be analysed by Simian, have newer versions than the versions in Qualitas-\textit{O}, and have code version control system (either git or svn). %After filtering, there are 141 pairs removed because 45 of them do not have new versions (7 from c-jdbc, 21 from Compiere, 7 from heritrix, and 10 from iReport) and 4 of them we could not find source code with version control (2 from findbugs, 1 from jag, and 1 from jgraphpad). Finally there were 134  pairs remaining. %We are interested in clone pairs that were changed after they appeared on Stack Overflow.
+\Cref{fig:outdated} shows the findings of outdated online clones on Stack Overflow. The comparison with the clones' latest versions revealed that 55 clone pairs were outdated and they were all Stack Overflow accepted answers. Hadoop and Spring have the maximum number of 9 outdated code clones, followed by 6 from Tomcat, and 5 from Eclipse-SDK. An example of outdated code in hadoop's \textit{WritableComparator.java} is shown in \Cref{fig:before-after} as we discussed before. We also found a few outdated code which contained heavy modifications. For example, the code snippet in Stack Overflow post 23520731, a copy of \textit{SchemaUpdate.java} in Hibernate, it had been heavily modified in the latest version (as shown in \Cref{fig:hibernate_outdated_code}). Lastly, we found some ``orphan'' snippets. These snippets cannot find their originals in the latest version of the projects anymore. For example, the snippet in Stack Overflow post 3758110, a copy of \textit{DefaultAnnotationHandlerMapping.java} in Spring, was deleted in commit \texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b} by Chris Beams on 20th January 2012 at 22:51:02, two years after it was posted. %The latest version of Spring does not contain the file anymore. 
 
-\Cref{fig:outdated} shows the findings of outdated clone investigation. The comparison with the clones' latest versions revealed that 55 clone pairs were outdated. These were clone pairs that were copied from Qualitas to Stack Overflow and later marked as accepted answers. Hadoop and Spring have the maximum number of 9 outdate code clones, followed by 6 clones from Tomcat, and 5 clones from Eclipse-SDK. An example of outdated code in hadoop's \textit{WritableComparator.java} is shown in \Cref{fig:before-after}. The newest version has one line added. We also found outdated code which contained heavy modifications. For example, the code snippet in Stack Overflow post 23520731, a copy of \textit{SchemaUpdate.java} in Hibernate, it had been heavily modified in the latest version (as shown in \Cref{fig:hibernate_outdated_code}). Moreover, the code snippet in Stack Overflow post 3758110, a copy of \textit{DefaultAnnotationHandlerMapping.java} in Spring, was deleted in the commit \texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b} by Chris Beams on 20th January 2012 at 22:51:02 two years after it was posted. The latest version of Spring does not contain the file anymore. 
-
-The outdate online code clones can cause problems ranging from uncompilable code due to different API usage to bug propagation. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Although Stack Overflow has a voting mechanism that may mitigate this outdated code issue, the check mark symbol in front of the accepted answer is still attractive to naive developers who are ignorant.
+The outdated online code clones can cause problems ranging from uncompilable code due to different API usage to bug propagations. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Although Stack Overflow has a voting mechanism that may mitigate this outdated code issue, the check mark symbol in front of the accepted answer is still attractive to naive developers who are ignorant.
 %Usually when developers reuse a code snippet from a Stack Overflow post and find that it does not work nor compatible with their environment. They can cast a down vote to that answer resulting in low votes for the answer (which might be outdated). However, if the answer is marked as accepted by the person who asks the question, the check mark symbol attached to the answer is still attractive to naive developers who are ignorant. 
 
 \begin{figure*}
@@ -707,9 +657,9 @@ public void execute (Target target) {      public void execute(EnumSet<TargetTyp
 \end{table*}
 
 \subsection{RQ4: Software Licensing Violation}
-Software licensing is important in software development. Violation of software license can cause major impacts to software delivery and also lead to legal issues \cite{Sprigman2015}. 
+Software licensing plays an important role in software development. Violation of software licenses impacts software delivery and also leads to legal issues \cite{Sprigman2015}. 
 %It is an emerging area that software engineering research community is paying attention to. For example, 
-Software licenses keep evolving in open source projects \cite{DiPenta2010} and clones can have different license~\cite{German2009}. This can lead to licensing violation if one does not check the license before integration third-party source code into their software. A study by An et al.~\cite{An2017} found 1,219 cases of potential license violations between 399 Android apps and Stack Overflow code. %there are studies of automatic technique to identify software licensing from source code files \cite{German2010} 
+One can run into licensing issue if they do not check before integration third-party source code into their software. A study by An et al.~\cite{An2017} found 1,219 cases of potential license violations between 399 Android apps and Stack Overflow code. %there are studies of automatic technique to identify software licensing from source code files \cite{German2010} 
 
 \begin{table}
 	\centering
@@ -808,11 +758,11 @@ Software licenses keep evolving in open source projects \cite{DiPenta2010} and c
 	\caption{Licensing between Stack Overflow code snippets and Qualitas Java file of 523 true online clone pairs}
 \end{figure*}
 
-In our study, we reveal another possible situation of software licensing issues caused by code cloning ``to Stack Overflow''. We found with evidence that 96 pieces of code had been copied from 14 Qualitas projects to Stack Overflow as code examples. They are also marked as accepted answers which increased their probabilities of being reused. The 14 open source projects came with their respective software licenses (shown in \Cref{t:q_projects_license}). However, the licensing information were mostly missing from these clones after they were posted on Stack Overflow. The licensing terms on the top of source code are not copied because mostly a small part of the file was cloned to Stack Overflow. If developers copy and reuse these licensed pieces of code in their projects, conflicts may happen without their realisation. 
+In our study, we reveal another possible situation of software licensing issues caused by code cloning ``to Stack Overflow''. We found with evidence that 96 pieces of code had been copied from 14 Qualitas projects to Stack Overflow as code examples. They are also marked as accepted answers which increased their chances of being reused. The 14 open source projects came with their respective software licenses (shown in \Cref{t:q_projects_license}). However, the licensing information were mostly missing from these clones after they were posted on Stack Overflow. The licensing terms on the top of source code are not copied because mostly a small part of the file was cloned to Stack Overflow. If developers copy and reuse these licensed pieces of code in their projects, conflicts may happen without their realisation. 
 
-The summary of licensing information is listed in \Cref{tab:license_abc}. The licenses were extracted by Ninka, an automatic license identification tool \cite{German2010}. For the ones that could not be automatically identified by Ninka and had been reported as \texttt{SeeFile} and \texttt{Unknown}, we looked at them manually.  The table shows license of Stack Overflow snippets (denoted as SO) and Qualitas source code. The number of clone pairs of each license matching has been grouped according to online cloning patterns A, B, and C. In overall, we can see that most of the Stack Overflow snippets do not have licensing terms with them while their clone counterparts in Qualitas project do. 
+The summary of licensing information is listed in \Cref{tab:license_abc}. The licenses were extracted by Ninka, an automatic license identification tool \cite{German2010}. For the ones that could not be automatically identified by Ninka and had been reported as \texttt{SeeFile} and \texttt{Unknown}, we looked at them manually.  The table shows license of Stack Overflow snippets (denoted as SO) and Qualitas source code. The number of clone pairs of each license matching has been grouped according to online cloning patterns QS, UD, and ES. In overall, we can see that most of the Stack Overflow snippets do not have licensing terms with them while their clone counterparts in Qualitas project do. 
 
-\textbf{No license or compatible license:} There are 85 clone pairs in type \textit{NL} which do not have licensing information (None vs.~None) and 13 pairs in type \textit{CL} which have compatible licenses (Apache2 vs.~Apache2; EPLv1 vs.~EPLv1; None vs.~CC BY 3.0). They are safe for being reused. Since source code and text on Stack Overflow posted before 1st March 2016 are protected by CC BY 3.0 (and MIT license from 1st March 2016 onwards), we can treat Stack Overflow code snippets without licensing information as having CC BY 3.0 by default. CC BY 3.0 license is relaxed and it only request attribution when reuse. 
+\textbf{No license or compatible license:} There are 85 \textit{NL} clone pairs which do not have licensing information (None vs.~None) and 13 pairs in type \textit{CL} which have compatible licenses (Apache2 vs.~Apache2; EPLv1 vs.~EPLv1; None vs.~CC BY 3.0). They are safe for being reused. Since source code and text on Stack Overflow posted before 1st March 2016 are protected by CC BY 3.0 (and MIT license from 1st March 2016 onwards), we can treat Stack Overflow code snippets without licensing information as having CC BY 3.0 by default. CC BY 3.0 license is relaxed and it only request attribution when reuse. 
 
 \textbf{Incompatible license:} there are a large number of clone pairs in type \textit{IL} which do not contain licensing information after they are posted on Stack Overflow or having different license that its Qualitas clone counterpart. 96 category-A clones are the pairs that we have evidence of being copied from Qualitas to Stack Overflow. 64 of them do not contain licensing terms after posted and are controversial for being reused. 396 clone pairs in category B are highly similar clones that we do not have evidence of copying. 315 of them have incompatible licenses. Interestingly, there are 21 clone pairs that Stack Overflow snippets contain Sun and MIT-like license while Qualitas clones do not have any license information. There is also one clone pair having BSD3 license on Stack Overflow while having GPLv2+ in Qualitas source code. Lastly, 26 out of 31 clone pairs in category C have incompatible license. They are clones that have been identified to be copied from an external source. Again, most of the clones in Qualitas contain license while the Stack Overflow snippets do not. 
 
