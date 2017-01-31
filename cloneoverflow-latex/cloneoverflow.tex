@@ -122,7 +122,9 @@ Code cloning can also have side effects of violating software licenses and softw
 
 % INTERESTING NEWS: http://www.theverge.com/tldr/2016/5/4/11593084/dont-get-busted-copying-code-from-stack-overflow
 
-In this study, we treat code snippets that are copied from software systems to Stack Overflow, and vice versa, as code clones. We call them \textbf{online code clones} (or sometimes only call \textbf{clones} for brevity). There are four ways to create online code clones: (1) code is cloned from a software project to Stack Overflow as an example; (2) code is cloned from Stack Overflow to a software project to obtain a functionality, perform a particular task, or fixing a bug; (3) code is implicitly cloned from one software project to another by having Stack Overflow as a medium; and (4) code is cloned from an external source to both a software project and Stack Overflow. \textbf{Online code clones can similarly lead to a problem of outdated code, bug propagation, licensing violation, and software vulnerability as classical code clones.} Unfortunately, they are more difficult to locate and fix since the search space in online code corpora is larger and no longer confined in a local repository.
+We call code snippets that are copied from software systems to online Q\&A websites (such as Stack Overflow), and vice versa as ``online code clones'' (sometimes only ``clones'' for brevity). There are four ways to create online code clones: (1) code is cloned from a software project to a Q\&A website as an example; (2) code is cloned from a Q\&A website to a software project to obtain a functionality, perform a particular task, or fixing a bug; (3) code is implicitly cloned from one software project to another by having a Q\&A website as a medium; and (4) code is cloned from an external source to both a software project and a Q\&A website. Online code clones can similarly lead to a problem of outdated code, bug propagation, licensing violation, and software vulnerability as classical code clones. Unfortunately, they are more difficult to locate and fix since the search space in online code corpora is larger and no longer confined in a local repository. 
+
+In this study, we are interested in locating online code clones on Stack Overflow that are cloned from open source projects and study them on two aspects: obsoleteness and licensing issues. 
 
 \begin{figure*}
 	\begin{lstlisting}
@@ -145,7 +147,7 @@ public int compare (byte[] b1,int s1,int l1,              public int compare(byt
 	\label{fig:before-after}
 \end{figure*}
 
-A motivating example of outdated code in online code clones can be found in the a Stack Overflow post regarding how to implement \textit{RawComparator} in Hadoop\footnote{http://stackoverflow.com/questions/22262310}. In \Cref{fig:before-after}, the left hand side shows a code snippet embedded as a part of accepted answer to the question. The snippet shows how Hadoop implements \textit{compare} method in its \textit{WritableComparator} class. The code snippet on the right hand side shows another version of the same \textit{compare} method in \textit{WritableComparator} class but it is extracted from the latest version of Hadoop. We can obviously see that they are highly similar except one line, \verb|buffer.reset(null,0,0);|, is added in the latest version after \verb|key2.readFields(buffer);|. The added line is intended for cleaning up the reference in \verb|buffer| variable. While this change has already been introduced into \textit{compare} method in the latest version of Hadoop, the code example in Stack Overflow post is still unchanged. This example shows that there can be inconsistencies between online code clones and its original. The code snippet on Stack Overflow can be outdated.  %Since reusing source code from Stack Overflow is considered a common practice nowadays, the scale of online code cloning is more than intra or inter project clone in a local code bases. 
+A motivating example of outdated online code clones can be found in the a Stack Overflow post regarding how to implement \textit{RawComparator} in \texttt{hadoop}\footnote{http://stackoverflow.com/questions/22262310}. In \Cref{fig:before-after}, the left hand side shows a code snippet embedded as a part of accepted answer to the question. The snippet shows how \texttt{hadoop} implements \textit{compare} method in its \textit{WritableComparator} class. The code snippet on the right hand side shows another version of the same \textit{compare} method in \textit{WritableComparator} class but it is extracted from the latest version of \texttt{hadoop}. We can obviously see that they are highly similar except one line, \verb|buffer.reset(null,0,0);|, is added in the latest version after \verb|key2.readFields(buffer);|. The added line is intended for cleaning up the reference in \verb|buffer| variable. While this change has already been introduced into \textit{compare} method in the latest version of \texttt{hadoop}, the code example in Stack Overflow post is still unchanged. This example shows that there can be inconsistencies between online code clones and its original. The code snippet on Stack Overflow can be outdated.  %Since reusing source code from Stack Overflow is considered a common practice nowadays, the scale of online code cloning is more than intra or inter project clone in a local code bases. 
 %This is an emerging and challenging problem. Since studies in this area are still limited, we aim to gain more insight of the problem in this study. %We are interested to gain more insights of online code clone in this study.
 
 While a lot of research has focused on reusing code snippets ``from Stack Overflow'' (e.g.~\cite{Keivanloo2014,An2017,Yang2016}), less work has been conducted on finding the origins of code examples copied ``to Stack Overflow'' and effects of reusing them such as outdated code and software licensing violation.
@@ -154,13 +156,13 @@ To fill this gap, this paper makes the following  primary contributions:
 
 \vspace{0.5ex}%
 \noindent\textbf{1.~A manual study of online code clones:} 
-We used two clone detection tools to discover 270,429,422 similar code snippet pairs and manually investigated 3,450 candidate clone pairs between Java code snippets obtained from Stack Overflow accepted answers and 111 Java open source projects.
+We used two clone detection tools to discover 315,786,118 similar code snippet pairs and manually investigated 3,595 candidate clone pairs between Java code snippets obtained from Stack Overflow accepted answers and 111 Java open source projects.
 
 \vspace{0.5ex}%
-\noindent\textbf{2.~Addressing the problems of reusing source code between open source projects and Stack Overflow:} Our study shows that there are at least 523 clones that have been obviously copied from open source projects or external online sources to Stack Overflow as code examples which potentially violate their software licenses. Importantly, 53 out of the 96 online code clones on Stack Overflow are outdated and questionable for being reused.
+\noindent\textbf{2.~Addressing the problems of outdated and license-violating online clones on Stack Overflow:} Our study shows that there are at least 523 clones that have been obviously copied from open source projects or external online sources to Stack Overflow as code examples which potentially violate their software licenses. Importantly, 53 out of the 96 online code clones on Stack Overflow are outdated and questionable for being reused.
 
 \vspace{0.5ex}%
-\noindent\textbf{3.~Online code clone oracle:} The 3,450 manually investigated and validated online clone pairs are available for download on the study website\footnote{https://some.where} and can be used as a clone oracle.
+\noindent\textbf{3.~Online code clone oracle:} The 3,595 manually investigated and validated online clone pairs are available for download on the study website\footnote{https://some.where} and can be used as a clone oracle.
 
 \section{Empirical Study}
 We performed an empirical study of online code clones between Stack Overflow and 109 Java open source projects to answer the following research questions: \\ 
@@ -195,7 +197,7 @@ We compared licensing information of 523 remaining clone pairs for possibility o
 
 \textbf{Stack Overflow}: we extracted Java code snippets from a snapshot of Stack Overflow dump \footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump was in XML format containing information of \textit{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We were interested in code snippets embedded in posts which were located between \texttt{<code></code>} tags. A Stack Overflow thread contains a post of question and several posts of answers. Every answer has voting score from its users. An answer can also be marked as \textbf{accepted answer} by the questioner if the solution fixes his/her problem. We collected Java code snippets using two criteria. First, we were only interested in code snippets with at least six lines. Snippets which were smaller than six lines were usually spurious clones \cite{Bellon2007}. Second, we only focused on code snippets in accepted answers. We chose the snippets in accept answers because they actually solved the problems in the questions and had a check mark sign on them to notify other users. Moreover, they were always displayed just below the questions which made them attractive to be reused than other answers. Each snippet was extracted from the dump using regular expressions and saved to a file using its post ID as the file's name. If an accepted answer had more than one code snippet, we appended an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we added \texttt{.java} extension to the file's names so that clone detectors could recognise them. We finally obtained 144,075 Java code snippets which contain 2,347,269 lines of Java source code excluding comments and blank lines\footnote{Measured by cloc: https://github.com/AlDanial/cloc}.
 
-\textbf{Open source systems}: we selected an established corpus for an empirical software engineering study called \textbf{Qualitas} \cite{QualitasCorpus} for this study. It is a curated Java corpus that has been used in several software engineering studies \cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. The projects in the corpus represent various domains of software systems ranging from programming language to 3D and visualisation \cite{QualitasCorpus}. We selected the 20130901r release of Qualitas corpus containing 112 Java open source projects. This release contains projects with releases no later than 1st September 2013. We chose a snapshot late back in 2013 since we are interested in online code clones in the direction from open source projects to Stack Overflow. The 20130901r snapshot provides Java code that is at least 3 years old from the time of the experiment (January to December 2016). The time difference is sufficiently long for a number of code snippets to be copied onto Stack Overflow. Out of 112 Qualitas projects, there is one project, \textit{jre}, that does not contain Java source code due to its licensing limitation \cite{QualitasCorpus} so it is removed from the study. This resulted in total of 111 projects analysed in the study. As shown in \Cref{tab:datasets}, the 111 Qualitas project have 160,937 Java files containing 19,086,883 lines of code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
+\textbf{Open source systems}: we selected an established corpus for an empirical software engineering study called \textbf{Qualitas} \cite{QualitasCorpus} for this study. It is a curated Java corpus that has been used in several software engineering studies \cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. The projects in the corpus represent various domains of software systems ranging from programming language to 3D and visualisation \cite{QualitasCorpus}. We selected the 20130901r release of Qualitas corpus containing 112 Java open source projects. This release contains projects with releases no later than 1st September 2013. We chose a snapshot late back in 2013 since we are interested in online code clones in the direction from open source projects to Stack Overflow. The 20130901r snapshot provides Java code that is at least 3 years old from the time of the experiment (January to December 2016). The time difference is sufficiently long for a number of code snippets to be copied onto Stack Overflow. Out of 112 Qualitas projects, there is one project, \texttt{jre}, that does not contain Java source code due to its licensing limitation \cite{QualitasCorpus} so it is removed from the study. This resulted in total of 111 projects analysed in the study. As shown in \Cref{tab:datasets}, the 111 Qualitas project have 160,937 Java files containing 19,086,883 lines of code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
 
 \begin{table}
 	\centering
@@ -292,7 +294,7 @@ We followed the experimental framework and detected clones between Stack Overflo
 
 \begin{table}
 	\centering
-	\caption{Statistics of clones found between Stack Overflow and Qualitas projects using Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations}
+	\caption{Statistics of clones found between Stack Overflow and Qualitas projects using Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations \FIXME{boxplots here?}}
 	\label{tab:raw_stats}
 	\small
 	\resizebox{\columnwidth}{!}{%
@@ -367,7 +369,7 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 \subsubsection{Agreed clone pairs}
 
 Agreed clone pairs are clone pairs that pass Bellon's good- or ok-match criteria and selected for manual investigation. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs \cite{Bellon2007}. %The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. 
-We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in Hibernate due to clustering errors. $N_E$ generated renaming errors for 5 projects including Vuze, Hibernate, Myfaces, Netbeans, and Spring. We had contacted the creator of NiCad regarding the issues. They identified them as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases. As a result, we did not have NiCad clones from these projects in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
+We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in \texttt{hibernate} due to clustering errors. $N_E$ generated renaming errors for 5 projects including \texttt{vuze}, \texttt{hibernate}, \texttt{myfaces}, \texttt{netbeans}, and \texttt{spring}. We had contacted the creator of NiCad regarding the issues. They identified them as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases. As a result, we did not have NiCad clones from these projects in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
 
 \begin{table}
 	\centering
@@ -406,7 +408,7 @@ For $N_D$, 10-line threshold is already a minimum NiCad's clone size. However, N
 
 In our clone classification process, we used a script to automatically classify \texttt{equals()} clone pairs which helped classifying 28,444 pairs out of 32,039 (more than half of the \texttt{equals()} pairs came from \textit{ok} and $S_D$ pairs). Finally, there are 3,595 pairs remaining which we manually classified them. The classification summary is shown in \Cref{tab:online_clone_classification_results}.
 
-\textbf{To answer RQ1, we found 32,039 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. They are 2,308 \textit{good}, 11,749 \textit{ok}, 17,801 $S_D$, and 181 $N_D$ pairs. After classification, we found at least \FIXME{NUMBER} online code clones pairs that are clones between Stack Overflow and Qualitas.}
+\textbf{To answer RQ1, we found 32,039 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. They are 2,308 \textit{good}, 11,749 \textit{ok}, 17,801 $S_D$, and 181 $N_D$ pairs. After classification, we found at least \FIXME{NUMBER} online code clones pairs between Stack Overflow and Qualitas.}
 
 %We selected only Stack Overflow fragment and Qualitas files that have never been looked at before in the previous investigation. If many clone pairs having the same Stack Overflow fragment and Qualitas file, we keep only the largest one. The reason for having this criteria is that we found a lot of duplicate clone pairs with the same classifications from either Stack Overflow fragments or Qualitas files. The classification results are shown in Table \ref{tab:classification_indv}. 
 
@@ -442,7 +444,7 @@ In our clone classification process, we used a script to automatically classify 
 	\caption{Seven patterns of online code cloning}
 	\label{tab:classification_scheme}
 	\resizebox{\columnwidth}{!}{%
-		\begin{tabular}{|c|p{8.4cm}|}
+		\begin{tabular}{c|p{8.4cm}}
 			\hline 
 			Patt. & Descriptions \\ 
 			\hline 
@@ -472,7 +474,7 @@ Besides the quantitative analysis, we are also interested in a qualitative analy
 
 We started by a preliminary study of the 8 patterns of cloning from Kapser et al.~\cite{Kapser2006,Kapser2008}. This preliminary investigation aims to evaluate the applicability of Kapser's cloning patterns to our study. Using $S_D$ clone report, snippets are ranked according to (1) frequency, (2) popularity (i.e.~number of associated Qualitas projects), (3) clone size in SLOC, and (4) clone percentage compared to the snippet size. We selected these criteria so that we can cover clones across various aspects. We then picked the top 10 snippets from the 4 groups resulting in 34 unique Stack Overflow snippets chosen. The 34 snippets generate 697 clone pairs with Qualitas projects. Using Kapser's cloning patterns, the clone pairs were categorised into either Customisation or Templating. \textbf{Clearly Kapser's cloning patterns are too broad for our study and a more suitable and fine-grained classification scheme is needed.} 
 
-Nevertheless, we adopted one of Kapser's cloning patterns, boiler-plate code and API/library protocol as pattern BP. We then added 6 new patterns observed as common cloning patterns from our preliminary study. The seven patterns include QS, SQ, UN, ES, BP, IN, and FC as presented in \Cref{tab:classification_scheme}. QS (\textbf{Q}ualitas to \textbf{S}tack Overflow) represents clones that has evidence to be copied from Qualitas to Stack Overflow (by having comments in source code and explanation/links in Stack Overflow post). Pattern SQ (\textbf{S}tack Overflow to \textbf{Q}ualitas) is the opposite of QS. UD (\textbf{U}nknown \textbf{D}irection) is a cloning that is exactly identical or highly similar but without any attribution of copying. ES (\textbf{E}xternal \textbf{S}ources) is a cloning that has an evidence of copying from an external source(s). Pattern BP (\textbf{B}oiler-\textbf{P}late) represents clones containing boiler-plate code of \verb|equals()| methods, getters and setters, or IDE-generated code (e.g.~GUI components). Pattern IN (\textbf{In}heritance/Interface) is cloning because of inheritance of the same super class or implementation of the same interface. They usually share similar overriding methods. The last pattern, FC (\textbf{F}alse \textbf{C}lones), represents false clone pairs. They can be either accidentally similar clones (e.g.~similar \texttt{try-catch} statements), similar clones after code normalisation, or just false positives of the tools. Using the classification patterns, we can also calculate the number of true and false positives. We are looking for unique and meaningful clones in this study. Thus, we consider clone pairs classified into pattern QS, SQ, and UN as true positive, and BP, IN, and FC as false positive.
+Nevertheless, we adopted one of Kapser's cloning patterns, boiler-plate code and API/library protocol as pattern BP. We then added 6 new patterns observed as common cloning patterns from our preliminary study. The seven patterns include QS, SQ, UN, ES, BP, IN, and FC as presented in \Cref{tab:classification_scheme}. QS (\textbf{Q}ualitas to \textbf{S}tack Overflow) represents clones that has evidence to be copied from Qualitas to Stack Overflow (by having comments in source code and explanation/links in Stack Overflow post). Pattern SQ (\textbf{S}tack Overflow to \textbf{Q}ualitas) is the opposite of QS. UD (\textbf{U}nknown \textbf{D}irection) is cloning that creates exactly identical or highly similar clones but without any attribution of copying. They are unique enough not be boiler-plate and inheritance or interface implementation. ES (\textbf{E}xternal \textbf{S}ources) is a cloning that has an evidence of copying from an external source(s). Pattern BP (\textbf{B}oiler-\textbf{P}late) represents clones containing boiler-plate code of \verb|equals()| methods, getters and setters, or IDE-generated code (e.g.~GUI components). Pattern IN (\textbf{In}heritance/Interface) is cloning because of inheritance of the same super class or implementation of the same interface. They usually share similar overriding methods. The last pattern, FC (\textbf{F}alse \textbf{C}lones), represents false clone pairs. They can be either accidentally similar clones (e.g.~similar \texttt{try-catch} statements), similar clones after code normalisation, or just false positives of the tools. Using the classification patterns, we can also calculate the number of true and false positives. We are looking for unique and meaningful clones in this study. Thus, we consider clone pairs classified into pattern QS, SQ, and UN as true positive, and BP, IN, and FC as false positive.
 
 \subsubsection{Classification of Clone Candidates}
 
@@ -507,6 +509,8 @@ For the \textit{ok} clone pairs, we could not feasibly investigate all 31,729 pa
 
 For disagreed clone pairs, an automatic and manual classification of 17,801 $S_D$ and 181 $N_D$ clone pairs results in xx pairs in pattern QS, xx pairs in UD, xx pairs in ES, xx in BP, xx in IN and xx in FC. 
 
+\textbf{To answer RQ2, we found that ...}
+
 \subsection{RQ3: Outdated Online Code Clones}
 
 %In this study, we are interested in effects of having code clones between open source software systems and Stack Overflow. From the manual investigation, we found 523 true positive online clone pairs. With this set of true clones, we investigated further and found that there are two potential issues, outdated code and software licensing violation.
@@ -519,9 +523,11 @@ They might later find out that the copied code does not work any more due to dif
 
 To check if the discovered Stack Overflow clones are outdated, we focused on the 96 QS clone pairs that are copied in the direction from Qualitas to Stack Overflow (see \Cref{tab:classification_good_o}). For each code snippet, we tracked its original code in Qualitas projects. We located the latest version of the each file and compared to the Stack Overflow snippet to see if any change has been made to the source code. If we found any change, we used \textit{git blame} command to see who modified the source code and when.
 
-\Cref{fig:outdated} shows the findings of outdated online clones on Stack Overflow. The comparison with the clones' latest versions revealed that 55 clone pairs were outdated and they were all Stack Overflow accepted answers. Hadoop and Spring have the maximum number of 9 outdated code clones, followed by 6 from Tomcat, and 5 from Eclipse-SDK. An example of outdated code in hadoop's \textit{WritableComparator.java} is shown in \Cref{fig:before-after} as we discussed before. We also found a few outdated code which contained heavy modifications. For example, the code snippet in Stack Overflow post 23520731, a copy of \textit{SchemaUpdate.java} in Hibernate, it had been heavily modified in the latest version (as shown in \Cref{fig:hibernate_outdated_code}). Lastly, we found some ``orphan'' snippets. These snippets cannot find their originals in the latest version of the projects anymore. For example, the snippet in Stack Overflow post 3758110, a copy of \textit{DefaultAnnotationHandlerMapping.java} in Spring, was deleted in commit \texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b} by Chris Beams on 20th January 2012 at 22:51:02, two years after it was posted. %The latest version of Spring does not contain the file anymore. 
+\Cref{fig:outdated} shows the findings of outdated online clones on Stack Overflow. The comparison with the clones' latest versions revealed that 55 clone pairs were outdated and they were all Stack Overflow accepted answers. \texttt{hadoop} and Spring have the maximum number of 9 outdated code clones, followed by 6 from Tomcat, and 5 from \texttt{eclipse-SDK}. An example of outdated code in \texttt{hadoop}'s \textit{WritableComparator.java} is shown in \Cref{fig:before-after} as we discussed before. We also found a few outdated code which contained heavy modifications. For example, the code snippet in Stack Overflow post 23520731, a copy of \textit{SchemaUpdate.java} in \texttt{hibernate}, it had been heavily modified in the latest version (as shown in \Cref{fig:hibernate_outdated_code}). Lastly, we found some ``orphan'' snippets. These snippets cannot find their originals in the latest version of the projects anymore. For example, the snippet in Stack Overflow post 3758110, a copy of \textit{DefaultAnnotationHandlerMapping.java} in \texttt{spring}, was deleted in commit \texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b} by Chris Beams on 20th January 2012 at 22:51:02, two years after it was posted. %The latest version of Spring does not contain the file anymore. 
 
 The outdated online code clones can cause problems ranging from uncompilable code due to different API usage to bug propagations. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Although Stack Overflow has a voting mechanism that may mitigate this outdated code issue, the check mark symbol in front of the accepted answer is still attractive to naive developers who are ignorant.
+
+\textbf{For RQ3, we found 55 code snippets on Stack Overflow that are outdated and questionable for being reused.}
 %Usually when developers reuse a code snippet from a Stack Overflow post and find that it does not work nor compatible with their environment. They can cast a down vote to that answer resulting in low votes for the answer (which might be outdated). However, if the answer is marked as accepted by the person who asks the question, the check mark symbol attached to the answer is still attractive to naive developers who are ignorant. 
 
 \begin{figure*}
@@ -589,68 +595,68 @@ public void execute (Target target) {      public void execute(EnumSet<TargetTyp
 	\label{tab:stale_code_details}
 	\scriptsize
 	\resizebox{2.1\columnwidth}{!}{%
-	\begin{tabular}{r|l|p{4.5cm}|r|r|l|l|l|c|l}
+	\begin{tabular}{r|l|c|p{4.5cm}|r|r|l|l|l|c|l}
 		\hline 
-		No. & Project & File & Start & End & License & SO Post & License & $C$ & C$_{\textit{\textrm{date}}}$ \\
+		No. & Project & Ver. & File & Start & End & License & SO Post & License & $C$ & C$_{\textit{\textrm{date}}}$ \\
 		\hline
-			1 & aspectj-1.6.9  & aspectjtools/../Agent.java  & 7 & 18 & -- & 18303692 & -- & $M$  & 2015-09-08 \\
-			2 & aspectj-1.6.9  & aspectjweaver/../Agent.java  & 7 & 18 & -- & 18303692 & & $M$  & 2015-09-08 \\
-			3 & eclipse-SDK  & GenerateToStringAction.java  & 113 & 166 & EPLv1 & 2513183 & EPLv1 & $M$  &  2015-03-17 \\
-			4 & eclipse-SDK  & GenerateToStringAction.java  & 117 & 126 & EPLv1  &  2513183	& EPLv1 & $M$  &  2015-03-17 \\
-			5 & eclipse-SDK  & GenerateToStringAction.java  & 143 & 165 & EPLv1  &  2513183	& EPLv1 & $M$  &  2015-03-17 \\
-			6 & eclipse-SDK  & GenerateToStringAction.java  & 178 & 187 & EPLv1  &  2513183	& EPLv1 & $M$  & 2011-03-01 \\
-			7 & eclipse-SDK  & WizardDialog.java  & 377 & 394 & EPLv1  &   11861598	& -- & $M$  &  2011-02-03 \\
-			8 & hadoop-1.0.0  & DBCountPageView.java  & 275 & 287 & Apache-2 & 21702608 & -- & $M$  & 2011-06-12 \\
-			9 & hadoop-1.0.0  & DBCountPageView.java  & 289 & 309 & Apache-2 & 21702608 & -- & $M$  & 2011-06-12 \\
-			10 & hadoop-1.0.0  & JobSubmissionFiles.java  & 46 & 55 & Apache-2 & 14845581 & -- & $M$  & 2012-06-25 \\
-			11 & hadoop-1.0.0  & mapred/../LineRecordReader.java  & 47 & 60 & Apache-2 & 16180910 & -- & $M$  & 2011-07-25 \\
-			12 & hadoop-1.0.0  & mapreduce/../LineRecordReader.java  & 75 & 99 & Apache-2 & 16180910 & -- & $M$  & 2011-07-25 \\
-			13 & hadoop-1.0.0  & StringUtils.java  & 40 & 56 & Apache-2 & 801987 & -- & $M$  & 2013-02-04 \\
-			14 & hadoop-1.0.0  & TestJobCounters.java  & 186 & 192 & Apache-2 & 18833798 & -- & $M$  & 2011-06-12 \\
-			15 & hadoop-1.0.0  & TextOutputFormat.java  & 75 & 99 & Apache-2 & 16928749 & -- & $M$  & 2011-06-12 \\
-			16 & hadoop-1.0.0  & WritableComparator.java  & 44 & 54 & Apache-2 & 22315734 & -- & $M$  & 2014-11-20 \\
-			17 & hibernate-4.2.2  & ConnectionProviderInitiator.java  & 65 & 93 & -- & 15168494 & -- & $M$  & 2012-06-24 \\
-			18 & hibernate-4.2.2  & Example.java  & 224 & 243 & -- & 24924255 & -- & $M$  & 2013-04-23 \\
-			19 & hibernate-4.2.2  & SchemaUpdate.java  & 115 & 168 & -- & 23520731 & -- & $M$  & 2016-02-05 \\
-			20 & hibernate-4.2.2  & SettingsFactory.java  & 244 & 255 & -- & 8257554 & -- & $D$  & 2011-03-11 \\
-			21 & hibernate-4.2.2  & SQLServer2005LimitHandler.java  & 43 & 61 & -- & 23967852 & -- & $M$  & 2015-03-12 \\
-			22 & jasperreports-3.7.4  & JRVerifier.java  & 982 & 998 & LGPLv3+ & 8037824 & -- & $M$  & 2008-04-17 \\
-			23 & jasperreports-3.7.4  & JRVerifier.java  & 1221 & 1240 & LGPLv3+ & 8037824 & -- & $M$  & 2011-05-20 \\
-			24 & jfreechart-1.0.13  & AbstractXYItemRenderer.java  & 532 & 569 & LGPLv2.1+ & 12936580 & -- & $M$  & 2016-02-19 \\
-			25 & jfreechart-1.0.13  & KeyToGroupMap.java  & 18 & 30 & LGPLv2.1+ & 16058183 & -- & $M$  & 2013-07-03 \\
-			26 & jfreechart-1.0.13  & SpiderWebPlot.java  & 502 & 520 & LGPLv2.1+ & 21998949 & -- & $M$  & 2008-06-02 \\
-			27 & jfreechart-1.0.13  & SpiderWebPlot.java  & 522 & 536 & LGPLv2.1+ & 21998949 & -- & $M$  & 2008-06-02 \\
-			28 & jgraph-5.13.0.0  & HelloWorld.java  & 16 & 22 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
-			29 & jgraph-5.13.0.0  & HelloWorld.java  & 28 & 40 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
-			30 & jgraph-5.13.0.0  & HelloWorld.java  & 31 & 36 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
-			31 & jgraph-5.13.0.0  & HelloWorld.java  & 39 & 56 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
-			32 & jstock-1.0.7c  & GoogleMail.java  & 18 & 42 & GPLv2+ & 14940863 & -- & $M$  & 2015-12-13 \\
-			33 & jstock-1.0.7c  & GoogleMail.java  & 18 & 42 & GPLv2+ & 24680923 & -- & $M$  & 2015-12-13 \\
-			34 & jung2-2\_0\_1  & ShortestPathDemo.java  & 106 & 117 & -- & 6025026 & -- & $M$  & 2010-04-13 \\
-			35 & jung2-2\_0\_1  & ShortestPathDemo.java  & 158 & 172 & -- & 6025026 & -- & $M$  & 2010-04-13 \\
-			36 & junit-4  & Assert.java  & 33 & 52 & -- & 23586872 & -- & $M$  & 2015-05-12 \\
-			37 & junit-4  & ExternalResource.java  & 4 & 23 & -- & 7504040 & -- & $M$  & 2016-06-25 \\
-			38 & junit-4.11  & ExpectException.java  & 11 & 29 & -- & 8802082 & -- & $M$  & 2014-05-26 \\
-			39 & poi-3.6  & WorkbookFactory.java  & 18 & 28 & Apache-2 & 12593810 & -- & $M$  & 2015-04-29 \\
-			40 & spring-3.0.5  & AnnotationMethodHandler \newline ExceptionResolver.java  & 224 & 233 & Apache-2 & 5660519 & -- & $D$  & 2012-01-20 \\
-			41 & spring-3.0.5  & AutowireUtils.java  & 32 & 42 & Apache-2 & 20913543 & -- & $M$  & 2014-10-28 \\
-			42 & spring-3.0.5  & CustomCollectionEditor.java  & 33 & 71 & Apache-2 & 18623736 & -- & $M$  & 2013-11-21 \\
-			43 & spring-3.0.5  & DefaultAnnotation \newline HandlerMapping.java  & 78 & 92 & Apache-2 & 3758110 & -- & $D$  & 2012-01-20 \\
-			44 & spring-3.0.5  & DefaultPropertiesPersister.java  & 69 & 80 & Apache-2 & 6149818 & -- & $M$  & 2013-03-19 \\
-			45 & spring-3.0.5  & org.springframework.test/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & -- & $M$  & 2016-07-15 \\
-			46 & spring-3.0.5  & org.springframework.web/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & -- & $M$  & 2008-12-18 \\
-			47 & spring-3.0.5  & org.springframework.web.servlet/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & -- & $M$  & 2008-12-18 \\
-			48 & spring-3.0.5  & DispatcherServlet.java  & 91 & 103 & Apache-2 & 4781746 & -- & $M$  & 2011-08-08 \\
-			49 & spring-3.0.5  & Jaxb2Marshaller.java  & 253 & 269 & Apache-2 & 10924700 & -- & $M$  & 2012-08-28 \\
-			50 & spring-3.0.5  & ScheduledTasksBean \newline DefinitionParser.java  & 42 & 52 & Apache-2 & 3751463 & -- & $M$  & 2016-07-05 \\
-			51 & struts2-2.2.1  & DefaultActionMapper.java  & 91 & 103 & Apache-2 & 14019840 & -- & $M$  & 2013-10-18 \\
-			52 & tomcat-7.0.2  & BasicAuthenticator.java  & 25 & 73 & Apache-2 & 21734562 & -- & $M$  & 2016-08-04 \\
-			53 & tomcat-7.0.2  & BasicAuthenticator.java  & 33 & 43 & Apache-2 & 21734562 & -- & $M$  & 2016-08-04 \\
-			54 & tomcat-7.0.2  & CoyoteAdapter.java  & 543 & 553 & Apache-2 & 24404964 & -- & $M$  & 2012-11-18 \\
-			55 & tomcat-7.0.2  & CoyoteAdapter.java  & 557 & 573 & Apache-2 & 24404964 & -- & $M$  & 2012-11-18 \\
-			56 & tomcat-7.0.2  & FormAuthenticator.java  & 51 & 61 & Apache-2 & 21734562 & -- & $M$  & 2016-08-04 \\
-			57 & tomcat-7.0.2  & HttpServlet.java  & 111 & 124 & Apache-2 & 5266856 & -- & $M$  & 2011-10-22 \\
-			58 & tomcat-7.0.2  & JspRuntimeLibrary.java  & 252 & 296 & Apache-2 & 10289462 & -- & $M$  & 2012-09-12 \\
+			1 & \texttt{aspectj} & 1.6.9  & aspectjtools/../Agent.java  & 7 & 18 & -- & 18303692 & -- & $M$  & 2015-09-08 \\
+			2 & \texttt{aspectj} & 1.6.9  & aspectjweaver/../Agent.java  & 7 & 18 & -- & 18303692 & & $M$  & 2015-09-08 \\
+			3 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 113 & 166 & EPLv1 & 2513183 & EPLv1 & $M$  &  2015-03-17 \\
+			4 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 117 & 126 & EPLv1  &  2513183	& EPLv1 & $M$  &  2015-03-17 \\
+			5 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 143 & 165 & EPLv1  &  2513183	& EPLv1 & $M$  &  2015-03-17 \\
+			6 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 178 & 187 & EPLv1  &  2513183	& EPLv1 & $M$  & 2011-03-01 \\
+			7 & \texttt{eclipse-SDK} & & WizardDialog.java  & 377 & 394 & EPLv1  &   11861598	& -- & $M$  &  2011-02-03 \\
+			8 & \texttt{hadoop} & 1.0.0 & DBCountPageView.java  & 275 & 287 & Apache-2 & 21702608 & -- & $M$  & 2011-06-12 \\
+			9 & \texttt{hadoop} & 1.0.0 & DBCountPageView.java  & 289 & 309 & Apache-2 & 21702608 & -- & $M$  & 2011-06-12 \\
+			10 & \texttt{hadoop} & 1.0.0 & JobSubmissionFiles.java  & 46 & 55 & Apache-2 & 14845581 & -- & $M$  & 2012-06-25 \\
+			11 & \texttt{hadoop} & 1.0.0 & mapred/../LineRecordReader.java  & 47 & 60 & Apache-2 & 16180910 & -- & $M$  & 2011-07-25 \\
+			12 & \texttt{hadoop} & 1.0.0 & mapreduce/../LineRecordReader.java  & 75 & 99 & Apache-2 & 16180910 & -- & $M$  & 2011-07-25 \\
+			13 & \texttt{hadoop} & 1.0.0 & StringUtils.java  & 40 & 56 & Apache-2 & 801987 & -- & $M$  & 2013-02-04 \\
+			14 & \texttt{hadoop} & 1.0.0 & TestJobCounters.java  & 186 & 192 & Apache-2 & 18833798 & -- & $M$  & 2011-06-12 \\
+			15 & \texttt{hadoop} & 1.0.0 & TextOutputFormat.java  & 75 & 99 & Apache-2 & 16928749 & -- & $M$  & 2011-06-12 \\
+			16 & \texttt{hadoop} & 1.0.0 & WritableComparator.java  & 44 & 54 & Apache-2 & 22315734 & -- & $M$  & 2014-11-20 \\
+			17 & \texttt{hibernate} & 4.2.2 & ConnectionProviderInitiator.java  & 65 & 93 & -- & 15168494 & -- & $M$  & 2012-06-24 \\
+			18 & \texttt{hibernate} & 4.2.2 & Example.java  & 224 & 243 & -- & 24924255 & -- & $M$  & 2013-04-23 \\
+			19 & \texttt{hibernate} & 4.2.2 & SchemaUpdate.java  & 115 & 168 & -- & 23520731 & -- & $M$  & 2016-02-05 \\
+			20 & \texttt{hibernate} & 4.2.2 & SettingsFactory.java  & 244 & 255 & -- & 8257554 & -- & $D$  & 2011-03-11 \\
+			21 & \texttt{hibernate} & 4.2.2 & SQLServer2005LimitHandler.java  & 43 & 61 & -- & 23967852 & -- & $M$  & 2015-03-12 \\
+			22 & \texttt{jasperreports} & 3.7.4 & JRVerifier.java  & 982 & 998 & LGPLv3+ & 8037824 & -- & $M$  & 2008-04-17 \\
+			23 & \texttt{jasperreports} & 3.7.4 & JRVerifier.java  & 1221 & 1240 & LGPLv3+ & 8037824 & -- & $M$  & 2011-05-20 \\
+			24 & \texttt{jfreechart} & 1.0.13 & AbstractXYItemRenderer.java  & 532 & 569 & LGPLv2.1+ & 12936580 & -- & $M$  & 2016-02-19 \\
+			25 & \texttt{jfreechart} & 1.0.13 & KeyToGroupMap.java  & 18 & 30 & LGPLv2.1+ & 16058183 & -- & $M$  & 2013-07-03 \\
+			26 & \texttt{jfreechart} & 1.0.13 & SpiderWebPlot.java  & 502 & 520 & LGPLv2.1+ & 21998949 & -- & $M$  & 2008-06-02 \\
+			27 & \texttt{jfreechart} & 1.0.13 & SpiderWebPlot.java  & 522 & 536 & LGPLv2.1+ & 21998949 & -- & $M$  & 2008-06-02 \\
+			28 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 16 & 22 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
+			29 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 28 & 40 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
+			30 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 31 & 36 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
+			31 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 39 & 56 & LGPLv2.1+ & 6722760 & -- & $R$  & 2014-04-13 \\
+			32 & \texttt{jstock} & 1.0.7c & GoogleMail.java  & 18 & 42 & GPLv2+ & 14940863 & -- & $M$  & 2015-12-13 \\
+			33 & \texttt{jstock} & 1.0.7c & GoogleMail.java  & 18 & 42 & GPLv2+ & 24680923 & -- & $M$  & 2015-12-13 \\
+			34 & \texttt{jung2} & 2\_0\_1  & ShortestPathDemo.java  & 106 & 117 & -- & 6025026 & -- & $M$  & 2010-04-13 \\
+			35 & \texttt{jung2} & 2\_0\_1  & ShortestPathDemo.java  & 158 & 172 & -- & 6025026 & -- & $M$  & 2010-04-13 \\
+			36 & \texttt{junit} & 4.11 & Assert.java  & 33 & 52 & -- & 23586872 & -- & $M$  & 2015-05-12 \\
+			37 & \texttt{junit} & 4.11 & ExternalResource.java  & 4 & 23 & -- & 7504040 & -- & $M$  & 2016-06-25 \\
+			38 & \texttt{junit} & 4.11 & ExpectException.java  & 11 & 29 & -- & 8802082 & -- & $M$  & 2014-05-26 \\
+			39 & poi & 3.6 & WorkbookFactory.java  & 18 & 28 & Apache-2 & 12593810 & -- & $M$  & 2015-04-29 \\
+			40 & \texttt{spring} & 3.0.5 & AnnotationMethodHandler \newline ExceptionResolver.java  & 224 & 233 & Apache-2 & 5660519 & -- & $D$  & 2012-01-20 \\
+			41 & \texttt{spring} & 3.0.5  & AutowireUtils.java  & 32 & 42 & Apache-2 & 20913543 & -- & $M$  & 2014-10-28 \\
+			42 & \texttt{spring} & 3.0.5  & CustomCollectionEditor.java  & 33 & 71 & Apache-2 & 18623736 & -- & $M$  & 2013-11-21 \\
+			43 & \texttt{spring} & 3.0.5  & DefaultAnnotation \newline HandlerMapping.java  & 78 & 92 & Apache-2 & 3758110 & -- & $D$  & 2012-01-20 \\
+			44 & \texttt{spring} & 3.0.5  & DefaultPropertiesPersister.java  & 69 & 80 & Apache-2 & 6149818 & -- & $M$  & 2013-03-19 \\
+			45 & \texttt{spring} & 3.0.5  & org.springframework.test/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & -- & $M$  & 2016-07-15 \\
+			46 & \texttt{spring} & 3.0.5  & org.springframework.web/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & -- & $M$  & 2008-12-18 \\
+			47 & \texttt{spring} & 3.0.5  & org.springframework.web.servlet/../ \newline DelegatingServletInputStream.java  & 6 & 20 & Apache-2 & 20996373 & -- & $M$  & 2008-12-18 \\
+			48 & \texttt{spring} & 3.0.5  & DispatcherServlet.java  & 91 & 103 & Apache-2 & 4781746 & -- & $M$  & 2011-08-08 \\
+			49 & \texttt{spring} & 3.0.5  & Jaxb2Marshaller.java  & 253 & 269 & Apache-2 & 10924700 & -- & $M$  & 2012-08-28 \\
+			50 & \texttt{spring} & 3.0.5  & ScheduledTasksBean \newline DefinitionParser.java  & 42 & 52 & Apache-2 & 3751463 & -- & $M$  & 2016-07-05 \\
+			51 & \texttt{struts2} & 2.2.1  & DefaultActionMapper.java  & 91 & 103 & Apache-2 & 14019840 & -- & $M$  & 2013-10-18 \\
+			52 & \texttt{tomcat} & 7.0.2  & BasicAuthenticator.java  & 25 & 73 & Apache-2 & 21734562 & -- & $M$  & 2016-08-04 \\
+			53 & \texttt{tomcat} & 7.0.2  & BasicAuthenticator.java  & 33 & 43 & Apache-2 & 21734562 & -- & $M$  & 2016-08-04 \\
+			54 & \texttt{tomcat} & 7.0.2  & CoyoteAdapter.java  & 543 & 553 & Apache-2 & 24404964 & -- & $M$  & 2012-11-18 \\
+			55 & \texttt{tomcat} & 7.0.2  & CoyoteAdapter.java  & 557 & 573 & Apache-2 & 24404964 & -- & $M$  & 2012-11-18 \\
+			56 & \texttt{tomcat} & 7.0.2  & FormAuthenticator.java  & 51 & 61 & Apache-2 & 21734562 & -- & $M$  & 2016-08-04 \\
+			57 & \texttt{tomcat} & 7.0.2  & HttpServlet.java  & 111 & 124 & Apache-2 & 5266856 & -- & $M$  & 2011-10-22 \\
+			58 & \texttt{tomcat} & 7.0.2  & JspRuntimeLibrary.java  & 252 & 296 & Apache-2 & 10289462 & -- & $M$  & 2012-09-12 \\
 		\hline
 	\end{tabular} %
 }
@@ -766,6 +772,8 @@ The summary of licensing information is listed in \Cref{tab:license_abc}. The li
 
 \textbf{Incompatible license:} there are a large number of clone pairs in type \textit{IL} which do not contain licensing information after they are posted on Stack Overflow or having different license that its Qualitas clone counterpart. 96 category-A clones are the pairs that we have evidence of being copied from Qualitas to Stack Overflow. 64 of them do not contain licensing terms after posted and are controversial for being reused. 396 clone pairs in category B are highly similar clones that we do not have evidence of copying. 315 of them have incompatible licenses. Interestingly, there are 21 clone pairs that Stack Overflow snippets contain Sun and MIT-like license while Qualitas clones do not have any license information. There is also one clone pair having BSD3 license on Stack Overflow while having GPLv2+ in Qualitas source code. Lastly, 26 out of 31 clone pairs in category C have incompatible license. They are clones that have been identified to be copied from an external source. Again, most of the clones in Qualitas contain license while the Stack Overflow snippets do not. 
 
+\textbf{For RQ4, we observed xx code snippets on Stack Overflow that violate the license of their original software. Most of them do not contain licensing statements after copied to Stack Overflow. \FIXME{More}}
+
 \subsubsection{Interesting Finding: External Clones}
 
 \begin{table}[]
@@ -780,7 +788,7 @@ The summary of licensing information is listed in \Cref{tab:license_abc}. The li
 	\end{tabular}
 \end{table}
 
-We found 31 clone pairs which either one of the clones or both of them are found to be a copy of code snippet from somewhere else besides Qualitas project. This compliments the findings of inter clones between software projects \cite{Svajlenko2014} by showing that clones can also be copied over different websites on the Internet. There are 15 clone pairs that are originated from programming websites. For example, we found a clone of code snippet to convert numbers into words which is copied from \url{http://www.rgagnon.com/javadetails/java-0426.html}. Both Stack Overflow and \textit{Compiere} project source code contain attribution to the original source. Another example is a code of algorithm to generate graphical \textit{Perlin noise} copied from \url{http://mrl.nyu.edu/~perlin/noise/}. This code is used in both Stack Overflow and \textit{AoI} project with attribution. The original code of the 15 clone pairs do not have licensing information so these clones do not violate any license. However, there are 4 clone pairs that are cloned from \textit{JUnit} to both Stack Overflow and \textit{Eclipse} and 12 pairs cloned from other Java projects outside Qualitas corpus. They are originated from \textit{zxing} projects, Apache projects (ant, jasper), Java packages (\texttt{java.util}, \texttt{javax.servlet}, JUnit, and \texttt{org.bouncycastle.crypto} project.
+We found 31 clone pairs which either clones from Stack Overflow side or from both sides are found to be a copy of code snippet from somewhere else besides Qualitas projects. This complements the findings of inter clones between software projects \cite{Svajlenko2014} by showing that clones can also be copied over different websites on the Internet. There are 15 clone pairs that are originated from programming websites. For example, we found a clone of code snippet to convert numbers into words which is copied from \url{http://www.rgagnon.com/javadetails/java-0426.html}. Both Stack Overflow and \textit{Compiere} project source code contain attribution to the original source. Another example is a code of algorithm to generate graphical \textit{Perlin noise} copied from \url{http://mrl.nyu.edu/~perlin/noise/}. This code is used in both Stack Overflow and \textit{AoI} project with attribution. The original code of the 15 clone pairs do not have licensing information so these clones do not violate any license. However, there are 4 clone pairs that are cloned from \textit{JUnit} to both Stack Overflow and \textit{Eclipse} and 12 pairs cloned from other Java projects outside Qualitas corpus. They are originated from \textit{zxing} projects, Apache projects (ant, jasper), Java packages (\texttt{java.util}, \texttt{javax.servlet}, JUnit, and \texttt{org.bouncycastle.crypto} project.
 
 \section{Threats to Validity}
 
