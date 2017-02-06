@@ -408,7 +408,7 @@ For $N_D$, 10-line threshold is already a minimum NiCad's clone size. However, N
 
 In our clone classification process, we used a script to automatically classify \texttt{equals()} clone pairs which helped classifying 28,444 pairs out of 31,946 (more than half of the \texttt{equals()} pairs came from \textit{ok} and $S_D$ pairs). Finally, there are 3,502 pairs remaining which we manually classified them. The classification summary is shown in \Cref{tab:online_clone_classification_results}.
 
-\textbf{To answer RQ1, we found 31,946 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. They are 2,308 \textit{good}, 11,749 \textit{ok}, 17,801 $S_D$, and 88 $N_D$ pairs. After classification, we found at least \FIXME{NUMBER} online code clones pairs between Stack Overflow and Qualitas.}
+\textbf{To answer RQ1, we found 31,946 clone candidates between 111 Qualitas projects and 144,075 Stack Overflow snippets. They are 2,308 \textit{good}, 11,749 \textit{ok}, 17,801 $S_D$, and 88 $N_D$ pairs. After classification, we found 670 non-trivial online code clones pairs between Stack Overflow and Qualitas or external sources.}
 
 \subsection{RQ2: Patterns of Online Code Cloning}
 
@@ -451,14 +451,54 @@ Nevertheless, we adopted one of Kapser's cloning patterns, boiler-plate code and
 
 \subsubsection{Classification of Clone Candidates}
 
-There were 31,946 online clone pair candidates for classifications as shown in \Cref{tab:online_clone_pairs}. We have use regular expressions to automatically classify \texttt{equals()}, getter and setter methods  based on the method signature since they are not very interesting clones. As shown in \Cref{tab:online_clone_classification_results}, the automatic classifier helped us captured 28,314 clone pairs and classified them into pattern BP. With help of the automatic classification, there were 3,632 pairs left for manual classification.
+There were 31,946 online clone pair candidates for classifications as shown in \Cref{tab:online_clone_pairs}. We have use regular expressions to automatically classify \texttt{equals()}, getter and setter methods  based on the method signature since they are trivial clones and not very interesting. As shown in \Cref{tab:online_clone_classification_results}, the automatic classifier helped us captured 28,314 clone pairs and classified them into pattern BP. There were 3,632 pairs left for manual check after the automatic classification.
 
-The first author who has been working on clone detection research for two years took the role of a main investigator performing a manual classification of all the 3,632 clone pairs. By consulting the cloning patterns, the main investigator manually went through each clone pair candidate, looked at the clones, and chose the most appropriate cloning pattern for the pair. A relevant and useful observation was also recorded for each clone pair. The second author took the role of a validating investigator performing 10\% validation (363 pairs) of the clone pairs judged by the main investigator. The two investigators discussed 54 classification conflicts and resolved 51 of them. The 3 conflicts which the two investigators could not find consensuses were resolved by the third author. 
+The first author who has been working on clone detection research for two years took the role of a main investigator performing a manual classification of all the 3,632 clone pairs. By consulting the cloning patterns, the main investigator manually went through each clone pair candidate, looked at the clones, and chose the most appropriate cloning pattern for the pair. A relevant and useful observation was also recorded for each clone pair. 
 
-The classification results are shown in \Cref{tab:classification_good_o}. For \textit{good} pairs, 10 pairs were automatically classified by regular expressions and 2,298 pairs were manually classified. This resulted in 3 clone pairs in pattern QS which is found to be copied from a Qualitas project to Stack Overflow. Four pairs are highly similar or identical but without any evidence of copying (no comments in neither Stack Overflow post nor Qualitas source code) and are classified as pattern UD. Please note that we were conservative in this study when doing classification. Even the clone pairs were exactly or almost identical but we could not find an evidence that it was cloned in any particular direction, we classified them as UD instead of QS, SQ, or EX. We observed 4 pairs in pattern EX since they are copied from external sources. 111 clone pairs are found to be pattern BP. Seven pairs are similar code from inheriting the same superclass or implementing the same interface, pattern IN. Finally, 2,172 pairs are false clones and classified into FC. No clones were found in pattern SQ. This was expected since we selected a pretty old Qualitas snapshot dated back 2013 and most of the code could be written long before that.  
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{classification_process}
+	\caption{Online code clone classification process}
+	\label{fig:classification_process}
+\end{figure}
 
-For \textit{ok} clone pairs, we could not feasibly investigate all 31,729 pairs manually and decided to remove $S_EN_E$ from this round of classification. According to the classification of \textit{good} pairs, we found that $S_EN_E$ accounted for 98.9\% of all false positive pairs in \textit{good} pairs. This was not a surprise since EvaClone configurations prefered recall and hence offered relaxed configurations. We ignored them since we were more interested in meaningful clones. This resulted in 11,749 \textit{ok} pairs remaining. 11,494 clone pairs were automatically classified and 255 pairs were looked at manually. 
-We found 12, 42, 23, 11,459, 20, and 103 in QS, UD, EX, BP, IN and AC respectively. Similarly, no clone pairs were found in SQ. 
+The investigator followed the following steps to classify the clones (depicted in \Cref{fig:classification_process}). First, we looked at the source code to see their similarity. If they were accidentally similar after code normalisation or by relaxation of the clone detection tool's configurations, the pair was classified as AC. If they were boiler-plate code, the pair was classified as BP. If they implemented the same interface or inherited the same class and had similar code, the pair was classified as IN. If the pair was not UD, IN, or AC; we started a detailed investigation. The main investigator opened the Stack Overflow post using its post ID with a web browser, read through the post carefully both in natural text and source code, looked for any hints or evidence mentioning code copying. If an evidence(s) had been found and appeared to be a Qualitas project as reported in the clone pair, the pair was classified as QS. Several times questions, name of posters, tags were also considered to gain better understanding. If there was no evidence on Stack Overflow but on Qualitas project mentioning about copying from Stack Overflow, the pair was classified as SQ. If there was evidence(s) of copying, but from an external source(s) instead of Qualitas, the pair was classified as EX. Lastly, if there was no evidence of copying in any direction, but source code of the clone pair are almost identical or highly similar, we conservatively classified them as UD.
+  
+To guarantee quality of the classification, the second author took the role of a validating investigator performing 10\% validation (363 pairs) of the clone pairs judged by the main investigator. After the validation, results from the two investigators were compared and 54 conflicts were found. The two investigators discussed and resolved 51 of them while 3 conflicts were resolved by the third author. The classification results are shown in \Cref{tab:classification_good_o}. 
+
+\textbf{As an answer to RQ2, the classification results are explained and discussed below.}
+
+\textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 110 online clone pairs with strong evidences of cloning from Qualitas projects to Stack Overflow. They include 3, 12, 86, and 9 pairs from \textit{good}, \textit{ok}, $S_D$, and $N_D$ set respectively. Most of them had statements in the Stack Overflow post saying that the code was ``copied'', ``modified'', ``adopted'' from a specific file or class in Qualitas. The most cloned projects were \texttt{hibernate} and \texttt{spring} having 20 clone pairs, followed by \texttt{eclipse} (15), and \texttt{hadoop} (12). The clones were mostly cloned as examples and were very similar to their original Qualitas code with limited modifications.
+
+\textbf{SQ: Stack Overflow $\rightarrow$ Qualitas.} We did not find any clone pairs with strong evidences of cloning from Stack Overflow to Qualitas projects.
+
+\textbf{UD: Unknown Direction.} We found 382 online clone pairs with no evidence of cloning between Qualitas and Stack Overflow but with high code similarity. They include 11, 42, 294, and 35 pairs from \textit{good}, \textit{ok}, $S_D$, and $N_D$ set respectively. The most cloned projects in this pattern was \texttt{netbeans} which had 95 clone pairs. Most of the clones were large chunk of code involving GUI components which might also be auto-generated. However, we also did not have any evidence. The second most cloned project was \texttt{jung2} (62 pairs) that was a network and graph framework. There were several Stack Overflow snippets that were identical to code in \texttt{jung2}. The third project was \texttt{eclipse-SDK} (37 pairs).
+
+\textbf{EX: External Sources.} We found 178 online clone pairs with evidences of cloning from external sources to Stack Overflow. They include 4, 23, 145, and 6 pairs from \textit{good}, \textit{ok}, $S_D$, and $N_D$ set respectively.
+%\begin{table}[]
+%	\centering
+%	\caption{31 external clones found in Stack Overflow posts}
+%	\label{tab:ext_clones}
+%	\begin{tabular}{l|r|r}
+%		\hline
+%		Type        & FOSS & Web \\ \hline
+%		StackOverflow only     & 1    & 1   \\
+%		StackOverflow + Qualitas & 15   & 14  \\ \hline
+%	\end{tabular}
+%\end{table}
+This findings complement a study of inter clones between software projects \cite{Svajlenko2014}. We show that, besides software projects, clones can also be copied over different websites on the Internet. There are 15 clone pairs that are originated from programming websites. For example, we found a clone of code snippet to convert numbers into words which is copied from \texttt{www.rgagnon.com/javadetails/java-0426.html}. Both Stack Overflow and \texttt{compiere} project source code contain attribution to the original source. Another example is a code of algorithm to generate graphical \textit{Perlin noise} copied from \texttt{mrl.nyu.edu/\textasciitilde perlin/noise/}. This code is used in both Stack Overflow and \texttt{aoi} project with attribution. %The original code of the 15 clone pairs do not have licensing information so these clones do not violate any license. 
+There were 12 pairs cloned from \texttt{zxing}, \texttt{jasper}, \texttt{java.util}, \texttt{javax.servlet}, and \texttt{org.bouncycastle.crypto} project.
+
+\textbf{BP: Boiler-Plate.} There were a large amount of boiler-plate clone pairs found in this study. Although we surly removed some of the boiler-plate code with filters before the analysis, we still observed 28,642 BP clone pairs which accounted for 89.7\% of all clone pairs we classified. The majority of them were \texttt{equals()} methods.
+
+\textbf{IN: Inheritance/interface.} There were 109 clone pairs found to be similar because they implemented the same interface or inheriting from the same class. An example was two implementations of \texttt{MouseListener} that share similar \texttt{@Override} methods of \texttt{mousePressed}, and \texttt{mouseReleased}. 
+
+\textbf{AC: Accidental Clones.} 31,946 were clone pairs that were accidentally similar due to several reasons. Mainly, they were caused by the effects of code normalisation applied to the source code before detection. However, the original source code were still different enough when we manually classified them. Other causes include \texttt{finally} or \texttt{try-catch} clauses that were accidentally the same due to their very small sizes, or clearly non-cloned code which may somehow miss the tools' detections.
+
+%For \textit{good} pairs, 10 pairs were automatically classified by regular expressions and 2,298 pairs were manually classified. This resulted in 3 clone pairs in pattern QS which is found to be copied from a Qualitas project to Stack Overflow. Four pairs are highly similar or identical but without any evidence of copying (no comments in neither Stack Overflow post nor Qualitas source code) and are classified as pattern UD. Please note that we were conservative in this study when doing classification. Even the clone pairs were exactly or almost identical but we could not find an evidence that it was cloned in any particular direction, we classified them as UD instead of QS, SQ, or EX. We observed 4 pairs in pattern EX since they are copied from external sources. 111 clone pairs are found to be pattern BP. Seven pairs are similar code from inheriting the same superclass or implementing the same interface, pattern IN. Finally, 2,172 pairs are false clones and classified into FC. No clones were found in pattern SQ. This was expected since we selected a pretty old Qualitas snapshot dated back 2013 and most of the code could be written long before that.  
+
+%For \textit{ok} clone pairs, we could not feasibly investigate all 31,729 pairs manually and decided to remove $S_EN_E$ from this round of classification. According to the classification of \textit{good} pairs, we found that $S_EN_E$ accounted for 98.9\% of all false positive pairs in \textit{good} pairs. This was not a surprise since EvaClone configurations prefered recall and hence offered relaxed configurations. We ignored them since we were more interested in meaningful clones. This resulted in 11,749 \textit{ok} pairs remaining. 11,494 clone pairs were automatically classified and 255 pairs were looked at manually. 
+%We found 12, 42, 23, 11,459, 20, and 103 in QS, UD, EX, BP, IN and AC respectively. Similarly, no clone pairs were found in SQ. 
 
 \begin{table}
 	\centering
@@ -481,9 +521,9 @@ We found 12, 42, 23, 11,459, 20, and 103 in QS, UD, EX, BP, IN and AC respective
 	}
 \end{table}
 
-For 17,801 $S_D$ clone pairs, they contained a large volume of boiler-plate code. Our regular expressions could automatically classified 16,800 of them into BP. The investigator checked the 1,001 remaining pairs manually. As a result, we found 86 QS, 294 UD, 145 EX, 17,074 BP, 74 IN and 128 AC pairs. For 88 $N_D$ clone pairs, 10 of them were automatically classified into BP and 78 were manually classified. We found 9 QS, 35 UD, 6 EX, 17 BP, 8 IN, and 13 AC respectively.
+%For 17,801 $S_D$ clone pairs, they contained a large volume of boiler-plate code. Our regular expressions could automatically classified 16,800 of them into BP. The investigator checked the 1,001 remaining pairs manually. As a result, we found 86 QS, 294 UD, 145 EX, 17,074 BP, 74 IN and 128 AC pairs. For 88 $N_D$ clone pairs, 10 of them were automatically classified into BP and 78 were manually classified. We found 9 QS, 35 UD, 6 EX, 17 BP, 8 IN, and 13 AC respectively.
 
-\textbf{To answer RQ2, we used our patterns of online code cloning to classified 31,946 clone pairs. Our results showed that although most of the clone pairs were boiler-plate code (28,642), clones from inheritance/interface (109), or accidental clones (2,525); there were 670 pairs that were very interesting. 110 pairs had strong evidences to be cloned from Qualitas to Stack Overflow. 382 were non-trivial clones but without strong evidence of clone direction. 178 pairs were found to be cloned from external sources outside Qualitas projects. Lastly, we did not find any clone pairs in the direction from Stack Overflow to Qualitas.}
+%\textbf{We answer RQ2 by using our patterns of online code cloning to classified 31,946 clone pairs. We found that a large amount of the clone pairs are boiler-plate code (28,642), clones from inheritance/interface (109), or accidental clones (2,525). Nevertheless, there were 670 pairs that were intentionally created. 110 pairs had strong evidences to be cloned from Qualitas to Stack Overflow. 382 were highly-confident clones but without evidence of cloning direction. 178 pairs were found to be cloned from external sources outside Qualitas projects.} %We did not find any clone pairs in the direction from Stack Overflow to Qualitas.}
 
 \subsection{RQ3: Outdated Online Code Clones}
 
@@ -498,7 +538,7 @@ To check if our online code clones are outdated, we focused on the 110 QS clone 
 
 The outdated online code clones can cause problems ranging from uncompilable code (due to modifications and different API usage in the outdated code) to bug propagations. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Although Stack Overflow has a voting mechanism that may mitigate this outdated code issue, the check mark symbol in front of the accepted answer is still attractive enough for naive developers who are ignorant to copy and reuse the code.
 
-\textbf{For RQ3, our results show that more than half (59) of QS clone pairs on Stack Overflow are outdated. We observed that the newer versions of these outdated snippets contained various changes ranging from a slight modifications of variable names or method names, added or deleted statements, to a fully rewritten code with new method signatures. Moreover, we found three dead snippets. They do not exist any more in the latest version. Both outdated and dead online clone snippets are questionable for reuse.} %These changes did not reflect They might later find out that the copied code does not work any more due to different API versions. Even worse, they might also introduce bugs or vulnerabilities into their software.  }
+\textbf{For RQ3, our results show that more than half (62) of QS clone pairs on Stack Overflow are outdated. 59 pairs differ from their newest versions by modifications applied to variable names or method names, added or deleted statements, to a fully rewritten code with new method signatures. 3 pairs are dead snippets. They do not exist any more in the latest version. These outdated Stack Overflow online clone snippets are questionable for reuse.} %These changes did not reflect They might later find out that the copied code does not work any more due to different API versions. Even worse, they might also introduce bugs or vulnerabilities into their software.  }
 %Usually when developers reuse a code snippet from a Stack Overflow post and find that it does not work nor compatible with their environment. They can cast a down vote to that answer resulting in low votes for the answer (which might be outdated). However, if the answer is marked as accepted by the person who asks the question, the check mark symbol attached to the answer is still attractive to naive developers who are ignorant. 
 
 \begin{figure*}
@@ -524,114 +564,6 @@ public void execute (Target target) {      public void execute(EnumSet<TargetTyp
 	\caption{Findings from outdated code investigation of 96 pattern-A online clone pairs}
 	\label{fig:outdated}
 \end{figure}
-
-%\begin{table}
-%	\centering
-%	\caption{Breakdowns of findings from outdated code investigation of 96 category-A online clone pairs}
-%	\label{tab:stale_code}
-%	\small
-%%	\resizebox{\columnwidth}{!}{%
-%	\begin{tabular}{l|r|r|r|r|r}
-%		\hline 
-%		Project & Pairs & Outdated & Fresh & Del. & Others \\
-%		\hline
-%		ant & 1 & 0 & 1 & 0 & 0 \\
-%		log4j & 4 & 0 & 4 & 0 & 0 \\
-%		tomcat & 7 & 7 & 0 & 0 & 0 \\
-%		aspectj & 2 & 2 & 0 & 0 & 0 \\
-%		eclipse-SDK & 12 & 5 & 7 & 0 & 0 \\
-%		hadoop & 14 & 9 & 5 & 0 & 0 \\
-%		hibernate & 16 & 4 & 11 & 1 & 0 \\
-%		jasperreports & 2 & 2 & 0 & 0 & 0 \\
-%		jfreechart & 4 & 4 & 0 & 0 & 0 \\
-%		jgraph & 5 & 4 & 0 & 0 & 1 \\
-%		jgrapht & 1 & 0 & 1 & 0 & 0 \\
-%		jstock & 2 &  2 & 0 & 0 & 0 \\
-%		jung & 2 & 2 & 0 & 0 & 0 \\
-%		junit & 3 & 3 & 0 & 0 & 0 \\
-%		poi & 3 & 1 & 2 & 0 & 0 \\
-%		spring & 14 & 9 & 3 & 2 & 0 \\
-%		struts & 1 & 1 & 0 & 0 & 0 \\
-%		weka & 3 & 0 & 3 & 0 & 0 \\
-%		\hline
-%		Total & 96 & 55 & 37 & 3 & 1 \\
-%		\hline
-%	\end{tabular} 
-%%}
-%\end{table}
-
-%\begin{table*}
-%	\centering
-%	\caption{62 QS outdated online code clones. Clones can be outdated by modifications ($M$), deletion ($D$), and rewriting ($R$).}
-%	\label{tab:stale_code_details}
-%	\scriptsize
-%	\resizebox{2.1\columnwidth}{!}{%
-%	\begin{tabular}{r|l|c|p{4.5cm}|r|r|l|c|l}
-%		\hline 
-%		No. & Project & Ver. & File & Start & End & SO Post & Cause & C$_{\textit{\textrm{date}}}$ \\
-%		\hline
-%			1 & \texttt{aspectj} & 1.6.9  & aspectjtools/../Agent.java  & 7 & 18 & 18303692 & $M$  & 2015-09-08 \\
-%			2 & \texttt{aspectj} & 1.6.9  & aspectjweaver/../Agent.java  & 7 & 18 & 18303692 & $M$  & 2015-09-08 \\
-%			3 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 113 & 166 & 2513183 & $M$  &  2015-03-17 \\
-%			4 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 117 & 126 &  2513183	& $M$  &  2015-03-17 \\
-%			5 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 143 & 165 &  2513183	& $M$  &  2015-03-17 \\
-%			6 & \texttt{eclipse-SDK} & & GenerateToStringAction.java  & 178 & 187 &  2513183	& $M$  & 2011-03-01 \\
-%			7 & \texttt{eclipse-SDK} & & WizardDialog.java  & 377 & 394 &   11861598	& $M$  &  2011-02-03 \\
-%			8 & \texttt{hadoop} & 1.0.0 & DBCountPageView.java  & 275 & 287 & 21702608 & $M$  & 2011-06-12 \\
-%			9 & \texttt{hadoop} & 1.0.0 & DBCountPageView.java  & 289 & 309 & 21702608 & $M$  & 2011-06-12 \\
-%			10 & \texttt{hadoop} & 1.0.0 & JobSubmissionFiles.java  & 46 & 55 & 14845581 & $M$  & 2012-06-25 \\
-%			11 & \texttt{hadoop} & 1.0.0 & mapred/../LineRecordReader.java  & 47 & 60 & 16180910 & $M$  & 2011-07-25 \\
-%			12 & \texttt{hadoop} & 1.0.0 & mapreduce/../LineRecordReader.java  & 75 & 99 & 16180910 & $M$  & 2011-07-25 \\
-%			13 & \texttt{hadoop} & 1.0.0 & StringUtils.java  & 40 & 56 & 801987 & $M$  & 2013-02-04 \\
-%			14 & \texttt{hadoop} & 1.0.0 & TestJobCounters.java  & 186 & 192 & 18833798 & $M$  & 2011-06-12 \\
-%			15 & \texttt{hadoop} & 1.0.0 & TextOutputFormat.java  & 75 & 99 & 16928749 & $M$  & 2011-06-12 \\
-%			16 & \texttt{hadoop} & 1.0.0 & WritableComparator.java  & 44 & 54 & 22315734 & $M$  & 2014-11-20 \\
-%			17 & \texttt{hibernate} & 4.2.2 & ConnectionProviderInitiator.java  & 65 & 93 & 15168494 & $M$  & 2012-06-24 \\
-%			18 & \texttt{hibernate} & 4.2.2 & Example.java  & 224 & 243 & 24924255 & $M$  & 2013-04-23 \\
-%			19 & \texttt{hibernate} & 4.2.2 & SchemaUpdate.java  & 115 & 168 & 23520731 & $M$  & 2016-02-05 \\
-%			20 & \texttt{hibernate} & 4.2.2 & SettingsFactory.java  & 244 & 255 & 8257554 & $D$  & 2011-03-11 \\
-%			21 & \texttt{hibernate} & 4.2.2 & SQLServer2005LimitHandler.java  & 43 & 61 & 23967852 & $M$  & 2015-03-12 \\
-%			22 & \texttt{jasperreports} & 3.7.4 & JRVerifier.java  & 982 & 998 & 8037824 & $M$  & 2008-04-17 \\
-%			23 & \texttt{jasperreports} & 3.7.4 & JRVerifier.java  & 1221 & 1240 & 8037824 & $M$  & 2011-05-20 \\
-%			24 & \texttt{jfreechart} & 1.0.13 & AbstractXYItemRenderer.java  & 532 & 569 & 12936580 & $M$  & 2016-02-19 \\
-%			25 & \texttt{jfreechart} & 1.0.13 & KeyToGroupMap.java  & 18 & 30 & 16058183 & $M$  & 2013-07-03 \\
-%			26 & \texttt{jfreechart} & 1.0.13 & SpiderWebPlot.java  & 502 & 520 & 21998949 & $M$  & 2008-06-02 \\
-%			27 & \texttt{jfreechart} & 1.0.13 & SpiderWebPlot.java  & 522 & 536 & 21998949 & $M$  & 2008-06-02 \\
-%			28 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 16 & 22 & 6722760 & $R$  & 2014-04-13 \\
-%			29 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 28 & 40 & 6722760 & $R$  & 2014-04-13 \\
-%			30 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 31 & 36 & 6722760 & $R$  & 2014-04-13 \\
-%			31 & \texttt{jgraph} & 5.13.0.0 & HelloWorld.java  & 39 & 56 & 6722760 & $R$  & 2014-04-13 \\
-%			32 & \texttt{jstock} & 1.0.7c & GoogleMail.java  & 18 & 42 & 14940863 & $M$  & 2015-12-13 \\
-%			33 & \texttt{jstock} & 1.0.7c & GoogleMail.java  & 18 & 42 & 24680923 & $M$  & 2015-12-13 \\
-%			34 & \texttt{jung2} & 2\_0\_1  & ShortestPathDemo.java  & 106 & 117 & 6025026 & $M$  & 2010-04-13 \\
-%			35 & \texttt{jung2} & 2\_0\_1  & ShortestPathDemo.java  & 158 & 172 & 6025026 & $M$  & 2010-04-13 \\
-%			36 & \texttt{junit} & 4.11 & Assert.java  & 33 & 52 & 23586872 & $M$  & 2015-05-12 \\
-%			37 & \texttt{junit} & 4.11 & ExternalResource.java  & 4 & 23 & 7504040 & $M$  & 2016-06-25 \\
-%			38 & \texttt{junit} & 4.11 & ExpectException.java  & 11 & 29 & 8802082 & $M$  & 2014-05-26 \\
-%			39 & poi & 3.6 & WorkbookFactory.java  & 18 & 28 & 12593810 & $M$  & 2015-04-29 \\
-%			40 & \texttt{spring} & 3.0.5 & AnnotationMethodHandler \newline ExceptionResolver.java  & 224 & 233 & 5660519 & $D$  & 2012-01-20 \\
-%			41 & \texttt{spring} & 3.0.5  & AutowireUtils.java  & 32 & 42 & 20913543 & $M$  & 2014-10-28 \\
-%			42 & \texttt{spring} & 3.0.5  & CustomCollectionEditor.java  & 33 & 71 & 18623736 & $M$  & 2013-11-21 \\
-%			43 & \texttt{spring} & 3.0.5  & DefaultAnnotation \newline HandlerMapping.java  & 78 & 92 & 3758110 & $D$  & 2012-01-20 \\
-%			44 & \texttt{spring} & 3.0.5  & DefaultPropertiesPersister.java  & 69 & 80 & 6149818 & $M$  & 2013-03-19 \\
-%			45 & \texttt{spring} & 3.0.5  & org.springframework.test/../ \newline DelegatingServletInputStream.java  & 6 & 20 & 20996373 & $M$  & 2016-07-15 \\
-%			46 & \texttt{spring} & 3.0.5  & org.springframework.web/../ \newline DelegatingServletInputStream.java  & 6 & 20 & 20996373 & $M$  & 2008-12-18 \\
-%			47 & \texttt{spring} & 3.0.5  & org.springframework.web.servlet/../ \newline DelegatingServletInputStream.java  & 6 & 20 & 20996373 & $M$  & 2008-12-18 \\
-%			48 & \texttt{spring} & 3.0.5  & DispatcherServlet.java  & 91 & 103 & 4781746 & $M$  & 2011-08-08 \\
-%			49 & \texttt{spring} & 3.0.5  & Jaxb2Marshaller.java  & 253 & 269 & 10924700 & $M$  & 2012-08-28 \\
-%			50 & \texttt{spring} & 3.0.5  & ScheduledTasksBean \newline DefinitionParser.java  & 42 & 52 & 3751463 & $M$  & 2016-07-05 \\
-%			51 & \texttt{struts2} & 2.2.1  & DefaultActionMapper.java  & 91 & 103 & 14019840 & $M$  & 2013-10-18 \\
-%			52 & \texttt{tomcat} & 7.0.2  & BasicAuthenticator.java  & 25 & 73 & 21734562 & $M$  & 2016-08-04 \\
-%			53 & \texttt{tomcat} & 7.0.2  & BasicAuthenticator.java  & 33 & 43 & 21734562 & $M$  & 2016-08-04 \\
-%			54 & \texttt{tomcat} & 7.0.2  & CoyoteAdapter.java  & 543 & 553 & 24404964 & $M$  & 2012-11-18 \\
-%			55 & \texttt{tomcat} & 7.0.2  & CoyoteAdapter.java  & 557 & 573 & 24404964 & $M$  & 2012-11-18 \\
-%			56 & \texttt{tomcat} & 7.0.2  & FormAuthenticator.java  & 51 & 61 & 21734562 & $M$  & 2016-08-04 \\
-%			57 & \texttt{tomcat} & 7.0.2  & HttpServlet.java  & 111 & 124 & 5266856 & $M$  & 2011-10-22 \\
-%			58 & \texttt{tomcat} & 7.0.2  & JspRuntimeLibrary.java  & 252 & 296 & 10289462 & $M$  & 2012-09-12 \\
-%		\hline
-%	\end{tabular} %
-%}
-%\end{table*}
 
 \begin{table*}
 	\centering
@@ -794,17 +726,17 @@ One can run into licensing issue if they do not check before integrating third-p
 \begin{figure*}
 	\minipage{0.32\textwidth}
 	\includegraphics[width=\linewidth]{heatmap_a}
-	\caption*{(1) category A}\label{fig:heatmap_a}
+	\caption*{(1) QS clones}\label{fig:heatmap_a}
 	\endminipage\hspace{0.3cm}
 	\minipage{0.32\textwidth}
 	\includegraphics[width=\linewidth]{heatmap_b}
-	\caption*{(2) category B}\label{fig:heatmap_b}
+	\caption*{(2) UD clones}\label{fig:heatmap_b}
 	\endminipage\hfill
 	\minipage{0.32\textwidth}%
 	\includegraphics[width=\linewidth]{heatmap_c}
-	\caption*{(3) category C}\label{fig:heatmap_c}
+	\caption*{(3) EX clones}\label{fig:heatmap_c}
 	\endminipage
-	\caption{Licensing between Stack Overflow code snippets and Qualitas Java file of 523 true online clone pairs}
+	\caption{Licensing between Stack Overflow code snippets and Qualitas Java file of QS, UD, and EX online clone files}
 \end{figure*}
 
 In our study, we reveal another possible situation of software licensing issues caused by code cloning ``to Stack Overflow''. We found with evidence that 110 pieces of code had been copied from 19 Qualitas projects to Stack Overflow as examples. They are also marked as accepted answers which increased their chances of being reused. The 19 open source projects came with their respective software licenses (shown in \Cref{t:q_projects_license}). However, we found that the licensing information were mostly stripped from these clones after they were posted on Stack Overflow. The licensing terms on the top of source code are not copied because mostly a small part of the file was cloned to Stack Overflow. If developers copy and reuse these licensed pieces of code in their projects, conflicts may happen without their realisation. 
@@ -816,22 +748,6 @@ We analysed licensing conflicts of online clones in QS, UD, and EX set. The summ
 \textbf{Incompatible license:} there are a large number of clone pairs in type \textit{IL} which do not contain licensing information after they are posted on Stack Overflow or having different license that its Qualitas clone counterpart. 96 category-A clones are the pairs that we have evidence of being copied from Qualitas to Stack Overflow. 64 of them do not contain licensing terms after posted and are controversial for being reused. 396 clone pairs in category B are highly similar clones that we do not have evidence of copying. 315 of them have incompatible licenses. Interestingly, there are 21 clone pairs that Stack Overflow snippets contain Sun and MIT-like license while Qualitas clones do not have any license information. There is also one clone pair having BSD3 license on Stack Overflow while having GPLv2+ in Qualitas source code. Lastly, 26 out of 31 clone pairs in category C have incompatible license. They are clones that have been identified to be copied from an external source. Again, most of the clones in Qualitas contain license while the Stack Overflow snippets do not. 
 
 \textbf{For RQ4, we observed xx code snippets on Stack Overflow that violate the license of their original software. Most of them do not contain licensing statements after copied to Stack Overflow. \FIXME{More}}
-
-\subsubsection{Interesting Finding: External Clones}
-
-\begin{table}[]
-	\centering
-	\caption{31 external clones found in Stack Overflow posts}
-	\label{tab:ext_clones}
-	\begin{tabular}{l|r|r}
-		\hline
-		Type        & FOSS & Web \\ \hline
-		StackOverflow only     & 1    & 1   \\
-		StackOverflow + Qualitas & 15   & 14  \\ \hline
-	\end{tabular}
-\end{table}
-
-We found 31 clone pairs which either clones from Stack Overflow side or from both sides are found to be a copy of code snippet from somewhere else besides Qualitas projects. This complements the findings of inter clones between software projects \cite{Svajlenko2014} by showing that clones can also be copied over different websites on the Internet. There are 15 clone pairs that are originated from programming websites. For example, we found a clone of code snippet to convert numbers into words which is copied from \url{http://www.rgagnon.com/javadetails/java-0426.html}. Both Stack Overflow and \textit{Compiere} project source code contain attribution to the original source. Another example is a code of algorithm to generate graphical \textit{Perlin noise} copied from \url{http://mrl.nyu.edu/~perlin/noise/}. This code is used in both Stack Overflow and \textit{AoI} project with attribution. The original code of the 15 clone pairs do not have licensing information so these clones do not violate any license. However, there are 4 clone pairs that are cloned from \textit{JUnit} to both Stack Overflow and \textit{Eclipse} and 12 pairs cloned from other Java projects outside Qualitas corpus. They are originated from \textit{zxing} projects, Apache projects (ant, jasper), Java packages (\texttt{java.util}, \texttt{javax.servlet}, JUnit, and \texttt{org.bouncycastle.crypto} project.
 
 \section{Threats to Validity}
 
