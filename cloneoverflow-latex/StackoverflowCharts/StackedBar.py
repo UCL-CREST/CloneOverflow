@@ -1,12 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-raw_data = {'systems': ['ant', 'log4j', 'aspectj', 'eclipse', 'hadoop', 'hibernate', 'jasperreports', 'jfreechart', 'jgraph', 'jgrapht', 'jstock', 'jung', 'junit', 'poi', 'spring', 'struts', 'tomcat', 'weka'],
-            'fresh': [1, 4, 0, 7, 5, 11, 0, 0, 0, 1, 0, 0, 0, 2, 3, 0, 0, 3],
-            'outdated': [0, 0, 2, 5, 9, 4,  2, 4, 4, 0, 2, 2, 3, 1, 9, 1, 7, 0],
-            'deleted': [0, 0, 0, 0, 0, 1,  0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0],
-            'other': [0, 0, 0, 0, 0, 0,  0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
-df = pd.DataFrame(raw_data, columns=['systems', 'fresh', 'outdated', 'deleted', 'other'])
+raw_data = {'systems': ['hibernate', 'spring', 'eclipse-SDK', 'hadoop', 'tomcat',
+                        'log4j', 'jfreechart', 'junit', 'jgraph', 'jung2',
+                        'poi', 'struts2', 'weka', 'aspectj', 'jasperreports',
+                        'antlr', 'ant', 'itext', 'jgrapht'],
+            'fresh': [13, 3, 10, 5, 2, 5, 0, 0, 0, 1, 2, 0, 3, 0, 0, 1, 1, 1, 1],
+            'outdated': [6,	15,	5,	7,	5,	0,	4,	4,	3,	2,	1,	3,	0,	2,	1,	0,	0,	0,	0],
+            'deleted': [1,	2,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	1,	0,	0,	0,	0]}
+df = pd.DataFrame(raw_data, columns=['systems', 'fresh', 'outdated', 'deleted'])
 df
 
 # Create the general blog and the "subplots" i.e. the bars
@@ -58,19 +60,6 @@ ax1.bar(bar_l,
         # with color
         color='red')
 
-# Create a bar plot, in position bar_1
-ax1.bar(bar_l,
-        # using the other data
-        df['other'],
-        # set the width
-        width=bar_width,
-        # with deleted and outdated on the bottom
-        bottom=[i+j for i,j in zip(df['deleted'],df['outdated'])],
-        # with the label post score
-        label='Other',
-        # with color
-        color='blue')
-
 # set the x ticks with names
 plt.yticks(fontsize=14)
 plt.xticks(tick_pos, df['systems'], rotation=40, fontsize=14)
@@ -84,4 +73,4 @@ plt.legend(loc='upper center', fontsize=14)
 plt.xlim([min(tick_pos)-bar_width, max(tick_pos)+bar_width])
 plt.subplots_adjust(bottom=0.3)
 #plt.show()
-plt.savefig(('/Users/Chaiyong/IdeasProjects/StackAnalyzer/cloneoverflow-latex/outdated.pdf'))
+plt.savefig(('/Users/chaiyong/Documents/CloneOverflow/cloneoverflow-latex/outdated.pdf'))
