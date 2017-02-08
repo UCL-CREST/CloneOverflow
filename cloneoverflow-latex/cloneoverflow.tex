@@ -1,4 +1,7 @@
-\documentclass{sig-alternate-05-2015}
+%\documentclass{sig-alternate-05-2015}
+\documentclass[sigconf,review, anonymous]{acmart}
+\acmConference[ESEC/FSE 2017]{11th Joint Meeting of the European Software Engineering Conference and the ACM SIGSOFT Symposium on the Foundations of Software Engineering}{4--8 September, 2017}{Paderborn, Germany}
+
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage[T1]{fontenc}
@@ -10,7 +13,7 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \usepackage{multirow}
-\usepackage[table]{xcolor}
+%\usepackage[table]{xcolor}
 \usepackage{float}
 \usepackage{array}
 \usepackage{ragged2e}
@@ -64,7 +67,7 @@
 %\isbn{123-4567-24-567/08/06}
 
 %Conference
-\conferenceinfo{ESEC/FSE 2017}{September 4--8, 2017, Paderborn, Germany}
+%\conferenceinfo{ESEC/FSE 2017}{September 4--8, 2017, Paderborn, Germany}
 
 %\acmPrice{\$15.00}
 
@@ -75,9 +78,9 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{Are We Reusing Outdated and License-Violating \newline Code Snippets from Stack Overflow?}
+\title{Are We Reusing Outdated and License-Violating Code Snippets from Stack Overflow?}
 
-\numberofauthors{1}
+%\numberofauthors{1}
 \author{
 	\alignauthor
 	$^1$Chaiyong Ragkhitwetsagul, $^1$Matheus Paixao, $^1$Jens Krinke, $^2$Giuseppe Bianco \\
@@ -595,7 +598,7 @@ public void execute (Target target) {      public void execute(EnumSet<TargetTyp
 	\label{tab:stale_code_details}
 	\scriptsize
 	\resizebox{2.1\columnwidth}{!}{%
-	\begin{tabular}{r|l|c|p{4.5cm}|r|r|l|l|l|c|l}
+	\begin{tabular}{r|l|c|p{3cm}|r|r|l|l|l|c|l}
 		\hline 
 		No. & Project & Ver. & File & Start & End & License & SO Post & License & $C$ & C$_{\textit{\textrm{date}}}$ \\
 		\hline
