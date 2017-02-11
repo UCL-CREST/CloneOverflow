@@ -460,7 +460,7 @@ The first author who has been working on clone detection research for two years 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{classification_process}
+	\includegraphics[width=0.8\linewidth]{classification_process}
 	\caption{Online code clone classification process}
 	\label{fig:classification_process}
 \end{figure}
@@ -514,11 +514,11 @@ There were 12 pairs cloned from {\small\texttt{zxing}}, {\small\texttt{jasper}},
 			Set & QS & SQ & UD & EX & BP & IN & AC & Total \\ 
 			\hline
 			\multirow{1}{*}{\textit{good}}  & 3 & 0 & 11 & 4 & 111  & 7 & 2,172 & 2,308 \\
-			\multirow{1}{*}{\textit{ok}}  & 12 & 0 & 40 & 23 & 11,547 & 22 & 105 & 11,749 \\
+			\multirow{1}{*}{\textit{ok}}  & 14 & 0 & 40 & 21 & 11,547 & 22 & 105 & 11,749 \\
 			\multirow{1}{*}{$S_D$} & 86 & 0 & 294 & 145 & 17,074 & 74 & 128 & 17,801 \\
 			\multirow{1}{*}{$N_D$} & 9  & 0 & 35 & 6 & 17 & 8 & 13 & 88 \\ 
 			\hline
-			Total & 110 & 0 & 380 & 178 & 28,749 & 111 & 2,418 & 31,946 \\ 
+			Total & 112 & 0 & 380 & 176 & 28,749 & 111 & 2,418 & 31,946 \\ 
 			\hline
 		\end{tabular} 
 	}
@@ -541,7 +541,7 @@ To check if our online code clones are outdated, we focused on the 110 QS clone 
 
 The outdated online code clones can cause problems ranging from uncompilable code (due to modifications and different API usage in the outdated code) to bug propagations. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Although Stack Overflow has a voting mechanism that may mitigate this outdated code issue, the check mark symbol in front of the accepted answer is still attractive enough for naive developers who are ignorant to copy and reuse the code.
 
-\textbf{For RQ3, our results show that more than half (62) of QS clone pairs on Stack Overflow are outdated. 59 pairs differ from their newest versions by modifications applied to variable names or method names, added or deleted statements, to a fully rewritten code with new method signatures. 3 pairs are dead snippets. They do not exist any more in the latest version. These outdated Stack Overflow online clone snippets are questionable for reuse.} %These changes did not reflect They might later find out that the copied code does not work any more due to different API versions. Even worse, they might also introduce bugs or vulnerabilities into their software.  }
+\textbf{For RQ3, our results show that more than half (64) of QS clone pairs on Stack Overflow are outdated. 60 pairs differ from their newest versions by modifications applied to variable names or method names, added or deleted statements, to a fully rewritten code with new method signatures. 4 pairs are dead snippets. They do not exist any more in the latest version. These outdated Stack Overflow online clone snippets are questionable for reuse.} %These changes did not reflect They might later find out that the copied code does not work any more due to different API versions. Even worse, they might also introduce bugs or vulnerabilities into their software.  }
 %Usually when developers reuse a code snippet from a Stack Overflow post and find that it does not work nor compatible with their environment. They can cast a down vote to that answer resulting in low votes for the answer (which might be outdated). However, if the answer is marked as accepted by the person who asks the question, the check mark symbol attached to the answer is still attractive to naive developers who are ignorant. 
 
 \begin{figure*}
@@ -609,32 +609,32 @@ The outdated online code clones can cause problems ranging from uncompilable cod
 			31 & 6025026 & 17-Jul-11 & jung2 & 2\_0\_1  & ShortestPathDemo.java & 106 & 117 & 20-Jun-08 & \textit{sm} & 13-Apr-10 \\
 			32 & 6025026 & 17-Jul-11 & jung2 & 2\_0\_1  & ShortestPathDemo.java & 158 & 172 & 20-Jun-08 & \textit{sm} & 29-Nov-15 \\
 			33 & 23586872 & 31-May-14 & junit & 4.11 & Assert.java & 33 & 52 & 11-Oct-12 & \textit{sm} & 12-May-15 \\
-			34 & 7504040 & 29-Sep-11 & junit & 4.11 & ExternalResource.java & 4 & 23 & 11-Oct-12 & \textit{sm} & 25-Jun-16 \\
-			35 & 8802082 & 10-Jan-12 & junit & 4.11 & ExpectException.java (2 overlaps) & 11 & 29 & 11-Oct-12 & \textit{sm} & 25-May-14 \\
-			37 & 12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 18 & 28 & 7-Dec-09 & \textit{rw} & 26-Jun-13 \\
-			38 & 20913543 & 6-Jan-14 & spring & 3.0.5  & AutowireUtils.java & 32 & 42 & 20-Oct-10 & \textit{sm} & 28-Oct-14 \\
-			39 & 18623736 & 4-Sep-13 & spring & 3.0.5  & CustomCollectionEditor.java & 33 & 71 & 20-Oct-10 & \textit{sm} & 21-Nov-13 \\
-			40 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 169 & 185 & 20-Oct-10 & \textit{sm} & 6-Oct-14 \\
-			41 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 186 & 197 & 20-Oct-10 & \textit{sm} & 6-Oct-14 \\
-			42 & 20421869 & 6-Dec-13 & spring & 3.0.5  & ClassPathScanningCandidateComponent\newline Provider.java (2 overlaps) & 85 & 133 & 20-Oct-10 & \textit{rw} & 12-Aug-16 \\
-			44 & 3751463 & 20-Sep-10 & spring & 3.0.5  & ScheduledTasksBeanDefinitionParser.java & 42 & 52 & 20-Oct-10 & \textit{sm} & 21-May-12 \\
-			45 & 6149818 & 27-May-11 & spring & 3.0.5  & DefaultPropertiesPersister.java & 69 & 80 & 20-Oct-10 & \textit{sm} & 19-Mar-13 \\
-			46 & 10952561 & 8-Jun-12 & spring & 3.0.5  & HibernateTemplate.java & 761 & 769 & 20-Oct-10 & \textit{sm} & 9-May-15 \\
-			47 & 10952561 & 8-Jun-12 & spring & 3.0.5  & Jaxb2Marshaller.java & 253 & 269 & 20-Oct-10 & \textit{sm} & 28-Aug-12 \\
-			48 & 20996373 & 8-Jan-14 & spring & 3.0.5  & test/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 18-Dec-08 \\
-			49 & 20996373 & 8-Jan-14 & spring & 3.0.5  & web/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 15-Jul-16 \\
-			50 & 20996373 & 8-Jan-14 & spring & 3.0.5  & servlet/../ DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 15-Jul-16 \\
-			51 & 5660519 & 15-Apr-11 & spring & 3.0.5 & AnnotationMethodHandlerExceptionResolver.java & 224 & 233 & 20-Oct-10 & \textit{fd} & 20-Jan-12 \\
-			52 & 4781746 & 24-Jan-11 & spring & 3.0.5  & DispatcherServlet.java & 91 & 103 & 20-Oct-10 & \textit{sm} & 8-Aug-11 \\
-			53 & 3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotationHandlerMapping.java & 78 & 92 & 20-Oct-10 & \textit{fd} & 20-Jan-12 \\
-			54 & 9003314 & 25-Jan-12 & spring & 3.0.5  & WebDataBinder.java & 95 & 108 & 20-Oct-10 & \textit{fd} & 15-Aug-10 \\
-			55 & 14019840 & 24-Dec-12 & struts2 & 2.2.1  & DefaultActionMapper.java & 128 & 144 & 17-Jul-10 & \textit{sm} & 18-Oct-13 \\
-			56 & 15131432 & 28-Feb-13 & struts2 & 2.2.1  & FreemarkerManager.java & 163 & 177 & 17-Jul-10 & \textit{sm} & 28-Oct-13 \\
-			57 & 15110171 & 27-Feb-13 & struts2 & 2.2.1  & StringLengthFieldValidator.java & 25 & 42 & 17-Jul-10 & \textit{sm} & 15-Jun-15 \\
-			58 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & BasicAuthenticator.java (2 overlaps) & 25 & 73 & 4-Aug-10 & \textit{rw} & 4-Aug-16 \\
-			60 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & \textit{rw} & 4-Aug-16 \\
-			61 & 24404964 & 25-Jun-14 & tomcat & 7.0.2  & CoyoteAdapter.java & 543 & 553 & 4-Aug-10 & \textit{sm} & 25-Sep-14 \\
-			62 & 10289462 & 23-Apr-12 & tomcat & 7.0.2  & JspRuntimeLibrary.java & 252 & 296 & 4-Aug-10 & \textit{sm} & 12-Sep-12 \\
+			34 & 7504040 & 29-Sep-11 & junit & 4.11 & ExternalResource.java (3 overlaps) & 4 & 23 & 11-Oct-12 & \textit{sm} & 25-Jun-16 \\
+			37 & 8802082 & 10-Jan-12 & junit & 4.11 & ExpectException.java (2 overlaps) & 11 & 29 & 11-Oct-12 & \textit{sm} & 25-May-14 \\
+			39 & 12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 18 & 28 & 7-Dec-09 & \textit{rw} & 26-Jun-13 \\
+			40 & 20913543 & 6-Jan-14 & spring & 3.0.5  & AutowireUtils.java & 32 & 42 & 20-Oct-10 & \textit{sm} & 28-Oct-14 \\
+			41 & 18623736 & 4-Sep-13 & spring & 3.0.5  & CustomCollectionEditor.java & 33 & 71 & 20-Oct-10 & \textit{sm} & 21-Nov-13 \\
+			42 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 169 & 185 & 20-Oct-10 & \textit{sm} & 6-Oct-14 \\
+			43 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 186 & 197 & 20-Oct-10 & \textit{sm} & 6-Oct-14 \\
+			44 & 20421869 & 6-Dec-13 & spring & 3.0.5  & ClassPathScanningCandidateComponent\newline Provider.java (2 overlaps) & 85 & 133 & 20-Oct-10 & \textit{rw} & 12-Aug-16 \\
+			46 & 3751463 & 20-Sep-10 & spring & 3.0.5  & ScheduledTasksBeanDefinitionParser.java & 42 & 52 & 20-Oct-10 & \textit{sm} & 21-May-12 \\
+			47 & 6149818 & 27-May-11 & spring & 3.0.5  & DefaultPropertiesPersister.java & 69 & 80 & 20-Oct-10 & \textit{sm} & 19-Mar-13 \\
+			48 & 10952561 & 8-Jun-12 & spring & 3.0.5  & HibernateTemplate.java & 761 & 769 & 20-Oct-10 & \textit{sm} & 9-May-15 \\
+			49 & 10952561 & 8-Jun-12 & spring & 3.0.5  & Jaxb2Marshaller.java & 253 & 269 & 20-Oct-10 & \textit{sm} & 28-Aug-12 \\
+			50 & 20996373 & 8-Jan-14 & spring & 3.0.5  & test/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 18-Dec-08 \\
+			51 & 20996373 & 8-Jan-14 & spring & 3.0.5  & web/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 15-Jul-16 \\
+			52 & 20996373 & 8-Jan-14 & spring & 3.0.5  & servlet/../ DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 15-Jul-16 \\
+			53 & 5660519 & 15-Apr-11 & spring & 3.0.5 & AnnotationMethodHandlerExceptionResolver.java & 224 & 233 & 20-Oct-10 & \textit{fd} & 20-Jan-12 \\
+			54 & 4781746 & 24-Jan-11 & spring & 3.0.5  & DispatcherServlet.java & 91 & 103 & 20-Oct-10 & \textit{sm} & 8-Aug-11 \\
+			55 & 3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotationHandlerMapping.java & 78 & 92 & 20-Oct-10 & \textit{fd} & 20-Jan-12 \\
+			56 & 9003314 & 25-Jan-12 & spring & 3.0.5  & WebDataBinder.java & 95 & 108 & 20-Oct-10 & \textit{fd} & 15-Aug-10 \\
+			57 & 14019840 & 24-Dec-12 & struts2 & 2.2.1  & DefaultActionMapper.java & 128 & 144 & 17-Jul-10 & \textit{sm} & 18-Oct-13 \\
+			58 & 15131432 & 28-Feb-13 & struts2 & 2.2.1  & FreemarkerManager.java & 163 & 177 & 17-Jul-10 & \textit{sm} & 28-Oct-13 \\
+			59 & 15110171 & 27-Feb-13 & struts2 & 2.2.1  & StringLengthFieldValidator.java & 25 & 42 & 17-Jul-10 & \textit{sm} & 15-Jun-15 \\
+			60 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & BasicAuthenticator.java (2 overlaps) & 25 & 73 & 4-Aug-10 & \textit{rw} & 4-Aug-16 \\
+			62 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & \textit{rw} & 4-Aug-16 \\
+			63 & 24404964 & 25-Jun-14 & tomcat & 7.0.2  & CoyoteAdapter.java & 543 & 553 & 4-Aug-10 & \textit{sm} & 25-Sep-14 \\
+			64 & 10289462 & 23-Apr-12 & tomcat & 7.0.2  & JspRuntimeLibrary.java & 252 & 296 & 4-Aug-10 & \textit{sm} & 12-Sep-12 \\
 			\hline
 	\end{tabular} %
 }
@@ -647,45 +647,43 @@ One can run into licensing issue if they do not check before integrating third-p
 
 \begin{table}
 	\centering
-	\caption{14 Qualitas projects with the highest number of true clones on Stack Overflow with their respective licenses}
+	\caption{Licenses of online clones (file-level) from Qualitas projects}
 	\label{t:q_projects_license}
 	%	\resizebox{\columnwidth}{!}{%
 	\small
-	\begin{tabular}{l|r|p{4cm}}
+	\begin{tabular}{l|l|r|r|r}
 		\hline 
-		Project & Version & Licenses (no.~of files) \\
+		Project & License & QS & UD & Total \\
 		\hline
-		%		apache-ant & 1.8.4 & Apache2.0 \\
-		%		apache-log4j & 1.2.16 & \\
-		aspectj & 1.6.9 & Apache-1.1 (182), CPLv1 (3), \newline EPLv1 (2011), None (23), \newline SeeFile (6), Unknown (286) \\
+		netbeans &  CDDLorGPLv2 &  & 57 & 57 \\
+		&  N/A &  & 8 & 8 \\
+		&  spdxBSD3 &  & 6 & 6 \\
+		&  MPLv1.1 &  & 1 & 1 \\
+		&  unknown &  & 1 & 1 \\
 		\hline
-		eclipse-SDK &  4.1 & Apache-2 (2183), \newline BSD3NoWarranty (107), \newline CDDLorGPLv2 (296), \newline EPLv1 (18823), MPLv1.1 (93), \newline None (224), SeeFile (8), \newline spdxBSD3 (185), \newline spdxMIT (1), Unknown (714) \\
+		jung2 &  BSD3 & 2 & 27 & 29 \\
 		\hline
-		hadoop & 1.0.0 & Apache-2 (1,935), \newline spxdBSD/Apache-2 (8) \newline None (33), Unknown (14) \\
+		eclipse-SDK & EPLv1 & 6 & 11 & 17 \\
+		& CDDLorGPLv2 & 1 & 1 & 2 \\
+		&  Apache-2 &  & 1 & 1 \\
+		& N/A & 1 &  & 1 \\
+		& unknown &  & 1 & 1 \\
 		\hline
-		hibernate & 4.2.2 & Apache-2 (20), \newline LGPLv2.1+ (31) \newline PublicDomain (1), \newline None (1,850), SeeFile (4), \newline Unknown (4,324) \\
+		hibernate & LesserGPLv2.1+ & 18 & 4 & 22 \\
 		\hline
-		jasperreports & 3.7.4 & LGPLv2.1+ (3), \newline LGPLv3+ (1,581), \newline None (1), Unknown (4)\\
+		spring & Apache-2 & 18 & 2 & 20 \\
 		\hline
-		jfreechart & 1.0.13 & LGPLv2.1+ (989) \\
+		vuze & GPLv2 &  & 11 & 11 \\
 		\hline
-		jgraph & 5.13.0.0 & LGPLv2.1+ (4), \newline spdxBSD (2), Unknown (151), \newline None (24), SeeFile (9) \\
+		jstock & GPLv2+ &  & 9 & 9 \\
+		& unknown &  & 1 & 1 \\
 		\hline
-		%		jgrapht & 0.8.1 & LGPL 2.1 \& Eclipse  1.0 \\
-		jstock & 1.0.7c & LGPLv2.1+ (1), \newline GPLv2+ (239), \newline Apache-2 (1), BSD3 (1), \newline None (23), SeeFile (1), \newline spdxMIT (3), Unknown (5)\\
+		tomcat & Apache-2 & 5 & 5 & 10 \\
 		\hline
-		jung2 & 2-0-1 & N/A \\
+		hadoop & Apache-2 & 8 &  & 8 \\
+		& N/A & 1 &  & 1 \\
 		\hline
-		junit & 4.11 & None (160), Unknown (4)  \\
-		\hline
-		poi & 3.6 & Apache-2 (2,002), None (5) \\
-		\hline
-		spring & 3.0.5 & Apache-2 (2,982) \\
-		\hline
-		struts2 & 2.2.1-all & Apache-2 (1,717), \newline spdxBSD3 (6), \newline None (118), SeeFile (1), \newline Unknown (2) \\
-		\hline
-		tomcat & 7.0.2 & Apache-2 (1,313), None (11) \\
-		%		weka & 3-7-9 & \\
+		jfreechart & LesserGPLv2.1+ & 3 & 5 & 8 \\
 		\hline
 	\end{tabular} %
 	%	}
@@ -693,56 +691,60 @@ One can run into licensing issue if they do not check before integrating third-p
 
 \begin{table}[]
 	\centering
-	\caption{Licenses of 523 clone pairs in category A, B, and C}
+	\caption{License matching of online clones (file-level) in QS, UD, and EX}
 	\label{tab:license_abc}
 	\small
 	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{p{1.5cm}|l|p{2.2cm}|r|r|r}
+	\begin{tabular}{p{2cm}|l|p{2.2cm}|r|r|r}
 		\hline
-		Type                                           & SO          & Qualitas          	& A & B & C \\
+		Type & Stack Overflow & Qualitas & QS & UD & EX \\
 		\hline
-		No license \newline (\textit{NL})  & None        & None           &  18 & 62 & 5 \\
+		No license (\textit{NL})  & None & None &  5 & 22 & 4 \\
 		\hline
-		Compatible  							 & Apache2     & Apache2  	   &  0 & 1 & 0 \\
-		License	   						             & EPLv1       & EPLv1                 &  14 &  6 & 0 \\
-		(\textit{CL})													& None        & CC BY 3.0   &  0 & 12 & 0 \\
+		Compatible & Apache2 & Apache2 &  0 & 1 & 0 \\
+		License	& EPLv1 & EPLv1 &  1 & 1 & 0 \\
+		(\textit{CL}) & N/A & CC BY 3.0   &  0 & 0 & 5 \\
 		\hline
-	    Incompat. 								   & None       & Apache2  						& 41 & 29 & 3 \\
-		License								         & None        & BSD/BSD3                      & 0 & 64 & 0 \\
-		(\textit{IL}) 								 & None        & CDDLorGPLv2                & 0 & 63 & 4 \\
-															& None        & EPLv1                               & 0 & 33 & 0\\
-															& None        & GPLv2/2+/3+                  &  5 & 52 & 14 \\
-															& None        & LGPL2.1+/3+                   &  18 & 33 & 2 \\
-															& None        & AGPLv3/3+                     & 0 & 9 &1  \\
-															& None        & MPLv1\_1                         & 0 & 1 & 0\\
-															& None        & spdxBSD3                      & 0 & 8 & 1 \\
-															& None        & Unidentifiable                 & 0 & 1 & 0 \\
-															& Proprietary & None                            & 0 & 21 & 1 \\
-															& BSD3        & GPLv2+							& 0 & 1 & 0 \\
+	    Incompat. & BSD3 & GPLv2+ & 0 & 1 & 0 \\
+		License	& N/A & AGPLv3/3+ & 1 & 2 & 0 \\
+		(\textit{IL}) & N/A & Apache-2 & 41 & 23 & 5 \\
+		& N/A & BSD3 & 3 & 28 & 4 \\
+		& N/A & CDDL or GPLv2 & 1 & 58 & 0 \\
+		& N/A & CDDLv1 & 0 & 0 & 1 \\
+		& N/A & EPLv1 & 7 & 10 & 0 \\
+		& N/A & GPLv2/2+/3+ & 2 & 32 & 62 \\
+		& N/A & LGPLv2/2.1+/3+ & 24 & 32 & 0 \\
+		& N/A & MPLv1.1 & 0 & 1 & 0 \\
+		& N/A & spdxBSD3 & 0 & 10 & 0 \\
+		& N/A & SPLv1 & 0 & 0 & 1 \\
+		& N/A & unknown & 0 & 3 & 3 \\
+		& spdxBSD3 & AGPLv3+ & 0 & 2 & 0 \\
+		& unknown & MIT-like & 0 & 0 & 1 \\
+		& unknown & Sun & 0 & 0 & 1 \\
 		\hline
-		\multicolumn{3}{l|}{Total} 	       																&  96 & 396 & 31 \\
+		\multicolumn{3}{l|}{Total} &  85 & 226 & 87 \\
 		\hline
 	\end{tabular} %
 }
 \end{table}
 
 \begin{figure*}
-	\minipage{0.32\textwidth}
-	\includegraphics[width=\linewidth]{heatmap_a}
-	\caption*{(1) QS clones}\label{fig:heatmap_a}
-	\endminipage\hspace{0.3cm}
-	\minipage{0.32\textwidth}
-	\includegraphics[width=\linewidth]{heatmap_b}
-	\caption*{(2) UD clones}\label{fig:heatmap_b}
-	\endminipage\hfill
-	\minipage{0.32\textwidth}%
-	\includegraphics[width=\linewidth]{heatmap_c}
-	\caption*{(3) EX clones}\label{fig:heatmap_c}
-	\endminipage
-	\caption{Licensing between Stack Overflow code snippets and Qualitas Java file of QS, UD, and EX online clone files}
+		\centering
+		\begin{minipage}{.4\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{heatmap_a}
+			\caption*{(1) QS clones}\label{fig:heatmap_a}
+		\end{minipage}%
+		\hspace{5ex}
+		\begin{minipage}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{heatmap_c}
+			\caption*{(2) EX clones}\label{fig:heatmap_c}
+		\end{minipage}
+	\caption{License mapping of QS and EX online clones}
 \end{figure*}
 
-In our study, we reveal another possible situation of software licensing issues caused by code cloning ``to Stack Overflow''. We found with evidence that 110 pieces of code had been copied from 19 Qualitas projects to Stack Overflow as examples. They are also marked as accepted answers which increased their chances of being reused. The 19 open source projects came with their respective software licenses (shown in \Cref{t:q_projects_license}). However, we found that the licensing information were mostly stripped from these clones after they were posted on Stack Overflow. The licensing terms on the top of source code are not copied because mostly a small part of the file was cloned to Stack Overflow. If developers copy and reuse these licensed pieces of code in their projects, conflicts may happen without their realisation. 
+In our study, we reveal another possible situation of software licensing issues caused by code cloning ``to Stack Overflow''. We found with evidence that 112 pieces of code had been copied from 19 Qualitas projects to Stack Overflow as examples. They are also marked as accepted answers which increased their chances of being reused. The projects came with their respective software licenses (shown in \Cref{t:q_projects_license}). However, we found that the licensing information were mostly stripped from these clones after they were posted on Stack Overflow. The licensing terms on the top of source code are not copied because mostly a small part of the file was cloned to Stack Overflow. If developers copy and reuse these licensed pieces of code in their projects, conflicts may happen without their realisation. 
 
 We analysed licensing conflicts of online clones in QS, UD, and EX set. The summary of licensing information is listed in \Cref{tab:license_abc}. The licenses were extracted by \textbf{Ninka}, an automatic license identification tool \cite{German2010}. Since Ninka worked at file level, we report the findings based on Stack Overflow snippets and Qualitas source files instead of clone pairs (duplicates were ignored). For the ones that could not be automatically identified by Ninka and had been reported as {\small\texttt{SeeFile}} and {\small\texttt{Unknown}}, we looked at them manually.  The table shows license of Stack Overflow snippets and Qualitas source code. The results were reported in groups of QS, UD, and EX. Overall we can see that most of the Stack Overflow snippets do not contain licensing terms while their clone counterparts in Qualitas project do. 
 
