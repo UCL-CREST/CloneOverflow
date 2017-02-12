@@ -1,6 +1,10 @@
 so_license,q_license,amount
-None,None,18
-EPLv1,EPLv1,14
-None,Apache2,41
-None,GPL*,5
-None,LGPL*,18
+EPLv1,EPLv1,1
+none,AGPL3,1
+none,Apache-2,41
+none,BSD3,3
+none,CDDL/GPLv2,1
+none,EPLv1,7
+none,GPLv3+,2
+none,LGPL*,24
+none,none,5

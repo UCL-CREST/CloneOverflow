@@ -78,7 +78,7 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{Are We Reusing Outdated and License-Violating Code Snippets from Stack Overflow?}
+\title{Are We Reusing Outdated and License-Violating Code from Stack Overflow?}
 
 %\numberofauthors{1}
 \author{
@@ -90,6 +90,7 @@
 
 
 \maketitle
+
 \begin{abstract}
 This paper provides a sample of a \LaTeX\ document which conforms,
 somewhat loosely, to the formatting guidelines for
@@ -339,8 +340,8 @@ As displayed in \Cref{tab:online_clone_pairs}, after we applying clone agreement
 		\hline
 		Total  & 310,803 & & & & & 31,946 \\ 
 		\hline
-		\multicolumn{7}{l}{\scriptsize{Filters*: \textit{L}=$Line \geq 10$, \textit{S}=$Sim \geq 85\%$,}} \\
-		\multicolumn{7}{l}{\scriptsize{\textit{R}=regular expressions, and \textit{G}=\textit{good}/\textit{ok} pairs.}} \\
+		\multicolumn{7}{l}{Filters*: \textit{L}=$Line \geq 10$, \textit{S}=$Sim \geq 85\%$,} \\
+		\multicolumn{7}{l}{\textit{R}=regular expressions, and \textit{G}=\textit{good}/\textit{ok} pairs.} \\
 	\end{tabular} %
 %}
 \end{table}
@@ -535,9 +536,9 @@ There were 12 pairs cloned from {\small\texttt{zxing}}, {\small\texttt{jasper}},
 %\subsubsection{Outdated Clones}
 To the best of our knowledge, this work is the first to discuss a problem of outdated code on Stack Overflow. Outdated code occurs when a piece of code has been copied from its origin to another location and later the original code has been updated \cite{Xia2014}. Usually code clone detection is used to locate clone instances and update them to match with the original code \cite{Bellon2007}. However, for online code clones, the clones are pervasive and are more difficult to detect than in a local project(s) due to its large search space and the mix of natural and programming language combined together in Stack Overflow posts. Moreover, Stack Overflow is not a software. There is no test suite to run and check whether the code snippets are still working as expected.
 
-To check if our online code clones are outdated, we focused on the 110 QS clone pairs that were cloned from Qualitas to Stack Overflow (see \Cref{tab:classification_good_o}) and compared them with their latest versions. We cloned the latest version of the Qualitas projects from their repositories on 26 September 2016. For each online clone pair, we used the file name of Qualitas clone to search for its latest version. Once we found the file, we located the location of the cloned snippets in the file based on method names. So for Simian clones that may not contain in a single method, we looked further up and down the clone region to get the method name and its nearby methods. We then compared the Stack Overflow snippet to its latest version line-by-line to find if any change has been made to the source code. We also made sure that the changes did not come from modifications maded to Stack Overflow snippets by the posters but from the projects themselves. When we found inconsistent lines between the two versions, we used \texttt{git blame} command to see who modified those lines of code and noted down the details.
+To check if our online code clones are outdated, we focused on the 112 QS clone pairs that were cloned from Qualitas to Stack Overflow (see \Cref{tab:classification_good_o}) and compared them with their latest versions. We cloned the latest version of the Qualitas projects from their repositories on 26 September 2016. For each online clone pair, we used the file name of Qualitas clone to search for its latest version. Once we found the file, we located the location of the cloned snippets in the file based on method names. So for Simian clones that may not contain in a single method, we looked further up and down the clone region to get the method name and its nearby methods. We then compared the Stack Overflow snippet to its latest version line-by-line to find if any change has been made to the source code. We also made sure that the changes did not come from modifications maded to Stack Overflow snippets by the posters but from the projects themselves. When we found inconsistent lines between the two versions, we used \texttt{git blame} command to see who modified those lines of code and noted down the details.
 
-\Cref{fig:outdated} shows the findings of outdated online clones on Stack Overflow. We discovered 59 outdated online clone pairs out of 110 pairs. {\small{\texttt{spring}}} and {\small{\texttt{hibernate}}} have the maximum number of 20 outdated pairs, followed by 15 from {\small{\texttt{eclipse}}}, and 12 from {\small{\texttt{hadoop}}}. An example of outdated code in {\small{texttt{hadoop}}}'s {\small{\texttt{WritableComparator.java}}} has already been shown in \Cref{fig:before-after}. We also found a few outdated code which contained heavy modifications. For example, the code snippet in Stack Overflow post 23520731, a copy of {\small{\texttt{SchemaUpdate.java}}} in {\small{\texttt{hibernate}}}, it had been heavily modified in the latest version (as shown in \Cref{fig:hibernate_outdated_code}). We also found 3 ``dead'' snippets. These snippets did not have their originals in the latest version of the projects anymore. For example, the snippet in Stack Overflow post 3758110, a copy of {\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in {\small{\texttt{spring}}}, was deleted in commit {\small{\texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b}}} by Chris Beams on 20th January 2012 at 22:51:02, two years after it was posted. %The latest version of Spring does not contain the file anymore. 
+\Cref{fig:outdated} shows the findings of outdated online clones on Stack Overflow. We discovered 64 outdated online clone pairs out of 112 pairs. {\small{\texttt{spring}}} and {\small{\texttt{hibernate}}} have the maximum number of 20 outdated pairs, followed by 15 from {\small{\texttt{eclipse}}}, and 12 from {\small{\texttt{hadoop}}}. An example of outdated code in {\small{texttt{hadoop}}}'s {\small{\texttt{WritableComparator.java}}} has already been shown in \Cref{fig:before-after}. We also found a few outdated code which contained heavy modifications. For example, the code snippet in Stack Overflow post 23520731, a copy of {\small{\texttt{SchemaUpdate.java}}} in {\small{\texttt{hibernate}}}, it had been heavily modified in the latest version (as shown in \Cref{fig:hibernate_outdated_code}). In the 64 outdate pairs, we found 5 of them to be ``dead'' snippets. These snippets did not have their originals in the latest version of the projects anymore. For example, the snippet in Stack Overflow post 3758110, a copy of {\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in {\small{\texttt{spring}}}, was deleted in commit {\small{\texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b}}} by Chris Beams on 20th January 2012 at 22:51:02, two years after it was posted. %The latest version of Spring does not contain the file anymore. 
 
 The outdated online code clones can cause problems ranging from uncompilable code (due to modifications and different API usage in the outdated code) to bug propagations. An outdated code with a subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without awareness from developers. Although Stack Overflow has a voting mechanism that may mitigate this outdated code issue, the check mark symbol in front of the accepted answer is still attractive enough for naive developers who are ignorant to copy and reuse the code.
 
@@ -570,71 +571,72 @@ The outdated online code clones can cause problems ranging from uncompilable cod
 
 \begin{table*}
 	\centering
-	\caption{62 QS outdated online clone pairs. Outdated clones are caused (\textit{C}) by modified/added/deleted statements (\textit{sm}), file deletion (\textit{fd}), and method rewriting (\textit{rw}).}
+	\caption{62 QS outdated online clone pairs. Outdated clones are caused by modified/added/deleted statements (\textit{S}), file deletion (\textit{D}), and method rewriting (\textit{R}).}
 	\label{tab:stale_code_details}
 	\small
 	\resizebox{2\columnwidth}{!}{%
-	\begin{tabular}{r|l|c|l|c|p{5.8cm}|r|r|c|c|c}
+	\begin{tabular}{r|l|l|l|l|p{5.2cm}|r|r|l|c|l}
 		\hline 
-		No. & SO Post & SO Date & Q project & Ver. & File & Start & End & Q Date & \textit{C} & $C$ Date \\
+		\multirow{2}{*}{No.} & \multicolumn{2}{c|}{Stack Overflow} & \multicolumn{6}{c|}{Qualitas} & \multicolumn{2}{c}{Changes} \\ \cline{2-11}
+		& Post & Date & Project & Ver. & File & Start & End & Date & Type & Date \\
 		\hline
-			1 & 18303692 & 18-Aug-13 & aspectj & 1.6.9  & aspectjtools/../Agent.java & 7 & 18 & 5-Mar-08 & \textit{sm} & 8-Sep-15 \\
-			2 & 18303692 & 18-Aug-13 & aspectj & 1.6.9  & aspectjweaver/../Agent.java & 7 & 18 & 5-Mar-08 & \textit{sm} & 8-Sep-15 \\
-			3 & 2513183 & 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 113 & 166 & 5-Jun-13 & \textit{sm} & 17-Mar-15 \\
-			4 & 2513183	& 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 117 & 126 & 5-Jun-13 & \textit{sm} & 17-Mar-15 \\
-			5 & 2513183	& 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 143 & 165 & 5-Jun-13 & \textit{sm} & 1-Mar-11 \\
-			6 & 2513183	& 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 178 & 187 & 5-Jun-13 & \textit{sm} & 5-Jun-13 \\
-			7 & 11861598 & 8-Aug-12 & eclipse-SDK & 4.3 & WizardDialog.java & 377 & 394 & 1-May-13 & \textit{sm} & 21-Jun-13 \\
-			8 & 22315734 & 11-Mar-14 & hadoop & 1.0.0 & WritableComparator.java & 44 & 54 & 25-Aug-11 & \textit{sm} & 20-Nov-14 \\
-			9 & 801987 & 29-Apr-09 & hadoop & 1.0.0 & StringUtils.java & 40 & 56 & 15-Dec-11 & \textit{sm} & 4-Feb-13 \\
-			10 & 21702608 & 11-Feb-14 & hadoop & 1.0.0 & DBCountPageView.java & 275 & 287 & 15-Dec-11 & \textit{sm} & 12-Jun-11 \\
-			11 & 21702608 & 11-Feb-14 & hadoop & 1.0.0 & DBCountPageView.java & 289 & 309 & 15-Dec-11 & \textit{sm} & 12-Jun-11 \\
-			12 & 14845581 & 13-Feb-13 & hadoop & 1.0.0 & JobSubmissionFiles.java & 46 & 55 & 15-Dec-11 & \textit{sm} & 25-Jun-12 \\
-			13 & 16180910 & 24-Apr-13 & hadoop & 1.0.0 & mapred/../LineRecordReader.java & 47 & 60 & 15-Dec-11 & \textit{rw} & 25-Jul-11 \\
-			14 & 16180910 & 24-Apr-13 & hadoop & 1.0.0 & mapreduce/../LineRecordReader.java & 41 & 54 & 15-Dec-11 & \textit{rw} & 25-Jul-11 \\
-			15 & 15168494 & 24-Feb-14 & hibernate & 4.2.2 & ConnectionProviderInitiator.java & 65 & 93 & 22-May-13 & \textit{sm} & 26-Apr-13 \\
-			16 & 24924255 & 24-Jul-14 & hibernate & 4.2.2 & Example.java & 224 & 243 & 22-May-13 & \textit{sm} & 23-Apr-13 \\
-			17 & 23520731 & 7-May-14 & hibernate & 4.2.2 & SchemaUpdate.java & 115 & 168 & 22-May-13 & \textit{sm} & 5-Feb-16 \\
-			18 & 8257554 & 26-Nov-11 & hibernate & 4.2.2 & SettingsFactory.java & 244 & 255 & 22-May-13 & \textit{fd} & 11-Mar-11 \\
-			19 & 23967852 & 31-Apr-14 & hibernate & 4.2.2 & SQLServer2005LimitHandler.java & 43 & 61 & 22-May-13 & \textit{sm} & 11-May-16 \\
-			20 & 19298607 & 10-Oct-13 & hibernate & 4.2.2 & Oracle9iDialect.java & 23 & 32 & 22-May-13 & \textit{sm} & 12-Apr-15 \\
-			21 & 10031897 & 5-Apr-12 & hibernate & 4.2.2 & AliasToBeanResultTransformer.java & 44 & 61 & 22-May-13 & \textit{sm} & 4-Jun-15 \\ 
-			22 & 8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 982 & 998 & 31-May-10 & \textit{sm} & 17-Apr-08 \\
-			23 & 8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & \textit{fd} & 20-May-11 \\
-			24 & 12936580 & 17-Oct-12 & jfreechart & 1.0.13 & AbstractXYItemRenderer.java & 532 & 569 & 20-Apr-09 & \textit{sm} & 16-Jan-16 \\
-			25 & 16058183 & 17-Apr-13 & jfreechart & 1.0.13 & KeyToGroupMap.java & 18 & 30 & 20-Apr-09 & \textit{sm} & 29-Jun-07 \\
-			26 & 21998949 & 24-Feb-14 & jfreechart & 1.0.13 & SpiderWebPlot.java & 502 & 520 & 20-Apr-09 & \textit{sm} & 2-Jun-08 \\
-			27 & 21998949 & 24-Feb-14 & jfreechart & 1.0.13 & SpiderWebPlot.java & 522 & 536 & 20-Apr-09 & \textit{sm} & 22-Nov-13 \\
-			28 & 6722760 & 17-Jul-11 & jgraph & 5.13.0.0 & HelloWorld.java (3 overlaps)  & 14 & 37 & 25-Sep-09 & \textit{rw} & 13-Apr-14 \\
-			31 & 6025026 & 17-Jul-11 & jung2 & 2\_0\_1  & ShortestPathDemo.java & 106 & 117 & 20-Jun-08 & \textit{sm} & 13-Apr-10 \\
-			32 & 6025026 & 17-Jul-11 & jung2 & 2\_0\_1  & ShortestPathDemo.java & 158 & 172 & 20-Jun-08 & \textit{sm} & 29-Nov-15 \\
-			33 & 23586872 & 31-May-14 & junit & 4.11 & Assert.java & 33 & 52 & 11-Oct-12 & \textit{sm} & 12-May-15 \\
-			34 & 7504040 & 29-Sep-11 & junit & 4.11 & ExternalResource.java (3 overlaps) & 4 & 23 & 11-Oct-12 & \textit{sm} & 25-Jun-16 \\
-			37 & 8802082 & 10-Jan-12 & junit & 4.11 & ExpectException.java (2 overlaps) & 11 & 29 & 11-Oct-12 & \textit{sm} & 25-May-14 \\
-			39 & 12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 18 & 28 & 7-Dec-09 & \textit{rw} & 26-Jun-13 \\
-			40 & 20913543 & 6-Jan-14 & spring & 3.0.5  & AutowireUtils.java & 32 & 42 & 20-Oct-10 & \textit{sm} & 28-Oct-14 \\
-			41 & 18623736 & 4-Sep-13 & spring & 3.0.5  & CustomCollectionEditor.java & 33 & 71 & 20-Oct-10 & \textit{sm} & 21-Nov-13 \\
-			42 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 169 & 185 & 20-Oct-10 & \textit{sm} & 6-Oct-14 \\
-			43 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 186 & 197 & 20-Oct-10 & \textit{sm} & 6-Oct-14 \\
-			44 & 20421869 & 6-Dec-13 & spring & 3.0.5  & ClassPathScanningCandidateComponent\newline Provider.java (2 overlaps) & 85 & 133 & 20-Oct-10 & \textit{rw} & 12-Aug-16 \\
-			46 & 3751463 & 20-Sep-10 & spring & 3.0.5  & ScheduledTasksBeanDefinitionParser.java & 42 & 52 & 20-Oct-10 & \textit{sm} & 21-May-12 \\
-			47 & 6149818 & 27-May-11 & spring & 3.0.5  & DefaultPropertiesPersister.java & 69 & 80 & 20-Oct-10 & \textit{sm} & 19-Mar-13 \\
-			48 & 10952561 & 8-Jun-12 & spring & 3.0.5  & HibernateTemplate.java & 761 & 769 & 20-Oct-10 & \textit{sm} & 9-May-15 \\
-			49 & 10952561 & 8-Jun-12 & spring & 3.0.5  & Jaxb2Marshaller.java & 253 & 269 & 20-Oct-10 & \textit{sm} & 28-Aug-12 \\
-			50 & 20996373 & 8-Jan-14 & spring & 3.0.5  & test/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 18-Dec-08 \\
-			51 & 20996373 & 8-Jan-14 & spring & 3.0.5  & web/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 15-Jul-16 \\
-			52 & 20996373 & 8-Jan-14 & spring & 3.0.5  & servlet/../ DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{sm} & 15-Jul-16 \\
-			53 & 5660519 & 15-Apr-11 & spring & 3.0.5 & AnnotationMethodHandlerExceptionResolver.java & 224 & 233 & 20-Oct-10 & \textit{fd} & 20-Jan-12 \\
-			54 & 4781746 & 24-Jan-11 & spring & 3.0.5  & DispatcherServlet.java & 91 & 103 & 20-Oct-10 & \textit{sm} & 8-Aug-11 \\
-			55 & 3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotationHandlerMapping.java & 78 & 92 & 20-Oct-10 & \textit{fd} & 20-Jan-12 \\
-			56 & 9003314 & 25-Jan-12 & spring & 3.0.5  & WebDataBinder.java & 95 & 108 & 20-Oct-10 & \textit{fd} & 15-Aug-10 \\
-			57 & 14019840 & 24-Dec-12 & struts2 & 2.2.1  & DefaultActionMapper.java & 128 & 144 & 17-Jul-10 & \textit{sm} & 18-Oct-13 \\
-			58 & 15131432 & 28-Feb-13 & struts2 & 2.2.1  & FreemarkerManager.java & 163 & 177 & 17-Jul-10 & \textit{sm} & 28-Oct-13 \\
-			59 & 15110171 & 27-Feb-13 & struts2 & 2.2.1  & StringLengthFieldValidator.java & 25 & 42 & 17-Jul-10 & \textit{sm} & 15-Jun-15 \\
-			60 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & BasicAuthenticator.java (2 overlaps) & 25 & 73 & 4-Aug-10 & \textit{rw} & 4-Aug-16 \\
-			62 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & \textit{rw} & 4-Aug-16 \\
-			63 & 24404964 & 25-Jun-14 & tomcat & 7.0.2  & CoyoteAdapter.java & 543 & 553 & 4-Aug-10 & \textit{sm} & 25-Sep-14 \\
-			64 & 10289462 & 23-Apr-12 & tomcat & 7.0.2  & JspRuntimeLibrary.java & 252 & 296 & 4-Aug-10 & \textit{sm} & 12-Sep-12 \\
+			1 & 18303692 & 18-Aug-13 & aspectj & 1.6.9  & aspectjtools/../Agent.java & 7 & 18 & 5-Mar-08 & \textit{S} & 8-Sep-15 \\
+			2 & 18303692 & 18-Aug-13 & aspectj & 1.6.9  & aspectjweaver/../Agent.java & 7 & 18 & 5-Mar-08 & \textit{S} & 8-Sep-15 \\
+			3 & 2513183 & 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 113 & 166 & 5-Jun-13 & \textit{S} & 17-Mar-15 \\
+			4 & 2513183	& 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 117 & 126 & 5-Jun-13 & \textit{S} & 17-Mar-15 \\
+			5 & 2513183	& 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 143 & 165 & 5-Jun-13 & \textit{S} & 1-Mar-11 \\
+			6 & 2513183	& 25-Mar-10 & eclipse-SDK & 4.3 & GenerateToStringAction.java & 178 & 187 & 5-Jun-13 & \textit{S} & 5-Jun-13 \\
+			7 & 11861598 & 8-Aug-12 & eclipse-SDK & 4.3 & WizardDialog.java & 377 & 394 & 1-May-13 & \textit{S} & 21-Jun-13 \\
+			8 & 22315734 & 11-Mar-14 & hadoop & 1.0.0 & WritableComparator.java & 44 & 54 & 25-Aug-11 & \textit{S} & 20-Nov-14 \\
+			9 & 801987 & 29-Apr-09 & hadoop & 1.0.0 & StringUtils.java & 40 & 56 & 15-Dec-11 & \textit{S} & 4-Feb-13 \\
+			10 & 21702608 & 11-Feb-14 & hadoop & 1.0.0 & DBCountPageView.java & 275 & 287 & 15-Dec-11 & \textit{S} & 12-Jun-11 \\
+			11 & 21702608 & 11-Feb-14 & hadoop & 1.0.0 & DBCountPageView.java & 289 & 309 & 15-Dec-11 & \textit{S} & 12-Jun-11 \\
+			12 & 14845581 & 13-Feb-13 & hadoop & 1.0.0 & JobSubmissionFiles.java & 46 & 55 & 15-Dec-11 & \textit{S} & 25-Jun-12 \\
+			13 & 16180910 & 24-Apr-13 & hadoop & 1.0.0 & mapred/../LineRecordReader.java & 47 & 60 & 15-Dec-11 & \textit{R} & 25-Jul-11 \\
+			14 & 16180910 & 24-Apr-13 & hadoop & 1.0.0 & mapreduce/../LineRecordReader.java & 41 & 54 & 15-Dec-11 & \textit{R} & 25-Jul-11 \\
+			15 & 15168494 & 24-Feb-14 & hibernate & 4.2.2 & ConnectionProviderInitiator.java & 65 & 93 & 22-May-13 & \textit{S} & 26-Apr-13 \\
+			16 & 24924255 & 24-Jul-14 & hibernate & 4.2.2 & Example.java & 224 & 243 & 22-May-13 & \textit{S} & 23-Apr-13 \\
+			17 & 23520731 & 7-May-14 & hibernate & 4.2.2 & SchemaUpdate.java & 115 & 168 & 22-May-13 & \textit{S} & 5-Feb-16 \\
+			18 & 8257554 & 26-Nov-11 & hibernate & 4.2.2 & SettingsFactory.java & 244 & 255 & 22-May-13 & \textit{D} & 11-Mar-11 \\
+			19 & 23967852 & 31-Apr-14 & hibernate & 4.2.2 & SQLServer2005LimitHandler.java & 43 & 61 & 22-May-13 & \textit{S} & 11-May-16 \\
+			20 & 19298607 & 10-Oct-13 & hibernate & 4.2.2 & Oracle9iDialect.java & 23 & 32 & 22-May-13 & \textit{S} & 12-Apr-15 \\
+			21 & 10031897 & 5-Apr-12 & hibernate & 4.2.2 & AliasToBeanResultTransformer.java & 44 & 61 & 22-May-13 & \textit{S} & 4-Jun-15 \\ 
+			22 & 8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 982 & 998 & 31-May-10 & \textit{S} & 17-Apr-08 \\
+			23 & 8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & \textit{D} & 20-May-11 \\
+			24 & 12936580 & 17-Oct-12 & jfreechart & 1.0.13 & AbstractXYItemRenderer.java & 532 & 569 & 20-Apr-09 & \textit{S} & 16-Jan-16 \\
+			25 & 16058183 & 17-Apr-13 & jfreechart & 1.0.13 & KeyToGroupMap.java & 18 & 30 & 20-Apr-09 & \textit{S} & 29-Jun-07 \\
+			26 & 21998949 & 24-Feb-14 & jfreechart & 1.0.13 & SpiderWebPlot.java & 502 & 520 & 20-Apr-09 & \textit{S} & 2-Jun-08 \\
+			27 & 21998949 & 24-Feb-14 & jfreechart & 1.0.13 & SpiderWebPlot.java & 522 & 536 & 20-Apr-09 & \textit{S} & 22-Nov-13 \\
+			28 & 6722760 & 17-Jul-11 & jgraph & 5.13.0.0 & HelloWorld.java (3 overlaps)  & 14 & 37 & 25-Sep-09 & \textit{R} & 13-Apr-14 \\
+			31 & 6025026 & 17-Jul-11 & jung2 & 2\_0\_1  & ShortestPathDemo.java & 106 & 117 & 20-Jun-08 & \textit{S} & 13-Apr-10 \\
+			32 & 6025026 & 17-Jul-11 & jung2 & 2\_0\_1  & ShortestPathDemo.java & 158 & 172 & 20-Jun-08 & \textit{S} & 29-Nov-15 \\
+			33 & 23586872 & 31-May-14 & junit & 4.11 & Assert.java & 33 & 52 & 11-Oct-12 & \textit{S} & 12-May-15 \\
+			34 & 7504040 & 29-Sep-11 & junit & 4.11 & ExternalResource.java (3 overlaps) & 4 & 23 & 11-Oct-12 & \textit{S} & 25-Jun-16 \\
+			37 & 8802082 & 10-Jan-12 & junit & 4.11 & ExpectException.java (2 overlaps) & 11 & 29 & 11-Oct-12 & \textit{S} & 25-May-14 \\
+			39 & 12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 18 & 28 & 7-Dec-09 & \textit{R} & 26-Jun-13 \\
+			40 & 20913543 & 6-Jan-14 & spring & 3.0.5  & AutowireUtils.java & 32 & 42 & 20-Oct-10 & \textit{S} & 28-Oct-14 \\
+			41 & 18623736 & 4-Sep-13 & spring & 3.0.5  & CustomCollectionEditor.java & 33 & 71 & 20-Oct-10 & \textit{S} & 21-Nov-13 \\
+			42 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 169 & 185 & 20-Oct-10 & \textit{S} & 6-Oct-14 \\
+			43 & 22865824 & 4-Apr-14 & spring & 3.0.5  & JavaMailSenderImpl.java & 186 & 197 & 20-Oct-10 & \textit{S} & 6-Oct-14 \\
+			44 & 20421869 & 6-Dec-13 & spring & 3.0.5  & ClassPathScanningCandidateComponent\newline Provider.java (2 overlaps) & 85 & 133 & 20-Oct-10 & \textit{R} & 12-Aug-16 \\
+			46 & 3751463 & 20-Sep-10 & spring & 3.0.5  & ScheduledTasksBeanDefinitionParser.java & 42 & 52 & 20-Oct-10 & \textit{S} & 21-May-12 \\
+			47 & 6149818 & 27-May-11 & spring & 3.0.5  & DefaultPropertiesPersister.java & 69 & 80 & 20-Oct-10 & \textit{S} & 19-Mar-13 \\
+			48 & 10952561 & 8-Jun-12 & spring & 3.0.5  & HibernateTemplate.java & 761 & 769 & 20-Oct-10 & \textit{S} & 9-May-15 \\
+			49 & 10952561 & 8-Jun-12 & spring & 3.0.5  & Jaxb2Marshaller.java & 253 & 269 & 20-Oct-10 & \textit{S} & 28-Aug-12 \\
+			50 & 20996373 & 8-Jan-14 & spring & 3.0.5  & test/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{S} & 18-Dec-08 \\
+			51 & 20996373 & 8-Jan-14 & spring & 3.0.5  & web/../DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{S} & 15-Jul-16 \\
+			52 & 20996373 & 8-Jan-14 & spring & 3.0.5  & servlet/../ DelegatingServletInputStream.java & 6 & 20 & 20-Oct-10 & \textit{S} & 15-Jul-16 \\
+			53 & 5660519 & 15-Apr-11 & spring & 3.0.5 & AnnotationMethodHandlerException\newline Resolver.java & 224 & 233 & 20-Oct-10 & \textit{D} & 20-Jan-12 \\
+			54 & 4781746 & 24-Jan-11 & spring & 3.0.5  & DispatcherServlet.java & 91 & 103 & 20-Oct-10 & \textit{S} & 8-Aug-11 \\
+			55 & 3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotationHandlerMapping.java & 78 & 92 & 20-Oct-10 & \textit{D} & 20-Jan-12 \\
+			56 & 9003314 & 25-Jan-12 & spring & 3.0.5  & WebDataBinder.java & 95 & 108 & 20-Oct-10 & \textit{S} & 15-Aug-10 \\
+			57 & 14019840 & 24-Dec-12 & struts2 & 2.2.1  & DefaultActionMapper.java & 128 & 144 & 17-Jul-10 & \textit{S} & 18-Oct-13 \\
+			58 & 15131432 & 28-Feb-13 & struts2 & 2.2.1  & FreemarkerManager.java & 163 & 177 & 17-Jul-10 & \textit{S} & 28-Oct-13 \\
+			59 & 15110171 & 27-Feb-13 & struts2 & 2.2.1  & StringLengthFieldValidator.java & 25 & 42 & 17-Jul-10 & \textit{S} & 15-Jun-15 \\
+			60 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & BasicAuthenticator.java (2 overlaps) & 25 & 73 & 4-Aug-10 & \textit{R} & 4-Aug-16 \\
+			62 & 21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & \textit{R} & 4-Aug-16 \\
+			63 & 24404964 & 25-Jun-14 & tomcat & 7.0.2  & CoyoteAdapter.java & 543 & 553 & 4-Aug-10 & \textit{S} & 25-Sep-14 \\
+			64 & 10289462 & 23-Apr-12 & tomcat & 7.0.2  & JspRuntimeLibrary.java & 252 & 296 & 4-Aug-10 & \textit{S} & 12-Sep-12 \\
 			\hline
 	\end{tabular} %
 }
@@ -694,12 +696,13 @@ One can run into licensing issue if they do not check before integrating third-p
 	\caption{License matching of online clones (file-level) in QS, UD, and EX}
 	\label{tab:license_abc}
 	\small
-	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{p{2cm}|l|p{2.2cm}|r|r|r}
+%	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|l|l|r|r|r}
 		\hline
 		Type & Stack Overflow & Qualitas & QS & UD & EX \\
 		\hline
-		No license (\textit{NL})  & None & None &  5 & 22 & 4 \\
+		No license & None & None &  5 & 22 & 4 \\
+		(\textit{NL}) & & & & & \\
 		\hline
 		Compatible & Apache2 & Apache2 &  0 & 1 & 0 \\
 		License	& EPLv1 & EPLv1 &  1 & 1 & 0 \\
@@ -725,23 +728,30 @@ One can run into licensing issue if they do not check before integrating third-p
 		\multicolumn{3}{l|}{Total} &  85 & 226 & 87 \\
 		\hline
 	\end{tabular} %
-}
+%}
 \end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{license_violation}
+	\caption{Summary of license matching in online code clones}
+	\label{fig:license_violation}
+\end{figure}
 
 \begin{figure*}
 		\centering
 		\begin{minipage}{.4\textwidth}
 			\centering
-			\includegraphics[width=\linewidth]{heatmap_a}
+			\includegraphics[width=\linewidth]{heatmap_a-crop}
 			\caption*{(1) QS clones}\label{fig:heatmap_a}
 		\end{minipage}%
 		\hspace{5ex}
-		\begin{minipage}{0.4\textwidth}
+		\begin{minipage}{0.41\textwidth}
 			\centering
-			\includegraphics[width=\linewidth]{heatmap_c}
+			\includegraphics[width=\linewidth]{heatmap_c-crop}
 			\caption*{(2) EX clones}\label{fig:heatmap_c}
 		\end{minipage}
-	\caption{License mapping of QS and EX online clones}
+	\caption{Matrix of online code clone license mapping}
 \end{figure*}
 
 In our study, we reveal another possible situation of software licensing issues caused by code cloning ``to Stack Overflow''. We found with evidence that 112 pieces of code had been copied from 19 Qualitas projects to Stack Overflow as examples. They are also marked as accepted answers which increased their chances of being reused. The projects came with their respective software licenses (shown in \Cref{t:q_projects_license}). However, we found that the licensing information were mostly stripped from these clones after they were posted on Stack Overflow. The licensing terms on the top of source code are not copied because mostly a small part of the file was cloned to Stack Overflow. If developers copy and reuse these licensed pieces of code in their projects, conflicts may happen without their realisation. 
