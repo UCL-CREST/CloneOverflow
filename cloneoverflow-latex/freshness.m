@@ -3,8 +3,8 @@ y = [13	6 1;
 10	5	0;
 5	7	0;
 2	5	0;
+0	6	0;
 5	0	0;
-0	4	0;
 0	4	0;
 0	3	0;
 1	2	0;
@@ -27,7 +27,7 @@ end
 
 xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19])
 xticklabels({'hibernate', 'spring', 'eclipse-SDK', 'hadoop', 'tomcat', ...
-    'log4j', 'jfreechart', 'junit', 'jgraph', 'jung2', 'poi', 'struts2', ... 
+    'junit', 'log4j', 'jfreechart', 'jgraph', 'jung2', 'poi', 'struts2', ... 
     'weka', 'aspectj', 'jasperreports', 'antlr', 'ant', 'itext', 'jgrapht'})
 %xlabel('Project','FontSize',15)
 ylabel('Clone pair','FontSize',15)
