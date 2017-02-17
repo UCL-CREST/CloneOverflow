@@ -323,19 +323,20 @@ We followed the experimental framework and detected clones between Stack Overflo
 			\hline
 			Stats & \multicolumn{1}{c|}{$S_D$} & \multicolumn{1}{c|}{$S_E$} & \multicolumn{1}{c|}{$N_D$} & \multicolumn{1}{c}{$N_E$} \\
 			\hline
-			Snippets & 1,086 & 1,531 & 1,392 & 12,886 \\
+			Snippets & 1,086 & 1,531 & 1,392 & 12,991 \\
 			Total C$_{\textrm{\textit{pairs}}}$ & 67,570 & 63,635,844 & 632,855 & 251,449,849 \\
 %			Avg.~C$_{\textrm{\textit{pairs}}}$ & 62 & 41,565 & 455 & 19,356 \\
-			Avg.~C$_{\textrm{\textit{size}}}$ & 7.72 & 4.79 & 9.84 & 5.33 \\
-			Avg.~C$_{\textrm{\textit{\%}}}$ & 29\% & 28\% & 25\% & 21\% \\
+			Avg.~C$_{\textrm{\textit{size}}}$ & 11.92 & 11.93 & 12.51 & 10.94 \\
+			Avg.~C$_{\textrm{\textit{\%}}}$ & 38\% & 50\% & 30\% & 33\% \\
 			\hline
 		\end{tabular} %
 %	}
 \end{table}
 
-The clone statistics obtained from running Simian and NiCad are presented in \Cref{tab:raw_stats}. Simian with the default configuration ($S_D$) report clones in 1,086 snippets, approximately 1\% of the 144,075 Stack Overflow snippets. Simian with the EvaClone configuration ($S_E$) report 1,531 snippets containing clones. NiCad with the default configuration ($N_D$) reports clones in 1,392 Stack Overflow code snippets. NiCad with the EvaClone configuration ($N_E$) reports the largest number of 12,886 cloned snippets mainly due to its relaxed configurations. In terms of the number of clone pairs, $S_D$ reports 67,570 clone pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report a larger clone pair amount of 63,635,844 and 251,449,849 pairs respectively. This is expected since EvaClone configurations prefer recall~\cite{Wang2013}. 
+The clone statistics obtained from running Simian and NiCad are presented in \Cref{tab:raw_stats}. Simian with the default configuration ($S_D$) report clones in 1,086 snippets, approximately 1\% of the 144,075 Stack Overflow snippets. Simian with the EvaClone configuration ($S_E$) report 1,531 snippets containing clones. NiCad with the default configuration ($N_D$) reports clones in 1,392 Stack Overflow code snippets. NiCad with the EvaClone configuration ($N_E$) reports the largest number of 12,991 cloned snippets mainly due to its relaxed configurations. In terms of the number of clone pairs, $S_D$ reports 67,570 clone pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report a larger clone pair amount of 63,635,844 and 251,449,849 pairs respectively. This is expected since EvaClone configurations prefer recall~\cite{Wang2013}. 
 %Using $S_D$, we found 62 clones in average originating from a single Stack Overflow snippet. 62 and 455 respectively. On the other hand, $S_E$ and $N_E$ have a much larger number of 63 and 251 million clone pairs per snippet on average. 
-The average clone size reported by $S_D$ is 7.72 lines which is bigger than $S_E$ (4.79 lines). Similarly, $N_D$ has an average clone size of 9.84 lines which is bigger than 5.33 lines reported by $N_E$. We can see from the statistics that EvaClone tunes the tools to report smaller clones. The average ratio of Stack Overflow code snippets that are cloned according to $S_D$, $S_E$, $N_D$, and $N_E$ is 29\%, 28\%, 25\%, and 21\% accordingly. A quick manual check of Simian's clone report revealed that there were 11 problematic snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
+The average clone size reported by $S_D$ is 11.92 lines which comparable to $S_E$ (11.93 lines). $N_D$ has an average clone size of 12.51 lines which is bigger than 10.94 lines reported by $N_E$. %We can see from the statistics that EvaClone tunes the tools to report smaller clones. 
+The average ratio of Stack Overflow code snippets that are cloned according to $S_D$, $S_E$, $N_D$, and $N_E$ is 38\%, 50\%, 30\%, and 33\% accordingly. A quick manual check of Simian's clone report revealed that there were 11 problematic snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
 
 As displayed in \Cref{t_agreed_good_clone_pairs}, after we applied clone agreement filtering using Bellon's criteria, the number of \textit{good} clone pairs is 2,308 while the number of \textit{ok} clone pairs is 31,729. %The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 181 for Simian and NiCad respectively. The total number of clone candidates is 32,039 pairs. 
 We explain them in more details below.
