@@ -72,9 +72,12 @@ public class CsvFileWriter {
                 System.out.print(".");
                 // skip if they're false clones generated from simian's bug
                 if (!CommonUtils.isError(fragment.fragmentName)) {
-                    listWriter.write(fragment.fragmentName, fragment.numberOfTimeIsUsed,
-                            fragment.projectsWhereIsUsed.size(), fragment.getSLOC(), fragment.getCloneLines(),
-                            ((double) fragment.getCloneLines()) / fragment.getSLOC());
+                    listWriter.write(fragment.fragmentName,
+                            fragment.numberOfTimeIsUsed,
+                            fragment.projectsWhereIsUsed.size(),
+                            fragment.getSLOC(),
+                            (double)fragment.getCloneLinesCount()/fragment.numberOfTimeIsUsed,
+                            (double) fragment.getCloneLines() / fragment.getSLOC());
                 }
             }
         } catch (IOException e) {

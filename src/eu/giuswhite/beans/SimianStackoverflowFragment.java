@@ -18,11 +18,13 @@ public class SimianStackoverflowFragment {
     public int numberOfTimeIsUsed;
     public HashMap<Integer, Boolean> projectsWhereIsUsed;
     public boolean[] cloneLines;
+    public int cloneLinesCount;
     public int SLOC;
 
     public SimianStackoverflowFragment(){
         this.numberOfTimeIsUsed = 0;
         this.projectsWhereIsUsed = new HashMap<>();
+        this.cloneLinesCount = 0;
     }
 
     public SimianStackoverflowFragment(String filePath){
@@ -37,8 +39,16 @@ public class SimianStackoverflowFragment {
     }
 
     public void setCloneLines(int start, int end) {
-        for (int i=start-1; i<end-1; i++)
+        for (int i = start - 1; i < end; i++)
             cloneLines[i] = true;
+    }
+
+    public void increaseCloneLinesCount(int size) {
+        this.cloneLinesCount += size;
+    }
+
+    public int getCloneLinesCount() {
+        return this.cloneLinesCount;
     }
 
     public int getCloneLines() {

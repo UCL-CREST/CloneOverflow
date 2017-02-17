@@ -5,7 +5,7 @@ package eu.giuswhite.utils;
  */
 public class CommonUtils {
     public static final String EXTRACTED_DATA_FOLDER_PATH = "";
-    public static final String PROJECT_FOLDER_PATH = "/Users/Chaiyong/IdeasProjects/StackAnalyzer";
+    public static final String PROJECT_FOLDER_PATH = "/Users/Chaiyong/IdeasProjects/StackOverflowAnalyzer";
     public static final boolean TEST_MODE = true;
     public static int STOP_PROCESS_FLAG = 10;
     public static final String OPEN_CODE_PATTERN = "<pre><code>";
