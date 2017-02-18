@@ -312,7 +312,7 @@ can cause software developers to violate licenses.
 \end{figure}
 
 %\subsection{Experimental Setup}
-\vspace{1ex}
+%\vspace{1ex}
 To answer these four research questions, we perform an empirical study to
 locate and study the online code clones between Stack Overflow and open source
 projects. The experimental framework is depicted in \Cref{fig:exp_framework} and
@@ -397,7 +397,7 @@ code. %Details of the 109 Qualitas projects and their licenses are listed in Tab
   \end{tabular} 
 \end{table}
 
-\subsection{Clone Detectors}
+\subsection{Clone Detection}
 
 There are a number of restrictions in terms of choosing clone
 detection tools for this study. The main restriction is due to nature
@@ -417,72 +417,138 @@ we removed them from the study. Simian and NiCad are flexible enough
 to handle code with incomplete methods or classes and successfully
 completed the detection.
 
-\textbf{Simian} is a text-based clone detector that locates clones at line-level granularity and has been used extensively in several clone studies~\cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015, Krinke2010}. It is a command-line tool which enables us to automate the detection. Furthermore, it offers normalisation of variable names and literals (strings, and numbers) which enable Simian to detect literal clones (type-1) and parameterised clones (type-2). \textbf{NiCad} is also a text-based clone detector which detects clones at either method- or block-level granularity. It can detect clones of type-1, 2 up to type-3 (clones with added/removed/relocated/changed statements) and is also used in several empirical clone studies~\cite{Roy2008, Ragkhitwetsagul2016, Svajlenko2014, Wang2013, Mondal2011, Sajnani2016}. It utilises TXL~\cite{Cordy2006} for parsing and pretty-printing source code. It also provides code normalisation by variable renaming and abstraction. We use a variant of NiCad called \textit{nicadcross}. It offers the same functionalities as the original NiCad but is specialised for detecting code clones between two systems. NiCad is also a command-line tool which makes it suitable for automation.
+\textbf{Simian} is a text-based clone detector that locates clones at
+line-level granularity and has been used extensively in several clone
+studies~\cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015,
+  Krinke2010}.
+% It is a command-line tool which enables us to automate the
+% detection. 
+Furthermore, it offers normalisation of variable names and literals
+(strings and numbers) which enables Simian to detect literal clones
+(type-1) and parameterised clones (type-2). \textbf{NiCad} is also a
+text-based clone detector which detects clones at either method- or
+block-level granularity. It can detect clones of type-1, -2 up to
+type-3 (clones with added and removed statements) and has
+also been used in several empirical clone studies~\cite{Roy2008,
+  Ragkhitwetsagul2016, Svajlenko2014, Wang2013, Mondal2011,
+  Sajnani2016}. It utilises TXL~\cite{Cordy2006} for parsing and
+pretty-printing source code and provides code normalisation by
+variable renaming and abstraction. We use a variant of NiCad called
+\textit{nicadcross}. It offers the same functionalities as the
+original NiCad but is specialised for detecting code clones between
+two systems. 
+% NiCad is also a command-line tool which makes it suitable for
+% automation.
 
 %We processed two datasets, 144,064 Java code snippets from accepted answers on Stack
 %Overflow and 111 open source projects from the Qualitas corpus. 
 %The Java code snippets were extracted from Stack Overflow posts. 
 We prepared the Java code in both datasets by removing comments and
 pretty-printing to increase the accuracy of clone detection. Then, we
-deployed two clone detection tools to locate clones between the two datasets.
-Due to the scalability of Simian and NiCad, we partitioned the input
-and run the tools multiple times. Each run was composed of the whole
-Stack Overflow data and a single Qualitas project. We repeated the
-process until we covered all 111 projects.
-We then converted the clone reports to the General Clone Format
-(GCF)~\cite{Wang2013} and combined the 111 reports into a single GCF
-file.
-Simian did not provide an option to detect cross-project clones
-between two locations. Hence the Simian GCF clone report was filtered
-to contain only clone pairs between Stack Overflow and Qualitas
-projects, removing all clone pairs within either Stack Overflow or
-within Qualitas. NiCad provides an option to detect clones from two
-locations so no filtering was needed. 
+deployed the two clone detectors to locate clones between the two
+datasets.  We partitioned the input and ran the tools multiple
+times. Each run was composed of the entire Stack Overflow data and a
+single Qualitas project. We repeated the process until we covered all
+111 projects.  We then converted the clone reports to the General
+Clone Format (GCF)~\cite{Wang2013} and combined the 111 reports into a
+single GCF file.  Simian did not provide an option to detect
+cross-project clones between two locations. Hence the Simian GCF clone
+report was filtered to contain only clone pairs between Stack Overflow
+and Qualitas projects, removing all clone pairs within either Stack
+Overflow or within Qualitas. 
+% NiCad provides an option to detect clones
+% from two locations so no filtering was needed.
 
-\subsection{Prioritise Clone Candidates Using Agreement}
-The number of clones detected in large-scale datasets can be huge. In our study, there are in total 315,786,118 clone pairs reported. It is infeasible for humans to manually validate them all. One can do a random sampling of clones. However, due to a very high number of false positives, they may end up looking mostly at the false clones. Therefore, we adopted the idea of \textbf{clone agreement} which has been used in clone research studies~\cite{Wang2013,Funaro2010,cr2016ssbse} in situations where a clone oracle is missing or impossible to establish. Clone pairs agreed by multiple clone detection tools have a higher confidence to be real clones~\cite{cr2016ssbse}. By using this agreement-based approach, we could reduce the number of clone candidates for manual investigation by paying more attention to the ones agreed by multiple tools. To find an agreement between two clone pairs reported by two different tools, we used the clone pair matching metric proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs which have a large enough number of overlapping clone lines can be categorised as either a good-match or an ok-match pair (denoted as \textit{good} and \textit{ok} respectively) with a confident value between 0 and 1. A \textit{good} clone pair has stronger agreement than an \textit{ok} pair. We follow the original definitions of \textit{good}- and \textit{ok}-match introduced in Bellon's paper~\cite{Bellon2007}.
+\subsection{Filtering Clone Candidates}
 
-\vspace{0.5ex}
-Given that a clone pair \textit{CP} is formed by two clone fragments \textit{CF$_1$} and \textit{CF$_2$} with a pre-defined similarity threshold \textit{t}, i.e.~\textit{CP} = (\textit{CF$_1$}, \textit{CF$_2$}, \textit{t}), we can define \textit{overlap} and \textit{contained} value of two clone pairs as 
+The number of clones detected in large-scale datasets can be huge. In
+our study, there are in total 315,786,118 clone pairs reported. It is
+infeasible for humans to manually validate them all. Instead of
+investigating a random saple, we adopted the idea of \textbf{clone
+  agreement} which has been used in clone research
+studies~\cite{Funaro2010, Wang2013,cr2016ssbse} in situations where a
+clone oracle is missing or impossible to establish. Clone pairs agreed
+by multiple clone detection tools have a higher likelihood to be real
+clones~\cite{cr2016ssbse}. By using this agreement-based approach, we
+reduced the number of clone candidates for manual investigation to the
+ones agreed by multiple tools. To find agreement between two clone
+pairs reported by two different tools, we used the clone pair matching
+metric proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs
+which have a large enough number of overlapping lines can be
+categorised as either a good-match or an ok-match pair (denoted as
+\textit{good} and \textit{ok} respectively) with a confidence value
+between 0 and 1. A \textit{good} clone pair has stronger agreement
+than an \textit{ok} pair. We follow the original definitions of
+\textit{good}- and \textit{ok}-match introduced in Bellon's
+paper~\cite{Bellon2007}.
+
+Given that a clone pair \textit{CP} is formed by two clone fragments
+\textit{CF$_1$} and \textit{CF$_2$}, i.e.~\textit{CP} = (\textit{CF$_1$},
+\textit{CF$_2$}), we can define the \textit{overlap} and
+\textit{contained} value of two clone pairs as
 %\squeezeup
-\begin{multline}
-	overlap(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
-\end{multline}
-%\squeezeup
-\begin{multline}
-	contained(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}. 
-\end{multline}
-
-\noindent\textit{good-value} of two clone pairs is then defined as
+\begin{displaymath}
+  overlap(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
+\end{displaymath}
+% \squeezeup
+\begin{displaymath}
+  contained(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}
+\end{displaymath}
+      
+\noindent%
+The \textit{good-value}  and the \textit{ok-value}  of two clone pairs are then defined as
 %\squeezeup
 \begin{align*}
-	good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2)).
+	good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
 \end{align*}
-
-\noindent\textit{ok-value} is defined as
-%\squeezeup
 \begin{align*}
-	ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) = min(max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1)),
-	\\ max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2), \\contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2))).
+	ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) = min(max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1),~~ \\ contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1)),~
+	\\ max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2),~~ \\contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2)))
 \end{align*}
 
-Two clone pairs $\textrm{\textit{CP}}_1$ and $\textrm{\textit{CP}}_2$ are called a \textit{\textit{good}(p)} iff, for threshold $p \in [0,1]$ holds 
+\noindent%
+Two clone pairs $\textrm{\textit{CP}}_1$ and $\textrm{\textit{CP}}_2$ are called a \textit{\textit{good}(t)} iff, for threshold $t \in [0,1]$ holds 
 %\squeezeup
 \begin{equation}
-good(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) \geq p.
+good(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) \geq t.
 \end{equation}
-
-Similarly for an \textit{ok-match(p)} pair
+%
+Similarly for an \textit{ok-match(t)} pair
 %\squeezeup
 \begin{equation}
-ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) \geq p.
+ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) \geq t.
 \end{equation}
 
-Using this good and ok-match criteria with a predefined threshold \textit{p}, we can prune the 315 million candidate clone pairs for manual investigation. \textit{good} pairs are the ones with the highest confidence, followed by \textit{ok} pairs, and followed by clone pairs without agreement. We call the 
-\textit{good} and \textit{ok} pairs \textbf{agreed} clone pairs and the the clone pairs reported by Simian and NiCad without agreement \textbf{disagreed} clone pairs.
+Using the good and ok-match criteria with a predefined threshold
+\textit{t}, we can prune the 315 million candidate clone pairs for
+manual investigation. The \textit{good} pairs are the ones with the
+highest confidence, followed by the \textit{ok} pairs, and followed by
+clone pairs without agreement. We call the \textit{good} and
+\textit{ok} pairs \textbf{agreed} clone pairs and the the clone pairs
+reported by Simian or NiCad without agreement \textbf{disagreed} clone
+pairs.
 
-\subsection{Clone Detector's Parameter Tuning}
-We were aware of effects of configurations to clone detection results and the importance of searching for optimised configurations in empirical clone studies~\cite{Wang2014,cr2016ssbse,Ragkhitwetsagul2016,Svajlenko2014}. However, considering the massive size of the two datasets and search space of at least 15 Simian and 5 NiCad parameters, we were hindered from searching for the best configurations of the tools. Thus, we decided to configure Simian and NiCad using two established configurations: 1) the tools' default configurations chosen by the tools' creators (denoted as \textit{D}), and 2) the discovered configurations for Bellon's Java projects from \textit{EvaClone}, a study of optimising clone detectors' configurations based on clone agreement, by Wang et al.~\cite{Wang2013} (denoted by \textit{E}). The details of the two configurations are described in \Cref{t:param_tuning}. Having two clone detectors, Simian (denoted as \textit{S}) and NiCad (denoted as \textit{N}), with two chosen configurations each, we looked for Bellon's good and ok-match in four possible pair-wise combinations: $S_{D}N_{D}$, $S_{D}N_{E}$, $S_{E}N_{D}$, and $S_{E}N_{E}$.
+\subsection{Clone Detection Parameter Tuning}
+
+We were aware of effects of configurations to clone detection results
+and the importance of searching for optimised configurations in
+empirical clone
+studies~\cite{Svajlenko2014,Wang2014,cr2016ssbse,Ragkhitwetsagul2016}. However,
+considering the massive size of the two datasets and the search space
+of at least 15 Simian and 5 NiCad parameters, we are unable to search
+for the best configurations of the tools. Thus, we decided to
+configure Simian and NiCad using two established configurations:
+(1)~the tools' default configurations chosen by the tools' creators
+(denoted as \textit{D}), and (2)~the discovered configurations for
+Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
+of optimising clone detectors' configurations based on clone agreement
+(denoted by \textit{E}). The details of the two configurations are
+described in \Cref{t:param_tuning}. Having two clone detectors, Simian
+(denoted as \textit{S}) and NiCad (denoted as \textit{N}), with two
+chosen configurations (\textit{D} and \textit{E}) each, we used
+Bellon's good and ok-match for agreement in four possible pair-wise
+combinations: $S_{D}$--$N_{D}$, $S_{D}$--$N_{E}$, $S_{E}$--$N_{D}$,
+and $S_{E}$--$N_{E}$.
 
 \begin{table}
 	\centering
@@ -542,7 +608,17 @@ We were aware of effects of configurations to clone detection results and the im
 
 \section{Results and Discussion}
 
-We followed the experimental framework and detected clones between Stack Overflow and Qualitas corpus using the two selected clone detectors. To answer RQ1, we computed statistics on clones discovered by the tools. To answer RQ2, we manually investigated online clone pair candidates and categorised them using our patterns of online code cloning. The patterns were derived from Kapser et al.~\cite{Kapser2003} and augmented by common patterns found in our data set. For RQ3, we looked at the true positive clone pairs and checked if they are still up-to-date. Similarly, for RQ4, we also looked at the license of each clone and checked for a possibility of licensing violation.
+We used the experimental framework (\Cref{fig:exp_framework}) to
+detect clones between Stack Overflow and the Qualitas corpus using the
+two selected clone detectors. To answer RQ1, we computed statistics on
+discovered clones. To answer RQ2, we manually investigated online
+clone pair candidates and categorised them using patterns of online
+code cloning. The patterns were derived from Kapser et
+al.~\cite{Kapser2003} and augmented by common patterns found in our
+data set. For RQ3, we looked at the true positive clone pairs and
+checked if they have been changed since they have been
+cloned. Similarly, for RQ4, we looked at the license of each
+clone and checked for a possibility of a licensing violation.
 
 \subsection{RQ1: Online Code Clones} 
 
@@ -567,44 +643,96 @@ We followed the experimental framework and detected clones between Stack Overflo
 	}
 \end{table}
 
-\begin{figure*}
-		\centering
-		\begin{minipage}{.4\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{hist_sd}
-			\caption*{$S_D$ clones}
-		\end{minipage}%
-		\hspace{5ex}
-		\begin{minipage}{0.4\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{hist_nd}
-			\caption*{$N_D$ clones}
-		\end{minipage}
-		\\
-		\begin{minipage}{.4\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{hist_se}
-			\caption*{$S_E$ clones}
-		\end{minipage}%
-		\hspace{5ex}
-		\begin{minipage}{0.4\textwidth}
-			\centering
-			\includegraphics[width=\linewidth]{hist_ne}
-			\caption*{$N_E$ clones}
-		\end{minipage}
-	\caption{\FIXME{Useful?}~Distribution of online clones between Stack Overflow snippets and Qualitas projects}
-	\label{fig:histogram}
-\end{figure*}
+% \begin{figure*}
+% 		\centering
+% 		\begin{minipage}{.4\textwidth}
+% 			\centering
+% 			\includegraphics[width=\linewidth]{hist_sd}
+% 			\caption*{$S_D$ clones}
+% 		\end{minipage}%
+% 		\hspace{5ex}
+% 		\begin{minipage}{0.4\textwidth}
+% 			\centering
+% 			\includegraphics[width=\linewidth]{hist_nd}
+% 			\caption*{$N_D$ clones}
+% 		\end{minipage}
+% 		\\
+% 		\begin{minipage}{.4\textwidth}
+% 			\centering
+% 			\includegraphics[width=\linewidth]{hist_se}
+% 			\caption*{$S_E$ clones}
+% 		\end{minipage}%
+% 		\hspace{5ex}
+% 		\begin{minipage}{0.4\textwidth}
+% 			\centering
+% 			\includegraphics[width=\linewidth]{hist_ne}
+% 			\caption*{$N_E$ clones}
+% 		\end{minipage}
+% 	\caption{\FIXME{Useful?}~Distribution of online clones between Stack Overflow snippets and Qualitas projects}
+% 	\label{fig:histogram}
+% \end{figure*}
 
-The clone statistics obtained from running Simian and NiCad are presented in \Cref{tab:raw_stats}. Simian with the default configuration ($S_D$) reports clones in 1,086 snippets, approximately 1\% of the 144,064 Stack Overflow snippets, associated with 92 Qualitas projects. Simian with the EvaClone configuration ($S_E$) reports 1,531 snippets containing clones associated with 111 Qualitas projects. NiCad with the default configuration ($N_D$) reports clones between 1,392 Stack Overflow code snippets and 82 Qualitas projects. NiCad with the EvaClone configuration ($N_E$) reports the largest number of 12,886 cloned snippets mainly due to its relaxed configurations. The $N_E$ snippets are associate with 88 Qualitas projects. We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in \textsf{hibernate} due to clustering errors. $N_E$ generated renaming errors for 5 projects including \textsf{vuze}, \textsf{hibernate}, \textsf{myfaces}, \textsf{netbeans}, and \textsf{spring}. We have contacted the creator of NiCad regarding the issues. They identified these issues as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases. \Cref{fig:histogram} illustrates the distribution of online code clones reported by $S_D$, $N_D$, $S_E$ and $N_E$ respectively. We can see that the distribution is right skewed. There are only a few Stack Overflow snippets and Qualitas projects that are outliers containing a larger number of clones compared to the others.
+The statistics on clones obtained from running Simian and NiCad are
+presented in \Cref{tab:raw_stats}. Simian in the default configuration
+($S_D$) reported clones in 1,086 snippets, approximately 1\% of the
+144,064 Stack Overflow snippets, associated with 92 Qualitas
+projects. Simian in the EvaClone configuration ($S_E$) reported 1,531
+snippets containing clones associated with 111 Qualitas
+projects. NiCad in the default configuration ($N_D$) reported clones
+between 1,392 Stack Overflow code snippets and 82 Qualitas
+projects. NiCad in the EvaClone configuration ($N_E$) reported the
+largest number of 12,886 cloned snippets mainly due to the more
+relaxed configuration. The $N_E$ snippets are associated with 88
+Qualitas projects. We encountered NiCad failures with a few Qualitas
+projects.~$N_D$ could not detect clones in \textsf{hibernate} due to
+clustering errors. $N_E$ generated renaming errors \FIXME{What are
+  renaming errors?}  for 5 projects including \textsf{vuze},
+\textsf{hibernate}, \textsf{myfaces}, \textsf{netbeans}, and
+\textsf{spring}. We have contacted the creator of NiCad regarding the
+issues. They identified the issues as problems in the TXL grammar and
+as problems of long file paths, and will be fixed in the next NiCad
+releases. 
 
-In terms of the number of clone pairs, $S_D$ reports 67,570 clone pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report a larger clone pair amount of 63,635,844 and 251,449,849 pairs respectively. This is expected since EvaClone configurations prefer recall~\cite{Wang2013}. 
-%Using $S_D$, we found 62 clones in average originating from a single Stack Overflow snippet. 62 and 455 respectively. On the other hand, $S_E$ and $N_E$ have a much larger number of 63 and 251 million clone pairs per snippet on average. 
-The average clone size reported by $S_D$ is 9.11 lines which is bigger than $S_E$ (5.95 lines). Similarly, $N_D$ has an average clone size of 10.85 lines which is bigger than 6.28 lines reported by $N_E$. We can see from the statistics that EvaClone tunes the tools to report smaller clones. For the cloned Stack Overflow snippets, the average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is 38\%, 50\%, 30\%, and 33\%  respectively. 
-%A quick manual check of Simian's clone report revealed that there were 11 problematic snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
+% \Cref{fig:histogram} illustrates the distribution of online code
+% clones reported by $S_D$, $N_D$, $S_E$ and $N_E$ respectively. We can
+% see that the distribution is right skewed. There are only a few Stack
+% Overflow snippets and Qualitas projects that are outliers containing a
+% larger number of clones compared to the others.
+
+In terms of the number of clone pairs, $S_D$ reports 67,570 clone
+pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report
+much larger numbers of clone pairs, 63,635,844 and 251,449,849 pairs
+respectively. This is expected since EvaClone configurations prefer
+recall~\cite{Wang2013}.
+% Using $S_D$, we found 62 clones in average originating from a single
+% Stack Overflow snippet. 62 and 455 respectively. On the other hand,
+% $S_E$ and $N_E$ have a much larger number of 63 and 251 million
+% clone pairs per snippet on average.
+The average clone size reported by $S_D$ is 9.11 lines which is bigger
+than for $S_E$ (5.95 lines). Similarly, $N_D$ has an average clone
+size of 10.85 lines which is bigger than 6.28 lines reported by
+$N_E$. The drop in size is due to the EvaClone configuration with a
+smaller minimum size (\Cref{t:param_tuning}). For the cloned Stack
+Overflow snippets, the average ratio of cloned code for $S_D$, $S_E$,
+$N_D$, and $N_E$ is 38\%, 50\%, 30\%, and 33\% respectively.
+% A quick manual check of Simian's clone report revealed that there
+% were 11 problematic snippets. These 11 snippets triggered Simian to
+% generate large clone clusters containing a huge number of false
+% clones from array initialisation. Hence, their clones were removed
+% from further analyses.
 
 
-\textbf{To answer RQ1, with the four configurations of Simian and NiCad, we found online code clones in 1,086 ($S_D$), 1,531 ($S_E$), 1,392 ($N_D$) and 12,886 ($N_E$) Stack Overflow code snippets. They are associated with 92, 111, 82 and 88 Qualitas projects respectively.} 
+\textbf{To answer RQ1, with the four configurations of Simian and
+  NiCad, we found online code clones in 1,086 ($S_D$), 1,531 ($S_E$),
+  1,392 ($N_D$) and 12,886 ($N_E$) Stack Overflow code snippets. They
+  are associated with 92, 111, 82 and 88 Qualitas projects
+  respectively, i.e.~most Qualitas projects share similar code with
+  Stack Overflow code snippets.}
+
+% FIXME
+% However, as it is well known that the precision of clone detectors is
+% not very good, it is clear that the above numbers may not be
+% representative for real code clones and we ...
 
 \subsection{RQ2: Patterns of Online Code Cloning}
 
