@@ -311,77 +311,22 @@ can cause software developers to violate licenses.
   \label{fig:exp_framework}
 \end{figure}
 
-\subsection{Experimental Framework}
+%\subsection{Experimental Setup}
+\vspace{1ex}
+To answer these four research questions, we perform an experiment to
+locate and study the online code clones between Stack Overflow and open source
+projects. The experimental framework is depicted in \Cref{fig:exp_framework}. 
+We discuss the experimental setup below.
 
-To answer the four research questions, we used the experimental
-framework depicted in \Cref{fig:exp_framework}. We processed two
-datasets, 144,064 Java code snippets from accepted answers on Stack
-Overflow and 111 open source projects from the Qualitas corpus. The
-Java code snippets were extracted from Stack Overflow posts. We
-prepared the Java code in both datasets by removing comments and
-pretty-printing to increase the accuracy of clone detection. Then, we
-deployed two clone detection tools, Simian~\cite{simian} and
-NiCad~\cite{Roy2008,Cordy}, to locate clones between the two datasets.
-Due to the scalability of Simian and NiCad, we partitioned the input
-and run the tools multiple times. Each run was composed of the whole
-Stack Overflow data and a single Qualitas project. We repeated the
-process until we covered all 111 projects.
+%\subsection{Experimental Setup}
 
-%enabled us to reuse the same scripts to analyse clone reports from both Simian and NiCad. Moreover, using GCF, other additional clone detectors could be adopted
-We then converted the clone reports to the General Clone Format
-(GCF)~\cite{Wang2013} and combined the 111 reports into a single GCF
-file.
-% GCF provides a common format for clone reports which enables other
-% clone detectors to be adopted, if needed, without any changes in the
-% analysis.
-Simian did not provide an option to detect cross-project clones
-between two locations. Hence the Simian GCF clone report was filtered
-to contain only clone pairs between Stack Overflow and Qualitas
-projects, removing all clone pairs within either Stack Overflow or
-within Qualitas. NiCad provides an option to detect clones from two
-locations so no filtering was needed. We did not have an oracle of clones
-between the two data sets so we rely on a manual investigation to
-validate the reported clone candidates. However, the large amount of
-generated clone pairs hindered us from looking at all of them.
-% A random sampling of clones could have been employed, however, the
-% risk of returning false positives non-meaningful clones is
-% increased.
-Instead of extracting a random sample, we selected clone pair
-candidates by relying on \emph{agreement} of clone detectors. If a
-clone pair was reported by multiple tools, we had a higher
-confidence that it was a real clone pair. To achieve this, clone pairs
-from the two clone detectors were pair-wise matched to find agreements
-using Bellon's clone overlapping criteria~\cite{Bellon2007}. This step
-generated \textbf{agreed clone
-  pairs}. They were pairs with high confidence to be true clones since
-they obtained agreement from both tools. Then, pairs reported by
-Simian and NiCad that did not find agreement were categorised as
-\textbf{disagreed clone pairs}. The disagreed clone pairs were clones
-with less confidence than the agreed ones. Finally, agreed and
-disagreed clone pairs have been looked at manually by two of the
-authors.
+%We followed the experimental framework by processing the source code from the two data sets, configuring and running the clone detectors, and analysing the clones. We discuss each of them in details below. 
 
-In the manual inspection process, we classified clones into seven
-categories according to information observed from code comments and
-text in the Stack Overflow answer. This process took approximately a
-month until we successfully investigated 3,632 clone pairs. Clone
-pairs that were classified as false clones, boiler-plate code, or
-IDE-generated are not very interesting and were ignore in the analysis
-of outdated code and licensing violation. We compared the licensing
-information of the 668 remaining clone pairs for possibilities of software
-licensing violations. Moreover, we looked at the history starting at
-the date of the answers to today from its git repository. With this
-method, we discovered \textbf{outdated code}, i.e.~code that changes
-were made to them after they have been copied to Stack
-Overflow. %hence resulting in outdated clones on Stack Overflow.
+\subsection{Datasets}
 
-\subsection{Experimental Setup}
+We reply on two data sets in this study: Java code snippets on Stack Overflow and open source projects from the Qualitas corpus.
 
-We followed the experimental framework by processing the source code from the two data sets, configuring and running the clone detectors, and analysing the clones. We discuss each of them in details below. 
-
-\subsubsection{Datasets}
-
-\textbf{Stack Overflow}: we extracted Java code snippets from a snapshot of a Stack Overflow dump\footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump was in XML format containing information of \textbf{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We were interested in code snippets embedded in posts which were located between {\small\texttt{<code></code>}} tags. A Stack Overflow thread contains a post of a question and several posts of answers where every answer has voting score from its users. An answer can also be marked as \textbf{accepted answer} by the questioner if the solution fixes his/her problem. We collected Java code snippets using two criteria. First, we were only interested in code snippets with at least six lines. Snippets that are smaller than six lines are usually spurious clones~\cite{Bellon2007}. Second, we only focused on code snippets in accepted answers. We chose the snippets in accepted answers because they actually solved the problems in the questions. Moreover, they are always displayed just below the questions which makes them more attractive to be reused than other answers. Each snippet was extracted from the dump and saved to a file. 
+\subsubsection{Stack Overflow} we extracted Java code snippets from a snapshot of a Stack Overflow dump\footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump was in XML format containing information of \textbf{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We were interested in code snippets embedded in posts which were located between {\small\texttt{<code></code>}} tags. A Stack Overflow thread contains a post of a question and several posts of answers where every answer has voting score from its users. An answer can also be marked as \textbf{accepted answer} by the questioner if the solution fixes his/her problem. We collected Java code snippets using two criteria. First, we were only interested in code snippets with at least six lines. Snippets that are smaller than six lines are usually spurious clones~\cite{Bellon2007}. Second, we only focused on code snippets in accepted answers. We chose the snippets in accepted answers because they actually solved the problems in the questions. Moreover, they are always displayed just below the questions which makes them more attractive to be reused than other answers. Each snippet was extracted from the dump and saved to a file. 
 %using its post ID as the file's name. If an accepted answer had more than one code snippet, we appended an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we added {\small\texttt{.java}} extension to the file's names so that clone detectors could recognise them. 
 We obtained 144,064 Java code snippets which contain 2,347,269 lines of Java source code excluding comments and blank lines\footnote{Measured by cloc: https://github.com/AlDanial/cloc}.
 
@@ -403,13 +348,33 @@ We obtained 144,064 Java code snippets which contain 2,347,269 lines of Java sou
 	\end{tabular} 
 \end{table}
 
-\subsubsection{Clone Detectors}
+\subsection{Clone Detectors}
 There is a number of restrictions in terms of choosing clone detection tools for this study. The main restriction is due to nature of code snippets posted on Stack Overflow, most of them are not complete Java classes or methods. Hence, the tool must be flexible enough to process code snippets that are neither a complete block nor compilable. Moreover, since the amount of code that has to be processed is in a scale of millions line of code (as shown in \Cref{tab:datasets}), a clone detector must be scalable enough to successfully complete the execution and report clones in a reasonable amount of time. We have tried 5 state-of-the-art clone detectors including Simian~\cite{simian}, NiCad~\cite{Cordy,Roy2008}, CCFinder~\cite{Kamiya2002}, iClones~\cite{Gode2009}, and DECKARD~\cite{Jiang2007a} against Stack Overflow and Qualitas datasets. CCFinder, iClones, and DECKARD failed with execution errors after running for couple of hours. Thus, we removed them from the study. Simian and NiCad completed the detection with success. We found that both of them are also flexible enough to handle code with incomplete methods or classes. %So, we decided to use both of them.
 
 \textbf{Simian} is a text-based clone detector that locates clones at line-level granularity and has been used extensively in several clone studies~\cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015, Krinke2010}. It is a command-line tool which enables us to automate the detection. Furthermore, it offers normalisation of variable names and literals (strings, and numbers) which enable Simian to detect literal clones (type-1) and parameterised clones (type-2). \textbf{NiCad} is also a text-based clone detector which detects clones at either method- or block-level granularity. It can detect clones of type-1, 2 up to type-3 (clones with added/removed/relocated/changed statements) and is also used in several empirical clone studies~\cite{Roy2008, Ragkhitwetsagul2016, Svajlenko2014, Wang2013, Mondal2011, Sajnani2016}. It utilises TXL~\cite{Cordy2006} for parsing and pretty-printing source code. It also provides code normalisation by variable renaming and abstraction. We use a variant of NiCad called \textit{nicadcross}. It offers the same functionalities as the original NiCad but is specialised for detecting code clones between two systems. NiCad is also a command-line tool which makes it suitable for automation.
 
-\subsubsection{Prioritise Clone Candidates Using Agreement}
-The number of clones detected in large-scale datasets can be huge. In our study, there are in total 266,837,480 clone pairs reported. It is infeasible for humans to manually validate them all. One can do a random sampling of clones. However, due to a very high number of false positives, they may end up looking mostly at the false clones. Therefore, we adopted the idea of \textbf{clone agreement} which has been used in clone research studies~\cite{Wang2013,Funaro2010,cr2016ssbse} in situations where a clone oracle is missing or impossible to establish. Clone pairs agreed by multiple clone detection tools have a higher confidence to be real clones~\cite{cr2016ssbse}. By using this agreement-based approach, we could reduce the number of clone candidates for manual investigation by paying more attention to the ones agreed by multiple tools. To find an agreement between two clone pairs reported by two different tools, we used the clone pair matching metric proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs which have a large enough number of overlapping clone lines can be categorised as either a good-match or an ok-match pair (denoted as \textit{good} and \textit{ok} respectively) with a confident value between 0 and 1. A \textit{good} clone pair has stronger agreement than an \textit{ok} pair. We follow the original definitions of \textit{good}- and \textit{ok}-match introduced in Bellon's paper~\cite{Bellon2007}.
+%We processed two datasets, 144,064 Java code snippets from accepted answers on Stack
+%Overflow and 111 open source projects from the Qualitas corpus. 
+%The Java code snippets were extracted from Stack Overflow posts. 
+We prepared the Java code in both datasets by removing comments and
+pretty-printing to increase the accuracy of clone detection. Then, we
+deployed two clone detection tools to locate clones between the two datasets.
+Due to the scalability of Simian and NiCad, we partitioned the input
+and run the tools multiple times. Each run was composed of the whole
+Stack Overflow data and a single Qualitas project. We repeated the
+process until we covered all 111 projects.
+We then converted the clone reports to the General Clone Format
+(GCF)~\cite{Wang2013} and combined the 111 reports into a single GCF
+file.
+Simian did not provide an option to detect cross-project clones
+between two locations. Hence the Simian GCF clone report was filtered
+to contain only clone pairs between Stack Overflow and Qualitas
+projects, removing all clone pairs within either Stack Overflow or
+within Qualitas. NiCad provides an option to detect clones from two
+locations so no filtering was needed. 
+
+\subsection{Prioritise Clone Candidates Using Agreement}
+The number of clones detected in large-scale datasets can be huge. In our study, there are in total 315,786,118 clone pairs reported. It is infeasible for humans to manually validate them all. One can do a random sampling of clones. However, due to a very high number of false positives, they may end up looking mostly at the false clones. Therefore, we adopted the idea of \textbf{clone agreement} which has been used in clone research studies~\cite{Wang2013,Funaro2010,cr2016ssbse} in situations where a clone oracle is missing or impossible to establish. Clone pairs agreed by multiple clone detection tools have a higher confidence to be real clones~\cite{cr2016ssbse}. By using this agreement-based approach, we could reduce the number of clone candidates for manual investigation by paying more attention to the ones agreed by multiple tools. To find an agreement between two clone pairs reported by two different tools, we used the clone pair matching metric proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs which have a large enough number of overlapping clone lines can be categorised as either a good-match or an ok-match pair (denoted as \textit{good} and \textit{ok} respectively) with a confident value between 0 and 1. A \textit{good} clone pair has stronger agreement than an \textit{ok} pair. We follow the original definitions of \textit{good}- and \textit{ok}-match introduced in Bellon's paper~\cite{Bellon2007}.
 
 \vspace{0.5ex}
 Given that a clone pair \textit{CP} is formed by two clone fragments \textit{CF$_1$} and \textit{CF$_2$} with a pre-defined similarity threshold \textit{t}, i.e.~\textit{CP} = (\textit{CF$_1$}, \textit{CF$_2$}, \textit{t}), we can define \textit{overlap} and \textit{contained} value of two clone pairs as 
@@ -447,7 +412,8 @@ Similarly for an \textit{ok-match(p)} pair
 ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) \geq p.
 \end{equation}
 
-Using this good and ok-match criteria with a predefined threshold \textit{p}, we can prune the 266 million candidate clone pairs for manual investigation. \textit{good} pairs are the ones with the highest confidence and are ranked first to be looked at, followed by \textit{ok} pairs, and followed by clone pairs without agreement.
+Using this good and ok-match criteria with a predefined threshold \textit{p}, we can prune the 315 million candidate clone pairs for manual investigation. \textit{good} pairs are the ones with the highest confidence, followed by \textit{ok} pairs, and followed by clone pairs without agreement. We call the 
+\textit{good} and \textit{ok} pairs \textbf{agreed} clone pairs and the the clone pairs reported by Simian and NiCad without agreement \textbf{disagreed} clone pairs.
 
 \subsection{Clone Detector's Parameter Tuning}
 We were aware of effects of configurations to clone detection results and the importance of searching for optimised configurations in empirical clone studies~\cite{Wang2014,cr2016ssbse,Ragkhitwetsagul2016,Svajlenko2014}. However, considering the massive size of the two datasets and search space of at least 15 Simian and 5 NiCad parameters, we were hindered from searching for the best configurations of the tools. Thus, we decided to configure Simian and NiCad using two established configurations: 1) the tools' default configurations chosen by the tools' creators (denoted as \textit{D}), and 2) the discovered configurations for Bellon's Java projects from \textit{EvaClone}, a study of optimising clone detectors' configurations based on clone agreement, by Wang et al.~\cite{Wang2013} (denoted by \textit{E}). The details of the two configurations are described in \Cref{t:param_tuning}. Having two clone detectors, Simian (denoted as \textit{S}) and NiCad (denoted as \textit{N}), with two chosen configurations each, we looked for Bellon's good and ok-match in four possible pair-wise combinations: $S_{D}N_{D}$, $S_{D}N_{E}$, $S_{E}N_{D}$, and $S_{E}N_{E}$.
@@ -469,6 +435,44 @@ We were aware of effects of configurations to clone detection results and the im
 	\end{tabular} %
 %}
 \end{table}
+
+%\subsection{Manual Investigation}
+%We did not have an oracle of clones
+%between the two data sets so we rely on a manual investigation to
+%validate the reported clone candidates. However, the large amount of
+%generated clone pairs hindered us from looking at all of them.
+%A random sampling of clones could have been employed, however, the 
+%risk of returning false positives non-meaningful clones is increased.
+%Instead of extracting a random sample, we selected clone pair
+%candidates by relying on \emph{agreement} of clone detectors. If a
+%clone pair was reported by multiple tools, we had a higher
+%confidence that it was a real clone pair. To achieve this, clone pairs
+%from the two clone detectors were pair-wise matched to find agreements
+%using Bellon's clone overlapping criteria~\cite{Bellon2007}. This step
+%generated 
+%\textbf{agreed clone pairs}. They were pairs with high confidence to be true clones since
+%they obtained agreement from both tools. Then, pairs reported by
+%Simian and NiCad that did not find agreement were categorised as
+%\textbf{disagreed clone pairs}. The disagreed clone pairs were clones
+%with less confidence than the agreed ones. 
+%Finally, agreed and
+%disagreed clone pairs have been looked at manually by two of the
+%authors.
+
+%In the manual inspection process, we classified clones into seven
+%categories according to information observed from code comments and
+%text in the Stack Overflow answer. This process took approximately a
+%month until we successfully investigated 3,632 clone pairs. Clone
+%pairs that were classified as false clones, boiler-plate code, or
+%IDE-generated are not very interesting and were ignore in the analysis
+%of outdated code and licensing violation. We compared the licensing
+%information of the 668 remaining clone pairs for possibilities of software
+%licensing violations. Moreover, we looked at the history starting at
+%the date of the answers to today from its git repository. With this
+%method, we discovered \textbf{outdated code}, i.e.~code that changes
+%were made to them after they have been copied to Stack
+%Overflow. 
+%hence resulting in outdated clones on Stack Overflow.
 
 \section{Results and Discussion}
 
