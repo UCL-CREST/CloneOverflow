@@ -188,7 +188,7 @@ We used two clone detection tools to discover 315,786,118 similar code snippet p
 \section{Empirical Study}
 We performed an empirical study of online code clones between Stack Overflow and 111 Java open source projects to answer the following research questions: \\ 
 \textbf{RQ1 (online code clones):} \textit{To what extent  is source code cloned between Stack Overflow and open source projects?} We quantitatively measured the number of online code clones between Stack Overflow and open source projects to understand the scale of the problem. \newline
-\textbf{RQ2 (Patterns of online code clones):} \textit{Why do online code clones occur?} We categorised online clones into seven categories according to our online code cloning pattern scheme. This gave us more insights to why online code clones are created.
+\textbf{RQ2 (Patterns of online code clones):} \textit{Why do online code clones occur?} We categorised online clones into seven categories according to our online code cloning patterns. This gave us more insights to why online code clones are created.
 \newline
 \textbf{RQ3 (Outdated online code clones):} \textit{Are online code clones up-to-date compared to their counterparts in the original projects?} We were interested in the outdated Stack Overflow code examples since millions of users are potentially reusing them. \newline
 \textbf{RQ4 (Software licensing violation):} \textit{Do licensing conflicts occur between Stack Overflow clones and their originals?} We investigated whether online code clones can be legally harmful to software developers reusing them.
@@ -357,22 +357,27 @@ We followed the experimental framework and detected clones between Stack Overflo
 			\includegraphics[width=\linewidth]{hist_ne}
 			\caption*{$N_E$ clones}
 		\end{minipage}
-	\caption{Distribution of online clones between Stack Overflow snippets and Qualitas projects}
+	\caption{\FIXME{Useful?}~Distribution of online clones between Stack Overflow snippets and Qualitas projects}
 	\label{fig:histogram}
 \end{figure*}
 
+The clone statistics obtained from running Simian and NiCad are presented in \Cref{tab:raw_stats}. Simian with the default configuration ($S_D$) reports clones in 1,086 snippets, approximately 1\% of the 144,064 Stack Overflow snippets, associated with 92 Qualitas projects. Simian with the EvaClone configuration ($S_E$) reports 1,531 snippets containing clones associated with 111 Qualitas projects. NiCad with the default configuration ($N_D$) reports clones between 1,392 Stack Overflow code snippets and 82 Qualitas projects. NiCad with the EvaClone configuration ($N_E$) reports the largest number of 12,886 cloned snippets mainly due to its relaxed configurations. The $N_E$ snippets are associate with 88 Qualitas projects. We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in {\small\texttt{hibernate}} due to clustering errors. $N_E$ generated renaming errors for 5 projects including {\small\texttt{vuze}}, {\small\texttt{hibernate}}, {\small\texttt{myfaces}}, {\small\texttt{netbeans}}, and {\small\texttt{spring}}. We have contacted the creator of NiCad regarding the issues. They identified these issues as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases. \Cref{fig:histogram} illustrates the distribution of online code clones reported by $S_D$, $N_D$, $S_E$ and $N_E$ respectively. We can see that the distribution is right skewed. There are only a few Stack Overflow snippets and Qualitas projects that are outliers containing a larger number of clones compared to the others.
 
-The clone statistics obtained from running Simian and NiCad are presented in \Cref{tab:raw_stats}. Simian with the default configuration ($S_D$) reports clones in 1,086 snippets, approximately 1\% of the 144,064 Stack Overflow snippets. Simian with the EvaClone configuration ($S_E$) reports 1,531 snippets containing clones. NiCad with the default configuration ($N_D$) reports clones in 1,392 Stack Overflow code snippets. NiCad with the EvaClone configuration ($N_E$) reports the largest number of 12,886 cloned snippets mainly due to its relaxed configurations. In terms of the number of clone pairs, $S_D$ reports 67,570 clone pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report a larger clone pair amount of 63,635,844 and 251,449,849 pairs respectively. This is expected since EvaClone configurations prefer recall~\cite{Wang2013}. 
+In terms of the number of clone pairs, $S_D$ reports 67,570 clone pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report a larger clone pair amount of 63,635,844 and 251,449,849 pairs respectively. This is expected since EvaClone configurations prefer recall~\cite{Wang2013}. 
 %Using $S_D$, we found 62 clones in average originating from a single Stack Overflow snippet. 62 and 455 respectively. On the other hand, $S_E$ and $N_E$ have a much larger number of 63 and 251 million clone pairs per snippet on average. 
 The average clone size reported by $S_D$ is 9.11 lines which is bigger than $S_E$ (5.95 lines). Similarly, $N_D$ has an average clone size of 10.85 lines which is bigger than 6.28 lines reported by $N_E$. We can see from the statistics that EvaClone tunes the tools to report smaller clones. For the cloned Stack Overflow snippets, the average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is 38\%, 50\%, 30\%, and 33\%  respectively. 
 %A quick manual check of Simian's clone report revealed that there were 11 problematic snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
-We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in {\small\texttt{hibernate}} due to clustering errors. $N_E$ generated renaming errors for 5 projects including {\small\texttt{vuze}}, {\small\texttt{hibernate}}, {\small\texttt{myfaces}}, {\small\texttt{netbeans}}, and \texttt{spring}. We have contacted the creator of NiCad regarding the issues. They identified these issues as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases.
 
-As displayed in \Cref{t_agreed_good_clone_pairs}, after we applied clone agreement filtering using Bellon's criteria, the number of \textit{good} clone pairs is 2,308 while the number of \textit{ok} clone pairs is 31,729. %The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 181 for Simian and NiCad respectively. The total number of clone candidates is 32,039 pairs. 
-We explain them in more detail below.
+
+\textbf{To answer RQ1, with the four configurations of Simian and NiCad, we found online code clones in 1,086 ($S_D$), 1,531 ($S_E$), 1,392 ($N_D$) and 12,886 ($N_E$) Stack Overflow code snippets. They are associated with 92, 111, 82 and 88 Qualitas projects respectively.} 
+
+\subsection{RQ2: Patterns of Online Code Cloning}
+
+We rely on a manual study to qualitatively investigate the patterns of online code cloning. To achieve this, we select a subset of the agreed clones using Bellon's criteria and a subset of the disagreed clones using clone filtering. We explain them in more detail below.
 
 \subsubsection{Agreed clone pairs}
 
+As displayed in \Cref{t_agreed_good_clone_pairs}, after we applied clone agreement filtering using Bellon's criteria, the number of \textit{good} clone pairs is 2,308 while the number of \textit{ok} clone pairs is 31,729. %The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 181 for Simian and NiCad respectively. The total number of clone candidates is 32,039 pairs. 
 Agreed clone pairs are clone pairs that pass Bellon's \textit{good} or \textit{ok} criteria, and therefore are selected for manual classification. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs~\cite{Bellon2007}. %The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. 
 Due to NiCad's failures, we do not have NiCad clones from five Qualitas projects in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
 
@@ -466,9 +471,7 @@ We filtered $N_D$ clones by raising the similarity threshold. We increase NiCad'
 
 %In our clone classification process, we used a script to automatically classify {\small\texttt{equals()}} clone pairs which  classifying 28,444 pairs out of 31,946 (more than half of the {\small\texttt{equals()}} pairs came from \textit{ok} and $S_D$ pairs). Finally, there are 3,502 pairs remaining which we manually classified them. The classification summary is shown in \Cref{tab:online_clone_classification_results}.
 
-\textbf{To answer RQ1, we found 51,926 clone candidates between Qualitas projects and Stack Overflow code snippets. They are 2,308 \textit{good}, 32,729 \textit{ok}, 17,801 $S_D$, and 88 $N_D$ pairs respectively.} %After classification, we found 668 non-trivial online code clones pairs between Stack Overflow and Qualitas or external sources.}
-
-\subsection{RQ2: Patterns of Online Code Cloning}
+%After classification, we found 668 non-trivial online code clones pairs between Stack Overflow and Qualitas or external sources.}
 
 \begin{table}
 	\centering
@@ -496,6 +499,8 @@ We filtered $N_D$ clones by raising the similarity threshold. We increase NiCad'
 		\end{tabular}  %
 	}
 \end{table}
+
+\subsubsection{The Seven Patterns of Online Code Cloning}
 
 We are interested in the analysis of the patterns of online code clones. We studied the 8 patterns of cloning from Kapser et al.~\cite{Kapser2006,Kapser2008} and performed a small study to evaluate its applicability to our study. Using the $S_D$ clone report, snippets are ranked according to 1) clone pair frequency, 2) popularity (i.e.~number of associated Qualitas projects), 3) clone size in SLOC, and 4) ratio of cloned code per snippet. We selected these four criteria so that we could cover the online clones from various aspects. We selected the top 10 from each ranking and obtained 34 unique Stack Overflow snippets. The snippets were associated with 697 clone pairs. Using Kapser's cloning patterns, the clone pairs were categorised into either Customisation or Templating.
 
