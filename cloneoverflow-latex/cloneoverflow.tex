@@ -201,8 +201,8 @@ them on two aspects: \textbf{outdated code and license conflicts.}
 \begin{figure*}
 	\begin{lstlisting}
           /* Code in Stack Overflow post ID 22315734 */                  /* WritableComparator.java (2016-09-26) */
-          public int compare (byte[] b1,int s1,int l1,                   public int compare(byte[] b1,int s1,int l1,
-                              byte[] b2,int s2,int l2) {                                    byte[] b2,int s2,int l2) {
+          public int compare(byte[] b1,int s1,int l1,                    public int compare(byte[] b1,int s1,int l1,
+                             byte[] b2,int s2,int l2) {                                     byte[] b2,int s2,int l2) {
             try {                                                          try {
               buffer.reset(b1,s1,l1); /* parse key1 */                       buffer.reset(b1,s1,l1); /* parse key1 */
               key1.readFields(buffer);                                       key1.readFields(buffer);
