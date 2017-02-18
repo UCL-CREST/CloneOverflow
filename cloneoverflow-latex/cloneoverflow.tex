@@ -324,32 +324,97 @@ We discuss the experimental setup below.
 
 \subsection{Datasets}
 
-We reply on two data sets in this study: Java code snippets on Stack Overflow and open source projects from the Qualitas corpus.
+We reply on two data sets in this study: Java code snippets in answers
+on Stack Overflow and open source projects from the Qualitas corpus.
 
-\subsubsection{Stack Overflow} we extracted Java code snippets from a snapshot of a Stack Overflow dump\footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump was in XML format containing information of \textbf{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We were interested in code snippets embedded in posts which were located between {\small\texttt{<code></code>}} tags. A Stack Overflow thread contains a post of a question and several posts of answers where every answer has voting score from its users. An answer can also be marked as \textbf{accepted answer} by the questioner if the solution fixes his/her problem. We collected Java code snippets using two criteria. First, we were only interested in code snippets with at least six lines. Snippets that are smaller than six lines are usually spurious clones~\cite{Bellon2007}. Second, we only focused on code snippets in accepted answers. We chose the snippets in accepted answers because they actually solved the problems in the questions. Moreover, they are always displayed just below the questions which makes them more attractive to be reused than other answers. Each snippet was extracted from the dump and saved to a file. 
+\subsubsection{Stack Overflow} 
+
+We extracted Java code snippets from a snapshot of a Stack Overflow
+dump\footnote{\url{https://archive.org/details/stackexchange}} in
+January 2016. The archived dump has a size of 9 gigabytes. The data
+dump is in XML format containing information of \textbf{Posts}
+(questions and answers) and supporting data such as user accounts and
+timestamps of the posts. We were interested in code snippets embedded
+in posts which were located between
+{\small\texttt{<code>}...\texttt{</code>}} tags. A Stack Overflow
+thread contains a question and several answers. An answer can also be
+marked as \textbf{accepted answer} by the questioner if the solution
+fixes his/her problem. We collected Java code snippets using two
+criteria. First, we only focused on code snippets in accepted
+answers. We chose the snippets in accepted answers because they
+actually solved the problems in the questions. Moreover, they are
+always displayed just below the questions which makes them more
+likely to be reused than other answers. Second, we were only
+interested in code snippets of at least six lines. Snippets smaller
+than six lines are usually spurious clones~\cite{Bellon2007}. Each
+snippet was extracted from the dump and saved to a file.
 %using its post ID as the file's name. If an accepted answer had more than one code snippet, we appended an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we added {\small\texttt{.java}} extension to the file's names so that clone detectors could recognise them. 
-We obtained 144,064 Java code snippets which contain 2,347,269 lines of Java source code excluding comments and blank lines\footnote{Measured by cloc: https://github.com/AlDanial/cloc}.
+We obtained 144,064 Java code snippets which contain 2,347,269 lines
+of Java source code excluding comments and blank
+lines\footnote{Measured by cloc:
+  \url{https://github.com/AlDanial/cloc}}.
 
-\textbf{Open source systems}: we selected the established corpus for an empirical software engineering study called \textbf{Qualitas}~\cite{QualitasCorpus} for this study. It is a curated Java corpus that has been used in several software engineering studies~\cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. The projects in the corpus represent various domains of software systems ranging from programming languages to visualisation~\cite{QualitasCorpus}. We selected the 20130901r release of Qualitas corpus containing 112 Java open source projects. This release contains projects with releases no later than 1st September 2013. We chose a snapshot late back in 2013 since we are interested in online code clones in the direction from open source projects to Stack Overflow. The 20130901r snapshot provides Java code that is at least 3 years old from the time of the experiment (January to December 2016). The time difference is sufficiently long for a number of code snippets to be copied onto Stack Overflow. Out of 112 Qualitas projects, there is one project, \textsf{jre}, that does not contain Java source code due to its licensing limitation~\cite{QualitasCorpus} so it is removed from the study. This resulted in a total of 111 projects analysed in the study. As shown in \Cref{tab:datasets}, the 111 Qualitas project have 160,937 Java files containing 19,086,883 lines of code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
+\subsubsection{Open source systems}
+
+We selected the established corpus for an empirical software
+engineering study called \textbf{Qualitas}~\cite{QualitasCorpus} for
+this study. It is a curated Java corpus that has been used in several
+software engineering
+studies~\cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. The
+projects in the corpus represent various domains of software systems
+ranging from programming languages to
+visualisation~\cite{QualitasCorpus}. We selected the 20130901r release
+of Qualitas corpus containing 112 Java open source projects. This
+release contains projects with releases no later than 1st September
+2013. We chose a snapshot late back in 2013 since we are interested in
+online code clones in the direction from open source projects to Stack
+Overflow. The 20130901r snapshot provides Java code that is more than
+2 years older than the Stack Overflow snapshot, which is sufficiently
+long for a number of code snippets to be copied onto Stack Overflow
+and also to observe if clones become outdated. Out of 112 Qualitas
+projects, there is one project, \textsf{jre}, that does not contain
+Java source code due to its licensing limitation~\cite{QualitasCorpus}
+and is removed from the study. This resulted in a total of 111
+projects analysed in the study. As shown in \Cref{tab:datasets}, the
+111 Qualitas project have 160,937 Java files containing 19,086,883
+lines of
+code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
 
 \begin{table}
-	\centering
-	\caption{Stack Overflow and Qualitas datasets}
-	\label{tab:datasets}
-	\small
-	\begin{tabular}{l|r|r}
-		\hline 
-		Dataset & No. of files & SLOC \\
-		\hline
-		Stack Overflow & 144,064 & 2,346,267 \\ 
-		\hline 
-		Qualitas &  160,937 & 19,086,883 \\ 
-		\hline 
-	\end{tabular} 
+  \centering
+  \caption{Stack Overflow and Qualitas datasets}
+  \label{tab:datasets}
+  \small
+  \begin{tabular}{lrr}
+    \hline 
+    Dataset & No. of files & SLOC \\
+    \hline
+    Stack Overflow & 144,064 & 2,346,267 \\ 
+    %\hline 
+    Qualitas &  160,937 & 19,086,883 \\ 
+    \hline 
+  \end{tabular} 
 \end{table}
 
 \subsection{Clone Detectors}
-There is a number of restrictions in terms of choosing clone detection tools for this study. The main restriction is due to nature of code snippets posted on Stack Overflow, most of them are not complete Java classes or methods. Hence, the tool must be flexible enough to process code snippets that are neither a complete block nor compilable. Moreover, since the amount of code that has to be processed is in a scale of millions line of code (as shown in \Cref{tab:datasets}), a clone detector must be scalable enough to successfully complete the execution and report clones in a reasonable amount of time. We have tried 5 state-of-the-art clone detectors including Simian~\cite{simian}, NiCad~\cite{Cordy,Roy2008}, CCFinder~\cite{Kamiya2002}, iClones~\cite{Gode2009}, and DECKARD~\cite{Jiang2007a} against Stack Overflow and Qualitas datasets. CCFinder, iClones, and DECKARD failed with execution errors after running for couple of hours. Thus, we removed them from the study. Simian and NiCad completed the detection with success. We found that both of them are also flexible enough to handle code with incomplete methods or classes. %So, we decided to use both of them.
+
+There are a number of restrictions in terms of choosing clone
+detection tools for this study. The main restriction is due to nature
+of code snippets posted on Stack Overflow, as most of them are
+incomplete Java classes or methods. Hence, a detector must be flexible
+enough to process code snippets that are not compilable or not
+complete blocks. Moreover, since the amount of code that has to be
+processed is in a scale of millions line of code (as shown in
+\Cref{tab:datasets}), a clone detector must be scalable enough to
+report clones in a reasonable amount of time. We have tried 5
+state-of-the-art clone detectors including Simian~\cite{simian},
+NiCad~\cite{Cordy,Roy2008}, CCFinder~\cite{Kamiya2002},
+iClones~\cite{Gode2009}, and DECKARD~\cite{Jiang2007a} against the
+Stack Overflow and Qualitas datasets. CCFinder, iClones, and DECKARD
+failed with execution errors after running for couple of hours. Thus,
+we removed them from the study. Simian and NiCad are flexible enough
+to handle code with incomplete methods or classes and successfully
+completed the detection.
 
 \textbf{Simian} is a text-based clone detector that locates clones at line-level granularity and has been used extensively in several clone studies~\cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015, Krinke2010}. It is a command-line tool which enables us to automate the detection. Furthermore, it offers normalisation of variable names and literals (strings, and numbers) which enable Simian to detect literal clones (type-1) and parameterised clones (type-2). \textbf{NiCad} is also a text-based clone detector which detects clones at either method- or block-level granularity. It can detect clones of type-1, 2 up to type-3 (clones with added/removed/relocated/changed statements) and is also used in several empirical clone studies~\cite{Roy2008, Ragkhitwetsagul2016, Svajlenko2014, Wang2013, Mondal2011, Sajnani2016}. It utilises TXL~\cite{Cordy2006} for parsing and pretty-printing source code. It also provides code normalisation by variable renaming and abstraction. We use a variant of NiCad called \textit{nicadcross}. It offers the same functionalities as the original NiCad but is specialised for detecting code clones between two systems. NiCad is also a command-line tool which makes it suitable for automation.
 
