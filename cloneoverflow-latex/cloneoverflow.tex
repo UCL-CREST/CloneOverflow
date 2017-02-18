@@ -459,6 +459,41 @@ Overflow or within Qualitas.
 % NiCad provides an option to detect clones
 % from two locations so no filtering was needed.
 
+\subsection{Clone Detection Parameter Tuning}
+
+We were aware of effects of configurations to clone detection results
+and the importance of searching for optimised configurations in
+empirical clone
+studies~\cite{Svajlenko2014,Wang2014,cr2016ssbse,Ragkhitwetsagul2016}. However,
+considering the massive size of the two datasets and the search space
+of at least 15 Simian and 5 NiCad parameters, we are unable to search
+for the best configurations of the tools. Thus, we decided to
+configure Simian and NiCad using two established configurations:
+(1)~the tools' default configurations chosen by the tools' creators
+(denoted as \textit{D}), and (2)~the discovered configurations for
+Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
+of optimising clone detectors' configurations based on clone agreement
+(denoted by \textit{E}). The details of the two configurations are
+described in \Cref{t:param_tuning}.
+
+\begin{table}
+	\centering
+	\caption{Configurations of Simian and NiCad}
+	\label{t:param_tuning}
+%	\resizebox{\columnwidth}{!}{%
+	\small
+	\begin{tabular}{p{0.7cm}|p{2.4cm}|p{3.5cm}}
+		\hline 
+		Tool & Default (\textit{D}) & EvaClone (\textit{E}) \\
+		\hline
+		Simian\newline (\textit{S}) &  threshold=6,\newline ignoreStringCase, \newline ignoreCharacterCase, \newline ignoreModifiers & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, \newline ignoreStrings, \newline ignoreCharacters,\newline ignoreSubtypeNames, \newline balanceSquareBrackets \\ 
+		\hline 
+		NiCad\newline (\textit{N}) & Blocks, UPI=0.30,\newline MinLine=10,\newline MaxLine=1000 & Blocks, UPI=0.20, \newline MinLine=5, MaxLine=604, \newline blind renaming,\newline literal abstraction \\
+		\hline
+	\end{tabular} %
+%}
+\end{table}
+
 \subsection{Filtering Clone Candidates}
 
 The number of clones detected in large-scale datasets can be huge. In
@@ -528,45 +563,13 @@ clone pairs without agreement. We call the \textit{good} and
 reported by Simian or NiCad without agreement \textbf{disagreed} clone
 pairs.
 
-\subsection{Clone Detection Parameter Tuning}
-
-We were aware of effects of configurations to clone detection results
-and the importance of searching for optimised configurations in
-empirical clone
-studies~\cite{Svajlenko2014,Wang2014,cr2016ssbse,Ragkhitwetsagul2016}. However,
-considering the massive size of the two datasets and the search space
-of at least 15 Simian and 5 NiCad parameters, we are unable to search
-for the best configurations of the tools. Thus, we decided to
-configure Simian and NiCad using two established configurations:
-(1)~the tools' default configurations chosen by the tools' creators
-(denoted as \textit{D}), and (2)~the discovered configurations for
-Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
-of optimising clone detectors' configurations based on clone agreement
-(denoted by \textit{E}). The details of the two configurations are
-described in \Cref{t:param_tuning}. Having two clone detectors, Simian
+Having two clone detectors, Simian
 (denoted as \textit{S}) and NiCad (denoted as \textit{N}), with two
 chosen configurations (\textit{D} and \textit{E}) each, we used
 Bellon's good and ok-match for agreement in four possible pair-wise
 combinations: $S_{D}$--$N_{D}$, $S_{D}$--$N_{E}$, $S_{E}$--$N_{D}$,
 and $S_{E}$--$N_{E}$.
 
-\begin{table}
-	\centering
-	\caption{Configurations of Simian and NiCad}
-	\label{t:param_tuning}
-%	\resizebox{\columnwidth}{!}{%
-	\small
-	\begin{tabular}{p{0.7cm}|p{2.4cm}|p{3.5cm}}
-		\hline 
-		Tool & Default (\textit{D}) & EvaClone (\textit{E}) \\
-		\hline
-		Simian\newline (\textit{S}) &  threshold=6,\newline ignoreStringCase, \newline ignoreCharacterCase, \newline ignoreModifiers & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, \newline ignoreStrings, \newline ignoreCharacters,\newline ignoreSubtypeNames, \newline balanceSquareBrackets \\ 
-		\hline 
-		NiCad\newline (\textit{N}) & Blocks, UPI=0.30,\newline MinLine=10,\newline MaxLine=1000 & Blocks, UPI=0.20, \newline MinLine=5, MaxLine=604, \newline blind renaming,\newline literal abstraction \\
-		\hline
-	\end{tabular} %
-%}
-\end{table}
 
 %\subsection{Manual Investigation}
 %We did not have an oracle of clones
