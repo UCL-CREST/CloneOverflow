@@ -313,10 +313,10 @@ can cause software developers to violate licenses.
 
 %\subsection{Experimental Setup}
 \vspace{1ex}
-To answer these four research questions, we perform an experiment to
+To answer these four research questions, we perform an empirical study to
 locate and study the online code clones between Stack Overflow and open source
-projects. The experimental framework is depicted in \Cref{fig:exp_framework}. 
-We discuss the experimental setup below.
+projects. The experimental framework is depicted in \Cref{fig:exp_framework} and
+we discuss our experimental setup below.
 
 %\subsection{Experimental Setup}
 
@@ -324,8 +324,9 @@ We discuss the experimental setup below.
 
 \subsection{Datasets}
 
-We reply on two data sets in this study: Java code snippets in answers
-on Stack Overflow and open source projects from the Qualitas corpus.
+We rely on two data sets in this study: Java code snippets in answers
+on Stack Overflow and open source projects from the Qualitas corpus
+\cite{QualitasCorpus}.
 
 \subsubsection{Stack Overflow} 
 
@@ -349,7 +350,7 @@ interested in code snippets of at least six lines. Snippets smaller
 than six lines are usually spurious clones~\cite{Bellon2007}. Each
 snippet was extracted from the dump and saved to a file.
 %using its post ID as the file's name. If an accepted answer had more than one code snippet, we appended an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we added {\small\texttt{.java}} extension to the file's names so that clone detectors could recognise them. 
-We obtained 144,064 Java code snippets which contain 2,347,269 lines
+We obtained 144,064 Java code snippets which contain 2,347,267 lines
 of Java source code excluding comments and blank
 lines\footnote{Measured by cloc:
   \url{https://github.com/AlDanial/cloc}}.
