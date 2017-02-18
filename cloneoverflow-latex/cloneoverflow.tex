@@ -107,7 +107,7 @@
 
 \begin{abstract}
 	We studied online code clones on the popular programming Q\&A website, Stack Overflow, and their issues on outdated code and software licensing violation. Online code clones are code fragments that are copied from software projects or online sources to Stack Overflow as examples. They can be discovered by using code clone detectors, yet they are inherently different from normal code clones in software projects in several aspects. Due to an absence of checking mechanism after the code has been copied to Stack Overflow, the online code clones may suffer from being outdated and violating the original software license. %Moreover, we also found that majority of online code clones do not contain the license of their originals. 
-	We designed the experiment incorporating several state-of-the-art tools and techniques to automatically extract, prioritise, and filter the clones. As a result, we discovered 51,926 non-trivial online clone candidates between 144,075 Java code snippets on Stack Overflow and 111 Java open source projects in the curated Qualitas corpus. The manual study of the 3,632 online clone pairs revealed that 64 clones on Stack Overflow are outdated. Furthermore, we found 357 Stack Overflow code snippets that do not contain software license of their originals or have conflicting licenses. These snippets are questionable for reuse. Our study is among the first to address the problem of outdated and license-violating code snippets on Stack Overflow.
+	We designed the experiment incorporating several state-of-the-art tools and techniques to automatically extract, prioritise, and filter the clones. As a result, we discovered 51,926 non-trivial online clone candidates between 144,064 Java code snippets on Stack Overflow and 111 Java open source projects in the curated Qualitas corpus. The manual study of the 3,632 online clone pairs revealed that 64 clones on Stack Overflow are outdated. Furthermore, we found 357 Stack Overflow code snippets that do not contain software license of their originals or have conflicting licenses. These snippets are questionable for reuse. Our study is among the first to address the problem of outdated and license-violating code snippets on Stack Overflow.
 \end{abstract}
 
 \begin{CCSXML}
@@ -201,7 +201,7 @@ We performed an empirical study of online code clones between Stack Overflow and
 \end{figure}
 
 \subsection{Experimental Framework}
-To answer the four research questions, we followed the experimental framework depicted in \Cref{fig:exp_framework}. We processed two datasets, 144,075 code snippets from Java accept answers on Stack Overflow and 111 open source projects from Qualitas corpus. Java code snippets were extracted from Stack Overflow posts. We prepared the Java code in both datasets by removing comments and pretty-printing to increase the accuracy of clone detection. Then, we deployed two clone detection tools, Simian~\cite{simian} and NiCad~\cite{Roy2008,Cordy}, to locate clones between the two datasets. Due to the scalability of Simian and NiCad, we partitioned the input and run the tools multiple times. Each run was composed of the whole Stack Overflow data and a single Qualitas project. We repeated the process until we covered 111 projects. 
+To answer the four research questions, we followed the experimental framework depicted in \Cref{fig:exp_framework}. We processed two datasets, 144,064 code snippets from Java accept answers on Stack Overflow and 111 open source projects from Qualitas corpus. Java code snippets were extracted from Stack Overflow posts. We prepared the Java code in both datasets by removing comments and pretty-printing to increase the accuracy of clone detection. Then, we deployed two clone detection tools, Simian~\cite{simian} and NiCad~\cite{Roy2008,Cordy}, to locate clones between the two datasets. Due to the scalability of Simian and NiCad, we partitioned the input and run the tools multiple times. Each run was composed of the whole Stack Overflow data and a single Qualitas project. We repeated the process until we covered 111 projects. 
 
 %enabled us to reuse the same scripts to analyse clone reports from both Simian and NiCad. Moreover, using GCF, other additional clone detectors could be adopted
 We then converted the clone reports to the General Clone Format (GCF)~\cite{Wang2013} and combined the 111 reports into a single GCF file. GCF provides a common format for clones which enables other clone detectors to be adopted,
@@ -218,7 +218,7 @@ We followed the experimental framework by processing the source code from the tw
 
 \textbf{Stack Overflow}: we extracted Java code snippets from a snapshot of a Stack Overflow dump\footnote{https://archive.org/details/stackexchange} in January 2016. The archived dump has a size of 9 gigabytes. The data dump was in XML format containing information of \textbf{Posts} (questions and answers) and supporting data such as user accounts and timestamps of the posts. We were interested in code snippets embedded in posts which were located between {\small\texttt{<code></code>}} tags. A Stack Overflow thread contains a post of a question and several posts of answers where every answer has voting score from its users. An answer can also be marked as \textbf{accepted answer} by the questioner if the solution fixes his/her problem. We collected Java code snippets using two criteria. First, we were only interested in code snippets with at least six lines. Snippets that are smaller than six lines are usually spurious clones~\cite{Bellon2007}. Second, we only focused on code snippets in accepted answers. We chose the snippets in accepted answers because they actually solved the problems in the questions. Moreover, they are always displayed just below the questions which makes them more attractive to be reused than other answers. Each snippet was extracted from the dump and saved to a file. 
 %using its post ID as the file's name. If an accepted answer had more than one code snippet, we appended an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we added {\small\texttt{.java}} extension to the file's names so that clone detectors could recognise them. 
-We obtained 144,075 Java code snippets which contain 2,347,269 lines of Java source code excluding comments and blank lines\footnote{Measured by cloc: https://github.com/AlDanial/cloc}.
+We obtained 144,064 Java code snippets which contain 2,347,269 lines of Java source code excluding comments and blank lines\footnote{Measured by cloc: https://github.com/AlDanial/cloc}.
 
 \textbf{Open source systems}: we selected the established corpus for an empirical software engineering study called \textbf{Qualitas}~\cite{QualitasCorpus} for this study. It is a curated Java corpus that has been used in several software engineering studies~\cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. The projects in the corpus represent various domains of software systems ranging from programming languages to visualisation~\cite{QualitasCorpus}. We selected the 20130901r release of Qualitas corpus containing 112 Java open source projects. This release contains projects with releases no later than 1st September 2013. We chose a snapshot late back in 2013 since we are interested in online code clones in the direction from open source projects to Stack Overflow. The 20130901r snapshot provides Java code that is at least 3 years old from the time of the experiment (January to December 2016). The time difference is sufficiently long for a number of code snippets to be copied onto Stack Overflow. Out of 112 Qualitas projects, there is one project, \texttt{jre}, that does not contain Java source code due to its licensing limitation~\cite{QualitasCorpus} so it is removed from the study. This resulted in a total of 111 projects analysed in the study. As shown in \Cref{tab:datasets}, the 111 Qualitas project have 160,937 Java files containing 19,086,883 lines of code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
 
@@ -231,7 +231,7 @@ We obtained 144,075 Java code snippets which contain 2,347,269 lines of Java sou
 		\hline 
 		Dataset & No. of files & SLOC \\
 		\hline
-		Stack Overflow & 144,075 & 2,347,269 \\ 
+		Stack Overflow & 144,064 & 2,346,267 \\ 
 		\hline 
 		Qualitas &  160,937 & 19,086,883 \\ 
 		\hline 
@@ -316,24 +316,57 @@ We followed the experimental framework and detected clones between Stack Overflo
 	\caption{Statistics of online clones reported by Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations}
 	\label{tab:raw_stats}
 	\small
-%	\resizebox{\columnwidth}{!}{%
+	\resizebox{\columnwidth}{!}{%
 		\begin{tabular}{l|r|r|r|r}
 			\hline
 			Stats & \multicolumn{1}{c|}{$S_D$} & \multicolumn{1}{c|}{$S_E$} & \multicolumn{1}{c|}{$N_D$} & \multicolumn{1}{c}{$N_E$} \\
 			\hline
-			Snippets & 1,086 & 1,531 & 1,392 & 12,886 \\
+			Stack Overflow Snippets & 1,086 & 1,531 & 1,392 & 12,886 \\
+			No. of Qualitas projects & 92 & 111 & 82 & 88 \\
 			Total C$_{\textrm{\textit{pairs}}}$ & 67,570 & 63,635,844 & 632,855 & 251,449,849 \\
 %			Avg.~C$_{\textrm{\textit{pairs}}}$ & 62 & 41,565 & 455 & 19,356 \\
 			Avg.~C$_{\textrm{\textit{size}}}$ & 9.11 & 5.95 & 10.85 & 6.28 \\
 			Avg.~C$_{\textrm{\textit{\%}}}$ & 38\% & 50\% & 30\% & 33\% \\
 			\hline
 		\end{tabular} %
-%	}
+	}
 \end{table}
 
-The clone statistics obtained from running Simian and NiCad are presented in \Cref{tab:raw_stats}. Simian with the default configuration ($S_D$) reports clones in 1,086 snippets, approximately 1\% of the 144,075 Stack Overflow snippets. Simian with the EvaClone configuration ($S_E$) reports 1,531 snippets containing clones. NiCad with the default configuration ($N_D$) reports clones in 1,392 Stack Overflow code snippets. NiCad with the EvaClone configuration ($N_E$) reports the largest number of 12,886 cloned snippets mainly due to its relaxed configurations. In terms of the number of clone pairs, $S_D$ reports 67,570 clone pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report a larger clone pair amount of 63,635,844 and 251,449,849 pairs respectively. This is expected since EvaClone configurations prefer recall~\cite{Wang2013}. 
+\begin{figure*}
+		\centering
+		\begin{minipage}{.4\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{hist_sd}
+			\caption*{$S_D$ clones}
+		\end{minipage}%
+		\hspace{5ex}
+		\begin{minipage}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{hist_nd}
+			\caption*{$N_D$ clones}
+		\end{minipage}
+		\\
+		\begin{minipage}{.4\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{hist_se}
+			\caption*{$S_E$ clones}
+		\end{minipage}%
+		\hspace{5ex}
+		\begin{minipage}{0.4\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{hist_ne}
+			\caption*{$N_E$ clones}
+		\end{minipage}
+	\caption{Distribution of online clones between Stack Overflow snippets and Qualitas projects}
+	\label{fig:histogram}
+\end{figure*}
+
+
+The clone statistics obtained from running Simian and NiCad are presented in \Cref{tab:raw_stats}. Simian with the default configuration ($S_D$) reports clones in 1,086 snippets, approximately 1\% of the 144,064 Stack Overflow snippets. Simian with the EvaClone configuration ($S_E$) reports 1,531 snippets containing clones. NiCad with the default configuration ($N_D$) reports clones in 1,392 Stack Overflow code snippets. NiCad with the EvaClone configuration ($N_E$) reports the largest number of 12,886 cloned snippets mainly due to its relaxed configurations. In terms of the number of clone pairs, $S_D$ reports 67,570 clone pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report a larger clone pair amount of 63,635,844 and 251,449,849 pairs respectively. This is expected since EvaClone configurations prefer recall~\cite{Wang2013}. 
 %Using $S_D$, we found 62 clones in average originating from a single Stack Overflow snippet. 62 and 455 respectively. On the other hand, $S_E$ and $N_E$ have a much larger number of 63 and 251 million clone pairs per snippet on average. 
-The average clone size reported by $S_D$ is 9.11 lines which is bigger than $S_E$ (5.95 lines). Similarly, $N_D$ has an average clone size of 10.85 lines which is bigger than 6.28 lines reported by $N_E$. We can see from the statistics that EvaClone tunes the tools to report smaller clones. For the cloned Stack Overflow snippets, the average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is 38\%, 50\%, 30\%, and 33\%  respectively. A quick manual check of Simian's clone report revealed that there were 11 problematic snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in {\small\texttt{hibernate}} due to clustering errors. $N_E$ generated renaming errors for 5 projects including {\small\texttt{vuze}}, {\small\texttt{hibernate}}, {\small\texttt{myfaces}}, {\small\texttt{netbeans}}, and \texttt{spring}. We have contacted the creator of NiCad regarding the issues. They identified these issues as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases.
+The average clone size reported by $S_D$ is 9.11 lines which is bigger than $S_E$ (5.95 lines). Similarly, $N_D$ has an average clone size of 10.85 lines which is bigger than 6.28 lines reported by $N_E$. We can see from the statistics that EvaClone tunes the tools to report smaller clones. For the cloned Stack Overflow snippets, the average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is 38\%, 50\%, 30\%, and 33\%  respectively. 
+%A quick manual check of Simian's clone report revealed that there were 11 problematic snippets. These 11 snippets triggered Simian to generate large clone clusters containing a huge number of false clones from array initialisation. Hence, their clones were removed from further analyses. 
+We encountered NiCad failures with a few Qualitas projects.~$N_D$ could not detect clones in {\small\texttt{hibernate}} due to clustering errors. $N_E$ generated renaming errors for 5 projects including {\small\texttt{vuze}}, {\small\texttt{hibernate}}, {\small\texttt{myfaces}}, {\small\texttt{netbeans}}, and \texttt{spring}. We have contacted the creator of NiCad regarding the issues. They identified these issues as problems of long file paths and TXL grammars which will be fixed in the next NiCad releases.
 
 As displayed in \Cref{t_agreed_good_clone_pairs}, after we applied clone agreement filtering using Bellon's criteria, the number of \textit{good} clone pairs is 2,308 while the number of \textit{ok} clone pairs is 31,729. %The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 181 for Simian and NiCad respectively. The total number of clone candidates is 32,039 pairs. 
 We explain them in more detail below.
@@ -841,7 +874,7 @@ There are a large number of code snippets reused from the site~\cite{An2017} and
 Nonetheless, it may not be representative to all the programming Q\&A websites. 
 
 Regarding the code snippets, we downloaded a full data dump and extracted Java accepted answers. Instead of analysing every post, we only focused on posts marked as accepted answers 
-since they are the most likely to being reused. This yields a total of 144,075 snippets.
+since they are the most likely to being reused. This yields a total of 144,064 snippets.
 Our findings are limited to these restrictions. They may not be generalised to all programming languages and all answers on Stack Overflow. On the other hand, we chose the curated Qualitas corpus for Java open source projects containing 111 projects \cite{QualitasCorpus}.
 The projects span over several areas of software and has been used in several empirical studies~\cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. Although it is a curated and well-established corpus, 
 it may not fully represent all Java open source software available. 
