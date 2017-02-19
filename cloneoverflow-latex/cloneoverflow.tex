@@ -77,6 +77,7 @@
 
 \acmPrice{15.00}
 
+%\overfullrule1ex
 
 \begin{document}
 	\title{Are We Reusing Outdated and Licensed Code from Stack Overflow?}
@@ -106,8 +107,33 @@
 }
 
 \begin{abstract}
-	We studied online code clones on the popular programming Q\&A website, Stack Overflow, and their issues on outdated code and software licensing violation. Online code clones are code fragments that are copied from software projects or online sources to Stack Overflow as examples. They can be discovered by using code clone detectors, yet they are inherently different from normal code clones in software projects in several aspects. Due to an absence of checking mechanism after the code has been copied to Stack Overflow, the online code clones may suffer from being outdated and violating the original software license. %Moreover, we also found that majority of online code clones do not contain the license of their originals. 
-	We designed the experiment incorporating several state-of-the-art tools and techniques to automatically extract, prioritise, and filter the clones. As a result, we discovered 51,926 non-trivial online clone candidates between 144,064 Java code snippets on Stack Overflow and 111 Java open source projects in the curated Qualitas corpus. The manual study of the 3,632 online clone pairs revealed that 64 clones on Stack Overflow are outdated. Furthermore, we found 357 Stack Overflow code snippets that do not contain software license of their originals or have conflicting licenses. These snippets are questionable for reuse. Our study is among the first to address the problem of outdated and license-violating code snippets on Stack Overflow.
+  % We studied online code clones on the popular programming Q\&A
+  % website, Stack Overflow, and their issues on outdated code and
+  % software licensing violations. 
+  Online code clones are code fragments that are copied from software
+  projects or online sources to Stack Overflow as examples in
+  questions and answers.
+  % They can be discovered by using code clone
+  % detectors, yet they are inherently different from normal code clones
+  % in software projects in several aspects. 
+  Due to an absence of a checking mechanism after the code has been
+  copied to Stack Overflow, online code clones may suffer from
+  becoming outdated or violating the original software license.
+  % Moreover, we also found that majority of online code clones do not
+  % contain the license of their originals.
+  We present a study incorporating several state-of-the-art tools and
+  techniques to automatically extract, prioritise, and filter
+  315,786,118 detected online clone pairs between 144,064 Java code
+  snippets on Stack Overflow and 111 Java open source projects in the
+  curated Qualitas corpus. We discovered and investigated 51,926
+  non-trivial online clone candidates. Our study revealed that 64 out
+  of 112 clones with strong evidence of copying from a Qualitas
+  project to Stack Overflow are outdated. Furthermore, we found 357
+  code snippets on Stack Overflow that violate the license of their
+  original software.
+  % These snippets are questionable for reuse.
+  Our study is among the first to address the problem of
+  outdated and license-violating code snippets on Stack Overflow.
 \end{abstract}
 
 \begin{CCSXML}
@@ -214,7 +240,7 @@ them on two aspects: \textbf{outdated code and license conflicts.}
             return compare(key1,key2); /* compare them */                  }
           }                                                                return compare(key1, key2); /* compare them */
 	                                                                       }
-	\end{lstlisting}
+	\end{lstlisting}\vspace{-2ex}
 	\caption{A motivating example of the two code fragments of
           {\small\texttt{WritableComparator.java}}. The one from the
           Stack Overflow post 22315734 (left) is outdated when compared to
@@ -249,8 +275,8 @@ While research has mostly focused on reusing code snippets \emph{from}
 Stack Overflow (e.g.~\cite{Keivanloo2014,An2017,Yang2016}), less work
 has been conducted on finding the origins of code examples copied
 \emph{to} Stack Overflow and problems of reusing them such as outdated
-code and software licensing violations. This paper makes the following
-primary contributions:
+code and software licensing violations. This paper fills this gap and
+makes the following primary contributions:
 
 \vspace{0.5ex}%
 \noindent\textbf{1.~A manual study of online code clones:} 
@@ -567,7 +593,7 @@ Given that a clone pair \textit{CP} is formed by two clone fragments
 \end{displaymath}
       
 \noindent%
-The \textit{good-value}  and the \textit{ok-value}  of two clone pairs are then defined as
+The \textit{good-value}  and the \textit{ok-value}  of two clone pairs are defined as
 %\squeezeup
 \begin{align*}
 	good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
@@ -698,9 +724,6 @@ be false clones~\cite{Saini2016}.
 % Since the 10--line threshold is already the default configuration for
 % NiCad, this filter is applied to Simian only (Simian's default
 % configuration has a minimum clone size of 6 lines).
-%The \emph{irrelevant methods filter} removes clones of
-%\verb|hashCode()| methods and getters/setters which are almost always
-%false clones. 
 The second filter, \emph{similarity threshold}, applies
 only to NiCad clone pairs since Simian does not provide a similarity
 configuration. The last filter, \emph{good/ok pairs}, removes the
@@ -808,7 +831,7 @@ clones from the clone detectors such as similar
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{classification_process}
+	\includegraphics[width=0.8\linewidth]{classification_process}
 	\caption{Online code clone classification process}
 	\label{fig:classification_process}
 \end{figure}
@@ -958,34 +981,46 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
 % clones from array initialisation. Hence, their clones were removed
 % from further analyses.
 
+% \FIXME{Do you think we should report at this level or in more details 
+% 	into $S_D$--$N_D$, $S_D$--$N_E$, $S_E$--$N_D$, $S_E$--$N_E$??}
+% I don't think there is a need.
 
-\textbf{To answer RQ1, with the four configurations of Simian and
-  NiCad, we found online code clones in 1,086 ($S_D$), 1,531 ($S_E$),
-  1,392 ($N_D$) and 12,886 ($N_E$) Stack Overflow code snippets. They
-  are associated with 92, 111, 82 and 88 Qualitas projects
-  respectively, i.e.~most Qualitas projects share similar code with
-  Stack Overflow code snippets.}
-
-\FIXME{Do you think we should report at this level or in more details 
-	into $S_D$--$N_D$, $S_D$--$N_E$, $S_E$--$N_D$, $S_E$--$N_E$??}
+\begin{table}
+\caption{FIXME Maybe merge with Table 7?}
+\label{tab:snippets}
+\centering
+\begin{tabular}{l|rrr}
+  & Pairs & Snippets & Projects \\
+\hline
+\textit{good} & 2,308 & 92 & 66 \\
+\textit{ok'} & 11,749 & 136 & 39 \\
+$S_D'$ & 17,081 & 471 & 76 \\
+$N_D'$ & 88 & 77 & 29 \\
+\hline
+Total & 31,946 & FIXME & FIXME
+\end{tabular}
+\end{table}
 
 However, using Bellon's criteria for matching clone pairs, only
 0.1\textperthousand~of all pairs are agreed by two tool/configuration
-combinations. For the 2,308 \textit{good} pairs, there are 92 Stack Overflow snippets
-which are associated with 66 Qualitas projects. The 11,749 \textit{ok} 
-pairs are clones between 136 Stack Overflow snippets and 39 Qualitas 
-projects. 
+combinations. As shown in FIXME, for the 2,308 \textit{good} pairs,
+there are 92 Stack Overflow snippets which are associated with 66
+Qualitas projects. The 11,749 \textit{ok'} pairs are clones between
+136 Stack Overflow snippets and 39 Qualitas projects.  Moreover, for
+the disagreed pairs, we found 17,081 clone pairs reported by $S_D'$
+are clones between 471 Stack Overflow snippets and 76 Qualitas
+projects and 88 $N_D'$ clone pairs are clones between 77 Stack
+Overflow snippets and 29 Qualitas projects. In total we found that the
+manually investigated 31,946 clones pairs are clones between FIXME
+Stack Overflow snippets and FIXME Qualitas projects.
 
-Moreover, for the disagreed pairs, we found 17,081 clone pairs reported by $S_D$
-are clones between 471 Stack Overflow snippets and 76 Qualitas projects and 
-88 $N_D$ clone pairs are clones between 77 Stack Overflow snippets and 29
-Qualitas projects.
+\textbf{To answer RQ1, with the four configurations of Simian and
+  NiCad, we found most Qualitas projects to share similar code with
+  Stack Overflow code snippets. When onlly considering the manually
+  investigated snippets, FIXME}
 
+\FIXME{Should we have removed the AC clones right at the beginning?}
 
-% FIXME
-% However, as it is well known that the precision of clone detectors is
-% not very good, it is clear that the above numbers may not be
-% representative for real code clones and we ...
 
 \subsection{RQ2: Patterns of Online Code Cloning}
 
@@ -1014,9 +1049,6 @@ Qualitas projects.
 	%}
 \end{table}
 
-%\FIXME{Why equals here but not hashcode? Why isn't it the same
-%  irrelevant methods filter?}
-
 We rely on a manual study to qualitatively investigate the patterns of
 online code cloning. To achieve this, we classified all 31,946
 selected clone pairs according to the process shown in
@@ -1025,7 +1057,7 @@ classification, we created and used an automatic classifier
 to classify {\small\texttt{equals()}}, 
 {\small\texttt{hashCode()}} and getters/setters. As shown in
 \Cref{tab:online_clone_classification_results}, the automatic
-classifier helped us classified and captured 28,314 clone pairs into
+classifier helped us to classify 28,314 clone pairs into
 pattern \textbf{BP}.
 
 There were 3,632 pairs left for the manual check. The first author,
@@ -1034,7 +1066,7 @@ the role of the main investigator performing a manual classification
 of the 3,632 clone pairs. By consulting the cloning patterns, the main
 investigator went through each clone pair candidate, looked at the
 clones, and chose the most appropriate cloning pattern for the pair.
-
+%
 To mitigate the human errors of the manual classification, the second
 author took the role of the validating investigator, performing a
 validation on 10\% (363 pairs) of the clone pairs judged by the main
@@ -1042,10 +1074,8 @@ investigator. After the validation, the classifications from the two
 investigators were compared and 64 conflicts were found. The two
 investigators discussed and resolved 61 of them while the 3 conflicts
 were resolved by involving the third author. The classification
-results are shown in \Cref{tab:classification_good_o}. 
-
-To answer RQ2, the classification results are explained and discussed
-below.
+results are shown in \Cref{tab:classification_good_o} and explained in
+the following.
 
 \textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 112
 online clone pairs with evidences of cloning from Qualitas projects to
@@ -1191,20 +1221,18 @@ inconsistent lines between the two versions, we used
 {\small\texttt{git blame}} to see who modified those lines of code and
 the timestamps.
 
-%\FIXME{You are using the complete number of pairs in a project instead
-%  of the outdated pairs!!!}
- %Some of the clone pairs overlap with each other so we group them in the same row. 
 We discovered 64 outdated online clone pairs out of 112 pairs. As
-shown in \Cref{fig:outdated}, \textsf{spring}
-have the highest number of 17 outdated pairs, followed by 7 from
-\textsf{hibernate} and \textsf{hadoop}, and 6 from \textsf{junit}. Besides the example of
-outdated code in the \textsf{hadoop}'s
-{\small{\texttt{WritableComparator.java}}} shown in
+shown in \Cref{fig:outdated}, \textsf{spring} has the highest number
+of 17 outdated pairs, followed by 7 from \textsf{hibernate} and
+\textsf{hadoop}, and 6 from \textsf{junit}. Besides the example of
+outdated code in % \textsf{hadoop}'s
+{\small{\texttt{WritableComparator.java}}} 
+from \textsf{hadoop} shown in
 \Cref{fig:before-after}, we also found a few outdated code elements
 which contained a large amount of modifications. For example, the code
 snippet in Stack Overflow post 23520731 is a copy of
 {\small{\texttt{SchemaUpdate.java}}} in \textsf{hibernate}. The code
-has been heavily modified on 5 February 2016. 
+has been heavily modified on 5 February 2016.
 
 In the 64 outdated pairs, we found 5 ``dead'' snippets. These snippets
 cannot be located in the latest version of the projects. For example,
@@ -1343,8 +1371,8 @@ used by naive developers who copy and reuse the outdated code.
 	\caption{Examples of the outdated QS online clones}
 	\label{tab:stale_code_details}
 	%\small
-	\resizebox{2.1\columnwidth}{!}{%
-		\begin{tabular}{l|l|l|l|p{5.1cm}|r|r|l|c|l}
+	%\resizebox{\textwidth}{!}{%
+		\begin{tabular}{cc|lcp{5.15cm}@{}rrc|c@{}c}
 		 \hline
 		 \multicolumn{2}{c|}{Stack Overflow} & \multicolumn{6}{c|}{Qualitas} & \multicolumn{2}{c}{Changes} \\ 
 		 \hline
@@ -1357,9 +1385,12 @@ used by naive developers who copy and reuse the outdated code.
 		 8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & \textit{D} & 20-May-11 \\
 		 3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotationHandlerMapping.java & 78 & 92 & 20-Oct-10 & \textit{D} & 20-Jan-12 \\
 		 \hline 
-		 \multicolumn{10}{l}{{\footnotesize * \textit{S}=modified/added/deleted statements, \textit{D}=file deletion,  \textit{R}=method rewriting}}
+		 \multicolumn{10}{l}{{\footnotesize * \textit{S}:
+                  modified/added/deleted statements, \textit{D}: file
+                  has been deleted,  \textit{R}: method has been
+                  rewritten completely}}
 		\end{tabular} %
-	}
+	%}
 \end{table*}
 
 \subsection{RQ4: Software Licensing Violation}
@@ -1420,12 +1451,11 @@ snippets. %there are studies of automatic technique to identify software licensi
 
 \begin{table}[]
 	\centering
-	\caption{License mapping of the online clones (file-level) in
-          QS, UD, and EX}
+	\caption{License mapping of  online clones (file-level)}
 	\label{tab:license_abc}
 	\small
 	%\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|p{2cm}l|rrr}
+	\begin{tabular}{l|p{1.95cm}l|rrr}
 		\hline
 		Type & Stack Overflow\newline (CC BY-NC-SA) & Qualitas & QS & EX & UD \\
 		\hline
