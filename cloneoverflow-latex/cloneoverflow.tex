@@ -570,6 +570,106 @@ Bellon's good and ok-match for agreement in four possible pair-wise
 combinations: $S_{D}$--$N_{D}$, $S_{D}$--$N_{E}$, $S_{E}$--$N_{D}$,
 and $S_{E}$--$N_{E}$.
 
+\subsubsection{Agreed clone pairs}
+
+As displayed in \Cref{t_agreed_good_clone_pairs}, after we applied clone agreement filtering using Bellon's criteria, the number of \textit{good} clone pairs is 2,308 while the number of \textit{ok} clone pairs is 31,729. %The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 181 for Simian and NiCad respectively. The total number of clone candidates is 32,039 pairs. 
+Agreed clone pairs are clone pairs that pass Bellon's \textit{good} or \textit{ok} criteria, and therefore are selected for manual classification. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs~\cite{Bellon2007}. %The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. 
+Due to NiCad's failures, we do not have NiCad clones from five Qualitas projects in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
+
+\begin{table}
+	\centering
+	\caption{Distribution of the agreed clone pairs}
+	\label{t_agreed_good_clone_pairs}
+	\small
+%	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|r|r|r|r|r}
+		\hline
+		Set & $S_DN_D$ & $S_DN_E$ & $S_EN_D$ & $S_EN_E$ & Unique \\
+		\hline
+		\textit{good} & 18 & 26 & 10 & 2,267 & 2,308 \\
+		\textit{ok} & 11,467 & 993 & 79 & 20,021 & 31,729  \\
+		\hline
+	\end{tabular} %
+%}
+\end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{good-ok_pairs-crop}
+	\caption{Distribution of \textit{good} (top) and \textit{ok} pairs (bottom) reported by the 4 configurations of Simian and NiCad. The shaded areas are overlapping pairs.}
+	\label{fig:good-ok-pairs}
+\end{figure}
+
+The distributions of \textit{good} clone pairs between four combinations of \textit{D} and \textit{E} configurations are listed in \Cref{t_agreed_good_clone_pairs}. %and depicted visually in \Cref{fig:good-ok-pairs}. 
+There are 2,321 (2,308 unique) \textit{good} pairs consisting of 18 pairs from $S_DN_D$, 26 pairs from $S_DN_E$, 10 pairs from $S_EN_D$, and 2,267 pairs from $S_EN_E$. There are 32,560 (31,729 unique) \textit{ok} pairs\footnote{This excludes the subsumed 2,308 \textit{good} pairs. According to the definition, \textit{ok} pairs always subsume \textit{good} pairs.} We obtained 11,467; 993; 79; and 20,021 pairs from $S_DN_D$, $S_DN_E$, $S_EN_D$, and $S_EN_E$ respectively. Between the four configuration sets, there is considerable amount of clone pairs shared between two adjacent sets (as depicted in \Cref{fig:good-ok-pairs}), but there is no clone pair that is agreed by all four combinations. 
+
+\subsubsection{Disagreed clone pairs}
+
+\begin{table}
+	\centering
+	\caption{Disagreed clone pairs before and after filtering.}
+	\label{tab:online_clone_pairs}
+	\small
+	%	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|r|c|c|c|c|r}
+		\hline
+		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{4}{c|}{Filters*} & \multirow{2}{*}{After Filtering} \\ \cline{3-6}
+		& & \textit{L} & \textit{S} & \textit{R} & \textit{G} & \\
+		\hline 
+		%		\multirow{1}{*}{\textit{good}} & 2,308 & & & & & 2,308 \\
+		%		\multirow{1}{*}{\textit{ok}} & 11,749 & & & & & 11,749 \\
+		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
+		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & \checkmark & \checkmark & 17,801 \\
+		\multirow{1}{*}{$N_D$} & 632,855 & & \checkmark & \checkmark & \checkmark & 88 \\ 
+		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
+%		\hline
+%		Total  & 6,400,425 & \multicolumn{4}{c|}{ } & 17,169 \\ 
+		\hline
+		\multicolumn{7}{l}{*\textit{L}=line $\geq 10$, \textit{S}=sim $\geq 85\%$, \textit{R}=reg.~expressions, \textit{G}=\textit{good}/\textit{ok} pairs.}  \\
+	\end{tabular} %
+	%}
+\end{table}
+
+The disagreed clone pairs are clone pairs that are reported by a single tool, either Simian or NiCad, and do not have agreement with the other tool. The disagreement can be from a misalignment of clone lines or totally non-overlapping clones. The disagreed pairs from Simian cover clone pairs in the projects with NiCad's errors (1 projects from $N_D$ and 5 from $N_E$). %that are automatically missing from the agreed clone pairs. 
+With the four configuration combinations, we decided to investigate only $S_D$, and $N_D$, and dropped $S_E$ and $N_E$ due to their enormous amount of clone pairs (60 and 250 millions respectively). Moreover, $S_E$ and $N_E$ contain a large number of false positives due to the recall preference of their EvaClone configurations. 
+
+Even choosing only the default configurations, the number of clone pair candidates are still very large for manual inspection (67,570 for $S_D$ and 632,855 pairs for $N_D$). We applied four filters: \textbf{clone line, regular expression, similarity threshold, and good/ok pairs}. For the clone line filter, we raised the minimum clone size to 10 line since larger clones are more interesting, while smaller ones tend to be false clones~\cite{Saini2016}. Since the 10--line threshold is already the default configuration for NiCad, this filter is applied to Simian only (Simian's default configurations has a minimum clone size of 6 lines).~The regular expression filter removes boiler-plate clones of \verb|hashCode()| methods and getters/setters. The third filter, similarity threshold, applies only to NiCad clone pairs since Simian does not provide this similarity configuration. The last filter, good/ok pairs, removes the clone pairs that have already existed in the agreed clone sets. 
+% Moreover, the study of uniqueness of source code by Gabel and Su~\cite{Gabel2010} suggests that source code are unique when they are larger than seven lines.
+
+\begin{table}
+	\centering
+	\caption{No.~of online clones candidates for the classification}
+	\label{tab:online_clone_classification_results}
+	\small
+	%	\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|r|r|r}
+		\hline
+		\multirow{2}{*}{Set} & \multirow{2}{*}{Candidates} & \multicolumn{2}{c}{Classification} \\ \cline{3-4}
+		& & Auto & Manual \\
+		\hline 
+		\multirow{1}{*}{\textit{good}} & 2,308 & 10 & 2,298 \\
+		\multirow{1}{*}{\textit{ok}} & 11,749 & 11,494 & 255 \\
+		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
+		\multirow{1}{*}{$S_D$} & 17,801 & 16,800 & 1,001 \\
+		\multirow{1}{*}{$N_D$} & 88 & 10 & 78 \\ 
+		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
+		\hline
+		Total  & 31,946 & 28,314 & 3,632 \\ 
+		\hline
+	\end{tabular} %
+	%}
+\end{table}
+
+As shown in \Cref{tab:online_clone_pairs}, for $S_D$ we filtered the results using clone size, regular expressions, and gook/ok pairs. The three filters reduced the number of $S_D$ clones to 17,801 pairs. 
+%For $N_D$, 10-line threshold is already a minimum NiCad's clone size. However, NiCad still reported much more clone pairs than Simian since it can detect type-3 clones. Thus, besides regular expressions and good/ok pair filters, 
+We filtered $N_D$ clones by raising the similarity threshold. We increase NiCad's similarity threshold from 70\% to 85\% (by adjusting NiCad's $\mathrm{UPI}$ parameter from 0.3 to 0.15). We tried varying the UPI from 70\% (default -- 632,855 pairs), 80\% (25,003 pairs), 85\% (185 pairs) and 90\% (83 pairs) and found that 85\% similarity provided the best balance in terms of the amount of reported clones and feasibility for manual investigation. Using this filter along with the regular expression and the good/ok pair filter, we reduced the size of $N_D$ clones to 88 pairs.
+
+%In our clone classification process, we used a script to automatically classify {\small\texttt{equals()}} clone pairs which  classifying 28,444 pairs out of 31,946 (more than half of the {\small\texttt{equals()}} pairs came from \textit{ok} and $S_D$ pairs). Finally, there are 3,502 pairs remaining which we manually classified them. The classification summary is shown in \Cref{tab:online_clone_classification_results}.
+
+%After classification, we found 668 non-trivial online code clones pairs between Stack Overflow and Qualitas or external sources.}
+
+We had in total 31,946 online clone pair candidates for classifications. 2,308 and 11,749 were \textit{good} and \textit{ok} clone pairs respectively. 17,801 and 88 clone pairs are from $S_D$ and $N_D$ after the filtering. Please note that we ignored 20,021 $S_EN_E$ \textit{ok} clone pairs in the classification due to their large number of clones and the very small average clone sizes of 4.79 and 5.33 lines (see \Cref{tab:raw_stats}). They had a high probability to be trivial clones. 
+
 \begin{table}
 	\centering
 	\caption{The seven patterns of online code cloning}
@@ -788,105 +888,6 @@ $N_D$, and $N_E$ is 38\%, 50\%, 30\%, and 33\% respectively.
 
 We rely on a manual study to qualitatively investigate the patterns of online code cloning. To achieve this, we select a subset of the agreed clones using Bellon's criteria and a subset of the disagreed clones using clone filtering. We explain them in more detail below.
 
-\subsubsection{Agreed clone pairs}
-
-As displayed in \Cref{t_agreed_good_clone_pairs}, after we applied clone agreement filtering using Bellon's criteria, the number of \textit{good} clone pairs is 2,308 while the number of \textit{ok} clone pairs is 31,729. %The number of disagreed clone pairs ($S_D$, $N_D$) after filtering is 17,801 and 181 for Simian and NiCad respectively. The total number of clone candidates is 32,039 pairs. 
-Agreed clone pairs are clone pairs that pass Bellon's \textit{good} or \textit{ok} criteria, and therefore are selected for manual classification. Similar to the original study, we select a threshold \textit{p} of 0.7 for both \textit{good} and \textit{ok} pairs~\cite{Bellon2007}. %The number of projects processed by the clone detection tools are listed in \Cref{tab:projects_missing}. 
-Due to NiCad's failures, we do not have NiCad clones from five Qualitas projects in the agreed clone pairs. Simian clones of the same projects also disappeared from the agreed clone pairs since they could not find matches.
-
-\begin{table}
-	\centering
-	\caption{Distribution of the agreed clone pairs}
-	\label{t_agreed_good_clone_pairs}
-	\small
-%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|r|r|r|r}
-		\hline
-		Set & $S_DN_D$ & $S_DN_E$ & $S_EN_D$ & $S_EN_E$ & Unique \\
-		\hline
-		\textit{good} & 18 & 26 & 10 & 2,267 & 2,308 \\
-		\textit{ok} & 11,467 & 993 & 79 & 20,021 & 31,729  \\
-		\hline
-	\end{tabular} %
-%}
-\end{table}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{good-ok_pairs-crop}
-	\caption{Distribution of \textit{good} (top) and \textit{ok} pairs (bottom) reported by the 4 configurations of Simian and NiCad. The shaded areas are overlapping pairs.}
-	\label{fig:good-ok-pairs}
-\end{figure}
-
-The distributions of \textit{good} clone pairs between four combinations of \textit{D} and \textit{E} configurations are listed in \Cref{t_agreed_good_clone_pairs}. %and depicted visually in \Cref{fig:good-ok-pairs}. 
-There are 2,321 (2,308 unique) \textit{good} pairs consisting of 18 pairs from $S_DN_D$, 26 pairs from $S_DN_E$, 10 pairs from $S_EN_D$, and 2,267 pairs from $S_EN_E$. There are 32,560 (31,729 unique) \textit{ok} pairs\footnote{This excludes the subsumed 2,308 \textit{good} pairs. According to the definition, \textit{ok} pairs always subsume \textit{good} pairs.} We obtained 11,467; 993; 79; and 20,021 pairs from $S_DN_D$, $S_DN_E$, $S_EN_D$, and $S_EN_E$ respectively. Between the four configuration sets, there is considerable amount of clone pairs shared between two adjacent sets (as depicted in \Cref{fig:good-ok-pairs}), but there is no clone pair that is agreed by all four combinations. 
-
-\subsubsection{Disagreed clone pairs}
-
-\begin{table}
-	\centering
-	\caption{Disagreed clone pairs before and after filtering.}
-	\label{tab:online_clone_pairs}
-	\small
-	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|c|c|c|c|r}
-		\hline
-		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{4}{c|}{Filters*} & \multirow{2}{*}{After Filtering} \\ \cline{3-6}
-		& & \textit{L} & \textit{S} & \textit{R} & \textit{G} & \\
-		\hline 
-		%		\multirow{1}{*}{\textit{good}} & 2,308 & & & & & 2,308 \\
-		%		\multirow{1}{*}{\textit{ok}} & 11,749 & & & & & 11,749 \\
-		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
-		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & \checkmark & \checkmark & 17,801 \\
-		\multirow{1}{*}{$N_D$} & 632,855 & & \checkmark & \checkmark & \checkmark & 88 \\ 
-		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
-%		\hline
-%		Total  & 6,400,425 & \multicolumn{4}{c|}{ } & 17,169 \\ 
-		\hline
-		\multicolumn{7}{l}{*\textit{L}=line $\geq 10$, \textit{S}=sim $\geq 85\%$, \textit{R}=reg.~expressions, \textit{G}=\textit{good}/\textit{ok} pairs.}  \\
-	\end{tabular} %
-	%}
-\end{table}
-
-The disagreed clone pairs are clone pairs that are reported by a single tool, either Simian or NiCad, and do not have agreement with the other tool. The disagreement can be from a misalignment of clone lines or totally non-overlapping clones. The disagreed pairs from Simian cover clone pairs in the projects with NiCad's errors (1 projects from $N_D$ and 5 from $N_E$). %that are automatically missing from the agreed clone pairs. 
-With the four configuration combinations, we decided to investigate only $S_D$, and $N_D$, and dropped $S_E$ and $N_E$ due to their enormous amount of clone pairs (60 and 250 millions respectively). Moreover, $S_E$ and $N_E$ contain a large number of false positives due to the recall preference of their EvaClone configurations. 
-
-Even choosing only the default configurations, the number of clone pair candidates are still very large for manual inspection (67,570 for $S_D$ and 632,855 pairs for $N_D$). We applied four filters: \textbf{clone line, regular expression, similarity threshold, and good/ok pairs}. For the clone line filter, we raised the minimum clone size to 10 line since larger clones are more interesting, while smaller ones tend to be false clones~\cite{Saini2016}. Since the 10--line threshold is already the default configuration for NiCad, this filter is applied to Simian only (Simian's default configurations has a minimum clone size of 6 lines).~The regular expression filter removes boiler-plate clones of \verb|hashCode()| methods and getters/setters. The third filter, similarity threshold, applies only to NiCad clone pairs since Simian does not provide this similarity configuration. The last filter, good/ok pairs, removes the clone pairs that have already existed in the agreed clone sets. 
-% Moreover, the study of uniqueness of source code by Gabel and Su~\cite{Gabel2010} suggests that source code are unique when they are larger than seven lines.
-
-\begin{table}
-	\centering
-	\caption{No.~of online clones candidates for the classification}
-	\label{tab:online_clone_classification_results}
-	\small
-	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|r|r}
-		\hline
-		\multirow{2}{*}{Set} & \multirow{2}{*}{Candidates} & \multicolumn{2}{c}{Classification} \\ \cline{3-4}
-		& & Auto & Manual \\
-		\hline 
-		\multirow{1}{*}{\textit{good}} & 2,308 & 10 & 2,298 \\
-		\multirow{1}{*}{\textit{ok}} & 11,749 & 11,494 & 255 \\
-		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
-		\multirow{1}{*}{$S_D$} & 17,801 & 16,800 & 1,001 \\
-		\multirow{1}{*}{$N_D$} & 88 & 10 & 78 \\ 
-		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
-		\hline
-		Total  & 31,946 & 28,314 & 3,632 \\ 
-		\hline
-	\end{tabular} %
-	%}
-\end{table}
-
-As shown in \Cref{tab:online_clone_pairs}, for $S_D$ we filtered the results using clone size, regular expressions, and gook/ok pairs. The three filters reduced the number of $S_D$ clones to 17,801 pairs. 
-%For $N_D$, 10-line threshold is already a minimum NiCad's clone size. However, NiCad still reported much more clone pairs than Simian since it can detect type-3 clones. Thus, besides regular expressions and good/ok pair filters, 
-We filtered $N_D$ clones by raising the similarity threshold. We increase NiCad's similarity threshold from 70\% to 85\% (by adjusting NiCad's $\mathrm{UPI}$ parameter from 0.3 to 0.15). We tried varying the UPI from 70\% (default -- 632,855 pairs), 80\% (25,003 pairs), 85\% (185 pairs) and 90\% (83 pairs) and found that 85\% similarity provided the best balance in terms of the amount of reported clones and feasibility for manual investigation. Using this filter along with the regular expression and the good/ok pair filter, we reduced the size of $N_D$ clones to 88 pairs.
-
-%In our clone classification process, we used a script to automatically classify {\small\texttt{equals()}} clone pairs which  classifying 28,444 pairs out of 31,946 (more than half of the {\small\texttt{equals()}} pairs came from \textit{ok} and $S_D$ pairs). Finally, there are 3,502 pairs remaining which we manually classified them. The classification summary is shown in \Cref{tab:online_clone_classification_results}.
-
-%After classification, we found 668 non-trivial online code clones pairs between Stack Overflow and Qualitas or external sources.}
-
-We had in total 31,946 online clone pair candidates for classifications. 2,308 and 11,749 were \textit{good} and \textit{ok} clone pairs respectively. 17,801 and 88 clone pairs are from $S_D$ and $N_D$ after the filtering. Please note that we ignored 20,021 $S_EN_E$ \textit{ok} clone pairs in the classification due to their large number of clones and the very small average clone sizes of 4.79 and 5.33 lines (see \Cref{tab:raw_stats}). They had a high probability to be trivial clones. 
 Before performing manual classification, we used regular expressions to automatically classify {\small\texttt{equals()}} and the remaining getters/setters. As shown in \Cref{tab:online_clone_classification_results}, the automatic classifier helped us classified and captured 28,314 clone pairs into pattern BP. 
 
 There were 3,632 pairs left for the manual check. The first author who has been working on clone detection research for two years took the role of the main investigator performing a manual classification of the 3,632 clone pairs. By consulting the cloning patterns, the main investigator went through each clone pair candidate, looked at the clones, and chose the most appropriate cloning pattern for the pair. %A relevant and useful observation was also recorded for each clone pair. 
