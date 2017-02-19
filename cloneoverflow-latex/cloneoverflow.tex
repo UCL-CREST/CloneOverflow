@@ -497,7 +497,7 @@ paths, and will be fixed in the next NiCad releases.
 		\hline
 		Simian\newline (\textit{S}) &  threshold=6,\newline ignoreStringCase, \newline ignoreCharacterCase, \newline ignoreModifiers & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, \newline ignoreStrings, \newline ignoreCharacters,\newline ignoreSubtypeNames, \newline balanceSquareBrackets \\ 
 		\hline 
-		NiCad\newline (\textit{N}) & Blocks, UPI=0.30,\newline MinLine=10,\newline MaxLine=1000 & Blocks, UPI=0.20, \newline MinLine=5, MaxLine=604, \newline blind renaming,\newline literal abstraction \\
+		NiCad\newline (\textit{N}) & Blocks, UPI=0.30,\newline MinLine=10,\newline MaxLine=2500 & Blocks, UPI=0.20, \newline MinLine=5, MaxLine=604, \newline blind renaming,\newline literal abstraction \\
 		\hline
 	\end{tabular} %
 %}
@@ -663,21 +663,15 @@ that is agreed by all four combinations.
 	\label{tab:online_clone_pairs}
 	%\small
 	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|c|c|c|c|r}
+	\begin{tabular}{l|r|c|c|c|r}
 		\hline
-		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{4}{c|}{Filters*} & \multirow{2}{*}{After Filtering} \\ \cline{3-6}
-		& & \textit{L} & \textit{S} & \textit{M} & \textit{G} & \\
+		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{3}{c|}{Filters*} & \multirow{2}{*}{After Filtering} \\ \cline{3-5}
+		& & \textit{L} & \textit{S} & \textit{G} & \\
 		\hline 
-		%		\multirow{1}{*}{\textit{good}} & 2,308 & & & & & 2,308 \\
-		%		\multirow{1}{*}{\textit{ok}} & 11,749 & & & & & 11,749 \\
-		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
-		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & \checkmark & \checkmark & 17,801 \\
-		\multirow{1}{*}{$N_D$} & 632,855 & \checkmark & \checkmark & \checkmark & \checkmark & 88 \\ 
-		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
-%		\hline
-%		Total  & 6,400,425 & \multicolumn{4}{c|}{ } & 17,169 \\ 
+		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & \checkmark & 17,801 \\
+		\multirow{1}{*}{$N_D$} & 632,855 & \checkmark & \checkmark & \checkmark & 88 \\ 
 		\hline
-		\multicolumn{7}{l}{*\textit{L}=size $\geq 10$, \textit{S}=sim $\geq 85\%$, \textit{M}=irr.~methods, \textit{G}=\textit{good}/\textit{ok} pairs.}  \\
+		\multicolumn{6}{l}{*\textit{L}=size $\geq 10$, \textit{S}=sim $\geq 85\%$, \textit{G}=\textit{good}/\textit{ok} pairs.}  \\
 	\end{tabular} %
 	%}
 \end{table}
@@ -696,7 +690,7 @@ their EvaClone configurations.
 
 Even choosing only the default configurations, the number of disagreed
 clone pair candidates is still too large for manual inspection (67,570
-for $S_D$ and 632,855 pairs for $N_D$). We applied four filters: clone
+for $S_D$ and 632,855 pairs for $N_D$). We applied three filters: clone
 size, irrelevant methods, similarity threshold, and good/ok pairs. For
 the \emph{clone size filter}, we raised the minimum clone size to 10 lines
 since larger clones are more interesting, while smaller ones tend to
@@ -704,16 +698,17 @@ be false clones~\cite{Saini2016}.
 % Since the 10--line threshold is already the default configuration for
 % NiCad, this filter is applied to Simian only (Simian's default
 % configuration has a minimum clone size of 6 lines).
-The \emph{irrelevant methods filter} removes clones of
-\verb|hashCode()| methods and getters/setters which are almost always
-false clones. The third filter, \emph{similarity threshold}, applies
+%The \emph{irrelevant methods filter} removes clones of
+%\verb|hashCode()| methods and getters/setters which are almost always
+%false clones. 
+The second filter, \emph{similarity threshold}, applies
 only to NiCad clone pairs since Simian does not provide a similarity
 configuration. The last filter, \emph{good/ok pairs}, removes the
 clone pairs that already exist in the agreed clone sets.
 
 As shown in \Cref{tab:online_clone_pairs}, for $S_D$ we filtered the
-results using clone size, irrelevant methods, and gook/ok pairs. The
-three filters reduced the number of $S_D$ clones to 17,801 pairs.  We
+results using clone size and gook/ok pairs. The
+two filters reduced the number of $S_D$ clones to 17,801 pairs. We
 filtered $N_D$ clones by additionally raising the similarity
 threshold. We increased NiCad's similarity threshold from 70\% to 85\%
 (by adjusting NiCad's $\mathrm{UPI}$ parameter from 0.3 to 0.15). We
@@ -971,15 +966,25 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
   respectively, i.e.~most Qualitas projects share similar code with
   Stack Overflow code snippets.}
 
+\FIXME{Do you think we should report at this level or in more details 
+	into $S_D$--$N_D$, $S_D$--$N_E$, $S_E$--$N_D$, $S_E$--$N_E$??}
+
 However, using Bellon's criteria for matching clone pairs, only
 0.1\textperthousand~of all pairs are agreed by two tool/configuration
-combinations.
+combinations. For the 2,308 \textit{good} pairs, there are 92 Stack Overflow snippets
+which are associated with 66 Qualitas projects. The 11,749 \textit{ok} 
+pairs are clones between 136 Stack Overflow snippets and 39 Qualitas 
+projects. 
 
-\FIXME{Can you say something about the numbers only looking at the set
-  of pairs used for manual inspection?}
+Moreover, for the disagreed pairs, we found 17,081 clone pairs reported by $S_D$
+are clones between 471 Stack Overflow snippets and 76 Qualitas projects and 
+88 $N_D$ clone pairs are clones between 77 Stack Overflow snippets and 29
+Qualitas projects.
+
+
 % FIXME
 % However, as it is well known that the precision of clone detectors is
-c% not very good, it is clear that the above numbers may not be
+% not very good, it is clear that the above numbers may not be
 % representative for real code clones and we ...
 
 \subsection{RQ2: Patterns of Online Code Cloning}
@@ -1009,16 +1014,16 @@ c% not very good, it is clear that the above numbers may not be
 	%}
 \end{table}
 
-\FIXME{Why equals here but not hashcode? Why isn't it the same
-  irrelevant methods filter?}
+%\FIXME{Why equals here but not hashcode? Why isn't it the same
+%  irrelevant methods filter?}
 
 We rely on a manual study to qualitatively investigate the patterns of
 online code cloning. To achieve this, we classified all 31,946
 selected clone pairs according to the process shown in
 \Cref{fig:classification_process}.  Before performing the manual
-classification, we used the irrelevant method filter to automatically
-classify {\small\texttt{equals()}} and the remaining
-getters/setters. As shown in
+classification, we created and used an automatic classifier 
+to classify {\small\texttt{equals()}}, 
+{\small\texttt{hashCode()}} and getters/setters. As shown in
 \Cref{tab:online_clone_classification_results}, the automatic
 classifier helped us classified and captured 28,314 clone pairs into
 pattern \textbf{BP}.
@@ -1122,21 +1127,20 @@ statements.
 
 \begin{table}
 	\centering
-	\caption{Classifications of online clone pairs. FIXME switch
-          UD and EX}
+	\caption{Classifications of online clone pairs.}
 	\label{tab:classification_good_o}
 	%\small
 	%\resizebox{\columnwidth}{!}{%
 		\begin{tabular}{l|rrrr|rrr|r}
 			\hline
-			Set & QS & SQ & UD & EX & BP & IN & AC & Total \\ 
+			Set & QS & SQ & EX & UD & BP & IN & AC & Total \\ 
 			\hline
-			\multirow{1}{*}{\textit{good}}  & 3 & 0 & 11 & 4 & 111  & 7 & 2,172 & 2,308 \\
-			\multirow{1}{*}{\textit{ok'}}  & 14 & 0 & 20 & 41 & 11,547 & 22 & 105 & 11,749 \\
-			\multirow{1}{*}{$S_D'$} & 86 & 0 & 293 & 146 & 17,074 & 74 & 128 & 17,801 \\
-			\multirow{1}{*}{$N_D'$} & 9  & 0 & 35 & 6 & 17 & 8 & 13 & 88 \\ 
+			\multirow{1}{*}{\textit{good}}  & 3 & 0 & 4 & 11 & 111  & 7 & 2,172 & 2,308 \\
+			\multirow{1}{*}{\textit{ok'}}  & 14 & 0 & 41 & 20 & 11,547 & 22 & 105 & 11,749 \\
+			\multirow{1}{*}{$S_D'$} & 86 & 0 & 146 & 293 & 17,074 & 74 & 128 & 17,801 \\
+			\multirow{1}{*}{$N_D'$} & 9  & 0  & 6 & 35 & 17 & 8 & 13 & 88 \\ 
 			\hline
-			Total & 112 & 0 & 359 & 197 & 28,749 & 111 & 2,418 & 31,946 \\ 
+			Total & 112 & 0 & 197 & 359 & 28,749 & 111 & 2,418 & 31,946 \\ 
 			\hline
 		\end{tabular} 
 	%}
@@ -1147,7 +1151,7 @@ statements.
 \textbf{To answer RQ2, we found that a large amount of the clone pairs
   between Stack Overflow and Qualitas projects are boiler-plate code
   (28,642) or accidental clones (2,525) with no evidence that the code
-  has actually been copied. Nevertheless, we found 110 pairs that had
+  has actually been copied. Nevertheless, we found 112 pairs that had
   strong evidences to be cloned from Qualitas to Stack Overflow and
   178 pairs were found to be cloned to Stack Overflow from external
   sources outside Qualitas projects.} 
@@ -1187,13 +1191,13 @@ inconsistent lines between the two versions, we used
 {\small\texttt{git blame}} to see who modified those lines of code and
 the timestamps.
 
-\FIXME{You are using the complete number of pairs in a project instead
-  of the outdated pairs!!!}
+%\FIXME{You are using the complete number of pairs in a project instead
+%  of the outdated pairs!!!}
  %Some of the clone pairs overlap with each other so we group them in the same row. 
 We discovered 64 outdated online clone pairs out of 112 pairs. As
-shown in \Cref{fig:outdated}, \textsf{spring} and \textsf{hibernate}
-have the highest number of 20 outdated pairs, followed by 15 from
-\textsf{eclipse}, and 12 from \textsf{hadoop}. Besides the example of
+shown in \Cref{fig:outdated}, \textsf{spring}
+have the highest number of 17 outdated pairs, followed by 7 from
+\textsf{hibernate} and \textsf{hadoop}, and 6 from \textsf{junit}. Besides the example of
 outdated code in the \textsf{hadoop}'s
 {\small{\texttt{WritableComparator.java}}} shown in
 \Cref{fig:before-after}, we also found a few outdated code elements
@@ -1202,7 +1206,7 @@ snippet in Stack Overflow post 23520731 is a copy of
 {\small{\texttt{SchemaUpdate.java}}} in \textsf{hibernate}. The code
 has been heavily modified on 5 February 2016. 
 
-In the 64 outdated pairs, we found 5``dead'' snippets. These snippets
+In the 64 outdated pairs, we found 5 ``dead'' snippets. These snippets
 cannot be located in the latest version of the projects. For example,
 the snippet in Stack Overflow post 3758110, a copy of
 {\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in
@@ -1339,8 +1343,8 @@ used by naive developers who copy and reuse the outdated code.
 	\caption{Examples of the outdated QS online clones}
 	\label{tab:stale_code_details}
 	%\small
-	%\resizebox{2\columnwidth}{!}{%
-		\begin{tabular}{l|l|l|l|p{4.7cm}|r|r|l|c|l}
+	\resizebox{2.1\columnwidth}{!}{%
+		\begin{tabular}{l|l|l|l|p{5.1cm}|r|r|l|c|l}
 		 \hline
 		 \multicolumn{2}{c|}{Stack Overflow} & \multicolumn{6}{c|}{Qualitas} & \multicolumn{2}{c}{Changes} \\ 
 		 \hline
@@ -1355,7 +1359,7 @@ used by naive developers who copy and reuse the outdated code.
 		 \hline 
 		 \multicolumn{10}{l}{{\footnotesize * \textit{S}=modified/added/deleted statements, \textit{D}=file deletion,  \textit{R}=method rewriting}}
 		\end{tabular} %
-	%}
+	}
 \end{table*}
 
 \subsection{RQ4: Software Licensing Violation}
@@ -1417,41 +1421,39 @@ snippets. %there are studies of automatic technique to identify software licensi
 \begin{table}[]
 	\centering
 	\caption{License mapping of the online clones (file-level) in
-          QS, UD, and EX FIXME switch UD and EX}
+          QS, UD, and EX}
 	\label{tab:license_abc}
 	\small
 	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{l|p{2cm}l|rrr}
 		\hline
-		Type & Stack Overflow\newline (CC BY-NC-SA) & Qualitas & QS & UD & EX \\
-%		\hline
-%		No license & No license & No license &  5 & 21 & 4 \\
+		Type & Stack Overflow\newline (CC BY-NC-SA) & Qualitas & QS & EX & UD \\
 		\hline
-		Compatible & Apache2 & Apache2 &  0 & 1 & 0 \\
-		License	& EPLv1 & EPLv1 &  1 & 1 & 0 \\
-		& Sun (proprietary) & Sun (proprietary) & 0 & 0 & 1 \\
-		& MIT-like & MIT-like & 0 & 0 & 1 \\
-		& No license & CC BY-NC-SA &  0 & 0 & 5 \\
-		& No license & No license &  5 & 21 & 4 \\
+		Compatible & Apache2 & Apache2 &  0 & 0  & 1\\
+		License	& EPLv1 & EPLv1 &  1 & 0 & 1\\
+		& Sun (proprietary) & Sun (proprietary) & 0 & 1 & 0\\
+		& MIT-like & MIT-like & 0 & 1 & 0\\
+		& No license & CC BY-NC-SA & 0 & 5 & 0 \\
+		& No license & No license & 5 & 4 & 21 \\
 		\hline
-		\multicolumn{3}{l|}{Total} &  6 & 23 & 11 \\
+		\multicolumn{3}{l|}{Total} & 6 & 11 & 23 \\
 		\hline
-	    Incompat. & BSD3 & GPLv2+ & 0 & 1 & 0 \\
-		License	& No license & AGPLv3/3+ & 1 & 2 & 0 \\
-		& No license & Apache-2 & 41 & 23 & 5 \\
-		& No license & BSD3 & 3 & 28 & 4 \\
-		& No license & CDDL or GPLv2 & 1 & 58 & 0 \\
-		& No license & CDDLv1 & 0 & 0 & 1 \\
-		& No license & EPLv1 & 7 & 10 & 0 \\
-		& No license & GPLv2/2+/3+ & 2 & 32 & 62 \\
-		& No license & LGPLv2/2.1+/3+ & 24 & 32 & 0 \\
-		& No license & MPLv1.1 & 0 & 1 & 0 \\
-		& No license & spdxBSD3 & 0 & 10 & 0 \\
-		& No license & SPLv1 & 0 & 0 & 1 \\
+	    Incompat. & BSD3 & GPLv2+ & 0 & 0 & 1 \\
+		License	& No license & AGPLv3/3+ & 1 & 0 & 2 \\
+		& No license & Apache-2 & 41 & 5 & 23 \\
+		& No license & BSD3 & 3 & 4 & 28 \\
+		& No license & CDDL or GPLv2 & 1 & 0 & 58 \\
+		& No license & CDDLv1 & 0 & 1 & 0 \\
+		& No license & EPLv1 & 7 & 0 & 10 \\
+		& No license & GPLv2/2+/3+ & 2 & 62 & 32 \\
+		& No license & LGPLv2/2.1+/3+ & 24 & 0 & 32 \\
+		& No license & MPLv1.1 & 0 & 0 & 1 \\
+		& No license & spdxBSD3 & 0 & 0 & 10 \\
+		& No license & SPLv1 & 0 & 1 & 0 \\
 		& No license & Unknown & 0 & 3 & 3 \\
-		& spdxBSD3 & AGPLv3+ & 0 & 2 & 0 \\
+		& spdxBSD3 & AGPLv3+ & 0 & 0 & 2 \\
 		\hline
-		\multicolumn{3}{l|}{Total} &  79 & 202 & 76 \\
+		\multicolumn{3}{l|}{Total} &  79 & 76 & 202 \\
 		\hline
 	\end{tabular} %
 %}
@@ -1486,8 +1488,7 @@ licensing issues caused by code cloned to Stack Overflow. We found
 evidence that 112 pieces of code have been copied from Qualitas
 projects to Stack Overflow as examples. Their status of accepted
 answers increase their chances of being reused. Even though most of
-the Qualitas projects came with a software license (shown in
-\Cref{t:q_projects_license}), we found that the licensing information
+the Qualitas projects came with a software license, we found that the licensing information
 were frequently missing after the code was copied to Stack
 Overflow. The licensing terms on top of source code files are not
 copied because usually only a small part of the file was
