@@ -125,7 +125,7 @@
   techniques to automatically extract, prioritise, and filter
   315,786,118 detected online clone pairs between 144,064 Java code
   snippets on Stack Overflow and 111 Java open source projects in the
-  curated Qualitas corpus. We discovered and investigated 51,926
+  curated Qualitas corpus. We discovered and investigated 31,946
   non-trivial online clone candidates. Our study revealed that 64 out
   of 112 clones with strong evidence of copying from a Qualitas
   project to Stack Overflow are outdated. Furthermore, we found 357
@@ -986,18 +986,18 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
 % I don't think there is a need.
 
 \begin{table}
-\caption{FIXME Maybe merge with Table 7?}
+\caption{FIXME Maybe merge with Table 7? <-- You mean Table 9?}
 \label{tab:snippets}
 \centering
-\begin{tabular}{l|rrr}
-  & Pairs & Snippets & Projects \\
+\begin{tabular}{l|rrrr}
+  & Pairs & Snippets & Projects & Avg.~C$_{\textrm{\textit{\%}}}$ \\
 \hline
-\textit{good} & 2,308 & 92 & 66 \\
-\textit{ok'} & 11,749 & 136 & 39 \\
-$S_D'$ & 17,081 & 471 & 76 \\
-$N_D'$ & 88 & 77 & 29 \\
+\textit{good} & 2,308 & 92 & 66 & \\
+\textit{ok'} & 11,749 & 136 & 39 & \\
+$S_D'$ & 17,081 & 471 & 76 & \\
+$N_D'$ & 88 & 77 & 29 & \\
 \hline
-Total & 31,946 & FIXME & FIXME
+Total & 31,946 & 621 & 95 &
 \end{tabular}
 \end{table}
 
@@ -1011,8 +1011,8 @@ the disagreed pairs, we found 17,081 clone pairs reported by $S_D'$
 are clones between 471 Stack Overflow snippets and 76 Qualitas
 projects and 88 $N_D'$ clone pairs are clones between 77 Stack
 Overflow snippets and 29 Qualitas projects. In total we found that the
-manually investigated 31,946 clones pairs are clones between FIXME
-Stack Overflow snippets and FIXME Qualitas projects.
+manually investigated 31,946 clones pairs are clones between 621
+Stack Overflow snippets and 95 Qualitas projects.
 
 \textbf{To answer RQ1, with the four configurations of Simian and
   NiCad, we found most Qualitas projects to share similar code with
@@ -1021,9 +1021,7 @@ Stack Overflow snippets and FIXME Qualitas projects.
 
 \FIXME{Should we have removed the AC clones right at the beginning?}
 
-
 \subsection{RQ2: Patterns of Online Code Cloning}
-
 
 \begin{table}
 	\centering
@@ -1180,7 +1178,7 @@ statements.
 
 \textbf{To answer RQ2, we found that a large amount of the clone pairs
   between Stack Overflow and Qualitas projects are boiler-plate code
-  (28,642) or accidental clones (2,525) with no evidence that the code
+  (28,642) or accidental clones (2,529) \FIXME{IN+AC here?} with no evidence that the code
   has actually been copied. Nevertheless, we found 112 pairs that had
   strong evidences to be cloned from Qualitas to Stack Overflow and
   178 pairs were found to be cloned to Stack Overflow from external
