@@ -966,7 +966,7 @@ presented in \Cref{tab:raw_stats}. Simian in the default configuration
 ($S_D$) reported clones in 1,086 snippets, approximately 1\% of the
 144,064 Stack Overflow snippets, associated with 92 Qualitas
 projects. Simian in the EvaClone configuration ($S_E$) reported 1,531
-snippets containing clones associated with 111 Qualitas
+snippets containing clones associated with all 111 Qualitas
 projects. NiCad in the default configuration ($N_D$) reported clones
 between 1,392 Stack Overflow code snippets and 82 Qualitas
 projects. NiCad in the EvaClone configuration ($N_E$) reported the
@@ -986,7 +986,8 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
 % I don't think there is a need.
 
 \begin{table}
-\caption{FIXME Maybe merge with Table 7? <-- You mean Table 9?}
+\caption{Investigated online clone pairs and snippets \FIXME{maybe
+    merge with tables 7 and/or 9}}
 \label{tab:snippets}
 \centering
 \begin{tabular}{l|rrrr}
@@ -1003,23 +1004,24 @@ Total & 31,946 & 621 & 95 &
 
 However, using Bellon's criteria for matching clone pairs, only
 0.1\textperthousand~of all pairs are agreed by two tool/configuration
-combinations. As shown in FIXME, for the 2,308 \textit{good} pairs,
-there are 92 Stack Overflow snippets which are associated with 66
-Qualitas projects. The 11,749 \textit{ok'} pairs are clones between
-136 Stack Overflow snippets and 39 Qualitas projects.  Moreover, for
-the disagreed pairs, we found 17,081 clone pairs reported by $S_D'$
-are clones between 471 Stack Overflow snippets and 76 Qualitas
-projects and 88 $N_D'$ clone pairs are clones between 77 Stack
-Overflow snippets and 29 Qualitas projects. In total we found that the
-manually investigated 31,946 clones pairs are clones between 621
-Stack Overflow snippets and 95 Qualitas projects.
+combinations. As shown in \Cref{tab:snippets}, for the 2,308
+\textit{good} pairs, there are 92 Stack Overflow snippets which are
+associated with 66 Qualitas projects. The 11,749 \textit{ok'} pairs
+are clones between 136 Stack Overflow snippets and 39 Qualitas
+projects.  Moreover, for the disagreed pairs, we found 17,081 clone
+pairs reported by $S_D'$ are clones between 471 Stack Overflow
+snippets and 76 Qualitas projects and 88 $N_D'$ clone pairs are clones
+between 77 Stack Overflow snippets and 29 Qualitas projects. In total
+we found that the manually investigated 31,946 clones pairs are clones
+between 621 Stack Overflow snippets and 95 Qualitas projects.
 
-\textbf{To answer RQ1, with the four configurations of Simian and
-  NiCad, we found most Qualitas projects to share similar code with
-  Stack Overflow code snippets. When onlly considering the manually
-  investigated snippets, FIXME}
+\textbf{To answer RQ1, we found most Qualitas projects to share
+  similar code with Stack Overflow code snippets. Depending on the
+  data set, between 82 to all 111 projects share similar code. This
+  holds even for the investigated data set where 95 projects share
+  code with Stack Overflow.}
 
-\FIXME{Should we have removed the AC clones right at the beginning?}
+%\FIXME{Should we have removed the AC clones right at the beginning?}
 
 \subsection{RQ2: Patterns of Online Code Cloning}
 
@@ -1176,12 +1178,14 @@ statements.
 
 %For 17,801 $S_D$ clone pairs, they contained a large volume of boiler-plate code. Our regular expressions could automatically classified 16,800 of them into BP. The investigator checked the 1,001 remaining pairs manually. As a result, we found 86 QS, 294 UD, 145 EX, 17,074 BP, 74 IN and 128 AC pairs. For 88 $N_D$ clone pairs, 10 of them were automatically classified into BP and 78 were manually classified. We found 9 QS, 35 UD, 6 EX, 17 BP, 8 IN, and 13 AC respectively.
 
+%FIXME: We probably have to discuss IN clones.
+%FIXME: the numbers where 28,642 and 2,529 which I could not find elsewhere.
 \textbf{To answer RQ2, we found that a large amount of the clone pairs
   between Stack Overflow and Qualitas projects are boiler-plate code
-  (28,642) or accidental clones (2,529) \FIXME{IN+AC here?} with no evidence that the code
+  (28,749) or accidental clones (2,418) with no evidence that the code
   has actually been copied. Nevertheless, we found 112 pairs that had
   strong evidences to be cloned from Qualitas to Stack Overflow and
-  178 pairs were found to be cloned to Stack Overflow from external
+  197 pairs were found to be cloned to Stack Overflow from external
   sources outside Qualitas projects.} 
 %We did not find any clone pairs in the direction from Stack Overflow to Qualitas.}
 
@@ -1646,6 +1650,8 @@ represent all Java open source software available.
 
 \section{Related Work}
 
+\FIXME{This needs rewriting}
+
 \textbf{Stack Overflow} is a gold mine for software engineering research. Its rich and developer-driven data are invaluable. Since posts on Stack Overflow may contain code snippets embedded within natural language text, they become a huge database for source code and code-relevant information. The Stack Overflow data set has been put to use in several previous studies. In terms of developer-assisting tools, Seahawk is an Eclipse plug-in that searches and recommends relevant code snippets from Stack Overflow~\cite{Ponzanelli2013}. A follow up work, Prompter, by Ponzanelli et al.~\cite{Ponzanelli2014} achieves the same goal but with improved algorithms. The code snippets on Stack Overflow are mostly examples or solutions to programming problems. Hence, several code search systems use whole or partial data from Stack Overflow as their code search databases~\cite{Keivanloo2014,Park2014, Stolee2014,Subramanian2013,Diamantopoulos2015}. Furthermore, Treude et al.~\cite{Treude2016}~use machine learning techniques to extract insight sentences from Stack Overflow and use them to improve API documentation.
 
 Another research area is knowledge extraction from Stack Overflow. Nasehi et al.~\cite{Nasehi2012}~studied what makes a good code example by analysing answers from Stack Overflow. Similarly, Yang et al.~\cite{Yang2016} report the number of reusable code snippets on Stack Overflow across various programming languages. Wang et al.~\cite{Wang2013_StackOverflow} use Latent Dirichlet Allocation (LDA) topic modelling to analyse questions and answers from Stack Overflow so that they can automatically categorise new questions. There are also studies trying to understand developers' behaviours on Stack Overflow, e.g.~\cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}, while some studies aim to improve Stack Overflow itself~\cite{Diamantopoulos2015, Wang2014}. 
@@ -1678,19 +1684,43 @@ The work that is closely similar to us is a study by An et al.~\cite{An2017} whe
 %We are eager to tackle the issues of outdated and license-violating online code clones with an automated tool. The tool should incorporate a scalable clone detection method of locate similar code from programming Q\&A websites such as Stack Overflow and online code repositories like GitHub. It analyses a software project under development and reports clones that are copied from Stack Overflow. The reported clones have traces to their origins in open source projects or websites along with their freshness (fresh/outdated/dead) so that the developer of the project can be aware of changes made to the copied code snippets. Lastly, the license of the original source code is also reported so the developer can make an informed decision of whether he or she will incorporate that code snippet into their own project.
 
 \section{Conclusions}
-Online code clones are clones that have been copied to Q\&A websites such as Stack Overflow. They are similar to clones in software projects where they can be outdated and violating software license but are much harder to detect. We studied the online code clones between Stack Overflow and Qualitas projects, especially 3,632 clone pairs, manually in details. 
 
-Although we deployed Bellon's clone agreement and multiple filters to reduce the number of clone candidates, we still found a large number of 51,926 online clone pairs reported by two clone detectors. We classify 31,946 clone pairs using our seven patterns of online code cloning. We discovered 112 clone pairs that have been copied, with evidence, from Qualitas projects to Stack Overflow (QS), 197 clone pairs that have been copied from external sources besides Qualitas to Stack Overflow (EX), and 359 clone pairs that are highly similar but without evidence of copying (UD).
+\FIXME{This needs rewriting}
 
-A manual investigation of the 112 QS clone pairs by comparing to their latest version (as of 26 September 2016) reveals that 64 of them are outdated. Moreover, the study of licensing conflicts of clones in QS, EX, and UD shows that 357 code snippets on Stack Overflow do not contain licensing statements while their clone counterparts in Qualitas projects or external sources do.
+Online code clones are clones that have been copied to Q\&A websites
+such as Stack Overflow. They are similar to clones in software
+projects where they can be outdated and violating software license but
+are much harder to detect. We studied the online code clones between
+Stack Overflow and Qualitas projects, especially 3,632 clone pairs,
+manually in details.
 
-This study is among, if not the first, to address the important issues of outdated and license-violating online code clones on programming Q\&A websites using a hybrid methodology of automatic code clone detection and a manual clone investigation.
+Although we deployed Bellon's clone agreement and multiple filters to
+reduce the number of clone candidates, we still found a large number
+of 51,926 online clone pairs reported by two clone detectors. We
+classify 31,946 clone pairs using our seven patterns of online code
+cloning. We discovered 112 clone pairs that have been copied, with
+evidence, from Qualitas projects to Stack Overflow (QS), 197 clone
+pairs that have been copied from external sources besides Qualitas to
+Stack Overflow (EX), and 359 clone pairs that are highly similar but
+without evidence of copying (UD).
+
+A manual investigation of the 112 QS clone pairs by comparing to their
+latest version (as of 26 September 2016) reveals that 64 of them are
+outdated. Moreover, the study of licensing conflicts of clones in QS,
+EX, and UD shows that 357 code snippets on Stack Overflow do not
+contain licensing statements while their clone counterparts in
+Qualitas projects or external sources do.
+
+This study is among, if not the first, to address the important issues
+of outdated and license-violating online code clones on programming
+Q\&A websites using a hybrid methodology of automatic code clone
+detection and a manual clone investigation.
 
 %
 % The following two commands are all you need in the
 % initial runs of your .tex file to
 % produce the bibliography for the citations in your paper.
-\bibliographystyle{abbrv}
+\bibliographystyle{ACM-Reference-Format}
 \bibliography{sigproc}  
 
 \end{document}
