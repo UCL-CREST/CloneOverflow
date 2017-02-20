@@ -532,7 +532,7 @@ paths, and will be fixed in the next NiCad releases.
 \subsection{Filtering Clone Candidates}
 
 The number of online clone pairs reported by running Simian and NiCad
-are presented in \Cref{tab:raw_stats}. $S_D$ reports 67,570 clone
+are presented in \Cref{tab:orig_stats}. $S_D$ reports 67,570 clone
 pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report
 much larger numbers of clone pairs, 63,635,844 and 251,449,849 pairs
 respectively. This is expected since EvaClone configurations prefer
@@ -911,26 +911,26 @@ checked for a possibility of a licensing violation.
 
 \subsection{RQ1: Online Code Clones} 
 
-\begin{table}
-	\centering
-	\caption{Statistics of online clones reported by Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations}
-	\label{tab:raw_stats}
-	%\small
-	%\resizebox{\columnwidth}{!}{%
-		\begin{tabular}{l|r|r|r|r}
-			\hline
-			Stats & \multicolumn{1}{c|}{$S_D$} & \multicolumn{1}{c|}{$S_E$} & \multicolumn{1}{c|}{$N_D$} & \multicolumn{1}{c}{$N_E$} \\
-			\hline
-			Stack Overflow Snippets & 1,086 & 1,531 & 1,392 & 12,886 \\
-			No. of Qualitas projects & 92 & 111 & 82 & 88 \\
-%			Total C$_{\textrm{\textit{pairs}}}$ & 67,570 & 63,635,844 & 632,855 & 251,449,849 \\
-%			Avg.~C$_{\textrm{\textit{pairs}}}$ & 62 & 41,565 & 455 & 19,356 \\
-%			Avg.~C$_{\textrm{\textit{size}}}$ & 9.11 & 5.95 & 10.85 & 6.28 \\
-			Avg.~C$_{\textrm{\textit{\%}}}$ & 38\% & 50\% & 30\% & 33\% \\
-			\hline
-		\end{tabular} %
-	%}
-\end{table}
+% \begin{table}
+% 	\centering
+% 	\caption{Statistics of online clones reported by Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations}
+% 	\label{tab:raw_stats}
+% 	%\small
+% 	%\resizebox{\columnwidth}{!}{%
+% 		\begin{tabular}{l|r|r|r|r}
+% 			\hline
+% 			Stats & \multicolumn{1}{c|}{$S_D$} & \multicolumn{1}{c|}{$S_E$} & \multicolumn{1}{c|}{$N_D$} & \multicolumn{1}{c}{$N_E$} \\
+% 			\hline
+% 			Stack Overflow Snippets & 1,086 & 1,531 & 1,392 & 12,886 \\
+% 			No. of Qualitas projects & 92 & 111 & 82 & 88 \\
+% %			Total C$_{\textrm{\textit{pairs}}}$ & 67,570 & 63,635,844 & 632,855 & 251,449,849 \\
+% %			Avg.~C$_{\textrm{\textit{pairs}}}$ & 62 & 41,565 & 455 & 19,356 \\
+% %			Avg.~C$_{\textrm{\textit{size}}}$ & 9.11 & 5.95 & 10.85 & 6.28 \\
+% 			Avg.~C$_{\textrm{\textit{\%}}}$ & 38\% & 50\% & 30\% & 33\% \\
+% 			\hline
+% 		\end{tabular} %
+% 	%}
+% \end{table}
 
 % \begin{figure*}
 % 		\centering
@@ -961,8 +961,8 @@ checked for a possibility of a licensing violation.
 % 	\label{fig:histogram}
 % \end{figure*}
 
-The statistics on clones obtained from running Simian and NiCad are
-presented in \Cref{tab:raw_stats}. Simian in the default configuration
+The statistics on clones obtained from the different data sets are
+presented in \Cref{tab:snippets}. Simian in the default configuration
 ($S_D$) reported clones in 1,086 snippets, approximately 1\% of the
 144,064 Stack Overflow snippets, associated with 92 Qualitas
 projects. Simian in the EvaClone configuration ($S_E$) reported 1,531
@@ -986,36 +986,42 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
 % I don't think there is a need.
 
 \begin{table}
-\caption{Investigated online clone pairs and snippets \FIXME{maybe
-    merge with tables 7 and/or 9}}
+\caption{Investigated online clone pairs and corresponding snippets
+  and Qualitas projects for the different data sets}
 \label{tab:snippets}
 \centering
 \begin{tabular}{l|rrrr}
-  & Pairs & Snippets & Projects & Avg.~C$_{\textrm{\textit{\%}}}$ \\
-\hline
-\textit{good} & 2,308 & 92 & 66 & 23\% \\
-\textit{ok'} & 11,749 & 136 & 39 & 28\% \\
-$S_D'$ & 17,081 & 471 & 76 & 31\% \\
-$N_D'$ & 88 & 77 & 29 & 26\% \\
-\hline
-Total & 31,946 & 621 & 95 & 27\%
+  \hline 
+  Data Set & Pairs & Snippets & Projects & Avg.~C$_{\textrm{\textit{\%}}}$ \\
+  \hline 
+  \multicolumn{4}{l}{\textit{Reported Clones}} \\
+  \hline
+  $S_D$ & 67,570 & 1,086 & 92 & 38\% \\
+  $S_E$ & 63,635,844 & 1,531 & 111 & 50\% \\
+  $N_D$ & 632,855& 1,392 & 82 & 30\% \\
+  $N_E$ & 251,449,849& 12,886 & 88 & 33\% \\
+  \hline
+  Total & 315,786,118 & &\\
+  \hline
+  \multicolumn{4}{l}{\textit{Filtered Data Sets}} \\
+  \hline
+  \textit{good} & 2,308 & 92 & 66 & 23\% \\
+  \textit{ok'} & 11,749 & 136 & 39 & 28\% \\
+  $S_D'$ & 17,081 & 471 & 76 & 31\% \\
+  $N_D'$ & 88 & 77 & 29 & 26\% \\
+  \hline
+  Total & 31,946 & 621 & 95 & 27\%\\
+  \hline 
+  \multicolumn{4}{l}{\textit{True Positives without AC}} \\
+  \hline 
+  $\textit{good}/\textrm{AC}$ & 136 & 47 & 25 & 23\% \\
+  $\textit{ok'}/\textrm{AC}$ & 11,644 & 125 & 34 & 28\% \\
+  $S_D'/\textrm{AC}$ & 17,673 & 448 & 72 & 31\% \\
+  $N_D'/\textrm{AC}$ & 75 & 44 & 17 & 28\% \\
+  \hline
+  Total & 29,528 & 555 & 81 & 28\% \\
+  \hline
 \end{tabular}
-\end{table}
-
-\begin{table}
-	\caption{Investigated online clone pairs and snippets (true positives without AC)}
-	\label{tab:snippets_no_ac}
-	\centering
-	\begin{tabular}{l|rrrr}
-		& Pairs & Snippets & Projects & Avg.~C$_{\textrm{\textit{\%}}}$ \\
-		\hline
-		\textit{good} & 136 & 47 & 25 & 23\% \\
-		\textit{ok'} & 11,644 & 125 & 34 & 28\% \\
-		$S_D'$ & 17,673 & 448 & 72 & 31\% \\
-		$N_D'$ & 75 & 44 & 17 & 28\% \\
-		\hline
-		Total & 29,528 & 555 & 81 & 28\%
-	\end{tabular}
 \end{table}
 
 However, using Bellon's criteria for matching clone pairs, only
@@ -1028,14 +1034,20 @@ projects.  Moreover, for the disagreed pairs, we found 17,081 clone
 pairs reported by $S_D'$ are clones between 471 Stack Overflow
 snippets and 76 Qualitas projects and 88 $N_D'$ clone pairs are clones
 between 77 Stack Overflow snippets and 29 Qualitas projects. In total
-we found that the manually investigated 31,946 clones pairs are clones
-between 621 Stack Overflow snippets and 95 Qualitas projects.
+we found that the filtered data sets contains 31,946 clone pairs which
+are clones between 621 Stack Overflow snippets and 95 Qualitas
+projects. During the manual investigation, we identified 2,418 pairs
+as being accidential clones (AC), i.e.~false positives. After removing
+them, the data set still contains 29,528 clone pairs between 555 Stack
+Overflow snippets and 81 Qualitas projects.
 
 \textbf{To answer RQ1, we found most Qualitas projects to share
   similar code with Stack Overflow code snippets. Depending on the
-  data set, between 82 to all 111 projects share similar code. This
-  holds even for the investigated data set where 95 projects share
-  code with Stack Overflow.}
+  data set, between 82 to all 111 projects share similar code. The
+  filtered data set has 95 projects share code with Stack
+  Overflow. Even in the manually confirmed data set of 29,528 clone
+  pairs, a majority of 81 Qualitas projects share similar code with
+  Stack Overflow.}
 
 %\FIXME{Should we have removed the AC clones right at the beginning?}
 
