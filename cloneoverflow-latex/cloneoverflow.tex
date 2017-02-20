@@ -993,13 +993,29 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
 \begin{tabular}{l|rrrr}
   & Pairs & Snippets & Projects & Avg.~C$_{\textrm{\textit{\%}}}$ \\
 \hline
-\textit{good} & 2,308 & 92 & 66 & \\
-\textit{ok'} & 11,749 & 136 & 39 & \\
-$S_D'$ & 17,081 & 471 & 76 & \\
-$N_D'$ & 88 & 77 & 29 & \\
+\textit{good} & 2,308 & 92 & 66 & 23\% \\
+\textit{ok'} & 11,749 & 136 & 39 & 28\% \\
+$S_D'$ & 17,081 & 471 & 76 & 31\% \\
+$N_D'$ & 88 & 77 & 29 & 26\% \\
 \hline
-Total & 31,946 & 621 & 95 &
+Total & 31,946 & 621 & 95 & 27\%
 \end{tabular}
+\end{table}
+
+\begin{table}
+	\caption{Investigated online clone pairs and snippets (true positives without AC)}
+	\label{tab:snippets_no_ac}
+	\centering
+	\begin{tabular}{l|rrrr}
+		& Pairs & Snippets & Projects & Avg.~C$_{\textrm{\textit{\%}}}$ \\
+		\hline
+		\textit{good} & 136 & 47 & 25 & 23\% \\
+		\textit{ok'} & 11,644 & 125 & 34 & 28\% \\
+		$S_D'$ & 17,673 & 448 & 72 & 31\% \\
+		$N_D'$ & 75 & 44 & 17 & 28\% \\
+		\hline
+		Total & 29,528 & 555 & 81 & 28\%
+	\end{tabular}
 \end{table}
 
 However, using Bellon's criteria for matching clone pairs, only
