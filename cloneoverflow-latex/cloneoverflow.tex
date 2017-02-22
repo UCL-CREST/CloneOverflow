@@ -125,7 +125,7 @@
   techniques to automatically extract, prioritise, and filter
   315,786,118 detected online clone pairs between 144,064 Java code
   snippets on Stack Overflow and 111 Java open source projects in the
-  curated Qualitas corpus. We discovered and investigated 31,946
+  curated Qualitas corpus. We discovered and investigated 32,533
   non-trivial online clone candidates. Our study revealed that 64 out
   of 112 clones with strong evidence of copying from a Qualitas
   project to Stack Overflow are outdated. Furthermore, we found 357
@@ -472,7 +472,7 @@ two systems.
 We prepared the Java code in both datasets by removing comments and
 pretty-printing to increase the accuracy of clone detection. Then, we
 deployed the two clone detectors to locate clones between the two
-datasets.  We partitioned the input and ran the tools multiple
+datasets. Due to a scalability issue, we partitioned the input and ran the tools multiple
 times. Each run was composed of the entire Stack Overflow data and a
 single Qualitas project. We repeated the process until we covered all
 111 projects.  We then converted the clone reports to the General
@@ -633,8 +633,8 @@ As shown in \Cref{t_agreed_good_clone_pairs}, after we applied clone
 agreement filtering using Bellon's criteria\footnote{Similar to the
   original study, we selected a threshold \textit{t} of 0.7 for both
   \textit{good} and \textit{ok} pairs~\cite{Bellon2007}.}, the number
-of \textit{good} clone pairs is 2,308 and the number of \textit{ok}
-clone pairs is 31,729, 0.1\textperthousand~of all reported clone
+of \textit{good} clone pairs is 2,313 and the number of \textit{ok}
+clone pairs is 32,316, 0.1\textperthousand~of all reported clone
 pairs.  Agreed clone pairs are clone pairs that pass Bellon's
 \textit{good} or \textit{ok} criteria, and therefore are selected for
 manual classification.  Due to NiCad's failures, we do not have NiCad
@@ -652,8 +652,8 @@ pairs since they could not be matched.
     \hline
     Set & $S_D$--$N_D$ & $S_D$--$N_E$ & $S_E$--$N_D$ & $S_E$--$N_E$ & Unique \\
     \hline
-    \textit{good} & 18 & 26 & 10 & 2,267 & 2,308 \\
-    \textit{ok} & 11,467 & 993 & 79 & 20,021 & 31,729  \\
+    \textit{good} & 23 & 26 & 10 & 2,267 & 2,313 \\
+    \textit{ok} & 12,336 & 993 & 79 & 20,021 & 32,316 \\
     \hline
   \end{tabular} %
   % }
@@ -661,20 +661,20 @@ pairs since they could not be matched.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{good-ok_pairs-crop}
+	\includegraphics[width=\linewidth]{good-ok_pairs}
 	\caption{Distribution of \textit{good} (top) and \textit{ok} pairs (bottom) reported by the 4 configurations of Simian and NiCad. The shaded areas are overlapping pairs.}
 	\label{fig:good-ok-pairs}
 \end{figure}
 
 The distribution of \textit{good} clone pairs between the four
 combinations of \textit{D} and \textit{E} configurations are listed in
-\Cref{t_agreed_good_clone_pairs}.  There are 2,321 (2,308 unique)
-\textit{good} pairs consisting of 18 pairs from $S_D$--$N_D$, 26 pairs
+\Cref{t_agreed_good_clone_pairs}.  There are 2,326 (2,313 unique)
+\textit{good} pairs consisting of 23 pairs from $S_D$--$N_D$, 26 pairs
 from $S_D$--$N_E$, 10 pairs from $S_E$--$N_D$, and 2,267 pairs from
-$S_E$--$N_E$. There are 32,560 (31,729 unique) \textit{ok}
-pairs\footnote{This excludes the subsumed 2,308 \textit{good}
+$S_E$--$N_E$. There are 33,156 (32,316 unique) \textit{ok}
+pairs\footnote{This excludes the subsumed 2,313 \textit{good}
   pairs. According to the definition, \textit{ok} pairs always subsume
-  \textit{good} pairs.}. We obtained 11,467; 993; 79; and 20,021 pairs
+  \textit{good} pairs.}. We obtained 12,336; 993; 79; and 20,021 pairs
 from $S_D$--$N_D$, $S_D$--$N_E$, $S_E$--$N_D$, and $S_E$--$N_E$
 respectively. Between the four configuration sets, there is
 considerable amount of clone pairs shared between two adjacent sets
@@ -695,7 +695,7 @@ that is agreed by all four combinations.
 		& & \textit{L} & \textit{S} & \textit{G} & \\
 		\hline 
 		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & \checkmark & 17,801 \\
-		\multirow{1}{*}{$N_D$} & 632,855 & \checkmark & \checkmark & \checkmark & 88 \\ 
+		\multirow{1}{*}{$N_D$} & 632,855 & \checkmark & \checkmark & \checkmark & 83 \\ 
 		\hline
 		\multicolumn{6}{l}{*\textit{L}=size $\geq 10$, \textit{S}=sim $\geq 85\%$, \textit{G}=\textit{good}/\textit{ok} pairs.}  \\
 	\end{tabular} %
@@ -740,22 +740,22 @@ tried varying the UPI from 70\% (default, 632,855 pairs), 80\%
 85\% similarity provided the best balance in terms of the amount of
 reported clones and precision for small clones. Using this filter
 along with the other three filters, we reduced the number of $N_D$
-clones to 88 pairs.
+clones to 83 pairs.
 
 \subsubsection{Manual Inspection Data Set}
 
 For the manual inspection of clone pairs, we selected all
-\textit{good} pairs (2,308) and the \textit{ok} pairs for
-$S_D$--$N_D$, $S_E$--$N_D$, and $S_D$--$N_E$ (11,749), but we ignored
+\textit{good} pairs (2,313) and the \textit{ok} pairs for
+$S_D$--$N_D$, $S_E$--$N_D$, and $S_D$--$N_E$ (12,336), but we ignored
 20,021 $S_EN_E$ \textit{ok} clone pairs in the classification due to
 their large number of clones and the very small average clone sizes of
 5.95 and 6.28 lines (see \Cref{tab:orig_stats}), leading to a high
 probability of being trivial clones. We refer to the set of clone
 pairs as the \textit{good} set and the \textit{ok'} set.
 
-Together with the 17,801 (referred as $S_D'$ set) and 88 (referred as
+Together with the 17,801 (referred as $S_D'$ set) and 83 (referred as
 $N_D'$ set) clone pairs after filtering clone pairs from $S_D$ and
-$N_D$, we ended up with a set of 31,946 online clone pair candidates
+$N_D$, we ended up with a set of 32,533 online clone pair candidates
 for manual inspection.
 
 \begin{table}
@@ -836,7 +836,7 @@ clones from the clone detectors such as similar
 	\label{fig:classification_process}
 \end{figure}
 
-The classification of all 31,946 online clone pairs followed the steps
+The classification of all 32,533 online clone pairs followed the steps
 depicted in \Cref{fig:classification_process}. First, we look at a
 pair of clone fragments to see their similarity. If they are
 accidentally similar clones after code normalisation or false positive
@@ -1005,48 +1005,48 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
   \hline
   \multicolumn{5}{l}{\textit{Filtered Data Sets}} \\
   \hline
-  \textit{good} & 2,308 & 92 & 66 & 23\% \\
-  \textit{ok'} & 11,749 & 136 & 39 & 28\% \\
-  $S_D'$ & 17,081 & 471 & 76 & 31\% \\
-  $N_D'$ & 88 & 77 & 29 & 26\% \\
+  \textit{good} & 2,313 & 97 & 67 & 23\% \\
+  \textit{ok'} & 12,336 & 139 & 43 & 28\% \\
+  $S_D'$ & 17,081 & 460 & 74 & 31\% \\
+  $N_D'$ & 83 & 44 & 19 & 27\% \\
   \hline
-  Total & 31,946 & 621 & 95 & 27\%\\
+  Total & 32,533 & 623 & 96 & 27\%\\
   \hline 
   \multicolumn{5}{l}{\textit{True Positives without AC}} \\
   \hline 
-  $\textit{good}/\textrm{AC}$ & 136 & 47 & 25 & 23\% \\
-  $\textit{ok'}/\textrm{AC}$ & 11,644 & 125 & 34 & 28\% \\
+  $\textit{good}/\textrm{AC}$ & 141 & 52 & 26 & 23\% \\
+  $\textit{ok'}/\textrm{AC}$ & 12,229 & 126 & 36 & 28\% \\
   $S_D'/\textrm{AC}$ & 17,673 & 448 & 72 & 31\% \\
-  $N_D'/\textrm{AC}$ & 75 & 44 & 17 & 28\% \\
+  $N_D'/\textrm{AC}$ & 70 & 39 & 16 & 29\% \\
   \hline
-  Total & 29,528 & 555 & 81 & 28\% \\
+  Total & 30,113 & 556 & 80 & 28\% \\
   \hline
 \end{tabular}
 \end{table}
 
 However, using Bellon's criteria for matching clone pairs, only
 0.1\textperthousand~of all pairs are agreed by two tool/configuration
-combinations. As shown in \Cref{tab:snippets}, for the 2,308
-\textit{good} pairs, there are 92 Stack Overflow snippets which are
-associated with 66 Qualitas projects. The 11,749 \textit{ok'} pairs
-are clones between 136 Stack Overflow snippets and 39 Qualitas
+combinations. As shown in \Cref{tab:snippets}, for the 2,313
+\textit{good} pairs, there are 97 Stack Overflow snippets which are
+associated with 67 Qualitas projects. The 12,336 \textit{ok'} pairs
+are clones between 139 Stack Overflow snippets and 43 Qualitas
 projects.  Moreover, for the disagreed pairs, we found 17,081 clone
-pairs reported by $S_D'$ are clones between 471 Stack Overflow
-snippets and 76 Qualitas projects and 88 $N_D'$ clone pairs are clones
-between 77 Stack Overflow snippets and 29 Qualitas projects. In total
-we found that the filtered data sets contains 31,946 clone pairs which
-are clones between 621 Stack Overflow snippets and 95 Qualitas
-projects. During the manual investigation, we identified 2,418 pairs
+pairs reported by $S_D'$ are clones between 460 Stack Overflow
+snippets and 74 Qualitas projects and 83 $N_D'$ clone pairs are clones
+between 44 Stack Overflow snippets and 19 Qualitas projects. In total
+we found that the filtered data sets contains 32,533 clone pairs which
+are clones between 623 Stack Overflow snippets and 96 Qualitas
+projects. During the manual investigation, we identified 2,420 pairs
 as being accidential clones (AC), i.e.~false positives. After removing
-them, the data set still contains 29,528 clone pairs between 555 Stack
-Overflow snippets and 81 Qualitas projects.
+them, the data set still contains 30,113 clone pairs between 556 Stack
+Overflow snippets and 80 Qualitas projects.
 
 \textbf{To answer RQ1, we found most Qualitas projects to share
   similar code with Stack Overflow code snippets. Depending on the
-  data set, between 82 to all 111 projects share similar code. The
-  filtered data set has 95 projects share code with Stack
-  Overflow. Even in the manually confirmed data set of 29,528 clone
-  pairs, a majority of 81 Qualitas projects share similar code with
+  data set, between 88 to all 111 projects share similar code. The
+  filtered data set has 96 projects share code with Stack
+  Overflow. Even in the manually confirmed data set of 30,113 clone
+  pairs, a majority of 80 Qualitas projects share similar code with
   Stack Overflow.}
 
 %\FIXME{Should we have removed the AC clones right at the beginning?}
@@ -1064,40 +1064,40 @@ Overflow snippets and 81 Qualitas projects.
 		\multirow{2}{*}{Set} & \multirow{2}{*}{Candidates} & \multicolumn{2}{c}{Classification} \\ \cline{3-4}
 		& & Auto & Manual \\
 		\hline 
-		\multirow{1}{*}{\textit{good}} & 2,308 & 10 & 2,298 \\
-		\multirow{1}{*}{\textit{ok'}} & 11,749 & 11,494 & 255 \\
+		\multirow{1}{*}{\textit{good}} & 2,313 & 10 & 2,303 \\
+		\multirow{1}{*}{\textit{ok'}} & 12,336 & 12,077 & 259 \\
 		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
 		\multirow{1}{*}{$S_D'$} & 17,801 & 16,800 & 1,001 \\
-		\multirow{1}{*}{$N_D'$} & 88 & 10 & 78 \\ 
+		\multirow{1}{*}{$N_D'$} & 83 & 10 & 73 \\ 
 		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
 		\hline
-		Total  & 31,946 & 28,314 & 3,632 \\ 
+		Total  & 32,533 & 28,897 & 3,636 \\ 
 		\hline
 	\end{tabular} %
 	%}
 \end{table}
 
 We rely on a manual study to qualitatively investigate the patterns of
-online code cloning. To achieve this, we classified all 31,946
+online code cloning. To achieve this, we classified all 32,533
 selected clone pairs according to the process shown in
 \Cref{fig:classification_process}.  Before performing the manual
 classification, we created and used an automatic classifier 
 to classify {\small\texttt{equals()}}, 
 {\small\texttt{hashCode()}} and getters/setters. As shown in
 \Cref{tab:online_clone_classification_results}, the automatic
-classifier helped us to classify 28,314 clone pairs into
+classifier helped us to classify 28,897 clone pairs into
 pattern \textbf{BP}.
 
-There were 3,632 pairs left for the manual check. The first author,
+There were 3,636 pairs left for the manual check. The first author,
 who has been working on clone detection research for two years, took
 the role of the main investigator performing a manual classification
-of the 3,632 clone pairs. By consulting the cloning patterns, the main
+of the 3,636 clone pairs. By consulting the cloning patterns, the main
 investigator went through each clone pair candidate, looked at the
 clones, and chose the most appropriate cloning pattern for the pair.
 %
 To mitigate the human errors of the manual classification, the second
 author took the role of the validating investigator, performing a
-validation on 10\% (363 pairs) of the clone pairs judged by the main
+validation on 10\% (364 pairs) of the clone pairs judged by the main
 investigator. After the validation, the classifications from the two
 investigators were compared and 64 conflicts were found. The two
 investigators discussed and resolved 61 of them while the 3 conflicts
@@ -1121,9 +1121,9 @@ limited modifications.
 any clone pairs with evidence of cloning from Stack Overflow to
 Qualitas projects.
 
-\textbf{EX: External Sources.} We found 197 online clone pairs with
+\textbf{EX: External Sources.} We found 200 online clone pairs with
 evidence of cloning from external sources to Stack Overflow. They
-include 4, 41, 146, and 6 clone pairs from the \textit{good},
+include 4, 44, 146, and 6 clone pairs from the \textit{good},
 \textit{ok'}, $S_D'$, and $N_D'$ set respectively.
 
 These findings complement a study of clones between software
@@ -1146,12 +1146,12 @@ libraries such as \textsf{zxing}, \textsf{jasper}, \textsf{java.util},
 \textsf{javax.servlet}, and the \textsf{bouncycastle} cryptography
 project.
 
-\textbf{UD: Unknown Direction.} We found 382 online clone pairs with
+\textbf{UD: Unknown Direction.} We found 359 online clone pairs with
 no evidence of cloning between Qualitas and Stack Overflow but with a
-high code similarity that suggests cloning. They include 11, 42, 294,
-and 35 pairs from the \textit{good}, \textit{ok'}, $S_D'$, and $N_D'$
+high code similarity that suggests cloning. They include 15, 20, 293,
+and 31 pairs from the \textit{good}, \textit{ok'}, $S_D'$, and $N_D'$
 set respectively. The most cloned projects is \textsf{netbeans} with
-95 clone pairs. Most of the clones are a large chunk of code handling
+93 clone pairs. Most of the clones are a large chunk of code handling
 GUI components. Although these GUI clones might be auto-generated by
 IDEs, we did not find any evidence. The second most cloned project is
 \textsf{jung2} (62 pairs), a network and graph framework, followed by
@@ -1160,20 +1160,20 @@ IDEs, we did not find any evidence. The second most cloned project is
 % in \textsf{jung2}.
 
 \textbf{BP: Boiler-Plate.} There were a large amount of boiler-plate
-clone pairs found in this study. Although we have removed some of the
-boiler-plate code with filters before the analysis, we still observed
-28,749 such clone pairs. The \textbf{BP} clone pairs account for
-89.7\% of all clone pairs we classified. The majority of them are
+clone pairs found in this study. %Although we have removed some of the
+%boiler-plate code with filters before the analysis, we still 
+We observed 29,330 such clone pairs. The \textbf{BP} clone pairs account for
+90\% of all clone pairs we classified. The majority of them are
 {\small{\texttt{equals()}}} methods.
 
-\textbf{IN: Inheritance/interface.} There were 111 clone pairs found
+\textbf{IN: Inheritance/interface.} There were 112 clone pairs found
 to be similar because they implement the same interface or inheriting
 from the same class. An example is the two implementations of
 {\small{\texttt{MouseListener}}} that share similar
 {\small\texttt{@Override}} methods of {\small\texttt{mousePressed}},
 and {\small\texttt{mouseReleased}}.
 
-\textbf{AC: Accidental Clones.} There were 2,418 accidental clone
+\textbf{AC: Accidental Clones.} There were 2,420 accidental clone
 pairs. Mainly, they are false positive clones caused by code
 normalisation. 
 % However, the original source code were still different enough when
@@ -1193,12 +1193,12 @@ statements.
 			\hline
 			Set & QS & SQ & EX & UD & BP & IN & AC & Total \\ 
 			\hline
-			\multirow{1}{*}{\textit{good}}  & 3 & 0 & 4 & 11 & 111  & 7 & 2,172 & 2,308 \\
-			\multirow{1}{*}{\textit{ok'}}  & 14 & 0 & 41 & 20 & 11,547 & 22 & 105 & 11,749 \\
+			\multirow{1}{*}{\textit{good}}  & 3 & 0 & 4 & 15 & 111  & 8 & 2,172 & 2,313 \\
+			\multirow{1}{*}{\textit{ok'}}  & 14 & 0 & 44 & 20 & 12,128 & 23 & 107 & 12,336 \\
 			\multirow{1}{*}{$S_D'$} & 86 & 0 & 146 & 293 & 17,074 & 74 & 128 & 17,801 \\
-			\multirow{1}{*}{$N_D'$} & 9  & 0  & 6 & 35 & 17 & 8 & 13 & 88 \\ 
+			\multirow{1}{*}{$N_D'$} & 9  & 0  & 6 & 31 & 17 & 7 & 13 & 83 \\ 
 			\hline
-			Total & 112 & 0 & 197 & 359 & 28,749 & 111 & 2,418 & 31,946 \\ 
+			Total & 112 & 0 & 200 & 359 & 29,330 & 112 & 2,420 & 32,533 \\ 
 			\hline
 		\end{tabular} 
 	%}
@@ -1210,10 +1210,10 @@ statements.
 %FIXME: the numbers where 28,642 and 2,529 which I could not find elsewhere.
 \textbf{To answer RQ2, we found that a large amount of the clone pairs
   between Stack Overflow and Qualitas projects are boiler-plate code
-  (28,749) or accidental clones (2,418) with no evidence that the code
+  (29,330) or accidental clones (2,420) with no evidence that the code
   has actually been copied. Nevertheless, we found 112 pairs that had
   strong evidences to be cloned from Qualitas to Stack Overflow and
-  197 pairs were found to be cloned to Stack Overflow from external
+  200 pairs were found to be cloned to Stack Overflow from external
   sources outside Qualitas projects.} 
 %We did not find any clone pairs in the direction from Stack Overflow to Qualitas.}
 
@@ -1500,7 +1500,7 @@ snippets. %there are studies of automatic technique to identify software licensi
 		\hline
 	    Incompat. & BSD3 & GPLv2+ & 0 & 0 & 1 \\
 		License	& No license & AGPLv3/3+ & 1 & 0 & 2 \\
-		& No license & Apache-2 & 41 & 5 & 23 \\
+		& No license & Apache-2 & 41 & 6 & 23 \\
 		& No license & BSD3 & 3 & 4 & 28 \\
 		& No license & CDDL or GPLv2 & 1 & 0 & 58 \\
 		& No license & CDDLv1 & 0 & 1 & 0 \\
@@ -1513,7 +1513,7 @@ snippets. %there are studies of automatic technique to identify software licensi
 		& No license & Unknown & 0 & 3 & 3 \\
 		& spdxBSD3 & AGPLv3+ & 0 & 0 & 2 \\
 		\hline
-		\multicolumn{3}{l|}{Total} &  79 & 76 & 202 \\
+		\multicolumn{3}{l|}{Total} &  79 & 77 & 202 \\
 		\hline
 	\end{tabular} %
 %}
@@ -1572,7 +1572,7 @@ overall, we can see that most of the Stack Overflow snippets do not
 contain licensing terms while their clone counterparts in Qualitas
 projects do.
 
-\textbf{Compatible license:} There are 37 pairs which have compatible
+\textbf{Compatible license:} There are 40 pairs which have compatible
 licenses such as \emph{Apache license v.2}; \emph{Eclipse Public
   License v.1 (EPLv1)}; or a pair of no license vs.~\emph{Creative
   Common Attribution-NonCommercial-ShareAlike 3.0 Unported (CC
@@ -1584,14 +1584,14 @@ without licensing information as having \emph{CC BY-NC-SA 3.0} by
 default. The \emph{CC BY-NC-SA 3.0} license is relaxed and it only
 requests an attribution when reused.
 
-\textbf{Incompatible license:} there are 357 clone pairs which do not
+\textbf{Incompatible license:} there are 358 clone pairs which do not
 contain licensing information after they are posted on Stack Overflow
 or contain a different license from their Qualitas clone
 counterparts. More than half (79) of \textbf{QS} clone pairs have
 their licensing terms removed or changed when posted on Stack
 Overflow. For \textbf{EX} clone pairs, we searched for licensing terms of the
-original source code from the external sources. We found that 76 out
-of 87 EX clone pairs have incompatible licenses.
+original source code from the external sources. We found that 77 out
+of 88 EX clone pairs have incompatible licenses.
 %They are clones that have been identified to be copied from an external source.
 Similarly, the license statement was removed from Stack Overflow
 snippets. Of 226 \textbf{UD} clone pairs, 202 pairs have incompatible
@@ -1600,7 +1600,7 @@ while the Stack Overflow snippets do not.
 %
 %\Cref{fig:sankey_license} shows the direction of changes in online code clone license. The direction of the change is from left to right. The thickness of the line reflects the number of clones for that relationship. In \Cref{fig:sankey_license} (A), we can clearly see that most of the QS online clones have their licenses changed from having a license to ``No license'' on Stack Overflow. The same findings were found for EX online clones as depicted in \Cref{fig:sankey_license} (B). We found that most of the EX clones have their licensing information stripped of after copying to Stack Overflow. These clones are instead covered by the default CC BY-NC-SA 3.0 license of Stack Overflow which is strongly permissive. These used-to-be-licensed code are dangerous for being reused because they can implicitly conflict with the reused software's license.
 
-\textbf{For RQ4, we found 357 code snippets on Stack Overflow that
+\textbf{For RQ4, we found 358 code snippets on Stack Overflow that
   violate the license of their original software. The majority of them
   do not contain licensing statements after they have been copied to
   Stack Overflow.}
@@ -1725,7 +1725,7 @@ manually in details.
 Although we deployed Bellon's clone agreement and multiple filters to
 reduce the number of clone candidates, we still found a large number
 of 51,926 online clone pairs reported by two clone detectors. We
-classify 31,946 clone pairs using our seven patterns of online code
+classify 32,533 clone pairs using our seven patterns of online code
 cloning. We discovered 112 clone pairs that have been copied, with
 evidence, from Qualitas projects to Stack Overflow (QS), 197 clone
 pairs that have been copied from external sources besides Qualitas to
