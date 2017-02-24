@@ -77,7 +77,7 @@
 
 \acmPrice{15.00}
 
-\overfullrule1ex
+%\overfullrule1ex
 
 \begin{document}
 	\title{Are We Reusing Outdated and Licensed Code from Stack Overflow?}
@@ -495,31 +495,6 @@ Overflow or within Qualitas.
 % NiCad provides an option to detect clones
 % from two locations so no filtering was needed.
 
-\textbf{Clone Detection Configuration: }
-We were aware of effects of configurations to clone detection results
-and the importance of searching for optimised configurations in
-empirical clone
-studies~\cite{Svajlenko2014,Wang2014,cr2016ssbse,Ragkhitwetsagul2016}. However,
-considering the massive size of the two datasets and the search space
-of at least 15 Simian and 5 NiCad parameters, we are unable to search
-for the best configurations of the tools. Thus, we decided to
-configure Simian and NiCad using two established configurations:
-(1)~the tools' default configurations chosen by the tools' creators
-(denoted as \textit{D}), and (2)~the discovered configurations for
-Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
-of optimising clone detectors' configurations based on clone agreement
-(denoted by \textit{E}). The details of the two configurations are
-described in \Cref{t:param_tuning}.
-
-We encountered NiCad failures with a few Qualitas projects.~$N_D$
-could not detect clones in \textsf{hibernate} due to clustering
-errors. $N_E$ generated errors during code normalisation for 5
-projects including \textsf{vuze}, \textsf{hibernate},
-\textsf{myfaces}, \textsf{netbeans}, and \textsf{spring}. We have
-contacted the creator of NiCad regarding the issues. They identified
-the issues as problems in the TXL grammar and as problems of long file
-paths, and will be fixed in the next NiCad releases.
-
 \begin{table}
   \centering
   \caption{Configurations of Simian and NiCad}
@@ -536,6 +511,59 @@ paths, and will be fixed in the next NiCad releases.
     \hline
   \end{tabular} %
 %}
+\end{table}
+
+\textbf{Clone Detection Configuration: }
+We are aware of effects of configurations to clone detection results
+and the importance of searching for optimised configurations in
+empirical clone
+studies~\cite{Svajlenko2014,Wang2014,cr2016ssbse,Ragkhitwetsagul2016}. However,
+considering the massive size of the two datasets and the search space
+of at least 15 Simian and 5 NiCad parameters, we are unable to search
+for the best configurations of the tools. Thus, we decided to
+configure Simian and NiCad using two established configurations:
+(1)~the tools' default configurations chosen by the tools' creators
+(denoted as \textit{D}), and (2)~the discovered configurations for
+Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
+of optimising clone detectors' configurations based on clone agreement
+(denoted by \textit{E}). \Cref{t:param_tuning} shows the two configurations.
+
+We encountered NiCad failures with a few Qualitas projects.~$N_D$
+could not detect clones in \textsf{hibernate} due to clustering
+errors. $N_E$ generated errors during code normalisation for 5
+projects including \textsf{vuze}, \textsf{hibernate},
+\textsf{myfaces}, \textsf{netbeans}, and \textsf{spring}. We have
+contacted the creator of NiCad regarding the issues. They identified
+the issues as problems in the TXL grammar and as problems of long file
+paths, and will be fixed in the next NiCad releases.
+
+The number of online clone pairs reported % by running Simian and NiCad
+are presented in \Cref{tab:orig_stats}. $S_D$ reports 67,570 clone
+pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report
+much larger numbers of clone pairs, 63,635,844 and 251,449,849 pairs
+respectively. This is expected since EvaClone configurations prefer
+recall~\cite{Wang2013}.  The average clone size reported by $S_D$ is
+9.11 lines which is bigger than for $S_E$ (5.95 lines). Similarly,
+$N_D$ has an average clone size of 10.85 lines which is bigger than
+6.28 lines reported by $N_E$. The drop in size is due to the EvaClone
+configuration with a smaller minimum size (\Cref{t:param_tuning}).
+
+\begin{table}
+	\centering
+	\caption{Number of online clones reported by Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations}
+	\label{tab:orig_stats}
+	%\small
+	%\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{l|r|r|r|r}
+		\hline
+		Stats & \multicolumn{1}{c|}{$S_D$} & \multicolumn{1}{c|}{$S_E$} & \multicolumn{1}{c|}{$N_D$} & \multicolumn{1}{c}{$N_E$} \\
+		\hline
+		Total C$_{\textrm{\textit{pairs}}}$ & 67,570 & 63,635,844 & 632,855 & 251,449,849 \\
+		% Avg.~C$_{\textrm{\textit{pairs}}}$ & 62 & 41,565 & 455 & 19,356 \\
+		Avg.~C$_{\textrm{\textit{size}}}$ & 9.11 & 5.95 & 10.85 & 6.28 \\
+		\hline
+	\end{tabular} %
+	%}
 \end{table}
 
 \subsubsection{Phase 2: Clone Filtering}
@@ -608,7 +636,7 @@ $S_{D}$--$N_{E}$, $S_{E}$--$N_{D}$, and $S_{E}$--$N_{E}$.
 
 \textbf{Agreed clone pairs: } As shown in \Cref{t_agreed_good_clone_pairs}, after we applied clone
 agreement filtering using Bellon's criteria\footnote{Similar to the
-  original study, we selected a threshold \textit{t} of 0.7 for both
+  original study, we selected a threshold of 0.7 for
   \textit{good} and \textit{ok} pairs~\cite{Bellon2007}.}, the number
 of \textit{good} clone pairs is 2,313 and the number of \textit{ok}
 clone pairs is 32,316, 0.1\textperthousand~of all reported clone
@@ -638,7 +666,7 @@ pairs since they could not be matched.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{good-ok_pairs}
+	\includegraphics[width=0.9\linewidth]{good-ok_pairs}
 	\caption{Distribution of \textit{good} (top) and \textit{ok} pairs (bottom) reported by the 4 configurations of Simian and NiCad. The shaded areas are overlapping pairs.}
 	\label{fig:good-ok-pairs}
 \end{figure}
@@ -650,7 +678,7 @@ combinations of \textit{D} and \textit{E} configurations are listed in
 from $S_D$--$N_E$, 10 pairs from $S_E$--$N_D$, and 2,267 pairs from
 $S_E$--$N_E$. There are 33,156 (32,316 unique) \textit{ok}
 pairs\footnote{This excludes the subsumed 2,313 \textit{good}
-  pairs. According to the definition, \textit{ok} pairs always subsume
+  pairs because \textit{ok} pairs subsume
   \textit{good} pairs.}. We obtained 12,336; 993; 79; and 20,021 pairs
 from $S_D$--$N_D$, $S_D$--$N_E$, $S_E$--$N_D$, and $S_E$--$N_E$
 respectively. Between the four configuration sets, there is
@@ -767,7 +795,7 @@ Regarding the online cloning classification patterns,
 we studied the 8 patterns of cloning from Kapser et
 al.~\cite{Kapser2006,Kapser2008} and performed a preliminary study to
 evaluate its applicability to our study. 
-We have tried to classify 697 online clone pairs from
+We tried to classify 697 online clone pairs from
 the reported clones in phase 1 
 %Using the $S_D$ clone report,
 %snippets were ranked according to (1)~clone pair frequency,
@@ -778,12 +806,14 @@ the reported clones in phase 1
 %obtained 34 unique Stack Overflow snippets. The snippets were
 %associated with 697 clone pairs.
 %\subsubsection{Defining Online Code Cloning Patterns}
-using Kapser's cloning patterns. We found that the
-clone pairs were categorised into either Customisation or Templating.
-Thus, Kapser's cloning patterns are too broad for our study and a
+using Kapser's cloning patterns. We found that 
+% the
+% clone pairs were categorised into either Customisation or Templating.
+% Thus, 
+Kapser's patterns are too broad for our study and a
 more suitable and fine-grained classification scheme is needed. After
 the preliminary study, we adopted one of Kapser's cloning patterns,
-\emph{boiler-plate code} and \emph{API/library protocol}, and defined
+\emph{boiler-plate code}, and defined
 6 new cloning patterns. The seven patterns include QS, SQ, EX, UD, BP,
 IN, and AC as presented in \Cref{tab:classification_scheme}. Pattern
 QS (\textbf{Q}ualitas to \textbf{S}tack Overflow) represents clones
@@ -811,7 +841,7 @@ clones from the clone detectors such as similar
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\linewidth]{classification_process}
+	\includegraphics[width=0.8\linewidth]{classification_process}\vspace{-1ex}
 	\caption{Online code clone classification process}
 	\label{fig:classification_process}
 \end{figure}
@@ -845,6 +875,7 @@ into \textbf{UD}.
 	\caption{The seven patterns of online code cloning}
 	\label{tab:classification_scheme}
 	%\resizebox{\columnwidth}{!}{%
+        \small\vspace{-1ex}
 		\begin{tabular}{c@{~~}p{7.35cm}}
 			\hline 
 			Patt. & Description \\ 
@@ -988,35 +1019,6 @@ QS, EX, UD and checked for a possibility of a licensing violation (phase 6).
 
 \subsection{RQ1: Online Code Clones} 
 
-The number of online clone pairs reported by running Simian and NiCad
-are presented in \Cref{tab:orig_stats}. $S_D$ reports 67,570 clone
-pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report
-much larger numbers of clone pairs, 63,635,844 and 251,449,849 pairs
-respectively. This is expected since EvaClone configurations prefer
-recall~\cite{Wang2013}.  The average clone size reported by $S_D$ is
-9.11 lines which is bigger than for $S_E$ (5.95 lines). Similarly,
-$N_D$ has an average clone size of 10.85 lines which is bigger than
-6.28 lines reported by $N_E$. The drop in size is due to the EvaClone
-configuration with a smaller minimum size (\Cref{t:param_tuning}).
-
-\begin{table}
-	\centering
-	\caption{Number of online clones reported by Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations}
-	\label{tab:orig_stats}
-	%\small
-	%\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|r|r|r}
-		\hline
-		Stats & \multicolumn{1}{c|}{$S_D$} & \multicolumn{1}{c|}{$S_E$} & \multicolumn{1}{c|}{$N_D$} & \multicolumn{1}{c}{$N_E$} \\
-		\hline
-		Total C$_{\textrm{\textit{pairs}}}$ & 67,570 & 63,635,844 & 632,855 & 251,449,849 \\
-		% Avg.~C$_{\textrm{\textit{pairs}}}$ & 62 & 41,565 & 455 & 19,356 \\
-		Avg.~C$_{\textrm{\textit{size}}}$ & 9.11 & 5.95 & 10.85 & 6.28 \\
-		\hline
-	\end{tabular} %
-	%}
-\end{table}
-
 The statistics on clones obtained from the different data sets are
 presented in \Cref{tab:snippets}. Simian in the default configuration
 ($S_D$) reported clones in 1,086 snippets, approximately 1\% of the
@@ -1105,7 +1107,7 @@ projects.
 
 During the manual investigation of 3,636 clone pairs, we identified 2,420 pairs
 as being accidential clones (AC), i.e.~false positives. After removing
-them, the data set still contains 1,216 true positive clone pairs between 516 Stack
+them, the set still contains 1,216 true positive clone pairs between 516 Stack
 Overflow snippets and 75 Qualitas projects.
 
 \textbf{To answer RQ1, we found most Qualitas projects to share
@@ -1159,7 +1161,7 @@ online clone pairs with evidences of cloning from Qualitas projects to
 Stack Overflow. They include 3, 14, 86, and 9 pairs from the
 \textit{good}, \textit{ok'}, $S_D'$, and $N_D'$ set respectively. Most of
 them have a statement in the Stack Overflow post saying that the code
-is ``copied'', ``borrow'' or ``modified'' from a specific file or class in a
+is ``copied'', ``borrowed'' or ``modified'' from a specific file or class in a
 Qualitas project. For example, according to the motivating example in 
 \Cref{fig:before-after}, we found evidence in the Stack Overflow 
 Post 22315734 saying that \textit{``Actually, you can learn how to compare 
@@ -1173,34 +1175,34 @@ examples and are very similar to their original Qualitas code with
 limited modifications.
 
 \textbf{SQ: Stack Overflow $\rightarrow$ Qualitas.} We did not find
-any clone pairs with evidence of cloning from Stack Overflow to
-Qualitas projects.
+any pairs with evidence of cloning from Stack Overflow to Qualitas
+projects. This is very likely due to the age of the Qualitas corpus.
 
 \textbf{EX: External Sources.} We found 200 online clone pairs with
-evidence of cloning from external sources to Stack Overflow. 
-They include 4, 44, 146, and 6 clone pairs from the \textit{good},
-\textit{ok'}, $S_D'$, and $N_D'$ set respectively. All of them
-contain statements showing an external source of the cloned code.
-For example, Stack Overflow Post 9549009 contains a code comment saying \textit{``Copied 
-	shamelessly from org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator,
-	changed only the hash algorithm.''}
+evidence of cloning from external sources to Stack Overflow.  They
+include 4, 44, 146, and 6 pairs from the \textit{good}, \textit{ok'},
+$S_D'$, and $N_D'$ set respectively. All of them contain statements
+giving an external source of the cloned code.  For example, Stack
+Overflow Post 9549009 contains a code comment saying \textit{``Copied
+  shamelessly from
+  org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator''}.
 
 These findings complement a study of clones between software
-projects~\cite{Svajlenko2014}. We found that the code cloning can also
+projects~\cite{Svajlenko2014}. We found that cloning can also
 happen among different sources on the Internet just like software
 projects. There are 30 clone pairs that originated from programming
-websites. For example, we found a clone of code snippet to convert
+websites. For example, we found a clone of a snippet to convert
 numbers into words which is copied from
 \url{www.rgagnon.com/javadetails/java-0426.html}. Both the Stack
-Overflow and the \textsf{compiere} project source code contain an
-attribution to the original source. Another example is a code snippet
+Overflow and the \textsf{compiere} project code contain an
+attribution to the original source. Another example is a snippet
 to generate graphical \textit{Perlin noise}. It is copied from
-\url{http://mrl.nyu.edu/~perlin/noise/}. The code is used on Stack
+\url{http://mrl.nyu.edu/~perlin/noise/} and is used on Stack
 Overflow and in the \textsf{aoi} project with
 attribution.
 % The original code of the 15 clone pairs do not have licensing
 % information so these clones do not violate any license.
-There are other EX clone pairs which are copied from third-party
+There are other EX pairs which are copied from third-party
 libraries such as \textsf{zxing}, \textsf{jasper}, \textsf{java.util},
 \textsf{javax.servlet}, and the \textsf{bouncycastle} cryptography
 project.
@@ -1325,7 +1327,7 @@ used by naive developers who copy and reuse the outdated code.
   pairs on Stack Overflow are outdated. 60 pairs differ from their
   newest versions by modifications applied to variable names or method
   names, added or deleted statements, to a fully rewritten code with
-  new method signatures. 4 pairs are dead
+  new method signatures. 4~pairs are dead
   snippets.} 
 
 
@@ -1340,7 +1342,7 @@ used by naive developers who copy and reuse the outdated code.
 	\centering
 	\caption{Examples of the outdated QS online clones}
 	\label{tab:stale_code_details}
-	%\small
+	\small
 	%\resizebox{\textwidth}{!}{%
 		\begin{tabular}{cc|lcp{5.15cm}@{}rrc|c@{}c}
 		 \hline
@@ -1371,7 +1373,7 @@ used by naive developers who copy and reuse the outdated code.
 	\centering
 	\caption{License mapping of  online clones (file-level)}
 	\label{tab:license_abc}
-	\small
+	\footnotesize
 	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{l|p{1.95cm}l|rrr}
 		\hline
@@ -1470,29 +1472,32 @@ To mitigate the problems of outdated online clones and missing or incompatible l
 \section{Threats to Validity}
 
 \textbf{Internal validity:} 
-
+%
 We could not verify all the 315,786,118 clone pairs reported by the
 clone detection tools in this study.  Nevertheless, we applied
 different mechanisms to ensure the validity to the subset of clone
-pairs we classified.  First, we used two, instead of one, widely-used
-clone detection tools, Simian and NiCad.  We had tried three other
+pairs we classified.  First, we used two widely-used
+clone detection tools, Simian and NiCad.  We tried three other
 clone detectors but could not add them to the study due to their
-scalability issue and susceptibility to incomplete code snippets.
-Second, we adopted Bellon's clone agreement metric~\cite{Bellon2007}
+scalability issues and susceptibility to incomplete code snippets.
+Second, we adopted Bellon's agreement metric~\cite{Bellon2007}
 to prioritise and filters clone pairs for the manual
 classification. The agreed clone pairs that passed \textit{good} and
-\textit{ok} criteria had a higher chance to be true positive. We also
-applied the Bellon's clone agreement to 4 different combinations of
-the tools' configurations.  For disagreed clone pairs, we applied
-several filters to remove spurious and uninteresting clones.
+\textit{ok} criteria had a higher chance to be true positive. 
+% We also
+% applied the Bellon's clone agreement to 4 different combinations of
+% the tools' configurations.  For disagreed clone pairs, we applied
+% several filters to remove spurious and uninteresting clones.
 
-The number of online clones we found are subject to the clone
-detectors and their configurations.  We mitigated the problem of clone
-detector's parameter sensitivity by adding another configuration,
-besides the default configuration. We reused the established
-configurations from the EvaClone study~\cite{Wang2013}.  We also
-performed a pairwise matching between the default and EvaClone
-configurations of the two clone detection tools.
+% The number of online clones we found are subject to the clone
+% detectors and their configurations.  
+We mitigated the problem of clone
+detector's parameter sensitivity by adding another established
+configuration from the EvaClone study~\cite{Wang2013}. 
+
+% We also
+% performed a pairwise matching between the default and EvaClone
+% configurations of the two clone detection tools.
 
 Our seven patterns of online code cloning may not cover all possible
 online cloning patterns. However, instead of defining the patterns
@@ -1505,8 +1510,10 @@ subject to manual judgement and human errors.  Although we have tried
 our best to be careful on searching for evidence and classifying the
 clones, some errors may still exist. We mitigated this problem by
 having the second author to validate the classifications with a random
-sampling.  The 64 classification conflicts were discussed and
-resolved.  The third author made a final judgement when no consensus
+sampling. 
+% The 64 classification conflicts were discussed and
+% resolved.  
+The third author made a final judgement when no consensus
 could be found by the two authors.
  %In addition, we are aware of voting mechanism
 %in Stack Overflow and plan to incorporate highest-vote answers in the future work.
@@ -1523,12 +1530,15 @@ Nonetheless, it may not be representative to all the programming Q\&A
 websites.
 
 Regarding the code snippets, we downloaded a full data dump and
-extracted Java accepted answers. Instead of analysing every post, we
-only focused on posts marked as accepted answers since they are the
-most likely ones to be reused. This yields a total of 144,064
-snippets.  Our findings are limited to these restrictions. They may
+extracted Java accepted answers
+% Instead of analysing every post, we
+only focused on posts marked as accepted answers 
+since they are the
+most likely ones to be reused. 
+% This yields a total of 144,064 snippets.  
+Our findings are limited to these restrictions. They may
 not be generalised to all programming languages and all answers on
-Stack Overflow. On the other hand, we chose the curated Qualitas
+Stack Overflow. We chose the curated Qualitas
 corpus for Java open source projects containing 111 projects
 \cite{QualitasCorpus}.  The projects span over several areas of
 software and has been used in several empirical
@@ -1540,17 +1550,65 @@ represent all Java open source software available.
 
 \section{Related Work}
 
-\FIXME{This needs rewriting}
+\textbf{Stack Overflow} is a gold mine for software engineering
+research and
+% Its rich and developer-driven data are invaluable. Since
+% posts on Stack Overflow may contain code snippets embedded within
+% natural language text, they become a huge database for source code and
+% code-relevant information. 
+%The Stack Overflow data set 
+has been put to
+use in several previous studies. In terms of developer-assisting
+tools, Seahawk is an Eclipse plug-in that searches and recommends
+relevant code snippets from Stack Overflow~\cite{Ponzanelli2013}. A
+follow up work, Prompter, by Ponzanelli et al.~\cite{Ponzanelli2014}
+achieves the same goal but with improved algorithms. The code snippets
+on Stack Overflow are mostly examples or solutions to programming
+problems. Hence, several code search systems use whole or partial data
+from Stack Overflow as their code search
+databases~\cite{Keivanloo2014,Park2014,
+  Stolee2014,Subramanian2013,Diamantopoulos2015}. Furthermore, Treude
+et al.~\cite{Treude2016}~use machine learning techniques to extract
+insight sentences from Stack Overflow and use them to improve API
+documentation.
 
-\textbf{Stack Overflow} is a gold mine for software engineering research. Its rich and developer-driven data are invaluable. Since posts on Stack Overflow may contain code snippets embedded within natural language text, they become a huge database for source code and code-relevant information. The Stack Overflow data set has been put to use in several previous studies. In terms of developer-assisting tools, Seahawk is an Eclipse plug-in that searches and recommends relevant code snippets from Stack Overflow~\cite{Ponzanelli2013}. A follow up work, Prompter, by Ponzanelli et al.~\cite{Ponzanelli2014} achieves the same goal but with improved algorithms. The code snippets on Stack Overflow are mostly examples or solutions to programming problems. Hence, several code search systems use whole or partial data from Stack Overflow as their code search databases~\cite{Keivanloo2014,Park2014, Stolee2014,Subramanian2013,Diamantopoulos2015}. Furthermore, Treude et al.~\cite{Treude2016}~use machine learning techniques to extract insight sentences from Stack Overflow and use them to improve API documentation.
+Another research area is knowledge extraction from Stack
+Overflow. Nasehi et al.~\cite{Nasehi2012}~studied what makes a good
+code example by analysing answers from Stack Overflow. Similarly, Yang
+et al.~\cite{Yang2016} report the number of reusable code snippets on
+Stack Overflow across various programming languages. Wang et
+al.~\cite{Wang2013_StackOverflow} use Latent Dirichlet Allocation
+(LDA) topic modelling to analyse questions and answers from Stack
+Overflow so that they can automatically categorise new
+questions. There are also studies trying to understand developers'
+behaviours on Stack Overflow,
+e.g.~\cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}.
+% , while some studies aim to improve Stack Overflow itself~\cite{Diamantopoulos2015, Wang2014}. 
 
-Another research area is knowledge extraction from Stack Overflow. Nasehi et al.~\cite{Nasehi2012}~studied what makes a good code example by analysing answers from Stack Overflow. Similarly, Yang et al.~\cite{Yang2016} report the number of reusable code snippets on Stack Overflow across various programming languages. Wang et al.~\cite{Wang2013_StackOverflow} use Latent Dirichlet Allocation (LDA) topic modelling to analyse questions and answers from Stack Overflow so that they can automatically categorise new questions. There are also studies trying to understand developers' behaviours on Stack Overflow, e.g.~\cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}, while some studies aim to improve Stack Overflow itself~\cite{Diamantopoulos2015, Wang2014}. 
+\textbf{Code clone detection} is a long-standing research topic in
+software engineering. Whether clones are good or bad for software is
+still
+controversial~\cite{Sajnani2016,Kapser2003,Kapser2008,Krinke2008,Hotta2010,Gode2011,Harder2013}.
+% However, by only knowing how many code clones residing in software
+% and how they evolve~\cite{Pate2013,Mondal2011} can provide several
+% valuable insights into the software systems.
+Code clones have several
+applications such as software plagiarism
+detection~\cite{Prechelt2002}, source code
+provenance~\cite{Davies2013}, and software licensing
+conflicts~\cite{German2009}.
 
-\textbf{Code clone detection} is a long-standing research topic in software engineering. Whether clones are good or bad for software is still controversial~\cite{Sajnani2016,Kapser2003,Kapser2008,Krinke2008,Hotta2010,Gode2011,Harder2013}. However, by only knowing how many code clones residing in software and how they evolve~\cite{Pate2013,Mondal2011} can provide several valuable insights into the software systems. Code clones have several applications such as software plagiarism detection~\cite{Prechelt2002}, 
-source code provenance~\cite{Davies2013}, and software licensing conflicts~\cite{German2009}.
-
-Two code fragments are clones if they are similar enough according to a given definition of similarity~\cite{Bellon2007}. Given an open interpretation of ``definition of similarity'', there are various clone detection tools and their siblings, code plagiarism detectors, invented based on plethora of different code similarity measurements~\cite{Roy2008, Ragkhitwetsagul2016,Svajlenko2014}. Some tools
-use string comparison techniques such as Simian~\cite{simian}. NiCad~\cite{Roy2008,Cordy} exploits the Longest Common Subsequence (LCS) string similarity measure after applying code pretty-printing using TXL~\cite{Cordy2006}. Many tools do not work on original source code directly but transform them into an
+Two code fragments are clones if they are similar enough according to
+a given definition of similarity~\cite{Bellon2007}. Given an open
+interpretation of ``definition of similarity'', there are various
+clone detection tools and their siblings, code plagiarism detectors,
+invented based on plethora of different code similarity
+measurements~\cite{Roy2008, Ragkhitwetsagul2016,Svajlenko2014}. 
+% Some tools use string comparison techniques such as Simian~\cite{simian}. 
+% NiCad~\cite{Roy2008,Cordy} exploits the Longest Common Subsequence
+% (LCS) string similarity measure after applying code pretty-printing
+% using TXL~\cite{Cordy2006}. 
+Many tools do not work on original source code directly but transform them into an
 intermediate representation such as tokens and apply similarity
 measurement on them. These tools include SourcererCC~\cite{Sajnani2016}, CCFinder~\cite{Kamiya2002},
 CP-Miner~\cite{Li2006}, iClones~\cite{Gode2009} and a few more~\cite{Burrows2007, Smith2009, Duric2012, Prechelt2002, Schleimer2003}. 
@@ -1560,7 +1618,20 @@ graphs~\cite{Krinke2001,Komondoor2001}.
 
 Kapser et al.~studied clones in Linux file systems and create 11 patterns of code cloning based on four groups: Forking, Templating, Customisation and Exact match~\cite{Kapser2003,Kapser2008}. Our study adopted one of the patterns into our online code cloning patterns.
 
-\textbf{Clone agreement} is useful when a clone oracle is absent. Since clone detectors are different in their detection approaches, they may behave differently and report different clones even on the same data set. Some researchers exploit these different behaviours of clone detectors by finding their agreement and obtain highly-confident clones~\cite{Bellon2007,Wang2013}. Using the same data set, clone pairs that are agreed by several tools (or several code similarity measurement techniques) are more assured to be true clones than the ones reported by only a single tool~\cite{Wang2013,cr2016ssbse,Funaro2010}. There are studies that report sensitivities of the tools' configurations to the results~\cite{Wang2013,cr2016ssbse}, showing that searching for an optimal configuration for every new data set is preferred.
+\textbf{Clone agreement} is useful when a clone oracle is
+absent. Since clone detectors are different in their detection
+approaches, they may behave differently and report different clones
+even on the same data set. Some researchers exploit these different
+behaviours of clone detectors by finding their agreement and obtain
+highly-confident clones~\cite{Bellon2007,Wang2013}. Using the same
+data set, clone pairs that are agreed by several tools (or several
+code similarity measurement techniques) are more assured to be true
+clones than the ones reported by only a single
+tool~\cite{Wang2013,cr2016ssbse,Funaro2010}. 
+% There are studies that report sensitivities of the tools'
+% configurations to the results~\cite{Wang2013,cr2016ssbse}, showing
+% that searching for an optimal configuration for every new data set
+% is preferred.
 
 \textbf{Software licensing} is crucial for open source and industrial software development. Di Penta et al.~\cite{DiPenta2010}~studied the evolution of software licensing in six FOSS and found that licensing statements change over time. German et al.~\cite{German2009} performed an empirical study of code siblings (code clones among different systems coming from the same source) and found that licensing conflicts can occur between the clone siblings. Later, German et al.~\cite{German2010} created Ninka, a tool to automate the identification of software license from program source code. We use Ninka to analyse software license from Stack Overflow snippets and Qualitas projects. 
 
