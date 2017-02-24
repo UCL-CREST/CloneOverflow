@@ -77,7 +77,7 @@
 
 \acmPrice{15.00}
 
-%\overfullrule1ex
+\overfullrule1ex
 
 \begin{document}
 	\title{Are We Reusing Outdated and Licensed Code from Stack Overflow?}
@@ -172,14 +172,14 @@ development~\cite{Ponzanelli2013,Ponzanelli2014,Keivanloo2014,Park2014,
   Stolee2014,Subramanian2013,Diamantopoulos2015,Treude2016} and also
 valuable for educational purposes~\cite{Nasehi2012}. On Stack
 Overflow, each conversation contains a question and a list of
-answer(s). The answers frequently contain at least one code snippet as
+answers. The answers frequently contain at least one code snippet as
 a solution to the question asked. We found that the code snippets are
 usually not authored directly on the Stack Overflow website but copied
 from another location. An answer's snippet could be copied and modified
 from a code snippet in the question, copied from the answerer's own
 code or from other locations including open source software (OSS)
 systems. The process of posting and answering questions on Stack
-Overflow, which involves reusing of source code, can be considered as
+Overflow that involves reusing of source code, can be considered as
 code cloning.
 
 Code cloning is an activity of reusing source code by copying and
@@ -199,7 +199,7 @@ happens within the context of online Q\&A websites such as Stack
 Overflow. An et al.~\cite{An2017} showed that 1,279 cloned snippets
 between Android apps and Stack Overflow potentially violate software
 licenses. Security is also among the main concerns when code is copied
-from an online source. Stack Overflow helps developers to solve
+from an online source. For example, Stack Overflow helps developers to solve
 Android programming problems more quickly than other resources while,
 at the same time, offers less secure code than books or the official
 Android documentation~\cite{Acar2016}.
@@ -207,7 +207,7 @@ Android documentation~\cite{Acar2016}.
 %\FIXME{Find the right location for this-->} Additionally, outdated and vulnerable third-party libraries from well-known open source projects are cloned into in a large number of open source systems~\cite{Xia2014}.
 
 We call code snippets that are copied from software systems to online
-Q\&A websites (such as Stack Overflow), and vice versa as ``online
+Q\&A websites (such as Stack Overflow) and vice versa as ``online
 code clones'' (sometimes only ``clones'' for brevity). There are two
 directions in creating online code clones: (1) code is cloned from a software
 project to a Q\&A website as an example; or (2) code is cloned from a
@@ -218,11 +218,11 @@ Similar to classic clones, online code clones can lead to license
 violations, bug propagation, introduction of vulnerabilities, and
 re-use of outdated code. Unfortunately, online clones are more
 difficult to locate and fix since the search space in online code
-corpora is larger and no longer confined in a local repository.
+corpora is larger and no longer confined to a local repository.
 
 In this study, we are interested in locating online code clones on
 Stack Overflow that are cloned from open source projects and study
-them on two aspects: \textbf{outdated code and license conflicts.}
+them on two aspects: \textbf{outdated code} and \textbf{license conflicts.}
 
 \begin{figure*}
 	\begin{lstlisting}
@@ -282,7 +282,7 @@ makes the following primary contributions:
 \noindent\textbf{1.~A manual study of online code clones:} 
 We used two clone detection tools to discover 315,786,118 similar code
 snippet pairs, followed by a manual classification of 3,632 candidate
-clone pairs between Java code snippets obtained from Stack Overflow's
+clone pairs between 144,064 Java code snippets obtained from Stack Overflow's
 accepted answers and 111 Java open source projects from the curated
 Qualitas corpus~\cite{QualitasCorpus}.
 
@@ -341,9 +341,8 @@ can cause software developers to violate licenses.
 %\vspace{1ex}
 To answer these four research questions, we perform an empirical study to
 locate and study the online code clones between Stack Overflow and open source
-projects. We designed our study in 6 phases as depicted in \Cref{fig:exp_framework} where
-we build different data sets to answer each of our four research questions. 
-We explain our process of building the data sets in each phase separately below.
+projects. 
+% We explain our process of building the data sets in each phase separately below.
 
 %\subsection{Experimental Setup}
 
@@ -351,19 +350,26 @@ We explain our process of building the data sets in each phase separately below.
 
 \subsection{Methodology}
 
+We designed our study in 6 phases as depicted in \Cref{fig:exp_framework} where
+we build different data sets to answer each of our four research
+questions. 
+
 \subsubsection{Phase 1: Clone Identification}
 
-We rely on two data sets in this study: Java code snippets in answers
+We rely on two source data sets in this study: Java code snippets in answers
 on Stack Overflow and open source projects from the Qualitas corpus
 \cite{QualitasCorpus}.
 
 \textbf{Stack Overflow:} 
 We extracted Java code snippets from a snapshot of a Stack Overflow
 dump\footnote{\url{https://archive.org/details/stackexchange}} in
-January 2016. The archived dump has a size of 9 gigabytes. The data
-dump is in XML format containing information of \textbf{Posts}
-(questions and answers) and supporting data such as user accounts and
-timestamps of the posts. We were interested in code snippets embedded
+January 2016. 
+% The archived dump has a size of 9 gigabytes. 
+The data
+dump is in XML format containing information of posts
+(questions and answers) and 
+% supporting data such as user accounts and timestamps of the posts.
+we were interested in code snippets embedded
 in posts which were located between
 {\small\texttt{<code>}...\texttt{</code>}} tags. A Stack Overflow
 thread contains a question and several answers. An answer can also be
@@ -384,15 +390,14 @@ lines\footnote{Measured by cloc:
 % excluding comments and blank lines.
 
 \textbf{Open source systems: }
-We selected the established corpus for an empirical software
-engineering study called \textbf{Qualitas}~\cite{QualitasCorpus} for
-this study. It is a curated Java corpus that has been used in several
+We selected the established \textbf{Qualitas} corpus~\cite{QualitasCorpus} 
+for this study. It is a curated Java corpus that has been used in several
 software engineering
 studies~\cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. The
 projects in the corpus represent various domains of software systems
 ranging from programming languages to
-visualisation~\cite{QualitasCorpus}. We selected the 20130901r release
-of Qualitas corpus containing 112 Java open source projects. This
+visualisation. We selected the 20130901r release
+of the Qualitas corpus containing 112 Java open source projects. This
 release contains projects with releases no later than 1st September
 2013. We chose a snapshot late back in 2013 since we are interested in
 online code clones in the direction from open source projects to Stack
@@ -473,14 +478,17 @@ two systems.
 %The Java code snippets were extracted from Stack Overflow posts. 
 We prepared the Java code in both datasets by removing comments and
 pretty-printing to increase the accuracy of clone detection. Then, we
-deployed the two clone detectors to locate clones between the two
-datasets. Due to a scalability issue, we partitioned the input and ran the tools multiple
+deployed the two detectors to locate clones between the two
+datasets. For scalability reasons, we % partitioned the input and 
+ran the tools multiple
 times. Each run was composed of the entire Stack Overflow data and a
 single Qualitas project. We repeated the process until we covered all
-111 projects.  We then converted the clone reports to the General
-Clone Format (GCF)~\cite{Wang2013} and combined the 111 reports into a
-single GCF file.  Simian did not provide an option to detect
-cross-project clones between two locations. Hence the Simian GCF clone
+111 projects.  
+% We then converted the clone reports to the General
+% Clone Format (GCF)~\cite{Wang2013} and combined the 111 reports into a
+% single GCF file.  
+Simian did not provide an option to detect
+cross-project clones between two locations. Hence the Simian clone
 report was filtered to contain only clone pairs between Stack Overflow
 and Qualitas projects, removing all clone pairs within either Stack
 Overflow or within Qualitas. 
@@ -513,20 +521,20 @@ the issues as problems in the TXL grammar and as problems of long file
 paths, and will be fixed in the next NiCad releases.
 
 \begin{table}
-	\centering
-	\caption{Configurations of Simian and NiCad}
-	\label{t:param_tuning}
-%	\resizebox{\columnwidth}{!}{%
-	\small
-	\begin{tabular}{p{0.7cm}|p{2.4cm}|p{3.5cm}}
-		\hline 
-		Tool & Default (\textit{D}) & EvaClone (\textit{E}) \\
-		\hline
-		Simian\newline (\textit{S}) &  threshold=6,\newline ignoreStringCase, \newline ignoreCharacterCase, \newline ignoreModifiers & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, \newline ignoreStrings, \newline ignoreCharacters,\newline ignoreSubtypeNames, \newline balanceSquareBrackets \\ 
-		\hline 
-		NiCad\newline (\textit{N}) & Blocks, UPI=0.30,\newline MinLine=10,\newline MaxLine=2500 & Blocks, UPI=0.20, \newline MinLine=5, MaxLine=604, \newline blind renaming,\newline literal abstraction \\
-		\hline
-	\end{tabular} %
+  \centering
+  \caption{Configurations of Simian and NiCad}
+  \label{t:param_tuning}
+  %	\resizebox{\columnwidth}{!}{%
+  \small
+  \begin{tabular}{p{0.7cm}|p{2.4cm}p{3.8cm}}
+    \hline 
+    Tool & Default (\textit{D}) & EvaClone (\textit{E}) \\
+    \hline
+    Simian\newline (\textit{S}) &  threshold=6,\newline ignoreStringCase, \newline ignoreCharacterCase, \newline ignoreModifiers & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, \newline ignoreStrings, ignoreCharacters,\newline ignoreSubtypeNames, \newline balanceSquareBrackets \\ 
+    \hline 
+    NiCad\newline (\textit{N}) & Blocks, UPI=0.30,\newline MinLine=10,\newline MaxLine=2500 & Blocks, UPI=0.20, \newline MinLine=5, MaxLine=604, \newline blind renaming, literal abstraction \\
+    \hline
+  \end{tabular} %
 %}
 \end{table}
 
@@ -588,7 +596,7 @@ Using the good- and ok-match criteria with a predefined threshold
 manual investigation. The \textit{good} pairs are the ones with the
 highest confidence, followed by the \textit{ok} pairs, and followed by
 clone pairs without agreement. We call the \textit{good} and
-\textit{ok} pairs \textbf{agreed} clone pairs and the the clone pairs
+\textit{ok} pairs \textbf{agreed} clone pairs and the clone pairs
 reported by Simian or NiCad without agreement \textbf{disagreed} clone
 pairs.
 
@@ -685,7 +693,7 @@ their EvaClone configurations.
 Even choosing only the default configurations, the number of disagreed
 clone pair candidates is still too large for manual inspection (67,570
 for $S_D$ and 632,855 pairs for $N_D$). We applied three filters: clone
-size, irrelevant methods, similarity threshold, and good/ok pairs. For
+size, similarity threshold, and good/ok pairs. For
 the \emph{clone size filter}, we raised the minimum clone size to 10 lines
 since larger clones are more interesting, while smaller ones tend to
 be false clones~\cite{Saini2016}.
@@ -703,7 +711,7 @@ two filters reduced the number of $S_D$ clones to 17,801 pairs. We
 filtered $N_D$ clones by additionally raising the similarity
 threshold. We increased NiCad's similarity threshold from 70\% to 85\%
 (by adjusting NiCad's $\mathrm{UPI}$ parameter from 0.3 to 0.15). We
-tried varying the UPI from 70\% (default, 632,855 pairs), 80\%
+tried varying the threshold from 70\% (default, 632,855 pairs), 80\%
 (25,003 pairs), 85\% (185 pairs) and 90\% (83 pairs) and found that
 85\% similarity provided the best balance in terms of the amount of
 reported clones and precision for small clones. Using this filter
@@ -728,14 +736,14 @@ to classify boiler-plate code of {\small\texttt{equals()}},
 {\small\texttt{hashCode()}} and getters/setters 
 (depicted with a grey line in \Cref{fig:exp_framework}).
 The classifier could automatically classify 28,897 clone pairs 
-and left 3,636 clone pairs for manual investigation in phase 3 to 6.
+and left 3,636 clone pairs for manual investigation in phases 3 to 6.
 
 \subsubsection{Phase 3-4: Clone Validation and Classification}
-We relied on the 3,636 filtered clone pairs after automatic classification for
+We used the 3,636 filtered clone pairs after automatic classification for
 manual validation and classification.
-The validation and classification of the clone pairs were done at the same time. 
+The validation and classification of the pairs was done at the same time. 
 The clone validation process involves checking 
-if a clone pair is either true positive or false positive. 
+if a clone pair is a true positive or a false positive. 
 Moreover, we are also interested in the patterns of code cloning 
 so we can gain more insights into how these clones are created. 
 
@@ -744,15 +752,15 @@ two years, took the role of the main investigator performing a manual
 validation of the filtered clone pairs. 
 %By consulting the cloning patterns, 
 The main investigator went through each clone pair candidate, 
-looked at the clones, and decided if they are true positive or
+looked at the clones, and decided if they are a true positive or a
 false positive and classified them into an appropriate pattern. 
 %the most appropriate cloning pattern for the pair. 
-To mitigate the human errors of the manual investigation, 
+To mitigate the human error of the manual investigation, 
 the second author took the role of the validating investigator, performing a
 validation on 10\% of the clone pairs judged by the main
 investigator. After the validation, the results from the two
 investigators were compared and conflicts were discussed and resolved.
-If the two investigator cannot find a consensus, the third author is 
+If the two investigator could not find a consensus, the third author was 
 involved for the final judgement.
 
 Regarding the online cloning classification patterns, 
@@ -875,7 +883,7 @@ To search for outdated online code clones, we focused on the
 Overflow and compared them with their latest versions. We downloaded
 the latest version of the Qualitas projects from their repositories on
 26 September 2016. For each \textbf{QS} online clone pair, we used the
-clone from Qualitas a a proxy. We searched for its latest version by
+clone from Qualitas as a proxy. We searched for its latest version by
 the file name and located the cloned region in the file based on the
 method name.
 %For Simian clones, where clones may span across several methods, we scanned upwards until we find a method name ahead of the clone region. 
@@ -908,21 +916,24 @@ Qualitas source files instead of the clone pairs (duplicates were
 ignored). For the ones that could not be automatically identified by
 Ninka and have been reported as {\small\texttt{SeeFile}} or
 {\small\texttt{Unknown}}, we looked at them manually to see if any
-license can be found. The table shows the license mapping of Stack
-Overflow snippets and Qualitas source code. The results are reported
-separately for the \textbf{QS}, \textbf{EX}, and \textbf{UD} set.
+license can be found. 
+
+% The table shows the license mapping of Stack Overflow snippets and
+% Qualitas source code. The results are reported separately for the
+% \textbf{QS}, \textbf{EX}, and \textbf{UD} set.
 
 %\subsection{Analysis Methods}
-We followed the 6 phases in the experimental framework (\Cref{fig:exp_framework})
-to answer our four research questions. 
-To answer RQ1, we rely on the number of manually validated true positive online clone pairs
-in phase 3. We use the results of the manual classification using the
-patterns of online code cloning to answer RQ2. 
-For RQ3, we looked at the true positive clone pairs that are classified 
-as cloned from Qualitas to Stack Overflow and
-checked if they have been changed since they have been
-cloned. Similarly, for RQ4, we looked at the license of each clone in the pattern 
-QS, EX, UD and checked for a possibility of a licensing violation.
+
+% We followed the 6 phases in the experimental framework (\Cref{fig:exp_framework})
+% to answer our four research questions. 
+% To answer RQ1, we rely on the number of manually validated true positive online clone pairs
+% in phase 3. We use the results of the manual classification using the
+% patterns of online code cloning to answer RQ2. 
+% For RQ3, we looked at the true positive clone pairs that are classified 
+% as cloned from Qualitas to Stack Overflow and
+% checked if they have been changed since they have been
+% cloned. Similarly, for RQ4, we looked at the license of each clone in the pattern 
+% QS, EX, UD and checked for a possibility of a licensing violation.
 
 %\subsection{Manual Investigation}
 %We did not have an oracle of clones
