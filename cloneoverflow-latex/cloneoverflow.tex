@@ -432,7 +432,7 @@ code. %Details of the 109 Qualitas projects and their licenses are listed in Tab
 \textbf{Clone Detection Tools: }
 We use clone detection to discover online code clones. 
 %\textbf{Clone Detection and Configuration: } 
-There are a number of restrictions in terms of choosing clone
+There are a number of restrictions in terms of choosing the clone
 detection tools for this study. The main restriction is due to nature
 of code snippets posted on Stack Overflow, as most of them are
 incomplete Java classes or methods. Hence, a detector must be flexible
@@ -569,7 +569,7 @@ configuration with a smaller minimum size (\Cref{t:param_tuning}).
 \subsubsection{Phase 2: Clone Filtering}
 As there are in total 315,786,118 clone pairs reported, it is
 infeasible for humans to manually validate them all. Instead of
-investigating a random saple, we adopted the idea of \textbf{clone
+investigating a random sample, we adopted the idea of \textbf{clone
   agreement} which has been used in clone research
 studies~\cite{Funaro2010, Wang2013,cr2016ssbse} in situations where a
 clone oracle is missing or impossible to establish. Clone pairs agreed
@@ -623,16 +623,16 @@ Using the good- and ok-match criteria with a predefined threshold
 \textit{t}, we can prune the 315 million candidate clone pairs for
 manual investigation. The \textit{good} pairs are the ones with the
 highest confidence, followed by the \textit{ok} pairs, and followed by
-clone pairs without agreement. We call the \textit{good} and
-\textit{ok} pairs \textbf{agreed} clone pairs and the clone pairs
+clone pairs without agreement. We call the \textit{good}- and
+\textit{ok}- pairs \textbf{agreed} clone pairs and the clone pairs
 reported by Simian or NiCad without agreement \textbf{disagreed} clone
 pairs.
 
 Having two clone detectors, Simian (denoted as \textit{S}) and NiCad
 (denoted as \textit{N}), with two chosen configurations (\textit{D}
-and \textit{E}) each, we used Bellon's good and ok-match for agreement
+and \textit{E}) each, we used Bellon's good- and ok-match for agreement
 in four possible pair-wise combinations: $S_{D}$--$N_{D}$,
-$S_{D}$--$N_{E}$, $S_{E}$--$N_{D}$, and $S_{E}$--$N_{E}$.
+$S_{D}$--$N_{E}$, $S_{E}$--$N_{D}$, and $S_{E}$--$N_{E}$, as shown in \Cref{t:param_tuning}.
 
 \textbf{Agreed clone pairs: } As shown in \Cref{t_agreed_good_clone_pairs}, after we applied clone
 agreement filtering using Bellon's criteria\footnote{Similar to the
@@ -1012,7 +1012,7 @@ To answer RQ1, we rely on the number of manually validated true positive online 
 in phase 3. We use the results of the manual classification by the
 seven patterns of online code cloning to answer RQ2 (phase 4). 
 For RQ3, we looked at the true positive clone pairs that are classified 
-as cloned from Qualitas to Stack Overflow and
+as clones from Qualitas to Stack Overflow and
 checked if they have been changed since they have been
 cloned (phase 5). Similarly, for RQ4, we looked at the license of each clone in the pattern 
 QS, EX, UD and checked for a possibility of a licensing violation (phase 6).
@@ -1482,8 +1482,8 @@ clone detectors but could not add them to the study due to their
 scalability issues and susceptibility to incomplete code snippets.
 Second, we adopted Bellon's agreement metric~\cite{Bellon2007}
 to prioritise and filters clone pairs for the manual
-classification. The agreed clone pairs that passed \textit{good} and
-\textit{ok} criteria had a higher chance to be true positive. 
+classification. The agreed clone pairs that passed \textit{good}- and
+\textit{ok}- criteria had a higher chance to be true positive. 
 % We also
 % applied the Bellon's clone agreement to 4 different combinations of
 % the tools' configurations.  For disagreed clone pairs, we applied
