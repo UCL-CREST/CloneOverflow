@@ -526,9 +526,9 @@ Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
 of optimising clone detectors' configurations based on clone agreement
 (denoted by \textit{E}). \Cref{t:param_tuning} shows the two configurations.
 In total, we have four configurations: Simian with the default
-configuration ($S_D$), Simian with EvaClone configuration ($S_E$), 
-NiCad with the default configurations ($N_D$)
-and NiCad with EvaClone configuration ($N_E$).
+configuration ($S_D$), Simian with the EvaClone configuration ($S_E$), 
+NiCad with the default configuration ($N_D$)
+and NiCad with the EvaClone configuration ($N_E$).
 
 We encountered NiCad failures with a few Qualitas projects.~$N_D$
 could not detect clones in \textsf{hibernate} due to clustering
@@ -790,7 +790,7 @@ the second author took the role of the validating investigator, performing a
 validation on 10\% (364 pairs) of the clone pairs judged by the main
 investigator. After the validation, the results from the two
 investigators were compared and 61 conflicts were discussed and resolved.
-There were 3 conflicts that the two investigators could not find a consensus 
+There were 3 conflicts where the two investigators could not find a consensus 
 and the third author was involved for the final judgement.
 
 Regarding the online cloning classification patterns, 
@@ -1180,9 +1180,9 @@ limited modifications.
 
 \textbf{SQ: Stack Overflow $\rightarrow$ Qualitas.} We did not find
 any pairs with evidence of cloning from Stack Overflow to Qualitas
-projects. This is very likely due to the age of the Qualitas corpus.
-However, with a newer data set, one can find online clones in
-this direction as shown in another study~\cite{An2017}.
+projects. This is very likely due to the age of the Qualitas corpus as
+another study~\cite{An2017} showed the presence of clones from Stack
+Overflow in newer open source data sets.
 
 \textbf{EX: External Sources.} We found 200 online clone pairs with
 evidence of cloning from external sources to Stack Overflow and to Qualitas.  
@@ -1470,12 +1470,26 @@ while the Stack Overflow snippets do not.
 
 %We discovered two issues regarding code snippets on Stack Overflow in this study: (1)  outdated online clones on Stack Overflow and (2) missing or incompatible license in Stack Overflow snippets. 
 %that there is a considerable amount of cloned code between Stack Overflow that are cloned from 111 projects in the Qualitas corpus. 64 clone pairs are outdated and 358 snippets have incompatible software licenses to their originals. 
-Our study discovers links from code in open source projects to code snippets on Stack Overflow using clone detection techniques. These links enable us to discover outdate code and licensing problems. The links can be exploited further to mitigate the problems of reusing outdated online clones and incompatible license on Stack Overflow code snippets. We propose the following actionable items: 
+Our study discovers links from code in open source projects to code
+snippets on Stack Overflow using clone detection techniques. These
+links enable us to discover outdated code and licensing problems. The
+links can be exploited further to mitigate the problems of reusing
+outdated online clones and incompatible license on Stack Overflow code
+snippets. We propose the following actionable items:
 
 \textbf{Preventive measure:} We encourage Stack Overflow to enforce attribution when source code snippets have been copied ``from'' licensed software projects to Stack Overflow. Moreover, an IDE plug-in that can automatically detect pasted source code and follow the link to Stack Overflow and then to the original open source projects, could also prevent the issue of license violation.
 
-\textbf{Detective measure:} A system to detect outdated source code snippets on Stack Overflow is needed. The system can leverage the online clone detection techniques in this study to periodically check if the cloned snippets are still up-to-date with their originals. %Moreover, Stack Overflow posters have to provide the information of the project including the original file name and its online repository (if exists). 
-With such a system, the poster can be notified when the code has been updated in the original project so that he/she can update their code on Stack Overflow accordingly. On the other hand, with a crowdsourcing solution using an IDE plug-in, developers can also report the corrected version of outdated code back to the original Stack Overflow threads when they reuse outdated code and makes corrections to them.
+\textbf{Detective measure:} A system to detect outdated source code
+snippets on Stack Overflow is needed. The system can leverage the
+online clone detection techniques in this study to periodically check
+if the cloned snippets are still up-to-date with their
+originals. %Moreover, Stack Overflow posters have to provide the information of the project including the original file name and its online repository (if exists).
+With such a system, the poster can be notified when the code has been
+updated in the original project so that he/she can update their code
+on Stack Overflow accordingly. On the other hand, with a crowdsourcing
+solution using an IDE plug-in, developers can also report the
+corrected version of outdated code back to the original Stack Overflow
+threads when they reuse outdated code and make corrections to them.
 
 \section{Threats to Validity}
 
@@ -1493,7 +1507,7 @@ to prioritise and filters clone pairs for the manual
 classification. The agreed clone pairs that passed \textit{good}- and
 \textit{ok}- criteria had a higher chance to be true positive. 
 Nevertheless, we might still suffers from false negatives, i.e.~online 
-code clones that are not reported by the tools or filtered 
+code clones that are not reported by the tools or are filtered 
 out by the automatic classifier before the manual investigation.
 % We also
 % applied the Bellon's clone agreement to 4 different combinations of
@@ -1691,8 +1705,6 @@ potential licensing violations.
 %We are eager to tackle the issues of outdated and license-violating online code clones with an automated tool. The tool should incorporate a scalable clone detection method of locate similar code from programming Q\&A websites such as Stack Overflow and online code repositories like GitHub. It analyses a software project under development and reports clones that are copied from Stack Overflow. The reported clones have traces to their origins in open source projects or websites along with their freshness (fresh/outdated/dead) so that the developer of the project can be aware of changes made to the copied code snippets. Lastly, the license of the original source code is also reported so the developer can make an informed decision of whether he or she will incorporate that code snippet into their own project.
 
 \section{Conclusions}
-
-\FIXME{This needs rewriting}
 
 Online code clones are clones that have been copied to Q\&A websites
 such as Stack Overflow. They are similar to classical clones in software
