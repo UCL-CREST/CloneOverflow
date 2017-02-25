@@ -1707,21 +1707,25 @@ potential licensing violations.
 \section{Conclusions}
 
 Online code clones are clones that have been copied to Q\&A websites
-such as Stack Overflow. They are similar to classical clones in software
-projects where they can be outdated and violating software license but
-are much harder to detect. We classified 32,533 clone pairs using our seven patterns of online code
-cloning and discovered 112 clone pairs that have been copied, with
-evidence, from Qualitas projects to Stack Overflow, 197 clone
-pairs that have been copied from external sources besides Qualitas to
-Stack Overflow, and 359 clone pairs that are highly similar but
-without evidence of copying. 
+such as Stack Overflow. 
+% They are similar to classical clones in software
+% projects where they can be outdated and violating software license but
+% are much harder to detect. 
+We classified 32,533 clone pairs using seven patterns of online code
+cloning.  After automatically removing boiler-plate clones, we
+manually investigated 3,636 clone pairs. In the 1,216 manually
+confirmed clone pairs, we discovered 112 clone pairs that have been
+copied, with evidence, from Qualitas projects to Stack Overflow, 197
+clone pairs that have been copied from external sources besides
+Qualitas to Stack Overflow, and 359 clone pairs that are highly
+similar but without evidence of copying.
 
-We performed a detailed analysis of the online
-clone pairs on two aspects: outdated code and
-licensing violation. The investigation of the 112 clone pairs from Qualitas
-to Stack Overflow reveals that 64 of them are outdated. 
-Moreover, we found 358 code snippets on Stack Overflow that violate
-the license of their original software.
+We performed a detailed analysis of the online clone pairs on two
+aspects: outdated code and licensing violation. The investigation of
+the 112 clone pairs copied, with evidence, from Qualitas to Stack
+Overflow reveals that 64 of them are outdated.  Moreover, we found 358
+code snippets on Stack Overflow that violate the license of their
+original software.
 
 This study is among, if not the first, to address the important issues
 of outdated and license-violating online code clones on programming
