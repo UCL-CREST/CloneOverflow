@@ -19,10 +19,16 @@
 \usepackage{cleveref}
 \usepackage{subcaption}
 \usepackage{tikz}
+\usepackage[normalem]{ulem}
 
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
-\lstset{language=Java,tabsize=2,basicstyle=\ttfamily\scriptsize} 
+\lstset{language=Java,
+  tabsize=2,
+  basicstyle=\ttfamily\footnotesize,
+  moredelim=[is][\dotuline]{@}{@},
+  mathescape=true
+} 
 
 \newcommand{\squeezeup}{\vspace{-0.5mm}}
 
@@ -36,14 +42,6 @@
 \makeatother
 
 \newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
-
-\lstdefinestyle{base}{
-	language=C,
-	emptylines=1,
-	breaklines=true,
-	basicstyle=\ttfamily\color{black},
-	moredelim=**[is][\color{red}]{@}{@},
-}
 
 \newcommand\FIXME[1]{\textbf{FIXME: #1}}
 
@@ -226,20 +224,19 @@ them on two aspects: \textbf{outdated code} and \textbf{license conflicts.}
 
 \begin{figure*}
 	\begin{lstlisting}
-          /* Code in Stack Overflow post ID 22315734 */                  /* WritableComparator.java (2016-09-26) */
-          public int compare(byte[] b1,int s1,int l1,                    public int compare(byte[] b1,int s1,int l1,
-                             byte[] b2,int s2,int l2) {                                     byte[] b2,int s2,int l2) {
-            try {                                                          try {
-              buffer.reset(b1,s1,l1); /* parse key1 */                       buffer.reset(b1,s1,l1); /* parse key1 */
-              key1.readFields(buffer);                                       key1.readFields(buffer);
-              buffer.reset(b2,s2,l2); /* parse key2 */                       buffer.reset(b2,s2,l2); /* parse key2 */
-              key2.readFields(buffer);                                       key2.readFields(buffer);
-            } catch (IOException e) {                                        buffer.reset(null,0,0); /* clean up reference */
-              throw new RuntimeException(e);                               } catch (IOException e) {
-            }                                                                throw new RuntimeException(e);
-            return compare(key1,key2); /* compare them */                  }
-          }                                                                return compare(key1, key2); /* compare them */
-	                                                                       }
+  /* Code in Stack Overflow post ID 22315734 */              /* WritableComparator.java (2016-09-26) */
+  public int compare(byte[] b1,int s1,int l1, ...) {         public int compare(byte[] b1,int s1,int l1, ...) {
+    try {                                                      try {
+      buffer.reset(b1,s1,l1); /* parse key1 */                   buffer.reset(b1,s1,l1); /* parse key1 */
+      key1.readFields(buffer);                                   key1.readFields(buffer);
+      buffer.reset(b2,s2,l2); /* parse key2 */                   buffer.reset(b2,s2,l2); /* parse key2 */
+      key2.readFields(buffer);                                   key2.readFields(buffer);
+    } catch (IOException e) {                                    $$@buffer.reset(null,0,0); /* clean up reference */@
+      throw new RuntimeException(e);                           } catch (IOException e) {
+    }                                                            throw new RuntimeException(e);
+    return compare(key1,key2); /* compare them */              }
+  }                                                            return compare(key1, key2); /* compare them */
+                                                            }
 	\end{lstlisting}\vspace{-2ex}
 	\caption{A motivating example of the two code fragments of
           {\small\texttt{WritableComparator.java}}. The one from the
@@ -399,7 +396,7 @@ ranging from programming languages to
 visualisation. We selected the 20130901r release
 of the Qualitas corpus containing 112 Java open source projects. This
 release contains projects with releases no later than 1st September
-2013. We chose a snapshot late back in 2013 since we are interested in
+2013. We intentionally chose an old corpus from 2013 since we are interested in
 online code clones in the direction from open source projects to Stack
 Overflow. The 20130901r snapshot provides Java code that is more than
 2 years older than the Stack Overflow snapshot, which is sufficiently
@@ -477,21 +474,22 @@ two systems.
 %Overflow and 111 open source projects from the Qualitas corpus. 
 %The Java code snippets were extracted from Stack Overflow posts. 
 We prepared the Java code in both datasets by removing comments and
-pretty-printing to increase the accuracy of clone detection. Then, we
+pretty-printing to increase the clone detection accuracy. Then, we
 deployed the two detectors to locate clones between the two
-datasets. For scalability reasons, we % partitioned the input and 
-ran the tools multiple
-times. Each run was composed of the entire Stack Overflow data and a
-single Qualitas project. We repeated the process until we covered all
-111 projects.  
+datasets.  For each Qualitas project, we ran the tools on the
+project's code and the entire Stack Overflow data.
+% For scalability reasons, we partitioned the input and ran the tools
+% multiple times. Each run was composed of the entire Stack Overflow
+% data and a single Qualitas project. We repeated the process until we
+% covered all 111 projects.
 % We then converted the clone reports to the General
 % Clone Format (GCF)~\cite{Wang2013} and combined the 111 reports into a
 % single GCF file.  
-Simian did not provide an option to detect
-cross-project clones between two locations. Hence the Simian clone
-report was filtered to contain only clone pairs between Stack Overflow
-and Qualitas projects, removing all clone pairs within either Stack
-Overflow or within Qualitas. 
+Simian did not provide an option to detect cross-project
+clones. % between two locations.
+Hence the Simian clone report was filtered to contain only clone pairs
+between Stack Overflow and Qualitas projects, removing all clone pairs
+within either Stack Overflow or within Qualitas.
 % NiCad provides an option to detect clones
 % from two locations so no filtering was needed.
 
@@ -1373,7 +1371,7 @@ used by naive developers who copy and reuse the outdated code.
 	\centering
 	\caption{License mapping of  online clones (file-level)}
 	\label{tab:license_abc}
-	\footnotesize
+	\small
 	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{l|p{1.95cm}l|rrr}
 		\hline
