@@ -206,7 +206,7 @@ Android documentation~\cite{Acar2016}.
 
 We call code snippets that are copied from software systems to online
 Q\&A websites (such as Stack Overflow) and vice versa as ``online
-code clones'' (sometimes only ``clones'' for brevity). There are two
+code clones''. There are two
 directions in creating online code clones: (1) code is cloned from a software
 project to a Q\&A website as an example; or (2) code is cloned from a
 Q\&A website to a software project to obtain a functionality, perform
@@ -214,7 +214,7 @@ a particular task, or fixing a bug.
 % and (3) code is transferred from one software project to another via a Q\&A website; 
 Similar to classic clones, online code clones can lead to license
 violations, bug propagation, introduction of vulnerabilities, and
-re-use of outdated code. Unfortunately, online clones are more
+re-use of outdated code. Unfortunately, online clones are 
 difficult to locate and fix since the search space in online code
 corpora is larger and no longer confined to a local repository.
 
@@ -262,9 +262,9 @@ the latest version. The added line is intended for cleaning up the
 reference in the {\small{\verb|buffer|}} variable. While this change
 has already been introduced into the {\small{\texttt{compare}}} method
 in the latest version of \textsf{hadoop}, the code example in Stack
-Overflow post is still unchanged. This example shows that there can be
-inconsistencies between online code clones and their originals leading
-users of Stack Overflow to reuse outdated code.
+Overflow post is still unchanged. This example shows that
+inconsistencies between online code clones and their originals can
+lead users of Stack Overflow to reuse outdated code.
 %The code snippet on Stack Overflow can be outdated. %Since reusing source code from Stack Overflow is considered a common practice nowadays, the scale of online code cloning is more than intra or inter project clone in a local code bases.
 %This is an emerging and challenging problem. Since studies in this area are still limited, we aim to gain more insight of the problem in this study. %We are interested to gain more insights of online code clone in this study.
 
@@ -339,19 +339,14 @@ can cause software developers to violate licenses.
 To answer these four research questions, we perform an empirical study to
 locate and study the online code clones between Stack Overflow and open source
 projects. 
-% We explain our process of building the data sets in each phase separately below.
-
-%\subsection{Experimental Setup}
-
-%We followed the experimental framework by processing the source code from the two data sets, configuring and running the clone detectors, and analysing the clones. We discuss each of them in details below. 
-
-\subsection{Methodology}
-
+%
+%\subsection{Methodology}
+%
 We designed our study in 6 phases as depicted in \Cref{fig:exp_framework} where
 we build different data sets to answer each of our four research
 questions. 
 
-\subsubsection{Phase 1: Clone Identification}
+\subsection{Phase 1: Clone Identification}
 
 We rely on two source data sets in this study: Java code snippets in answers
 on Stack Overflow and open source projects from the Qualitas corpus
@@ -568,7 +563,7 @@ configuration with a smaller minimum size (\Cref{t:param_tuning}).
 	%}
 \end{table}
 
-\subsubsection{Phase 2: Clone Filtering}
+\subsection{Phase 2: Clone Filtering}
 As there are in total 315,786,118 clone pairs reported, it is
 infeasible for humans to manually validate them all. Instead of
 investigating a random sample, we adopted the idea of \textbf{clone
@@ -748,7 +743,7 @@ reported clones and precision for small clones. Using this filter
 along with the other three filters, we reduced the number of $N_D$
 clones to 83 pairs.
 
-%\subsubsection{Filtered Clones Set}
+%\subsection{Filtered Clones Set}
 We selected all \textit{good} pairs (2,313) and the \textit{ok} pairs for
 $S_D$--$N_D$ (12,336), $S_E$--$N_D$ (993), and $S_D$--$N_E$ (79), but we ignored
 20,021 $S_EN_E$ \textit{ok} clone pairs in the classification due to
@@ -767,7 +762,7 @@ to classify boiler-plate code of {\small\texttt{equals()}},
 The classifier could automatically classify 28,897 clone pairs 
 and left 3,636 clone pairs for manual investigation in phases 3 to 6.
 
-\subsubsection{Phase 3-4: Clone Validation and Classification}
+\subsection{Phase 3-4: Validation and Classification}
 We used the 3,636 filtered clone pairs after automatic classification for
 manual validation and classification.
 The validation and classification of the pairs was done at the same time. 
@@ -807,7 +802,7 @@ the reported clones in phase 1
 %from various aspects. We selected the top 10 from each ranking and
 %obtained 34 unique Stack Overflow snippets. The snippets were
 %associated with 697 clone pairs.
-%\subsubsection{Defining Online Code Cloning Patterns}
+%\subsection{Defining Online Code Cloning Patterns}
 using Kapser's cloning patterns. We found that 
 % the
 % clone pairs were categorised into either Customisation or Templating.
@@ -900,7 +895,7 @@ into \textbf{UD}.
 	%}
 \end{table}
 
-\subsubsection{Phase 5: Outdated Clones}
+\subsection{Phase 5: Outdated Clones}
 Outdated code occurs when a piece of code has been copied from its
 origin to another location and later the original has been
 updated~\cite{Xia2014}. Usually code clone detection is used to locate
@@ -929,7 +924,7 @@ inconsistent lines between the two versions, we used
 {\small\texttt{git blame}} to see who modified those lines of code and
 the timestamps.
 
-\subsubsection{Phase 6: Licensing Analysis}
+\subsection{Phase 6: Licensing Analysis}
 Software licensing plays an important role in software
 development. Violation of software licenses impacts software delivery
 and also leads to legal issues~\cite{Sprigman2015}.
@@ -1184,7 +1179,7 @@ projects. This is very likely due to the age of the Qualitas corpus as
 another study~\cite{An2017} showed the presence of clones from Stack
 Overflow in newer open source data sets.
 
-\textbf{EX: External Sources.} We found 200 online clone pairs with
+\textbf{EX: External Sources.} We found 200 clone pairs with
 evidence of cloning from external sources to Stack Overflow and to Qualitas.  
 They include 4, 44, 146, and 6 pairs from the \textit{good}, \textit{ok'},
 $S_D'$, and $N_D'$ set respectively. All of them contain statements
@@ -1215,9 +1210,10 @@ project.
 
 \textbf{UD: Unknown Direction.} We found 359 online clone pairs with
 no evidence of cloning between Qualitas and Stack Overflow but with a
-high code similarity that suggests cloning. They include 15, 20, 293,
-and 31 pairs from the \textit{good}, \textit{ok'}, $S_D'$, and $N_D'$
-set respectively. The most cloned projects is \textsf{netbeans} with
+high code similarity that suggests cloning. 
+% They include 15, 20, 293, and 31 pairs from the \textit{good},
+% \textit{ok'}, $S_D'$, and $N_D'$ set respectively.
+The most cloned projects is \textsf{netbeans} with
 93 clone pairs. Most of the clones are a large chunk of code handling
 GUI components. Although these GUI clones might be auto-generated by
 IDEs, we did not find any evidence. The second most cloned project is
@@ -1340,7 +1336,7 @@ used by naive developers who copy and reuse the outdated code.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{freshness}
+	\includegraphics[width=\linewidth]{freshness}\vspace{-1ex}
 	\caption{Status of the 112 QS online clone pairs}
 	\label{fig:outdated}
 \end{figure}
@@ -1423,7 +1419,7 @@ licensing issues caused by code cloned to Stack Overflow. We found
 evidence that 112 pieces of code have been copied from Qualitas
 projects to Stack Overflow as examples. Their status of accepted
 answers increase their chances of being reused. Even though most of
-the Qualitas projects came with a software license, we found that the licensing information
+the Qualitas projects came with a software license, we found that the license information
 were frequently missing after the code was copied to Stack
 Overflow. The licensing terms on top of source code files are not
 copied because usually only a small part of the file was
@@ -1455,7 +1451,7 @@ of 88 EX clone pairs have incompatible licenses.
 %They are clones that have been identified to be copied from an external source.
 Similarly, the license statement was removed from Stack Overflow
 snippets. Of 226 \textbf{UD} clone pairs, 202 pairs have incompatible
-licenses. Again, most of the clones in Qualitas contain a license
+licenses. Again, most clones in Qualitas contain a license
 while the Stack Overflow snippets do not.
 %
 %\Cref{fig:sankey_license} shows the direction of changes in online code clone license. The direction of the change is from left to right. The thickness of the line reflects the number of clones for that relationship. In \Cref{fig:sankey_license} (A), we can clearly see that most of the QS online clones have their licenses changed from having a license to ``No license'' on Stack Overflow. The same findings were found for EX online clones as depicted in \Cref{fig:sankey_license} (B). We found that most of the EX clones have their licensing information stripped of after copying to Stack Overflow. These clones are instead covered by the default CC BY-NC-SA 3.0 license of Stack Overflow which is strongly permissive. These used-to-be-licensed code are dangerous for being reused because they can implicitly conflict with the reused software's license.
