@@ -376,9 +376,10 @@ interested in code snippets of at least six lines. Snippets smaller
 than six lines are usually spurious clones~\cite{Bellon2007}. Each
 snippet was extracted from the dump and saved to a file.
 %using its post ID as the file's name. If an accepted answer had more than one code snippet, we appended an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we added {\small\texttt{.java}} extension to the file's names so that clone detectors could recognise them. 
-We obtained 144,064 Java code snippets containing 2,346,267
+We obtained 144,064 Java code snippets containing 2,332,940
 lines\footnote{Measured by cloc:
   \url{https://github.com/AlDanial/cloc}} of Java source code.
+Median of the snippet size is 10.
 % excluding comments and blank lines.
 
 \textbf{Open source systems: }
@@ -401,22 +402,21 @@ projects, there is one project, \textsf{jre}, that does not contain
 Java source code due to its licensing limitation~\cite{QualitasCorpus}
 and is removed from the study. This resulted in a total of 111
 projects analysed in the study. As shown in \Cref{tab:datasets}, the
-111 Qualitas project have 160,937 Java files containing 19,086,883
-lines of
-code. %Details of the 109 Qualitas projects and their licenses are listed in Table \ref{t:new_and_old}.
+111 Qualitas project have 166,709 Java files containing 19,614,083
+lines of code. Median of the project size is 60,667 lines of code.
 
 \begin{table}
   \centering
   \caption{Stack Overflow and Qualitas datasets}
   \label{tab:datasets}
   %\small
-  \begin{tabular}{lrr}
+  \begin{tabular}{lrrr}
     \hline 
-    Dataset & No. of files & SLOC \\
+    Dataset & No. of files & SLOC & Median \\
     \hline
-    Stack Overflow & 144,064 & 2,346,267 \\ 
+    Stack Overflow & 144,064 & 2,332,940 & 10 \\ 
     %\hline 
-    Qualitas &  160,937 & 19,086,883 \\ 
+    Qualitas &  166,709 & 19,614,083 & 60,667 \\ 
     \hline 
   \end{tabular} 
 \end{table}
