@@ -256,7 +256,7 @@ implements the {\small{\texttt{compare}}} method in its
 {\small{\texttt{WritableComparator}}} class. The code snippet on the
 right shows another version of the same method, but at this time
 extracted from the latest version (as of 26 September 2016) of
-\textsf{hadoop}. We can see that they are highly similar except a line
+\textsf{hadoop}. We can see that they both are highly similar except a line
 containing {\small{\verb|buffer.reset(null,0,0);|}} which was added in
 the latest version. The added line is intended for cleaning up the
 reference in the {\small{\verb|buffer|}} variable. While this change
@@ -379,7 +379,7 @@ snippet was extracted from the dump and saved to a file.
 We obtained 144,064 Java code snippets containing 2,332,940
 lines\footnote{Measured by cloc:
   \url{https://github.com/AlDanial/cloc}} of Java source code.
-Median of the snippet size is 10.
+The median of the snippet size is 10.
 % excluding comments and blank lines.
 
 \textbf{Open source systems: }
@@ -403,7 +403,7 @@ Java source code due to its licensing limitation~\cite{QualitasCorpus}
 and is removed from the study. This resulted in a total of 111
 projects analysed in the study. As shown in \Cref{tab:datasets}, the
 111 Qualitas project have 166,709 Java files containing 19,614,083
-lines of code. Median of the project size is 60,667 lines of code.
+lines of code. The median project size is 60,667 lines of code.
 
 \begin{table}
   \centering
