@@ -120,15 +120,16 @@
   % Moreover, we also found that majority of online code clones do not
   % contain the license of their originals.
   We present a study incorporating several state-of-the-art tools and
-  techniques to automatically extract, prioritise, and filter
-  315,786,118 detected online clone pairs between 144,064 Java code
-  snippets on Stack Overflow and 111 Java open source projects in the
-  curated Qualitas corpus. We discovered and investigated 32,533
-  non-trivial online clone candidates. Our study revealed that 64 out
-  of 112 clones with strong evidence of copying from a Qualitas
-  project to Stack Overflow are outdated. Furthermore, we found 357
-  code snippets on Stack Overflow that violate the license of their
-  original software.
+  techniques to automatically extract, prioritise, and filter detected
+  online clone pairs between 144,064 Java code snippets on Stack
+  Overflow and 111 Java open source projects in the curated Qualitas
+  corpus. We discovered and analysed 32,533 non-trivial online clone
+  candidates. Our investigation of 3,636 manually confirmed clone
+  pairs revealed strong evidence that 112 clones have been copied from
+  a Qualitas project to Stack Overflow.  We found 64 of them (57\%) 
+  to be outdated and potentially harmful for reuse.  Furthermore, we
+  found 357 code snippets on Stack Overflow that violate the license
+  of their original software.
   % These snippets are questionable for reuse.
   % Our study is among the first to address the problem of
   % outdated and license-violating code snippets on Stack Overflow.
@@ -1277,7 +1278,7 @@ statements.
   has actually been copied. Nevertheless, we found 112 pairs that had
   strong evidences to be cloned from Qualitas to Stack Overflow and
   200 pairs were found to be cloned to Stack Overflow from external
-  sources outside Qualitas projects.} 
+  sources.} 
 %We did not find any clone pairs in the direction from Stack Overflow to Qualitas.}
 
 \subsection{RQ3: Outdated Online Code Clones}
@@ -1498,6 +1499,9 @@ pairs we classified.  First, we used two widely-used
 clone detection tools, Simian and NiCad.  We tried three other
 clone detectors but could not add them to the study due to their
 scalability issues and susceptibility to incomplete code snippets.
+We mitigated the problem of clone
+detector's parameter sensitivity by adding another established
+configuration from the EvaClone study~\cite{Wang2013}. 
 Second, we adopted Bellon's agreement metric~\cite{Bellon2007}
 to prioritise and filters clone pairs for the manual
 classification. The agreed clone pairs that passed \textit{good}- and
@@ -1512,9 +1516,6 @@ out by the automatic classifier before the manual investigation.
 
 % The number of online clones we found are subject to the clone
 % detectors and their configurations.  
-We mitigated the problem of clone
-detector's parameter sensitivity by adding another established
-configuration from the EvaClone study~\cite{Wang2013}. 
 
 % We also
 % performed a pairwise matching between the default and EvaClone
@@ -1526,8 +1527,8 @@ beforehand, we resorted to extract them from the data sets. We derived
 them from a manual investigation of 679 online clone pairs and adopted
 one pattern from the study by Kapser et al.~\cite{Kapser2003}.
 
-The 3,636 clone pairs classified manually by the first author are
-subject to manual judgement and human errors.  Although we have tried
+The 3,636 clone pairs classified by the first author are
+subject to manual judgement and human errors.  Although we tried
 our best to be careful on searching for evidence and classifying the
 clones, some errors may still exist. We mitigated this problem by
 having the second author to validate the classifications with a random
@@ -1673,8 +1674,9 @@ in software development. Xia et al.~\cite{Xia2014} show that
 a large number of open source systems reuse outdated third-party 
 libraries from popular open source projects. Using the outdated 
 code give detrimental effects to the software since they may 
-introduce vulnerabilities. Our study discovers similar findings 
-in the context of outdated code on Stack Overflow.
+introduce vulnerabilities. Our study similarily finds
+% on % the context of 
+outdated code on Stack Overflow.
 
 The work that is closely similar to us is a study by 
 An et al.~\cite{An2017} where the authors investigated 
