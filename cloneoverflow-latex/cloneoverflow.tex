@@ -270,7 +270,7 @@ lead users of Stack Overflow to reuse outdated code.
 %This is an emerging and challenging problem. Since studies in this area are still limited, we aim to gain more insight of the problem in this study. %We are interested to gain more insights of online code clone in this study.
 
 While research has mostly focused on reusing code snippets \emph{from}
-Stack Overflow (e.g.~\cite{Keivanloo2014,An2017,Yang2016}), less studies
+Stack Overflow (e.g.~\cite{Keivanloo2014,An2017,Yang2016}), fewer studies
 have been conducted on finding the origins of code examples copied
 \emph{to} Stack Overflow and problems of reusing them such as outdated
 code and software licensing violations. This paper fills this gap and
@@ -301,25 +301,25 @@ used as a clone oracle.
 We performed an empirical study of online code clones between Stack
 Overflow and 111 Java open source projects to answer the following
 research questions:
-\begin{itemize}
-\item \textbf{RQ1 (Online code clones):} \textit{To what extent is source
+\begin{description}
+\item[RQ1 (Online code clones):] \textit{To what extent is source
   code cloned between Stack Overflow and open source projects?} We
 quantitatively measured the number of online code clones between Stack
 Overflow and open source projects to understand the scale of the
 problem. 
-\item \textbf{RQ2 (Patterns of online code clones):} \textit{Why do online
+\item[RQ2 (Patterns of online code clones):] \textit{Why do online
   code clones occur?} We categorised online clones into seven
 categories allowing insights to why online code clones are created.
-\item \textbf{RQ3 (Outdated online code clones):} \textit{Are
+\item[RQ3 (Outdated online code clones):] \textit{Are
   online code clones up-to-date compared to their counterparts in the
   original projects?} We were interested in the outdated Stack
 Overflow code examples since users are potentially reusing
 them. 
-\item \textbf{RQ4 (Software licensing violation):} \textit{Do
+\item[RQ4 (Software licensing violation):] \textit{Do
   licensing conflicts occur between Stack Overflow clones and their
   originals?} We investigated whether the reuse of online code clones
 can cause software developers to violate licenses.
-\end{itemize}
+\end{description}
 
 \begin{figure}
   \centering
@@ -572,11 +572,11 @@ which have a large enough number of overlapping lines can be
 categorised as either a good-match or an ok-match pair (denoted as
 \textit{good} and \textit{ok} respectively) with a confidence value
 between 0 and 1. A \textit{good} clone pair has stronger agreement
-than an \textit{ok} pair. We follow the original definitions of good-
-and ok-match introduced in Bellon's paper~\cite{Bellon2007}.
-
-We define the \textit{overlap}\footnote{The overlap value can be considered as Jaccard similarity.} and
-\textit{contained} value of two clone fragments (\textit{CF}) as
+than an \textit{ok} pair. We follow Bellon's original definitions of
+good- and ok-match~\cite{Bellon2007}, which are based on how much two
+clone fragments \textit{CF} overlap\footnote{The overlap value can be
+  considered as Jaccard similarity.}  and how much of them is
+contained in each other:
 %\squeezeup
 \begin{displaymath}
   overlap(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
@@ -585,11 +585,12 @@ We define the \textit{overlap}\footnote{The overlap value can be considered as J
 \begin{displaymath}
   contained(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}
 \end{displaymath}
-      
 \noindent%
-Given that a clone pair \textit{CP} is formed by two clone fragments
-\textit{CF$_1$} and \textit{CF$_2$}, i.e.~\textit{CP} = (\textit{CF$_1$},
-\textit{CF$_2$}), the \textit{good-value}  and the \textit{ok-value}  of two clone pairs are defined as
+A clone pair \textit{CP} is formed by two clone fragments
+\textit{CF$_1$} and \textit{CF$_2$}, i.e.~\textit{CP} =
+(\textit{CF$_1$}, \textit{CF$_2$}), and the \textit{good-value} and
+the \textit{ok-value} of two clone pairs are defined as
+
 %\squeezeup
 \begin{align*}
 	good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
@@ -654,10 +655,11 @@ pairs since they could not be matched.
 \end{table}
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.9\linewidth]{good-ok_pairs}
-	\caption{Distribution of \textit{good} (top) and \textit{ok} pairs (bottom) reported by the 4 configurations of Simian and NiCad. The shaded areas are overlapping pairs.}
-	\label{fig:good-ok-pairs}
+  \centering
+  \vspace{3.5ex}
+  \includegraphics[width=0.9\linewidth]{good-ok_pairs}
+  \caption{Distribution of \textit{good} (top) and \textit{ok} pairs (bottom) reported by the 4 configurations of Simian and NiCad. The shaded areas are overlapping pairs.}
+  \label{fig:good-ok-pairs}
 \end{figure}
 
 The distribution of \textit{good} clone pairs between the four
