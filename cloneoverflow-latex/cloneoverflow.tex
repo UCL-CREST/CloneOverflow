@@ -686,8 +686,8 @@ that is agreed by all four combinations.
 		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{2}{c|}{Filters*} & \multirow{2}{*}{After Filtering} \\ \cline{3-4}
 		& & \textit{L} & \textit{S} & \\ 
 		\hline 
-		\multirow{1}{*}{$S_D$} & 67,570 & \checkmark & & 17,801 \\
-		\multirow{1}{*}{$N_D$} & 632,855 & \checkmark & \checkmark & 83 \\ 
+		\multirow{1}{*}{$S_D$} & 55,274 & \checkmark & & 17,801 \\
+		\multirow{1}{*}{$N_D$} & 620,680 & \checkmark & \checkmark & 83 \\ 
 		\hline
 		\multicolumn{5}{l}{*\textit{L}=size $\geq 10$, \textit{S}=sim $\geq 85\%$.}  \\
 	\end{tabular} %
@@ -708,8 +708,8 @@ a large number of false positives due to the recall preference of
 their EvaClone configurations.
 
 Even choosing only the default configurations, the number of disagreed
-clone pair candidates is still too large for manual inspection.
-%(67,570 for $S_D$ and 632,855 pairs for $N_D$). 
+clone pair candidates is still too large for manual inspection
+(as shown in \Cref{tab:online_clone_pairs}). 
 We applied two filters: clone
 size and similarity threshold. %, and good/ok pairs. 
 For the \emph{clone size filter}, we raised the minimum clone size to 10 lines
