@@ -575,21 +575,21 @@ between 0 and 1. A \textit{good} clone pair has stronger agreement
 than an \textit{ok} pair. We follow the original definitions of good-
 and ok-match introduced in Bellon's paper~\cite{Bellon2007}.
 
-Given that a clone pair \textit{CP} is formed by two clone fragments
-\textit{CF$_1$} and \textit{CF$_2$}, i.e.~\textit{CP} = (\textit{CF$_1$},
-\textit{CF$_2$}), we can define the \textit{overlap}\footnote{The overlap value can be considered as Jaccard similarity.} and
-\textit{contained} value of two clone pairs as
+We define the \textit{overlap}\footnote{The overlap value can be considered as Jaccard similarity.} and
+\textit{contained} value of two clone fragments (\textit{CF}) as
 %\squeezeup
 \begin{displaymath}
-  overlap(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
+  overlap(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
 \end{displaymath}
 % \squeezeup
 \begin{displaymath}
-  contained(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}
+  contained(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}
 \end{displaymath}
       
 \noindent%
-The \textit{good-value}  and the \textit{ok-value}  of two clone pairs are defined as
+Given that a clone pair \textit{CP} is formed by two clone fragments
+\textit{CF$_1$} and \textit{CF$_2$}, i.e.~\textit{CP} = (\textit{CF$_1$},
+\textit{CF$_2$}), the \textit{good-value}  and the \textit{ok-value}  of two clone pairs are defined as
 %\squeezeup
 \begin{align*}
 	good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
@@ -708,8 +708,9 @@ a large number of false positives due to the recall preference of
 their EvaClone configurations.
 
 Even choosing only the default configurations, the number of disagreed
-clone pair candidates is still too large for manual inspection (67,570
-for $S_D$ and 632,855 pairs for $N_D$). We applied two filters: clone
+clone pair candidates is still too large for manual inspection.
+%(67,570 for $S_D$ and 632,855 pairs for $N_D$). 
+We applied two filters: clone
 size and similarity threshold. %, and good/ok pairs. 
 For the \emph{clone size filter}, we raised the minimum clone size to 10 lines
 since larger clones are more interesting, while smaller ones tend to
