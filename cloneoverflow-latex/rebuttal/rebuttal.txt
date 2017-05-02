@@ -1,0 +1,35 @@
+REVIEWER 1
+
+Question 1: 
+This study is motivated by [1, 2]. An et al. [2] found that 62 active Android projects contains 232 exact copies of snippets on Stack Overflow (SO) with confirmation from the developers. 60 apps have license violations between the copied snippets and project's license. 126 snippets are found to potentially migrate from one app to another via SO posts, i.e. 'code laundering'. Acar et al. [1] found that SO is often chosen by programmers when solving tasks. They examined 139 SO threads used by the participants in four Android security-related tasks and found that only 17% of them contain secure snippets. The same security-related problems are discovered in a random sampling of 200,000 apps from Google Play (e.g. 98.9% implement insecure hostname verifier similarly to the SO examples).
+
+Question 2:
+The motivation still holds. It is known that clone detection tools report a lot of false/trivial clones. We focus on the important ones. The number of 32,533 analysed clone pairs are the ones that are not trivial clones according to the clone agreement and clone filtering process for feasibility of a manual study. However, they are not the 'total' number of clones between SO and Qualitas.
+
+Question 3:
+No. We cannot expect the same results from a different pair of evaluators. Classifications of clones by human are known to be very subjective. However, we expect similar results with a higher number of evaluators.
+
+Question 4:
+Although the code is provided as minimum working examples, it is known that the code is used as-is and causing problems in active projects [1,2]. Active maintenance and support provided by SO can mitigate such problems
+
+REVIEWER 2
+
+Question 1:
+We are not aware of any curated set of software that includes non-open source projects. We focused on open source projects to allow replication of our study. 
+
+Question 2:
+See Table 11: 79 (QS) and 77 (EX) pairs (snippets) violate the license but acknowledge the source, 202 (UD) pairs violate the license and have no acknowledgement. 
+
+REVIEWER 3
+
+Question 1:
+Disagreed clone pairs are also clones, they just have lower confidence to be true clones. By only inspecting agreed clones, one would miss several true clones due to the tools' differences [61].
+
+Question 3:
+We consider them as two clone pairs. From 32,533 online clone pair candidates, there are 4,018 distinct Qualitas clones (file + start + end lines) and, on average, each of them forms a clone pair with 7.6 distinct Stack Overflow snippets.
+
+Question 4:
+The automatic classification of boiler plate code is done first (Figure 2). The manual investigation (Figure 4) only classifies boiler plate clones that have been missed by the automatic classification. During the manual investigation, the classification of accidental clones is easier than the boiler plate classification, thus it comes second.
+
+Question 5:
+See Table 7: for the manual confirmed pairs, 516/144,064 of snippets with on average 26% of the snippets' code. And for the reported pairs, 14,856/144,064 with an average of 38%. Note that it is restricted to only 111 Qualitas projects and one can expect a large number of clones to other projects.
