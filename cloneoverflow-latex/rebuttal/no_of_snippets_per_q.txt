@@ -1,0 +1,17 @@
+QS + EX + UD Only (671 clone pairs)
+
+----------------
+No. of distinct Qualitas file: 299 out of 671 clone pairs.
+Average SO snippets per a Qualitas file: 1.3010033444816054
+----------------
+No. of distinct Qualitas clones: 563 out of 671 clone pairs.
+Average SO clones per a Qualitas clone: 1.191829484902309
+
+All 32,533 Clone Pairs
+
+----------------
+No. of distinct Qualitas file: 2069 out of 32533 clone pairs.
+Average SO snippets per a Qualitas file: 8.578057032382794
+----------------
+No. of distinct Qualitas clones: 4018 out of 32533 clone pairs.
+Average SO clones per a Qualitas clone: 8.096814335490294
