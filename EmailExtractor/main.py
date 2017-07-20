@@ -1,7 +1,7 @@
 import urllib2
 import sys, traceback
 import json
-import re
+import time
 
 
 def writefile(filename, fcontent, mode):
@@ -22,6 +22,18 @@ def writefile(filename, fcontent, mode):
         print '-' * 60
         traceback.print_exc(file=sys.stdout)
         print '-' * 60
+
+
+def find_email(json, emailstr):
+    email = None
+    for node in json:
+        try:
+            email = node['payload']['commits'][0]['author']['email']
+            return email
+        except Exception as e:
+            continue
+
+    return email
 
 
 reload(sys)
@@ -71,34 +83,39 @@ for pageno in range(1,50):
                         email = None
                         github_url = line2.split('"')[1]
 
-                        # github_url = line2.split('"')[1].replace('github.com', 'api.github.com/users')
+                        # use https://api.github.com/users/xxxxx/events/public to get emails.
+                        github_url = line2.split('"')[1].replace('github.com', 'api.github.com/users') + '/events/public'
                         # print line2.split('"')[1]
                         # responsex = urllib2.urlopen(line2.split('"')[1])
                         # writefile(str(index) + ".txt", responsex.read().encode('utf-8'), 'w')
-                        #
+
                         # print github_url
 
-                        # try:
-                        #     # try to go to GitHub and grab emails from there
-                        #     response3 = urllib2.urlopen(github_url)
-                        #     json_response = response3.read()
-                        #     json_data = json.loads(json_response)
-                        #     print json_data['email']
-                        #     # email = json_data['email']
-                        # except ValueError as e:
-                        #     print "ERROR: not github url."
-                        # except urllib2.HTTPError as he:
-                        #     print "ERROR: exceeded github rate limit."
-                        #
-                        # if email is None:
-                        #     print parts[1] + ',' + github_url + ','
-                        #     print_buffer += parts[1] + ',' + github_url + ',\n'
-                        # else:
-                        #     print parts[1] + ',' + github_url + ',' + email
-                        #     print_buffer += parts[1] + ',' + github_url + ',' + email + '\n'
+                        try:
+                            # try to go to GitHub and grab emails from there
+                            response3 = urllib2.urlopen(github_url)
+                            json_response = response3.read()
+                            json_data = json.loads(json_response)
+                            email = find_email(json_data, 'email')
+                            # email = json_data['email']
+                        except ValueError as e:
+                            print "ERROR: not github url."
+                        except urllib2.HTTPError as he:
+                            print "ERROR: url=" + github_url
+                            traceback.print_exc(file=sys.stdout)
 
-                        if 'https://github.com/' in github_url:
+                        if email is None:
                             print parts[1] + ',' + github_url + ','
-                            print_buffer += parts[1] + ',' + '=HYPERLINK("' + github_url + '"),\n'
+                            print_buffer += parts[1] + ',' + github_url + ',\n'
+                        else:
+                            print parts[1] + ',' + github_url + ',' + email
+                            print_buffer += parts[1] + ',' + github_url + ',' + email + '\n'
+
+                        # if 'https://github.com/' in github_url:
+                        #     print parts[1] + ',' + github_url + ','
+                        #     print_buffer += parts[1] + ',' + '=HYPERLINK("' + github_url + '"),\n'
+
+                        # sleep for 2 secs to avoid exceeding GitHub rate limit
+                        time.sleep(2)
 
     writefile('emails.csv', print_buffer, 'a')
