@@ -84,7 +84,8 @@ for pageno in range(1,50):
                         github_url = line2.split('"')[1]
 
                         # use https://api.github.com/users/xxxxx/events/public to get emails.
-                        github_url = line2.split('"')[1].replace('github.com', 'api.github.com/users') + '/events/public'
+                        github_url = line2.split('"')[1].replace('github.com', 'api.github.com/users') \
+                                     + '/events/public?client_id=9503aeeea989b4b2b010&client_secret=e0ba42e92705526d274075d0c6ceccf0c17d1b33'
                         # print line2.split('"')[1]
                         # responsex = urllib2.urlopen(line2.split('"')[1])
                         # writefile(str(index) + ".txt", responsex.read().encode('utf-8'), 'w')
@@ -116,6 +117,6 @@ for pageno in range(1,50):
                         #     print_buffer += parts[1] + ',' + '=HYPERLINK("' + github_url + '"),\n'
 
                         # sleep for 2 secs to avoid exceeding GitHub rate limit
-                        time.sleep(2)
+                        time.sleep(1)
 
     writefile('emails.csv', print_buffer, 'a')
