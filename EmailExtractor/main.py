@@ -39,7 +39,7 @@ def find_email(json, emailstr):
 reload(sys)
 sys.setdefaultencoding("ISO-8859-1")
 
-for pageno in range(1,1000):
+for pageno in range(int(sys.argv[1]),1000):
 
     print_buffer = ''
     print 'page' + str(pageno) + ','
@@ -103,7 +103,7 @@ for pageno in range(1,1000):
                             print "ERROR: not github url."
                         except urllib2.HTTPError as he:
                             print "ERROR: url=" + github_url
-                            traceback.print_exc(file=sys.stdout)
+                            # traceback.print_exc(file=sys.stdout)
 
                         if email is None:
                             print parts[1] + ',' + github_url_short + ','
@@ -120,5 +120,5 @@ for pageno in range(1,1000):
                         time.sleep(1)
    
     # cut-off at every 20 pages
-    result_file_no = pageno/20
+    result_file_no = pageno/50
     writefile('emails' + str(result_file_no) + '.csv', print_buffer, 'a')
