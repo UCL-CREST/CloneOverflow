@@ -39,7 +39,7 @@ def find_email(json, emailstr):
 reload(sys)
 sys.setdefaultencoding("ISO-8859-1")
 
-for pageno in range(1,50):
+for pageno in range(1,1000):
 
     print_buffer = ''
     print 'page' + str(pageno) + ','
@@ -81,7 +81,7 @@ for pageno in range(1,50):
                     if '<a href="https://github.com' in line2:
 
                         email = None
-                        github_url = line2.split('"')[1]
+                        github_url_short = line2.split('"')[1]
 
                         # use https://api.github.com/users/xxxxx/events/public to get emails.
                         github_url = line2.split('"')[1].replace('github.com', 'api.github.com/users') \
@@ -106,11 +106,11 @@ for pageno in range(1,50):
                             traceback.print_exc(file=sys.stdout)
 
                         if email is None:
-                            print parts[1] + ',' + github_url + ','
-                            print_buffer += parts[1] + ',' + github_url + ',\n'
+                            print parts[1] + ',' + github_url_short + ','
+                            print_buffer += parts[1] + ',' + github_url_short + ',\n'
                         else:
-                            print parts[1] + ',' + github_url + ',' + email
-                            print_buffer += parts[1] + ',' + github_url + ',' + email + '\n'
+                            print parts[1] + ',' + github_url_short + ',' + email
+                            print_buffer += parts[1] + ',' + github_url_short + ',' + email + '\n'
 
                         # if 'https://github.com/' in github_url:
                         #     print parts[1] + ',' + github_url + ','
@@ -118,5 +118,7 @@ for pageno in range(1,50):
 
                         # sleep for 2 secs to avoid exceeding GitHub rate limit
                         time.sleep(1)
-
-    writefile('emails.csv', print_buffer, 'a')
+   
+    # cut-off at every 20 pages
+    result_file_no = pageno/20
+    writefile('emails' + str(result_file_no) + '.csv', print_buffer, 'a')
