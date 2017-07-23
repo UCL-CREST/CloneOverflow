@@ -127,3 +127,6 @@ for pageno in range(int(sys.argv[1]),1000):
     # any error, we continue
     except Exception as e:
         continue
+
+    # sleep for 10 minutes before going for the next page
+    time.sleep(600)
