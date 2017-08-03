@@ -11,3 +11,29 @@ body {
 #code2 {
   background-color: green;
 }
+
+#form_container {
+  border:1px solid black;
+  margin: 10px;
+}
+
+.addspace {
+  margin: 5px;
+}
+
+.addspaceleft {
+  margin-left: 15px;
+}
+
+.addspaceright {
+  margin-right: 15px;
+}
+
+.container {
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+}
+.container > div {
+  flex: 1; /*grow*/
+}

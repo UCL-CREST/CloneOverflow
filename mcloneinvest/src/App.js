@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import fire from './fire';
+import Form from './Form';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { snapshot: [] }; // <- set up react state
+    this.state = {
+      snapshot: [],
+      currentid: 1
+    }; // <- set up react state
   }
 
   componentWillMount(){
@@ -29,19 +33,15 @@ class App extends Component {
     else
     return (
       <div>
-      <link rel="stylesheet" href="../node_modules/highlight.js/styles/dark.css" />
-      <div>
-        <Highlight className='Java'>
-            {"public class Main {}"}
-        </Highlight>
-      </div>
-      <div id="code1">
-            { JSON.stringify(this.state.snapshot[0]["code1"]) }
-      </div>
-
-      <div id="code2">
-            { JSON.stringify(this.state.snapshot[0]["code2"]) }
-      </div>
+        <div id="clone_form">
+          <Form message="hello" currentid={this.state.currentid} data={this.state.snapshot}/>
+        </div>
+        <div id="code1">
+              { JSON.stringify(this.state.snapshot[0]["code1"]) }
+        </div>
+        <div id="code2">
+              { JSON.stringify(this.state.snapshot[0]["code2"]) }
+        </div>
       </div>
     )
   }
