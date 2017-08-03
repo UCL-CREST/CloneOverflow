@@ -9,54 +9,58 @@ class Form extends Component {
     this.state = {
       classifications: [],
       selectedOption: 'qs',
-      value: 'Any notes?',
-      currentid: this.props.currentid
+      notes: 'Any notes?',
+      currentid: this.props.currentid,
+      changeSelection: false
     }; // <- set up react state
 
-    this.handleChange = this.handleChange.bind(this);
     this.onPatternChanged = this.onPatternChanged.bind(this);
-    this.decreaseId = this.decreaseId.bind(this);
-    this.increaseId = this.increaseId.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  componentWillMount(props) {
+    // set the classification
+    this.setState({selectedOption: this.props.data["classification"]});
+    this.setState({notes: this.props.data["notes"]});
   }
 
   onPatternChanged(event) {
     this.setState({selectedOption: event.target.value});
+    this.setState({changeSelection: true});
   }
 
-  decreaseId(event) {
-    this.setState({currentid: this.state.currentid - 1});
+  handleTextAreaChange(event) {
+    this.setState({notes: event.target.value});
+    this.setState({changeSelection: true});
   }
 
-  increaseId(event) {
-    this.setState({currentid: this.state.currentid + 1});
+  submitForm(event) {
+    var id = this.props.currentid;
+    /* Create reference to messages in Firebase Database */
+    let clonesRef = fire.database().ref('clones/pairs').child(id);
+    var classification = this.state.selectedOption;
+    var notes = this.state.notes;
+    clonesRef.update({
+                    'classification': classification,
+                    'notes': notes
+                });
+
+    this.setState({changeSelection: false});
+    alert("Updated");
   }
 
   render() {
+    // alert(this.props.data["classification"]);
+    if (!this.state.changeSelection) {
+      this.setState({selectedOption: this.props.data["classification"]});
+      this.setState({notes: this.props.data["notes"]});
+    }
     return (
       <div id="form_container">
         <div className="row">
           <div className="col-sm-12">
             <form>
-              <div className="addspace addspaceleft"><label>Please choose a pattern for onlin clone pair no.&nbsp;
-                <input className="addspaceleft addspaceright"
-                  type="button"
-                  onClick={this.decreaseId}
-                  value="<<" />
-                <input type="text"
-                  value={this.state.currentid}
-                  onChange={this.handleChange} />/{Object.keys(this.props.data).length}
-                </label>
-                <input
-                  className="addspaceleft"
-                  type="button"
-                  onClick={this.increaseId}
-                  value=">>" />
-              </div>
-
               <div className="container">
                 <div className="radio">
                   <label>
@@ -118,10 +122,11 @@ class Form extends Component {
               <div className="container">
                 <div>
                   <textarea rows="2" cols="100"
-                    value={this.state.value}
-                    onChange={this.handleChange} />
+                    className="normalfont"
+                    value={this.state.notes}
+                    onChange={this.handleTextAreaChange} />
                 </div>
-                <div className="addspaceleft">
+                <div className="addspaceleft" onClick={this.submitForm}>
                   <input type="button" value="Submit" />
                 </div>
               </div>

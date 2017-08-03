@@ -4,21 +4,69 @@ body {
   font-family: sans-serif;
 }
 
+.filename {
+  overflow: scroll;
+  width: 600px;
+  height: 60px;
+  margin: 5px;
+}
+
 #code1 {
-  background-color: red;
+  background-color: white;
+  padding: 5px;
+  margin: 5px;
+  border:1px solid grey;
+  width: 600px;
+  height: 600px;
+  overflow: scroll;
 }
 
 #code2 {
-  background-color: green;
+  background-color: white;
+  padding: 5px;
+  margin: 5px;
+  border:1px solid grey;
+  width: 600px;
+  height: 600px;
+  overflow: scroll;
 }
 
 #form_container {
   border:1px solid black;
-  margin: 10px;
+  margin: 5px;
+}
+
+.hasborder {
+  border:1px solid black;
+  margin: 5px;
+}
+
+.filename {
+  font-weight: bold;
+}
+
+.shortinputtext {
+  width:50px;
+}
+
+.normalfont {
+  font-size:12px;
+}
+
+.mediumfont {
+  font-size:16px;
+}
+
+.bigfont {
+  font-size:18px;
 }
 
 .addspace {
   margin: 5px;
+}
+
+.addpadding {
+  padding: 5px;
 }
 
 .addspaceleft {
