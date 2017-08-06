@@ -31,6 +31,16 @@ body {
   overflow: scroll;
 }
 
+#code2orig {
+  background-color: white;
+  padding: 5px;
+  margin: 5px;
+  border:1px solid grey;
+  width: 600px;
+  height: 600px;
+  overflow: scroll;
+}
+
 #form_container {
   border:1px solid black;
   margin: 5px;
@@ -62,6 +72,10 @@ body {
 }
 
 .addspace {
+  margin: 5px;
+}
+
+.addmargin {
   margin: 5px;
 }
 

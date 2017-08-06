@@ -17,7 +17,7 @@ ref = db.reference('clones/')
 
 pairs_ref = ref.child('pairs')
 
-filename = '/Users/Chaiyong/IdeasProjects/StackoverflowChecker/indv_scc_df_130901_pt1+2+3+4.csv'
+filename = '/Users/Chaiyong/IdeasProjects/StackoverflowChecker/indv_simian_df_130901_pt1+2+3+4_filtered_for_M_checked_remaining.csv'
 with open(filename) as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
     count = 0
@@ -25,8 +25,8 @@ with open(filename) as csvfile:
     bigdict = {}
 
     for row in readCSV:
-        if count > 2:
-            break
+        # if count > 100:
+        #     break
         # print(row)
         codefile1 = open('/Users/Chaiyong/Downloads/stackoverflow/stackoverflow_formatted/' + row[0],'r')
         code1 = codefile1.read()
@@ -38,6 +38,7 @@ with open(filename) as csvfile:
             '/Users/Chaiyong/Downloads/stackoverflow/QualitasCorpus-20130901r/projects_orig_130901r_pt1+2+3/' + row[3],
             'r')
         code2orig = codefile2orig.read()
+        code2orig = ""
 
         bigdict.update({
                 count: {
