@@ -21,6 +21,7 @@ class Form extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // alert(nextProps.currentid);
     // alert(nextProps.data["classification"] + "," + nextProps.data["notes"]); // set the classification
     this.setState({selectedOption: nextProps.data["classification"]});
     this.setState({notes: nextProps.data["notes"]});
@@ -28,6 +29,8 @@ class Form extends Component {
 
   componentWillMount(props) {
     // alert(this.props.data["classification"] + ", " + this.props.data["notes"]);
+    this.setState({selectedOption: this.props.data["classification"]});
+    this.setState({notes: this.props.data["notes"]});
   }
 
   onPatternChanged(event) {

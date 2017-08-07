@@ -17,7 +17,7 @@ body {
   float:left;
   border:1px solid grey;
   width: 99%;
-  height: 600px;
+  height: 400px;
   overflow: scroll;
 }
 
@@ -28,7 +28,7 @@ body {
   float:left;
   width: 99%;
   border:1px solid grey;
-  height: 600px;
+  height: 400px;
   overflow: scroll;
 }
 

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/styles';
 import './App.css';
 import fire from './fire';
 import Form from './Form';
+import Code from './Code';
 import _ from 'lodash';
 
 class App extends Component {
@@ -13,7 +12,8 @@ class App extends Component {
     this.state = {
       snapshot: [],
       pageoffset: 0,
-      showorig: false
+      showorig: false,
+      scrollTop: 100
     }; // <- set up react state
 
     // normal variable
@@ -63,8 +63,8 @@ class App extends Component {
   increaseId(event) {
     if (this.currentid < this.maxid - 1) {
       this.currentid++;
-      this.setState({pageoffset: parseInt(this.state.pageoffset) + 1});
-    } else if (this.currentid == this.maxid - 1 && this.currentid < this.total - 1) {
+      this.setState({pageoffset: parseInt(this.state.pageoffset, 10) + 1});
+    } else if (this.currentid === this.maxid - 1 && this.currentid < this.total - 1) {
       this.nextSet();
     }
   }
@@ -97,8 +97,8 @@ class App extends Component {
   }
 
   handleFileIdChange(event) {
-    this.currentid = parseInt(event.target.value);
-    this.setState({pageoffset: parseInt(event.target.value) - (this.page * this.pagesize)});
+    this.currentid = parseInt(event.target.value, 10);
+    this.setState({pageoffset: parseInt(event.target.value, 10) - (this.page * this.pagesize)});
   }
 
   showOriginalCode(event) {
@@ -170,12 +170,9 @@ class App extends Component {
                 {"Start: " + this.state.snapshot[this.state.pageoffset]["start1"]
                 + ", End: " + this.state.snapshot[this.state.pageoffset]["end1"]}</label>
               </div>
-              <div id="code1">
-                {/* using https://github.com/conorhastings/react-syntax-highlighter for syntax highlight */}
-                <SyntaxHighlighter language='java' style={docco} showLineNumbers='true'>
-                      { this.state.snapshot[this.state.pageoffset]["code1"] }
-                </SyntaxHighlighter>
-              </div>
+              <Code codename="code1"
+                    snapshot={this.state.snapshot}
+                    pageoffset={this.state.pageoffset} />
             </div>
             <div className="codecontainer">
               <div className="filename">
@@ -193,12 +190,9 @@ class App extends Component {
                   onClick={this.showOriginalCode}
                   value="original" />
               </div>
-              <div id="code2">
-                  <SyntaxHighlighter language='java' style={docco} showLineNumbers='true'>
-                      { this.state.showorig? this.state.snapshot[this.state.pageoffset]["code1"]:
-                      this.state.snapshot[this.state.pageoffset]["code2"] }
-                  </SyntaxHighlighter>
-              </div>
+              <Code codename={ this.state.showorig? "code1": "code2" }
+                    snapshot={this.state.snapshot}
+                    pageoffset={this.state.pageoffset} />
             </div>
           </div>
         </div>
