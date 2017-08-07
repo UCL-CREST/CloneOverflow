@@ -58,6 +58,7 @@ class App extends Component {
         this.previousSetSelectLast();
       }
     }
+    this.showFormattedCode();
   }
 
   increaseId(event) {
@@ -67,6 +68,7 @@ class App extends Component {
     } else if (this.currentid === this.maxid - 1 && this.currentid < this.total - 1) {
       this.nextSet();
     }
+    this.showFormattedCode();
   }
 
   previousSetSelectLast(event) {
@@ -76,6 +78,7 @@ class App extends Component {
       this.setState({pageoffset: this.pagesize - 1});
       this.queryDB();
     }
+    this.showFormattedCode();
   }
 
   previousSet(event) {
@@ -85,6 +88,7 @@ class App extends Component {
       this.setState({pageoffset: 0});
       this.queryDB();
     }
+    this.showFormattedCode();
   }
 
   nextSet(event) {
@@ -94,6 +98,7 @@ class App extends Component {
       this.setState({pageoffset: 0});
       this.queryDB();
     }
+    this.showFormattedCode();
   }
 
   handleFileIdChange(event) {
@@ -190,7 +195,7 @@ class App extends Component {
                   onClick={this.showOriginalCode}
                   value="original" />
               </div>
-              <Code codename={ this.state.showorig? "code1": "code2" }
+              <Code codename={ this.state.showorig? "code2orig": "code2" }
                     snapshot={this.state.snapshot}
                     pageoffset={this.state.pageoffset} />
             </div>

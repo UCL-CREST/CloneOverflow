@@ -33,8 +33,8 @@ with open(filename) as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
 
     for row in readCSV:
-        if count > 199:
-            break
+        # if count > 199:
+        #     break
         # print(row)
         codefile1 = open('/Users/Chaiyong/Downloads/stackoverflow/stackoverflow_formatted/' + row[0],'r')
         code1 = codefile1.read()
@@ -43,10 +43,10 @@ with open(filename) as csvfile:
         code2 = codefile2.read()
 
         codefile2orig = open(
-            '/Users/Chaiyong/Downloads/stackoverflow/QualitasCorpus-20130901r/projects_130901r_pt1+2+3/' + row[3],
+            '/Users/Chaiyong/Downloads/stackoverflow/QualitasCorpus-20130901r/projects_orig_130901/' + row[3],
             'r')
         code2orig = codefile2orig.read()
-        code2orig = ""
+        # code2orig = ""
 
         bigdict.update({
                 count: {
@@ -59,17 +59,17 @@ with open(filename) as csvfile:
                     'start2': int(row[4]),
                     'end2': int(row[5]),
                     'code2': code2,
-                    'code2orig': code2,
-                    'classification': code2orig,
+                    'code2orig': code2orig,
+                    'classification': '',
                     'notes': '',
-                    'total': 200
-                    # 'total': rowcount
+                    # 'total': 200
+                    'total': rowcount
 
                 }
             })
         count += 1
 
-    print "Size: ", len(bigdict)
+    print "size: ", len(bigdict)
     pairs_ref.set(bigdict)
 
     print "done:", count

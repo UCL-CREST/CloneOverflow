@@ -14,20 +14,21 @@ class Code extends Component {
     var myCode = document.getElementById(this.props.codename)
     if (this.props.codename === "code1") {
       myCode.scrollTop = 20 + 15 * (parseInt(this.props.snapshot[this.props.pageoffset]["start1"], 10) - 1);
+    } else if (this.props.codename === "code2") {
+      myCode.scrollTop = 20 + 15 * (parseInt(this.props.snapshot[this.props.pageoffset]["start2"], 10) - 1);
     } else {
       myCode.scrollTop = 20 + 15 * (parseInt(this.props.snapshot[this.props.pageoffset]["start2"], 10) - 1);
     }
-    // alert(document.getElementById('clone_form'));
   }
 
   componentDidUpdate() {
     var myCode = document.getElementById(this.props.codename)
     if (this.props.codename === "code1") {
       myCode.scrollTop = 20 + 15 * (parseInt(this.props.snapshot[this.props.pageoffset]["start1"], 10) - 1);
-      // alert(parseInt(this.props.snapshot[this.props.pageoffset]["start1"]));
+    } else if (this.props.codename === "code2") {
+      myCode.scrollTop = 20 + 15 * (parseInt(this.props.snapshot[this.props.pageoffset]["start2"], 10) - 1);
     } else {
       myCode.scrollTop = 20 + 15 * (parseInt(this.props.snapshot[this.props.pageoffset]["start2"], 10) - 1);
-      // alert(parseInt(this.props.snapshot[this.props.pageoffset]["start2"]));
     }
   }
 
