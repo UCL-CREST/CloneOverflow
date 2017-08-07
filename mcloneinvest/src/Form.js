@@ -10,30 +10,34 @@ class Form extends Component {
       classifications: [],
       selectedOption: 'QS',
       notes: 'Any notes?',
-      currentid: this.props.currentid,
-      changeSelection: false
+      currentid: this.props.currentid
     }; // <- set up react state
 
-    // alert(this.props.currentid);
+    this.changeSelection = false;
+
     this.onPatternChanged = this.onPatternChanged.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    // alert(nextProps.data["classification"] + "," + nextProps.data["notes"]); // set the classification
+    this.setState({selectedOption: nextProps.data["classification"]});
+    this.setState({notes: nextProps.data["notes"]});
+  }
+
   componentWillMount(props) {
-    // set the classification
-    this.setState({selectedOption: this.props.data["classification"]});
-    this.setState({notes: this.props.data["notes"]});
+    // alert(this.props.data["classification"] + ", " + this.props.data["notes"]);
   }
 
   onPatternChanged(event) {
     this.setState({selectedOption: event.target.value});
-    this.setState({changeSelection: true});
+    this.changeSelection = true;
   }
 
   handleTextAreaChange(event) {
     this.setState({notes: event.target.value});
-    this.setState({changeSelection: true});
+    this.changeSelection = true;
   }
 
   submitForm(event) {
@@ -47,16 +51,16 @@ class Form extends Component {
                     'notes': notes
                 });
 
-    this.setState({changeSelection: false});
+    this.changeSelection = false;
     alert("Updated");
   }
 
   render() {
     // alert(this.props.data["classification"]);
-    if (!this.state.changeSelection) {
-      this.setState({selectedOption: this.props.data["classification"]});
-      this.setState({notes: this.props.data["notes"]});
-    }
+    // if (!this.changeSelection) {
+    //   this.setState({selectedOption: this.props.data["classification"]});
+    //   this.setState({notes: this.props.data["notes"]});
+    // }
     return (
       <div id="form_container">
         <div className="row">

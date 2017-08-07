@@ -177,7 +177,8 @@ class App extends Component {
               </div>
               <div id="code2">
                   <SyntaxHighlighter language='java' style={docco} showLineNumbers='true'>
-                      { this.state.showorig? this.state.snapshot[this.state.pageoffset]["code2orig"]: this.state.snapshot[this.state.pageoffset]["code2"] }
+                      { this.state.showorig? this.state.snapshot[this.state.pageoffset]["code1"]: 
+                      this.state.snapshot[this.state.pageoffset]["code2"] }
                   </SyntaxHighlighter>
               </div>
             </div>
