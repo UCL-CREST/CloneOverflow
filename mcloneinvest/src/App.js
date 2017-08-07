@@ -161,7 +161,7 @@ class App extends Component {
             <Form currentid={this.currentid} data={this.state.snapshot[this.state.pageoffset]}/>
           </div>
           <div className="container">
-            <div>
+            <div className="codecontainer">
               <div className="filename">
                 <label>
                 <a href={"https://stackoverflow.com/questions/" + this.state.snapshot[this.state.pageoffset]["file1"].split("_")[0]}
@@ -170,14 +170,14 @@ class App extends Component {
                 {"Start: " + this.state.snapshot[this.state.pageoffset]["start1"]
                 + ", End: " + this.state.snapshot[this.state.pageoffset]["end1"]}</label>
               </div>
-              {/* using https://github.com/conorhastings/react-syntax-highlighter for syntax highlight */}
               <div id="code1">
+                {/* using https://github.com/conorhastings/react-syntax-highlighter for syntax highlight */}
                 <SyntaxHighlighter language='java' style={docco} showLineNumbers='true'>
-                    { this.state.snapshot[this.state.pageoffset]["code1"] }
+                      { this.state.snapshot[this.state.pageoffset]["code1"] }
                 </SyntaxHighlighter>
               </div>
             </div>
-            <div>
+            <div className="codecontainer">
               <div className="filename">
                 <b>{this.state.snapshot[this.state.pageoffset]["file2"]}</b><br />
                 {"Start: " + this.state.snapshot[this.state.pageoffset]["start2"]
