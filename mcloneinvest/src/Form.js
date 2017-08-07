@@ -8,12 +8,13 @@ class Form extends Component {
 
     this.state = {
       classifications: [],
-      selectedOption: 'qs',
+      selectedOption: 'QS',
       notes: 'Any notes?',
       currentid: this.props.currentid,
       changeSelection: false
     }; // <- set up react state
 
+    // alert(this.props.currentid);
     this.onPatternChanged = this.onPatternChanged.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
@@ -64,56 +65,56 @@ class Form extends Component {
               <div className="container">
                 <div className="radio">
                   <label>
-                    <input type="radio" value="qs"
-                      checked={this.state.selectedOption === 'qs'}
+                    <input type="radio" value="QS"
+                      checked={this.state.selectedOption === 'QS'}
                       onChange={this.onPatternChanged}  />
                     QS
                   </label>
                 </div>
                 <div className="radio">
                   <label>
-                    <input type="radio" value="sq"
-                      checked={this.state.selectedOption === 'sq'}
+                    <input type="radio" value="SQ"
+                      checked={this.state.selectedOption === 'SQ'}
                       onChange={this.onPatternChanged}  />
                     SQ
                   </label>
                 </div>
                 <div className="radio">
                   <label>
-                    <input type="radio" value="ex"
-                      checked={this.state.selectedOption === 'ex'}
+                    <input type="radio" value="EX"
+                      checked={this.state.selectedOption === 'EX'}
                       onChange={this.onPatternChanged}  />
                     EX
                   </label>
                 </div>
                 <div className="radio">
                   <label>
-                    <input type="radio" value="ud"
-                      checked={this.state.selectedOption === 'ud'}
+                    <input type="radio" value="UD"
+                      checked={this.state.selectedOption === 'UD'}
                       onChange={this.onPatternChanged} />
                     UD
                   </label>
                 </div>
                 <div className="radio">
                   <label>
-                    <input type="radio" value="bp"
-                      checked={this.state.selectedOption === 'bp'}
+                    <input type="radio" value="BP"
+                      checked={this.state.selectedOption === 'BP'}
                       onChange={this.onPatternChanged} />
                     BP
                   </label>
                 </div>
                 <div className="radio">
                   <label>
-                    <input type="radio" value="in"
-                      checked={this.state.selectedOption === 'in'}
+                    <input type="radio" value="IN"
+                      checked={this.state.selectedOption === 'IN'}
                       onChange={this.onPatternChanged} />
                     IN
                   </label>
                 </div>
                 <div className="radio">
                   <label>
-                    <input type="radio" value="ac"
-                      checked={this.state.selectedOption === 'ac'}
+                    <input type="radio" value="AC"
+                      checked={this.state.selectedOption === 'AC'}
                       onChange={this.onPatternChanged} />
                     AC
                   </label>

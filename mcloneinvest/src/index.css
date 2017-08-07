@@ -79,12 +79,24 @@ body {
   margin: 5px;
 }
 
+.addmargintop {
+  margin-bottom: 10px;
+}
+
+.addmarginbottom {
+  margin-bottom: 10px;
+}
+
 .addpadding {
   padding: 5px;
 }
 
 .addspaceleft {
   margin-left: 15px;
+}
+
+.addsmallspaceleft {
+  margin-left: 5px;
 }
 
 .addspaceright {

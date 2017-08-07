@@ -17,16 +17,24 @@ ref = db.reference('clones/')
 
 pairs_ref = ref.child('pairs')
 
-filename = '/Users/Chaiyong/IdeasProjects/StackoverflowChecker/indv_simian_df_130901_pt1+2+3+4_filtered_for_M_checked_remaining.csv'
+filename = '/Users/Chaiyong/IdeasProjects/StackoverflowChecker/indv_simian_df_130901_pt1+2+3+4_firebase.csv'
+bigdict = {}
+count = 0
+rowcount = 0
+
 with open(filename) as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
-    count = 0
 
-    bigdict = {}
+    # count how many record we have
+    for row in readCSV:
+        rowcount += 1
+
+with open(filename) as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
 
     for row in readCSV:
-        # if count > 100:
-        #     break
+        if count > 199:
+            break
         # print(row)
         codefile1 = open('/Users/Chaiyong/Downloads/stackoverflow/stackoverflow_formatted/' + row[0],'r')
         code1 = codefile1.read()
@@ -35,7 +43,7 @@ with open(filename) as csvfile:
         code2 = codefile2.read()
 
         codefile2orig = open(
-            '/Users/Chaiyong/Downloads/stackoverflow/QualitasCorpus-20130901r/projects_orig_130901r_pt1+2+3/' + row[3],
+            '/Users/Chaiyong/Downloads/stackoverflow/QualitasCorpus-20130901r/projects_130901r_pt1+2+3/' + row[3],
             'r')
         code2orig = codefile2orig.read()
         code2orig = ""
@@ -53,7 +61,10 @@ with open(filename) as csvfile:
                     'code2': code2,
                     'code2orig': code2,
                     'classification': code2orig,
-                    'notes': ''
+                    'notes': '',
+                    'total': 200
+                    # 'total': rowcount
+
                 }
             })
         count += 1
