@@ -34,6 +34,7 @@ class App extends Component {
 
   componentWillMount(){
     this.queryDB();
+    document.title = "Cloverflow: Manual Clone Classification Tool";
   }
 
   queryDB() {
