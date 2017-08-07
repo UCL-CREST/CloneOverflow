@@ -17,7 +17,7 @@ class App extends Component {
     }; // <- set up react state
 
     // normal variable
-    this.pagesize = 10;
+    this.pagesize = 20;
     this.page = 0;
     this.currentid = 0;
     this.total = 0;
@@ -49,21 +49,31 @@ class App extends Component {
   }
 
   decreaseId(event) {
-    if (this.currentid > this.page * this.pagesize) {
-      this.currentid--;
-      this.setState((prevState) => ({
-        pageoffset: parseInt(prevState.pageoffset) - 1
-      }));
+    if (this.currentid > 0) {
+      if (this.currentid > this.page * this.pagesize) {
+        this.currentid--;
+        this.setState({pageoffset: this.state.pageoffset - 1});
+      } else {
+        this.previousSetSelectLast();
+      }
     }
   }
 
   increaseId(event) {
-    // alert(this.currentid + "," + (this.page * this.pagesize + this.pagesize - 1));
-    if (this.currentid < this.page * this.pagesize + this.pagesize - 1) {
+    if (this.currentid < this.maxid - 1) {
       this.currentid++;
-      this.setState((prevState) => ({
-        pageoffset: parseInt(prevState.pageoffset) + 1
-      }));
+      this.setState({pageoffset: parseInt(this.state.pageoffset) + 1});
+    } else if (this.currentid == this.maxid - 1 && this.currentid < this.total - 1) {
+      this.nextSet();
+    }
+  }
+
+  previousSetSelectLast(event) {
+    if (this.page > 0) {
+      this.page--;
+      this.currentid = this.page * this.pagesize + this.pagesize - 1;
+      this.setState({pageoffset: this.pagesize - 1});
+      this.queryDB();
     }
   }
 
@@ -77,15 +87,17 @@ class App extends Component {
   }
 
   nextSet(event) {
+    if ((this.page + 1) * this.pagesize + 1 < this.total) {
       this.page++;
       this.currentid = this.page * this.pagesize;
       this.setState({pageoffset: 0});
       this.queryDB();
+    }
   }
 
   handleFileIdChange(event) {
     this.currentid = parseInt(event.target.value);
-    this.setState({pageoffset: parseInt(event.target.value)});
+    this.setState({pageoffset: parseInt(event.target.value) - (this.page * this.pagesize)});
   }
 
   showOriginalCode(event) {
@@ -102,6 +114,12 @@ class App extends Component {
           <div className="loading-warning">LOADING</div>
       )
     else {
+      this.total = this.state.snapshot[0]["total"];
+
+      this.maxid = this.page * this.pagesize + this.pagesize;
+      if (this.state.snapshot.length < this.pagesize)
+        this.maxid = this.page * this.pagesize + this.state.snapshot.length;
+
       return (
         <div>
           <div id="clone_form" className="container">
@@ -109,7 +127,7 @@ class App extends Component {
               <div className="addspaceleft addmarginbottom">
               <label>
               Invesitgating clone pairs no.&nbsp;
-              {this.page * this.pagesize} to {this.page * this.pagesize + this.pagesize - 1} from the total of {this.state.snapshot[this.state.pageoffset]["total"]} pairs.
+              {this.page * this.pagesize} to {this.maxid - 1} from the total of {this.state.snapshot[0]["total"]} pairs.
               </label>
               </div>
               <label className="addspaceleft">Please classify the clone pair below:</label>
@@ -124,8 +142,7 @@ class App extends Component {
                   value="<<" />
                   <select className="addsmallspaceleft" onChange={this.handleFileIdChange}
                   value={this.page * this.pagesize + this.state.pageoffset}>
-                      { _.range(this.page * this.pagesize,
-                        this.page * this.pagesize + this.pagesize)
+                      { _.range(this.page * this.pagesize, this.maxid)
                         .map(value => <option key={value} value={value}>{value}</option>) }
                   </select>
                 <input
@@ -177,7 +194,7 @@ class App extends Component {
               </div>
               <div id="code2">
                   <SyntaxHighlighter language='java' style={docco} showLineNumbers='true'>
-                      { this.state.showorig? this.state.snapshot[this.state.pageoffset]["code1"]: 
+                      { this.state.showorig? this.state.snapshot[this.state.pageoffset]["code1"]:
                       this.state.snapshot[this.state.pageoffset]["code2"] }
                   </SyntaxHighlighter>
               </div>
