@@ -22,11 +22,17 @@ public class Main {
             String file = args[0];
             MethodParser mp = new MethodParser(file, "");
             ArrayList<String> methods = mp.parseMethods();
-            for (int i = 0; i < methods.size(); i++) {
-                if (i == 0)
-                    writeToFile("./", "methods.txt", methods.get(i), true);
-                else
-                    writeToFile("./", "methods.txt", "\n@@==UCL==@@\n" + methods.get(i) + "\n", true);
+
+            if (methods.size() != 0) {
+                for (int i = 0; i < methods.size(); i++) {
+                    if (i == 0)
+                        writeToFile("./", "methods.txt", methods.get(i), true);
+                    else
+                        writeToFile("./", "methods.txt", "\n@@==UCL==@@\n" + methods.get(i) + "\n", true);
+                }
+            } else {
+                // can't extract any methods (something's wrong)
+                writeToFile("./", "zero_method.txt", file, true);
             }
         }
     }

@@ -14,3 +14,6 @@ SCCTokenizer/so-more-than-10-log.log
 SCCTokenizer/so-stats.stats
 SCCTokenizer/so-tokens.tokens
 SCCTokenizer/so.txt
+MethodExtractor/target
+zero_method.txt
+MethodExtractor-1.0-SNAPSHOT.jar
