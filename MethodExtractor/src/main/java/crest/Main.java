@@ -32,7 +32,7 @@ public class Main {
                 }
             } else {
                 // can't extract any methods (something's wrong)
-                writeToFile("./", "zero_method.txt", file, true);
+                writeToFile("./", "zero_method.txt", file + "\n", true);
             }
         }
     }
