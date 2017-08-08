@@ -11,11 +11,15 @@ def get_methods(file):
     output, err = p.communicate()
     # print output.strip()
     # print err.strip()
-    with open("methods.txt", "r") as f:
-        all_methods = f.read()
-        methods = all_methods.split("@@==UCL==@@")
+    try:
+        with open("methods.txt", "r") as f:
+            all_methods = f.read()
+            methods = all_methods.split("@@==UCL==@@")
+        return methods
+    except Exception as e:
+        print file + ": no method found."
 
-    return methods
+    return []
 
 
 def get_file_list(home_dir, filter):
@@ -65,7 +69,7 @@ def writefile(filename, fcontent, mode, isprint):
     """
     # try:
     file = open(filename, mode)
-    file.write(fcontent.encode('utf-8', 'ignore'))
+    file.write(fcontent.encode('ISO-8859-1', 'ignore'))
     file.close()
 
     if isprint:
@@ -81,7 +85,7 @@ def main():
         traceback.print_exc(file=sys.stdout)
 
     # get list of Java files
-    javafiles = get_file_list("files", "*.java");
+    javafiles = get_file_list(sys.argv[1], "*.java");
     # start method extraction
     for jfile in javafiles:
         methods = get_methods(jfile)
