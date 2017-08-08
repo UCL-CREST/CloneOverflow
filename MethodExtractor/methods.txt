@@ -1,0 +1,49 @@
+public MethodParser(String filePath, String prefixToRemove) {
+    FILE_PATH = filePath;
+}
+@@==UCL==@@
+/***
+     * Extract both methods and constructors
+     * @return a list of methods & constructors
+     */
+public ArrayList<String> parseMethods() {
+    try {
+        FileInputStream in = new FileInputStream(FILE_PATH);
+        CompilationUnit cu;
+        try {
+            cu = JavaParser.parse(in);
+            List<TypeDeclaration> types = cu.getTypes();
+            for (TypeDeclaration type : types) {
+                if (type instanceof ClassOrInterfaceDeclaration) {
+                    ClassOrInterfaceDeclaration classDec = (ClassOrInterfaceDeclaration) type;
+                }
+            }
+            new ConstructorVisitor().visit(cu, null);
+            new MethodVisitor().visit(cu, null);
+        } catch (Throwable e) {
+            System.out.println("Unparseable method (use whole fragment)");
+            String content = new Scanner(new File(FILE_PATH)).useDelimiter("\\Z").next();
+            methodList.add(content);
+        } finally {
+            in.close();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return methodList;
+}
+
+@@==UCL==@@
+@Override
+public void visit(MethodDeclaration n, Object arg) {
+    List<Parameter> parameterArrayList = n.getParameters();
+    methodList.add(n.toStringWithoutComments());
+    super.visit(n, arg);
+}
+
+@@==UCL==@@
+@Override
+public void visit(ConstructorDeclaration c, Object arg) {
+    methodList.add(c.toStringWithoutComments());
+    super.visit(c, arg);
+}

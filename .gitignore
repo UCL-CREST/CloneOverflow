@@ -7,3 +7,10 @@ cloneoverflow-latex/cloneoverflow.synctex.gz
 *.iml
 .idea
 cloneoverflow.pdf
+SCCTokenizer/files
+SCCTokenizer/fileidmap.txt
+SCCTokenizer/methods.txt
+SCCTokenizer/so-more-than-10-log.log
+SCCTokenizer/so-stats.stats
+SCCTokenizer/so-tokens.tokens
+SCCTokenizer/so.txt
