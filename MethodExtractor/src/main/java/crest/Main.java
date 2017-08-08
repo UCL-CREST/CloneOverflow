@@ -16,8 +16,11 @@ public class Main {
         } else {
         /* delete the output file if it exist */
             File resultFile = new File("methods.txt");
+            File zeroMethodFile = new File("zero_method.txt");
             if (resultFile.exists())
                 resultFile.delete();
+            if (zeroMethodFile.exists())
+                zeroMethodFile.delete();
 
             String file = args[0];
             MethodParser mp = new MethodParser(file, "");

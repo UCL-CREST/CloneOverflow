@@ -6,6 +6,7 @@ import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,7 +44,6 @@ public class MethodParser {
             } catch (Throwable e) {
                 System.out.println("Unparseable method (use whole fragment)");
                 String content = new Scanner(new File(FILE_PATH)).useDelimiter("\\Z").next();
-
                 methodList.add(content);
             } finally {
                 in.close();
@@ -51,6 +51,19 @@ public class MethodParser {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // finally, there's still no method extracted.
+        // use the whole snippet.
+        if (methodList.size() == 0) {
+            try {
+                System.out.println("Unparseable method (use whole fragment)");
+                String content = new Scanner(new File(FILE_PATH)).useDelimiter("\\Z").next();
+                methodList.add(content);
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found.");
+            }
+        }
+
         return methodList;
     }
 

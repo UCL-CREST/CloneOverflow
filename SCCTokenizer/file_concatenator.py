@@ -69,7 +69,7 @@ def writefile(filename, fcontent, mode, isprint):
     """
     # try:
     file = open(filename, mode)
-    file.write(fcontent.encode('ISO-8859-1', 'ignore'))
+    file.write(fcontent)
     file.close()
 
     if isprint:
@@ -81,15 +81,16 @@ def main():
     try:
         os.remove("so.txt")
     except Exception as e:
-        print "couldn't remove file."
-        traceback.print_exc(file=sys.stdout)
+        print "No so.txt file ..."
 
     # get list of Java files
     javafiles = get_file_list(sys.argv[1], "*.java");
     # start method extraction
-    for jfile in javafiles:
+    for index, jfile in enumerate(javafiles):
+        sys.stdout.write(str(index) + ": " + jfile)
+        sys.stdout.flush()
         methods = get_methods(jfile)
-        print "Processing: " + jfile + ":", len(methods), "methods."
+        print ":", len(methods), "methods."
         for i, method in enumerate(methods):
             writefile("so.txt", "===@@@UCI===\n", "a", False)
             id = createFileId(jfile)
