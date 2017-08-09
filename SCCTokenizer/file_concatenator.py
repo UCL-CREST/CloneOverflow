@@ -38,6 +38,7 @@ def createFileId(file):
 
     file_id_list.append(file)
     fileid = file_id_list.index(file)
+    writefile("fileidmap.txt", str(fileid) + "," + file + "\n", "a", False)
 
     return fileid
 
@@ -82,23 +83,33 @@ def main():
     except Exception as e:
         print "No so.txt file ..."
 
+    # remove file_id_list
+    try:
+        os.remove("fileidmap.txt")
+    except Exception as e:
+        print "couldn't remove fileidmap.txt file."
+
     # get list of Java files
     javafiles = get_file_list(sys.argv[1], "*.java");
+
     # start method extraction
     for index, jfile in enumerate(javafiles):
-        sys.stdout.write(str(index) + ": " + jfile)
-        sys.stdout.flush()
-        methods = get_methods(jfile)
-        print ":", len(methods), "methods."
-        for i, method in enumerate(methods):
-            method_parts = method.split("@@UCL@@")
-            writefile("so.txt", "===@@@UCI===\n", "a", False)
-            id = createFileId(jfile + "," + method_parts[0].strip())
-            writefile("so.txt", str(id) + "\n", "a", False)
-            writefile("so.txt", str(i) + "\n", "a", False)
-            writefile("so.txt", method_parts[1].strip() + "\n", "a", False)
-
-    saveFileId()
+        try:
+            sys.stdout.write(str(index) + ": " + jfile)
+            sys.stdout.flush()
+            methods = get_methods(jfile)
+            print ":", len(methods), "methods."
+            for i, method in enumerate(methods):
+                method_parts = method.split("@@UCL@@")
+                writefile("so.txt", "===@@@UCI===\n", "a", False)
+                id = createFileId(jfile + "," + method_parts[0].strip())
+                writefile("so.txt", str(id) + "\n", "a", False)
+                writefile("so.txt", str(i) + "\n", "a", False)
+                writefile("so.txt", method_parts[1].strip() + "\n", "a", False)
+        except Exception as e:
+            writefile("errors.txt", "error processing " + jfile + ".\n", "a", False)
+            traceback.print_exc(file=sys.stdout)
+    # saveFileId()
 
 
 main()
