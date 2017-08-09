@@ -65,7 +65,7 @@ def tokenize_python_blocks(block_string):
       block_SLOC += 1
 
     block_stats = (block_hash, block_LOC)
-    
+
     # Rather a copy of the file string here for tokenization
     block_string_for_tokenization = block_string
 
@@ -85,7 +85,7 @@ def tokenize_python_blocks(block_string):
     block_string_for_tokenization=dict(block_string_for_tokenization)
     ## Unique number of tokens
     tokens_count_unique = len(block_string_for_tokenization)
-    
+
     t_time = dt.datetime.now()
     #SourcererCC formatting
     tokens = ','.join(['{}@@::@@{}'.format(k.encode("ascii", "ignore"), v) for k,v in block_string_for_tokenization.iteritems()])
@@ -98,7 +98,7 @@ def tokenize_python_blocks(block_string):
     hash_time += (dt.datetime.now() - h_time).microseconds
 
     block_tokens = (tokens_count_total,tokens_count_unique,m.hexdigest(),'@#@'+tokens)
-    
+
     return ((block_tokens, block_stats), [se_time, token_time, hash_time, re_time])
 
 def process_contents(proj_id, method_id, block_string, FILE_tokens_file, FILE_stats_file, logging):

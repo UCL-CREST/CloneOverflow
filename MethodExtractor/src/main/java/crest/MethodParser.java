@@ -4,15 +4,19 @@ import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class MethodParser {
-    private ArrayList<String> methodList = new ArrayList<>();
+    private ArrayList<Method> methodList = new ArrayList<>();
     private String FILE_PATH = "";
 
     public MethodParser(String filePath, String prefixToRemove) {
@@ -23,7 +27,7 @@ public class MethodParser {
      * Extract both methods and constructors
      * @return a list of methods & constructors
      */
-    public ArrayList<String> parseMethods() {
+    public ArrayList<Method> parseMethods() {
         try {
             FileInputStream in = new FileInputStream(FILE_PATH);
             CompilationUnit cu;
@@ -37,14 +41,10 @@ public class MethodParser {
                         ClassOrInterfaceDeclaration classDec = (ClassOrInterfaceDeclaration) type;
                     }
                 }
-
                 new ConstructorVisitor().visit(cu, null);
                 new MethodVisitor().visit(cu, null);
-
             } catch (Throwable e) {
-                System.out.println("Unparseable method (use whole fragment)");
-                String content = new Scanner(new File(FILE_PATH)).useDelimiter("\\Z").next();
-                methodList.add(content);
+                readWholeFile();
             } finally {
                 in.close();
             }
@@ -55,13 +55,7 @@ public class MethodParser {
         // finally, there's still no method extracted.
         // use the whole snippet.
         if (methodList.size() == 0) {
-            try {
-                System.out.println("Unparseable method (use whole fragment)");
-                String content = new Scanner(new File(FILE_PATH)).useDelimiter("\\Z").next();
-                methodList.add(content);
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found.");
-            }
+            readWholeFile();
         }
 
         return methodList;
@@ -73,10 +67,8 @@ public class MethodParser {
     private class MethodVisitor extends VoidVisitorAdapter {
         @Override
         public void visit(MethodDeclaration n, Object arg) {
-
-            List<Parameter> parameterArrayList = n.getParameters();
             // http://stackoverflow.com/questions/9205988/writing-a-java-program-to-remove-the-comments-in-same-java-program
-            methodList.add(n.toStringWithoutComments());
+            methodList.add(new Method(n.toStringWithoutComments(), n.getBeginLine(), n.getEndLine()));
             super.visit(n, arg);
         }
     }
@@ -87,8 +79,33 @@ public class MethodParser {
     private class ConstructorVisitor extends VoidVisitorAdapter {
         @Override
         public void visit(ConstructorDeclaration c, Object arg) {
-            methodList.add(c.toStringWithoutComments());
+            methodList.add(new Method(c.toStringWithoutComments(), c.getBeginLine(), c.getEndLine()));
             super.visit(c, arg);
+        }
+    }
+
+    private void readWholeFile() {
+        try {
+            System.out.println("Unparseable method (use whole fragment)");
+            // String content = new Scanner(new File(FILE_PATH)).useDelimiter("\\Z").next();
+            StringBuilder content = new StringBuilder();
+            int numberOfLines = 0;
+            /* example from here: https://www.leveluplunch.com/java/examples/count-number-of-lines-in-text-file/ */
+            File file = new File("c:/temp/data.txt");
+            FileReader fr = new FileReader(FILE_PATH);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while((line = br.readLine()) != null){
+                content.append(line + "\n");
+                numberOfLines++;
+            }
+            br.close();
+            fr.close();
+            methodList.add(new Method(content.toString(), 1, numberOfLines));
+        } catch (FileNotFoundException e1) {
+            System.out.println("File not found.");
+        } catch (IOException e2) {
+            e2.printStackTrace();
         }
     }
 }

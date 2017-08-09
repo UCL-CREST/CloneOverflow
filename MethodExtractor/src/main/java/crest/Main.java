@@ -24,14 +24,23 @@ public class Main {
 
             String file = args[0];
             MethodParser mp = new MethodParser(file, "");
-            ArrayList<String> methods = mp.parseMethods();
+            ArrayList<Method> methods = mp.parseMethods();
 
             if (methods.size() != 0) {
                 for (int i = 0; i < methods.size(); i++) {
                     if (i == 0)
-                        writeToFile("./", "methods.txt", methods.get(i), true);
+                        writeToFile("./",
+                                "methods.txt",
+                                methods.get(i).getStart() + "," + methods.get(i).getEnd() + "@@UCL@@\n" +
+                                methods.get(i).getCode(),
+                                true);
                     else
-                        writeToFile("./", "methods.txt", "\n@@==UCL==@@\n" + methods.get(i) + "\n", true);
+                        writeToFile("./",
+                                "methods.txt",
+                                "\n@@==UCL==@@\n" +
+                                        methods.get(i).getStart() + "," + methods.get(i).getEnd() + "@@UCL@@\n" +
+                                        methods.get(i).getCode() + "\n",
+                                true);
                 }
             } else {
                 // can't extract any methods (something's wrong)

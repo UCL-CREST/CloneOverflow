@@ -35,11 +35,10 @@ def get_file_list(home_dir, filter):
 
 def createFileId(file):
     global file_id_list
-    if file not in file_id_list:
-        file_id_list.append(file)
-        fileid = file_id_list.index(file)
-    else:
-        fileid = file_id_list.index(file)
+
+    file_id_list.append(file)
+    fileid = file_id_list.index(file)
+
     return fileid
 
 
@@ -92,11 +91,12 @@ def main():
         methods = get_methods(jfile)
         print ":", len(methods), "methods."
         for i, method in enumerate(methods):
+            method_parts = method.split("@@UCL@@")
             writefile("so.txt", "===@@@UCI===\n", "a", False)
-            id = createFileId(jfile)
+            id = createFileId(jfile + "," + method_parts[0].strip())
             writefile("so.txt", str(id) + "\n", "a", False)
             writefile("so.txt", str(i) + "\n", "a", False)
-            writefile("so.txt", method.strip() + "\n", "a", False)
+            writefile("so.txt", method_parts[1].strip() + "\n", "a", False)
 
     saveFileId()
 
