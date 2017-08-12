@@ -16,12 +16,13 @@ comment_inline_pattern = comment_inline + '.*?$'
 comment_open_tag = "/\\*"
 comment_close_tag = "\\*/"
 comment_open_close_pattern = comment_open_tag + '.*?' + comment_close_tag
-proj_id_flag = "2"
+# proj_id_flag = "2"
 
 FILE_blocks_stats_file = 'so-stats.stats'
 FILE_blocks_tokens_file = 'so-tokens.tokens'
 
 block_count = 0
+
 
 def tokenize_python_blocks(block_string):
     # This function will return ((blocks_tokens,blocks_stats), block_parsing_times)
@@ -38,7 +39,7 @@ def tokenize_python_blocks(block_string):
 
     h_time = dt.datetime.now()
     m = hashlib.md5()
-    m.update(block_string.encode("utf-8"))
+    # m.update(block_string.encode("utf-8"))
     block_hash = m.hexdigest()
     hash_time = (dt.datetime.now() - h_time).microseconds
     
@@ -101,7 +102,8 @@ def tokenize_python_blocks(block_string):
 
     return ((block_tokens, block_stats), [se_time, token_time, hash_time, re_time])
 
-def process_contents(proj_id, method_id, block_string, FILE_tokens_file, FILE_stats_file, logging):
+
+def process_contents(post_id, method_id, block_string, FILE_tokens_file, FILE_stats_file, logging):
 	
     (block_data, block_parsing_times) = tokenize_python_blocks(block_string)
     ww_time = dt.datetime.now()
@@ -114,13 +116,14 @@ def process_contents(proj_id, method_id, block_string, FILE_tokens_file, FILE_st
     (tokens_count_total,tokens_count_unique,token_hash,tokens) = blocks_tokens
 
     # Adjust the blocks stats written to the files, file stats start with a letter 'b'
-    FILE_stats_file.write(','.join([proj_id, block_id, '\"'+block_hash+'\"', method_id, str(block_LOC)]) + '\n')
-    FILE_tokens_file.write(','.join([proj_id, block_id, str(tokens_count_total),str(tokens_count_unique), method_id, token_hash+tokens]) + '\n')
+    # FILE_stats_file.write(','.join([post_id, block_id, '\"' + block_hash + '\"', method_id, str(block_LOC)]) + '\n')
+    FILE_tokens_file.write(','.join([post_id, block_id, str(tokens_count_total), str(tokens_count_unique), method_id, token_hash + tokens]) + '\n')
     w_time = (dt.datetime.now() - ww_time).microseconds
 
-    logging.info('Successfully ran process_contents '+ proj_id)
+    logging.info('Successfully ran process_contents ' + post_id)
 
     return block_parsing_times + [w_time] # [s_time, t_time, w_time, hash_time, re_time]
+
 
 def process_so_file(FILE_tokens_file, FILE_stats_file):
 
@@ -134,12 +137,12 @@ def process_so_file(FILE_tokens_file, FILE_stats_file):
             else:
                 try:
                     global block_count
-                    block_count += 1
                     lines = item.split("\n")
                     post_id = lines[0]
                     method_id = lines[1]
                     snippet = "\n".join(lines[2:])
-                    process_contents(proj_id_flag+post_id, method_id, snippet, FILE_tokens_file, FILE_stats_file, logging)
+                    process_contents(post_id, method_id, snippet, FILE_tokens_file, FILE_stats_file, logging)
+                    block_count += 1
                     
                 except Exception as e:
                     logging.warning("%s cannot be pasred by so text parser" % item)
