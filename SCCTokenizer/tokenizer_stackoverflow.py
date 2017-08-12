@@ -117,7 +117,9 @@ def process_contents(post_id, method_id, block_string, FILE_tokens_file, FILE_st
 
     # Adjust the blocks stats written to the files, file stats start with a letter 'b'
     # FILE_stats_file.write(','.join([post_id, block_id, '\"' + block_hash + '\"', method_id, str(block_LOC)]) + '\n')
-    FILE_tokens_file.write(','.join([post_id, block_id, str(tokens_count_total), str(tokens_count_unique), method_id, token_hash + tokens]) + '\n')
+    # FILE_tokens_file.write(','.join([post_id, block_id, str(tokens_count_total), str(tokens_count_unique), method_id, token_hash + tokens]) + '\n')
+    FILE_tokens_file.write(','.join(
+        [post_id, method_id + tokens]) + '\n')
     w_time = (dt.datetime.now() - ww_time).microseconds
 
     logging.info('Successfully ran process_contents ' + post_id)
@@ -147,6 +149,8 @@ def process_so_file(FILE_tokens_file, FILE_stats_file):
                 except Exception as e:
                     logging.warning("%s cannot be pasred by so text parser" % item)
                     logging.warning(e)
+
+
 def main():
 
     # logging setting    

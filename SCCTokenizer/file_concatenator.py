@@ -5,6 +5,7 @@ import datetime as dt
 
 
 file_id_list = []
+starting_id = 0
 
 
 def get_methods(file):
@@ -36,9 +37,9 @@ def get_file_list(home_dir, filter):
 
 def createFileId(file):
     global file_id_list
-
+    global starting_id
     file_id_list.append(file)
-    fileid = file_id_list.index(file)
+    fileid = file_id_list.index(file) + starting_id
     writefile("so-headers.txt", str(fileid) + "," + file + "\n", "a", False)
 
     return fileid
@@ -92,6 +93,11 @@ def main():
 
     # get list of Java files
     javafiles = get_file_list(sys.argv[1], "*.java");
+
+    # get the starting id, if not, start at 0
+    global starting_id
+    if len(sys.argv) == 3:
+        starting_id = int(sys.argv[2])
 
     print "files: ", len(javafiles)
     
