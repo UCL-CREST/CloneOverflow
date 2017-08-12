@@ -1,6 +1,7 @@
 import glob2
 from subprocess import Popen, PIPE
 import os, sys, traceback
+import datetime as dt
 
 
 file_id_list = []
@@ -93,6 +94,9 @@ def main():
     javafiles = get_file_list(sys.argv[1], "*.java");
 
     print "files: ", len(javafiles)
+    
+    p_start = dt.datetime.now()
+
     # start method extraction
     for index, jfile in enumerate(javafiles):
         try:
@@ -112,6 +116,9 @@ def main():
             writefile("errors.txt", "error processing " + jfile + ".\n", "a", False)
             traceback.print_exc(file=sys.stdout)
     # saveFileId()
+
+    p_elapsed = dt.datetime.now() - p_start
+    print "all done in ", p_elapsed
 
 
 main()
