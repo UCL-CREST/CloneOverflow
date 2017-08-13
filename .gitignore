@@ -16,3 +16,9 @@ SCCTokenizer/so-tokens.tokens
 SCCTokenizer/so.txt
 MethodExtractor/target
 zero_method.txt
+cloverflow-tse/cloverflow.aux
+cloverflow-tse/cloverflow.blg
+cloverflow-tse/cloverflow.log
+cloverflow-tse/cloverflow.pdf
+cloverflow-tse/cloverflow.synctex.gz
+cloverflow.aux

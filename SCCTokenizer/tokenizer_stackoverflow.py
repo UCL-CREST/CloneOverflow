@@ -143,7 +143,7 @@ def process_so_file(FILE_tokens_file, FILE_stats_file):
                     post_id = lines[0]
                     method_id = lines[1]
                     snippet = "\n".join(lines[2:])
-                    process_contents(post_id, method_id, snippet, FILE_tokens_file, FILE_stats_file, logging)
+                    process_contents(post_id, method_id, snippet.decode('UTF-8'), FILE_tokens_file, FILE_stats_file, logging)
                     block_count += 1
                     
                 except Exception as e:

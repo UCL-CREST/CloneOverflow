@@ -1,4 +1,3 @@
-1,23@@UCL@@
 public void testStaticInit() throws Exception {
     try {
         new BadInitClass().doSomething();

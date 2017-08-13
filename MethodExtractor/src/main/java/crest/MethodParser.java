@@ -91,7 +91,6 @@ public class MethodParser {
             StringBuilder content = new StringBuilder();
             int numberOfLines = 0;
             /* example from here: https://www.leveluplunch.com/java/examples/count-number-of-lines-in-text-file/ */
-            File file = new File("c:/temp/data.txt");
             FileReader fr = new FileReader(FILE_PATH);
             BufferedReader br = new BufferedReader(fr);
             String line;

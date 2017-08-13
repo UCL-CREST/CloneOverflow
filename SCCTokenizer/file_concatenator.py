@@ -5,7 +5,8 @@ import datetime as dt
 
 
 file_id_list = []
-starting_id = 0
+starting_postid = 0
+starting_blockid = 0
 
 
 def get_methods(file):
@@ -37,9 +38,9 @@ def get_file_list(home_dir, filter):
 
 def createFileId(file):
     global file_id_list
-    global starting_id
+    global starting_blockid
     file_id_list.append(file)
-    fileid = file_id_list.index(file) + starting_id
+    fileid = file_id_list.index(file) + starting_blockid
     writefile("so-headers.txt", str(fileid) + "," + file + "\n", "a", False)
 
     return fileid
@@ -95,9 +96,13 @@ def main():
     javafiles = get_file_list(sys.argv[1], "*.java");
 
     # get the starting id, if not, start at 0
-    global starting_id
-    if len(sys.argv) == 3:
-        starting_id = int(sys.argv[2])
+    global starting_blockid
+    global starting_postid
+
+    starting_blockid = int(sys.argv[2])
+
+    # if len(sys.argv) == 4:
+        # starting_postid = int(sys.argv[2])
 
     print "files: ", len(javafiles)
     
@@ -113,11 +118,17 @@ def main():
             for i, method in enumerate(methods):
                 # print method
                 method_parts = method.split("@@UCL@@")
-                writefile("so.txt", "===@@@UCI===\n", "a", False)
-                id = createFileId(jfile + "," + method_parts[0].strip())
-                writefile("so.txt", str(index) + "\n", "a", False)
-                writefile("so.txt", str(id) + "\n", "a", False)
-                writefile("so.txt", method_parts[1].strip() + "\n", "a", False)
+                lines = len(method_parts[1].strip().split("\n"))
+
+                # filter for only the one with more than 10 lines
+                if lines >= 10:
+                    writefile("so.txt", "===@@@UCI===\n", "a", False)
+                    id = createFileId(jfile + "," + method_parts[0].strip())
+                    # writefile("so.txt", str(index + starting_postid) + "\n", "a", False)
+                    # -1 means we don't care about parentId
+                    writefile("so.txt", "-1\n", "a", False)
+                    writefile("so.txt", str(id) + "\n", "a", False)
+                    writefile("so.txt", method_parts[1].strip() + "\n", "a", False)
         except Exception as e:
             writefile("errors.txt", "error processing " + jfile + ".\n", "a", False)
             traceback.print_exc(file=sys.stdout)
