@@ -69,8 +69,8 @@
 \author{Chaiyong Ragkhitwetsagul,~Matheus Paixao,~Jens Krinke,~Giuseppe Bianco,~Rocco Oliveto}
 
 % The paper headers
-\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
-{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING,~Vol.~X, No.~Y, August~2017}%
+{Ragkhitwetsagul \MakeLowercase{\textit{et al.}}: Outdated and License-Violating Code on Stack Overflow}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -354,33 +354,30 @@ on Stack Overflow and open source projects from the Qualitas corpus
 
 \textbf{Stack Overflow:} 
 We extracted Java code snippets from a snapshot of a Stack Overflow
-dump\footnote{\url{https://archive.org/details/stackexchange}} in
-January 2016. 
-% The archived dump has a size of 9 gigabytes. 
-The data
-dump is in XML format containing information of posts
-(questions and answers) and 
-% supporting data such as user accounts and timestamps of the posts.
-we were interested in code snippets embedded
-in posts which were located between
-{\small\texttt{<code>}...\texttt{</code>}} tags. A Stack Overflow
-thread contains a question and several answers. An answer can also be
-marked as \textbf{accepted answer} by the questioner if the solution
-fixes his/her problem. We collected Java code snippets using two
-criteria. First, we only focused on code snippets in accepted
-answers. We chose the snippets in accepted answers because they
-actually solved the problems in the questions. Moreover, they are
-always displayed just below the questions which makes them more
-likely to be reused than other answers. Second, we were only
-interested in code snippets of at least six lines. Snippets smaller
-than six lines are usually spurious clones~\cite{Bellon2007}. Each
-snippet was extracted from the dump and saved to a file.
-%using its post ID as the file's name. If an accepted answer had more than one code snippet, we appended an indexing number, starting from zero, after the post ID (e.g. 45051109\_0, and 45051109\_1.). Lastly, we added {\small\texttt{.java}} extension to the file's names so that clone detectors could recognise them. 
-We obtained 144,064 Java code snippets containing 2,332,940
-lines\footnote{Measured by cloc:
-	\url{https://github.com/AlDanial/cloc}} of Java source code.
-The median of the snippet size is 10.
-% excluding comments and blank lines.
+dump\footnote{\url{https://archive.org/details/stackexchange}} in January 2016.
+% The archived dump has a size of 9 gigabytes.
+The data dump is in XML format containing information of posts (questions and
+answers) and we were interested in code snippets embedded in posts which were
+located between {\small\texttt{<code>}...\texttt{</code>}} tags. A Stack
+Overflow thread contains a question and several answers. An answer can also be
+marked as \textbf{accepted answer} by the questioner if the solution fixes
+his/her problem. We collected Java code snippets using two criteria. First, we
+only focused on code snippets in accepted answers. We chose the snippets in
+accepted answers because they actually solved the problems in the questions.
+Moreover, they are always displayed just below the questions which makes them
+more likely to be reused than other answers. Second, we were only interested in
+code snippets of at least ten lines. Although the minimum clone size of six
+lines are usual in clone detection~\cite{Bellon2007,Wang2013,Koschke2006},
+snippets of at least ten lines are usually more interesting since most of
+boiler-plate code of \texttt{equal} or \texttt{hashCode} methods are removed.
+Each snippet was extracted from the dump and saved to a file. Moreover, we
+filtered out irrelevant code snippets that were part of the accepted answers
+but were not written in Java by using regular expressions and manual checking.
+~\FIXME{should I mention I use PMD CPD to help here? More confusing?}.
+Finally we obtained
+72,365 Java code snippets containing 1,840,581 lines\footnote{Measured by cloc:
+	\url{https://github.com/AlDanial/cloc}} of Java source code. The median of the
+snippet size is 10.
 
 \textbf{Open source systems: }
 We selected the established \textbf{Qualitas} corpus~\cite{QualitasCorpus}. It is a curated Java corpus that has been used in several
@@ -412,48 +409,46 @@ lines of code (see \Cref{tab:datasets}). The median project size is 60,667 lines
 		\toprule
 		Dataset & No. of files & SLOC & Median \\
 		\midrule
-		Stack Overflow & 144,064 & 2,332,940 & 10 \\ 
+		Stack Overflow & 72,365 & 1,840,581 & 10 \\ 
 		Qualitas &  166,709 & 19,614,083 & 60,667 \\ 
 		\bottomrule
 	\end{tabular} 
 \end{table}
 
-\textbf{Clone Detection Tools: }
-We use clone detection to discover online code clones. 
-%\textbf{Clone Detection and Configuration: } 
-There are a number of restrictions in terms of choosing the clone
-detection tools for this study. The main restriction is due to nature
-of code snippets posted on Stack Overflow, as most of them are
-incomplete Java classes or methods. Hence, a detector must be flexible
-enough to process code snippets that are not compilable or not
-complete blocks. Moreover, since the amount of code that has to be
-processed is in a scale of millions line of code (as shown in
-\Cref{tab:datasets}), a clone detector must be scalable enough to
-report clones in a reasonable amount of time. We have tried 5
-state-of-the-art clone detectors including Simian~\cite{simian},
-NiCad~\cite{Cordy,Roy2008}, CCFinder~\cite{Kamiya2002},
-iClones~\cite{Gode2009}, and DECKARD~\cite{Jiang2007a} against the
-Stack Overflow and Qualitas datasets. CCFinder, iClones, and DECKARD
-failed with execution errors after running for couple of hours. Thus,
-we removed them from the study. Simian and NiCad are flexible enough
-to handle code with incomplete methods or classes and successfully
-completed the detection.
+\textbf{Clone Detection Tools: } We use clone detection to discover online code
+clones. %\textbf{Clone Detection and Configuration: }
+There are a number of restrictions in terms of choosing the clone detection
+tools for this study. The main restriction is due to nature of code snippets
+posted on Stack Overflow, as most of them are incomplete Java classes or
+methods. Hence, a detector must be flexible enough to process code snippets that
+are not compilable or not complete blocks. Moreover, since the amount of code
+that has to be processed is in a scale of millions line of code (as shown in
+\Cref{tab:datasets}), a clone detector must be scalable enough to report clones
+in a reasonable amount of time. We have tried 7 state-of-the-art clone detectors
+including Simian~\cite{simian}, SourcererCC~\cite{Sajnani2016},
+NiCad~\cite{Cordy,Roy2008}, CCFinder~\cite{Kamiya2002}, iClones~\cite{Gode2009},
+DECKARD~\cite{Jiang2007a}, and PMD-CPD~\cite{pmd-cpd} against the Stack Overflow
+and Qualitas datasets. NiCad failed to parse 44,960 Stack Overflow snippets
+while PMD CPD failed to complete the execution. Although Simian, SourcererCC,
+CCFinder, iClones, and DECKARD could successfully report clones, we decided to
+choose Simian and SourcererCC due to their fast detection speed.
 
 \textbf{Simian} is a text-based clone detector that locates clones at line-level
 granularity and has been used extensively in several clone
 studies~\cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015,
 	Krinke2010}. Furthermore, it offers normalisation of variable names and literals
 (strings and numbers) which enables Simian to detect literal clones (type-1) and
-parameterised clones (type-2). \textbf{NiCad} is also a text-based clone
-detector which detects clones at either method- or block-level granularity. It
+parameterised clones (type-2). \textbf{SourcererCC} is a token-based clone
+detector which detects clones at either function- or block-level granularity. It
 can detect clones of type-1, -2 up to type-3 (clones with added and removed
-statements) and has also been used in several empirical clone
-studies~\cite{Roy2008, Ragkhitwetsagul2016, Svajlenko2014, Wang2013, Mondal2011,
-	Sajnani2016}. NiCad utilises TXL~\cite{Cordy2006} for parsing and
-pretty-printing source code and provides code normalisation by variable renaming
-and abstraction. We use a variant of NiCad called \textit{nicadcross}. It offers
-the same functionalities as the original NiCad but is specialised for detecting
-code clones between two systems.
+statements) and offer scalability against large code
+corpus~\cite{Sajnani2016,Saini2016,Yang2017}. Due to incomplete code blocks and
+functions normally found in Stack Overflow snippets, the built-in Java tokeniser
+could not parse more than half of all snippets. SourcererCC provides an option
+to plug in a customised tokeniser, so we developed a special Java tokeniser with
+assistance from the tool's creator. Another benefit of SourcererCC is its
+indexing and search processing allows us to detect code clones between two
+systems.
 
 We prepared the Java code in both datasets by removing comments and
 pretty-printing to increase the clone detection accuracy. Then, we deployed the
@@ -466,18 +461,18 @@ Overflow or within Qualitas.
 
 \begin{table}
 	\centering
-	\caption{Configurations of Simian and NiCad}
+	\caption{Configurations of Simian and SourcererCC}
 	\label{t:param_tuning}
 %		\resizebox{\columnwidth}{!}{
 	\small
-	\begin{tabular}{p{0.8cm}|p{2.5cm}p{3.8cm}}
+	\begin{tabular}{lp{5cm}}
 		\toprule
-		Tool & Default (\textit{D}) & EvaClone (\textit{E}) \\
+		Tool & Configurations \\
 		\midrule
-		Simian\newline (\textit{S}) &  threshold=6,\newline ignoreStringCase, \newline ignoreCharacterCase, \newline ignoreModifiers & threshold=5, ignoreIdentifiers, \newline ignoreIdentifierCase, \newline ignoreStrings, ignoreCharacters,\newline ignoreSubtypeNames, \newline balanceSquareBrackets \\ 
+		Simian~(\textit{S}) &  Threshold=10, ignoreStringCase, \newline ignoreCharacterCase, \newline ignoreModifiers \\ 
+		\midrule
+		SourcererCC~(\textit{SCC}) & Functions, Minimum clone size=10, \newline Similarity=80\% \\
 		\bottomrule
-		NiCad\newline (\textit{N}) & Blocks, UPI=0.30,\newline MinLine=10,\newline MaxLine=2500 & Blocks, UPI=0.20, \newline MinLine=5, MaxLine=604, \newline blind renaming, literal abstraction \\
-		\hline
 	\end{tabular} %
 %	}
 \end{table}
@@ -523,23 +518,22 @@ configuration with a smaller minimum size (\Cref{t:param_tuning}).
 
 \begin{table}
 	\centering
-	\caption{Number of online clones reported by Simian (\textit{S}) and NiCad (\textit{N}) with default (\textit{D}) and EvaClone (\textit{E}) configurations}
+	\caption{Number of online clones reported by Simian and SourcererCC}
 	\label{tab:orig_stats}
 	%\small
 	%\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|r|r|r}
+	\begin{tabular}{lrr}
 		\toprule
-		Stats & \multicolumn{1}{c|}{$S_D$} & \multicolumn{1}{c|}{$S_E$} & \multicolumn{1}{c|}{$N_D$} & \multicolumn{1}{c}{$N_E$} \\
+		Stats & \multicolumn{1}{c}{Simian} & \multicolumn{1}{c}{SourcererCC} \\
 		\midrule
-		Total C$_{\textrm{\textit{pairs}}}$ & 67,570 & 63,635,844 & 632,855 & 251,449,849 \\
-		% Avg.~C$_{\textrm{\textit{pairs}}}$ & 62 & 41,565 & 455 & 19,356 \\
-		Avg.~C$_{\textrm{\textit{size}}}$ & 9.11 & 5.95 & 10.85 & 6.28 \\
+		Total clone pairs & 721 & 1,678 \\
+		Average clone size & 16.61 & 17.86 \\
 		\bottomrule
 	\end{tabular} %
 	%}
 \end{table}
 
-\subsection{Phase 2: Clone Filtering}
+\subsection{Phase 2: Clone Merging}
 As there are in total 315,786,118 clone pairs reported, it is
 infeasible for humans to manually validate them all. Instead of
 investigating a random sample, we adopted the idea of \textbf{clone
@@ -627,7 +621,7 @@ pairs since they could not be matched.
 	\label{t_agreed_good_clone_pairs}
 	%\small
 	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|r|r|r|r}
+	\begin{tabular}{lrrrrr}
 		\toprule
 		Set & $S_D$--$N_D$ & $S_D$--$N_E$ & $S_E$--$N_D$ & $S_E$--$N_E$ & Unique \\
 		\midrule
@@ -667,9 +661,9 @@ that is agreed by all four combinations.
 	\label{tab:online_clone_pairs}
 	%\small
 	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|r|c|c|r}
+	\begin{tabular}{lrccr}
 		\toprule
-		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{2}{c|}{Filters*} & \multirow{2}{*}{After Filtering} \\ \cmidrule{3-4}
+		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{2}{c}{Filters*} & \multirow{2}{*}{After Filtering} \\ %\cmidrule{3-4}
 		& & \textit{L} & \textit{S} & \\ 
 		\midrule 
 		\multirow{1}{*}{$S_D$} & 55,274 & \checkmark & & 17,801 \\
@@ -784,7 +778,7 @@ and the third author was involved for the final judgement.
 		EX & Cloned from an external source \textit{X} (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q). \\
 		
 		UD & Cloned from each other or from an external source \textit{X} outside the project (unknown) (S $\leftrightarrow$ Q $\vee$ (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q)). \\ 
-		\hline 
+		\midrule
 		BP & Boiler-plate or IDE auto-generated \\ 
 		
 		IN & Inheritance, interface implementation  \\ 
@@ -845,7 +839,7 @@ clones from the clone detectors such as similar
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{classification_process}\vspace{-1ex}
+	\includegraphics[width=0.9\linewidth]{classification_process}\vspace{-1ex}
 	\caption{Online code clone classification process}
 	\label{fig:classification_process}
 \end{figure}
@@ -920,7 +914,7 @@ anonymous and the participants could decide to leave at any time. It contained
 open-ended question for additional comments. The first two questions were
 mandatory while the other 9 questions were shown to the participants based on
 their previous answers. The full survey can be found in our \FIXME{technical
-	report/website?} ~\footnote{Stack Overflow Answerers' Survey:
+	report/website?} ~\footnote{Survey--Stack Overflow Answerers:
 	\url{http://www.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/so_survey.pdf}}.
 
 
@@ -1000,48 +994,14 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
 
 \begin{table}
 	\caption{Investigated online clone pairs and corresponding snippets
-		and Qualitas projects for the different data sets}
+		and Qualitas projects}
 	\label{tab:snippets}
 	\centering
-	\begin{tabular}{l|rrrr}
-		\toprule 
-		Data Set & Pairs & Snippets & Projects & Avg.~C$_{\textrm{\textit{\%}}}$ \\
-		\midrule 
-		\multicolumn{5}{l}{\textit{Reported Clones}} \\
+	\begin{tabular}{rrrr}
+		\toprule
+		Pairs & Snippets & Projects & Avg.~cloned ratio \\
 		\midrule
-		$S_D$ & 67,570 & 1,086 & 92 & 38\% \\
-		$S_E$ & 63,635,844 & 1,531 & 111 & 50\% \\
-		$N_D$ & 632,855& 1,392 & 88 & 30\% \\
-		$N_E$ & 251,449,849& 12,886 & 88 & 33\% \\
-		\midrule
-		Total & 315,786,118 & 14,856 & 111 & 38\% \\
-		\midrule
-		\multicolumn{5}{l}{\textit{Filtered Data Set}} \\
-		\midrule
-		\textit{good} & 2,313 & 97 & 67 & 23\% \\
-		\textit{ok'} & 12,336 & 139 & 43 & 28\% \\
-		$S_D'$ & 17,081 & 460 & 74 & 31\% \\
-		$N_D'$ & 83 & 44 & 19 & 27\% \\
-		\midrule
-		Total & 32,533 & 623 & 96 & 27\%\\
-		\midrule 
-		%  \multicolumn{5}{l}{\textit{Filtered Data Set without AC}} \\
-		%  \hline 
-		%  $\textit{good}/\textrm{AC}$ & 141 & 52 & 26 & 23\% \\
-		%  $\textit{ok'}/\textrm{AC}$ & 12,229 & 126 & 36 & 28\% \\
-		%  $S_D'/\textrm{AC}$ & 17,673 & 448 & 72 & 31\% \\
-		%  $N_D'/\textrm{AC}$ & 70 & 39 & 16 & 29\% \\
-		%  \hline
-		%  Total & 30,113 & 556 & 80 & 28\% \\
-		%  \hline
-		\multicolumn{5}{l}{\textit{True Positives in Manually Validated Clones}} \\
-		\midrule 
-		$\textit{good}/\textrm{AC}$ & 131 & 51 & 24 & 22\% \\
-		$\textit{ok'}/\textrm{AC}$ & 152 & 83 & 22 & 21\% \\
-		$S_D'/\textrm{AC}$ & 873 & 337 & 60 & 35\% \\
-		$N_D'/\textrm{AC}$ & 60 & 33 & 15 & 27\% \\
-		\midrule
-		Total & 1,216 & 516 & 75 & 26\% \\
+		2,304 & 460 & 77 & ??\% \\ % <-- for avg. cloned ratio, use scripts in ~/Downloads/stackoverflow/scripts/checking
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1090,29 +1050,29 @@ in \Cref{fig:classification_process}.
 The classification results are shown in \Cref{tab:classification_good_o} 
 and explained in the following.
 
-\begin{table}
-	\centering
-	\caption{No.~of online clones candidates for the classification}
-	\label{tab:online_clone_classification_results}
-	%\small
-	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{lrrr}
-		\toprule
-		\multirow{2}{*}{Set} & \multirow{2}{*}{Candidates} & \multicolumn{2}{c}{Classification} \\ %\cmidrule{3-4}
-		& & Auto & Manual \\
-		\midrule 
-		\multirow{1}{*}{\textit{good}} & 2,313 & 10 & 2,303 \\
-		\multirow{1}{*}{\textit{ok'}} & 12,336 & 12,077 & 259 \\
-		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
-		\multirow{1}{*}{$S_D'$} & 17,801 & 16,800 & 1,001 \\
-		\multirow{1}{*}{$N_D'$} & 83 & 10 & 73 \\ 
-		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
-		\midrule
-		Total  & 32,533 & 28,897 & 3,636 \\ 
-		\bottomrule
-	\end{tabular} %
-	%}
-\end{table}
+%\begin{table}
+%	\centering
+%	\caption{No.~of online clones candidates for the classification}
+%	\label{tab:online_clone_classification_results}
+%	%\small
+%	%	\resizebox{\columnwidth}{!}{%
+%	\begin{tabular}{lrrr}
+%		\toprule
+%		\multirow{2}{*}{Set} & \multirow{2}{*}{Candidates} & \multicolumn{2}{c}{Classification} \\ %\cmidrule{3-4}
+%		& & Auto & Manual \\
+%		\midrule 
+%		\multirow{1}{*}{\textit{good}} & 2,313 & 10 & 2,303 \\
+%		\multirow{1}{*}{\textit{ok'}} & 12,336 & 12,077 & 259 \\
+%		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
+%		\multirow{1}{*}{$S_D'$} & 17,801 & 16,800 & 1,001 \\
+%		\multirow{1}{*}{$N_D'$} & 83 & 10 & 73 \\ 
+%		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
+%		\midrule
+%		Total  & 32,533 & 28,897 & 3,636 \\ 
+%		\bottomrule
+%	\end{tabular} %
+%	%}
+%\end{table}
 
 \begin{table}
 	\centering
@@ -1120,7 +1080,7 @@ and explained in the following.
 	\label{tab:classification_good_o}
 	%\small
 	%\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{l|rrrr|rrr|r}
+	\begin{tabular}{lrrrrrrrr}
 		\toprule
 		Set & QS & SQ & EX & UD & BP & IN & AC & Total \\ 
 		\midrule
@@ -1435,13 +1395,13 @@ is available as a technical report \FIXME{Ok?}.
 \begin{figure}
 	\begin{subfigure}{.25\textwidth}
 		\centering
-		\includegraphics[width=.8\linewidth]{survey_exp_1-crop}
+		\includegraphics[width=.6\linewidth]{survey_exp_1-crop}
 		\caption{Group 1}
 		\label{fig:survey_group1_exp}
 	\end{subfigure}%
 	\begin{subfigure}{.25\textwidth}
 		\centering
-		\includegraphics[width=.82\linewidth]{survey_exp_2-crop}
+		\includegraphics[width=.62\linewidth]{survey_exp_2-crop}
 		\caption{Group 2}
 		\label{fig:survey_group2_exp}
 	\end{subfigure}
@@ -1460,13 +1420,13 @@ answer questions at least once a week.
 \begin{figure*}
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{survey_snippet_source_1}
+		\includegraphics[width=.8\linewidth]{survey_snippet_source_1}
 		\caption{Group 1}
 		\label{fig:survey_snippet_source_1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{survey_snippet_source_2}
+		\includegraphics[width=.8\linewidth]{survey_snippet_source_2}
 		\caption{Group 2}
 		\label{fig:survey_snippet_source_2}
 	\end{subfigure}
@@ -1487,21 +1447,61 @@ and Group 2 occasionally to very frequently copy code from open source projects.
 \begin{figure}
 	\begin{subfigure}{.25\textwidth}
 		\centering
-		\includegraphics[width=.8\linewidth]{survey_license_1}
+		\includegraphics[width=.6\linewidth]{survey_license_1}
 		\caption{Group 1}
 		\label{fig:survey_license_1}
 	\end{subfigure}%
 	\begin{subfigure}{.25\textwidth}
 		\centering
-		\includegraphics[width=.8\linewidth]{survey_license_2}
+		\includegraphics[width=.6\linewidth]{survey_license_2}
 		\caption{Group 2}
 		\label{fig:survey_license_2}
 	\end{subfigure}
-	\caption{Do you usually include a software license in your code snippets on Stack Overflow?}
+	\caption{Software license in Stack Overflow code snippets.}
 	\label{fig:survey_license}
 \end{figure}
 
 \subsubsection{Outdated Code Snippets} 
+
+We found that 63.1\% of Stack Overflow answerers in Group 1 have been notified of
+outdated code in their answers (see \Cref{fig:survey_outdated}). The ratio drops to 47.6\% in
+Group 2. Thus, at least roughly half of the top answerers on Stack Overflow
+are aware of their outdated code in some of their answers.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\linewidth]{survey_outdated}
+	\caption{Percentage of answerers who are notified of outdated code in their Stack Overflow answers.}
+	\label{fig:survey_outdated}
+\end{figure}%
+
+We then asked the participants to have been notified of their outdated code
+(80 and 48 participants from Group 1 and 2 respectively) a
+follow-up questions ``how frequently did you fix your outdated code on Stack
+Overflow?''. The answers, depicted in \Cref{fig:survey_outdated_fix}, show that
+more than half of them frequently fix the outdated code snippets. However, there
+are 18.8\% of the answerers in both groups who rarely or never fix their code.
+
+\begin{figure}
+	\begin{subfigure}{.25\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{survey_outdated_fix_1}
+		\caption{Group 1}
+		\label{fig:survey_outdated_fix_1}
+	\end{subfigure}%
+	\begin{subfigure}{.25\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{survey_outdated_fix_2}
+		\caption{Group 2}
+		\label{fig:survey_outdated_fix_2}
+	\end{subfigure}
+	\caption{Frequency of the answerers fixing their outdated code.}
+	\label{fig:survey_outdated_fix}
+\end{figure}
+
+The answers support our findings of outdated online code clones. Although most
+of the Stack Overflow answerers know that their code are outdated, the code may
+still not be fixed.
 
 \subsubsection{License of Code Snippets} 
 More than half of the answerers in both groups (63.1\% and 61.9\% respectively)
@@ -1509,12 +1509,22 @@ are aware that Stack Overflow apply Creative Commons Attribution-ShareAlike 3.0
 Unported (CC BY-SA 3.0) to content in the posts, including code snippets, while
 the rest of 36.9\% and 38.1\% are not. Nevertheless, we found that almost all 
 of them do not include license statement in their code snippets (as depicted in
-\Cref{fig:survey_license}) due to several reasons. First, some answerers posted
-only their own code or code that was adapted from the question, hence
+\Cref{fig:survey_license}) due to several reasons. First, some answerers chose to 
+post only their own code or code that was adapted from the question, hence
  they are automatically subjected to CC BY-SA 3.0. Second, they copied code from
 company or open source projects that they knew were permitted to be publicly distributed.
 Third, some answerers believe that code snippets in their answers are too small 
-to claim any intellectual property on them and fall under fair use.
+to claim any intellectual property on them and fall under fair use~\cite{fairuse}.
+
+While nobody explicitly includes a software license in their snippets,
+many users include a statement on their profile page that states all their
+answers are under a certain license. For example, \textit{All code posted by me on
+Stack Overflow should be considered public domain without copyright. For
+countries where public domain is not applicable, I hereby grant everyone the
+right to modify, use and redistribute any code posted by me on Stack Overflow
+for any purpose. It is provided "as-is" without warranty of any kind.}  Many
+users either declare their snippets to be public domain, or they grant
+additional licenses, e.g. Apache 2.0 or MIT/Expat.
 
 \begin{figure}
 	\begin{subfigure}{.25\textwidth}
@@ -1529,11 +1539,24 @@ to claim any intellectual property on them and fall under fair use.
 		\caption{Group 2}
 		\label{fig:survey_license_check_2}
 	\end{subfigure}
-	\caption{How frequently did you check the software license of the code snippets you copy to Stack Overflow if they conflict with Stack Overflow's CC BY-SA 3.0 license?}
+	\caption{Frequency of the answerers checking license of their code snippets against Stack Overflow's CC BY-SA 3.0.}
 	\label{fig:survey_license_check}
 \end{figure}
 
-We asked the answerers how frequently they checked for a conflict between software license of the code snippets they copied to Stack Overflow and Stack Overflow's CC BY-SA 3.0. As shown in \Cref{fig:survey_license_check}, approximately sixty nine percent of answerers from both groups did not perform the checking. Nonetheless, they are about 10\% of the answerers who frequently checks for licensing conflicts when they copy code snippets to Stack Overflow.
+We asked the answerers a follow-up question of how frequently they checked for a conflict between software license of the code snippets they copied to their answers and Stack Overflow's CC BY-SA 3.0. As shown in \Cref{fig:survey_license_check}, approximately 69\% of answerers from both groups did not perform the checking. Nonetheless, they are about 10\% of the answerers who frequently checks for licensing conflicts when they copy code snippets to Stack Overflow.
+
+\subsubsection{Open Comments} 
+We also invited the participants to give any comments regarding answering Stack Overflow with code snippets. These are some interesting comments we received.
+
+Comment 1: ``The real issue is less about the amount the code snippets on SO than it is about the staggeringly high number of software "professionals" that mindlessly use them without understanding what they're copying, and the only slightly less high number of would-be professionals that post snippets with built-in security issues.  A related topic is beginners who post (at times dangerously) misleading tutorials online on topics they actually know very little about. Think php/mysql tutorials written 10+ years after \texttt{mysql\_*} functions were obsolete, or the recent regex tutorial that got posted the other day on HackerNew (\url{https://news.ycombinator.com/item?id=14846506}). They're also full of toxic code snippets.''
+
+Comment 2: ``When I copy code it's usually short enough to be considered "fair use" but I am not a lawyer or copyright expert so some guidance from SO would be helpful. I'd also like the ability to flag/review questions that violate these guidelines.''
+
+Comment 3: ``My only concern, albeit minor, is that I know people blindly copy my code without even understanding what the code does.''
+
+Comment 4: ``The main problem for me/us is outdated code, esp. as old answers have high google rank so that is what people see first, then try and fail. Thats why we're moving more and more of those examples to knowledge base and docs and rather link to those.''
+
+Comment 5: ``Lot of the answers are from hobbyist so the quality is poor. Usually they are hacks or workarounds (even MY best answer on SO is a workaround).''
 
 \subsection{Overall Discussion}
 %What can we learn for the results? For example, if a developer explicitly reports in his/her code that the snippet was copied from stackoverfow, are there some benefits? We could notify - for instance - the developer when some new issues related to the snippet are posted on stackoverflow? Or could we force people posting code on SO to explicitly report licensing information? Or, could we implement an intelligent IDE that when pasting code from external resource checks for licensing violation? These of course are only some (crazy?) ideas that could be developed on the top of the results we have achieved with this study... 
