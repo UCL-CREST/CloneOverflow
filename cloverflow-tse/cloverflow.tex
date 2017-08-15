@@ -429,9 +429,11 @@ including Simian~\cite{simian}, SourcererCC~\cite{Sajnani2016},
 NiCad~\cite{Cordy,Roy2008}, CCFinder~\cite{Kamiya2002}, iClones~\cite{Gode2009},
 DECKARD~\cite{Jiang2007a}, and PMD-CPD~\cite{pmd-cpd} against the Stack Overflow
 and Qualitas datasets. NiCad failed to parse 44,960 Stack Overflow snippets
-while PMD CPD failed to complete the execution. Although Simian, SourcererCC,
-CCFinder, iClones, and DECKARD could successfully report clones, we decided to
-choose Simian and SourcererCC due to their fast detection speed.
+while PMD CPD failed to complete the execution due to lexical errors. iClones
+could complete its execution but skipped 367 snippets due to malformed blocks in
+Stack Overflow data set. Although Simian, SourcererCC, CCFinder, and DECKARD
+could successfully report clones, we decided to choose only Simian and
+SourcererCC due to their fast detection speed.
 
 \textbf{Simian} is a text-based clone detector that locates clones at line-level
 granularity and has been used extensively in several clone
@@ -442,29 +444,31 @@ parameterised clones (type-2). \textbf{SourcererCC} is a token-based clone
 detector which detects clones at either function- or block-level granularity. It
 can detect clones of type-1, -2 up to type-3 (clones with added and removed
 statements) and offer scalability against large code
-corpus~\cite{Sajnani2016,Saini2016,Yang2017}. Due to incomplete code blocks and
-functions normally found in Stack Overflow snippets, the built-in Java tokeniser
-could not parse more than half of all snippets. SourcererCC provides an option
-to plug in a customised tokeniser, so we developed a special Java tokeniser with
-assistance from the tool's creator. Another benefit of SourcererCC is its
-indexing and search processing allows us to detect code clones between two
-systems.
+corpus~\cite{Sajnani2016,Saini2016,Yang2017}. Another benefit of SourcererCC is
+its indexing and search processing allows us to detect code clones between two
+systems. 
 
 We prepared the Java code in both datasets by removing comments and
 pretty-printing to increase the clone detection accuracy. Then, we deployed the
 two detectors to locate clones between the two datasets.  For each Qualitas
 project, we ran the tools on the project's code and the entire Stack Overflow
-data. Simian did not provide an option to detect cross-project clones. Hence the
+data. Due to incomplete code blocks and functions
+normally found in Stack Overflow snippets, the built-in SourcererCC's Java
+tokeniser could not parse 45,903 snippets, more than half of them. Nevertheless,
+the tool provides an option to plug in a customised tokeniser, so we developed a
+special Java tokeniser with assistance from the tool's creator. The customised
+tokeniser successfully processed all Stack Overflow snippets.
+Simian did not provide an option to detect cross-project clones. Hence the
 Simian clone report was filtered to contain only clone pairs between Stack
 Overflow and Qualitas projects, removing all clone pairs within either Stack
-Overflow or within Qualitas.
+Overflow or within Qualitas. 
 
 \begin{table}
 	\centering
 	\caption{Configurations of Simian and SourcererCC}
 	\label{t:param_tuning}
 %		\resizebox{\columnwidth}{!}{
-	\small
+%	\small
 	\begin{tabular}{lp{5cm}}
 		\toprule
 		Tool & Configurations \\
@@ -477,44 +481,46 @@ Overflow or within Qualitas.
 %	}
 \end{table}
 
-\textbf{Clone Detection Configuration: }
-We are aware of effects of configurations to clone detection results
-and the importance of searching for optimised configurations in
-empirical clone
+\textbf{Clone Detection Configuration: } We are aware of effects of
+configurations to clone detection results and the importance of searching for
+optimised configurations in empirical clone
 studies~\cite{Svajlenko2014,Wang2014,cr2016ssbse,Ragkhitwetsagul2016}. However,
-considering the massive size of the two datasets and the search space
-of at least 15 Simian and 5 NiCad parameters, we are unable to search
-for the best configurations of the tools. Thus, we decided to
-configure Simian and NiCad using two established configurations:
-(1)~the tools' default configurations chosen by the tools' creators
-(denoted as \textit{D}), and (2)~the discovered configurations for
-Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
-of optimising clone detectors' configurations based on clone agreement
-(denoted by \textit{E}). \Cref{t:param_tuning} shows the two configurations.
-In total, we have four configurations: Simian with the default
-configuration ($S_D$), Simian with the EvaClone configuration ($S_E$), 
-NiCad with the default configuration ($N_D$)
-and NiCad with the EvaClone configuration ($N_E$).
+considering the massive size of the two datasets and the search space of at
+least 15 Simian and 3 SourcererCC parameters, we are unable to search for the
+best configurations of the tools. Thus, we decided to configure Simian and
+SourcererCC based on their established default configurations chosen by the
+tools' creators. All variable renaming are disabled to decrease a number of
+false positives since we aim for finding clones that are copied from open source
+projects with minimal modifications. The two clone detectors complement each
+other by having Simian detecting literal copies of code snippets and SourcererCC
+detecting clones with added/deleted statments. We made sure that they 
+detected only non-trivial clones by increasing the minimum clone size to ten
+lines.
+%(denoted as \textit{D}), and (2)~the discovered configurations for
+%Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
+%of optimising clone detectors' configurations based on clone agreement
+%(denoted by \textit{E}). \Cref{t:param_tuning} shows the two configurations.
+%In total, we have four configurations: Simian with the default
+%configuration ($S_D$), Simian with the EvaClone configuration ($S_E$), 
+%NiCad with the default configuration ($N_D$)
+%and NiCad with the EvaClone configuration ($N_E$).
 
-We encountered NiCad failures with a few Qualitas projects.~$N_D$
-could not detect clones in \textsf{hibernate} due to clustering
-errors. $N_E$ generated errors during code normalisation for 5
-projects including \textsf{vuze}, \textsf{hibernate},
-\textsf{myfaces}, \textsf{netbeans}, and \textsf{spring}. We have
-contacted the creator of NiCad regarding the issues. They identified
-the issues as problems in the TXL grammar and as problems of long file
-paths, and will be fixed in the next NiCad releases.
+%We encountered NiCad failures with a few Qualitas projects.~$N_D$
+%could not detect clones in \textsf{hibernate} due to clustering
+%errors. $N_E$ generated errors during code normalisation for 5
+%projects including \textsf{vuze}, \textsf{hibernate},
+%\textsf{myfaces}, \textsf{netbeans}, and \textsf{spring}. We have
+%contacted the creator of NiCad regarding the issues. They identified
+%the issues as problems in the TXL grammar and as problems of long file
+%paths, and will be fixed in the next NiCad releases.
 
 The number of online clone pairs reported % by running Simian and NiCad
-are presented in \Cref{tab:orig_stats}. $S_D$ reports 67,570 clone
-pairs while $N_D$ reports 632,855 clone pairs. $S_E$ and $N_E$ report
-much larger numbers of clone pairs, 63,635,844 and 251,449,849 pairs
-respectively. This is expected since EvaClone configurations prefer
-recall~\cite{Wang2013}.  The average clone size reported by $S_D$ is
-9.11 lines which is bigger than for $S_E$ (5.95 lines). Similarly,
-$N_D$ has an average clone size of 10.85 lines which is bigger than
-6.28 lines reported by $N_E$. The drop in size is due to the EvaClone
-configuration with a smaller minimum size (\Cref{t:param_tuning}).
+are presented in \Cref{tab:orig_stats}. Simian reports 721 clone
+pairs while SourcererCC reports 1,678 clone pairs. 
+SourcererCC reports more clones due to its capability of detecting
+type-1 to type-3 clones while Simian only detects type-1 and type-2 clones.
+The average clone size reported by Simian is
+16.61 lines which is slightly smaller than SourcererCC (17.86 lines).
 
 \begin{table}
 	\centering
@@ -524,10 +530,10 @@ configuration with a smaller minimum size (\Cref{t:param_tuning}).
 	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{lrr}
 		\toprule
-		Stats & \multicolumn{1}{c}{Simian} & \multicolumn{1}{c}{SourcererCC} \\
+		Stats & \multicolumn{1}{c}{Total clone pairs} & \multicolumn{1}{c}{Average clone size} \\
 		\midrule
-		Total clone pairs & 721 & 1,678 \\
-		Average clone size & 16.61 & 17.86 \\
+		Simian & 721 & 16.61 \\
+		SourcererCC & 1,678 & 17.86 \\
 		\bottomrule
 	\end{tabular} %
 	%}
