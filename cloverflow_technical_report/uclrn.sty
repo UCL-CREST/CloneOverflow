@@ -1,0 +1,116 @@
+% uclrn.sty is a LaTeX package to show a picture on the cover produced by \maketitle.
+% By Renzo De Nardi <renzodenardi@gmail.com>. Free software, no warranty of any kind.
+% 
+% Version history:
+% 0.1: first release
+% 
+% -----------------------------------------------------------------------------
+\PassOptionsToPackage{absolute}{textpos}
+\PassOptionsToPackage{usenames}{xcolor}
+\usepackage{textpos}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+
+% No idea whether it works on older LaTeXes.
+\NeedsTeXFormat{LaTeX2e}
+
+
+% Package identification and version number.
+\ProvidesPackage{uclrn}[2013/03/04 0.1 Package to display a picture on the title page]
+
+% define the rnnumber variable
+\newcommand\rnnumber[1]{\renewcommand\@rnnumber{#1}}
+\newcommand\@rnnumber{\@latex@error{Variable \noexpand \rnnumber not defined}\@ehc}
+
+% get the full size of the page 
+\newlength{\fullpaperwidth}
+\setlength{\fullpaperwidth}{\paperwidth}
+\addtolength{\fullpaperwidth}{10mm}
+
+% first page as per word template:
+% http://www.cs.ucl.ac.uk/fileadmin/UCL-CS/research/Research_Student_Information/RNCoverpage.doc
+\renewcommand\maketitle{	
+		
+     	% get rid of page number
+		\thispagestyle{empty}
+
+		% ucl header from image 
+		\begin{textblock*}{\fullpaperwidth}(-10mm,0mm)
+      		\includegraphics[width=\fullpaperwidth]{ucl.jpg}
+		\end{textblock*}
+		
+		% department text
+		\begin{textblock*}{40mm}(10mm,10mm)
+      		{\setlength{\parindent}{0cm}
+      		\fontfamily{phv}\selectfont
+      		\fontsize{12pt}{14pt}\selectfont
+      		\color{white}
+      		\bfseries   		
+      		UCL DEPARTMENT OF COMPUTER SCIENCE }
+		\end{textblock*}
+
+		% start title below UCL banner
+		\null
+		\vskip 50mm
+		
+		% title and author info	
+		\begin{center}
+		    {\bfseries \LARGE Research Note\par}
+		    {RN/\@rnnumber}
+		    \vskip 3em
+		    {\bfseries \LARGE \@title \par}
+			\vskip 1em
+			{\large \@date \par} 
+			\vskip 5em
+			{\large
+				\lineskip .75em%
+				\begin{tabular}[t]{c}%
+				\@author
+				\end{tabular}\par%
+			}			
+		\end{center}	
+	% boilerplate	
+	\setcounter{footnote}{0}
+	\global\let\thanks\relax
+	\global\let\maketitle\relax
+	\global\let\@thanks\@empty
+	\global\let\@date\@empty
+	\global\let\title\relax
+	\global\let\author\relax
+	\global\let\date\relax
+	\global\let\and\relax
+}
+
+% force title to start under the UCL banner
+
+% headers and footers
+\fancyhead{} % clear all header fields
+\fancyhead[L]{Awareness of SO Users to Outdate and License-violating Code}	
+\fancyhead[R]{C. Ragkhitwetsagul, J. Krinke, R. Oliveto}
+%\fancyhead[R]{Ragkhitwetsagul et al.}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{RN/\@rnnumber}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\topmargin}{-25pt}
+\renewcommand{\headsep}{22pt}
+\pagestyle{fancy}
+
+
+% redefine abstract environment so to start
+% a new page numbered as 1 after the abstract
+\renewenvironment{abstract}{
+      \null\vfil
+      \@beginparpenalty\@lowpenalty
+      \begin{center}
+        \bfseries \abstractname
+        \@endparpenalty\@M
+      \end{center}}
+     {\par\vfil\null
+      \clearpage\setcounter{page}{1}
+}
+
+
+

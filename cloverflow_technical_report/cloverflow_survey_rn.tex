@@ -1,0 +1,632 @@
+\RequirePackage{fix-cm}
+%
+\documentclass{svjour3}                     % onecolumn (standard format)
+% To have symmetric margin (only for research note)
+\setlength{\textwidth}{\dimexpr\pdfpagewidth-2in}% Equal left/right margins
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+
+\usepackage{uclrn}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage[round]{natbib} 
+%\setcitestyle{aysep={}} 
+
+\newcommand\fscore{\operatorname{F-score}}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{makecell}
+\usepackage{algorithm}
+%\usepackage{cleveref}
+\usepackage{algpseudocode}
+\usepackage{pifont}
+%\usepackage{cite}
+\usepackage{verbatim}
+\usepackage{url}
+%\usepackage{microtype}
+\usepackage{caption}
+\usepackage{booktabs} % For formal tables
+\usepackage{subcaption}
+\usepackage[misc,geometry]{ifsym} 
+\usepackage{etoolbox}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+
+\captionsetup{compatibility=false}
+
+\rnnumber{17/xx}
+%\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+%\newtheorem{definition}{Definition}
+
+\lstset{language=Java,tabsize=2,basicstyle=\ttfamily\scriptsize} 
+
+\newcommand\FIXME[1]{\textbf{FIXME: #1}}
+
+\begin{document}
+
+\title{Awareness of Stack Overflow Users to\\ Outdated and License-violating Code:\\ The Online Survey}
+%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+\titlerunning{SO Developers awareness: Outdated and License-violating Code}        % if too long for running head
+
+\author{Chaiyong~Ragkhitwetsagul, Jens~Krinke, Mathues~Paixao,~Giuseppe Bianco, Rocco~Oliveto}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{Chaiyong Ragkhitwetsagul~(\Letter), Jens Krinke \at
+              Computer Science Department., University College London, UK \\
+              Tel.: +44 (0)20 7679,  Fax: +44 (0)20 7387 1397\\
+              \email{\{ucabagk, j.krinke\}@ucl.ac.uk}           %  \\
+%             \emph{Present address:} of F. Author  %  if needed}
+}
+
+\date{\today}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+ABSTRACT GOES HERE
+\end{abstract}
+
+\section{Introduction}
+
+Outdated third-party code and software licensing conflicts are ramifications by
+reusing source code by copying and pasting (i.e.~code cloning). \cite{Xia2014}
+show that a large number of open source systems reuse outdated third-party
+libraries from popular open source projects. Using the outdated code give
+detrimental effects to the software since they may introduce vulnerabilities. On
+the other hand, \cite{German2009} found conflicts in software license between
+the clones among different systems that come from the same source,~i.e.~clone
+siblings.
+
+The Internet encourages fast and easy way of sharing and copying code.
+Developers nowadays do not only copy code from local software projects, but also
+from online sources such as programming Q\&A website and online code
+repositories. Stack Overflow is one of the most popular programming Q\&A
+websites in the word. It has 7.6 million users, 14 million questions, 23 million
+answers\footnote{Data as of 21 August 2017
+	from~\url{https://stackexchange.com/sites}}, and more than 50 million developers
+visiting each month\footnote{Data as of 21 August 2017 from:
+	\url{https://stackoverflow.com}}. Nevertheless, several code snippets on Stack
+Overflow are found to be problematic. Many code snippets provided as solutions
+are workarounds and occasionally contains defects or vulnerabilities.
+\cite{Acar2016} performed a user study and found that Stack Overflow helps
+developers to solve Android programming problems quicker than other resources
+while, at the same time, offers less secure code than books or the official
+Android documentation. Only 17\% of the Stack Overflow discussion threads the
+participant visited during the study contain secure code snippets. They also
+found that similar piece of API call copied from Stack Overflow by participants
+in their study existed in a random sample of 200,000 Android apps from Google
+Play. \cite{An2017} showed that 1,279 cloned snippets between 399 Android apps
+and Stack Overflow potentially violate software licenses.
+
+We are interested in studying the issues of outdated code and software license
+violation cause by code snippets on Stack Overflow. Asking and answering
+questions on Stack Overflow usually involve copying and pasting source code
+snippets, either in a question or an answer. However, the copied snippets are
+not regularly checked and occasionally not up-to-date with their originals. Some
+snippets are copied from an open source system with stricter software license
+than Stack Overflow's Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0). Before
+this study, we performed an preliminary study using code clone detection tools
+to locate cloned code snippets in accepted answers. We found that many snippets
+were copied from open source projects. Some cloned snippets are outdated and
+possibly violating the original software license. In either case, these snippets
+are potentially harmful for reuse. To accompany the findings and to gain
+insights into the cause of this problem, we resort to a qualitative study using
+an online survey of Stack Overflow developers who 1) answer programming
+questions with code snippets and 2) reuse code snippets from Stack Overflow
+answers. 
+
+In this paper, we use the term ``answerers'' to refer to Stack Overflow users
+who have high reputation, specifically the users with reputation from 963,731
+(highest)  to 6,999. The answerers gain their reputation from answering
+questions and receiving votes from other users. The reputation reflects trust
+they gain from other users and their activeness in answering questions. We ask
+the answerers the origins of source code snippets in their answers  and assess
+their awareness of outdated and licensed code. We use the term ``visitors'' the
+refer to developers, who may or may not have a Stack Overflow account but visit
+Stack Overflow when facing programming problems. They copy example code snippets
+that are relevant to their problems and reused them in their software. 
+We ask Stack Overflow visitors, who copied code snippets from
+Stack Overflow, about their experience of outdated or license-violating code.
+
+\section{Research Questions}
+In this study, we would like to answer the following
+research questions:
+
+\begin{enumerate}
+	\item \textbf{RQ1 (Sources of Stack Overflow Answer Snippets):} \textit{where are the code snippets in Stack Overflow answers from?}
+	\item \textbf{RQ2 (Awareness of Stack Overflow answerers to outdated code):} \textit{are Stack Overflow answerers aware of outdated code in their answers?}
+	\item \textbf{RQ3 (Awareness of Stack Overflow answerers to software licensing conflicts):} \textit{are Stack Overflow answerers aware of software licensing conflicts caused by code snippets in their answers?}
+	\item \textbf{RQ4 (Awareness of Stack Overflow visitors to outdated code):} \textit{are Stack Overflow visitors aware of outdated code on Stack Overflow?}
+	\item \textbf{RQ5 (Awareness of Stack Overflow visitors to software licensing conflicts):} \textit{are Stack Overflow visitors aware of of software licensing conflicts caused by reusing code snippets from Stack Overflow?}
+\end{enumerate}
+
+\section{Research Methodology}
+The study is performed using online surveys. We designed the surveys using
+Google Forms by following the principles of survey research
+by~\cite{Pfleeger2001} and~\cite{Kitchenham2002}. We created two versions of the
+survey: \textbf{the answerer survey}, and, \textbf{the visitor survey}. The
+surveys are completely anonymous and the participants could decide to leave at
+any time. They do not collect any sensitive personal information from the
+participants and were approved for an ethical waiver by the designated ethics
+officer in the Computer Science Department at UCL.  The complete versions of
+both surveys can be found in the Appendix A and B.
+
+\begin{table}
+	\centering
+	\caption{The Stack Overflow answerer taken the surveys}
+	\label{tab:answerers}
+	\begin{tabular}{lrrrr}
+		\toprule
+		Target group & Reputation & Sent emails & Answers & Rate \\
+		\midrule
+		Answerer Group 1 & 963,731--7,674 & 300 & 113 & 38\% \\
+		Answerer Group 2 & 7,636--6,999 & 307 & 85 & 28\% \\
+		\midrule
+		Total & -- & 607 & 198 & 33\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{The Answerer Survey}
+The Stack Overflow answerer survey contains 11 questions: 7 Likert's scale
+questions, 3 yes/no questions, and one open-ended question for additional
+comments. The first two questions were mandatory while the other 9 questions
+were shown to the participants based on their previous answers. The survey collects
+information of the participant's software development experience, experience of
+answering Stack Overflow questions, sources of the Stack Overflow snippets,
+concerns of copying code snippets to Stack Overflow, problems from code 
+snippets on Stack Overflow, fixing outdated code, and additional feedbacks.
+
+We selected the participants for our answerer survey based on their Stack Overflow reputation. On
+Stack Overflow, a user's reputation reflects how much the community trust the
+user. A user earns reputation when he or she receives up votes for good
+questions and useful answers. Accepted answers receive more reputation score
+than questions, and regular answers\footnote{Stack Overflow
+	Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
+Overflow reputation is an indicator of user's skills and their involvement in
+asking and answering questions on the site.
+
+The participants were invited to take the survey via email addresses publicly available on their
+public Stack Overflow and GitHub profiles. We selected the answerers based on
+all-time reputation ranking\footnote{Stack Overflow Users (data as of 25 July
+	2017):~\url{https://stackoverflow.com/users?tab=Reputation&filter=all}} and
+separated them into two groups (see Table~\ref{tab:answerers}) so that we can
+compare the results or observe similar patterns between them. 
+The first group had reputation from 963,731 (the
+highest) to 7,674, and the second group had reputation from 7,636 to 6,999 which
+we sent out 300 and 307 emails (excluding undelivered ones) respectively. The
+survey was open for participation for a month, from 25 July 2017 to 25 August
+2017, before we collected and analysed the responses.
+
+\subsection{The Visitor Survey}
+
+The Stack Overflow visitor survey is consisted of 16 questions: 9 Likert's scale
+questions, 3 yes/no questions, 2 multiple-choice questions, and 2 open-ended
+questions. The first four questions were mandatory while the other 12 questions
+were shown to the participants based on their previous answers. The survey collects
+information of the participant's software development experience, importance of
+Stack Overflow, reasons for reusing Stack Overflow snippets, problems from
+Stack Overflow snippets, licensing of code on Stack Overflow, and additional
+feedbacks.
+
+\begin{table}
+	\centering
+	\caption{The Stack Overflow visitors taken the survey}
+	\label{tab:visitors}
+	\begin{tabular}{lr}
+		\toprule
+		Invitation channels & Answers \\
+		\midrule
+		Chaiyong's Facebook post & 47 \\
+		Blognone.com & 32 \\
+		University of Molise & 6 \\
+		comp.lang.java.programmer & 3 \\
+		Software Engineering Facebook page & 1 \\
+		\midrule
+		Total & 89 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The participants for this survey were invited to take the survey via five
+channels. The first channel is via the first author's Facebook post where the
+first author invited friends who are software developers and have experience of
+copying code snippets from Stack Overflow to take the survey. The second channel
+is a popular Thai technology news and media community called blognone.com which
+attracts a high number of software developers. The first author posted an
+invitation to the visitor survey in a discussion forum. The third channel
+collects answers from University of Molise which is the third author's
+workplace. The last two channels are from a comp.lang.java.programmer Google
+groups and Software Engineering Facebook page. The survey was open for
+participation for a month, from 25 July 2017 to 25 August 2017, before we
+collected and analysed the responses. The number of participants taken the
+survey are shown in Table~\ref{tab:visitors}.
+
+\section{Results and Discussions}
+
+\subsection{Answerer Survey}
+We received 113 answers (38\% response rate) from the first group and 85 answers
+(28\% response rate) from the second group of Stack Overflow answerers. The response
+rate from both groups were high considered other online survey in software
+engineering that received approximately 14--20\%~\FIXME{double-check the
+	citation again for the magic numbers.}~\citep{Punter2003}.
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.5\linewidth]{survey_exp_1-crop}
+		\caption{Group 1}
+		\label{fig:survey_group1_exp}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.5\linewidth]{survey_exp_2-crop}
+		\caption{Group 2}
+		\label{fig:survey_group2_exp}
+	\end{subfigure}
+	\caption{Experience of the Stack Overflow answerers}
+	\label{fig:survey_exp}
+\end{figure}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How long have you been working on developing software?}
+	}%
+}
+\vspace{0.5cm}
+
+The majority of users in both groups are experienced developers 
+with more than 10 years of experience or between 5 to 10 years 
+as depicted in Figure~\ref{fig:survey_exp}. They are active users and
+regularly answer questions on Stack Overflow.
+Eighty one and sixty percent of users from Group 1 and Group 2 
+answer questions at least once a week.
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently do or did you answer questions on Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently do or did you include code snippets in your answers on Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+\subsection{RQ1: Where are the code snippets in Stack Overflow answers from?} 
+
+To answer this research question, we ask the participants this question:
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Where did the code snippets in your answers come from?}
+	}%
+}
+\vspace{0.5cm}
+
+From the answers, a large amount of 91 (81\%) and 58
+(68\%) answerers in both group include code snippets in more than sixty percent of
+their answers. Figure~\ref{fig:survey_snippet_source} explains where are these code
+snippets from. Stack Overflow answerers mostly write new code from scratch 
+or modify from the code snippets in question for each answer, while 
+fewer numbers are from other sources including their personal projects, 
+their company projects, open source projects. We found 27 answerers in both Group 1
+and Group 2 occasionally to very frequently copy code from open source projects.
+
+\begin{figure*}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{survey_snippet_source_1}
+		\caption{Group 1}
+		\label{fig:survey_snippet_source_1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{survey_snippet_source_2}
+		\caption{Group 2}
+		\label{fig:survey_snippet_source_2}
+	\end{subfigure}
+	\caption{Sources of code snippets in Stack Overflow answers}
+	\label{fig:survey_snippet_source}
+\end{figure*}
+
+\begin{figure}
+	\begin{subfigure}{5\textwidth}
+		\centering
+		\includegraphics[width=.6\linewidth]{survey_license_1}
+		\caption{Group 1}
+		\label{fig:survey_license_1}
+	\end{subfigure}%
+	\begin{subfigure}{.25\textwidth}
+		\centering
+		\includegraphics[width=.6\linewidth]{survey_license_2}
+		\caption{Group 2}
+		\label{fig:survey_license_2}
+	\end{subfigure}
+	\caption{Software license in Stack Overflow code snippets.}
+	\label{fig:survey_license}
+\end{figure}
+
+\subsection{RQ2: Are Stack Overflow answerers aware of outdated code in their answers?}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][1cm]{0.98\textwidth}{%
+		\textit{Outdated code occurs when code snippets in your answers are no longer up-to-date with the latest version of the software you copied the code from. Have you ever been notified of outdated code in your Stack Overflow answers?}
+	}%
+}
+\vspace{0.5cm}
+
+We found that 63.1\% of Stack Overflow answerers in Group 1 have been notified of
+outdated code in their answers (see Figure~\ref{fig:survey_outdated}). The ratio drops to 47.6\% in
+Group 2. Thus, at least roughly half of the top answerers on Stack Overflow
+are aware of their outdated code in some of their answers.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.5\linewidth]{survey_outdated}
+	\caption{Percentage of answerers who are notified of outdated code in their Stack Overflow answers.}
+	\label{fig:survey_outdated}
+\end{figure}%
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently were you notified of outdated or deprecated code in your Stack
+			Overflow answers?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently did you fix your outdated code on Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+We then asked the participants to have been notified of their outdated code
+(80 and 48 participants from Group 1 and 2 respectively) a
+follow-up questions ``how frequently did you fix your outdated code on Stack
+Overflow?''. The answers, depicted in Figure~\ref{fig:survey_outdated_fix}, show that
+more than half of them frequently fix the outdated code snippets. However, there
+are 18.8\% of the answerers in both groups who rarely or never fix their code.
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{survey_outdated_fix_1}
+		\caption{Group 1}
+		\label{fig:survey_outdated_fix_1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{survey_outdated_fix_2}
+		\caption{Group 2}
+		\label{fig:survey_outdated_fix_2}
+	\end{subfigure}
+	\caption{Frequency of the answerers fixing their outdated code.}
+	\label{fig:survey_outdated_fix}
+\end{figure}
+
+\subsection{RQ2: Are Stack Overflow answerers aware of software licensing conflicts caused by code snippets in their answers?} 
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][1cm]{0.98\textwidth}{%
+		\textit{Were you aware, at the time of copying the code, that Stack Overflow apply Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) to content in the posts, including code snippets?}
+	}%
+}
+\vspace{0.5cm}
+
+More than half of the answerers in both groups (63.1\% and 61.9\% respectively)
+are aware that Stack Overflow apply Creative Commons Attribution-ShareAlike 3.0
+Unported (CC BY-SA 3.0) to content in the posts, including code snippets, while
+the rest of 36.9\% and 38.1\% are not. Nevertheless, we found that almost all 
+of them do not include license statement in their code snippets (as depicted in
+Figure~\ref{fig:survey_license}) due to several reasons. First, some answerers chose to 
+post only their own code or code that was adapted from the question, hence
+they are automatically subjected to CC BY-SA 3.0. Second, they copied code from
+company or open source projects that they knew were permitted to be publicly distributed.
+Third, some answerers believe that code snippets in their answers are too small 
+to claim any intellectual property on them and fall under fair use~\citep{fairuse}.
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Do you usually include a software license in your code snippets on Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+While nobody explicitly includes a software license in their snippets,
+many users include a statement on their profile page that states all their
+answers are under a certain license. For example, \textit{All code posted by me on
+	Stack Overflow should be considered public domain without copyright. For
+	countries where public domain is not applicable, I hereby grant everyone the
+	right to modify, use and redistribute any code posted by me on Stack Overflow
+	for any purpose. It is provided "as-is" without warranty of any kind.}  Many
+users either declare their snippets to be public domain, or they grant
+additional licenses, e.g. Apache 2.0 or MIT/Expat.
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.85\linewidth]{survey_license_check_1}
+		\caption{Group 1}
+		\label{fig:survey_license_check_1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.85\linewidth]{survey_license_check_2}
+		\caption{Group 2}
+		\label{fig:survey_license_check_2}
+	\end{subfigure}
+	\caption{Frequency of the answerers checking license of their code snippets against Stack Overflow's CC BY-SA 3.0.}
+	\label{fig:survey_license_check}
+\end{figure}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][1cm]{0.98\textwidth}{%
+		\textit{How frequently did you check the software license of the code snippets you copy to Stack Overflow if they conflict with Stack Overflow's CC BY-SA 3.0 license? }
+	}%
+}
+\vspace{0.5cm}
+
+We asked the answerers a follow-up question of how frequently they checked for a conflict between software license of the code snippets they copied to their answers and Stack Overflow's CC BY-SA 3.0. As shown in Figure~\ref{fig:survey_license_check}, approximately 69\% of answerers from both groups did not perform the checking. Nonetheless, they are about 10\% of the answerers who frequently checks for licensing conflicts when they copy code snippets to Stack Overflow.
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Do you have any other concerns regarding answering Stack Overflow with code snippets?}
+	}%
+}
+\vspace{0.5cm}
+
+We also invited the participants to give any comments regarding answering Stack Overflow with code snippets. These are some interesting comments we received.
+
+Comment 1: ``The real issue is less about the amount the code snippets on SO than it is about the staggeringly high number of software "professionals" that mindlessly use them without understanding what they're copying, and the only slightly less high number of would-be professionals that post snippets with built-in security issues.  A related topic is beginners who post (at times dangerously) misleading tutorials online on topics they actually know very little about. Think php/mysql tutorials written 10+ years after \texttt{mysql\_*} functions were obsolete, or the recent regex tutorial that got posted the other day on HackerNew (\url{https://news.ycombinator.com/item?id=14846506}). They're also full of toxic code snippets.''
+
+Comment 2: ``When I copy code it's usually short enough to be considered "fair use" but I am not a lawyer or copyright expert so some guidance from SO would be helpful. I'd also like the ability to flag/review questions that violate these guidelines.''
+
+Comment 3: ``My only concern, albeit minor, is that I know people blindly copy my code without even understanding what the code does.''
+
+Comment 4: ``The main problem for me/us is outdated code, esp. as old answers have high google rank so that is what people see first, then try and fail. Thats why we're moving more and more of those examples to knowledge base and docs and rather link to those.''
+
+Comment 5: ``Lot of the answers are from hobbyist so the quality is poor. Usually they are hacks or workarounds (even MY best answer on SO is a workaround).''
+
+\subsubsection{Visitors' Experience}
+
+\section{Related Work}
+
+\subsection{Stack Overflow}
+
+Stack Overflow is a gold mine for software engineering research and has been put
+to use in several previous studies. In terms of developer-assisting tools,
+Seahawk is an Eclipse plug-in that searches and recommends relevant code
+snippets from Stack Overflow~\citep{Ponzanelli2013}. A follow up work, Prompter,
+by Ponzanelli et al.~\citep{Ponzanelli2014} achieves the same goal but with
+improved algorithms. The code snippets on Stack Overflow are mostly examples or
+solutions to programming problems. Hence, several code search systems use whole
+or partial data from Stack Overflow as their code search
+databases~\citep{Keivanloo2014,Park2014,
+	Stolee2014,Subramanian2013,Diamantopoulos2015}. Furthermore, Treude et
+al.~\cite{Treude2016}~use machine learning techniques to extract insight
+sentences from Stack Overflow and use them to improve API documentation.
+
+Another research area is knowledge extraction from Stack Overflow.
+\cite{Nasehi2012}~studied what makes a good code example by analysing answers
+from Stack Overflow. Similarly, \cite{Yang2016} report the number of reusable
+code snippets on Stack Overflow across various programming languages.
+\cite{Wang2013_StackOverflow} use Latent Dirichlet Allocation (LDA) topic
+modelling to analyse questions and answers from Stack Overflow so that they can
+automatically categorise new questions. There are also studies trying to
+understand developers' behaviours on Stack Overflow, e.g.~A study by
+\cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}.
+\cite{Yang2017} analysed 909k non-fork Python projects on Github and 1.9
+million python code snippets on Stack Overflow and found thousands of 
+code blocks that are copied from Stack Overflow to GitHub.
+
+\subsection{Software Licensing}
+Software licensing is crucial for open source and industrial software
+development. Di Penta et al.~\cite{DiPenta2010} studied the evolution of
+software licensing in open source software and found that licensing statements
+change over time. \cite{German2009} found that licensing conflicts occur between
+the clone siblings, i.e.~clones among different systems that come from the same
+source. Later, \cite{German2010} created an automated tool for software license
+identification, Ninka. \cite{An2017} detected clones between 399 Android apps
+and Stack Overflow Java code snippets. They found that  that 1,279 cloned
+snippets potentially violate software licenses. Our study gives insights into
+the software licensing of Stack Overflow code snippets. We study the licensing
+awareness of developers when they copy and paste code to/from Stack Overflow.
+
+\subsection{Reusing of outdated third-party source code} 
+Outdated code occurs in software development. Xia et al.~\cite{Xia2014} discover
+that there are code reused from popular open source projects in a large number
+of open source systems. More importantly, some of the reused code are outdated
+which affect quality and security of the software. Our study focuses on a
+similar problem but on the context of Stack Overflow.
+
+\section{Conclusions}
+
+%\bibliographystyle{abbrv}
+%\bibliographystyle{plainnat}
+\bibliographystyle{spbasic}
+\bibliography{sigproc} 
+
+\clearpage
+\section{Appendix}
+\appendix
+\section{Stack Overflow Answerer Survey}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{answerer-1}
+	\label{fig:answerer-1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{answerer-2}
+	\label{fig:answerer-2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{answerer-3}
+	\label{fig:answerer-3}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{answerer-4}
+	\label{fig:answerer-4}
+\end{figure}
+
+\section{Stack Overflow Visitor Survey}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\linewidth]{visitor-1}
+	\label{fig:visitor-1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{visitor-2}
+	\label{fig:visitor-2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{visitor-3}
+	\label{fig:visitor-3}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{visitor-4}
+	\label{fig:visitor-4}
+\end{figure}
+
+\end{document}
+% end of file template.tex
+
