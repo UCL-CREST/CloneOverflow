@@ -255,23 +255,29 @@ survey are shown in Table~\ref{tab:visitors}.
 
 \section{Results and Discussions}
 
-\subsection{Answerer Survey}
+\subsection{Answerer Responses}
 We received 113 answers (38\% response rate) from the first group and 85 answers
 (28\% response rate) from the second group of Stack Overflow answerers. The response
 rate from both groups were high considered other online survey in software
 engineering that received approximately 14--20\%~\FIXME{double-check the
 	citation again for the magic numbers.}~\citep{Punter2003}.
 
+\subsubsection*{General Information}
+%General information of the answerers' experience and frequency of answering 
+%questions on Stack Overflow with code snippets as discussed below.
+
+%\subsubsection*{Q1: How long have you been working on developing software?}
+
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.5\linewidth]{survey_exp_1-crop}
+		\includegraphics[width=0.8\linewidth]{survey_exp_1}
 		\caption{Group 1}
 		\label{fig:survey_group1_exp}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=0.5\linewidth]{survey_exp_2-crop}
+		\includegraphics[width=0.8\linewidth]{survey_exp_2}
 		\caption{Group 2}
 		\label{fig:survey_group2_exp}
 	\end{subfigure}
@@ -279,57 +285,58 @@ engineering that received approximately 14--20\%~\FIXME{double-check the
 	\label{fig:survey_exp}
 \end{figure}
 
-\vspace{0.5cm}
-\noindent\fbox{%
-	\parbox[c][0.5cm]{0.98\textwidth}{%
-		\textit{How long have you been working on developing software?}
-	}%
-}
-\vspace{0.5cm}
-
 The majority of users in both groups are experienced developers 
 with more than 10 years of experience or between 5 to 10 years 
-as depicted in Figure~\ref{fig:survey_exp}. They are active users and
-regularly answer questions on Stack Overflow.
-Eighty one and sixty percent of users from Group 1 and Group 2 
-answer questions at least once a week.
+as depicted in Figure~\ref{fig:survey_exp}. There are 59\% of the answerers in Group 1 that have more than 10 year of software development experience, while a slightly less percentage of 50\% in Group 2.
 
-\vspace{0.5cm}
-\noindent\fbox{%
-	\parbox[c][0.5cm]{0.98\textwidth}{%
-		\textit{How frequently do or did you answer questions on Stack Overflow?}
-	}%
-}
-\vspace{0.5cm}
+The participants are active users and regularly answer questions on Stack Overflow (see Figure~\ref{fig:survey_answer_frequency}). Ninety two (81\%) and fifty one (61\%) of answerers from Group 1 and Group 2  answer questions at least once a week.
 
-\vspace{0.5cm}
-\noindent\fbox{%
-	\parbox[c][0.5cm]{0.98\textwidth}{%
-		\textit{How frequently do or did you include code snippets in your answers on Stack Overflow?}
-	}%
-}
-\vspace{0.5cm}
+More than half of the answerers very frequently (81--100\% of the time) or frequently (61--80\% of the time) include code snippets in their answers. To break down into two groups as depicted in Figure~\ref{fig:survey_answer_frequency_with_code},
+Group 1 very frequently (48.7\%) and frequently (27.4\%) provide code examples when answering. Likewise, Group 2 does the same (very frequently for 32.1\% and frequently for 36.9\%).
 
-\subsection{RQ1: Where are the code snippets in Stack Overflow answers from?} 
+%\subsubsection*{How frequently do or did you answer questions on Stack Overflow?}
 
-To answer this research question, we ask the participants this question:
+\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{survey_answer_frequency}
+		\caption{Frequency of answering questions}
+		\label{fig:survey_answer_frequency}
+\end{figure}
 
-\vspace{0.5cm}
-\noindent\fbox{%
-	\parbox[c][0.5cm]{0.98\textwidth}{%
-		\textit{Where did the code snippets in your answers come from?}
-	}%
-}
-\vspace{0.5cm}
+%\subsubsection*{How frequently do or did you include code snippets in your answers on Stack Overflow?}
 
-From the answers, a large amount of 91 (81\%) and 58
-(68\%) answerers in both group include code snippets in more than sixty percent of
-their answers. Figure~\ref{fig:survey_snippet_source} explains where are these code
-snippets from. Stack Overflow answerers mostly write new code from scratch 
-or modify from the code snippets in question for each answer, while 
-fewer numbers are from other sources including their personal projects, 
-their company projects, open source projects. We found 27 answerers in both Group 1
-and Group 2 occasionally to very frequently copy code from open source projects.
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{survey_answer_frequency_with_code_1}
+		\caption{Group 1}
+		\label{fig:survey_answer_frequency_with_code_1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{survey_answer_frequency_with_code_2}
+		\caption{Group 2}
+		\label{fig:survey_answer_frequency_with_code_2}
+	\end{subfigure}
+	\caption{Frequency of answering questions with code snippet(s)}
+	\label{fig:survey_answer_frequency_with_code}
+\end{figure}
+
+\subsubsection*{RQ1: Where are the code snippets in Stack Overflow answers from?} 
+
+To answer this research question, we ask the participants of the original
+sources for their code examples. We provided six options (allowing more than one answer)
+including \textit{I copied them from my own personal projects}, \textit{I copied
+	them from my company's projects}, \textit{I copied them from open source
+	projects}, \textit{I wrote the new code from scratch}, \textit{I copied the code
+	from the question and modify it for the answer}, and \textit{Others}. From the
+answers (Figure~\ref{fig:survey_snippet_source}), Stack Overflow answerers
+in Group 1 mainly write new code from scratch (112) or copy from the code snippets in question
+and modify it for the answer (108), followed by from their personal
+projects (101), open source projects (73), other sources (57), and company projects (46). 
+For Group 2, the most selected option is also writing code from scratch (83), followed by copying
+from personal projects and modifying from the question (77), copying from open source projects (56),
+copying from other sources (40), and copying from company projects (31).
 
 \begin{figure*}
 	\begin{subfigure}{.5\textwidth}
@@ -348,79 +355,38 @@ and Group 2 occasionally to very frequently copy code from open source projects.
 	\label{fig:survey_snippet_source}
 \end{figure*}
 
-\begin{figure}
-	\begin{subfigure}{5\textwidth}
-		\centering
-		\includegraphics[width=.6\linewidth]{survey_license_1}
-		\caption{Group 1}
-		\label{fig:survey_license_1}
-	\end{subfigure}%
-	\begin{subfigure}{.25\textwidth}
-		\centering
-		\includegraphics[width=.6\linewidth]{survey_license_2}
-		\caption{Group 2}
-		\label{fig:survey_license_2}
-	\end{subfigure}
-	\caption{Software license in Stack Overflow code snippets.}
-	\label{fig:survey_license}
-\end{figure}
-
-\subsection{RQ2: Are Stack Overflow answerers aware of outdated code in their answers?}
-
 \vspace{0.5cm}
 \noindent\fbox{%
-	\parbox[c][1cm]{0.98\textwidth}{%
-		\textit{Outdated code occurs when code snippets in your answers are no longer up-to-date with the latest version of the software you copied the code from. Have you ever been notified of outdated code in your Stack Overflow answers?}
+	\parbox[c][1.5cm]{0.98\textwidth}{%
+		\textit{For research question 1, we found almost every answerer writes the new code from scratch or modifies from the code in question most of the time. Other less popular choices include copying code from their personal projects, and open source projects. Company projects are the least popular choice.}
 	}%
 }
 \vspace{0.5cm}
 
-We found that 63.1\% of Stack Overflow answerers in Group 1 have been notified of
-outdated code in their answers (see Figure~\ref{fig:survey_outdated}). The ratio drops to 47.6\% in
-Group 2. Thus, at least roughly half of the top answerers on Stack Overflow
-are aware of their outdated code in some of their answers.
+\subsection{RQ2: Are Stack Overflow answerers aware of outdated code in their answers?}
+
+Roughly half of the top answerers on Stack Overflow
+are aware of outdated code in their answers. We found that 72.3\% of Stack Overflow answerers in Group 1 have been notified of
+outdated code in at least one of their answers (see Figure~\ref{fig:survey_outdated}). The ratio drops to 57.1\% in
+Group 2. 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=.5\linewidth]{survey_outdated}
 	\caption{Percentage of answerers who are notified of outdated code in their Stack Overflow answers.}
 	\label{fig:survey_outdated}
-\end{figure}%
-
-\vspace{0.5cm}
-\noindent\fbox{%
-	\parbox[c][0.5cm]{0.98\textwidth}{%
-		\textit{How frequently were you notified of outdated or deprecated code in your Stack
-			Overflow answers?}
-	}%
-}
-\vspace{0.5cm}
-
-\vspace{0.5cm}
-\noindent\fbox{%
-	\parbox[c][0.5cm]{0.98\textwidth}{%
-		\textit{How frequently did you fix your outdated code on Stack Overflow?}
-	}%
-}
-\vspace{0.5cm}
-
-We then asked the participants to have been notified of their outdated code
-(80 and 48 participants from Group 1 and 2 respectively) a
-follow-up questions ``how frequently did you fix your outdated code on Stack
-Overflow?''. The answers, depicted in Figure~\ref{fig:survey_outdated_fix}, show that
-more than half of them frequently fix the outdated code snippets. However, there
-are 18.8\% of the answerers in both groups who rarely or never fix their code.
+\end{figure}
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{survey_outdated_fix_1}
+		\includegraphics[width=.8\linewidth]{survey_outdated_fix_1}
 		\caption{Group 1}
 		\label{fig:survey_outdated_fix_1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{survey_outdated_fix_2}
+		\includegraphics[width=.8\linewidth]{survey_outdated_fix_2}
 		\caption{Group 2}
 		\label{fig:survey_outdated_fix_2}
 	\end{subfigure}
@@ -428,35 +394,74 @@ are 18.8\% of the answerers in both groups who rarely or never fix their code.
 	\label{fig:survey_outdated_fix}
 \end{figure}
 
-\subsection{RQ2: Are Stack Overflow answerers aware of software licensing conflicts caused by code snippets in their answers?} 
+We then asked the participants who have been notified of their outdated code
+(81 and 48 participants from Group 1 and 2 respectively) a
+follow-up questions \textit{``how frequently did you fix your outdated code on Stack
+Overflow?''} The answers, depicted in Figure~\ref{fig:survey_outdated_fix}, show that
+more than half of them frequently fix the outdated code snippets. However, there
+are 19.8\% and 18.8\% of the answerers in Groups 1 and 2 who rarely or never fix their code.
 
 \vspace{0.5cm}
 \noindent\fbox{%
-	\parbox[c][1cm]{0.98\textwidth}{%
-		\textit{Were you aware, at the time of copying the code, that Stack Overflow apply Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) to content in the posts, including code snippets?}
+	\parbox[c][1.2cm]{0.98\textwidth}{%
+		\textit{For research question 2, we found that the majority of Stack Overflow answerers are aware of outdated code in their answers and fixed them. Nonetheless, there are approximately 19\% of the answerers who rarely or never fix their outdated code.}
 	}%
 }
 \vspace{0.5cm}
 
-More than half of the answerers in both groups (63.1\% and 61.9\% respectively)
-are aware that Stack Overflow apply Creative Commons Attribution-ShareAlike 3.0
-Unported (CC BY-SA 3.0) to content in the posts, including code snippets, while
-the rest of 36.9\% and 38.1\% are not. Nevertheless, we found that almost all 
-of them do not include license statement in their code snippets (as depicted in
-Figure~\ref{fig:survey_license}) due to several reasons. First, some answerers chose to 
-post only their own code or code that was adapted from the question, hence
-they are automatically subjected to CC BY-SA 3.0. Second, they copied code from
-company or open source projects that they knew were permitted to be publicly distributed.
-Third, some answerers believe that code snippets in their answers are too small 
-to claim any intellectual property on them and fall under fair use~\citep{fairuse}.
+\subsubsection*{RQ2: Are Stack Overflow answerers aware of software licensing conflicts caused by code snippets in their answers?} 
 
-\vspace{0.5cm}
-\noindent\fbox{%
-	\parbox[c][0.5cm]{0.98\textwidth}{%
-		\textit{Do you usually include a software license in your code snippets on Stack Overflow?}
-	}%
-}
-\vspace{0.5cm}
+As shown in Figure~\ref{fig:survey_license_known}, more than half of the
+answerers in both groups (63.4\% and 61.9\% respectively) are aware that Stack
+Overflow apply Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA
+3.0) to content in the posts, including code snippets, while the rest of 36.6\%
+and 38.1\% are not. 
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.4\linewidth]{survey_license_known_1}
+		\caption{Group 1}
+		\label{fig:survey_license_known_1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.4\linewidth]{survey_license_known_2}
+		\caption{Group 2}
+		\label{fig:survey_license_known_2}
+	\end{subfigure}
+	\caption{Awareness of answerers to Stack Overflow CC BY-SA 3.0 license}
+	\label{fig:survey_license_known}
+\end{figure}
+
+In addition, we found that almost all of the answerers in both groups (98\% and
+99\% respectively) do not include license statement in their code snippets
+(numbers are shown in Figure~\ref{fig:survey_license}). Some of the participants
+gave more information regarding this question in the open comment question and
+we summarised them into three groups as follows. First, some answerers chose to post only their
+own code or code that was adapted from the question. They are hence
+automatically subjected to CC BY-SA 3.0. Second, they copied code from company
+or open source projects that they knew were permitted to be publicly
+distributed. Third, some answerers believe that code snippets in their answers
+are too small to claim any intellectual property on them and fall under fair
+use~\citep{fairuse}.
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.4\linewidth]{survey_license_1}
+		\caption{Group 1}
+		\label{fig:survey_license_1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.4\linewidth]{survey_license_2}
+		\caption{Group 2}
+		\label{fig:survey_license_2}
+	\end{subfigure}
+	\caption{Software license in Stack Overflow code snippets.}
+	\label{fig:survey_license}
+\end{figure}
 
 While nobody explicitly includes a software license in their snippets,
 many users include a statement on their profile page that states all their
@@ -471,13 +476,13 @@ additional licenses, e.g. Apache 2.0 or MIT/Expat.
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.85\linewidth]{survey_license_check_1}
+		\includegraphics[width=.75\linewidth]{survey_license_check_1}
 		\caption{Group 1}
 		\label{fig:survey_license_check_1}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.85\linewidth]{survey_license_check_2}
+		\includegraphics[width=.75\linewidth]{survey_license_check_2}
 		\caption{Group 2}
 		\label{fig:survey_license_check_2}
 	\end{subfigure}
@@ -516,6 +521,135 @@ Comment 4: ``The main problem for me/us is outdated code, esp. as old answers ha
 Comment 5: ``Lot of the answers are from hobbyist so the quality is poor. Usually they are hacks or workarounds (even MY best answer on SO is a workaround).''
 
 \subsubsection{Visitors' Experience}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How long have you been working on developing software?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{When you had a problem with your programming tasks, please rank in which order did you search for help (1 for the first, and 5 for the last, without a tie)?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently do or did you copy source code snippets from Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Why did you copy and reuse code snippets from Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Have you ever found any problems from reusing Stack Overflow code snippets?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently did you find problems from reusing Stack Overflow code snippets?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{What were the problems?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently did you report the problems back to the Stack Overflow discussion threads?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How did you report the problems?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Were you aware, at the time of copying the code, that Stack Overflow apply Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) to content in the posts, including code snippets?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How often did you give attribution (adding a link to a Stack Overflow question/answer) as required by CC BY-SA 3.0 in the code where you used the snippet?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Have you ever checked if the Stack Overflow code snippet originated from a different source (e.g. an open source project) with an incompatible license to your project?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How often did you check for licensing conflicts of code snippets from Stack Overflow and your project(s) before using them?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{How frequently did you have legal problems by copying code snippets from Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Could you please briefly explain what are the legal problems that you faced by copying code snippets from Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+\noindent\fbox{%
+	\parbox[c][0.5cm]{0.98\textwidth}{%
+		\textit{Did you have any other problems from using code snippets from Stack Overflow?}
+	}%
+}
+\vspace{0.5cm}
+
 
 \section{Related Work}
 
