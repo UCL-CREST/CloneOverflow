@@ -133,7 +133,7 @@ gain insights into the cause of the problems, we resort to a qualitative study
 using an online survey of Stack Overflow developers who 1) regularly answer
 programming questions with code snippets and 2) reuse code snippets from Stack
 Overflow. \textbf{The study aims to understand the developers' awareness and
-	experience to the issues of outdated and license-violating code on Stack
+	experience to outdated code and code licensing on Stack
 	Overflow.} 
 
 In this paper, we use the term ``answerers'' to refer to Stack Overflow users
@@ -151,10 +151,16 @@ problem and reused them with or without a modification. We ask the visitors
 about their experience of reusing source code from Stack Overflow and the problems
 they faced including code obsolescence and software license.
 
-\section{Research Questions}
-In this study, we would like to answer six research questions. The first three questions will be
-answered by the Stack Overflow answerer survey, while the other three questions will be answered by the
-Stack Overflow visitor survey.
+\section{Research Methodology}
+We followed the principles of survey research by~\cite{Pfleeger2001}
+and~\cite{Kitchenham2002} by setting specific and measurable objective, 
+designing and scheduling the survey, selecting participants, analysing the data, and reporting the results.
+We now discuss each of them in detail.
+
+\subsection{Survey Objective}
+The main objective of the survey is to understand the developers' awareness and
+experience to outdated code and code licensing on Stack Overflow. It can break
+down into the following six research questions.
 
 \begin{enumerate}
 	\item \textbf{RQ1 (Sources of Stack Overflow Answer Snippets):} \textit{Where are the code snippets in Stack Overflow answers from?}
@@ -164,10 +170,13 @@ Stack Overflow visitor survey.
 	\item \textbf{RQ5 (Software licensing issues from Stack Overflow code snippets):}\textit{How often do Stack Overflow visitors check for software licensing issues from code snippets on Stack Overflow?}
 \end{enumerate}
 
-\section{Research Methodology}
-The study is conducted using online surveys. We designed the surveys using
-Google Forms by following the principles of survey research
-by~\cite{Pfleeger2001} and~\cite{Kitchenham2002}. We created two versions of the
+The first three questions will be answered by
+the Stack Overflow answerer survey, while the other three questions will be
+answered by the Stack Overflow visitor survey.
+
+\subsection{Survey Design and Schedule}
+The study is conducted using unsupervised online surveys. We designed the surveys using
+Google Forms. We created two versions of the
 survey: \textbf{the answerer survey}, and, \textbf{the visitor survey}. Both
 surveys are completely anonymous and the participants could decide to leave at
 any time. They do not collect any sensitive personal information from the
@@ -176,16 +185,41 @@ officer in the Computer Science Department at University College London (UCL).
 The complete version of the surveys can be found in 
 Appendix~\ref{appendixA}.
 
-
-\subsection{The Answerer Survey}
-The Stack Overflow answerer survey contains 11 questions: 7 Likert's scale
-questions, 3 yes/no questions, and one open-ended question for additional
+\subsubsection{The answerer survey} 
+The survey contains 11 questions: 7 Likert's
+scale questions, 3 yes/no questions, and one open-ended question for additional
 comments. The first two questions are mandatory while the other 9 questions will
 be shown to the participants based on their previous answers. The survey
 collects information of the participant's software development experience, the
 experience of answering Stack Overflow questions, sources of the Stack Overflow
 snippets, awareness of outdated code in their answers, concerns regarding
-license when they copy code snippets to Stack Overflow, and additional feedbacks.
+license when they copy code snippets to Stack Overflow, and additional
+feedbacks. The survey was open for participation for 50 days, from 25 July 2017
+to 12 September 2017, before we collected and analysed the responses.
+
+\subsubsection{The visitor survey} 
+The survey consists of 16 questions: 9 Likert's
+scale questions, 3 yes/no questions, 2 multiple-choice questions, and 2
+open-ended questions. The first four questions are mandatory while the other 12
+questions will be shown to the participants based on their previous answers. The
+survey collects information of the participant's software development
+experience, the importance of Stack Overflow, reasons for reusing Stack Overflow
+snippets, problems from Stack Overflow snippets, licensing of code on Stack
+Overflow, and additional feedbacks. The survey was open for participation for 50
+days, from 25 July 2017 to 12 September 2017, before we collected and analysed
+the responses.
+
+\subsection{Participant Selection}
+
+\subsubsection{The answerer survey} 
+We selected the participants for our answerer survey based on their Stack
+Overflow reputations. On Stack Overflow, a user's reputation reflects how much
+the community trusts the user. A user earns reputation when he or she receives
+up votes for good questions and useful answers. Accepted answers receive more
+reputation score than questions and regular answers\footnote{Stack Overflow
+	Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
+Overflow reputation is an indicator of user's skills and their involvement in
+asking and answering questions on the site.
 
 \begin{table}
 	\centering
@@ -203,15 +237,6 @@ license when they copy code snippets to Stack Overflow, and additional feedbacks
 	\end{tabular}
 \end{table}
 
-We selected the participants for our answerer survey based on their Stack
-Overflow reputations. On Stack Overflow, a user's reputation reflects how much
-the community trusts the user. A user earns reputation when he or she receives
-up votes for good questions and useful answers. Accepted answers receive more
-reputation score than questions and regular answers\footnote{Stack Overflow
-	Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
-Overflow reputation is an indicator of user's skills and their involvement in
-asking and answering questions on the site.
-
 The participants were invited to take the survey via email addresses publicly
 available on their Stack Overflow and GitHub profiles. We selected the answerers
 based on their all-time reputation ranking\footnote{Stack Overflow Users (data as of
@@ -220,20 +245,24 @@ and separated them into two groups (see Table~\ref{tab:answerers}) so that we
 can compare the results or observe similar patterns between them. The first
 group had reputation from 963,731 (the highest) to 7,674, and the second group
 had reputation from 7,636 to 6,999 which we sent out 300 and 307 emails
-(excluding undelivered ones) respectively. The survey was open for participation
-for a month, from 25 July 2017 to 25 August 2017, before we collected and
-analysed the responses.ponses.
+(excluding undelivered ones) respectively. 
 
-\subsection{The Visitor Survey}
-
-The Stack Overflow visitor survey consists of 16 questions: 9 Likert's scale
-questions, 3 yes/no questions, 2 multiple-choice questions, and 2 open-ended
-questions. The first four questions were mandatory while the other 12 questions
-were shown to the participants based on their previous answers. The survey collects
-information of the participant's software development experience, the importance of
-Stack Overflow, reasons for reusing Stack Overflow snippets, problems from
-Stack Overflow snippets, licensing of code on Stack Overflow, and additional
-feedbacks.
+\subsubsection{The visitor survey} 
+We adopted non-probability convenient sampling to invite participants for this
+survey. Participation in the survey requires experience of
+visiting Stack Overflow for solving programming tasks at least once. The
+participants were invited to take the survey via five channels. The first
+channel is via the first author's social media post (Facebook) where the he
+invited friends who are software developers and have experience of copying code
+snippets from Stack Overflow to take the survey. The second channel is a popular
+technology news and media community in Thailand called \textsf{blognone.com} which
+attracts a high number of Thai software developers. The first author posted an
+invitation to the visitor survey in a discussion forum mentioning the
+requirements to take the survey. The third channel collects answers from the
+University of Molise from help of an external researcher. The last two
+channels are from a \textsf{comp.lang.java.programmer} Google groups and Software
+Engineering Facebook page. The number of participants taken the survey is shown in
+Table~\ref{tab:visitors}.
 
 \begin{table}
 	\centering
@@ -241,7 +270,7 @@ feedbacks.
 	\label{tab:visitors}
 	\begin{tabular}{lr}
 		\toprule
-		Invitation channels & Answers \\
+		Group & Answers \\
 		\midrule
 		Social media (Facebook posts) & 47 \\
 		Blognone.com & 32 \\
@@ -254,30 +283,26 @@ feedbacks.
 	\end{tabular}
 \end{table}
 
-The participants for this survey were invited to take the survey via five
-channels. The first channel is via the first author's Facebook post where the
-first author invited friends who are software developers and have experience of
-copying code snippets from Stack Overflow to take the survey. The second channel
-is a popular Thai technology news and media community called blognone.com which
-attracts a high number of software developers. The first author posted an
-invitation to the visitor survey in a discussion forum. The third channel
-collects answers from the University of Molise which is the third author's
-workplace. The last two channels are from a comp.lang.java.programmer Google
-groups and Software Engineering Facebook page. The survey was open for
-participation for a month, from 25 July 2017 to 25 August 2017, before we
-collected and analysed the responses. The number of participants taken the
-survey is shown in Table~\ref{tab:visitors}.
+\subsection{Data Analysis}
+Google Forms provide a helpful summary of responses to the online surveys. We
+relied on the summary from Google Forms when analysing the answers from the
+answerer survey. For the visitor survey, since we created a copy of the survey for each
+group of the participants, we downloaded the responses in comma-separated values
+(CSV) files and merged the results before the analysis.
 
 \section{Results and Discussions}
+We collected and analysed the results after we closed the surveys on 12
+September 2017. We now discuss the results separately for the answerer and the
+visitor survey.
 
-\subsection{Answerer Responses}
+\subsection{The answerer survey}
 We received 117 answers (39\% response rate) from the first group and 85 answers
 (28\% response rate) from the second group of Stack Overflow answerers. The response
 rate from both groups was high considered other online survey in software
 engineering that received approximately 14--20\%~\FIXME{double-check the
 	citation again for the magic numbers.}~\citep{Punter2003}.
 
-\subsubsection*{General Information}
+\subsubsection{General Information}
 %General information of the answerers' experience and frequency of answering 
 %questions on Stack Overflow with code snippets as discussed below.
 
@@ -802,6 +827,30 @@ Overflow (see Figure~\ref{fig:survey_visitor_legal_issue}).
 } \vspace{0.5cm}
 
 \section{Threats to Validity}
+
+\subsection{Internal Validity}
+We targeted the participants for the answerer survey based on their Stack Overflow
+reputation instead of random sampling. This is because reflects the developers
+involvement in asking and answering questions on the site. Thus, our findings
+capture awareness and experience of experienced Stack Overflow developers. Moreover,
+due to a large number of users on Stack Overflow, we could invite only 607
+highly-ranked developers to participate in the study.
+
+We selected the participants for the visitor survey based on convenient sampling which
+could suffer from bias and outliers.
+
+\subsection{External Validity} 
+While the reputation is a good proxy to reflect the amount of answers the
+developers have given, it might not cover all kinds of answerers on Stack
+Overflow. The answerers who have lower-reputation than 6,999 were not invited to
+our study and their awareness and experience may differ from our findings.
+
+At least 39\% of the participants in the visitor survey are from
+\textsf{blognone.com} which is based in Thailand. Due to working culture,
+answers from this group of developers may only represent software developers in
+Thailand. We alleviate this concern by inviting participants from other groups,
+e.g.~University of Molise in Italy, comp.lang.java.programmer, and Software
+Engineering Facebook group.
 
 \section{Related Work}
 
