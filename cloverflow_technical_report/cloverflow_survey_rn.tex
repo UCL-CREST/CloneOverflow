@@ -166,6 +166,7 @@ down into the following six research questions.
 	\item \textbf{RQ1 (Sources of Stack Overflow Answer Snippets):} \textit{Where are the code snippets in Stack Overflow answers from?}
 	\item \textbf{RQ2 (Awareness of Stack Overflow answerers to outdated code):} \textit{Are Stack Overflow answerers aware of outdated code in their answers?}
 	\item \textbf{RQ3 (Awareness of Stack Overflow answerers to outdated code):} \textit{Are Stack Overflow answerers aware of outdated code in their answers?}
+	\item \textbf{RQ4 (Search for Coding Solutions):} \textit{Where do the developers search for programming solutions?}
 	\item \textbf{RQ4 (Problems from Stack Overflow code snippets):} \textit{What are the problems Stack Overflow visitors experiencing from reusing code snippets on Stack Overflow?}
 	\item \textbf{RQ5 (Software licensing issues from Stack Overflow code snippets):}\textit{How often do Stack Overflow visitors check for software licensing issues from code snippets on Stack Overflow?}
 \end{enumerate}
@@ -292,8 +293,8 @@ group of the participants, we downloaded the responses in comma-separated values
 
 \section{Results and Discussions}
 We collected and analysed the results after we closed the surveys on 12
-September 2017. We now discuss the results separately for the answerer and the
-visitor survey.
+September 2017. We now discuss the results from the answerer and
+visitor survey separately.
 
 \subsection{The answerer survey}
 We received 117 answers (39\% response rate) from the first group and 85 answers
@@ -328,19 +329,20 @@ engineering that received approximately 14--20\%~\FIXME{double-check the
 The majority of users in both groups are experienced developers with more than
 10 years of experience or between 5 to 10 years as depicted in
 Figure~\ref{fig:survey_exp}. There are 59\% of the answerers in Group 1 that
-have more than 10 years of software development experience, while a slightly less
-percentage of 50\% in Group 2.
+have more than 10 years of software development experience, while a slightly
+less percentage of 50\% in Group 2.
 
 The participants are active users and regularly answer questions on Stack
 Overflow (see Figure~\ref{fig:survey_answer_frequency}). Eighty-two (82\%) and
-sixty (60\%) of answerers from Group 1 and Group 2  answer questions at
-least once a week.
-More than half of the answerers very frequently (81--100\% of the time) or
-frequently (61--80\% of the time) include code snippets in their answers. To
-break down into two groups as depicted in
+sixty (60\%) of answerers from Group 1 and Group 2  answer questions at least
+once a week. More than half of the answerers very frequently (81--100\% of the
+time) or frequently (61--80\% of the time) include code snippets in their
+answers. To break down into two groups as depicted in
 Figure~\ref{fig:survey_answer_frequency_with_code}, Group 1 very frequently
 (48.7\%) and frequently (27.4\%) provide code examples when answering. Likewise,
-Group 2 does the same (very frequently for 32.1\% and frequently for 36.9\%).
+Group 2 follow the same trend (very frequently for 32.1\% and frequently for
+36.9\%). Interestingly, there is one participant who never include code snippet
+in his/her answer thus the results after this question are from 116 participants.
 
 %\subsubsection*{How frequently do or did you answer questions on Stack Overflow?}
 
@@ -372,20 +374,23 @@ Group 2 does the same (very frequently for 32.1\% and frequently for 36.9\%).
 
 \subsubsection*{RQ1: Where are the code snippets in Stack Overflow answers from?} 
 
-To answer this research question, we ask the participants for original sources
-of their code examples. We provided six options (allowing more than one answer)
-including \textit{I copied them from my own personal projects}, \textit{I copied
-	them from my company's projects}, \textit{I copied them from open source
-	projects}, \textit{I wrote the new code from scratch}, \textit{I copied the code
-	from the question and modify it for the answer}, and \textit{Others}. The
-answers are shown in Figure~\ref{fig:survey_snippet_source}. Participants in
-Group 1 mainly write new code from scratch (116) or copy from the code snippets
-in question and modify it for the answer (112), followed by from their personal
-projects (105), open source projects (77), other sources (59), and company
-projects (48). For Group 2, the main source is also writing code from scratch
-(83), followed by copying from personal projects and modifying from the question
-(77), copying from open source projects (56), copying from other sources (40),
-and copying from company projects (31).
+To answer this research question, we asked the participants for the original
+source of their code examples. We provided six options (allowing more than one
+answer) including \textit{I copied them from my own personal projects},
+\textit{I copied them from my company's projects}, \textit{I copied them from
+	open source projects}, \textit{I wrote the new code from scratch}, \textit{I
+	copied the code from the question and modify it for the answer}, and
+\textit{Others}. The answers are shown in
+Figure~\ref{fig:survey_snippet_source}. Participants in Group 1 mainly write new
+code from scratch (116) or copy from the code snippets in question and modify it
+for the answer (112), followed by from their personal projects (105), open
+source projects (77), other sources (59), and company projects (48). For Group
+2, the main source is also writing code from scratch (83), followed by copying
+from personal projects and modifying from the question (77), copying from open
+source projects (56), copying from other sources (40), and copying from company
+projects (31). There are 133 answerers out of total 607 from two groups who have cloned
+code snippets from open source projects into their answers at least once. We are interested
+in this type of clones and will investigate further in the later RQs.
 
 \begin{figure*}
 	\begin{subfigure}{.5\textwidth}
@@ -417,10 +422,10 @@ and copying from company projects (31).
 
 \subsubsection*{RQ2: Are Stack Overflow answerers aware of outdated code in their answers?}
 
-Half of the top answerers on Stack Overflow
-are aware of outdated code in their answers. We found that 71.6\% of Stack Overflow answerers in Group 1 have been notified of
-outdated code in at least one of their answers (see Figure~\ref{fig:survey_outdated}). The ratio drops to 57.1\% in
-Group 2. 
+Half of the top answerers on Stack Overflow are aware of outdated code in their
+answers. As visualised in Figure~\ref{fig:survey_outdated}, 83 participants (71.6\%)
+of Stack Overflow answerers in Group 1 have been notified of outdated code in at
+least one of their answers. The ratio drops to 48 participants (57.1\%) in Group 2.
 
 \begin{figure}
 	\centering
@@ -446,12 +451,27 @@ Group 2.
 	\label{fig:survey_outdated_fix}
 \end{figure}
 
-We then asked the participants who have been notified of their outdated code
-(81 and 48 participants from Group 1 and 2 respectively) a
-follow-up questions \textit{``how frequently did you fix your outdated code on Stack
-Overflow?''} The answers, depicted in Figure~\ref{fig:survey_outdated_fix}, show that
-more than half of them frequently fix the outdated code snippets. However, there
-are 19.8\% and 18.8\% of the answerers in Groups 1 and 2 who rarely or never fix their code.
+We then asked the participants who have been notified of their outdated code (83
+and 48 participants from Group 1 and 2 respectively) a follow-up questions
+\textit{``how frequently did you fix your outdated code on Stack Overflow?''}
+The answers, depicted in Figure~\ref{fig:survey_outdated_fix}, show that more
+than half of them frequently fix the outdated code snippets. However, there are
+17 (19.8\%) and 9 (18.8\%) participants in Groups 1 and 2 who rarely, very
+rarely or never fix their code.
+
+Regarding this issue of outdated code, one participant expresses their concern
+in the open comment question: \textit{``The main problem for me/us is outdated
+	code, esp. as old answers have high Google rank so that is what people see
+	first, then try and fail. Thats why we're moving more and more of those examples
+	to knowledge base and docs and rather link to those.''} On the other hand,
+another participant does not  worry about his/her outdated code and how he
+or she handles them: \textit{``On
+	the matter of deprecation, I almost entirely use .NET which has got different
+	versions of the framework. Therefore, code deprecation is not often a problem
+	since what is deprecated on one version of the framework may be the only way of
+	solving a given problem on an older version of the framework. I may also have to
+	add that questions I tend to answer are about how to solve general coding
+	problems so they are not usually subject to deprecation.''}
 
 \vspace{0.5cm} \noindent\fbox{%
 	\parbox[c][1cm]{0.98\textwidth}{%
@@ -465,10 +485,10 @@ are 19.8\% and 18.8\% of the answerers in Groups 1 and 2 who rarely or never fix
 	conflicts caused by code snippets in their answers?}
 
 As shown in Figure~\ref{fig:survey_license_known}, more than half of the
-answerers in both groups (62.1\% and 61.9\% respectively) are aware that Stack
+answerers in both groups, 72 (62.1\%) and 53 (62.3\%) respectively, are aware that Stack
 Overflow apply Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA
-3.0) to content in the posts, including code snippets, while the rest of 37.9\%
-and 38.1\% are not. 
+3.0) to content in the posts, including code snippets, while the rest of 44 (37.9\%)
+and 32 (37.6\%) are not. 
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
@@ -487,17 +507,17 @@ and 38.1\% are not.
 	\label{fig:survey_license_known}
 \end{figure}
 
-Almost every answerer in both groups (98\% and 99\% respectively) does not
-include license statement in their code snippets (numbers are shown in
-Figure~\ref{fig:survey_license}). Some of the participants explain the reason in
-the open comment question which we summarised into three groups as follows.
-First, they choose to post only their own code or code that is adapted from the
-question. The code is automatically subjected to Stack Overflow's CC BY-SA 3.0.
-Second, they copy the code from company or open source projects that they know are
-permitted to be publicly distributed. Hence, no license statement is required.
-Third, some answerers believe that code snippets in their answers are too small
-to claim any intellectual property on them and fall under fair
-use~\citep{fairuse}.
+Almost every answerer in both groups, 114 out of 116 (98\%) and 84 out of 85
+(99\%) respectively, does not include license statement in their code snippets
+(numbers are shown in Figure~\ref{fig:survey_license}). Some of the participants
+explain the reason in the open comment question which we summarised into three
+groups as follows. First, they choose to post only their own code or code that
+is adapted from the question. The code is automatically subjected to Stack
+Overflow's CC BY-SA 3.0 without any explicit licensing statement. Second, they
+copy the code from company or open source projects that they know are permitted
+to be publicly distributed. Hence, no license statement is required. Third, some
+answerers believe that code snippets in their answers are too small to claim any
+intellectual property on them and fall under fair use~\citep{fairuse}.
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
@@ -516,14 +536,14 @@ use~\citep{fairuse}.
 	\label{fig:survey_license}
 \end{figure}
 
-While nobody explicitly includes a software license in their snippets,
-many users include a statement on their profile page that states all their
+While almost nobody explicitly includes a software license in their snippets,
+many participants include a statement on their profile page that all their
 answers are under a certain license. For example, \textit{All code posted by me on
 	Stack Overflow should be considered public domain without copyright. For
 	countries where public domain is not applicable, I hereby grant everyone the
 	right to modify, use and redistribute any code posted by me on Stack Overflow
 	for any purpose. It is provided "as-is" without warranty of any kind.}  Many
-users either declare their snippets to be public domain, or they grant
+participants either declare their snippets to be public domain, or they grant
 additional licenses, e.g. Apache 2.0 or MIT/Expat.
 
 \begin{figure}
@@ -546,25 +566,25 @@ additional licenses, e.g. Apache 2.0 or MIT/Expat.
 We asked the answerers a follow-up question of how frequently they checked for a
 conflict between software license of the code snippets they copied to their
 answers and Stack Overflow's CC BY-SA 3.0. As shown in
-Figure~\ref{fig:survey_license_check}, 69\% of answerers from both groups did
-not perform the checking. There are only approximately 10\% of the answerers who
-frequently checks for licensing conflicts when they copy code snippets to Stack
-Overflow.
+Figure~\ref{fig:survey_license_check}, 80 (69\%) and 58 (69\%) answerers from
+group 1 and group 2 did not perform the checking. There are only approximately
+10\% of the answerers who frequently checks for licensing conflicts when they
+copy code snippets to Stack Overflow.
 
 \vspace{0.5cm} \noindent\fbox{%
 	\parbox[c][1.5cm]{0.98\textwidth}{%
-		\textit{For RQ3, approximately 60\% of answerers are aware of CC BY-SA 3.0
-			license enforced by Stack Overflow. However, 98--99\% of the answerers do not
-			include software license in their Stack Overflow snippets nor check for
-			licensing conflicts when they copy code snippets to Stack Overflow answers.}
-	}%
+		\textit{For RQ3, approximately 62\% of our participants are aware of CC BY-SA
+			3.0 license enforced by Stack Overflow. However, 98--99\% of the answerers
+			never include software license in their Stack Overflow snippets. Sixty-nine
+			percent never check for licensing conflicts when they copy code snippets to
+			Stack Overflow answers.} }%
 } \vspace{0.5cm}
 
 
-In addition, we invited the answerers to give comments regarding their concerns
-when answering Stack Overflow (SO) with code snippets. Some interesting comments
-are selected and discussed below. The full set of answers can be found in the
-Appendix~\ref{appendixC}.
+To acquire additional insights, we invited every answerers for
+further comments regarding their concerns of answering Stack Overflow (SO)
+with code snippets. Some interesting comments are selected and discussed below.
+The full set of answers can be found in the Appendix~\ref{appendixC}.
 
 \begin{itemize}[label={}] \itemsep1em \item Comment 1: The answerer addresses a
 	concern of programmers reusing his/her code snippets without understanding them.
@@ -597,7 +617,7 @@ reusing Stack Overflow code snippets without understanding.
 	\begin{quote}\textit{My only concern, albeit minor, is that I know people
 			blindly copy my code without even understanding what the code does.}\end{quote}
 	
-	\item Comment 4: The answerer discusses a problem from outdated Stack Overflow code snippets and
+	\item Comment 4: As shown in RQ2, the answerer discusses a problem from outdated Stack Overflow code snippets and
 	his/her solution.
 	
 	\begin{quote}\textit{The main problem for me/us is outdated code, esp. as old
@@ -614,16 +634,17 @@ reusing Stack Overflow code snippets without understanding.
 
 \subsection{Visitor Responses}
 
-To answer RQ4 and RQ5, we ask Stack Overflow visitors about their experiences of
-outdated code and their awareness to software license of Stack Overflow code
-snippets. We received 89 answers from 5 groups of Stack Overflow visitors. The
-combined results and discussions are presented below.
+To answer RQ4 and RQ5, we used another online survey, the visitor survey, to ask
+Stack Overflow visitors about their experiences of obsolete code and their
+awareness to software license of Stack Overflow code snippets. We received 89
+answers from 5 groups of Stack Overflow visitors. We combined the results and
+present them as a single group below.
 
 \subsubsection*{General Information}
 
 \begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{survey_visitor_exp}
+		\includegraphics[width=0.4\linewidth]{survey_visitor_exp}
 		\caption{Experience of the Stack Overflow visitors}
 		\label{fig:survey_visitor_exp}
 \end{figure}
@@ -634,16 +655,15 @@ years of experience respectively. There are 19 participants (21\%) who have 3-5
 years, 18 (20\%) who have 1-2 years, and 7 (8\%) participants who have less than a
 year of programming experience.
 
-\subsubsection*{RQ4: Why developers choose to find programming solutions on Stack Overflow?}
+\subsubsection*{RQ4: Where do the developers search for programming solutions?}
 
-Similar to a study by~\cite{Acar2016}, we asked the participants to rank five
-options, without a tie, they will choose to find programming solutions. The
-given five options include books, official documentations, Stack Overflow,
-online repositories (e.g. GitHub), and others. The results are displayed in
-Figure~\ref{fig:survey_visitor_rankings-crop}. We found that 47 out of 89
-participants rank Stack Overflow as the 1st option to search for programming
-solutions, followed by official documentation (33), online repositories (6),
-other resources (5), and books (1).
+We asked the participants to rank five options, without a tie, they will choose
+to find programming solutions. The given five options include books, official
+documentations, Stack Overflow, online repositories (e.g. GitHub), and others.
+The results are displayed in Figure~\ref{fig:survey_visitor_rankings-crop}. We
+found that 47 out of 89 participants rank Stack Overflow as the 1st option to
+search for programming solutions, followed by official documentation (33),
+online repositories (6), other resources (5), and books (1).
 
 \begin{figure} \centering
 	\includegraphics[width=.5\linewidth]{survey_visitor_rankings-crop} 
@@ -651,13 +671,14 @@ other resources (5), and books (1).
 	\label{fig:survey_visitor_rankings-crop} 
 \end{figure}
 
-We then shift the focus to only Stack Overflow. We ask the participants how
-frequently they reuse code snippets from answers on Stack Overflow. According to
-the answers (see Figure~\ref{fig:survey_visitor_frequency_so_copy-crop}), we
-found that 57 (64\%) participants actively reusing code snippets from Stack
-Overflow. Eight participants (9\%) copy Stack Overflow code every day, 22 (25\%)
-do copying 3-6 times a week, 27 (30\%) do copying once or twice a week. There
-are 2 participants (2\%) who never copy the code from Stack Overflow.
+Since Stack Overflow is among the first research to solve programming tasks, we
+ask the participants how frequently they reuse code snippets from answers on
+Stack Overflow. According to the results (see
+Figure~\ref{fig:survey_visitor_frequency_so_copy-crop}), we found that 57 (64\%)
+participants actively reusing code snippets from Stack Overflow. Eight
+participants (9\%) copy Stack Overflow code every day, 22 (25\%) do copying 3-6
+times a week, 27 (30\%) do copying once or twice a week. There are 2
+participants (2\%) who never copy the code from Stack Overflow.
 
 \begin{figure} \centering
 	\includegraphics[width=.5\linewidth]{survey_visitor_frequency_so_copy} 
@@ -672,8 +693,12 @@ Agree, Undecided, Disagree, Strongly disagree). The four reasons include
 	similar to my problems with minimal changes}, \textit{The context of questions
 	and answers helped me understand the code snippets better}, \textit{The voting
 	mechanism and accepted answers helped to filter good code from bad code}. The
-answers are depicted in Figure~\ref{fig:survey_visitor_why_copy_so}. More than 80\% of the
-participants agree with all the four reasons. 
+answers are depicted in Figure~\ref{fig:survey_visitor_why_copy_so}. More than
+80\% of the participants agree with all the four reasons. We observed only two
+``disagree'' and zero ``Strongly disagree'' answer for ``Helpful context'', the
+lowest disagreement among the four reasons. This means most of them agree that
+the context of questions and answers on Stack Overflow help them understand the
+code snippet better.
 
 \begin{figure} \centering
 	\includegraphics[width=0.6\linewidth]{survey_visitor_why_copy_so} 
@@ -682,12 +707,14 @@ participants agree with all the four reasons.
 \end{figure}
 
 \vspace{0.5cm} \noindent\fbox{%
-	\parbox[c][1.5cm]{0.98\textwidth}{%
+	\parbox[c][2cm]{0.98\textwidth}{%
 		\textit{For RQ4, Stack Overflow is ranked higher than official documentations,
 	online repositories, and book as the resource to look for programming
 	solutions. Developers rely on Stack Overflow answers because they are easy to
 	search for on the web. Moreover, 64\% of the participants reuse code snippets
-	from Stack Overflow at least once a week.}
+	from Stack Overflow at least once a week. The copy code from Stack Overflow
+    because they can be found easily from search engine, solve similar problems to
+    their problems, provide helpful context, and offer voting and accepted answers.}
 	}%
 } \vspace{0.5cm}
 
