@@ -75,7 +75,27 @@
 \maketitle
 
 \begin{abstract}
-ABSTRACT GOES HERE
+We performed two online surveys of Stack Overflow answerers and visitors to
+assess their awareness to outdated code and software license in Stack Overflow
+answerers. The answerer survey targets 607 Stack Overflow users with high
+reputation and receives a high response rate of 33\%. While most of the code
+snippets in the answers are written from scratch, there are code snippets that
+are cloned from the questions, personal or company projects, and also open
+source projects. Stack Overflow answerers are aware that some of their snippets
+are outdated. However, 19\% of the participants report that they rarely or never
+fix the code. At least 98\% of the answerers never include software license in
+their snippets and 69\% never check for licensing conflicts with Stack
+Overflow's CC BY-SA 3.0 if they copy the code from other sources to Stack
+Overflow answers. The visitor survey uses convenient sampling and receives 89
+responses. We found that 66\% of the participants experience a problem from
+cloning and reusing Stack Overflow snippets. Fifty-six percent of the visitors
+never report the problems back to Stack Overflow. Lastly, 85\% of the
+participants are not aware of CC BY-SA 3.0 license and 62\% never give
+attributions to Stack Overflow posts or answers they copied the code from.
+Moreover, 66\% of the participants do not check for licensing conflicts between
+the cloned Stack Overflow code and their software. We suggest Stack Overflow to
+raise an awareness of their users, both the answerers and the visitors, to the
+problem of code obsolescence and licensing.
 \end{abstract}
 
 \section{Introduction}
@@ -160,19 +180,19 @@ We now discuss each of them in detail.
 \subsection{Survey Objective}
 The main objective of the survey is to understand the developers' awareness and
 experience to outdated code and code licensing on Stack Overflow. It can break
-down into the following six research questions.
+down into the following five research questions.
 
 \begin{enumerate}
 	\item \textbf{RQ1 (Sources of Stack Overflow Answer Snippets):} \textit{Where are the code snippets in Stack Overflow answers from?}
 	\item \textbf{RQ2 (Awareness of Stack Overflow answerers to outdated code):} \textit{Are Stack Overflow answerers aware of outdated code in their answers?}
 	\item \textbf{RQ3 (Awareness of Stack Overflow answerers to outdated code):} \textit{Are Stack Overflow answerers aware of outdated code in their answers?}
-	\item \textbf{RQ4 (Search for Coding Solutions):} \textit{Where do the developers search for programming solutions?}
+%	\item \textbf{RQ4 (Search for Coding Solutions):} \textit{Where do the developers search for programming solutions?}
 	\item \textbf{RQ4 (Problems from Stack Overflow code snippets):} \textit{What are the problems Stack Overflow visitors experiencing from reusing code snippets on Stack Overflow?}
-	\item \textbf{RQ5 (Software licensing issues from Stack Overflow code snippets):}\textit{How often do Stack Overflow visitors check for software licensing issues from code snippets on Stack Overflow?}
+	\item \textbf{RQ5 (Software license of Stack Overflow code snippets):}\textit{Are Stack Overflow visitors aware of code licensing on Stack Overflow}
 \end{enumerate}
 
 The first three questions will be answered by
-the Stack Overflow answerer survey, while the other three questions will be
+the Stack Overflow answerer survey, while the other two questions will be
 answered by the Stack Overflow visitor survey.
 
 \subsection{Survey Design and Schedule}
@@ -260,7 +280,7 @@ technology news and media community in Thailand called \textsf{blognone.com} whi
 attracts a high number of Thai software developers. The first author posted an
 invitation to the visitor survey in a discussion forum mentioning the
 requirements to take the survey. The third channel collects answers from the
-University of Molise from help of an external researcher. The last two
+University of Molise from the help of an external researcher. The last two
 channels are from a \textsf{comp.lang.java.programmer} Google groups and Software
 Engineering Facebook page. The number of participants taken the survey is shown in
 Table~\ref{tab:visitors}.
@@ -655,7 +675,7 @@ years of experience respectively. There are 19 participants (21\%) who have 3-5
 years, 18 (20\%) who have 1-2 years, and 7 (8\%) participants who have less than a
 year of programming experience.
 
-\subsubsection*{RQ4: Where do the developers search for programming solutions?}
+\subsubsection*{Where do the developers search for programming solutions?}
 
 We asked the participants to rank five options, without a tie, they will choose
 to find programming solutions. The given five options include books, official
@@ -706,19 +726,15 @@ code snippet better.
 	\label{fig:survey_visitor_why_copy_so} 
 \end{figure}
 
-\vspace{0.5cm} \noindent\fbox{%
-	\parbox[c][2cm]{0.98\textwidth}{%
-		\textit{For RQ4, Stack Overflow is ranked higher than official documentations,
-	online repositories, and book as the resource to look for programming
-	solutions. Developers rely on Stack Overflow answers because they are easy to
-	search for on the web. Moreover, 64\% of the participants reuse code snippets
-	from Stack Overflow at least once a week. The copy code from Stack Overflow
-    because they can be found easily from search engine, solve similar problems to
-    their problems, provide helpful context, and offer voting and accepted answers.}
-	}%
-} \vspace{0.5cm}
+To sum up, Stack Overflow is ranked higher than official documentations, online
+repositories, and book as the resource to look for programming solutions.
+Developers rely on Stack Overflow answers because they are easy to search for on
+the web. Moreover, 64\% of the participants reuse code snippets from Stack
+Overflow at least once a week. The copy code from Stack Overflow because they
+can be found easily from search engine, solve similar problems to their
+problems, provide helpful context, and offer voting and accepted answers.
 
-\subsubsection*{RQ5: What are the problems Stack Overflow visitors experiencing
+\subsubsection*{RQ4: What are the problems Stack Overflow visitors experiencing
 	from reusing code snippets on Stack Overflow?}
 
 We asked the visitors whether they have any problem from reusing Stack Overflow
@@ -739,20 +755,24 @@ reused snippets.
 \end{figure}
 
 The problems from reusing Stack Overflow code snippets (illustrated in
-Figure~\ref{fig:survey_visitor_problems}) include incorrect solutions,the code
-claims to solve the problem in the question while it does not,  (20 out of 57
-$\approx$ 35\%); outdated solutions, i.e.~the code may work with the some older
-versions of the library or API, but not the one they are using, (39 out of 57
-$\approx$ 68\%); mismatched solutions, i.e.~the code solves the problem in the
-question but it is not exactly the right solution for their problem, (40 out of
-57 $\approx$ 70\%); and buggy code (1 out of 57 $\approx$ 2\%). Stack Overflow
-visitors rarely report the problems back to the discussion threads (as can be
-seen in Figure~\ref{fig:survey_visitor_freq_report_problems}). Among the 32
-participants who encounter problems of Stack Overflow snippets, 18 of them
-(56\%) never report the problems. As shown in
-Figure~\ref{fig:survey_visitor_how_report_problems}, the 14 participants who
-reported the problems did so by writing a comment (10), down-voting the answer
-(8), contacted the answerer (2), and posting the new and correct answer (2).
+Figure~\ref{fig:survey_visitor_problems}) include incorrect solutions, i.e.~the
+code claims to solve the problem in the question while it does not,  (28 out of
+57 $\approx$ 49\% participants reported this); outdated solutions, i.e.~the code
+may work with the some older versions of the library or API, but not the one
+they are using, (39 out of 57 $\approx$ 68\% participants reported this);
+mismatched solutions, i.e.~the code solves the problem in the question but it is
+not exactly the right solution for their problem, (40 out of 57 $\approx$ 70\%
+participants reported this); and buggy code (1 out of 57 $\approx$ 2\%
+participants reported this).
+
+Stack Overflow visitors rarely report the problems back to the discussion
+threads (as can be seen in
+Figure~\ref{fig:survey_visitor_freq_report_problems}). Among the 32 participants
+who encounter problems of Stack Overflow snippets, 18 of them (56\%) never
+report the problems. Fourteen participants who reported the problems
+did so by writing a comment (10), down-voting the answer (8), contacted the
+answerer (2), and posting the new and correct answer (2), as shown in
+Figure~\ref{fig:survey_visitor_how_report_problems}.
 
 \begin{figure} \centering
 	\includegraphics[width=.5\linewidth]{survey_visitor_problems} 
@@ -773,23 +793,22 @@ reported the problems did so by writing a comment (10), down-voting the answer
 \end{figure}
 
 \vspace{0.5cm} \noindent\fbox{%
-	\parbox[c][2cm]{0.98\textwidth}{%
-		\textit{For RQ5, our survey results show that 57 out of 87 Stack Overflow
+	\parbox[c][2.2cm]{0.98\textwidth}{%
+		\textit{For RQ4, our survey results show that 57 out of 87 Stack Overflow
 			visitors find a problem from reusing Stack Overflow code snippets. Ten
-			participants experience the problems on more 80\% of the copied snippets and
-			sixteen participants face the problems on 40--60\% of the reused code. The
-			mostly found problem is a mismatched solution (40), followed by outdated
-			solution (39), incorrect solution (20), and buggy code (1). Fifty-six percent
+			participants experience the problems from more than 80\% of the copied snippets and
+			sixteen participants face the problems from 40--60\% of the reused code. The
+			problems ranked by frequency include mismatched solutions (40), outdated
+			solutions (39), incorrect solutions (28), and buggy code (1). Fifty-six percent
 			of the participants never report the problems back to Stack Overflow.}}%
 } \vspace{0.5cm}
 
-\subsubsection*{RQ6: Are Stack Overflow visitors aware of the the CC BY-SA 3.0
-	license enforced by Stack Overflow?}
+\subsubsection*{RQ5: Are Stack Overflow visitors aware of code licensing on Stack Overflow?}
 
 As depicted in Figure~\ref{fig:survey_visitor_cc_by-sa}, 74 out of 87 (85\%)
 Stack Overflow visitors are not aware, at the time of copying the code, that
 Stack Overflow apply Creative Commons Attribution-ShareAlike 3.0 Unported (CC
-BY-SA 3.0) to content in the posts, including code snippets. As a consequence,
+BY-SA 3.0) to content in the posts, including code snippets. As a consequence
 62\% of the visitors never give an attribution, which is required by CC BY-SA
 3.0, to a Stack Overflow post they copied the code from (the complete statistics
 can be found from Figure~\ref{fig:survey_visitor_attribution-sa}).
@@ -806,27 +825,22 @@ can be found from Figure~\ref{fig:survey_visitor_attribution-sa}).
 	\label{fig:survey_visitor_attribution-sa} 
 \end{figure}
 
-\vspace{0.5cm} \noindent\fbox{%
-	\parbox[c][1cm]{0.98\textwidth}{%
-		\textit{For RQ6, 85\% of the participants are not aware of Stack Overflow CC
-	BY-SA 3.0 license and 62\% never give attributions to the Stack Overflow posts
-	they copied the code snippets from.}}%
-} \vspace{0.5cm}
+%\subsubsection*{RQ7: How often do Stack Overflow visitors check for software
+%	licensing issues from code snippets on Stack Overflow?}
 
-\subsubsection*{RQ7: How often do Stack Overflow visitors check for software
-	licensing issues from code snippets on Stack Overflow?}
+Sixty-nine Stack Overflow visitors (79\%) who adopted code from Stack Overflow
+never check if the code snippet originated from a different source (e.g. an open
+source project) with an incompatible license to their projects (see
+Figure~\ref{fig:survey_visitor_original_license}).
 
-Figure~\ref{fig:survey_visitor_original_license} shows that 79\% (69) Stack
-Overflow visitors who adopted code from Stack Overflow never check if the code
-snippet originated from a different source (e.g. an open source project) with an
-incompatible license to their projects.
-
-Sixty-six percent of the participants never check for licensing conflicts at all
+Fifty seven participants (66\%) never check for licensing conflicts at all
 when reusing Stack Overflow code (see
 Figure~\ref{fig:survey_visitor_licensing_conflict_check}). Lastly, possibly due
 to their fairly small size of code which might fall under fair use, only 9\% of
 the participants experience legal issues by reusing code snippets on Stack
-Overflow (see Figure~\ref{fig:survey_visitor_legal_issue}).
+Overflow (see Figure~\ref{fig:survey_visitor_legal_issue}). Nonetheless, as we designed the
+survey to be anonymous, it is not possible to contact them for further details
+on the legal issues they found.
 
 \begin{figure} \centering
 	\includegraphics[width=.4\linewidth]{survey_visitor_original_license} 
@@ -846,9 +860,12 @@ Overflow (see Figure~\ref{fig:survey_visitor_legal_issue}).
 	\label{fig:survey_visitor_legal_issue} 
 \end{figure}
 
+
 \vspace{0.5cm} \noindent\fbox{%
-	\parbox[c][1cm]{0.98\textwidth}{%
-		\textit{For RQ7, we found that 66\% of the visitors never check for software
+	\parbox[c][1.7cm]{0.98\textwidth}{%
+		\textit{For RQ5, 85\% of the participants are not aware of Stack Overflow CC
+			BY-SA 3.0 license and 62\% never give attributions to the Stack Overflow posts
+			they copied the code snippets from. We found that 66\% of the visitors never check for software
 	licensing conflicts between Stack Overflow code snippets and their projects.
 	However, only 9\% of the participants encountered legal issues.}}%
 } \vspace{0.5cm}
@@ -856,28 +873,41 @@ Overflow (see Figure~\ref{fig:survey_visitor_legal_issue}).
 \section{Threats to Validity}
 
 \subsection{Internal Validity}
-We targeted the participants for the answerer survey based on their Stack Overflow
-reputation instead of random sampling. This is because reflects the developers
-involvement in asking and answering questions on the site. Thus, our findings
-capture awareness and experience of experienced Stack Overflow developers. Moreover,
-due to a large number of users on Stack Overflow, we could invite only 607
-highly-ranked developers to participate in the study.
+Due to a large number of users on Stack Overflow, we could invite only 607
+developers to participate in the answerer survey. If all the developers are
+invited, which is almost impossible considering 7.6 million users on Stack
+Overflow, the results may be different. Nevertheless, we mitigate this threat to
+internal validity by selecting the participants based on their Stack Overflow
+reputation. This targeted selection of the participants makes sure that we
+invite developers who have been actively involved in asking and answering
+questions on the site for a long period of time, and refrain from inviting new
+users who merely answer a question or two. The highest reputation user invited
+to our survey answered 33,933 questions and the lowest reputation user in our
+survey answered 116 questions.
 
-We selected the participants for the visitor survey based on convenient sampling which
-could suffer from bias and outliers.
+We selected the participants for the visitor survey based on convenient sampling
+which could suffer from bias and outliers. We mitigate the threat by inviting
+different groups of participants ranging from the author's social media,
+technology news and media community, software engineering community (on
+Facebook), Java programmer discussion thread (com.lang.java.programmer), and
+from University of Molise.
+ 
 
 \subsection{External Validity} 
 While the reputation is a good proxy to reflect the amount of answers the
-developers have given, it might not cover all kinds of answerers on Stack
-Overflow. The answerers who have lower-reputation than 6,999 were not invited to
-our study and their awareness and experience may differ from our findings.
+developers have given, it might not cover all kinds of answerers and their
+experience on Stack Overflow. The answerers who have lower-reputation than 6,999
+were not invited to our study and their awareness and experience may differ from
+our findings. Hence, our findings may not be generalised to all Stack Overflow
+answerers.
 
-At least 39\% of the participants in the visitor survey are from
-\textsf{blognone.com} which is based in Thailand. Due to working culture,
-answers from this group of developers may only represent software developers in
-Thailand. We alleviate this concern by inviting participants from other groups,
-e.g.~University of Molise in Italy, comp.lang.java.programmer, and Software
-Engineering Facebook group.
+At least 39\% of the participants in the visitor survey are from Thailand
+(\textsf{blognone.com} and some of the first author's contacts). Due to working
+culture, answers from this group of developers may only represent software
+developers in Thailand. Similarly our findings from the visitor survey may not
+be generalised to all Stack Overflow visitors. We alleviate this concern by
+inviting participants from other groups, e.g.~University of Molise in Italy,
+comp.lang.java.programmer, and Software Engineering Facebook group.
 
 \section{Related Work}
 
@@ -933,7 +963,7 @@ on the context of Stack Overflow.
 
 We present the results from online surveys of Stack Overflow answerers and
 visitors regarding their awareness and experience of answering and reusing code
-snippets on Stack Overflow. We are interested in cloned code in Stack Overflow
+snippets on Stack Overflow. We are interested in cloned snippets in Stack Overflow
 answers. Two online surveys have been performed to find out \textit{where} are
 the code snippets in Stack Overflow answers from and \textit{how} developers, in
 terms of both Stack Overflow answerers and visitors, handle potential problem of
@@ -941,18 +971,22 @@ outdated code and software licensing conflicts.
 
 From the answerer's responses, we discovered that code in Stack Overflow answers
 is usually written from scratch to answer a question. Nonetheless, there are
-some code snippets that are copied from the answerers' personal, open source, or
-company projects.
+some code snippets that are copied from the answerer personal or company projects,
+and open source software.
 
 The outdated code on Stack Overflow occurs when the code snippet in an answer is
 copied from another location and is no longer up-to-date. The results show that
 although the answerers are aware of outdated code in their answers, 19\% of them
-rarely or never fix the code.
+rarely or never fix the code. One answerer express a concern of having
+outdated code in his/her popular answer (by having high Google rank) being used 
+by many other developers.
 
-Regarding the software license, approximately 60\% of the answerers are aware of
+Approximately 60\% of the answerers are aware of
 Stack Overflow CC BY-SA 3.0. Ninety-eight to ninety-nine percent do not include
 the license in their answers nor check for licensing conflicts when they copy
-the code from another location and paste in the answer.
+the code from another location and paste in the answer. Some developers believe
+the code are too small and fall under fair use policy while others state the license
+of their code in their profile pages instead.
 
 From the visitor's responses, Stack Overflow is ranked the highest as the
 resource to solve programming tasks because it is easy to be found by search
