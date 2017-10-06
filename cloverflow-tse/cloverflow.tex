@@ -57,7 +57,7 @@
 
 \newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
 
-\newcommand\FIXME[1]{\textbf{FIXME: #1}}
+\newcommand\FIXME[1]{{\color{red}\textbf{FIXME: #1}}}
 
 % correct bad hyphenation here
 %\hyphenation{op-tical net-works semi-conduc-tor}
@@ -103,7 +103,7 @@
 % We studied online code clones on the popular programming Q\&A
 % website, Stack Overflow, and their issues on outdated code and
 % software licensing violations. 
-Online code clones are code fragments that are copied from software
+\FIXME{Outdated.~Revise the last.}~Online code clones are code fragments that are copied from software
 projects or online sources to Stack Overflow as examples in
 questions and answers.
 % They can be discovered by using code clone
@@ -166,8 +166,9 @@ Clone Detection, Stack Overflow, Outdated Code, Software Licensing
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
 %The popularity of the Internet encourages tremendous amount of source code being shared online. 
-Stack Overflow is a popular online programming community with 6.8
-million users\footnote{Statistics as of February 25, 2017 from \url{http://stackexchange.com/sites}}. It allows programmers to ask questions and give answers
+Stack Overflow is a popular online programming community with 7.6
+million users, 14 million questions, and 23 million answers\footnote{Data as of 21
+	August 2017 from~\url{https://stackexchange.com/sites}}. It allows programmers to ask questions and give answers
 to programming problems. The website has found to be useful for
 software
 development~\cite{Ponzanelli2013,Ponzanelli2014,Keivanloo2014,Park2014,
@@ -220,13 +221,37 @@ re-use of outdated code. Unfortunately, online clones are
 difficult to locate and fix since the search space in online code
 corpora is larger and no longer confined to a local repository.
 
-In this study, we are interested in locating online code clones on
-Stack Overflow that are cloned from open source projects and study
-them on two aspects: \textbf{outdated code} and \textbf{license conflicts.}
+The findings from our online survey of Stack Overflow answerers show that code
+reusing activity occurs on Stack Overflow, just like in software. Stack Overflow
+answerers occasionally clone code from other locations, such as their personal
+projects, company projects, and open source projects, to Stack Overflow answers
+as a solution or to complement their answer~\FIXME{put a precise number here}.
+One participants says
+
+\begin{quote}\textit{The real issue is less about the amount the code snippets
+		on SO than it is about the staggeringly high number of software
+		``professionals'' that mindlessly use them without understanding what they're
+		copying, and the only slightly less high number of would-be professionals that
+		post snippets with built-in security issues.  A related topic is beginners who
+		post (at times dangerously) misleading tutorials online on topics they actually
+		know very little about. Think PHP/MySQL tutorials written 10+ years after
+		\texttt{mysql\_*} functions were obsolete, or the recent regex tutorial that
+		got posted the other day on HackerNew
+		(\url{https://news.ycombinator.com/item?id=14846506}). They're also full of
+		toxic code snippets.}\end{quote}
+
+With the same analogy, in this study we are interested in mining Stack Overflow
+posts, detecting online code clones, and revealing \textbf{toxic code snippets},
+which means code snippets that are harmful for reuse.
+Stack Overflow snippets can become toxic because they are outdated and violating
+their original software license. Outdated code snippets can be harmful since
+they may contain defects. Moreover, licensed code snippets that are cloned from
+open source software projects to Stack Overflow without their respective license
+can lead to legal issues if being reused.
 
 \begin{figure*}
 	\begin{lstlisting}
-/* Code in Stack Overflow post ID 22315734 */         /* WritableComparator.java (2016-09-26) */
+/* Code in Stack Overflow post ID 22315734 */         /* WritableComparator.java (2017-10-03) */
 public int compare(byte[] b1,int s1,int l1, ...) {    public int compare(byte[] b1,int s1,int l1, ...) {
   try {                                                 try {
     buffer.reset(b1,s1,l1); /* parse key1 */              buffer.reset(b1,s1,l1); /* parse key1 */
@@ -248,54 +273,137 @@ public int compare(byte[] b1,int s1,int l1, ...) {    public int compare(byte[] 
 	\label{fig:before-after}
 \end{figure*}
 
-A motivating example of outdated online code clones can be found in an
+We would like to motivate the readers to the problem of toxic code snippets
+on Stack Overflow by giving two examples.
+
+The first motivating example of outdated online code clones can be found in an
 answer to a Stack Overflow question regarding how to implement
 {\small{\texttt{RawComparator}}} in
 \textsf{hadoop}\footnote{\url{http://stackoverflow.com/questions/22315734}}.
-\Cref{fig:before-after} shows---on the left---a code snippet embedded as a part of the
-accepted answer. The snippet shows how \textsf{hadoop}
-implements the {\small{\texttt{compare}}} method in its
-{\small{\texttt{WritableComparator}}} class. The code snippet on the
-right shows another version of the same method, but at this time
-extracted from the latest version (as of September 26, 2016) of
+\Cref{fig:before-after} shows---on the left---a code snippet embedded as a part
+of the accepted answer. The snippet shows how \textsf{hadoop} implements the
+{\small{\texttt{compare}}} method in its {\small{\texttt{WritableComparator}}}
+class. The code snippet on the right shows another version of the same method,
+but at this time extracted from the latest version (as of October 3, 2017) of
 \textsf{hadoop}. We can see that they both are highly similar except a line
-containing {\small{\verb|buffer.reset(null,0,0);|}} which was added in
-the latest version. The added line is intended for cleaning up the
-reference in the {\small{\verb|buffer|}} variable. While this change
-has already been introduced into the {\small{\texttt{compare}}} method
-in the latest version of \textsf{hadoop}, the code example in Stack
-Overflow post is still unchanged. This example shows that
-inconsistencies between online code clones and their originals can
-lead users of Stack Overflow to reuse outdated code.
+containing {\small{\verb|buffer.reset(null,0,0);|}} which was added on November
+21, 2014. The added line is intended for cleaning up the reference in the
+{\small{\verb|buffer|}} variable and avoid excess heap usage
+(HADOOP-11323\footnote{https://issues.apache.org/jira/browse/HADOOP-11323}).
+While this change has already been introduced into the
+{\small{\texttt{compare}}} method for several years, the code example in Stack
+Overflow post is still unchanged. 
+%This example shows that inconsistencies
+%between online code clones and their originals can lead users of Stack Overflow
+%to reuse outdated code. 
+In addition, although the original code snippet of
+WritableComparator.java in Hadoop is subject to Apache license version 2.0, the
+cloned code on Stack Overflow contains only a {\small{\texttt{compare}}}
+method and misses its license statement on top of the file. There are two
+potential issues for this. First, the code snippet may look like it is under
+Stack Overflow's CC BY-SA 3.0 instead of its original Apache license. Second, if
+the code snippet is copied and incorporated into another software project with
+conflicting license, a legal issue may arise.
+
+\begin{figure*}
+	\begin{lstlisting}
+/* Code in Stack Overflow post ID 801987 */             /* StringUtils.java (2017-10-03) */
+public static String humanReadableInt(long number) {    public static String humanReadableInt(long number) {
+  long absNumber = Math.abs(number);                      return TraditionalBinaryPrefix.long2String(number,"",1);
+  double result = number;                               }
+  String suffix = "";
+  if (absNumber < 1024) {
+  } else if (absNumber < 1024 * 1024) {
+    result = number / 1024.0;
+    suffix = "k";
+  } else if (absNumber < 1024 * 1024 * 1024) {
+    result = number / (1024.0 * 1024);
+    suffix = "m";
+  } else {
+    result = number / (1024.0 * 1024 * 1024);
+    suffix = "g";
+  }
+  return oneDecimal.format(result) + suffix;
+}
+	\end{lstlisting}\vspace{-2ex}
+	\caption{A motivating example of the two code fragments of
+		{\small\texttt{StringUtils.java}}. The one from the
+		Stack Overflow post 801987 (left) is outdated when compared to
+		its latest version in the \textsf{hadoop} code base
+		(right). The outdated code has race conditions.}
+	\label{fig:before-after_2}
+\end{figure*}
+
+The second motivating example of outdated online code clones with more
+disrupting changes than the first one  can be found in an answer to a Stack
+Overflow question regarding how to format files sizes in a human readable form.
+\Cref{fig:before-after_2} shows---on the left---a code snippet to perform the
+task from {\small{\texttt{StringUtils}}} class in \textsf{hadoop}. The code snippet on the
+right shows another version of the same method, but at this time extracted from
+the latest version of \textsf{hadoop}. We can see that
+they both are totally different. The {\small{\texttt{humanReadableInt}}} method is
+rewritten on February 5, 2013 to solve an issue of a race condition
+(HADOOP-9252\footnote{https://issues.apache.org/jira/browse/HADOOP-9252}).
+
+This two toxic code snippet has been posted on March 11, 2014 and April 9, 2009
+respectively. They have already been viewed 259 and 2,886 times as the time of
+writing this paper (October 3, 2017). Our calculation finds that there will be a
+new viewer of the first toxic snippet in approximately every 5 days while the
+second toxic snippet will be viewed almost every single day. Moreover, a
+quick web search shows that the same {\small{\texttt{humanReadableInt}}}
+method already reside in approximately 500 projects on GitHub. Considering the popularity of Stack
+Overflow, which has more than 50 million developers visiting each
+month\footnote{Data as of 21 August 2017 from: \url{https://stackoverflow.com}},
+one toxic code snippets on Stack Overflow can spread and grow to hundred or
+thousand copies within only a year or two.
+
 %The code snippet on Stack Overflow can be outdated. %Since reusing source code from Stack Overflow is considered a common practice nowadays, the scale of online code cloning is more than intra or inter project clone in a local code bases.
 %This is an emerging and challenging problem. Since studies in this area are still limited, we aim to gain more insight of the problem in this study. %We are interested to gain more insights of online code clone in this study.
 
-While research has mostly focused on reusing code snippets \emph{from}
-Stack Overflow (e.g.~\cite{Keivanloo2014,An2017,Yang2016}), fewer studies
-have been conducted on finding the origins of code examples copied
-\emph{to} Stack Overflow and problems of reusing them such as outdated
-code and software licensing violations. This paper fills this gap and
-makes the following primary contributions:
-\begin{enumerate}
-	\item \textbf{A manual study of online code clones:} 
-	We used two clone detection tools to discover 315,786,118 similar code
-	snippet pairs, followed by a manual classification of 3,636 candidate
-	clone pairs between 144,064 Java code snippets obtained from Stack Overflow's
-	accepted answers and 111 Java open source projects from the curated
-	Qualitas corpus~\cite{QualitasCorpus}.
-	\item \textbf{An investigation of outdated and license-violating
-		online clones on Stack Overflow:} Our study shows that from the
-	3,636 online clones, at least 671 likely have been copied from open
-	source projects or external online sources to Stack Overflow,
-	potentially violating software licenses. For 112 of them, we found
-	evidence that they have been copied from a specific Qualitas project
-	and that 64 of them are meanwhile outdated.
+While research has mostly focused on reusing code snippets \emph{from} Stack
+Overflow (e.g.~\cite{Keivanloo2014,An2017,Yang2016}), fewer studies have been
+conducted on finding the origins of code examples copied \emph{to} Stack
+Overflow and the awareness of Stack Overflow developers in doing so. Finding the
+origins of code examples gives insights to the problems of toxic code snippets
+including outdated code and software licensing violations. It is probably more
+important than studying the effects of reusing Stack Overflow code snippets
+because it tackles the root cause of the problem. Moreover, this paper lays a
+foundation to possibility of having an automatic technique to detect and report
+such problems to developers in the future.
+
+This paper fills this gap and makes the following primary contributions:
+
+\begin{enumerate} 
+	\item \textbf{A manual study of online code clones:} We used
+	two clone detection tools to discover 315,786,118 similar code snippet pairs,
+	followed by a manual classification of 3,636 candidate clone pairs between
+	144,064 Java code snippets obtained from Stack Overflow's accepted answers and
+	111 Java open source projects from the curated Qualitas
+	corpus~\cite{QualitasCorpus}. 
+	
+	\item \textbf{An investigation of outdated and
+		license-violating online clones on Stack Overflow:} Our study shows that from
+	the 3,636 online clones, at least 671 likely have been copied from open source
+	projects or external online sources to Stack Overflow, potentially violating
+	software licenses. For 112 of them, we found evidence that they have been copied
+	from a specific Qualitas project and that 64 of them are meanwhile outdated. %
 	% and questionable for being reused.
-	\item \textbf{An online code clone oracle:} The 3,636 manually
-	investigated and validated online clone pairs are available for
-	download\footnote{https://to.be.disclosed.after.review} and can be
-	used as a clone oracle.
-\end{enumerate}
+	
+	\item \textbf{Awareness of Stack Overflow answerers to
+	toxic code snippets:} We performed an online survey and collected answers from
+	202 highly-ranked Stack Overflow developers. We found that there are~\FIXME{add
+	the number here}\% of code snippets cloned from open source projects to Stack
+	Overflow answers. While Stack Overflow answerers are aware of their outdated
+	code snippets, 19\% of the participants report that they rarely or never fix
+	the code. At least 98\% of the answerers never include software license in
+	their snippets and 69\% never check for licensing conflicts with Stack
+	Overflow's CC BY-SA 3.0 if they copy the code from other sources to Stack
+	Overflow answers.
+	
+	\item \textbf{An online code
+		clone oracle:} The 2,302 manually investigated and validated online clone pairs
+	are available for download\footnote{https://to.be.disclosed.after.review} and
+	can be used as a clone oracle. \end{enumerate}
 
 \section{Empirical Study}
 
@@ -323,7 +431,7 @@ research questions:
 	\item \textbf{RQ5 (Developers' awareness): }\textit{Do Stack Overflow
 		users aware of the outdated code and licensing problem when
 		they answer a question on Stack Overflow?} 
-	We surveyed 600 high reputation Stack Overflow users to study their
+	We surveyed 607 high reputation Stack Overflow users to study their
 	awareness of the issues.
 \end{itemize}
 
@@ -336,7 +444,7 @@ research questions:
 
 %\subsection{Experimental Setup}
 %\vspace{1ex}
-To answer these four research questions, we perform an empirical study to
+To answer these five research questions, we perform an empirical study to
 locate and study the online code clones between Stack Overflow and open source
 projects. 
 %
@@ -373,7 +481,7 @@ boiler-plate code of \texttt{equal} or \texttt{hashCode} methods are removed.
 Each snippet was extracted from the dump and saved to a file. Moreover, we
 filtered out irrelevant code snippets that were part of the accepted answers
 but were not written in Java by using regular expressions and manual checking.
-~\FIXME{should I mention I use PMD CPD to help here? More confusing?}.
+~\FIXME{@Jens, should I mention I use PMD CPD to help here? More confusing?}.
 Finally we obtained
 72,365 Java code snippets containing 1,840,581 lines\footnote{Measured by cloc:
 	\url{https://github.com/AlDanial/cloc}} of Java source code. The median of the
@@ -431,7 +539,8 @@ DECKARD~\cite{Jiang2007a}, and PMD-CPD~\cite{pmd-cpd} against the Stack Overflow
 and Qualitas datasets. NiCad failed to parse 44,960 Stack Overflow snippets
 while PMD CPD failed to complete the execution due to lexical errors. iClones
 could complete its execution but skipped 367 snippets due to malformed blocks in
-Stack Overflow data set. Although Simian, SourcererCC, CCFinder, and DECKARD
+Stack Overflow data set. CCFinder reported 8 errors while processing the two data set. 
+Although Simian, SourcererCC, and DECKARD
 could successfully report clones, we decided to choose only Simian and
 SourcererCC due to their fast detection speed.
 
@@ -540,31 +649,33 @@ The average clone size reported by Simian is
 \end{table}
 
 \subsection{Phase 2: Clone Merging}
-As there are in total 315,786,118 clone pairs reported, it is
-infeasible for humans to manually validate them all. Instead of
-investigating a random sample, we adopted the idea of \textbf{clone
-	agreement} which has been used in clone research
-studies~\cite{Funaro2010, Wang2013,cr2016ssbse} in situations where a
-clone oracle is missing or impossible to establish. Clone pairs agreed
-by multiple clone detection tools have a higher likelihood to be real
-clones~\cite{cr2016ssbse}. By using this agreement-based approach, we
-reduced the number of clone candidates for manual investigation to the
-ones agreed by multiple tools. To find agreement between two clone
-pairs reported by two different tools, we used the clone pair matching
-metric proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs
-which have a large enough number of overlapping lines can be
-categorised as either a good-match or an ok-match pair (denoted as
-\textit{good} and \textit{ok} respectively) with a confidence value
-between 0 and 1. A \textit{good} clone pair has stronger agreement
-than an \textit{ok} pair. We follow Bellon's original definitions of
-good- and ok-match~\cite{Bellon2007}, which are based on how much two
-clone fragments \textit{CF} overlap\footnote{The overlap value can be
-	considered as Jaccard similarity.}  and how much of them is
-contained in each other:
+As there are in total 315,786,118 clone pairs reported, it is infeasible for
+humans to manually validate them all. Instead of investigating a random sample,
+we adopted the idea of \textbf{clone agreement} which has been used in clone
+research studies~\cite{Funaro2010, Wang2013,cr2016ssbse} in situations where a
+clone oracle is missing or impossible to establish. Clone pairs agreed by
+multiple clone detection tools have a higher likelihood to be real
+clones~\cite{cr2016ssbse}. By using this agreement-based approach, we reduced
+the number of clone candidates for manual investigation and avoid a threat to
+internal validity of double counting the same clone pair twice by merging the
+ones agreed by the two tools. To find agreement between two clone pairs
+reported by two different tools, we used the clone pair matching metric proposed
+by Bellon et al.~\cite{Bellon2007}. Two clone pairs which have a large enough
+number of overlapping lines can be categorised as either a good-match or an
+ok-match pair (denoted as \textit{good} and \textit{ok} respectively) with a
+confidence value between 0 and 1. Although good-match has stronger
+agreement than ok-match, we choose ok-match as our clone merging method because 
+it does not take clone size into account which suit our results of clones from
+two tools, Simian, SourcererCC, with two different detection methods, 
+line-based and method-based. 
+
+\ We follow Bellon's original definitions of ok-match~\cite{Bellon2007}, which are based on how much two clone
+fragments \textit{CF} is contained in each other:
+
 %\squeezeup
-\begin{displaymath}
-overlap(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
-\end{displaymath}
+%\begin{displaymath}
+%overlap(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
+%\end{displaymath}
 % \squeezeup
 \begin{displaymath}
 contained(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}
@@ -572,13 +683,14 @@ contained(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm
 \noindent%
 A clone pair \textit{CP} is formed by two clone fragments
 \textit{CF$_1$} and \textit{CF$_2$}, i.e.~\textit{CP} =
-(\textit{CF$_1$}, \textit{CF$_2$}), and the \textit{good-value} and
-the \textit{ok-value} of two clone pairs are defined as
+(\textit{CF$_1$}, \textit{CF$_2$})
+%, and the \textit{good-value} and
+and the \textit{ok-value} of two clone pairs are defined as
 
 %\squeezeup
-\begin{align*}
-good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
-\end{align*}
+%\begin{align*}
+%good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
+%\end{align*}
 \begin{align*}
 ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) = min(max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1),~~ \\ contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1)),~
 \\ max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2),~~ \\contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2)))
@@ -586,163 +698,28 @@ ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) = min(max(contained(\textrm{\t
 
 \noindent%
 Two clone pairs $\textrm{\textit{CP}}_1$ and $\textrm{\textit{CP}}_2$
-are called a \textit{\textit{good-match}(t)} or \textit{ok-match(t)}  iff, for threshold $t \in [0,1]$ holds 
+are called an \textit{ok-match(t)}  iff, for threshold $t \in [0,1]$ holds 
 %\squeezeup
 \begin{align*}
-good(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) & \geq t\\
+%good(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) & \geq t\\
 ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) & \geq t
 \end{align*}
 
-Using the good- and ok-match criteria with a predefined threshold
-\textit{t}, we can prune the 315 million candidate clone pairs for
-manual investigation. The \textit{good} pairs are the ones with the
-highest confidence, followed by the \textit{ok} pairs, and followed by
-clone pairs without agreement. We call the \textit{good}- and
-\textit{ok}- pairs \textbf{agreed} clone pairs and the clone pairs
-reported by Simian or NiCad without agreement \textbf{disagreed} clone
-pairs.
-
-Having two clone detectors, Simian (denoted as \textit{S}) and NiCad
-(denoted as \textit{N}), with two chosen configurations (\textit{D}
-and \textit{E}) each, we used Bellon's good- and ok-match for agreement
-in four possible pair-wise combinations: $S_{D}$--$N_{D}$,
-$S_{D}$--$N_{E}$, $S_{E}$--$N_{D}$, and $S_{E}$--$N_{E}$. %as shown in \Cref{t:param_tuning}.
-
-\textbf{Agreed clone pairs: } As shown in \Cref{t_agreed_good_clone_pairs}, after we applied clone
-agreement filtering using Bellon's criteria\footnote{Similar to the
-	original study, we selected a threshold of 0.7 for
-	\textit{good} and \textit{ok} pairs~\cite{Bellon2007}.}, the number
-of \textit{good} clone pairs is 2,313 and the number of \textit{ok}
-clone pairs is 32,316, 0.1\%~of all reported clone
-pairs.  Agreed clone pairs are clone pairs that pass Bellon's
-\textit{good} or \textit{ok} criteria, and therefore are selected for
-manual classification.  Due to NiCad's failures, we do not have NiCad
-clones from five Qualitas projects in the agreed clone pairs. Simian
-clones of the same projects also disappeared from the agreed clone
-pairs since they could not be matched.
-
-\begin{table}
-	\centering
-	\caption{Distribution of the agreed clone pairs}
-	\label{t_agreed_good_clone_pairs}
-	%\small
-	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{lrrrrr}
-		\toprule
-		Set & $S_D$--$N_D$ & $S_D$--$N_E$ & $S_E$--$N_D$ & $S_E$--$N_E$ & Unique \\
-		\midrule
-		\textit{good} & 23 & 26 & 10 & 2,267 & 2,313 \\
-		\textit{ok} & 12,063 & 993 & 79 & 20,021 & 32,316 \\
-		\bottomrule
-	\end{tabular} %
-	% }
-\end{table}
+Using the ok-match criteria with a predefined threshold \textit{t} of 0.7
+similar to Bellon's study~\cite{Bellon2007}, we merge 721 clone pairs from
+Simian and 1,678 clone pairs from SourcererCC into a single set of 2,302 online
+clone pairs. There are 97 common clone pairs between the two clone sets 
+as depicted in~\Cref{fig:clonemerging}.
 
 \begin{figure}
 	\centering
-	\vspace{3.5ex}
-	\includegraphics[width=0.9\linewidth]{good-ok_pairs}
-	\caption{Distribution of \textit{good} (top) and \textit{ok} pairs (bottom) reported by the 4 configurations of Simian and NiCad. The shaded areas are overlapping pairs.}
-	\label{fig:good-ok-pairs}
+	\includegraphics[width=0.8\linewidth]{clone_merging}
+	\caption{The result from clone merging using Bellon's ok-match criterion}
+	\label{fig:clonemerging}
 \end{figure}
 
-The distribution of \textit{good} clone pairs between the four
-combinations of \textit{D} and \textit{E} configurations are listed in
-\Cref{t_agreed_good_clone_pairs}.  There are 2,326 (2,313 unique)
-\textit{good} pairs consisting of 23 pairs from $S_D$--$N_D$, 26 pairs
-from $S_D$--$N_E$, 10 pairs from $S_E$--$N_D$, and 2,267 pairs from
-$S_E$--$N_E$. There are 33,156 (32,316 unique) \textit{ok}
-pairs\footnote{This excludes the subsumed 2,313 \textit{good}
-	pairs because \textit{ok} pairs subsume
-	\textit{good} pairs.}. We obtained 12,063; 993; 79; and 20,021 pairs
-from $S_D$--$N_D$, $S_D$--$N_E$, $S_E$--$N_D$, and $S_E$--$N_E$
-respectively. Between the four configuration sets, there is
-considerable amount of clone pairs shared between two adjacent sets
-(as depicted in \Cref{fig:good-ok-pairs}), but there is no clone pair
-that is agreed by all four combinations.
-
-\begin{table}
-	\centering
-	\caption{Disagreed clone pairs before and after filtering.}
-	\label{tab:online_clone_pairs}
-	%\small
-	%	\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{lrccr}
-		\toprule
-		\multirow{2}{*}{Set} & \multirow{2}{*}{Before Filtering} & \multicolumn{2}{c}{Filters*} & \multirow{2}{*}{After Filtering} \\ %\cmidrule{3-4}
-		& & \textit{L} & \textit{S} & \\ 
-		\midrule 
-		\multirow{1}{*}{$S_D$} & 55,274 & \checkmark & & 17,801 \\
-		\multirow{1}{*}{$N_D$} & 620,680 & \checkmark & \checkmark & 83 \\ 
-		\bottomrule
-		\multicolumn{5}{l}{*\textit{L}=size $\geq 10$, \textit{S}=sim $\geq 85\%$.}  \\
-	\end{tabular} %
-	%}
-\end{table}
-
-\textbf{Disagreed clone pairs: }
-The disagreed clone pairs are clone pairs that are reported by a
-single tool, either Simian or NiCad, and do not have agreement with
-the other tool. The disagreement can be from a misalignment of clone
-lines or completely non-overlapping clones. The disagreed pairs from
-Simian include clone pairs in the projects with NiCad's errors (1
-project from $N_D$ and 5 from $N_E$).  With the four configuration
-combinations, we decided to investigate only $S_D$, and $N_D$, and
-dropped $S_E$ and $N_E$ due to their enormous amount of clone pairs
-(60 and 250 millions respectively). Moreover, $S_E$ and $N_E$ contain
-a large number of false positives due to the recall preference of
-their EvaClone configurations.
-
-Even choosing only the default configurations, the number of disagreed
-clone pair candidates is still too large for manual inspection
-(as shown in \Cref{tab:online_clone_pairs}). 
-We applied two filters: clone
-size and similarity threshold. %, and good/ok pairs. 
-For the \emph{clone size filter}, we raised the minimum clone size to 10 lines
-since larger clones are more interesting, while smaller ones tend to
-be false clones~\cite{Saini2016}.
-% Since the 10--line threshold is already the default configuration for
-% NiCad, this filter is applied to Simian only (Simian's default
-% configuration has a minimum clone size of 6 lines).
-The second filter, \emph{similarity threshold}, applies
-only to NiCad clone pairs since Simian does not provide a similarity
-configuration. 
-%The last filter, \emph{good/ok pairs}, removes the clone pairs that already exist in the agreed clone sets.
-%As shown in \Cref{tab:online_clone_pairs}, for $S_D$ we filtered the results using clone size and gook/ok pairs. 
-
-The two filters reduced the number of $S_D$ clones to 17,801 pairs. We
-filtered $N_D$ clones by additionally raising the similarity
-threshold. We increased NiCad's similarity threshold from 70\% to 85\%
-(by adjusting NiCad's $\mathrm{UPI}$ parameter from 0.3 to 0.15). We
-tried varying the threshold from 70\% (default, 632,855 pairs), 80\%
-(25,003 pairs), 85\% (185 pairs) and 90\% (83 pairs) and found that
-85\% similarity provided the best balance in terms of the amount of
-reported clones and precision for small clones. Using this filter
-along with the other three filters, we reduced the number of $N_D$
-clones to 83 pairs.
-
-\textbf{Selection of clones: }
-%\subsection{Filtered Clones Set}
-We selected all \textit{good} pairs (2,313) and the \textit{ok} pairs for
-$S_D$--$N_D$ (12,336), $S_E$--$N_D$ (993), and $S_D$--$N_E$ (79), but we ignored
-20,021 $S_EN_E$ \textit{ok} clone pairs in the classification due to
-their large number of clones and the very small average clone sizes of
-5.95 and 6.28 lines (see \Cref{tab:orig_stats}), leading to a high
-probability of being trivial clones. We refer to the set of clone
-pairs as the \textit{good} set and the \textit{ok'} set.
-Together with the 17,801 (referred as $S_D'$ set) and 83 (referred as
-$N_D'$ set) clone pairs after filtering, we ended up with a set of 32,533 online clone pair candidates.
-
-Before performing the manual
-investigation, we created and used an automatic classifier 
-to classify boiler-plate code of {\small\texttt{equals()}}, 
-{\small\texttt{hashCode()}} and getters/setters 
-(depicted with a grey line in \Cref{fig:exp_framework}).
-The classifier could automatically classify 28,897 clone pairs 
-and left 3,636 clone pairs for manual investigation in phases 3 to 6.
-
 \subsection{Phase 3-4: Validation and Classification}
-We used the 3,636 filtered clone pairs after automatic classification for
+We used the 2,302 merged clone pairsfor
 manual validation and classification.
 The validation and classification of the pairs was done at the same time. 
 The clone validation process (phase 3 in \Cref{fig:exp_framework}) involves checking 
@@ -752,21 +729,26 @@ the patterns of code cloning so we can gain more insights into
 how these clones are created (phase 4 in \Cref{fig:exp_framework}). 
 
 \textbf{Manual investigation:} 
-The first author, who has been working on clone detection research for 
-two years, took the role of the main investigator performing a manual 
-validation and classification of the filtered clone pairs. 
-%By consulting the cloning patterns, 
-The main investigator went through each clone pair candidate, 
-looked at the clones, and decided if they are a true positive or a
-false positive and classified them into an appropriate pattern. 
-%the most appropriate cloning pattern for the pair. 
-To mitigate the human error of the manual investigation, 
-the second author took the role of the validating investigator, performing a
-validation on 10\% (364 pairs) of the clone pairs judged by the main
-investigator. After the validation, the results from the two
-investigators were compared and 61 conflicts were discussed and resolved.
-There were three conflicts where the two investigators could not find a consensus 
-and the third author was involved for the final judgement.
+To mitigate the human error, we deployed two persons in the manual clone
+investigation process. The first author, who is a research student working on
+clone detection research for three years, and the third author, who is a
+software engineering research student who is familiar with code clones, took the
+role of the investigators performing a manual validation and classification of
+the merged clone pairs. The two investigators separately went through each clone
+pair candidate, looked at the clones, and decided if they are a true positive or
+a false positive and classified them into an appropriate pattern. After the
+validation, the results from the two investigators were compared and 607 (26\%)
+conflicts were discussed and resolved. There are 145 conflicts caused by
+one investigator being more careful than the other and finding evidence of 
+copying while the other could not. They result in a better classification
+to a stronger one, i.e.~from UD to QS or EX. 
+%There were three conflicts where the two
+%investigators could not find a consensus and the third author was involved for
+%the final judgement.
+
+% No. of conflicts = 37 (ok) + 352 (simian) + 218 (SCC)
+% 33 pairs are changed from MP.UD --> CR.EX,QS
+% 112 pairs are changed from CR.UD --> MP.EX,QS
 
 \begin{table}
 	\centering
@@ -833,8 +815,14 @@ Stack Overflow and to a Qualitas project.  Pattern UD
 identical or highly similar clones between Qualitas and Stack Overflow
 but where we could not find any attribution of copying.
 Pattern BP (\textbf{B}oiler-\textbf{P}late) represents clones
-containing boiler-plate code of {\small\verb|equals()|} methods,
-getters/setters, or IDE-generated code such as GUI components. Pattern
+containing boiler-plate (according to our definition of boiler-plate 
+code in \Cref{tab:boiler-plate_code} which is more specific to Java
+than the definition in Kapser's~\cite{Kapser2008}).
+%of {\small\verb|equals()|} methods,
+%getters/setters, well-known code patterns such as deleting a file
+%or implementing a {\small{\texttt{toString}} method,
+% or IDE-generated code such as GUI components. 
+ Pattern
 IN (\textbf{In}heritance/Interface) is cloning by inheritance of the
 same super class or implementation of the same interface. These two
 activities usually result in similar overriding methods. The last
@@ -842,6 +830,24 @@ pattern, AC (\textbf{A}ccidental \textbf{C}lones), represents
 accidentally similar clone pairs. These are mainly false positive
 clones from the clone detectors such as similar
 {\small\texttt{try-catch}} statements.
+
+\begin{table}
+	\centering
+	\caption{The definition of boiler-plate code}
+	\label{tab:boiler-plate_code}
+	\begin{tabular}{lp{5.5cm}}
+		\toprule
+		Type & Description \\ 
+		\midrule
+		\textbf{API constraints} & Similar code fragments are created because of a constraint by an API. For example, reading and writing to database using JDBC, reading and writing a file in Java. \\
+		\midrule
+		\textbf{Templating} & An optimised or stable code fragment is reused multiple times. This also includes auto-generated code by IDE. \\
+		\midrule
+		\textbf{Design patterns} & Java design patterns suggest a way of implementing similar pieces of code. For example, getters, setters, {\small\texttt{equals}}, {\small\texttt{hashCode}}, and {\small\texttt{toString}} method. \\
+		\bottomrule 
+	\end{tabular}  %
+	%}
+\end{table}
 
 \begin{figure}
 	\centering
@@ -881,16 +887,17 @@ programming languages combined in the same post.
 To search for outdated online code clones, we focused on the \textbf{QS} clone
 pairs that were cloned from Qualitas to Stack Overflow and compared them with
 their latest versions. We downloaded the latest version of the Qualitas projects
-from their repositories on September 26, 2016. For each \textbf{QS} online clone
+from their repositories on October 3, 2017. For each \textbf{QS} online clone
 pair, we used the clone from Qualitas as a proxy. We searched for its latest
 version by the file name and located the cloned region in the file based on the
-method name. We then compared the Stack Overflow snippet to its latest version
-line-by-line to find if any change has been made to the source code. We also
-made sure that the changes did not come from the modifications made to the Stack
-Overflow snippets by the posters but from the updates in the projects
-themselves. When we found inconsistent lines between the two versions, we used
-{\small\texttt{git blame}} to see who modified those lines of code and the
-timestamps.
+method name or specific code statements. We then compared the Stack Overflow
+snippet to its latest version line-by-line to find if any change has been made
+to the source code. We also made sure that the changes did not come from the
+modifications made to the Stack Overflow snippets by the posters but from the
+updates in the projects themselves. When we found inconsistent lines between the
+two versions, we used {\small\texttt{git blame}} to see who modified those lines
+of code and the timestamps. We also collected IDs of issue tracking information
+if the code change is linked to an automatic issue tracking system, such as Jira.
 
 \subsection{Phase 6: Licensing Analysis} Software licensing plays an important
 role in software development. Violation of software licenses impacts software
@@ -957,7 +964,7 @@ compare the results or observe similar patterns between them.
 The first group had reputation from 963,731 (the
 highest) to 7,674, and the second group had reputation from 7,636 to 6,999 which
 we sent out 300 and 307 emails (excluding undelivered ones) respectively. The
-survey was open for participation for a month, from 25 July 2017 to 25 August
+survey was open for participation for two months, from 25 August 2017 to 25 August
 2017, before we collected and analysed the responses.
 
 \section{Results and Discussion}
@@ -974,20 +981,12 @@ QS, EX, UD and checked for a possibility of licensing violation (phase 6).
 
 \subsection{RQ1: Online Code Clones} 
 
-The statistics on clones obtained from the different data sets are
-presented in \Cref{tab:snippets}. Simian in the default configuration
-($S_D$) reported clones in 1,086 snippets, approximately 1\% of the
-144,064 Stack Overflow snippets, associated with 92 Qualitas
-projects. Simian in the EvaClone configuration ($S_E$) reported 1,531
-snippets containing clones associated with all 111 Qualitas
-projects. NiCad in the default configuration ($N_D$) reported clones
-between 1,392 Stack Overflow code snippets and 88 Qualitas
-projects. NiCad in the EvaClone configuration ($N_E$) reported the
-largest number of 12,886 cloned snippets mainly due to the more
-relaxed configuration. The $N_E$ snippets are associated with 88
-Qualitas projects.  For the cloned Stack Overflow snippets, the
-average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
-38\%, 50\%, 30\%, and 33\% respectively.
+The statistics on clones obtained from the merged clone data set are
+presented in \Cref{tab:snippets}. Simian and SourcererCC
+reported clones in 560 snippets, approximately 1\% of the
+72,365 Stack Overflow snippets, associated with 59 Qualitas
+projects. For the cloned Stack Overflow snippets, the
+average ratio of cloned code is 54.22\%.
 % A quick manual check of Simian's clone report revealed that there
 % were 11 problematic snippets. These 11 snippets triggered Simian to
 % generate large clone clusters containing a huge number of false
@@ -1003,31 +1002,20 @@ average ratio of cloned code for $S_D$, $S_E$, $N_D$, and $N_E$ is
 		and Qualitas projects}
 	\label{tab:snippets}
 	\centering
-	\begin{tabular}{rrrr}
+	\begin{tabular}{p{2.2cm}rrrr}
 		\toprule
-		Pairs & Snippets & Projects & Avg.~cloned ratio \\
+		Set & Pairs & Snippets & Projects & Cloned ratio \\
 		\midrule
-		2,304 & 460 & 77 & ??\% \\ % <-- for avg. cloned ratio, use scripts in ~/Downloads/stackoverflow/scripts/checking
+		Reported clones & 2,302 & 590 & 63 & 53.10\% \\ 
+		\midrule
+		TP from manual validation & 2,076 & 560 & 59 & 54.22\% \\ % <-- for avg. cloned ratio, use scripts in ~/Downloads/stackoverflow/scripts/checking
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-However, using Bellon's criteria for matching clone pairs, only
-0.1\%~of all pairs are agreed by two tool/configuration
-combinations. As shown in \Cref{tab:snippets}, for the 2,313
-\textit{good} pairs, there are 97 Stack Overflow snippets which are
-associated with 67 Qualitas projects. The 12,336 \textit{ok'} pairs
-are clones between 139 Stack Overflow snippets and 43 Qualitas
-projects.  Moreover, for the disagreed pairs, we found 17,081 clone
-pairs reported by $S_D'$ are clones between 460 Stack Overflow
-snippets and 74 Qualitas projects and 83 $N_D'$ clone pairs are clones
-between 44 Stack Overflow snippets and 19 Qualitas projects. In total
-we found that the filtered data sets contains 32,533 clone pairs which
-are clones between 623 Stack Overflow snippets and 96 Qualitas
-projects. 
 
 During the manual investigation of 3,636 clone pairs, we identified 2,420 pairs
-as being accidential clones (AC), i.e.~false positives. After removing
+as being accidental clones (AC), i.e.~false positives. After removing
 them, the set still contains 1,216 true positive clone pairs between 516 Stack
 Overflow snippets and 75 Qualitas projects.
 
@@ -1080,26 +1068,21 @@ and explained in the following.
 %	%}
 %\end{table}
 
-\begin{table}
+\begin{table*}
 	\centering
 	\caption{Classifications of online clone pairs.}
 	\label{tab:classification_good_o}
 	%\small
 	%\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{lrrrrrrrr}
+	\begin{tabular}{rrrrrrrr}
 		\toprule
-		Set & QS & SQ & EX & UD & BP & IN & AC & Total \\ 
+		QS & SQ & EX & UD & BP & IN & AC & Total \\ 
 		\midrule
-		\multirow{1}{*}{\textit{good}}  & 3 & 0 & 4 & 15 & 111  & 8 & 2,172 & 2,313 \\
-		\multirow{1}{*}{\textit{ok'}}  & 14 & 0 & 44 & 20 & 12,128 & 23 & 107 & 12,336 \\
-		\multirow{1}{*}{$S_D'$} & 86 & 0 & 146 & 293 & 17,074 & 74 & 128 & 17,801 \\
-		\multirow{1}{*}{$N_D'$} & 9  & 0  & 6 & 31 & 17 & 7 & 13 & 83 \\ 
-		\midrule
-		Total & 112 & 0 & 200 & 359 & 29,330 & 112 & 2,420 & 32,533 \\ 
+		239 (149) & 1 (1) & 208 (119) & 107 (65) & 1,505 (217) & 16 (9) & 226 (53) & 2,302 (560) \\
 		\bottomrule
 	\end{tabular} 
 	%}
-\end{table}
+\end{table*}
 
 
 \textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 112
