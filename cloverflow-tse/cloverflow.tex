@@ -926,9 +926,8 @@ anonymous and the participants could decide to leave at any time. It contained
 11 questions. There were 7 Likert's scale questions, 3 yes/no questions, and one
 open-ended question for additional comments. The first two questions were
 mandatory while the other 9 questions were shown to the participants based on
-their previous answers. The full survey can be found in our \FIXME{technical
-	report/website?} ~\footnote{Survey--Stack Overflow Answerers:
-	\url{http://www.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/so_survey.pdf}}.
+their previous answers. The full survey can be found in our research note~
+\FIXME{add URL to the RN}.
 
 
 \begin{table}
@@ -983,10 +982,10 @@ QS, EX, UD and checked for a possibility of licensing violation (phase 6).
 
 The statistics on clones obtained from the merged clone data set are
 presented in \Cref{tab:snippets}. Simian and SourcererCC
-reported clones in 560 snippets, approximately 1\% of the
+reported clones in 460 snippets, approximately 0.6\% of the
 72,365 Stack Overflow snippets, associated with 59 Qualitas
 projects. For the cloned Stack Overflow snippets, the
-average ratio of cloned code is 54.22\%.
+average ratio of cloned code is 53.10\%.
 % A quick manual check of Simian's clone report revealed that there
 % were 11 problematic snippets. These 11 snippets triggered Simian to
 % generate large clone clusters containing a huge number of false
@@ -1006,67 +1005,32 @@ average ratio of cloned code is 54.22\%.
 		\toprule
 		Set & Pairs & Snippets & Projects & Cloned ratio \\
 		\midrule
-		Reported clones & 2,302 & 590 & 63 & 53.10\% \\ 
+		Reported clones & 2,302 & 460 & 59 & 53.10\% \\ 
 		\midrule
-		TP from manual validation & 2,076 & 560 & 59 & 54.22\% \\ % <-- for avg. cloned ratio, use scripts in ~/Downloads/stackoverflow/scripts/checking
+		TP from manual validation & 2,076 & 449 & 59 & 54.22\% \\ 
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-
-During the manual investigation of 3,636 clone pairs, we identified 2,420 pairs
+During the manual investigation of 2,302 clone pairs, we identified 226 pairs
 as being accidental clones (AC), i.e.~false positives. After removing
-them, the set still contains 1,216 true positive clone pairs between 516 Stack
-Overflow snippets and 75 Qualitas projects.
+them, the set still contains 2,076 true positive clone pairs between 449 Stack
+Overflow snippets and 59 Qualitas projects. The average cloned ratio for the
+true positive clone pairs is 54.22\%.
 
-\textbf{To answer RQ1, we found most Qualitas projects to share
+\textbf{To answer RQ1, we found more than half of Qualitas projects to share
 	similar code with Stack Overflow code snippets. In the manually confirmed 
-	data set of 3,636 clone pairs, we found 1,216 pairs as true positives which 
-	account for 75 Qualitas projects and
-	516 Stack Overflow code snippets.}
-
-%\FIXME{Should we have removed the AC clones right at the beginning?}
+	data set of 2,302 clone pairs, we found 2,076 pairs as true positives which 
+	account for 59 Qualitas projects and
+	449 Stack Overflow code snippets.}
 
 \subsection{RQ2: Patterns of Online Code Cloning}
 
-As shown in \Cref{tab:online_clone_classification_results}, the automatic
-classifier helped us to classify 28,897 clone pairs into
-pattern \textbf{BP}. Then, we relied on a manual classification
-% to qualitatively investigate the patterns of
-%online code cloning 
-on the remaining 3,636 pairs by following the classification process
+We performed a manual classification
+of the 2,302 merged clone pairs by following the classification process
 in \Cref{fig:classification_process}. 
-%To achieve this, we classified all 32,533
-%selected clone pairs according to the classification process 
-%in \Cref{fig:classification_process}.  
-%
-%There were 3,636 pairs left for the manual check. 
 The classification results are shown in \Cref{tab:classification_good_o} 
 and explained in the following.
-
-%\begin{table}
-%	\centering
-%	\caption{No.~of online clones candidates for the classification}
-%	\label{tab:online_clone_classification_results}
-%	%\small
-%	%	\resizebox{\columnwidth}{!}{%
-%	\begin{tabular}{lrrr}
-%		\toprule
-%		\multirow{2}{*}{Set} & \multirow{2}{*}{Candidates} & \multicolumn{2}{c}{Classification} \\ %\cmidrule{3-4}
-%		& & Auto & Manual \\
-%		\midrule 
-%		\multirow{1}{*}{\textit{good}} & 2,313 & 10 & 2,303 \\
-%		\multirow{1}{*}{\textit{ok'}} & 12,336 & 12,077 & 259 \\
-%		%\multirow{1}{*}{\textit{agreed clone pairs}}      & 29,099 \\
-%		\multirow{1}{*}{$S_D'$} & 17,801 & 16,800 & 1,001 \\
-%		\multirow{1}{*}{$N_D'$} & 83 & 10 & 73 \\ 
-%		%\multirow{1}{*}{\textit{disagreed clone pairs}}    & 1,039 \\
-%		\midrule
-%		Total  & 32,533 & 28,897 & 3,636 \\ 
-%		\bottomrule
-%	\end{tabular} %
-%	%}
-%\end{table}
 
 \begin{table*}
 	\centering
@@ -1074,49 +1038,162 @@ and explained in the following.
 	\label{tab:classification_good_o}
 	%\small
 	%\resizebox{\columnwidth}{!}{%
-	\begin{tabular}{rrrrrrrr}
+	\begin{tabular}{lrrrrrrrr}
 		\toprule
-		QS & SQ & EX & UD & BP & IN & AC & Total \\ 
+		Set & QS & SQ & EX & UD & BP & IN & AC & Total \\ 
 		\midrule
-		239 (149) & 1 (1) & 208 (119) & 107 (65) & 1,505 (217) & 16 (9) & 226 (53) & 2,302 (560) \\
+		Before consolidation & 248 & 1 & 199 & 107 & 1,505 & 16 & 226 & 2,302 \\
+		After consolidation & 154 & 1 & 111 & 65 & 217 & 9 & 53 & 560 \\
 		\bottomrule
 	\end{tabular} 
 	%}
 \end{table*}
 
+\textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 248 online clone
+pairs with evidences of cloning from Qualitas projects to Stack Overflow.
+However, we observed that, in some cases, a cloned code snippet on Stack
+Overflow matched with more than one code snippet in Qualitas projects. This is
+because there were also code cloning inside Qualitas projects themselves. To
+avoid double counting of such online clones, we consolidated clone pairs having
+the same Stack Overflow snippet, starting line, and ending line into a single
+clone pair. We finally obtained 154 QS pairs having unique Stack Overflow code
+snippets and associated with 23 Qualitas projects listed in
+\Cref{tab:qs_qualitas_projects}. The most cloned projects are \textsf{hibernate}
+and \textsf{spring} with 24 clone pairs, followed by \textsf{eclipse} (21
+pairs), \textsf{jung2} (19 pairs), \textsf{spring} (17 pairs), and
+\textsf{jfreechart} (13 pairs). The clones are used as examples and are very
+similar to their original Qualitas code with limited modifications. Most of them
+have a statement in the Stack Overflow post saying that the code is ``copied'',
+``borrowed'' or ``modified'' from a specific file or class in a Qualitas
+project. For example, according to the motivating example in
+\Cref{fig:before-after}, we found evidence in the Stack Overflow Post 22315734
+saying that \textit{``Actually, you can learn how to compare in Hadoop from
+	WritableComparator. Here is an examle that borrows some ideas from it.''}
 
-\textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 112
-online clone pairs with evidences of cloning from 19 Qualitas projects to
-Stack Overflow. They include 3, 14, 86, and 9 pairs from the
-\textit{good}, \textit{ok'}, $S_D'$, and $N_D'$ set respectively. Most of
-them have a statement in the Stack Overflow post saying that the code
-is ``copied'', ``borrowed'' or ``modified'' from a specific file or class in a
-Qualitas project. For example, according to the motivating example in 
-\Cref{fig:before-after}, we found evidence in the Stack Overflow 
-Post 22315734 saying that \textit{``Actually, you can learn how to compare 
-	in Hadoop from WritableComparator. Here is an examle that borrows 
-	some ideas from it.''}
+\begin{table}
+	\centering
+	\caption{Qualitas projects associated with QS and UD online clone pairs}
+	\label{tab:qs_qualitas_projects}
+	%\small
+	%\resizebox{\columnwidth}{!}{%
+	\begin{tabular}{lrlr}
+		\toprule
+		\multicolumn{2}{c}{QS} & \multicolumn{2}{c}{UD} \\
+		\midrule
+		Project & Pairs & Project & Pairs\\
+		\midrule
+		hibernate & 24 & netbeans & 11 \\
+		eclipse & 21 & eclipse & 8 \\
+		jung2 & 19 & jstock & 5 \\
+		spring & 17 & compiere & 5 \\
+		jfreechart & 13 & ireport & 4 \\
+		hadoop & 10 & jmeter & 4 \\
+		log4j & 8 & jung2 & 3 \\
+		tomcat & 8 & jhotdraw & 3 \\
+		struts & 5 & c-jdbc & 3 \\
+		lucene & 4 & log4j & 3 \\
+		weka & 4 & wct & 2 \\
+		junit & 3 & hibernate & 2 \\
+		poi & 3 & tomcat & 2 \\
+		compiere & 2 & spring & 1 \\
+		jasperreports & 2 & rssowl & 1 \\
+		jboss & 2 & mvnforum & 1 \\
+		jgraph & 2 & jfreechart & 1 \\
+		jstock & 2 & jboss & 1 \\
+		antlr & 1 & hadoop & 1 \\
+		itext & 1 & geotools & 1 \\
+		jgrapht & 1 & freemind & 1 \\
+		ant & 1 & findbugs & 1 \\
+		c-jdbc & 1 & cayenne & 1 \\
+		\bottomrule
+	\end{tabular} 
+	%}
+\end{table}
 
-The most cloned projects are \textsf{hibernate} and
-\textsf{spring} with 20 clone pairs, followed by \textsf{eclipse} (15
-pairs), and \textsf{hadoop} (12 pairs). The clones are used as
-examples and are very similar to their original Qualitas code with
-limited modifications.
+\textbf{SQ: Stack Overflow $\rightarrow$ Qualitas.} We found one pair with
+evidence of cloning from Stack Overflow post ID 698283 to
+{\small\texttt{POIUtils.java}} in \textsf{jstock} project. The user
+\textsf{yccheok} who asked the question in Stack Overflow is the author of
+\textsf{jstock}. The question is about determining the right method to call
+among 7 overloading methods of {\small\texttt{setCellValue}} during runtime. We
+could not find evidence of copying or attribution to Stack Overflow in
+\textsf{jstock}. However, considering that the 25 lines of code of
+{\small\texttt{findMethodToInvoke}} method depicted in \Cref{fig:jstock_code} in Stack
+Overflow is identical to the code in \textsf{jstock} including comments, it is almost certain that
+the two code snippets form a clone pair. In addition, Stack Overflow answer was
+posted on March 30, 2009, while the code in {\small\texttt{POIUtils}} class in
+\textsf{jstock} was committed to GitHub on the next day of March 31, 2009.
 
-\textbf{SQ: Stack Overflow $\rightarrow$ Qualitas.} We did not find
-any pairs with evidence of cloning from Stack Overflow to Qualitas
-projects. This is very likely due to the age of the Qualitas corpus as
-another study~\cite{An2017} showed the presence of clones from Stack
-Overflow in newer open source data sets.
+\begin{figure}
+	\begin{lstlisting}
+private Method findMethodToInvoke(Object test) {
+  Method method = parameterTypeMap.get(test.getClass());
+  if (method != null) {
+    return method;
+  }
 
-\textbf{EX: External Sources.} We found 200 clone pairs with
-evidence of cloning from external sources to Stack Overflow and to Qualitas.  
-They include 4, 44, 146, and 6 pairs from the \textit{good}, \textit{ok'},
-$S_D'$, and $N_D'$ set respectively. All of them contain statements
-giving an external source of the cloned code.  For example, Stack
-Overflow Post 9549009 contains a code comment saying \textit{``Copied
-	shamelessly from
-	org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator''}.
+  // Look for superclasses
+  Class<?> x = test.getClass().getSuperclass();
+  while (x != null && x != Object.class) {
+    method = parameterTypeMap.get(x);
+    if (method != null) {
+      return method;
+    }
+    x = x.getSuperclass();
+  }
+
+  // Look for interfaces
+  for (Class<?> i : test.getClass().getInterfaces()) {
+    method = parameterTypeMap.get(i);
+    if (method != null) {
+      return method;
+    }
+  }
+  return null;
+}
+	\end{lstlisting}\vspace{-2ex}
+	\caption{The {\small\texttt{findMethodToInvoke}} that is found to be copied from Stack Overflow post 698283 to {\small\texttt{POIUtils}} class.}
+	\label{fig:jstock_code}
+\end{figure}
+
+We did not find other online clones besides the one mentioned above. 
+This very low number of SQ clone pair is very likely due to the age of the
+Qualitas corpus as another study~\cite{An2017} showed the presence of clones
+from Stack Overflow in newer open source data sets. This is expected and
+comes from our experimental design since
+we are more interested in a cloning direction from Qualitas to Stack Overflow.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{ex_sources}
+	\caption{Original sources of EX clone pairs}
+	\label{fig:ex_sources}
+\end{figure}
+
+\textbf{EX: External Sources.} We found 199 clone pairs with evidence of cloning
+from external sources to Stack Overflow. After getting rid of duplicated SO
+snippets due to multiple intra-clone instances in Qualitas, we obtained 111 EX
+pairs. Fifty pairs provide evidences of copying to both Stack
+Overflow and Qualitas while the rest (61) only provides evidence of copying to
+Stack Overflow. All of them contain statements giving an external source of the
+cloned code which fall into six groups as displayed in \Cref{fig:ex_sources}. 
+We discovered that 63 EX online clone pairs are copied from source code of classes or 
+methods in Java SDK, 18 pairs are from websites, 15 pairs are from open source systems,
+11 pairs are from Java official documentations from Sun Microsystems or Oracle,
+3 pairs are from books, and 1 pair is from a company project.
+For example, Stack Overflow Post
+9549009 contains a code comment saying \textit{``Copied shamelessly from
+	org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator''} which is an
+open source project. Post 92962 includes a {\small\texttt{VerticalLabelUI}}
+class with a license statement showing that it is developed by a private company
+called \textsf{Sapient}. Post 12879764 has a text saying \textit{``Code modified
+	and cleaned from the original at Filthy Rich Clients.''} which is a book for
+developing animated and graphical effects for desktop Java applications. Another
+example is a copy of code from a website in post 15260207. The text surrounding
+source code reads ``\textit{I basically stole this from the web and modified it
+	slightly... You can see the original post here
+	(\url{http://www.java2s.com/Code/Java/Swing-JFC/DragListDemo.htm}).}''.
+Interestingly, the code is actually a copy from Sun Microsystems.
 
 \begin{table*}
 	\centering
@@ -1145,97 +1222,98 @@ Overflow Post 9549009 contains a code comment saying \textit{``Copied
 \end{table*}
 
 These findings complement a study of clones between software
-projects~\cite{Svajlenko2014}. We found that cloning can also
-happen among different sources on the Internet just like software
-projects. There are 30 clone pairs that originated from programming
-websites. For example, we found a clone of a snippet to convert
-numbers into words which is copied from
-\url{www.rgagnon.com/javadetails/java-0426.html}. Both the Stack
-Overflow and the \textsf{compiere} project code contain an
-attribution to the original source. Another example is a snippet
-to generate graphical \textit{Perlin noise}. It is copied from
-\url{http://mrl.nyu.edu/~perlin/noise/} and is used on Stack
-Overflow and in the \textsf{aoi} project with
-attribution.
-% The original code of the 15 clone pairs do not have licensing
-% information so these clones do not violate any license.
-There are other EX pairs which are copied from third-party
-libraries such as \textsf{zxing}, \textsf{jasper}, \textsf{java.util},
-\textsf{javax.servlet}, and the \textsf{bouncycastle} cryptography
-project.
+projects~\cite{Svajlenko2014}. We found that cloning can also happen among
+different sources on the Internet just like software projects. The are 18 clone
+pairs that originated from programming websites including \url{www.java2s.com}
+and \url{exampledepot.com}. Moreover, there is one snippet which comes from a
+research website. We found that a snippet to generate graphical \textit{Perlin
+	noise} is copied from NYU Media Research Lab
+(\url{http://mrl.nyu.edu/~perlin/noise/}) website and is used on Stack Overflow
+and in the \textsf{aoi} project with attribution. There are other EX pairs which
+are copied from open source libraries or Java SDK such as \textsf{Mozilla
+	Rhino}, \textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}, and
+the \textsf{bouncycastle} cryptography project.
 
-\textbf{UD: Unknown Direction.} We found 359 online clone pairs with
-no evidence of cloning between Qualitas and Stack Overflow but with a
-high code similarity that suggests cloning. 
-% They include 15, 20, 293, and 31 pairs from the \textit{good},
-% \textit{ok'}, $S_D'$, and $N_D'$ set respectively.
-The most cloned projects is \textsf{netbeans} with
-93 clone pairs. Most of the clones are a large chunk of code handling
-GUI components. Although these GUI clones might be auto-generated by
-IDEs, we did not find any evidence. The second most cloned project is
-\textsf{jung2} (62 pairs), a network and graph framework, followed by
-\textsf{eclipse-SDK} (37 pairs).
-% There are several Stack Overflow snippets that are identical to code
-% in \textsf{jung2}.
+\textbf{UD: Unknown Direction.} We found 107 online clone pairs, reduced to 65
+pairs after consolidating the clones, with no evidence of cloning between Qualitas
+and Stack Overflow but with a high code similarity that suggests cloning. 
+The most cloned projects is \textsf{netbeans} with 11 clone pairs. Most of the
+clones are a large chunk of code handling GUI components. Although these GUI
+clones might be auto-generated by IDEs, we did not find any evidence. The second
+most cloned project is \textsf{eclipse} (8 pairs), followed by \textsf{jstock},
+a free stock market software, and \textsf{compiere}, a software and customer
+relationship management (CRM) system, (5 pairs).
 
-\textbf{BP: Boiler-Plate.} There were a large amount of boiler-plate
-clone pairs found in this study. %Although we have removed some of the
-%boiler-plate code with filters before the analysis, we still 
-We observed 29,330 such clone pairs. The BP clone pairs account for
-90\% of all clone pairs we classified. The majority of them are
-{\small{\texttt{equals()}}} methods.
+\textbf{BP: Boiler-Plate.} There were a large amount of boiler-plate clone pairs
+found in this study. We observed 1,505 such clone pairs and 217 after
+consolidation. The BP clone pairs account for 65\% of all clone pairs we
+classified. The majority of them are {\small{\texttt{equals()}}} methods.
 
-\textbf{IN: Inheritance/interface.} There were 112 clone pairs found
-to be similar because they implement the same interface or inheriting
-from the same class. An example is the two implementations of
-{\small{\texttt{MouseListener}}} that share similar
-{\small\texttt{@Override}} methods of {\small\texttt{mousePressed}},
-and {\small\texttt{mouseReleased}}.
+\textbf{IN: Inheritance/interface.} There were 16 clone pairs, 9 pairs after
+consolidation, found to be similar because they implement the same interface or
+inheriting from the same class. An example is the two implementations of a
+custom data type which implements {\small\texttt{UserType}}. They share similar
+{\small\texttt{@Override}} methods of {\small\texttt{deepCopy}},
+{\small\texttt{isMutable}}, {\small\texttt{assemble}},
+{\small\texttt{disassemble}}, and {\small\texttt{replace}}.
 
-\textbf{AC: Accidental Clones.} There were 2,420 accidental clone
-pairs. Mainly, they are false positive clones caused by code
-normalisation. 
-% However, the original source code were still different enough when
-% we manually classified them.
-Other clone instances include {\small\texttt{finally}} or
+\textbf{AC: Accidental Clones.} There were 226 accidental clone
+pairs, 53 after consolidation. Mainly, they are false positive clones caused by code
+normalisation and false type-3 clones from SourcererCC. 
+Examples of the AC clone instances include {\small\texttt{finally}} or
 {\small\texttt{try-catch}} clauses that were accidentally the same due
 to their very small sizes, and similar {\small\texttt{switch-case}}
 statements.
 
-%For 17,801 $S_D$ clone pairs, they contained a large volume of boiler-plate code. Our regular expressions could automatically classified 16,800 of them into BP. The investigator checked the 1,001 remaining pairs manually. As a result, we found 86 QS, 294 UD, 145 EX, 17,074 BP, 74 IN and 128 AC pairs. For 88 $N_D$ clone pairs, 10 of them were automatically classified into BP and 78 were manually classified. We found 9 QS, 35 UD, 6 EX, 17 BP, 8 IN, and 13 AC respectively.
-
-%FIXME: We probably have to discuss IN clones.
-%FIXME: the numbers where 28,642 and 2,529 which I could not find elsewhere.
-\textbf{To answer RQ2, we found that a large amount of the clone pairs
+\textbf{To answer RQ2, we found 154 pairs with
+	strong evidences to be cloned from 23 Qualitas projects to Stack Overflow, 1 pair
+	was cloned from Stack Overflow to Qualitas, and
+	111 pairs were found to be cloned to Stack Overflow from external
+	sources. However, the largest amount of the clone pairs
 	between Stack Overflow and Qualitas projects are \linebreak boiler-plate code
-	(29,330) or accidental clones (2,420) with no evidence that the code
-	has actually been copied. Nevertheless, we found 112 pairs with
-	strong evidences to be cloned from 19 Qualitas projects to Stack Overflow and
-	200 pairs were found to be cloned to Stack Overflow from external
-	sources.} 
-%We did not find any clone pairs in the direction from Stack Overflow to Qualitas.}
+	(217), followed by 65 clone pairs with no evidence that the code has actually been copied,
+	and 16 pairs of clones due to implementing the same interface or inheriting the same class.} 
 
 
 \subsection{RQ3: Outdated Online Code Clones}
 
-%In this study, we are interested in effects of having code clones between open source software systems and Stack Overflow. From the manual investigation, we found 523 true positive online clone pairs. With this set of true clones, we investigated further and found that there are two potential issues, outdated code and software licensing violation.
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.8\linewidth]{outdated}
+	\caption{Outdated QS online clone pairs group by projects}
+	\label{fig:outdated}
+\end{figure*}
 
-%\subsubsection{Outdated Clones}
+We discovered 101 outdated online clone pairs out of 154 pairs. As shown in
+\Cref{fig:outdated}, \textsf{hibernate} has the highest number of 19 outdated
+pairs, followed by 14 from \textsf{spring}, 13 from \textsf{eclipse}, and 9 from
+\textsf{hadoop}. Besides the two examples of outdated code in % \textsf{hadoop}'s
+{\small{\texttt{WritableComparator.java}}} and
+{\small{\texttt{StringUtils.java}}} from \textsf{hadoop} shown in
+\Cref{fig:before-after} and \Cref{fig:before-after_2}, we also found a few
+outdated code elements which contained a large amount of modifications. For
+example, the code snippet in Stack Overflow post 23520731 is a copy of
+{\small{\texttt{SchemaUpdate.java}}} in \textsf{hibernate}. The code has been
+heavily modified on February 5, 2016.
 
-We discovered 64 outdated online clone pairs out of 112 pairs. As
-shown in \Cref{fig:outdated}, \textsf{spring} has the highest number
-of 17 outdated pairs, followed by 7 from \textsf{hibernate} and
-\textsf{hadoop}, and 6 from \textsf{junit}. Besides the example of
-outdated code in % \textsf{hadoop}'s
-{\small{\texttt{WritableComparator.java}}} 
-from \textsf{hadoop} shown in
-\Cref{fig:before-after}, we also found a few outdated code elements
-which contained a large amount of modifications. For example, the code
-snippet in Stack Overflow post 23520731 is a copy of
-{\small{\texttt{SchemaUpdate.java}}} in \textsf{hibernate}. The code
-has been heavily modified on February 5, 2016.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{mod_types}
+	\caption{Six code modification found in the latest versions of the outdated clone pairs}
+	\label{fig:mod_types}
+\end{figure}
 
-In the 64 outdated pairs, we found 5 ``dead'' snippets. These snippets
+We analysed code modifications which made Stack Overflow code outdated by going
+though commits and git blame information. The summary of six code modification
+types found in the 101 outdated online clone pairs are displayed in
+\Cref{fig:mod_types} including statement addition, statement modification,
+statement removal, method rewriting, API change (changing in method signature),
+and file deletion. We occasionally found multiple code modifications applied to
+one clone pair at the same time but at a different location. The most often
+code changes found is statement modification (49 occurrences), followed by statement
+addition (29 occurrences), statement removal (18 occurrences), changing of method
+signature, i.e.~API change (16 occurrences), and method rewriting (15 occurrences).
+Moreover, in the 101 outdated pairs, we found 15 ``dead'' snippets. These snippets
 cannot be located in the latest version of the projects. For example,
 the snippet in Stack Overflow post 3758110, a copy of
 {\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in
@@ -1268,16 +1346,7 @@ used by naive developers who copy and reuse the outdated code.
 	newest versions by modifications applied to variable names or method
 	names, added or deleted statements, to a fully rewritten code with
 	new method signatures. 4~pairs are dead
-	snippets.} 
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\linewidth]{freshness}
-	\caption{Status of the 112 QS online clone pairs}
-	\label{fig:outdated}
-\end{figure}
-
+	snippets.}
 
 \subsection{RQ4: Software Licensing Violation}
 
