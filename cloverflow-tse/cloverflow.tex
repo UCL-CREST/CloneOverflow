@@ -1200,18 +1200,22 @@ Interestingly, the code is actually a copy from Sun Microsystems.
 	\caption{Examples of the outdated QS online clones}
 	\label{tab:stale_code_details}
 	\resizebox{\linewidth}{!}{
-		\begin{tabular}{cc|lcp{5.15cm}@{}rrc|c@{}c}
+		\begin{tabular}{cc|lcp{4cm}@{}rrc|lc@{}c}
 			\toprule
-			\multicolumn{2}{c|}{Stack Overflow} & \multicolumn{6}{c|}{Qualitas} & \multicolumn{2}{c}{Changes} \\ 
+			\multicolumn{2}{c|}{Stack Overflow} & \multicolumn{6}{c|}{Qualitas} & \multicolumn{3}{c}{Changes} \\ 
 			\midrule
-			Post & Date & Project & Ver. & File & Start & End & Date & Type$^*$ & Date \\
+			Post & Date & Project & Ver. & File & Start & End & Date & Issue ID & Type$^*$ & Date \\
 			\midrule
-			22315734 & 11-Mar-14 & hadoop & 1.0.0 & WritableComparator.java & 44 & 54 & 25-Aug-11 & \textit{S} & 20-Nov-14 \\
-			23520731 & 7-May-14 & hibernate & 4.2.2 & SchemaUpdate.java & 115 & 168 & 22-May-13 & \textit{S} & 5-Feb-16 \\
-			21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & \textit{R} & 4-Aug-16 \\
-			12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 18 & 28 & 7-Dec-09 & \textit{R} & 26-Jun-13 \\
-			8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & \textit{D} & 20-May-11 \\
-			3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotationHandlerMapping.java & 78 & 92 & 20-Oct-10 & \textit{D} & 20-Jan-12 \\
+			2513183 & 25-Mar-10 & eclipse & 4.3 & GenerateToStringAction.java & 113 & 166 & & Bug 439874 & \textit{S} & 17-Mar-15 \\
+			22315734 & 11-Mar-14 & hadoop & 1.0.0 & WritableComparator.java & 44 & 54 & 25-Aug-11 & HADOOP-11323 & \textit{S} & 20-Nov-14 \\
+			23520731 & 7-May-14 & hibernate & 4.2.2 & SchemaUpdate.java & 115 & 168 & 22-May-13 & HHH-10458 & \textit{S} & 5-Feb-16 \\
+			18232672 & 14-Aug-13 & log4j & 1.2.16 & SMTPAppender.java & 207 & 228 & & Bug 44644 & \textit{R} & 18-Oct-08 \\ 
+			17697173 & 17-Jul-13 & lucene & 4.3.0 & SlowSynonymFilterFactory.java & 38 & 52 & & LUCENE-4095 & \textit{D} & 31-May-12 \\
+			21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & BZ 59823 &\textit{R} & 4-Aug-16 \\
+			12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 49 & 60 & 7-Dec-09 & 57593 & \textit{R} & 30-Apr-15 \\
+			8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & N/A & \textit{D} & 20-May-11 \\
+			3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotation\newline HandlerMapping.java & 78 & 92 & 20-Oct-10 & SPR-14129 & \textit{D} & 20-Jan-12 \\
+			14019840 & 24-Dec-12 & struts & 2.2.1 & DefaultActionMapper.java & 273 & 288 & & WW-4225 & \textit{S} & 18-Oct-13 \\
 			\bottomrule 
 			\multicolumn{10}{l}{{\footnotesize * \textit{S}:
 					modified/added/deleted statements, \textit{D}: file
@@ -1296,57 +1300,79 @@ example, the code snippet in Stack Overflow post 23520731 is a copy of
 {\small{\texttt{SchemaUpdate.java}}} in \textsf{hibernate}. The code has been
 heavily modified on February 5, 2016.
 
-\begin{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{mod_types}
+%	\caption{Six code modification types found when comparing the outdated clone pairs to their latest versions}
+%	\label{fig:mod_types}
+%\end{figure}
+
+\begin{table}
 	\centering
-	\includegraphics[width=0.7\linewidth]{mod_types}
-	\caption{Six code modification found in the latest versions of the outdated clone pairs}
-	\label{fig:mod_types}
-\end{figure}
+	\caption{Six code modification types found when comparing the outdated clone pairs to their latest versions}
+	\label{tab:mod_types}
+		\begin{tabular}{lr}
+			\toprule
+			Modification & Occurrences \\
+			\midrule
+			Statement modification & 49 \\
+			Statement addition & 29 \\
+			Statement removal & 18 \\
+			Method signature change & 16 \\
+			Method rewriting & 15 \\
+			File deletion & 15 \\
+			\bottomrule 
+		\end{tabular}
+\end{table}
 
 We analysed code modifications which made Stack Overflow code outdated by going
 though commits and git blame information. The summary of six code modification
 types found in the 101 outdated online clone pairs are displayed in
-\Cref{fig:mod_types} including statement addition, statement modification,
+\Cref{tab:mod_types} including statement addition, statement modification,
 statement removal, method rewriting, API change (changing in method signature),
 and file deletion. We occasionally found multiple code modifications applied to
-one clone pair at the same time but at a different location. The most often
-code changes found is statement modification (49 occurrences), followed by statement
-addition (29 occurrences), statement removal (18 occurrences), changing of method
-signature, i.e.~API change (16 occurrences), and method rewriting (15 occurrences).
-Moreover, in the 101 outdated pairs, we found 15 ``dead'' snippets. These snippets
-cannot be located in the latest version of the projects. For example,
-the snippet in Stack Overflow post 3758110, a copy of
-{\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in
-\textsf{spring}, was deleted in the commit
-{\small{\texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b}}} by Chris
-Beams on January 20, 2012, two years after it was
-posted. 
+one clone pair at the same time but at a different location. The most often code
+changes found is statement modification (49 occurrences), followed by statement
+addition (29 occurrences), statement removal (18 occurrences), changing of
+method signature, i.e.~API change (16 occurrences), and method rewriting (15
+occurrences). Moreover, in the 101 outdated pairs, we found 15 ``dead''
+snippets. These snippets cannot be located in the latest version of the
+projects. For example, the snippet in Stack Overflow post 3758110, a copy of
+{\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in \textsf{spring}, was
+deleted in the commit
+{\small{\texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b}}} by Chris Beams on
+January 20, 2012, two years after it was posted.
 
-% The latest version of Spring does not contain the file anymore.
-\Cref{tab:stale_code_details} shows examples of the outdated online
-clones on Stack Overflow. The table displays information of the clones
-from both Stack Overflow and Qualitas side including the dates. We
-summarise the changes that make the clones outdated into three types,
-modified/added/deleted statements (\textit{S}), file deletion
-(\textit{D}), and method rewriting (\textit{R}), along with the date
-of change. The complete set of 64 outdated online clones can be found
-from the study website.
+Moreover, using the information in git commit messages, we can associate each
+change to its respective issues in an issue tracking system, such as Bugzilla or
+Jira. We found that in 58 cases, the cloned code snippets on Stack Overflow were
+changed because of a request in the issue tracking system. Since issue tracking
+systems are also used, besides bug reports, for feature request and feature
+enhancements, having an issue tracking ID can reflect that the change is important
+and not only a superficial fix such as code formatting.
 
-The outdated online code clones cause problems ranging from
-uncompilable code (due to modifications and different API usage in the
-outdated code) to introducing vulnerabilities to
-software~\cite{Xia2014}. An outdated code with a subtle change
-(e.g.~\Cref{fig:before-after}) may be copied and reused without
-awareness from developers. Although Stack Overflow has a voting
-mechanism that may mitigate this issue, the accepted answer is still
-used by naive developers who copy and reuse the outdated code.
+\Cref{tab:stale_code_details} shows examples of the outdated online clones on
+Stack Overflow. The table displays information of the clones from both Stack
+Overflow and Qualitas side including the dates. We summarise the changes that
+make the clones outdated into three types, modified/added/deleted statements
+(\textit{S}), file deletion (\textit{D}), and method rewriting (\textit{R}),
+along with the issue tracking number and the date of change. The complete set of
+101 outdated online clones can be found from the study website.
 
-\textbf{For RQ3, our results show that 57\% (64) of QS clone
-	pairs on Stack Overflow are outdated. 60 pairs differ from their
-	newest versions by modifications applied to variable names or method
-	names, added or deleted statements, to a fully rewritten code with
-	new method signatures. 4~pairs are dead
-	snippets.}
+The outdated online code clones cause problems ranging from uncompilable code
+(due to modifications and different API usage in the outdated code) to
+introducing vulnerabilities to software~\cite{Xia2014}. An outdated code with a
+subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without
+awareness from developers. Moreover, an outdated code with a defect
+(e.g.~a race condition problem in \Cref{fig:before-after_2}) is harmful to be reused. Although Stack
+Overflow has a voting mechanism that may mitigate this issue, the accepted
+answer is still used by naive developers who copy and reuse the outdated code.
+
+\textbf{For RQ3, our results show that 66\% (101) of QS clone pairs on Stack
+	Overflow are outdated. 127 pairs differ from their newest versions by
+	modifications applied to variable names or method names, added or deleted
+	statements, to a fully rewritten code with new method signatures. 15~pairs are
+	dead snippets.}
 
 \subsection{RQ4: Software Licensing Violation}
 
