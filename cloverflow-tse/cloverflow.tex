@@ -64,9 +64,9 @@
 
 \begin{document}
 
-\title{Outdated and License-Violating Code on Stack Overflow}
+\title{Toxic code snippets on Stack Overflow}
 
-\author{Chaiyong Ragkhitwetsagul,~Matheus Paixao,~Jens Krinke,~Giuseppe Bianco,~Rocco Oliveto}
+\author{Chaiyong Ragkhitwetsagul,~Jens Krinke,~Matheus Paixao,~Giuseppe Bianco,~Rocco Oliveto}
 
 % The paper headers
 \markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING,~Vol.~X, No.~Y, August~2017}%
@@ -226,9 +226,9 @@ reusing activity occurs on Stack Overflow, just like in software. Stack Overflow
 answerers occasionally clone code from other locations, such as their personal
 projects, company projects, and open source projects, to Stack Overflow answers
 as a solution or to complement their answer~\FIXME{put a precise number here}.
-One participants says
+One participants says:
 
-\begin{quote}\textit{The real issue is less about the amount the code snippets
+\begin{quote}\textit{``The real issue is less about the amount the code snippets
 		on SO than it is about the staggeringly high number of software
 		``professionals'' that mindlessly use them without understanding what they're
 		copying, and the only slightly less high number of would-be professionals that
@@ -238,7 +238,7 @@ One participants says
 		\texttt{mysql\_*} functions were obsolete, or the recent regex tutorial that
 		got posted the other day on HackerNew
 		(\url{https://news.ycombinator.com/item?id=14846506}). They're also full of
-		toxic code snippets.}\end{quote}
+		toxic code snippets.''}\end{quote}
 
 With the same analogy, in this study we are interested in mining Stack Overflow
 posts, detecting online code clones, and revealing \textbf{toxic code snippets},
@@ -1386,26 +1386,29 @@ answer is still used by naive developers who copy and reuse the outdated code.
 			\toprule
 			Type & Stack Overflow\newline (CC BY-NC-SA) & Qualitas & QS & EX & UD \\
 			\midrule
-			Compatible & No license & No license & 28 & & \\
+			Compatible & Apache-2 & Apache-2 & 1 & & \\
+								  & EPLv1 & EPLv1 & 2 & & \\
+								  & No license & No license	& 20 & & \\
 			\midrule
-			\multicolumn{3}{l}{Total} & 28 & & \\
+			\multicolumn{3}{l}{Total} & 23 & & \\
 			\midrule
-			Incompat. & No license & Apache-2 & 55 & & \\
-			          & No license & BSD-3 & 1 & & \\
-			          & No license & CDDLorGPLv2 & 1 & & \\
-			          & No license & EPLv1 & 19 & & \\
-			          & No license & GPLv2+/3+ & 6 & & \\
-			          & No license & LesserGPLv2.1+/3+ & 20 & & \\
-			          & No license & Unknown & 24 & & \\
+			Incompat. & No license & EPLv1	& 10 & & \\
+								& No license & GPLv2/2+/3+	& 7 & & \\
+								& No license & AGPLv3 & 1 & & \\
+								& No license & Apache-2 & 46 & & \\
+								& No license & BSD/BSD3	& 4 & & \\
+								& No license & LesserGPL/v2.1+/v3+ & 17 & & \\
+								& spdxBSD3 & LesserGPLv2.1+	& 1 & & \\
 			\midrule
-			\multicolumn{3}{l}{Total} & 154 & & \\
+			\multicolumn{3}{l}{Total} & 86 & & \\
 			\bottomrule
 		\end{tabular} 
 	}
 \end{table}
 
 
-%If developers copy and reuse these licensed pieces of code in their projects, conflicts may happen without their realisation.
+%If developers copy and reuse these licensed pieces of code in their projects,
+% conflicts may happen without their realisation.
 In our study, we reveal another type of toxic code snippets which is software
 licensing issues caused by code cloned to Stack Overflow. We found evidence that
 154 pieces of code have been copied from Qualitas projects to Stack Overflow as
@@ -1415,8 +1418,12 @@ we found that the license information were frequently missing after the code was
 copied to Stack Overflow. The licensing terms on top of source code files are
 not copied because usually only a small part of the file was cloned. In overall,
 we can see that most of the Stack Overflow snippets do not contain licensing
-terms while their clone counterparts in Qualitas projects do. The summary of
-licensing information is listed in \Cref{tab:license_abc}.
+terms while their clone counterparts in Qualitas projects do. 
+Pleaste note that the
+results here are analysed at file level, not clone fragment, thus there are some
+clone pairs that share the same result and we combine them into a single pair.
+The summary of
+licensing information is listed in \Cref{tab:license_abc}. 
 
 \textbf{Compatible license:} There are 40 pairs which have compatible
 licenses such as \emph{Apache license v.2}; \emph{Eclipse Public
