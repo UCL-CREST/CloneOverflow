@@ -648,26 +648,26 @@ The average clone size reported by Simian is
 	%}
 \end{table}
 
-\subsection{Phase 2: Clone Merging}
-As there are in total 315,786,118 clone pairs reported, it is infeasible for
-humans to manually validate them all. Instead of investigating a random sample,
-we adopted the idea of \textbf{clone agreement} which has been used in clone
-research studies~\cite{Funaro2010, Wang2013,cr2016ssbse} in situations where a
-clone oracle is missing or impossible to establish. Clone pairs agreed by
-multiple clone detection tools have a higher likelihood to be real
-clones~\cite{cr2016ssbse}. By using this agreement-based approach, we reduced
-the number of clone candidates for manual investigation and avoid a threat to
-internal validity of double counting the same clone pair twice by merging the
-ones agreed by the two tools. To find agreement between two clone pairs
-reported by two different tools, we used the clone pair matching metric proposed
-by Bellon et al.~\cite{Bellon2007}. Two clone pairs which have a large enough
-number of overlapping lines can be categorised as either a good-match or an
-ok-match pair (denoted as \textit{good} and \textit{ok} respectively) with a
-confidence value between 0 and 1. Although good-match has stronger
-agreement than ok-match, we choose ok-match as our clone merging method because 
-it does not take clone size into account which suit our results of clones from
-two tools, Simian, SourcererCC, with two different detection methods, 
-line-based and method-based. 
+\subsection{Phase 2: Clone Merging} As there are in total 315,786,118 clone
+pairs reported, it is infeasible for humans to manually validate them all.
+Instead of investigating a random sample, we adopted the idea of \textbf{clone
+	agreement} which has been used in clone research studies~\cite{Funaro2010,
+	Wang2013,cr2016ssbse} in situations where a clone oracle is missing or
+impossible to establish. Clone pairs agreed by multiple clone detection tools
+have a higher likelihood to be real clones~\cite{cr2016ssbse}. By using this
+agreement-based approach, we reduced the number of clone candidates for manual
+investigation and avoid a threat to internal validity of double counting the
+same clone pair twice by merging the ones agreed by the two tools. To find
+agreement between two clone pairs reported by two different tools, we used the
+clone pair matching metric proposed by Bellon et al.~\cite{Bellon2007}. Two
+clone pairs which have a large enough number of overlapping lines can be
+categorised as either a good-match or an ok-match pair (denoted as \textit{good}
+and \textit{ok} respectively) with a confidence value between 0 and 1. Although
+good-match has stronger agreement than ok-match, we choose ok-match as our clone
+merging method because it does not take clone size into account. Clone containment suits our
+online code clones from two tools, Simian (line-level) and SourcererCC
+(method-level), better because Simian's clone fragments  are sometimes smaller or bigger than
+a method while SourcererCC's clone fragments are always confined to a method boundary.
 
 \ We follow Bellon's original definitions of ok-match~\cite{Bellon2007}, which are based on how much two clone
 fragments \textit{CF} is contained in each other:
@@ -1857,6 +1857,7 @@ we investigated clones between Stack Overflow and 111 open
 source projects. Their results are similar to our findings that 
 there exist clones from software projects to Stack Overflow with 
 potential licensing violations. 
+\FIXME{Add a discussion of Abdalkareem et al.~\cite{Abdalkareem2017}}
 %In our work, we defined seven patterns of online code cloning and 
 %performed a large-scale manual check of 3,632 clone pairs. 
 %We discovered 112 clone pairs with strong evidences, 
