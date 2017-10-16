@@ -763,7 +763,7 @@ to a stronger one, i.e.~from UD to QS or EX.
 		
 		SQ &Cloned from Stack Overflow to Qualitas project (S $\rightarrow$ Q). \\ 
 		
-		EX & Cloned from an external source \textit{X} (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q). \\
+		EX & Cloned from an external source \textit{X} (X $\rightarrow$ S). \\
 		
 		UD & Cloned from each other or from an external source \textit{X} outside the project (unknown) (S $\leftrightarrow$ Q $\vee$ (X $\rightarrow$ S $\wedge$ X $\rightarrow$ Q)). \\ 
 		\midrule
@@ -1170,19 +1170,20 @@ we are more interested in a cloning direction from Qualitas to Stack Overflow.
 	\label{fig:ex_sources}
 \end{figure}
 
-\textbf{EX: External Sources.} We found 199 clone pairs with evidence of cloning
-from external sources to Stack Overflow. After getting rid of duplicated SO
-snippets due to multiple intra-clone instances in Qualitas, we obtained 111 EX
-pairs. Fifty pairs provide evidences of copying to both Stack
-Overflow and Qualitas while the rest (61) only provides evidence of copying to
-Stack Overflow. All of them contain statements giving an external source of the
-cloned code which fall into six groups as displayed in \Cref{fig:ex_sources}. 
-We discovered that 63 EX online clone pairs are copied from source code of classes or 
-methods in Java SDK, 18 pairs are from websites, 15 pairs are from open source systems,
-11 pairs are from Java official documentations from Sun Microsystems or Oracle,
-3 pairs are from books, and 1 pair is from a company project.
-For example, Stack Overflow Post
-9549009 contains a code comment saying \textit{``Copied shamelessly from
+\textbf{EX: External Sources.} We found 199 clone pairs from external sources to
+Stack Overflow. After consolidating duplicated SO snippets due to multiple
+intra-clone instances in Qualitas, we obtained 111 EX pairs. We found evidence
+of copying from an external source to Stack Overflow, but not in Qualitas, in 61 pairs. 
+A stronger evidence of copying from an external source to both Stack
+Overflow and Qualitas is available in the other 50 pairs. Each of them contains
+statement(s) pointing to the original external location of the cloned code. Our
+analysis shows that the external sources fall into six groups as displayed in
+\Cref{fig:ex_sources}. There are 63 EX online clone pairs copied
+from source code of Java SDK, 18 pairs from websites, 15 pairs from open
+source systems, 11 pairs from Java official documentations from Sun
+Microsystems or Oracle, 3 pairs from books, and 1 pair from a company
+project. For example, Stack Overflow Post 9549009 contains a code comment saying
+\textit{``Copied shamelessly from
 	org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator''} which is an
 open source project. Post 92962 includes a {\small\texttt{VerticalLabelUI}}
 class with a license statement showing that it is developed by a private company
@@ -1206,16 +1207,16 @@ Interestingly, the code is actually a copy from Sun Microsystems.
 			\midrule
 			Post & Date & Project & Ver. & File & Start & End & Date & Issue ID & Type$^*$ & Date \\
 			\midrule
-			2513183 & 25-Mar-10 & eclipse & 4.3 & GenerateToStringAction.java & 113 & 166 & & Bug 439874 & \textit{S} & 17-Mar-15 \\
+			2513183 & 25-Mar-10 & eclipse & 4.3 & GenerateToStringAction.java & 113 & 166 & 25-Jun-13 & Bug 439874 & \textit{S} & 17-Mar-15 \\
 			22315734 & 11-Mar-14 & hadoop & 1.0.0 & WritableComparator.java & 44 & 54 & 25-Aug-11 & HADOOP-11323 & \textit{S} & 20-Nov-14 \\
 			23520731 & 7-May-14 & hibernate & 4.2.2 & SchemaUpdate.java & 115 & 168 & 22-May-13 & HHH-10458 & \textit{S} & 5-Feb-16 \\
-			18232672 & 14-Aug-13 & log4j & 1.2.16 & SMTPAppender.java & 207 & 228 & & Bug 44644 & \textit{R} & 18-Oct-08 \\ 
-			17697173 & 17-Jul-13 & lucene & 4.3.0 & SlowSynonymFilterFactory.java & 38 & 52 & & LUCENE-4095 & \textit{D} & 31-May-12 \\
+			18232672 & 14-Aug-13 & log4j & 1.2.16 & SMTPAppender.java & 207 & 228 & 31-Mar-10 & Bug 44644 & \textit{R} & 18-Oct-08 \\ 
+			17697173 & 17-Jul-13 & lucene & 4.3.0 & SlowSynonymFilterFactory.java & 38 & 52 & 6-Apr-13 & LUCENE-4095 & \textit{D} & 31-May-12 \\
 			21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & BZ 59823 &\textit{R} & 4-Aug-16 \\
 			12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 49 & 60 & 7-Dec-09 & 57593 & \textit{R} & 30-Apr-15 \\
 			8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & N/A & \textit{D} & 20-May-11 \\
 			3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotation\newline HandlerMapping.java & 78 & 92 & 20-Oct-10 & SPR-14129 & \textit{D} & 20-Jan-12 \\
-			14019840 & 24-Dec-12 & struts & 2.2.1 & DefaultActionMapper.java & 273 & 288 & & WW-4225 & \textit{S} & 18-Oct-13 \\
+			14019840 & 24-Dec-12 & struts & 2.2.1 & DefaultActionMapper.java & 273 & 288 & 17-Jul-10 & WW-4225 & \textit{S} & 18-Oct-13 \\
 			\bottomrule 
 			\multicolumn{10}{l}{{\footnotesize * \textit{S}:
 					modified/added/deleted statements, \textit{D}: file
