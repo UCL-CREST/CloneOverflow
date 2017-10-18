@@ -182,7 +182,7 @@ from another location. A snippet in an answer could be copied and modified
 from a code snippet in the question, copied from the answerer's own
 code or from other locations including open source software (OSS)
 systems. The process of posting and answering questions on Stack
-Overflow that involves reusing of source code, can be considered as
+Overflow that involves the reuse of source code can be considered
 code cloning.
 
 Code cloning is an activity of reusing source code by copying and
@@ -207,31 +207,30 @@ Android programming problems more quickly than other resources while,
 at the same time, offers less secure code than books or the official
 Android documentation~\cite{Acar2016}.
 
-We call code snippets that are copied from software systems to online
-Q\&A websites (such as Stack Overflow) and vice versa as ``online
-code clones''. There are two
-directions in creating online code clones: (1) code is cloned from a software
-project to a Q\&A website as an example; or (2) code is cloned from a
-Q\&A website to a software project to obtain a functionality, perform
-a particular task, or fixing a bug.
-% and (3) code is transferred from one software project to another via a Q\&A website; 
-Similar to classic clones, online code clones can lead to license
-violations, bug propagation, introduction of vulnerabilities, and
-re-use of outdated code. Unfortunately, online clones are 
-difficult to locate and fix since the search space in online code
-corpora is larger and no longer confined to a local repository.
+We call code snippets that are copied from software systems to online Q\&A
+websites (such as Stack Overflow) and vice versa as ``online code clones''.
+There are two directions in creating online code clones: (1) code is cloned from
+a software project to a Q\&A website as an example; or (2) code is cloned from a
+Q\&A website to a software project to obtain a functionality, perform a
+particular task, or fixing a bug. % and (3) code is transferred from one
+% software project to another via a Q\&A website;
+Similar to classic code clones, i.e.~clones between software systems, online code clones
+can lead to license violations, bug propagation, introduction of
+vulnerabilities, and re-use of outdated code. Unfortunately, online clones are
+difficult to locate and fix since the search space in online code corpora is
+larger and no longer confined to a local repository.
 
 Our survey of Stack Overflow answerers shows that online code cloning occurs on
 Stack Overflow. Stack Overflow answerers frequently
 clone code from other locations, such as their personal projects, company
-projects, and open source projects, to Stack Overflow answers as a solution or
-to complement their answer. The code cloning activity on Stack Overflow
+projects, and open source projects, to Stack Overflow as a solution or
+a complement to a solution. The code cloning activity on Stack Overflow
 is obviously beneficial considered the popularity of Stack Overflow and its
 influence on software development~\FIXME{find citations}. On the other hand,
 there is also a downside caused by low quality, defective, and harmful code
 snippets that are reused without an awareness by millions of users.
 
-One participants in our survey expresses his/her concerns about this:
+One participant in our survey expresses his/her concerns about this:
 
 \begin{quote}
 	\textit{``The real issue is less about the amount the code snippets
@@ -258,12 +257,12 @@ are (1) outdated or (2) violating their original software license. Outdated code
 can be harmful since they are not up-to-date with their originals and may
 contain defects. Code snippets from open source projects usually fall under a
 specific software license , e.g.~GNU General Public License (GPL). If they are
-cloned to Stack Overflow answers without the license and flow to other projects
+cloned to Stack Overflow answers without the license, and then flow to other projects
 with conflicting license, legal issues may occur.
 
 \begin{figure*}
 	\begin{lstlisting}
-/* Code in Stack Overflow post ID 22315734 */         /* WritableComparator.java (2017-10-03) */
+/* Code in Stack Overflow post ID 22315734 */         /* WritableComparator.java (2014-11-21) */
 public int compare(byte[] b1,int s1,int l1, ...) {    public int compare(byte[] b1,int s1,int l1, ...) {
   try {                                                 try {
     buffer.reset(b1,s1,l1); /* parse key1 */              buffer.reset(b1,s1,l1); /* parse key1 */
@@ -318,7 +317,7 @@ software project with a conflicting license, a legal issue may arise.
 
 \begin{figure*}
 	\begin{lstlisting}
-/* Code in Stack Overflow post ID 801987 */             /* StringUtils.java (2017-10-03) */
+/* Code in Stack Overflow post ID 801987 */             /* StringUtils.java (2013-02-05) */
 public static String humanReadableInt(long number) {    public static String humanReadableInt(long number) {
   long absNumber = Math.abs(number);                      return TraditionalBinaryPrefix.long2String(number,"",1);
   double result = number;                               }
@@ -350,16 +349,16 @@ The second motivating example of outdated online code clones with more
 disrupting changes than the first one  can be found in an answer to a Stack
 Overflow question regarding how to format files sizes in a human readable form.
 \Cref{fig:before-after_2} shows---on the left---a code snippet to perform the
-task from {\small{\texttt{StringUtils}}} class in \textsf{hadoop}. The code snippet on the
+task from the {\small{\texttt{StringUtils}}} class in \textsf{hadoop}. The code snippet on the
 right shows another version of the same method, but at this time extracted from
 the latest version of \textsf{hadoop}. We can see that
-they both are totally different. The {\small{\texttt{humanReadableInt}}} method is
+they are totally different. The {\small{\texttt{humanReadableInt}}} method is
 rewritten on February 5, 2013 to solve an issue of a race condition
 (issue no.~HADOOP-9252\footnote{https://issues.apache.org/jira/browse/HADOOP-9252}).
-The missing of Apache v.2.0 license also similarly occurs after posted on 
+The absence of Apache v.2.0 license also occurs after the snippet is posted on 
 Stack Overflow.
 
-The two toxic code snippet in our examples has been posted on March 11, 2014 and
+The two toxic code snippet in our examples have been posted on March 11, 2014 and
 April 9, 2009 respectively. They have already been viewed 259 and 2,886 times as
 the time of writing this paper (October 3, 2017). Our calculation finds that
 there will be a new viewer of the first toxic snippet in approximately every 5
@@ -396,15 +395,15 @@ This paper makes the following primary contributions:
 	classified all of them.
 	
 	\item \textbf{An investigation of toxic code snippets on Stack Overflow:} Our study shows that from
-	the 2,302 online clones, at least 330 likely have been copied from open source
+	the 2,302 online clones, at least 330 have been copied from open source
 	projects or external online sources to Stack Overflow, potentially violating
 	software licenses. For 154 of them, we found evidence that they have been copied
-	from a specific Qualitas project and that 101 of them are meanwhile outdated. %
+	from a specific open source project and that 101 of them are outdated. %
 	% and questionable for being reused.
 	
 	\item \textbf{Awareness of Stack Overflow answerers to toxic code snippets:} We
 	performed an online survey and collected answers from 201 highly-ranked Stack
-	Overflow developers. We found that they cloned code snippets from open source
+	Overflow users. We found that they cloned code snippets from open source
 	projects to Stack Overflow answers. While Stack Overflow answerers are aware of
 	their outdated code snippets, 19\% of the participants rarely
 	or never fix the code. 99\% of the answerers never include software
@@ -435,17 +434,17 @@ research questions:
 		original projects?} We were interested in the outdated Stack
 	Overflow code examples since users are potentially reusing
 	them. 
-	\item \textbf{RQ4 (Software licensing violation): }\textit{Do
+	\item \textbf{RQ4 (Software licensing violation): }\textit{How often do
 		licensing conflicts occur between Stack Overflow clones and their
 		originals?} We investigated whether the reuse of online code clones
 	can cause software developers to violate licenses.
 	\item \textbf{RQ5 (Stack Overflow answerers' awareness): }
 	
-	\textit{1) Do Stack Overflow
+	\textit{1) How often are Stack Overflow
 		answerers aware of the outdated code when
 		they answer a question on Stack Overflow?} 
 	
-	\textit{2) Do Stack Overflow
+	\textit{2) How often are Stack Overflow
 			answerers aware of licensing conflicts when
 			they answer a question on Stack Overflow?} 
 	
@@ -474,19 +473,19 @@ questions.
 
 \subsection{Phase 1: Clone Identification}
 
-We rely on two source data sets in this study: Java code snippets in answers
+We rely on two source code data sets in this study: Java code snippets in answers
 on Stack Overflow and open source projects from the Qualitas corpus
-\cite{QualitasCorpus}.
+\cite{QualitasCorpus}, as detailed next.
 
 \textbf{Stack Overflow:} 
 We extracted Java code snippets from a snapshot of a Stack Overflow
 dump\footnote{\url{https://archive.org/details/stackexchange}} in January 2016.
 % The archived dump has a size of 9 gigabytes.
-The data dump is in XML format containing information of posts (questions and
-answers) and we were interested in code snippets embedded in posts which were
+The data dump is in XML, and it contains information of posts (questions and
+answers). We were interested in code snippets embedded in posts which were
 located between {\small\texttt{<code>}...\texttt{</code>}} tags. A Stack
 Overflow thread contains a question and several answers. An answer can also be
-marked as \textbf{accepted answer} by the questioner if the solution fixes
+marked as an \textbf{accepted answer} by the questioner if the solution fixes
 his/her problem. We collected Java code snippets using two criteria. First, we
 only focused on code snippets in accepted answers. We chose the snippets in
 accepted answers because they actually solved the problems in the questions.
@@ -494,16 +493,17 @@ Moreover, they are usually displayed just below the questions which makes them
 more likely to be reused than other answers. Second, we were only interested in
 code snippets of at least ten lines. Although the minimum clone size of six
 lines are usual in clone detection~\cite{Bellon2007,Wang2013,Koschke2006},
-snippets of at least ten lines are usually more interesting since most of
-boiler-plate code of getters/setters, \texttt{equal} or \texttt{hashCode} methods are removed.
+we empirically found that snippets of six lines contain a large number of
+boiler-plate code of getters/setters, \texttt{equal} or \texttt{hashCode} methods,
+which are not interesting for the study.
 Each snippet was extracted from the dump and saved to a file. Moreover, we
 filtered out irrelevant code snippets that were part of the accepted answers
 but were not written in Java by using regular expressions and manual checking.
 ~\FIXME{@Jens, should I mention I use PMD CPD to help here? More confusing?}.
 Finally we obtained
 72,365 Java code snippets containing 1,840,581 lines\footnote{Measured by cloc:
-	\url{https://github.com/AlDanial/cloc}} of Java source code. The median of the
-snippet size is 17.
+	\url{https://github.com/AlDanial/cloc}} of Java source code. The median size of the
+snippet is 17 lines.
 
 \textbf{Open source systems: }
 We selected the established \textbf{Qualitas} corpus~\cite{QualitasCorpus}. It is a curated Java corpus that has been used in several
@@ -544,7 +544,7 @@ lines of code (see \Cref{tab:datasets}). The median project size is 60,667 lines
 \textbf{Clone Detection Tools: } We use clone detection to discover online code
 clones. %\textbf{Clone Detection and Configuration: }
 There are a number of restrictions in terms of choosing the clone detection
-tools for this study. The main restriction is due to nature of code snippets
+tools for this study. The main restriction is due to the nature of code snippets
 posted on Stack Overflow, as most of them are incomplete Java classes or
 methods. Hence, a detector must be flexible enough to process code snippets that
 are not compilable or not complete blocks. Moreover, since the amount of code
@@ -567,12 +567,11 @@ granularity and has been used extensively in several clone
 studies~\cite{Ragkhitwetsagul2016, Wang2013, Mondal2011, Cheung2015,
 	Krinke2010}. Furthermore, it offers normalisation of variable names and literals
 (strings and numbers) which enables Simian to detect literal clones (type-1) and
-parameterised clones (type-2). \textbf{SourcererCC} is a token-based clone
+parameterised clones (type-2)~\cite{Bellon2007}. \textbf{SourcererCC} is a token-based clone
 detector which detects clones at either function- or block-level granularity. It
 can detect clones of type-1, -2 up to type-3 (clones with added and removed
 statements) and offer scalability against large code
-corpus~\cite{Sajnani2016,Saini2016,Yang2017}. Another benefit of SourcererCC is
-its flexibility of detecting code clones between two systems.
+corpus~\cite{Sajnani2016,Saini2016,Yang2017}. 
 
 We prepared the Java code in both datasets by removing comments and
 pretty-printing to increase the clone detection accuracy. Then, we deployed the
@@ -584,15 +583,18 @@ tokeniser could not parse 45,903 snippets, more than half of them. Nevertheless,
 the tool provides an option to plug in a customised tokeniser, so we developed a
 special Java tokeniser with assistance from the tool's creators. The customised
 tokeniser successfully processed all Stack Overflow snippets.
+
 Simian did not provide an option to detect cross-project clones. Hence the
 Simian clone report was filtered to contain only clone pairs between Stack
 Overflow and Qualitas projects, removing all clone pairs within either Stack
 Overflow or within Qualitas. 
+SourcererCC can detect cross-project clones between two systems so we did
+not filter the clones.
 
 \begin{table}
 	\centering
 	\caption{Configurations of Simian and SourcererCC}
-	\label{t:param_tuning}
+	\label{tab:clone_config}
 %		\resizebox{\columnwidth}{!}{
 %	\small
 	\begin{tabular}{lp{5cm}}
@@ -615,7 +617,7 @@ considering the massive size of the two datasets and the search space of at
 least 15 Simian and 3 SourcererCC parameters, we are unable to search for the
 best configurations of the tools. Thus, we decided to configure Simian and
 SourcererCC based on their established default configurations chosen by the
-tools' creators. All variable renaming are disabled to decrease a number of
+tools' creators as depicted in \Cref{tab:clone_config}. All variable renaming are disabled to decrease the number of
 false positives since we aim for finding clones that are copied from open source
 projects with minimal modifications. The two clone detectors complement each
 other by having Simian detecting literal copies of code snippets (type-1) and SourcererCC
@@ -677,7 +679,7 @@ likelihood to be duplicate and must be merged.
 %by merging the ones agreed by the two tools. 
 To find agreement between two clone
 pairs reported by two different tools, we used the clone pair matching metric
-proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs which have a large
+proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs that have a large
 enough number of overlapping lines can be categorised as either a good-match or
 an ok-match pair with a
 confidence value between 0 and 1. Although good-match has stronger agreement
@@ -689,7 +691,7 @@ because Simian's clone fragments can be smaller or bigger than a method
 while SourcererCC's clone fragments are always confined to a method boundary.
 
 \ We follow Bellon's original definitions of ok-match~\cite{Bellon2007}, which are based on how much two clone
-fragments \textit{CF} is contained in each other:
+fragments \textit{CF} are contained in each other:
 
 %\squeezeup
 %\begin{displaymath}
@@ -1059,7 +1061,7 @@ such online clones, we consolidated multiple clone pairs having the same Stack
 Overflow snippet, starting line, and ending line into a single clone pair. We
 finally obtained 154 QS pairs having unique Stack Overflow code snippets and
 associated with 23 Qualitas projects listed in \Cref{tab:qs_qualitas_projects}.
-The most cloned projects are \textsf{hibernate} and \textsf{spring} with 24
+The most cloned projects is \textsf{hibernate} with 24
 clone pairs, followed by \textsf{eclipse} (21 pairs), \textsf{jung2} (19 pairs),
 \textsf{spring} (17 pairs), and \textsf{jfreechart} (13 pairs). The clones are
 used as examples and are very similar to their original Qualitas code with
@@ -1120,7 +1122,7 @@ could not find evidence of copying or attribution to Stack Overflow in
 \textsf{jstock}. However, considering that the 25 lines of code of
 {\small\texttt{findMethodToInvoke}} method depicted in \Cref{fig:jstock_code} in Stack
 Overflow is very similar to the code in \textsf{jstock} including comments, it is almost certain that
-the two code snippets form a clone pair. In addition, Stack Overflow answer was
+the two code snippets form a clone pair. In addition, the Stack Overflow answer was
 posted on March 30, 2009, while the code in {\small\texttt{POIUtils}} class in
 \textsf{jstock} was committed to GitHub on the next day of March 31, 2009.
 
@@ -1156,7 +1158,6 @@ private Method findMethodToInvoke(Object test) {
 	\label{fig:jstock_code}
 \end{figure}
 
-We did not find other online clones besides the one mentioned above. 
 This very low number of SQ clone pair is very likely due to the age of the
 Qualitas corpus as another study~\cite{An2017} showed the presence of clones
 from Stack Overflow in newer open source data sets. This is expected and
@@ -1179,13 +1180,15 @@ Overflow and Qualitas is available in the other 50 pairs. Each of them contains
 statement(s) pointing to the original external location of the cloned code. Our
 analysis shows that the external sources fall into six groups as displayed in
 \Cref{fig:ex_sources}. There are 63 EX online clone pairs copied
-from source code of Java SDK, 18 pairs from websites, 15 pairs from open
-source systems, 11 pairs from Java official documentations from Sun
+from source code of Java SDK (e.g.~\textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}), 
+18 pairs from websites, 15 pairs from open
+source systems not in Qualitas (e.g.~\textsf{Mozilla
+	Rhino}), 11 pairs from Java official documentations from Sun
 Microsystems or Oracle, 3 pairs from books, and 1 pair from a company
 project. For example, Stack Overflow Post 9549009 contains a code comment saying
 \textit{``Copied shamelessly from
 	org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator''} which is an
-open source project. Post 92962 includes a {\small\texttt{VerticalLabelUI}}
+open source project not included in the Qualitas corpus. Post 92962 includes a {\small\texttt{VerticalLabelUI}}
 class with a license statement showing that it is developed by a private company
 called \textsf{Sapient}. Post 12879764 has a text saying \textit{``Code modified
 	and cleaned from the original at Filthy Rich Clients.''} which is a book for
@@ -1196,36 +1199,6 @@ source code reads ``\textit{I basically stole this from the web and modified it
 	(\url{http://www.java2s.com/Code/Java/Swing-JFC/DragListDemo.htm}).}''.
 Interestingly, the code is actually a copy from Sun Microsystems.
 
-\begin{table*}
-	\centering
-	\caption{Examples of the outdated QS online clones}
-	\label{tab:stale_code_details}
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}{cc|lcp{4cm}@{}rrc|lc@{}c}
-			\toprule
-			\multicolumn{2}{c|}{Stack Overflow} & \multicolumn{6}{c|}{Qualitas} & \multicolumn{3}{c}{Changes} \\ 
-			\midrule
-			Post & Date & Project & Ver. & File & Start & End & Date & Issue ID & Type$^*$ & Date \\
-			\midrule
-			2513183 & 25-Mar-10 & eclipse & 4.3 & GenerateToStringAction.java & 113 & 166 & 5-Jun-13 & Bug 439874 & \textit{S} & 17-Mar-15 \\
-			22315734 & 11-Mar-14 & hadoop & 1.0.0 & WritableComparator.java & 44 & 54 & 25-Aug-11 & HADOOP-11323 & \textit{S} & 20-Nov-14 \\
-			23520731 & 7-May-14 & hibernate & 4.2.2 & SchemaUpdate.java & 115 & 168 & 22-May-13 & HHH-10458 & \textit{S} & 5-Feb-16 \\
-			18232672 & 14-Aug-13 & log4j & 1.2.16 & SMTPAppender.java & 207 & 228 & 31-Mar-10 & Bug 44644 & \textit{R} & 18-Oct-08 \\ 
-			17697173 & 17-Jul-13 & lucene & 4.3.0 & SlowSynonymFilterFactory.java & 38 & 52 & 6-Apr-13 & LUCENE-4095 & \textit{D} & 31-May-12 \\
-			21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & BZ 59823 &\textit{R} & 4-Aug-16 \\
-			12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 49 & 60 & 7-Dec-09 & 57593 & \textit{R} & 30-Apr-15 \\
-			8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & N/A & \textit{D} & 20-May-11 \\
-			3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotation\newline HandlerMapping.java & 78 & 92 & 20-Oct-10 & SPR-14129 & \textit{D} & 20-Jan-12 \\
-			14019840 & 24-Dec-12 & struts & 2.2.1 & DefaultActionMapper.java & 273 & 288 & 17-Jul-10 & WW-4225 & \textit{S} & 18-Oct-13 \\
-			\bottomrule 
-			\multicolumn{10}{l}{{\footnotesize * \textit{S}:
-					modified/added/deleted statements, \textit{D}: file
-					has been deleted,  \textit{R}: method has been
-					rewritten completely}}
-		\end{tabular} %
-	}
-\end{table*}
-
 These findings complement a study of clones between software
 projects~\cite{Svajlenko2014}. We found that cloning can also happen among
 different sources on the Internet just like software projects. The are 18 clone
@@ -1234,10 +1207,12 @@ and \url{exampledepot.com}. Moreover, there is one snippet which comes from a
 research website. We found that a snippet to generate graphical \textit{Perlin
 	noise} is copied from NYU Media Research Lab
 (\url{http://mrl.nyu.edu/~perlin/noise/}) website and is used in both Stack Overflow
-answer and the \textsf{aoi} project with attribution. There are other EX pairs which
-are copied from open source libraries or Java SDK such as \textsf{Mozilla
-	Rhino}, \textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}, and
-the \textsf{bouncycastle} cryptography project.
+answer and the \textsf{aoi} project with attribution. 
+
+%There are other EX pairs which
+%are copied from open source libraries or Java SDK such as \textsf{Mozilla
+%	Rhino}, \textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}, and
+%the \textsf{bouncycastle} cryptography project.
 
 \textbf{UD: Unknown Direction.} We found 107 online clone pairs, reduced to 65
 pairs after consolidating the clones, with no evidence of cloning between Qualitas
@@ -1330,14 +1305,14 @@ heavily modified on February 5, 2016.
 \end{table}
 
 We analysed code modifications which made Stack Overflow code outdated by going
-though commits and git blame information. The of six code modification
+though commits and git blame information. The six code modification
 types found in the 101 outdated online clone pairs are summarised in
-\Cref{tab:mod_types} including statement addition, statement modification,
+\Cref{tab:mod_types}. They include statement addition, statement modification,
 statement removal, method rewriting, API change (changing in method signature),
 and file deletion. We occasionally found multiple code modifications applied to
 one clone pair at the same time but at a different location. The most often code
-changes found is statement modification (50 occurrences), followed by statement
-addition (28 occurrences), statement removal (18 occurrences), changing of
+change found is statement modification (50 occurrences), followed by statement
+addition (28 occurrences), statement removal (18 occurrences), change of
 method signature, i.e.~API change (16 occurrences), and method rewriting (15
 occurrences). Moreover, in the 101 outdated pairs, we found 15 ``dead''
 snippets. These snippets cannot be located in the latest version of the
@@ -1346,6 +1321,37 @@ projects. For example, the snippet in Stack Overflow post 3758110, a copy of
 deleted in the commit
 {\small{\texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b}}} by Chris Beams on
 January 20, 2012, two years after it was posted.
+
+
+\begin{table*}
+	\centering
+	\caption{Examples of the outdated QS online clones}
+	\label{tab:stale_code_details}
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{cc|lcp{4cm}@{}rrc|lc@{}c}
+			\toprule
+			\multicolumn{2}{c|}{Stack Overflow} & \multicolumn{6}{c|}{Qualitas} & \multicolumn{3}{c}{Changes} \\ 
+			\midrule
+			Post & Date & Project & Ver. & File & Start & End & Date & Issue ID & Type$^*$ & Date \\
+			\midrule
+			2513183 & 25-Mar-10 & eclipse & 4.3 & GenerateToStringAction.java & 113 & 166 & 5-Jun-13 & Bug 439874 & \textit{S} & 17-Mar-15 \\
+			22315734 & 11-Mar-14 & hadoop & 1.0.0 & WritableComparator.java & 44 & 54 & 25-Aug-11 & HADOOP-11323 & \textit{S} & 20-Nov-14 \\
+			23520731 & 7-May-14 & hibernate & 4.2.2 & SchemaUpdate.java & 115 & 168 & 22-May-13 & HHH-10458 & \textit{S} & 5-Feb-16 \\
+			18232672 & 14-Aug-13 & log4j & 1.2.16 & SMTPAppender.java & 207 & 228 & 31-Mar-10 & Bug 44644 & \textit{R} & 18-Oct-08 \\ 
+			17697173 & 17-Jul-13 & lucene & 4.3.0 & SlowSynonymFilterFactory.java & 38 & 52 & 6-Apr-13 & LUCENE-4095 & \textit{D} & 31-May-12 \\
+			21734562 & 12-Feb-14 & tomcat & 7.0.2  & FormAuthenticator.java & 51 & 61 & 4-Aug-10 & BZ 59823 &\textit{R} & 4-Aug-16 \\
+			12593810 & 26-Sep-12 & poi & 3.6 & WorkbookFactory.java & 49 & 60 & 7-Dec-09 & 57593 & \textit{R} & 30-Apr-15 \\
+			8037824 & 7-Nov-11 & jasperreports & 3.7.4 & JRVerifier.java & 1221 & 1240 & 31-May-10 & N/A & \textit{D} & 20-May-11 \\
+			3758110 & 21-Sep-10 & spring & 3.0.5  & DefaultAnnotation\newline HandlerMapping.java & 78 & 92 & 20-Oct-10 & SPR-14129 & \textit{D} & 20-Jan-12 \\
+			14019840 & 24-Dec-12 & struts & 2.2.1 & DefaultActionMapper.java & 273 & 288 & 17-Jul-10 & WW-4225 & \textit{S} & 18-Oct-13 \\
+			\bottomrule 
+			\multicolumn{10}{l}{{\footnotesize * \textit{S}:
+					modified/added/deleted statements, \textit{D}: file
+					has been deleted,  \textit{R}: method has been
+					rewritten completely}}
+		\end{tabular} %
+	}
+\end{table*}
 
 Moreover, using the information in git commit messages, we can associate each
 change to its respective issues in an issue tracking system, such as Bugzilla or
@@ -1365,7 +1371,7 @@ along with the issue tracking number and the date of change. The complete set of
 
 The outdated online code clones cause problems ranging from uncompilable code
 (due to modifications and different API usage in the outdated code) to
-introducing vulnerabilities to software~\cite{Xia2014}. An outdated code with a
+the introduction of vulnerabilities to the software~\cite{Xia2014}. An outdated code with a
 subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without
 awareness from developers. Moreover, an outdated code with a defect (e.g.~a race
 condition problem in \Cref{fig:before-after_2}) is clearly harmful to be reused.
@@ -1519,7 +1525,7 @@ We only present a summary of the survey answers in
 this paper and the full analysis is available as a technical report \FIXME{add URL}.
 
 \subsubsection{General Information}
-As shown in \Cref{tab:survey_exp}, majority of the answerers are experienced
+As shown in \Cref{tab:survey_exp}, the majority of the answerers are experienced
 developers with more than 10 years of experience (55.4\%) or between 5 to 10
 years (28.7\%). They are active users and regularly answer questions. 49
 participants answer questions on Stack Overflow every day.
@@ -1592,7 +1598,7 @@ open source projects.
 
 \subsubsection{Outdated Code Snippets} 
 \vspace{0.25cm}
-\textit{Do Stack Overflow
+\textit{How often are Stack Overflow
 	answerers aware of the outdated code when
 	they answer a question on Stack Overflow?} 
 \vspace{0.25cm}
@@ -1649,8 +1655,8 @@ Only 3 participants reported that they were notified in more than 60\% of their 
 	\end{tabular}
 \end{table}
 
-We then asked 131 participants to have been notified of their outdated code a
-follow-up questions \textit{``how frequently did you fix your outdated code on Stack
+We then asked 131 participants who have been notified of their outdated code a
+follow-up question \textit{``how frequently did you fix your outdated code on Stack
 Overflow?''}. The answers, depicted in
 \Cref{tab:survey_code_snippet_outdated_fix}, show that more than half of them
 (57.2\%) very frequently or frequently fix the outdated code snippets. However,
@@ -1658,7 +1664,7 @@ there are totally 19.8\% of the answerers in both groups who rarely, very rarely
 their outdated code.
 
 \textbf{To answer RQ 5.1, although most of the Stack Overflow answerers are aware that their code
-can be outdated. 51.5\% of the answerers were very rarely notified while 35.5\% never been notified of
+can be outdated. 51.5\% of the answerers were very rarely notified while 35.5\% have never been notified of
 outdated code in the answers. After being notified, 19.8\% of them rarely or never fix the outdated code.}
 
 The responses from the answerers support our findings of outdated online code
@@ -1673,8 +1679,8 @@ leave it as the future work.
 
 \subsubsection{License of Code Snippets} 
 \vspace{0.25cm}
-\textit{Do Stack Overflow
-	answerers aware of the outdated code when
+\textit{How often are Stack Overflow
+	answerers aware of licensing conflicts when
 	they answer a question on Stack Overflow?} 
 \vspace{0.25cm}
 
