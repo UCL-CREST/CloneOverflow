@@ -100,34 +100,25 @@
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-% We studied online code clones on the popular programming Q\&A
-% website, Stack Overflow, and their issues on outdated code and
-% software licensing violations. 
-\FIXME{Outdated.~Revise the last.}~Online code clones are code fragments that are copied from software
-projects or online sources to Stack Overflow as examples in
-questions and answers.
-% They can be discovered by using code clone
-% detectors, yet they are inherently different from normal code clones
-% in software projects in several aspects. 
-Due to an absence of a checking mechanism after the code has been
-copied to Stack Overflow, online code clones may suffer from
-becoming outdated or violating the original software license.
-% Moreover, we also found that majority of online code clones do not
-% contain the license of their originals.
-We present a study incorporating several state-of-the-art tools and
-techniques to automatically extract, prioritise, and filter detected
-online clone pairs between 144,064 Java code snippets on Stack
-Overflow and 111 Java open source projects in the curated Qualitas
-corpus. We discovered and analysed 32,533 non-trivial online clone
-candidates. Our investigation of 3,636 manually confirmed clone
-pairs revealed strong evidence that 112 clones have been copied from
-a Qualitas project to Stack Overflow.  We found 64 of them (57\%) 
-to be outdated and potentially harmful for reuse.  Furthermore, we
-found 357 code snippets on Stack Overflow that violate the license
-of their original software.
-% These snippets are questionable for reuse.
-% Our study is among the first to address the problem of
-% outdated and license-violating code snippets on Stack Overflow.
+Online code clones are code fragments that are copied from software projects or
+online sources to Stack Overflow as examples in questions and answers. % They
+Due to an absence of a checking mechanism after the code has been copied to
+Stack Overflow, they can become toxic code snippets, i.e.~ they suffer from
+being outdated or violating the original software license. We present a study
+incorporating several state-of-the-art tools and techniques to automatically
+extract and filter detected online clone pairs between 72,365 Java code snippets
+on Stack Overflow and 111 Java open source projects in the curated Qualitas
+corpus. We discovered and analysed 2,302 non-trivial online clone candidates.
+Our investigation of the online clone pairs revealed strong evidence that 154
+clones have been copied from a Qualitas project to Stack Overflow.  We found 101
+of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
+we found 214 code snippets on Stack Overflow that violate the license of their
+original software. We surveyed 201 high-reputation Stack Overflow answerers
+(33\% response rate) and found that 69 of them have never been notified of
+outdated code in the answers and 26 of them rarely or never fix the outdated
+code. Only 3 answerers explicitly include software license in their answers and
+138 answerers never check for licensing conflicts between their copied code
+snippets and Stack Overflow's CC BY-SA 3.0.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -226,7 +217,7 @@ clone code from other locations, such as their personal projects, company
 projects, and open source projects, to Stack Overflow as a solution or
 a complement to a solution. The code cloning activity on Stack Overflow
 is obviously beneficial considered the popularity of Stack Overflow and its
-influence on software development~\FIXME{find citations}. On the other hand,
+influence on software development~\cite{Ponzanelli2013,Ponzanelli2014,Park2014}. On the other hand,
 there is also a downside caused by low quality, defective, and harmful code
 snippets that are reused without an awareness by millions of users.
 
@@ -280,7 +271,7 @@ public int compare(byte[] b1,int s1,int l1, ...) {    public int compare(byte[] 
 		{\small\texttt{WritableComparator.java}}. The one from the
 		Stack Overflow post 22315734 (left) is outdated when compared to
 		its latest version in the \textsf{hadoop} code base
-		(right). Its Apache v.2.0 license is also missing.}
+		(right). Its Apache v.2.0 license is also missing.~\FIXME{@Jens Could you please make the underline clearer?}}
 	\label{fig:before-after}
 \end{figure*}
 
@@ -477,10 +468,9 @@ We rely on two source code data sets in this study: Java code snippets in answer
 on Stack Overflow and open source projects from the Qualitas corpus
 \cite{QualitasCorpus}, as detailed next.
 
-\textbf{Stack Overflow:} 
-We extracted Java code snippets from a snapshot of a Stack Overflow
-dump\footnote{\url{https://archive.org/details/stackexchange}} in January 2016.
-% The archived dump has a size of 9 gigabytes.
+\textbf{Stack Overflow:} We extracted Java code snippets from a snapshot of a
+Stack Overflow dump\footnote{\url{https://archive.org/details/stackexchange}} in
+January 2016. % The archived dump has a size of 9 gigabytes.
 The data dump is in XML, and it contains information of posts (questions and
 answers). We were interested in code snippets embedded in posts which were
 located between {\small\texttt{<code>}...\texttt{</code>}} tags. A Stack
@@ -492,18 +482,17 @@ accepted answers because they actually solved the problems in the questions.
 Moreover, they are usually displayed just below the questions which makes them
 more likely to be reused than other answers. Second, we were only interested in
 code snippets of at least ten lines. Although the minimum clone size of six
-lines are usual in clone detection~\cite{Bellon2007,Wang2013,Koschke2006},
-we empirically found that snippets of six lines contain a large number of
-boiler-plate code of getters/setters, \texttt{equal} or \texttt{hashCode} methods,
-which are not interesting for the study.
-Each snippet was extracted from the dump and saved to a file. Moreover, we
-filtered out irrelevant code snippets that were part of the accepted answers
-but were not written in Java by using regular expressions and manual checking.
-~\FIXME{@Jens, should I mention I use PMD CPD to help here? More confusing?}.
-Finally we obtained
-72,365 Java code snippets containing 1,840,581 lines\footnote{Measured by cloc:
-	\url{https://github.com/AlDanial/cloc}} of Java source code. The median size of the
-snippet is 17 lines.
+lines are usual in clone detection~\cite{Bellon2007,Wang2013,Koschke2006}, we
+empirically found that snippets of six lines contain a large number of
+boiler-plate code of getters/setters, \texttt{equal} or \texttt{hashCode}
+methods, which are not interesting for the study. Each snippet was extracted
+from the dump and saved to a file. Moreover, we filtered out irrelevant code
+snippets that were part of the accepted answers but were not written in Java by
+using regular expressions and manual checking. ~\FIXME{@Jens, should I mention I
+	use PMD CPD to help filtering SO code snippets here? Will it be too confusing?}.
+Finally we obtained 72,365 Java code snippets containing 1,840,581
+lines\footnote{Measured by cloc: \url{https://github.com/AlDanial/cloc}} of Java
+source code. The median size of the snippet is 17 lines.
 
 \textbf{Open source systems: }
 We selected the established \textbf{Qualitas} corpus~\cite{QualitasCorpus}. It is a curated Java corpus that has been used in several
@@ -762,7 +751,9 @@ validation, the results from the two investigators were compared and 607 (26\%)
 conflicts were discussed and resolved. There are 145 conflicts caused by
 one investigator being more careful than the other and able to find evidence of 
 copying while the other could not. They result in a better classification,
- i.e.~from UD to QS or EX. 
+ i.e.~from UD to QS or EX.~\FIXME{@Jens Is it better to just report \% of conflicts
+ between TP vs.~FP classifications (e.g. only from QS, SQ, EX, UD, BP, IN <--> AC)?
+Because 26\% does not come from a wrong validation, it's mostly just a different classification.}
 %There were three conflicts where the two
 %investigators could not find a consensus and the third author was involved for
 %the final judgement.
