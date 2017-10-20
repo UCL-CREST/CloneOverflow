@@ -940,7 +940,7 @@ anonymous and the participants could decide to leave at any time. It contained
 open-ended question for additional comments. The first two questions were
 mandatory while the other 9 questions were shown to the participants based on
 their previous answers. The full survey can be found in our research note~
-\FIXME{add URL to the RN}.
+\cite{Ragkhitwetsagul_RN2017}~\FIXME{Fix the RN bibtex}.
 
 We selected the participants for our survey based on their Stack Overflow
 reputation. On Stack Overflow, a user's reputation reflects how much the
@@ -1513,7 +1513,7 @@ considered other online survey in software engineering that received
 approximately 14--20\%~\FIXME{double-check the citation again for the magic
 	numbers.}\cite{Punter2003}.
 We only present a summary of the survey answers in
-this paper and the full analysis is available as a technical report \FIXME{add URL}.
+this paper and the full analysis is available as a technical report~\cite{Ragkhitwetsagul_RN2017}.
 
 \subsubsection{General Information}
 As shown in \Cref{tab:survey_exp}, the majority of the answerers are experienced
@@ -2012,19 +2012,24 @@ introduce vulnerabilities. Our study similarily finds
 % on % the context of 
 outdated code on Stack Overflow.
 
-The work that is closely similar to us is a study by 
-An et al.~\cite{An2017} where the authors investigated 
-clones between 399 Android apps and Stack Overflow posts. 
-They found 1,226 code snippets which were reused from 68 Android apps. 
-They also observed that there are 1,279 cases of potential 
-license violations. The authors rely on the timestamp to 
-judge whether the code has been copied from/to Stack Overflow 
-along with confirmations from six developers. Instead of Android apps, 
-we investigated clones between Stack Overflow and 111 open 
-source projects. Their results are similar to our findings that 
-there exist clones from software projects to Stack Overflow with 
-potential licensing violations. 
-\FIXME{Add a discussion of Abdalkareem et al.~\cite{Abdalkareem2017}}
+The work that are closely similar to us are studies by An et al.~\cite{An2017}
+and Abdalkareem et al.~\cite{Abdalkareem2017}. An et al.~investigated clones
+between 399 Android apps and Stack Overflow posts. They found 1,226 code
+snippets which were reused from 68 Android apps. They also observed that there
+are 1,279 cases of potential license violations. The authors rely on the
+timestamp to judge whether the code has been copied from/to Stack Overflow along
+with confirmations from six developers. Instead of Android apps, we investigated
+clones between Stack Overflow and 111 open source projects. Their results are
+similar to our findings that there exist clones from software projects to Stack
+Overflow with potential licensing violations. Abdalkareem et
+al.~\cite{Abdalkareem2017} detected clones between Stack Overflow posts and
+android apps from F-Droid repository and used timestamp to determine direction
+of copying. They found 22 apps containing code cloned from Stack Overflow. They
+reported that cloned code are commonly used for enhancing existing code. Their
+analysis shows that the cloned code from Stack Overflow have negative effects to
+quality of the apps. The median percentage of bug fixing commits after adding
+Stack Overflow code (19.09\%) is higher than before adding the code (5.96\%)
+with statistical significance.
 %In our work, we defined seven patterns of online code cloning and 
 %performed a large-scale manual check of 3,632 clone pairs. 
 %We discovered 112 clone pairs with strong evidences, 
