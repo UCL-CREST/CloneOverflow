@@ -102,7 +102,7 @@
 Online code clones are code fragments that are copied from software projects or
 online sources to Stack Overflow as examples in questions and answers. % They
 Due to an absence of a checking mechanism after the code has been copied to
-Stack Overflow, they can become toxic code snippets, i.e.~ they suffer from
+Stack Overflow, they can become toxic code snippets, i.e.~they suffer from
 being outdated or violating the original software license. We present a study
 incorporating several state-of-the-art tools and techniques to automatically
 extract and filter detected online clone pairs between 72,365 Java code snippets
@@ -113,9 +113,9 @@ clones have been copied from a Qualitas project to Stack Overflow.  We found 101
 of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
 we found 214 code snippets on Stack Overflow that violate the license of their
 original software. We surveyed 201 high-reputation Stack Overflow answerers
-(33\% response rate) and found that 69 of them (34.5\%) have never been notified of
-outdated code in the answers and 26 of them (19.8\%) rarely or never fix the outdated
-code. Only 3 answerers explicitly include software license in their answers and
+(33\% response rate) and found that 131 of the answerers (65\%) have ever been notified of
+outdated code in the answers and 26 of them (20\%) rarely or never fix the outdated
+code. Only 3 answerers explicitly include software licenses in their answers and
 138 answerers (69\%) never check for licensing conflicts between their copied code
 snippets and Stack Overflow's CC BY-SA 3.0.
 \end{abstract}
@@ -350,8 +350,6 @@ rewritten on February 5, 2013 to solve an issue of a race condition
 (issue no.~HADOOP-9252\footnote{https://issues.apache.org/jira/browse/HADOOP-9252}).
 Similar to the first example, the clone code snippet on Stack Overflow does not 
 include its original Apache v.2.0 license.
-%\FIXME{I don't understand the following:} The absence of Apache v.2.0 license also occurs after the snippet is posted on 
-%Stack Overflow.
 
 The two toxic code snippet in our examples have been posted on March 11, 2014 and
 April 9, 2009 respectively. They have already been viewed 259 and 2,886 times at
@@ -612,11 +610,6 @@ least 15 Simian and 3 SourcererCC parameters, we are unable to search for the
 best configurations of the tools. Thus, we decided to configure Simian and
 SourcererCC based on their established default configurations chosen by the
 tools' creators as depicted in \Cref{tab:clone_config}. 
-%\FIXME{Something is not right: First it says that variable renaming is
-%  disabled, and later it is said that SourcererCC uses renaming.}
-%All variable renaming are disabled to decrease the number of
-%false positives since we aim for finding clones that are copied from open source
-%projects with minimal modifications. 
 The two clone detectors complement each
 other by having Simian detecting literal copies of code snippets (type-1) and SourcererCC
 detecting clones with renaming and added/deleted statements (type-2, type-3). We made sure that they 
@@ -761,15 +754,15 @@ a false positive and classified them into an appropriate pattern. After the
 validation, the results from the two investigators were compared. 
 %and 607 (26\%)
 %conflicts were discussed and resolved. 
-There are 338 (15\%) conflicts between 
-true and false clones (QS, SQ, EX, UD, BP, IN vs.~AC). The other 270 pairs (12\%) are 
+There were 338 (15\%) conflicts between 
+true and false clones (QS, SQ, EX, UD, BP, IN vs.~AC) \FIXME{How have
+  they been resolved?}. 
+Another 270 pairs (12\%) were
 conflicts in the classification of
 the true clone pairs. Among these pairs, 145 conflicts were caused by
 one investigator being more careful than the other and able to find evidence of 
-copying while the other could not. They result in a better classification,
+copying while the other could not. Resolving the conflicts lead to a better classification,
  i.e.~from UD to QS or EX.
-%~\FIXME{Report \% of conflicts
-% between TP vs.~FP classifications first, and then about evidence.}
 %There were three conflicts where the two
 %investigators could not find a consensus and the third author was involved for
 %the final judgement.
@@ -787,14 +780,14 @@ copying while the other could not. They result in a better classification,
 		\toprule
 		Patt. & Description \\ 
 		\midrule
-		QS & Cloned from Qualitas project to Stack Overflow (Q $\rightarrow$ S). \\ 
+		QS & Cloned from Qualitas project to Stack Overflow (Q $\rightarrow$ S) \\ 
 		
-		SQ & Cloned from Stack Overflow to Qualitas project (S $\rightarrow$ Q). \\ 
+		SQ & Cloned from Stack Overflow to Qualitas project (S $\rightarrow$ Q) \\ 
 		
-		EX & Cloned from an external source \textit{X} to Stack Overflow\newline (X $\rightarrow$ S). \\
+		EX & Cloned from an external source to Stack Overflow (X $\rightarrow$ S) \\
 		
 		UD & Cloned from each other or from an external source
-                     \textit{X} outside the project (unknown)\\
+                     outside the project (unknown)\\
 		\midrule
 		BP & Boiler-plate or IDE auto-generated \\ 
 		
@@ -2141,22 +2134,30 @@ a custom tokeniser for Stack Overflow snippets.
 %\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}{Michael Shell}
-Biography text here.
-\end{IEEEbiography}
+% \begin{IEEEbiographynophoto}{Chaiyong Ragkhitwetsagul}
+% Biography text here.
+% \end{IEEEbiographynophoto}
 
-% if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+% % if you will not have a photo at all:
+% \begin{IEEEbiographynophoto}{Jens Krinke}
+% Biography text here.
+% \end{IEEEbiographynophoto}
 
-% insert where needed to balance the two columns on the last page with
-% biographies
-%\newpage
+% \begin{IEEEbiographynophoto}{Matheus Paixao}
+% Biography text here.
+% \end{IEEEbiographynophoto}
 
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
+% \begin{IEEEbiographynophoto}{Giuseppe Bianco}
+% Biography text here.
+% \end{IEEEbiographynophoto}
+
+% % insert where needed to balance the two columns on the last page with
+% % biographies
+% %\newpage
+
+% \begin{IEEEbiographynophoto}{Rocco Oliveto}
+% Biography text here.
+% \end{IEEEbiographynophoto}
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate
