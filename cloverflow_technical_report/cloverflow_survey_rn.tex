@@ -245,8 +245,8 @@ We selected the participants for our answerer survey based on their Stack
 Overflow reputations. On Stack Overflow, a user's reputation reflects how much
 the community trusts the user. A user earns reputation when he or she receives
 upvotes for good questions and useful answers. \FIXME{I don't understand the
-	sentence. @Jens Ok now?:} For example, they gain reputation when they receives a vote up for
-their question (+5), a vote up for their answer (+10), or a marking as accepted answer (+15)\footnote{Stack
+	sentence. @Jens Ok now?:} For example, they gain reputation when they receives an upvote for
+their question (+5), an upvote for their answer (+10), or a marking as accepted answer (+15)\footnote{Stack
 	Overflow Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
 Overflow reputation is an indicator of user's skills and their involvement in
 asking and answering questions on the site.
@@ -288,8 +288,8 @@ second channel is a popular technology news and media community in Thailand
 called \textsf{blognone.com} which attracts a high number of Thai software
 developers. The first author posted an invitation to the visitor survey in a
 discussion forum mentioning the requirements to take the survey. The third
-channel collected answers from the University of Molise with the help of an
-external researcher. The last two channels are the
+channel collected answers from the University of Molise in Italy, where the third author
+works. The last two channels are the
 \textsf{comp.lang.java.programmer} group and the Software Engineering
 Facebook page. The number of participants taken the survey is shown in
 Table~\ref{tab:visitors}.
@@ -775,9 +775,9 @@ problems, provide helpful context, and offer voting and accepted answers.
 	from reusing code snippets on Stack Overflow?}
 
 We asked the visitors whether they have had any problem from reusing Stack Overflow
-code snippets and how often did the problems occur.  Fifty seven (out of eighty
-seven) participants (see Figure~\ref{fig:survey_v_problems}) experienced a
-problem from reusing Stack Overflow snippets. Among the 57, there are 2
+code snippets and how often did the problems occur.  Fifty seven out of eighty
+seven participants (66\%) experienced a
+problem from reusing Stack Overflow snippets (see Figure~\ref{fig:survey_v_problems}). Among the 57, there are 2
 participants who found problems in more than 80\% of the reused code snippets.
 Eight and sixteen faced problems from at least sixty and forty percent of the
 reused snippets.
@@ -913,32 +913,45 @@ survey to be anonymous, it was not possible to contact the participants for furt
 
 \subsection{Overall Discussion}
 
-\subsubsection{Stack Overflow Answerers}
-By separating the answerers into two groups, we are able to compare the answers and
-observe similarities or differences in their answers according to their reputation. In summary, we found the
-following.
+By separating the answerers into two groups according to their reputation, we
+observed some similarities and differences in their responses. The sources of
+code snippets in Stack Overflow answers are similar in both groups. The
+answerers mainly write the code snippets from scratch aiming to answer the
+question. The frequencies of copying from each source, i.e.~personal projects,
+company projects, open source projects, writing from scratch, modifying from the
+questions, and others, also follow the same proportions for both group.
 
-The sources of code snippets in Stack Overflow answers are similar in both
-groups. The answerers mainly write the code snippets from scratch aiming to
-answer the question. Considering the frequencies of copying from each source,
-i.e.~personal projects, company projects, open source projects, writing from
-scartch, modifying from the questions, and others, they also follow the same
-proportion for both group.
+The main difference we found is responses regarding outdated code. The answerers
+in Group 1 have a more substantial percentage (61.2\%) of being notified about
+the outdated code in their answers than Group 2 (47.1\%). This may be caused by
+the amount of their Stack Overflow answers. Since Group-1 answerers have a
+higher reputation than Group-2 answerers, they possibly have given more answers
+on Stack Overflow. The higher amount of answers hence increase the chance of the
+code being outdated. Interestingly, although the percentage of outdated code
+notifications in Group 2 is lower, the percentage of the answerers who very
+frequently fixed their outdated code is higher than of Group 1.
 
-The answerers in Group 1 have larger percentage (61.2\%) of being notified about
-outdated code in their answers than Group 2 (47.1\%). Nevertheless, since
-Group-1 answerers have higher reputation than Group-2 answerers, they
-potentially have given more answers on Stack Overflow than Group 2. The higher amount of
-answers may increase the chance of the code being outdated. Nevertheless, while the number of being notified of
-outdated code is lower, the percentage of the answerers in Group 2 who very
-frequently fixed their outdated code are higher than of Group 1.
+Regarding software license, the responses from the two groups agree with each
+other. The answerers in both groups show the same level of awareness to Stack
+Overflow CC BY-SA 3.0 license (62.1\% and 62.3\%). Similarly, the answerers in
+both groups neither include software license in their code snippets (98\% and
+99\%) nor check of license compatibility between their code snippet's and Stack
+Overflow CC BY-SA 3.0 (69\%).
 
-
-Regarding software license, the answerers in both groups show the same level of
-awareness to Stack Overflow CC BY-SA 3.0 license (62.1\% and 62.3\%). Similarly,
-the answerers in both groups neither include software license in their code
-snippets (98\% and 99\%) nor check of license compatibility between their
-code snippet's and Stack Overflow CC BY-SA 3.0 (69\%). 
+The visitors survey confirms the findings from the previous studies that Stack
+Overflow code snippets can be problematic~\citep{Acar2016,An2017}. Sixty-six
+percent of the visitors experienced a problem from reusing Stack Overflow code
+snippets ranging from incorrect solutions, outdated solutions, mismatched
+solutions, to buggy code. Although they are aware of the problems, half of them
+(56\%) never reports back to the Stack Overflow discussions. On the other hand,
+the visitors rarely give attributions to Stack Overflow when they reuse code
+snippets from the website, similar to the findings reported
+by~\cite{Baltes2017}. The visitors are generally not aware of the CC BY-SA 3.0
+license, and more than half of them never check for license compatibility when
+reusing Stack Overflow code snippets. We also found that 9\% of the participants
+encountered legal issues by copying code from Stack Overflow. To the best of our
+knowledge, a study of legal problems from reusing Stack Overflow code snippets
+has never been done before and will be our future work.
 
 \subsubsection{Stack Overflow Visitors}
 
@@ -1009,7 +1022,9 @@ understand developers' behaviours on Stack Overflow, e.g.~A study by
 \cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}.
 \cite{Yang2017} analysed 909k non-fork Python projects on GitHub and 1.9 million
 python code snippets on Stack Overflow and found thousands of code blocks that
-are copied from Stack Overflow to GitHub.
+are copied from Stack Overflow to GitHub. \cite{Baltes2017} discovered that two
+third of the clones from 10 most frequently referenced Java code snippets on Stack
+Overflow do not contain attributions.
 
 \subsection{Software Licensing} Software licensing is crucial for open source
 and industrial software development. Di Penta et al.~\cite{DiPenta2010} studied
