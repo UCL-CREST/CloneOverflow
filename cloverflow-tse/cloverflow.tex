@@ -63,13 +63,13 @@
 
 \begin{document}
 
-\title{Toxic code snippets on Stack Overflow}
+\title{Toxic Code Snippets on Stack Overflow}
 
 \author{Chaiyong Ragkhitwetsagul,~Jens Krinke,~Matheus Paixao,~Giuseppe Bianco,~Rocco Oliveto}
 
 % The paper headers
 \markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING,~Vol.~X, No.~Y, Month~2017}%
-{Ragkhitwetsagul \MakeLowercase{\textit{et al.}}: Outdated and License-Violating Code on Stack Overflow}
+{Ragkhitwetsagul \MakeLowercase{\textit{et al.}}: Toxic Code Snippets on Stack Overflow}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -111,7 +111,7 @@ corpus. We discovered and analysed 2,302 non-trivial online clone candidates.
 Our investigation of the online clone pairs revealed strong evidence that 154
 clones have been copied from a Qualitas project to Stack Overflow.  We found 101
 of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
-we found 214 code snippets on Stack Overflow that violate the license of their
+we found 214 code snippets on Stack Overflow that could potentially violate the license of their
 original software. We surveyed 201 high-reputation Stack Overflow answerers
 (33\% response rate) and found that 131 of the answerers (65\%) have ever been notified of
 outdated code in the answers and 26 of them (20\%) rarely or never fix the outdated
@@ -188,7 +188,7 @@ beneficial~\cite{Saini2016,Kapser2006}.
 Code cloning can also have side effects such as violating software
 licenses or introducing software vulnerabilities. Carelessly cloning
 code from one project to another project with a different license may
-cause a software licensing violation~\cite{German2009}. This also
+cause a software license violation~\cite{German2009}. This also
 happens within the context of online Q\&A websites such as Stack
 Overflow. An et al.~\cite{An2017} showed that 1,279 cloned snippets
 between Android apps and Stack Overflow potentially violate software
@@ -279,7 +279,7 @@ public int compare(byte[] b1,int s1,int l1, ...) {    public int compare(byte[] 
 
 We would like to motivate the readers by giving two examples of toxic
 cod snippets.
-The first example is outdated and license-violating online code clones in an
+The first example is an outdated and potentially license-violating online code clone in an
 answer to a Stack Overflow question regarding how to implement
 {\small{\texttt{RawComparator}}} in
 \textsf{Hadoop}\footnote{\url{http://stackoverflow.com/questions/22315734}}.
@@ -428,7 +428,7 @@ research questions:
 	Overflow code examples since users are potentially reusing
 	them. 
 	\item \textbf{RQ4 (Software licensing violation): }\textit{How often do
-		licensing conflicts occur between Stack Overflow clones and their
+		license conflicts occur between Stack Overflow clones and their
 		originals?} We investigated whether the reuse of online code clones
 	can cause software developers to violate licenses.
 	\item \textbf{RQ5 (Stack Overflow answerers' awareness): }
@@ -982,7 +982,7 @@ of online code cloning to answer RQ2 (phase 4). For RQ3, we looked at the true
 positive clone pairs that are classified as clones from Qualitas to Stack
 Overflow and checked if they have been changed after cloning (phase 5).
 Similarly, for RQ4, we looked at the license of each clone in the pattern QS,
-EX, UD and checked for a possibility of licensing violation (phase 6). We use
+EX, UD and checked for a possibility of license violation (phase 6). We use
 the online survey to answer RQ5.
 
 \subsection{RQ1: Online Code Clones} 
@@ -1392,7 +1392,7 @@ outdated code.
 	statements, to a fully rewritten code with new method signatures. 15~pairs are
 	dead snippets.}
 
-\subsection{RQ4: Software Licensing Violation}
+\subsection{RQ4: Software Licensing Violations}
 \vspace{0.25cm}
 \textit{Do
 	licensing conflicts occur between Stack Overflow clones and their
@@ -1504,12 +1504,12 @@ clones in Qualitas contain a license while the Stack Overflow snippets do not.
 % reused software's license.
 
 \textbf{For RQ4, we found 214 code snippets on Stack Overflow that
-	could violate the license of their original software. The majority of them
+	could potentially violate the license of their original software. The majority of them
 	do not contain licensing statements after they have been copied to
 	Stack Overflow. For 164 of them, we were able to identify,
         with evidence, where the code snippet has been copied from.}
 
-Note that the code snippets could violate the license, but do
+Note that the code snippets could potentially violate the license, but do
 not necessarily do so. In the example where the JFreeChart
 developer copied his own code, she or he was free to change the
 license. The same may have occurred with any of the 214 code
@@ -1869,10 +1869,10 @@ pairs for the manual classification and avoid double counting of the same clone
 pairs. Nevertheless, our study might still suffer from false negatives,
 i.e.~online code clones that are not reported by the tools or are filtered out
 by the size (less than 10 lines) within the clone detection process. We selected
-Stack Overflow accepted answers in this study to focus on code snippets that
-solve problems in the question and are often showed on top of the answer list.
-While most of the time they are also the highest voted answers, there is some
-time that they are not. We plan to incorporate the highest voted answers in the
+accepted answers on Stack Overflow in this study to focus on code snippets that
+solve the question's problem and are often showed on top of the answer list.
+While most of the time they are also the highest voted answers, some
+times they are not. We plan to incorporate the highest voted answers in 
 future work.
 % We also
 % applied the Bellon's clone agreement to 4 different combinations of
@@ -2040,8 +2040,8 @@ introduce vulnerabilities. Our study similarly finds
 % on % the context of 
 outdated code on Stack Overflow.
 
-The work that are closely similar to us are studies by An et al.~\cite{An2017}
-Abdalkareem et al.~\cite{Abdalkareem2017}, and Baltest et al.~\cite{Baltes2017}. 
+Work similar to ours are studies by An et al.~\cite{An2017}
+Abdalkareem et al.~\cite{Abdalkareem2017}, and Baltes et al.~\cite{Baltes2017}. 
 An et al.~investigated clones
 between 399 Android apps and Stack Overflow posts. They found 1,226 code
 snippets which were reused from 68 Android apps. They also observed that there
@@ -2061,7 +2061,7 @@ quality of the apps. The median percentage of bug fixing commits after adding
 Stack Overflow code (19.09\%) is higher than before adding the code (5.96\%)
 with statistical significance.
 Baltes et al.~\cite{Baltes2017} discovered that two
-third of the clones from 10 most frequently referenced Java code snippets on Stack
+thirds of the clones from the 10 most frequently referenced Java code snippets on Stack
 Overflow do not contain attributions.
 %In our work, we defined seven patterns of online code cloning and 
 %performed a large-scale manual check of 3,632 clone pairs. 
@@ -2091,10 +2091,10 @@ Qualitas to Stack Overflow, and 65 clone pairs that are highly
 similar but without evidence of copying.
 
 We performed a detailed analysis of the online clone pairs on two
-aspects: outdated code and licensing violation. The investigation of
+aspects: outdated code and potential license violation. The investigation of
 the 154 clone pairs copied, with evidence, from Qualitas to Stack
 Overflow reveals that 101 of them are outdated.  Moreover, we found 214
-code snippets on Stack Overflow that violate the license of their
+code snippets on Stack Overflow that could potentially violate the license of their
 original software.
 
 The online survey of 201 high-reputation Stack Overflow developers (i.e.~answerers)
