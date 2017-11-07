@@ -200,10 +200,10 @@ Android documentation~\cite{Acar2016}.
 
 We call code snippets that are copied from software systems to online Q\&A
 websites (such as Stack Overflow) and vice versa as ``online code clones''.
-There are two directions in creating online code clones: (1) code is cloned from
-a software project to a Q\&A website as an example; or (2) code is cloned from a
+There are two directions in creating online code clones: (1)~code is cloned from
+a software project to a Q\&A website as an example; or (2)~code is cloned from a
 Q\&A website to a software project to obtain a functionality, perform a
-particular task, or fixing a bug. % and (3) code is transferred from one
+particular task, or fixing a bug. % and (3)~code is transferred from one
 % software project to another via a Q\&A website;
 Similar to classic code clones, i.e.~clones between software systems, online code clones
 can lead to license violations, bug propagation, introduction of
@@ -244,11 +244,11 @@ Overflow posts, detecting online code clones, and analysing the clones to reveal
 Toxic code snippets mean code snippets that are harmful for reuse and, in
 several cases, are caused by online code cloning. Stack Overflow code snippets
 cloned from open source software or online sources can become toxic when they
-are (1) outdated or (2) violating their original software
+are (1)~outdated or (2)~violating their original software
 license. Outdated code snippets
 can be harmful since they are not up-to-date with their originals and may
 contain defects. Code snippets from open source projects usually fall under a
-specific software license , e.g.~GNU General Public License (GPL). If they are
+specific software license , e.g.\ GNU General Public License (GPL). If they are
 cloned to Stack Overflow answers without the license, and then flow to other projects
 with conflicting licenses, legal issues may occur.
 
@@ -433,7 +433,7 @@ research questions:
 	can cause software developers to violate licenses.
 	\item \textbf{RQ5 (Stack Overflow answerers' awareness): }
 	
-	\textit{1) How often are Stack Overflow
+	\textit{1)~How often are Stack Overflow
 		answerers aware of the outdated code when
 		they answer a question on Stack Overflow?} 
 	
@@ -1186,9 +1186,9 @@ Qualitas, in 61 pairs.
 Our
 analysis shows that the external sources fall into six groups as displayed in
 \Cref{fig:ex_sources}. There are 63 EX online clone pairs copied
-from source code of Java SDK (e.g.~\textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}), 
+from source code of Java SDK (e.g.\ \textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}), 
 18 pairs from websites, 15 pairs from open
-source systems not in Qualitas (e.g.~\textsf{Mozilla
+source systems not in Qualitas (e.g.\ \textsf{Mozilla
 	Rhino}), 11 pairs from Java official documentations from Sun
 Microsystems or Oracle, 3 pairs from books, and 1 pair from a company
 project. For example, Stack Overflow Post 9549009 contains a code comment saying
@@ -1379,8 +1379,8 @@ along with the issue tracking number and the date of change. The complete set of
 The outdated online code clones cause problems ranging from uncompilable code
 (due to modifications and different API usage in the outdated code) to
 the introduction of vulnerabilities to the software~\cite{Xia2014}. An outdated code with a
-subtle change (e.g.~\Cref{fig:before-after}) may be copied and reused without
-awareness from developers. Moreover, an outdated code with a defect (e.g.~a race
+subtle change (e.g.\ \Cref{fig:before-after}) may be copied and reused without
+awareness from developers. Moreover, an outdated code with a defect (e.g.\ a race
 condition problem in \Cref{fig:before-after_2}) is clearly harmful to be reused.
 Although Stack Overflow has a voting mechanism that may mitigate this issue, the
 accepted answer is still used by naive developers who copy and reuse the
@@ -1596,7 +1596,7 @@ We asked the remaining 200 participants for the origins of code snippets in
 their answers. We provided six locations including the answerer's personal
 projects, the answerer's company projects, open source projects, writing the
 code from scratch, copying and modifying the code from the question, and others
-(e.g.~code that are copied from other questions or answers on Stack Overflow)
+(e.g.\ code that are copied from other questions or answers on Stack Overflow)
 and we asked them to rate how often they copied the code from these locations. The
 results are shown in \Cref{fig:survey_snippet_source}. Looking at the Very
 Frequently section, we can see that the answerers mainly write new code from
@@ -1740,7 +1740,7 @@ the following text in his/her profile page.
 \end{quotation}
 
 Many users either declare their snippets to be public domain, or they grant
-additional licenses, e.g. Apache 2.0 or MIT/Expat.
+additional licenses, e.g.\ Apache 2.0 or MIT/Expat.
 
 \begin{table}
 	\centering
@@ -1819,7 +1819,7 @@ often low.
 % the results we have achieved with this study...
 
 %We discovered two issues regarding code snippets on Stack Overflow in this
-% study: (1)  outdated online clones on Stack Overflow and (2) missing or
+% study: (1)~outdated online clones on Stack Overflow and (2)~missing or
 % incompatible license in Stack Overflow snippets.
 %that there is a considerable amount of cloned code between Stack Overflow that
 % are cloned from 111 projects in the Qualitas corpus. 64 clone pairs are
@@ -2072,7 +2072,7 @@ Overflow do not contain attributions.
 %64 code snippets on Stack Overflow are outdated and possibly harmful for reuse.
 
 %\section{Future Work}
-%Since this study is limited to only Java language, we are interested in expanding the study further to other popular programming languages such as C, C++, Python, and Javascript on Stack Overflow. The similar study of outdated code and software licensing violation can be repeated. It is interesting to compare the findings among different programming languages. Moreover, other popular software project corpora (e.g.~GitHub) can also be included to increase generalisation of the findings.
+%Since this study is limited to only Java language, we are interested in expanding the study further to other popular programming languages such as C, C++, Python, and Javascript on Stack Overflow. The similar study of outdated code and software licensing violation can be repeated. It is interesting to compare the findings among different programming languages. Moreover, other popular software project corpora (e.g.\ GitHub) can also be included to increase generalisation of the findings.
 %
 %We are eager to tackle the issues of outdated and license-violating online code clones with an automated tool. The tool should incorporate a scalable clone detection method of locate similar code from programming Q\&A websites such as Stack Overflow and online code repositories like GitHub. It analyses a software project under development and reports clones that are copied from Stack Overflow. The reported clones have traces to their origins in open source projects or websites along with their freshness (fresh/outdated/dead) so that the developer of the project can be aware of changes made to the copied code snippets. Lastly, the license of the original source code is also reported so the developer can make an informed decision of whether he or she will incorporate that code snippet into their own project.
 
