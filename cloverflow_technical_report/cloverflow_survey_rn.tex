@@ -52,10 +52,10 @@
 
 \begin{document}
 
-\title{Awareness and Experience of Developers to\\ Outdated and License-incompatible Code on Stack Overflow:\\ An Online Survey}
+\title{Awareness and Experience of Developers to\\ Outdated and License-violating Code on Stack Overflow:\\ An Online Survey}
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
-\titlerunning{SO Developers awareness: Outdated and License-incompatible Code}        % if too long for running head
+\titlerunning{SO Developers awareness: Outdated and License-violating Code}        % if too long for running head
 
 \author{Chaiyong~Ragkhitwetsagul, Jens~Krinke, Rocco~Oliveto}
 
@@ -90,7 +90,7 @@ there are code snippets cloned from the corresponding questions, from personal o
 or from open source projects. Stack Overflow answerers are aware that some of
 their snippets are outdated. However, 19\% of the participants report that they
 rarely or never fix their outdated code. At least 98\% of the answerers never include
-software licenses in their snippets and 69\% never check for licensing compatibility
+software licenses in their snippets and 69\% never check for licensing conflicts
 with Stack Overflow's CC BY-SA 3.0 if they copy the code from other sources to
 Stack Overflow answers. The visitor survey uses convenient sampling and received
 89 responses. We found that 66\% of the participants experienced a problem from
@@ -98,10 +98,10 @@ cloning and reusing Stack Overflow snippets. Fifty-six percent of the visitors
 never reported the problems back to the Stack Overflow post. Eighty-five percent of the
 participants are not aware that StackOverflow applies the CC BY-SA 3.0 license, and sixty-two percent never
 give attributions to Stack Overflow posts or answers they copied the code from.
-Moreover, 66\% of the participants do not check for licensing compatibility between
+Moreover, 66\% of the participants do not check for licensing conflicts between
 the copied Stack Overflow code and their software. With these findings, we
 suggest Stack Overflow raise awareness of their users, both answerers and
-visitors, to the problem of outdated and license-incompatible code snippets.
+visitors, to the problem of outdated and license-violating code snippets.
 \end{abstract}
 
 \section{Introduction}
@@ -110,12 +110,12 @@ visitors, to the problem of outdated and license-incompatible code snippets.
 %violations caused by code cloning on Internet-based question and answer
 %websites.
 Recent research shows that outdated third-party code and software licensing
-incompatibility are ramifications by code cloning, i.e.~reusing source code by copying
+conflicts are ramifications by code cloning, i.e.~reusing source code by copying
 and pasting. \cite{Xia2014} report that a large number of open source systems
 reuse outdated third-party libraries from popular open source projects. Using
 the outdated code give detrimental effects to the software since they may
 introduce vulnerabilities. On the other hand, \cite{German2009} found that code
-cloning leads to software license incompatibility among different systems.
+cloning leads to software license conflicts among different systems.
 
 The Internet encourages fast and easy code cloning by sharing and copying the
 code to and from online sources. Developers nowadays do not only clone code from
@@ -153,7 +153,7 @@ than Stack Overflow's Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0). Prior
 to this study, we performed a quantitative empirical study using code clone
 detection tools to locate cloned code snippets in accepted answers. We found
 that many snippets were copied from open source projects. Some cloned snippets
-are outdated (or obsolete) and some possibly incompatible with the original software
+are outdated (or obsolete) and some possibly violate the original software
 license. These snippets are potentially harmful to reuse. To accompany the
 findings and gain insights into the cause of the problems, we resort to a
 qualitative study using an online survey of Stack Overflow developers who 1)
@@ -177,6 +177,11 @@ problem and reused them with or without a modification. We ask the visitors
 about their experience of reusing source code from Stack Overflow and the
 problems they faced including code obsolescence and software license.
 
+We use the term ``license-violating code snippets'' or ``code with licensing conflicts''
+interchangeably to refer to Stack Overflow cloned code snippets that \textit{potentially} violate the
+original license by not including the original license statement in the cloned snippets and
+adopt the Stack Overflow CC BY-SA 3.0 license instead.
+
 \section{Research Methodology}
 We followed the principles of survey research by~\cite{Pfleeger2001}
 and~\cite{Kitchenham2002} by setting specific and measurable objective,
@@ -191,8 +196,8 @@ the following five research questions.
 \begin{enumerate}
 	\item \textbf{RQ1 (Sources of Stack Overflow Answer Snippets):} \textit{Where are the code snippets in Stack Overflow answers from?}
 	\item \textbf{RQ2 (Awareness of Stack Overflow answerers to outdated code):} \textit{Are Stack Overflow answerers aware of outdated code in their answers?}
-	\item \textbf{RQ3 (Awareness of Stack Overflow answerers to licensing compatibility):} \textit{Are Stack Overflow answerers aware of software licensing
-		incompatibility caused by code snippets in their answers?}
+	\item \textbf{RQ3 (Awareness of Stack Overflow answerers to licensing violations):} \textit{Are Stack Overflow answerers aware of software licensing
+		violations caused by code snippets in their answers?}
 %	\item \textbf{RQ4 (Search for Coding Solutions):} \textit{Where do the developers search for programming solutions?}
 	\item \textbf{RQ4 (Problems from Stack Overflow code snippets):} \textit{What are the problems Stack Overflow visitors experiencing from reusing code snippets on Stack Overflow?}
 	\item \textbf{RQ5 (Software license of Stack Overflow code
@@ -539,7 +544,7 @@ or she handles them: \textit{``On
 \vspace{0.5cm}
 
 \subsubsection*{RQ3: Are Stack Overflow answerers aware of software licensing
-	incompatibility caused by code snippets in their answers?}
+	violations caused by code snippets in their answers?}
 
 As shown in Figure~\ref{fig:survey_license_known}, more than half of the
 answerers in both groups, 72 (62.1\%) and 53 (62.3\%) respectively, are aware that Stack
@@ -620,11 +625,12 @@ additional licenses, e.g. Apache 2.0 or MIT/Expat.
 	\label{fig:survey_license_check}
 \end{figure}
 
-We asked the answerers a follow-up question of how frequently they checked for compatibility between software license of the code snippets they copied to their
+We asked the answerers a follow-up question of how frequently they checked for
+conflicts between software license of the code snippets they copied to their
 answers and Stack Overflow's CC BY-SA 3.0. As shown in
 Figure~\ref{fig:survey_license_check}, 80 (69\%) and 58 (69\%) answerers from
 group 1 and group 2 did not perform the checking. There are only approximately
-10\% of the answerers who frequently checks for licensing compatibility when they
+10\% of the answerers who frequently checks for licensing conflicts when they
 copy code snippets to Stack Overflow.
 
 \vspace{0.5cm} \noindent\fbox{%
@@ -632,7 +638,7 @@ copy code snippets to Stack Overflow.
 		\textit{For RQ3, approximately 62\% of our participants are aware of CC BY-SA
 			3.0 license enforced by Stack Overflow. However, 98--99\% of the answerers
 			never include software license in their Stack Overflow snippets. Sixty-nine
-			percent never check for licensing compatibility when they copy code snippets to
+			percent never check for licensing conflicts when they copy code snippets to
 			Stack Overflow answers.} }%
 } \vspace{0.5cm}
 
@@ -869,7 +875,7 @@ never check if the code snippet originated from a different source (e.g. an open
 source project) with an incompatible license to their projects (see
 Figure~\ref{fig:survey_visitor_original_license}).
 
-Fifty seven participants (66\%) never check for licensing compatibility at all
+Fifty seven participants (66\%) never check for licensing conflicts at all
 when reusing Stack Overflow code (see
 Figure~\ref{fig:survey_visitor_licensing_conflict_check}). Lastly, 9\% of
 the participants experienced legal issues by reusing code snippets on Stack
@@ -888,7 +894,7 @@ survey to be anonymous, it was not possible to contact the participants for furt
 
 \begin{figure} \centering
 	\includegraphics[width=.4\linewidth]{survey_visitor_licensing_conflict_check} 
-	\caption{Checking for licensing compatibility from reusing Stack Overflow snippets}
+	\caption{Checking for licensing conflicts from reusing Stack Overflow snippets}
 	\label{fig:survey_visitor_licensing_conflict_check} 
 \end{figure}
 
@@ -904,7 +910,7 @@ survey to be anonymous, it was not possible to contact the participants for furt
 		\textit{For RQ5, 85\% of the participants are not aware of Stack Overflow CC
 			BY-SA 3.0 license and 62\% never give attributions to the Stack Overflow posts
 			they copied the code snippets from. We found that 66\% of the visitors never check for software
-	licensing compatibility between Stack Overflow code snippets and their projects.
+	licensing conflicts between Stack Overflow code snippets and their projects.
 	9\% of the participants encountered legal issues.}}%
 } \vspace{0.5cm}
 
@@ -934,7 +940,7 @@ Regarding software license, the responses from the two groups agree with each
 other. The answerers in both groups show the same level of awareness to Stack
 Overflow CC BY-SA 3.0 license (62.1\% and 62.3\%). Similarly, the answerers in
 both groups neither include software license in their code snippets (98\% and
-99\%) nor check of license compatibility between their code snippet's and Stack
+99\%) nor check of licensing conflicts between their code snippet's and Stack
 Overflow CC BY-SA 3.0 (69\%).
 
 The visitors survey confirms the findings from the previous studies that Stack
@@ -1053,7 +1059,7 @@ snippets on Stack Overflow. We are particularly interested in cloned code
 snippets in Stack Overflow answers. Thus, the two online surveys are performed to
 find out the \textit{origin} of code snippets in Stack Overflow answers and
 \textit{awareness} of Stack Overflow developers, both answerers and visitors,
-to the problem of outdated and license-incompatible code.
+to the problem of outdated and license-violating code.
 
 From the answerer's responses, we discover that code in Stack Overflow answers
 is usually written from scratch to answer a question. Nonetheless, there are
@@ -1070,7 +1076,7 @@ by many other developers.
 Approximately 60\% of the answerers are aware that Stack Overflow
 applies the CC BY-SA 3.0
 license to code on Stack Overflow. Ninety-eight to ninety-nine percent
-do not include a license in their answers nor check for licensing compatibility when
+do not include a license in their answers nor check for licensing conflicts when
 they copy the code from another location to their answer. Some developers
 believe the code is too small and fall under fair use policy. Many answerers
 mention the license of their code in their profile page instead.
@@ -1085,14 +1091,14 @@ participants never report the problems back to Stack Overflow.
 
 Eighty-five percent of the visitors are not aware of Stack Overflow's CC BY-SA
 3.0 and sixty-two percent never give attributions to Stack Overflow posts that they copied
-the code from. Moreover, sixty-six percent never check for licensing compatibility while
+the code from. Moreover, sixty-six percent never check for licensing conflicts while
 reusing Stack Overflow code snippets in their software
 projects. Unexpectedly, 9\%
 of the participants encountered legal issues.
 
 With these findings, we
 suggest Stack Overflow raise an awareness of their users, both the answerers and
-the visitors, to the problem of outdated and license-incompatible code snippets.
+the visitors, to the problem of outdated and license-violating code snippets.
 
 
 %\bibliographystyle{abbrv}
