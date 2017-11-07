@@ -419,9 +419,9 @@ research questions:
 	quantitatively measured the number of online code clones between Stack
 	Overflow and open source projects to understand the scale of the
 	problem. 
-	\item \textbf{RQ2 (Patterns of online code clones): }\textit{Why do online
+	\item \textbf{RQ2 (Patterns of online code clones): }\textit{How do online
 		code clones occur?} We categorised online clones into seven
-	categories allowing insights to why online code clones are created.
+	categories allowing insights to how online code clones are created.
 	\item \textbf{RQ3 (Outdated online code clones): }\textit{Are
 		online code clones up-to-date compared to their counterparts in the
 		original projects?} We were interested in the outdated Stack
@@ -1029,7 +1029,7 @@ true positive clone pairs is 53.89\%.
 
 \subsection{RQ2: Patterns of Online Code Cloning}
 \vspace{0.25cm}
-\textit{Why do online code clones occur?}
+\textit{How do online code clones occur?}
 \vspace{0.25cm}
 
 We performed a manual classification
@@ -1860,18 +1860,20 @@ above actionable items is part of the agenda of our future work.
 \section{Threats to Validity}
 
 \textbf{Internal validity:} 
-We applied
-different mechanisms to ensure the validity of the clone
-pairs we classified.  First, we used two widely-used
-clone detection tools, Simian and SourcererCC.  We tried five other
-clone detectors but could not add them to the study due to their
-scalability issues and susceptibility to incomplete code snippets.
-We adopted Bellon's agreement metric~\cite{Bellon2007}
-to merge clone pairs for the manual
-classification and avoid double counting of the same clone pairs. 
-Nevertheless, our study might still suffer from false negatives, i.e.~online 
-code clones that are not reported by the tools or are filtered 
-out by the size (less than 10 lines) within the clone detection process.
+We applied different mechanisms to ensure the validity of the clone pairs we
+classified.  First, we used two widely-used clone detection tools, Simian and
+SourcererCC.  We tried five other clone detectors but could not add them to the
+study due to their scalability issues and susceptibility to incomplete code
+snippets. We adopted Bellon's agreement metric~\cite{Bellon2007} to merge clone
+pairs for the manual classification and avoid double counting of the same clone
+pairs. Nevertheless, our study might still suffer from false negatives,
+i.e.~online code clones that are not reported by the tools or are filtered out
+by the size (less than 10 lines) within the clone detection process. We selected
+Stack Overflow accepted answers in this study to focus on code snippets that
+solve problems in the question and are often showed on top of the answer list.
+While most of the time they are also the highest voted answers, there is some
+time that they are not. We plan to incorporate the highest voted answers in the
+future work.
 % We also
 % applied the Bellon's clone agreement to 4 different combinations of
 % the tools' configurations.  For disagreed clone pairs, we applied
