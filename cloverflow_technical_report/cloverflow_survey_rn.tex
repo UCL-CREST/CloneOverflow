@@ -7,7 +7,7 @@
 %\documentclass[smallextended]{svjour3}       % onecolumn (second format)
 %\documentclass[twocolumn]{svjour3}          % twocolumn
 %
-\smartqed  % flush right qed marks, e.g. at end of proof
+\smartqed
 %
 
 \usepackage{uclrn}
@@ -21,7 +21,7 @@
 \usepackage{tabularx}
 \usepackage{listings}
 \usepackage{float}
-\usepackage{multirow}
+\usepackage{multirow}         
 \usepackage{mathtools}
 \usepackage{makecell}
 \usepackage{algorithm}
@@ -46,16 +46,19 @@
 %\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 %\newtheorem{definition}{Definition}
 
+\fancyhead[L]{Outdated and License-Violating Code on Stack Overflow}	
+%\fancyhead[R]{Ragkhitwetsagul, Krinke, Oliveto}
+
 \lstset{language=Java,tabsize=2,basicstyle=\ttfamily\scriptsize} 
 
 \newcommand\FIXME[1]{{\color{red}\textbf{FIXME: #1}}}
 
 \begin{document}
 
-\title{Awareness and Experience of Developers to\\ Outdated and License-violating Code on Stack Overflow:\\ An Online Survey}
+\title{Awareness and Experience of Developers to\\ Outdated and License-Violating Code on Stack Overflow:\\ An Online Survey}
 %\subtitle{Do you have a subtitle?\\ If so, write it here}
 
-\titlerunning{SO Developers awareness: Outdated and License-violating Code}        % if too long for running head
+\titlerunning{Awareness and Experience of Developers to Outdated and License-Violating Code on Stack Overflow}        % if too long for running head
 
 \author{Chaiyong~Ragkhitwetsagul, Jens~Krinke, Rocco~Oliveto}
 
@@ -606,7 +609,7 @@ answers are under a certain license. For example, \textit{All code posted by me 
 	right to modify, use and redistribute any code posted by me on Stack Overflow
 	for any purpose. It is provided "as-is" without warranty of any kind.}  Many
 participants either declare their snippets to be public domain, or they grant
-additional licenses, e.g. Apache 2.0 or MIT/Expat.
+additional licenses, e.g.\ Apache 2.0 or MIT/Expat.
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
@@ -721,7 +724,7 @@ year of programming experience.
 
 We asked the participants to rank five options, without a tie, they will choose
 to find programming solutions. The given five options include books, official
-documentations, Stack Overflow, online repositories (e.g. GitHub), and others.
+documentations, Stack Overflow, online repositories (e.g.\ GitHub), and others.
 The results are displayed in Figure~\ref{fig:survey_visitor_rankings-crop}. We
 found that 47 out of 89 participants rank Stack Overflow as the 1st option to
 search for programming solutions, followed by official documentation (33),
@@ -871,7 +874,7 @@ can be found from Figure~\ref{fig:survey_visitor_attribution-sa}).
 %	licensing issues from code snippets on Stack Overflow?}
 
 Sixty-nine Stack Overflow visitors (79\%) who adopted code from Stack Overflow
-never check if the code snippet originated from a different source (e.g. an open
+never check if the code snippet originated from a different source (e.g.\ an open
 source project) with an incompatible license to their projects (see
 Figure~\ref{fig:survey_visitor_original_license}).
 
@@ -1176,7 +1179,7 @@ comments from the Stack Overflow answerers.
 	\item A related topic is beginners who post (at times dangerously) misleading tutorials online on topics they actually know very little about. Think PHP/MySQL tutorials written 10+ years after \texttt{mysql\_*} functions were obsolete, or the recent regex tutorial that got posted the other day on HackerNew (\url{https://news.ycombinator.com/item?id=14846506}). They're also full of toxic code snippets.
 	\item Just to say: the reason that I very rarely check the license status is that the code I am posting is almost always my own or adapted from the question, or imported from an open source project that I have worked on and already know the license terms, or from my own company code that I can 100\% say it is OK to post in public because I know our policies.
 	\item No. Code snippets are short and small enough that no IP can be in them.
-	\item The point of snippets are that they are trivial. I mostly write from scratch or copy-\&-fix a snippet from the question. Most are illustrative or incomplete --- they aren't of any value at all in isolation. They rarely take more than a few minutes to write, and it's usually harder to explain what they're doing in plain English. Where something is large enough to worth the effort of licensing then it's far too big for a snippet. In those cases I create a GitHub project (with a license) and link to it. I'd be wary of increased IP controls --- I doubt there is value they could add to snippets, but they could create significant barriers to contributors, which would hurt the site.
+	\item The point of snippets are that they are trivial. I mostly write from scratch or copy-\&-fix a snippet from the question. Most are illustrative or incomplete -- they aren't of any value at all in isolation. They rarely take more than a few minutes to write, and it's usually harder to explain what they're doing in plain English. Where something is large enough to worth the effort of licensing then it's far too big for a snippet. In those cases I create a GitHub project (with a license) and link to it. I'd be wary of increased IP controls -- I doubt there is value they could add to snippets, but they could create significant barriers to contributors, which would hurt the site.
 	\item I always try to see what kind of person is asking the question. If it is a student, I don't want to just hand out the answer; they will learn nothing from that. If, on the other hand, it's somebody looking for best practices or a clever trick, I'm not too worried about giving out the solution. In this case, chances are much higher that the person asking the question will go ``Ahh, yes, of course!'' and understand the question, whereas some students are more likely to mindlessly copy-paste the answer.
 	\item However, it is also a competitive site, so if your answer requires too much work to incorporate, it won't get accepted or upvoted. As a result, some people---I'm guilty of this myself, I'm sure---will hand out an answer willy-nilly that might solve the problem at hand, but in the long run be a disservice to the person asking.
 	\item But I digress: My point is that it's sometimes better to describe a solution rather than just hand off a code snippet. However, since your project seems to pertain to copyright issues, I suppose that's not relevant to you.
@@ -1186,9 +1189,9 @@ comments from the Stack Overflow answerers.
 	\item Outer thing is in so lot of code snippets doesn't work because some users don't add libraries like angular, jquery. I think it's better if we can identify and ask user to auto inject relevant libraries.
 	\item Code snippets are usually just a few lines of code so it will be hard to enforce any copyright claims except when it is a method used for something company-specific (such as generating encryption keys). Regardless, since most of the code I write is specifically to answer a given question and having full knowledge of the license system used by Stack Overflow, it is entirely unimportant to concern myself with licensing the code provided. Also, code from MSDN documentation which I sometimes adapt and modify for answers are already in the public domain so it makes no sense re-licensing it.
 	\item On the matter of deprecation, I almost entirely use .NET which has got different versions of the framework. Therefore, code deprecation is not often a problem since what is deprecated on one version of the framework may be the only way of solving a given problem on an older version of the framework. I may also have to add that questions I tend to answer are about how to solve general coding problems so they are not usually subject to deprecation.
-	\item I think you're forgetting the fact that as a community, we want to share knowledge. Patents, copyright issues and so on --- it's all just annoying. We're there to have fun and to share knowledge with people. 
+	\item I think you're forgetting the fact that as a community, we want to share knowledge. Patents, copyright issues and so on -- it's all just annoying. We're there to have fun and to share knowledge with people. 
 	\item In the early days, the internet used to be full of free-for-all stuff without any licenses. Because of that, it was a fantastic tool to share knowledge and information on a vast scale. The remnant of this, open source, couldn't have existed without this!
-	\item Personally, I believe this ``intellectual property'' drive of the last decade is completely overrated. If you make something \textbf{substantial}, it's fine to be able to claim some ownership --- but on snippets? It's like patenting the stuff you make in your free time in your shed... it doesn't make sense and just adds to the pile of legal bullshit imho.
+	\item Personally, I believe this ``intellectual property'' drive of the last decade is completely overrated. If you make something \textbf{substantial}, it's fine to be able to claim some ownership -- but on snippets? It's like patenting the stuff you make in your free time in your shed... it doesn't make sense and just adds to the pile of legal bullshit imho.
 	\item No. I only put code on there that I have the right to (code I created or have permission to share). Adding the code is not an issue for me.
 	\item When I copy code it's usually short enough to be considered ``fair use'' but I am not a lawyer or copyright expert so some guidance from SO would be helpful. I'd also like the ability to flag/review questions that violate these guidelines.
 	\item The snippets are all small enough that I reckon they fall under fair use.
