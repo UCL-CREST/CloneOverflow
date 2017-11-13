@@ -100,29 +100,47 @@
 \IEEEtitleabstractindextext{%
 \begin{abstract}
 Online code clones are code fragments that are copied from software projects or
-online sources to Stack Overflow as examples in questions and answers. % They
-Due to an absence of a checking mechanism after the code has been copied to
-Stack Overflow, they can become toxic code snippets, i.e.~they suffer from
-being outdated or violating the original software license. We present a study
-incorporating several state-of-the-art tools and techniques to automatically
-extract and filter detected online clone pairs between 72,365 Java code snippets
-on Stack Overflow and 111 Java open source projects in the curated Qualitas
-corpus. We discovered and analysed 2,302 non-trivial online clone candidates.
-Our investigation of the online clone pairs revealed strong evidence that 154
-clones have been copied from a Qualitas project to Stack Overflow.  We found 101
-of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
-we found 214 code snippets on Stack Overflow that could potentially violate the license of their
-original software. To better understand the phenomenon, we also surveyed 201 high-reputation Stack Overflow answerers
-(33\% response rate) and found that 131 of the answerers (65\%) have ever been notified of
-outdated code in the answers and 26 of them (20\%) rarely or never fix the outdated
-code. Only 3 answerers explicitly include software licenses in their answers and
-138 answerers (69\%) never check for licensing conflicts between their copied code
-snippets and Stack Overflow's CC BY-SA 3.0.
+online sources to Stack Overflow as examples. Due to an absence of a checking
+mechanism after the code has been copied to Stack Overflow, they can become
+toxic code snippets, i.e. they suffer from being outdated or violating the
+original software license. We present a study incorporating state-of-the-art
+tools and techniques to automatically extract and filter online clone pairs
+between 72,365 Java code snippets on Stack Overflow and 111 open source projects
+in the curated Qualitas corpus. We analysed 2,302 non-trivial online clone
+candidates. Our investigation revealed strong evidence that 154 clones have been
+copied from a Qualitas project to Stack Overflow. We found 101 of them (66\%) to
+be outdated and potentially harmful for reuse. Furthermore, we found 214 code
+snippets that could potentially violate the license of their original software.
+The survey of 201 high-reputation Stack Overflow answerers (33\% response rate)
+showed that 131 participants (65\%) have ever been notified of outdated code and
+26 of them (20\%) rarely or never fix the code. 138 answerers (69\%) never check
+for licensing conflicts between their copied code snippets and Stack Overflow's
+CC BY-SA 3.0.
+
+%Online code clones are code fragments that are copied from software projects or
+%online sources to Stack Overflow as examples in questions and answers. % They
+%Due to an absence of a checking mechanism after the code has been copied to
+%Stack Overflow, they can become toxic code snippets, i.e.~they suffer from
+%being outdated or violating the original software license. We present a study
+%incorporating several state-of-the-art tools and techniques to automatically
+%extract and filter detected online clone pairs between 72,365 Java code snippets
+%on Stack Overflow and 111 Java open source projects in the curated Qualitas
+%corpus. We discovered and analysed 2,302 non-trivial online clone candidates.
+%Our investigation of the online clone pairs revealed strong evidence that 154
+%clones have been copied from a Qualitas project to Stack Overflow.  We found 101
+%of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
+%we found 214 code snippets on Stack Overflow that could potentially violate the license of their
+%original software. To better understand the phenomenon, we also surveyed 201 high-reputation Stack Overflow answerers
+%(33\% response rate) and found that 131 of the answerers (65\%) have ever been notified of
+%outdated code in the answers and 26 of them (20\%) rarely or never fix the outdated
+%code. Only 3 answerers explicitly include software licenses in their answers and
+%138 answerers (69\%) never check for licensing conflicts between their copied code
+%snippets and Stack Overflow's CC BY-SA 3.0.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Clone Detection, Stack Overflow, Outdated Code, Software Licensing
+Code Clone Detection, Stack Overflow, Outdated Code, Software Licensing
 \end{IEEEkeywords}}
 
 
@@ -155,48 +173,44 @@ Clone Detection, Stack Overflow, Outdated Code, Software Licensing
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
-%The popularity of the Internet encourages tremendous amount of source code being shared online. 
-Stack Overflow is a popular online programming community with 7.6
-million users, 14 million questions, and 23 million answers\footnote{Data as of 21
-	August 2017 from~\url{https://stackexchange.com/sites}}. It allows programmers to ask questions and give answers
-to programming problems. The website has found to be useful for
-software
+%The popularity of the Internet encourages tremendous amount of source code
+% being shared online.
+Stack Overflow is a popular online programming community with 7.6 million users,
+14 million questions, and 23 million answers\footnote{Data as of 21 August 2017
+	from~\url{https://stackexchange.com/sites}}. It allows programmers to ask
+questions and give answers to programming problems. The website has found to be
+useful for software
 development~\cite{Ponzanelli2013,Ponzanelli2014,Keivanloo2014,Park2014,
-	Stolee2014,Subramanian2013,Diamantopoulos2015,Treude2016} and also
-valuable for educational purposes~\cite{Nasehi2012}. On Stack
-Overflow, each conversation contains a question and a list of
-answers. The answers frequently contain at least one code snippet as
-a solution to the question asked. We found that the code snippets are
-usually not authored directly on the Stack Overflow website but copied
-from another location. A snippet in an answer could be copied and modified
-from a code snippet in the question, copied from the answerer's own
-code or from other locations including open source software (OSS)
-systems. 
+	Stolee2014,Subramanian2013,Diamantopoulos2015,Treude2016} and also valuable for
+educational purposes~\cite{Nasehi2012}. On Stack Overflow, each conversation
+contains a question and a list of answers. The answers frequently contain at
+least one code snippet as a solution to the question asked. We found that the
+code snippets are usually not authored directly on the Stack Overflow website
+but copied from another location. A snippet in an answer could be copied and
+modified from a code snippet in the question, copied from the answerer's own
+code or from other locations including open source software (OSS) systems.
 
-The process of posting and answering questions on Stack
-Overflow that involves the reuse (copying) of source code can be considered
-code cloning.
-Code cloning is an activity of reusing source code by copying and
-pasting. It normally occurs in software development and account from
-7\% to 23\% of source code in typical software
-systems~\cite{Bellon2007}. The benefits and drawbacks of clones are
-still controversial. Several authors state that clones lead to bug
-propagations and software maintenance issues~\cite{Kamiya2002}, while
-some others suggest that clones are not harmful and can even be
+The process of posting and answering questions on Stack Overflow that involves
+the reuse (copying) of source code can be considered code cloning. Code cloning
+is an activity of reusing source code by copying and pasting. It normally occurs
+in software development and account from 7\% to 23\% of source code in typical
+software systems~\cite{Bellon2007}. The benefits and drawbacks of clones are
+still controversial. Several authors state that clones lead to bug propagations
+and software maintenance issues~\cite{Kamiya2002}, while some others suggest
+that clones are not harmful and can even be
 beneficial~\cite{Saini2016,Kapser2006}.
 
-Code cloning can also have side effects such as violating software
-licenses or introducing software vulnerabilities. Carelessly cloning
-code from one project to another project with a different license may
-cause a software license violation~\cite{German2009}. This also
-happens within the context of online Q\&A websites such as Stack
-Overflow. An et al.~\cite{An2017} showed that 1,279 cloned snippets
-between Android apps and Stack Overflow potentially violate software
-licenses. Security is also among the main concerns when code is copied
+Code cloning can also have side effects such as violating software licenses or
+introducing software vulnerabilities. Carelessly cloning code from one project
+to another project with a different license may cause a software license
+violation~\cite{German2009}. This also happens within the context of online Q\&A
+websites such as Stack Overflow. An et al.~\cite{An2017} showed that 1,279
+cloned snippets between Android apps and Stack Overflow potentially violate
+software licenses. Security is also among the main concerns when code is copied
 from an online source. For example, Stack Overflow helps developers to solve
-Android programming problems more quickly than other resources while,
-at the same time, offers less secure code than books or the official
-Android documentation~\cite{Acar2016}.
+Android programming problems more quickly than other resources while, at the
+same time, offers less secure code than books or the official Android
+documentation~\cite{Acar2016}.
 
 \begin{figure*}
   \fboxsep0pt
@@ -230,19 +244,20 @@ a software project to a Q\&A website as an example; or (2)~code is cloned from a
 Q\&A website to a software project to obtain a functionality, perform a
 particular task, or fixing a bug. % and (3)~code is transferred from one
 % software project to another via a Q\&A website;
-Similar to classic code clones, i.e.~clones between software systems, online code clones
-can lead to license violations, bug propagation, introduction of
+Similar to classic code clones, i.e.~clones between software systems, online
+code clones can lead to license violations, bug propagation, introduction of
 vulnerabilities, and re-use of outdated code. Unfortunately, online clones are
 difficult to locate and fix since the search space in online code corpora is
 larger and no longer confined to a local repository.
 
-To have a deeper insight on online code clones, we surveyed 201 high-reputation Stack Overflow answerers. The results of such a survey show that online code cloning occurs on
-Stack Overflow. Stack Overflow answerers frequently
-clone code from other locations, such as their personal projects, company
-projects, and open source projects, to Stack Overflow as a solution or
-a complement to a solution. The code cloning activity on Stack Overflow
-is obviously beneficial considered the popularity of Stack Overflow and its
-influence on software development~\cite{Ponzanelli2013,Ponzanelli2014,Park2014}. On the other hand,
+To have a deeper insight on online code clones, we surveyed 201 high-reputation
+Stack Overflow answerers. The results of such a survey show that online code
+cloning occurs on Stack Overflow. Stack Overflow answerers frequently clone code
+from other locations, such as their personal projects, company projects, and
+open source projects, to Stack Overflow as a solution or a complement to a
+solution. The code cloning activity on Stack Overflow is obviously beneficial
+considered the popularity of Stack Overflow and its influence on software
+development~\cite{Ponzanelli2013,Ponzanelli2014,Park2014}. On the other hand,
 there is also a downside caused by low quality, defective, and harmful code
 snippets that are reused without an awareness by millions of users.
 
@@ -277,11 +292,10 @@ specific software license, e.g.\ GNU General Public License (GPL). If they are
 cloned to Stack Overflow answers without the license, and then flow to other projects
 with conflicting licenses, legal issues may occur.
 
-We would like to motivate the readers by giving two examples of toxic
-code snippets.
-The first example is an outdated and potentially license-violating online code clone in an
-answer to a Stack Overflow question regarding how to implement
-{\small{\texttt{RawComparator}}} in
+We would like to motivate the readers by giving two examples of toxic code
+snippets. The first example is an outdated and potentially license-violating
+online code clone in an answer to a Stack Overflow question regarding how to
+implement {\small{\texttt{RawComparator}}} in
 \textsf{Hadoop}\footnote{\url{http://stackoverflow.com/questions/22315734}}.
 \Cref{fig:before-after} shows---on the left---a code snippet embedded as a part
 of the accepted answer. The snippet shows how \textsf{Hadoop} implements the
@@ -291,22 +305,21 @@ but at this time extracted from the latest version (as of October 3, 2017) of
 \textsf{Hadoop}. We can see that they both are highly similar except a line
 containing {\small{\verb|buffer.reset(null,0,0);|}} which was added on November
 21, 2014. The added line is intended for cleaning up the reference in the
-{\small{\verb|buffer|}} variable and avoid excess heap usage
-(issue no.~HADOOP-11323\footnote{https://issues.apache.org/jira/browse/HADOOP-11323}).
+{\small{\verb|buffer|}} variable and avoid excess heap usage (issue
+no.~HADOOP-11323\footnote{https://issues.apache.org/jira/browse/HADOOP-11323}).
 While this change has already been introduced into the
 {\small{\texttt{compare}}} method several years ago, the code example in Stack
-Overflow post is still unchanged. 
-%This example shows that inconsistencies
+Overflow post is still unchanged. %This example shows that inconsistencies
 %between online code clones and their originals can lead users of Stack Overflow
-%to reuse outdated code. 
-In addition, the original code snippet of
-{\small\texttt{WritableComparator}} class in Hadoop is distributed with Apache license
-version 2.0 while its cloned instance on Stack Overflow contains only the
-{\small{\texttt{compare}}} method and ignores its license statement on top of the
-file. There are two potential issues for this. First, the code snippet may appear to be 
-under Stack Overflow's CC BY-SA 3.0 instead of its original Apache
-license. Second, if the code snippet is copied and incorporated into another
-software project with a conflicting license, a legal issue may arise.
+%to reuse outdated code.
+In addition, the original code snippet of {\small\texttt{WritableComparator}}
+class in Hadoop is distributed with Apache license version 2.0 while its cloned
+instance on Stack Overflow contains only the {\small{\texttt{compare}}} method
+and ignores its license statement on top of the file. There are two potential
+issues for this. First, the code snippet may appear to be under Stack Overflow's
+CC BY-SA 3.0 instead of its original Apache license. Second, if the code snippet
+is copied and incorporated into another software project with a conflicting
+license, a legal issue may arise.
 
 \begin{figure*}
 	\begin{lstlisting}
@@ -333,8 +346,7 @@ public static String humanReadableInt(long number) {   public static String huma
 		{\small\texttt{StringUtils.java}}. The one from the
 		Stack Overflow post 801987 (left) is outdated when compared to
 		its latest version in the \textsf{Hadoop} code base
-		(right). The toxic code snippet is outdated code, has race conditions, and does not contain its
-		original Apache v.2.0 license.}
+		(right). The toxic code snippet is outdated code and has race conditions.}
 	\label{fig:before-after_2}
 \end{figure*}
 
@@ -348,8 +360,8 @@ the latest version of \textsf{Hadoop}. We can see that
 they are totally different. The {\small{\texttt{humanReadableInt}}} method is
 rewritten on February 5, 2013 to solve an issue of a race condition
 (issue no.~HADOOP-9252\footnote{https://issues.apache.org/jira/browse/HADOOP-9252}).
-Similar to the first example, the clone code snippet on Stack Overflow does not 
-include its original Apache v.2.0 license.
+%Similar to the first example, the clone code snippet on Stack Overflow does not 
+%include its original Apache v.2.0 license.
 
 The two toxic code snippets in our examples have been posted on March 11, 2014 and
 April 9, 2009 respectively. They have already been viewed 259 and 2,886 times at
@@ -948,7 +960,7 @@ anonymous and the participants could decide to leave at any time. It contained
 11 questions. There were 7 Likert's scale questions, 3 yes/no questions, and one
 open-ended question for additional comments. The first two questions were
 mandatory while the other 9 questions were shown to the participants based on
-their previous answers. The full survey can be found in our research note~\cite{Ragkhitwetsagul_RN2017}~\FIXME{Fix the RN bibtex}.
+their previous answers. The full survey can be found in our research note~\cite{Ragkhitwetsagul_RN2017}.
 
 We selected the participants for our survey based on their Stack Overflow
 reputation. On Stack Overflow, a user's reputation reflects how much the
@@ -1236,7 +1248,7 @@ classified. The majority of them are {\small{\texttt{equals()}}} methods.
 
 \textbf{IN: Inheritance/interface.} There were 16 clone pairs, 9 pairs after
 consolidation, found to be similar because they implement the same interface or
-inheriting from the same class. An example is the two implementations of a
+inherit from the same class. An example is the two implementations of a
 custom data type which implements {\small\texttt{UserType}}. They share similar
 {\small\texttt{@Override}} methods of {\small\texttt{deepCopy}},
 {\small\texttt{isMutable}}, {\small\texttt{assemble}},
@@ -1515,29 +1527,29 @@ snippets.
 
 \subsection{RQ5: Stack Overflow Answerers' Awareness}
 
-\begin{table}
-	\centering
-	\caption{Stack Overflow answerers taken the survey}
-	\label{tab:survey_target}
-	\begin{tabular}{rrrr}
-		\toprule
-		Reputation & Sent emails & Answers & Rate \\
-		\midrule
-		963,731--6,999 & 607 & 201 & 33\% \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+%\begin{table}
+%	\centering
+%	\caption{Stack Overflow answerers taken the survey}
+%	\label{tab:survey_target}
+%	\begin{tabular}{rrrr}
+%		\toprule
+%		Reputation & Sent emails & Answers & Rate \\
+%		\midrule
+%		963,731--6,999 & 607 & 201 & 33\% \\
+%		\bottomrule
+%	\end{tabular}
+%\end{table}
 
 We received 201 answers (33\% response rate) from 607 emails we sent to the
 Stack Overflow answerers. The response rate was high considering other
 online surveys in software engineering~\cite{Punter2003}. 
 We only present a summary of the survey answers in
-this paper and the full analysis is available as a technical report~\cite{Ragkhitwetsagul_RN2017}.
+this paper and the full analysis is available as a research note~\cite{Ragkhitwetsagul_RN2017}.
 
 \subsubsection{General Information}
 As shown in \Cref{tab:survey_exp}, the majority of the answerers are experienced
-developers with more than 10 years of experience (55.4\%) or between 5 to 10
-years (28.7\%). They are active users and regularly answer questions. 49
+developers with more than 10 years of experience (55.2\%) or between 5 to 10
+years (28.9\%). They are active users and regularly answer questions. 49
 participants (24\%) answer questions on Stack Overflow every day.
 
 \begin{table}
@@ -2040,7 +2052,7 @@ introduce vulnerabilities. Our study similarly finds
 % on % the context of 
 outdated code on Stack Overflow.
 
-Work similar to ours are studies by An et al.~\cite{An2017}
+Work similar to ours are studies by An et al.~\cite{An2017},
 Abdalkareem et al.~\cite{Abdalkareem2017}, and Baltes et al.~\cite{Baltes2017}. 
 An et al.~investigated clones
 between 399 Android apps and Stack Overflow posts. They found 1,226 code
