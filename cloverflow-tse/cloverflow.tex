@@ -112,7 +112,7 @@ Our investigation of the online clone pairs revealed strong evidence that 154
 clones have been copied from a Qualitas project to Stack Overflow.  We found 101
 of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
 we found 214 code snippets on Stack Overflow that could potentially violate the license of their
-original software. We surveyed 201 high-reputation Stack Overflow answerers
+original software. To better understand the phenomenon, we also surveyed 201 high-reputation Stack Overflow answerers
 (33\% response rate) and found that 131 of the answerers (65\%) have ever been notified of
 outdated code in the answers and 26 of them (20\%) rarely or never fix the outdated
 code. Only 3 answerers explicitly include software licenses in their answers and
@@ -198,6 +198,31 @@ Android programming problems more quickly than other resources while,
 at the same time, offers less secure code than books or the official
 Android documentation~\cite{Acar2016}.
 
+\begin{figure*}
+  \fboxsep0pt
+	\begin{lstlisting}[escapechar=&]
+/* Code in Stack Overflow post ID 22315734 */         /* WritableComparator.java (2014-11-21) */
+public int compare(byte[] b1,int s1,int l1, ...) {    public int compare(byte[] b1,int s1,int l1, ...) {
+  try {                                                 try {
+    buffer.reset(b1,s1,l1); /* parse key1 */              buffer.reset(b1,s1,l1); /* parse key1 */
+    key1.readFields(buffer);                              key1.readFields(buffer);
+    buffer.reset(b2,s2,l2); /* parse key2 */              buffer.reset(b2,s2,l2); /* parse key2 */
+    key2.readFields(buffer);                              key2.readFields(buffer);
+  } catch (IOException e) {                               &\framebox{buffer.reset(null,0,0); \textit{/* clean up reference */}}&
+    throw new RuntimeException(e);                      } catch (IOException e) {
+  }                                                       throw new RuntimeException(e);
+  return compare(key1,key2); /* compare them */         }
+}                                                       return compare(key1, key2); /* compare them */
+                                                      }
+	\end{lstlisting}\vspace{-2ex}
+	\caption{An example of the two code fragments of
+		{\small\texttt{WritableComparator.java}}. The one from the
+		Stack Overflow post 22315734 (left) is outdated when compared to
+		its latest version in the \textsf{Hadoop} code base
+		(right). Its Apache v.2.0 license is also missing.}
+	\label{fig:before-after}
+\end{figure*}
+
 We call code snippets that are copied from software systems to online Q\&A
 websites (such as Stack Overflow) and vice versa as ``online code clones''.
 There are two directions in creating online code clones: (1)~code is cloned from
@@ -211,7 +236,7 @@ vulnerabilities, and re-use of outdated code. Unfortunately, online clones are
 difficult to locate and fix since the search space in online code corpora is
 larger and no longer confined to a local repository.
 
-Our survey of Stack Overflow answerers shows that online code cloning occurs on
+To have a deeper insight on online code clones, we surveyed 201 high-reputation Stack Overflow answerers. The results of such a survey show that online code cloning occurs on
 Stack Overflow. Stack Overflow answerers frequently
 clone code from other locations, such as their personal projects, company
 projects, and open source projects, to Stack Overflow as a solution or
@@ -248,37 +273,12 @@ are (1)~outdated or (2)~violating their original software
 license. Outdated code snippets
 can be harmful since they are not up-to-date with their originals and may
 contain defects. Code snippets from open source projects usually fall under a
-specific software license , e.g.\ GNU General Public License (GPL). If they are
+specific software license, e.g.\ GNU General Public License (GPL). If they are
 cloned to Stack Overflow answers without the license, and then flow to other projects
 with conflicting licenses, legal issues may occur.
 
-\begin{figure*}
-  \fboxsep0pt
-	\begin{lstlisting}[escapechar=&]
-/* Code in Stack Overflow post ID 22315734 */         /* WritableComparator.java (2014-11-21) */
-public int compare(byte[] b1,int s1,int l1, ...) {    public int compare(byte[] b1,int s1,int l1, ...) {
-  try {                                                 try {
-    buffer.reset(b1,s1,l1); /* parse key1 */              buffer.reset(b1,s1,l1); /* parse key1 */
-    key1.readFields(buffer);                              key1.readFields(buffer);
-    buffer.reset(b2,s2,l2); /* parse key2 */              buffer.reset(b2,s2,l2); /* parse key2 */
-    key2.readFields(buffer);                              key2.readFields(buffer);
-  } catch (IOException e) {                               &\framebox{buffer.reset(null,0,0); \textit{/* clean up reference */}}&
-    throw new RuntimeException(e);                      } catch (IOException e) {
-  }                                                       throw new RuntimeException(e);
-  return compare(key1,key2); /* compare them */         }
-}                                                       return compare(key1, key2); /* compare them */
-                                                      }
-	\end{lstlisting}\vspace{-2ex}
-	\caption{An example of the two code fragments of
-		{\small\texttt{WritableComparator.java}}. The one from the
-		Stack Overflow post 22315734 (left) is outdated when compared to
-		its latest version in the \textsf{Hadoop} code base
-		(right). Its Apache v.2.0 license is also missing.}
-	\label{fig:before-after}
-\end{figure*}
-
 We would like to motivate the readers by giving two examples of toxic
-cod snippets.
+code snippets.
 The first example is an outdated and potentially license-violating online code clone in an
 answer to a Stack Overflow question regarding how to implement
 {\small{\texttt{RawComparator}}} in
@@ -351,7 +351,7 @@ rewritten on February 5, 2013 to solve an issue of a race condition
 Similar to the first example, the clone code snippet on Stack Overflow does not 
 include its original Apache v.2.0 license.
 
-The two toxic code snippet in our examples have been posted on March 11, 2014 and
+The two toxic code snippets in our examples have been posted on March 11, 2014 and
 April 9, 2009 respectively. They have already been viewed 259 and 2,886 times at
 the time of writing this paper (October 3, 2017). Our calculation finds that
 there will be a new viewer of the first toxic snippet approximately every 5
@@ -360,7 +360,7 @@ that the defective {\small{\texttt{humanReadableInt}}} method in the second
 example already appears in approximately 500 projects on GitHub. Considering the
 popularity of Stack Overflow, which has more than 50 million developers visiting
 each month\footnote{Data as of 21 August 2017 from:
-	\url{https://stackoverflow.com}}, one toxic code snippets on Stack Overflow can
+	\url{https://stackoverflow.com}}, one toxic code snippet on Stack Overflow can
 spread and grow to hundred or thousand copies within only a year or two.
 
 %The code snippet on Stack Overflow can be outdated. %Since reusing source code from Stack Overflow is considered a common practice nowadays, the scale of online code cloning is more than intra or inter project clone in a local code bases.
@@ -482,10 +482,7 @@ his/her problem. We collected Java code snippets using two criteria. First, we
 only focused on code snippets in accepted answers. We chose the snippets in
 accepted answers because they actually solved the problems in the questions.
 Moreover, they are usually displayed just below the questions which makes them
-more likely to be reused than other answers. Moreover, we found that in our data set
-of Java answers, 86\% of the accepted answers are, at the same time, the highest voted
-answers. Thus, they are well accepted by the Stack Overflow community.
-Second, we were only interested in
+more likely to be reused than other answers. Second, we were only interested in
 code snippets of at least ten lines. Although the minimum clone size of six
 lines are usual in clone detection~\cite{Bellon2007,Wang2013,Koschke2006}, we
 empirically found that snippets of six lines contain a large number of
@@ -686,7 +683,6 @@ while SourcererCC's clone fragments are always confined to a method boundary.
 
 We follow Bellon's original definitions of ok-match~\cite{Bellon2007}, which are based on how much two clone
 fragments \textit{CF} are contained in each other:
-
 %\squeezeup
 %\begin{displaymath}
 %overlap(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
@@ -701,7 +697,6 @@ A clone pair \textit{CP} is formed by two clone fragments
 (\textit{CF$_1$}, \textit{CF$_2$})
 %, and the \textit{good-value} and
 and the \textit{ok-value} of two clone pairs is defined as
-
 %\squeezeup
 %\begin{align*}
 %good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
@@ -746,7 +741,7 @@ the patterns of code cloning so we can gain more insights into
 how these clones are created (phase 4 in \Cref{fig:exp_framework}). 
 
 \textbf{Manual investigation:} 
-To mitigate the human error, we deployed two persons in the manual clone
+To mitigate the human error, we deployed two people in the manual clone
 investigation process. The first author, who is a research student working on
 clone detection research for three years, and the third author, who is a
 software engineering research student and familiar with code clones, took the
@@ -1679,7 +1674,7 @@ there are 19.8\% of the answerers in both groups who rarely, very rarely, or nev
 their outdated code.
 
 \textbf{To answer RQ 5.1, although most of the Stack Overflow answerers are aware that their code
-can be outdated. 51.5\% of the answerers were very rarely notified while 35.5\% have never been notified of
+can be outdated, 51.5\% of the answerers were very rarely notified and 35.5\% have never been notified of
 outdated code in the answers. After being notified, 19.8\% of them rarely or never fix the outdated code.}
 
 The responses from the answerers support our findings of outdated online code
@@ -1735,7 +1730,7 @@ answers are under a certain license. For example, a Stack Overflow user includes
 the following text in his/her profile page.
 
 \begin{quotation}
-\textit{All code posted by me on
+\noindent \textit{All code posted by me on
 	Stack Overflow should be considered public domain without copyright. For
 	countries where public domain is not applicable, I hereby grant everyone the
 	right to modify, use and redistribute any code posted by me on Stack Overflow
