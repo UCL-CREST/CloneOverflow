@@ -165,21 +165,12 @@ def main():
     with open(FILE_blocks_tokens_file, 'w') as FILE_tokens_file, \
          open(FILE_blocks_stats_file, 'w') as FILE_stats_file:
         
-        print "starting"
+        print("starting")
         process_so_file(FILE_tokens_file, FILE_stats_file)
 
     p_elapsed = dt.datetime.now() - p_start
     logging.info('All done in %s' % p_elapsed)
-    print 'All %s blocks done in %s' % (block_count, p_elapsed)
+    print('All %s blocks done in %s' % (block_count, p_elapsed))
 
 
 main()
-
-
-	
-
-
-
-
-
-
