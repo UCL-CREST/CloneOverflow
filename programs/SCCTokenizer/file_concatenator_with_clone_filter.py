@@ -36,6 +36,14 @@ def get_file_list(home_dir, filter):
     return all_files
 
 
+def get_outdated_clones(clone_list):
+    with open(clone_list, 'r') as f:
+        lines = f.readlines()
+    # remove '\n' at the end
+    lines = [line.strip() for line in lines]
+    return lines
+
+
 def createFileId(file):
     global file_id_list
     global starting_blockid
@@ -83,7 +91,8 @@ def main():
 
     if len(sys.argv) == 1:
         print '-' * 60
-        print 'Usage: python file_concatenator.py <location of SO snippets> <starting ID>'
+        print 'Usage: python file_concatenator.py <location of SO snippets> <starting ID> <outdated clone list> <basepath>'
+        print 'Note: outdated clone list looks like this ... <SO ID>,<Start line>,<End line>'
         print '-' * 60
         exit()
 
@@ -105,15 +114,13 @@ def main():
     # get the starting id, if not, start at 0
     global starting_blockid
     global starting_postid
-
     starting_blockid = int(sys.argv[2])
+    outdated_clones = get_outdated_clones(sys.argv[3])
 
-    # if len(sys.argv) == 4:
-        # starting_postid = int(sys.argv[2])
-
+    basepath = sys.argv[4]
     print "files: ", len(javafiles)
-    
     p_start = dt.datetime.now()
+    found_clones = 0
 
     # start method extraction
     for index, jfile in enumerate(javafiles):
@@ -127,18 +134,36 @@ def main():
                 method_parts = method.split("@@UCL@@")
                 lines = len(method_parts[1].strip().split("\n"))
 
+                # location[0] = starting line, location[1] = ending line
+                location = method_parts[0].strip().split(',')
+                clone = jfile.replace(basepath, '') + ',' + method_parts[0].strip()
+                print clone
+
                 # filter for only the one with more than 10 lines
                 if lines >= 10:
-                    writefile("so.txt", "===@@@UCI===\n", "a", False)
-                    id = createFileId(jfile + "," + method_parts[0].strip())
-                    # writefile("so.txt", str(index + starting_postid) + "\n", "a", False)
-                    # -1 means we don't care about parentId
-                    writefile("so.txt", "-1\n", "a", False)
-                    writefile("so.txt", str(id) + "\n", "a", False)
-                    writefile("so.txt", method_parts[1].strip() + "\n", "a", False)
+                    clone_add1 = jfile.replace(basepath, '') + ',' + location[0] + ',' + str(int(location[1]) + 1)
+                    clone_minus1 = jfile.replace(basepath, '') + ',' + location[0] + ',' + str(int(location[1]) + -1)
+                    # handle +1/-1 line difference at the end
+                    if clone in outdated_clones \
+                            or clone_add1 in outdated_clones\
+                            or clone_minus1 in outdated_clones:
+
+                        # only print the one that matches
+                        print 'found,' + jfile.replace(basepath, '') + ',' + method_parts[0].strip()
+                        found_clones += 1
+
+                        writefile("so.txt", "===@@@UCI===\n", "a", False)
+                        id = createFileId(jfile + "," + method_parts[0].strip())
+                        # writefile("so.txt", str(index + starting_postid) + "\n", "a", False)
+                        # -1 means we don't care about parentId
+                        writefile("so.txt", "-1\n", "a", False)
+                        writefile("so.txt", str(id) + "\n", "a", False)
+                        writefile("so.txt", method_parts[1].strip() + "\n", "a", False)
         except Exception as e:
             writefile("errors.txt", "error processing " + jfile + ".\n", "a", False)
             traceback.print_exc(file=sys.stdout)
+
+    print 'found:', found_clones, 'clones.'
     # saveFileId()
 
     p_elapsed = dt.datetime.now() - p_start
