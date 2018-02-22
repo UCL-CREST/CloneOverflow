@@ -1065,6 +1065,28 @@ and explained in the following.
 	%}
 \end{table*}
 
+\begin{table}
+	\centering
+	\caption{Statistics of clone sizes}
+	\label{tab:clone_stats}
+	\begin{tabular}{lrrrr}
+		\toprule
+		Clones & Min & Max & Mean & Median \\
+		\midrule
+		QS & 10 & 135 & 18.5 & 14 \\
+		UD & 10 & 104 & 18.1 & 14 \\
+		EX & 10 & 48 & 16.7 & 14 \\
+		\bottomrule
+	\end{tabular} 
+\end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{boxplot_clone_size}
+	\caption{Size of online code clones.}
+	\label{fig:boxplotclonesize}
+\end{figure}
+
 \textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 248 online clone
 pairs with evidence of cloning from Qualitas projects to Stack Overflow.
 However, we observed that, in some cases, a cloned code snippet on Stack
