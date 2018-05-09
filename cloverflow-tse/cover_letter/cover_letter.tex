@@ -46,6 +46,8 @@ filecolor=magenta,      % color of file links
 urlcolor=black           % color of external links
 }
 
+\newcommand\FIXME[1]{{\color{red}\textbf{FIXME: #1}}}
+
 \begin{document}
 
 \thispagestyle{plain}
@@ -65,9 +67,9 @@ urlcolor=black           % color of external links
 
 %\begin{abstract}
 This paper is a journal-first submission to Transactions on Software Engineering. 
-This is a re-submission of the previous submission no.~TSE-2017-11-0335 and we would like to thank the anonymous Reviewers for taking their time to carefully read our paper. With their useful and constructive reviews, we substantially improved the work by adding the following improvements:
+This is a re-submission of the previous submission no.~TSE-2017-11-0335 and we would like to thank the anonymous Reviewers for taking their time to carefully read our paper. With their useful and constructive reviews, we substantially improved the work by adding three major improvements as listed below to our previous submission and minor improvements as discussed later in this letter:
 
-\textbf{1. A study of toxic code snippets on GitHub:}~To provide an evidence that toxic code snippets are actually reused in software projects and strengthen the motivation, we performed a large-scale analysis of clones between toxic code snippets found on Stack Overflow and GitHub projects.
+\textbf{1. A study of toxic code snippets on GitHub:}~To provide an evidence that toxic code snippets are actually reused in software projects and strengthen the motivation, we performed a large-scale analysis of clones between toxic code snippets on Stack Overflow and xxx,xxx GitHub projects.
 
 \textbf{2. Analysis of tools' parameter settings:}~We mitigated the threats to validity due to parameter settings of the clone detection tools and the clone merging technique by performing a comparison of different tools' parameter settings.
 
@@ -80,34 +82,80 @@ We also tried our best to address all the comments from the reviewers. Each part
 \section{Reviewer 1}
 
 \rcomment{
-Regarding this statement: ``It is probably more important than studying the effects of reusing Stack Overflow code snippets because it gives insights to the root cause of the problem and lays a foundation to an automatic technique to detect and report toxic code snippets on Stack Overflow to developers in the future.''
+Regarding this statement: \textit{``It is probably more important than studying the effects of reusing Stack Overflow code snippets because it gives insights to the root cause of the problem and lays a foundation to an automatic technique to detect and report toxic code snippets on Stack Overflow to developers in the future.''}
 
-While~\cite{An2017} do suggest that copying from Stack Overflow to software projects occurs (and results in license violations), they do not establish that code snippets from Stack Overflow ``go viral'' and end up distributed widely across (open or closed source) software projects. Moreover, while the quote on the first page implies that developers often ``mindlessly'' reuse code snippets from Stack Overflow, to the best of my knowledge, this claim is conventional wisdom but not empirically validated. So, it seems to me that the primary interest in toxic code snippets is that may cause widespread harm, but I am missing the evidence that they do so in practice. Even assuming that code snippets from Stack Overflow are distributed mindlessly and widely, I wonder how many code snippets on Stack Overflow are toxic, the extent to which they are reused without modification (or with only minor adaptation), what kinds of projects they end up in (i.e., a popular project from Microsoft or Apache vs. a hobby project by a single developer vs. a student solution to an assignment), and ultimately, how much damage can we expect them to cause. In the end, I agree that it is better to detect and report toxic code snippets than to not do so, but I am not sure how big of a problem is solved by doing so. As such, I disagree that it is ``probably more important'' to find the toxic code snippets than to understand their effects. Instead, I think that understanding their effects (on software projects rather than on the quality of the Stack Overflow platform) is necessary to appreciate the value in finding them.
+While~\cite{An2017} do suggest that copying from Stack Overflow to software projects occurs (and results in license violations), they do not establish that code snippets from Stack Overflow \textit{``go viral''} and end up distributed widely across (open or closed source) software projects. Moreover, while the quote on the first page implies that developers often \textit{``mindlessly''} reuse code snippets from Stack Overflow, to the best of my knowledge, this claim is conventional wisdom but not empirically validated. So, it seems to me that the primary interest in toxic code snippets is that may cause widespread harm, but I am missing the evidence that they do so in practice. Even assuming that code snippets from Stack Overflow are distributed mindlessly and widely, I wonder how many code snippets on Stack Overflow are toxic, the extent to which they are reused without modification (or with only minor adaptation), what kinds of projects they end up in (i.e., a popular project from Microsoft or Apache vs. a hobby project by a single developer vs. a student solution to an assignment), and ultimately, how much damage can we expect them to cause. In the end, I agree that it is better to detect and report toxic code snippets than to not do so, but I am not sure how big of a problem is solved by doing so. As such, I disagree that it is \textit{``probably more important''} to find the toxic code snippets than to understand their effects. Instead, I think that understanding their effects (on software projects rather than on the quality of the Stack Overflow platform) is necessary to appreciate the value in finding them.
 }
 
-We would like to thank for the comments.~We agree with the concern of real evidence that code snippets on Stack Overflow ...
+We would like to thank the reviewer for the comments.~We agree with the suggestion and we made the following changes to the paper:
 
+\begin{enumerate}
+	\item We understand the concern of finding real evidence to support that code snippets on Stack Overflow do appear in software projects. Hence, we have performed a study of code clone detection between our reported outdated code fragments on Stack Overflow and 131,307 most starred GitHub projects. We found that there are xxx clone instances of xxx outdated Stack Overflow code snippets appearing in xx GitHub projects. Interestingly, we discovered that the buggy version of the \texttt{humanReadableInt()} method from Hadoop appears in two popular Java projects: deeplearning4j (8,830 stars and 4,223 forks) and Apache Hive (1,854 stars and 1,946 forks). Unfortunately, due to the lack of evidence, we could not explain how this method, which is exactly the same as the toxic code snippet we found on Stack Overflow, appear in the two projects. It is possible that the developers retrieved them from Stack Overflow, other websites, or from Hadoop code base directly.  
+	
+	Nevertheless, we decided to report the developers of the two projects regarding the issue. We created a bug report for each project (deeplearning4j \#4694\footnote{deeplearning4j bug report: \url{https://github.com/deeplearning4j/deeplearning4j/issues/4692}} and HIVE-18929\footnote{Apache Hive bug report: \url{ https://issues.apache.org/jira/browse/HIVE-18929}}) and communicated with the developers of the projects by describing the problem of race condition in the outdated version of \texttt{humanReadableInt()} method and proposed a fix by using the newest version of the method in Hadoop. The issue has been fixed in deeplearning4j. The developers of deeplearning4j agreed that the method was problematic and they decided to implement their own fix due to a concern of a potential software licensing conflict caused by copying the fix directly from Hadoop code base. On the other hand, the bug report in Apache Hive is still unfixed.
+	\item With the finding above, we show that the clones of Stack Overflow toxic code fragments do occur in several open source software projects on GitHub. However, we could not establish a strong evidence that the toxic code snippets were originated from Stack Overflow due to lack of supporting information. Hence, we softened our claim by changing the statement ``\textit{It is probably more important than studying the effects of reusing Stack Overflow code snippets because ... developers in the future.}'' to ```\textit{It is \textbf{equally} important to studying the effects of reusing Stack Overflow code snippets because ... developers in the future.}''.
+\end{enumerate}
 
 \rcomment{
-	I think that the survey evidence is compelling. But I am missing the awareness of Stack Overflow questioners or information-seekers to toxic code snippets. I wonder: how skeptical are developers when considering code snippets on Stack Overflow, how often do developers use code snippets directly, and how often do developers use clues such as ``A quick google search returned me this from Appache hadoop project. Copying from there:'' to seek out the latest version of the information provided in the answer. The survey responses described in Section 3.5.3 suggest that there are questioners/information-seekers that are aware of toxic code snippets (as they are reporting them to the answerers), and there is evidence that the Stack Overflow community is aware of the need to retire outdated information and of the many concerns related to software licensing, as these issues are discussed on meta.stackoverflow.com. So, again, I wonder about the impact of toxic code snippets on actual software projects.
+	I think that the survey evidence is compelling. But I am missing the awareness of Stack Overflow questioners or information-seekers to toxic code snippets. I wonder: how skeptical are developers when considering code snippets on Stack Overflow, how often do developers use code snippets directly, and how often do developers use clues such as \textit{``A quick google search returned me this from Appache hadoop project. Copying from there:''} to seek out the latest version of the information provided in the answer. The survey responses described in Section 3.5.3 suggest that there are questioners/information-seekers that are aware of toxic code snippets (as they are reporting them to the answerers), and there is evidence that the Stack Overflow community is aware of the need to retire outdated information and of the many concerns related to software licensing, as these issues are discussed on meta.stackoverflow.com. So, again, I wonder about the impact of toxic code snippets on actual software projects.
 }
 
+We partially address this comment in the previous answer by performing an empirical study of code cloning between Stack Overflow toxic code snippets and GitHub projects. Furthermore, we also improved the paper on the aspect of the awareness of information-seekers to toxic code snippets on Stack Overflow by including the results from another survey of Stack Overflow visitors (i.e.~information seekers). This survey of the Stack Overflow visitors was performed during the same time as the Stack Overflow answerers (25 July 2017 to 25 September 2017). We did not include the results in the previous version of the paper due to a smaller sample size compared to the answerers survey. However, we did find some interesting results and we discussed only the key findings in~Section \ref{#}. We copied the text below.
+
+\textbf{Stack Overflow visitors' survey}
+
+We adopted non-probability convenient sampling to invite participants for this survey. Participation in the survey requires experience of visiting Stack Overflow for solving programming tasks at least once. The participants were invited to take the survey via various channels: social media post (Facebook), Thailand's popular technology news and media community in Thailand called \texttt{blognone.com}, the University of Molise in Italy where the third author works, \texttt{comp.lang.java.programmer} group and the Software Engineering Facebook page. We received answers from 89 participants. Two participants never copy code from Stack Overflow so we analysed the answers of the remaining 87 participants. The key findings are as follows.
+
+Stack Overflow is ranked higher than official documentation, online repositories, and books as the resource to look for programming solutions. Developers rely on Stack Overflow answers because they are easy to search for on the web. Moreover, 64\% of the participants reuse code snippets from Stack Overflow at least once a week. They copy code from Stack Overflow because they can be found easily from search engine, solve similar problems to their problems, provide helpful context, and offer voting and accepted answers.
+The results show that 57 out of 87 Stack Overflow visitors encountered a problem from reusing Stack Overflow code snippets. Ten participants experienced problems for more than 80\% of the copied snippets and sixteen participants faced problems for 40--60\% of the reused code. The problems ranked by frequency include mismatched solutions (40), outdated solutions (39), incorrect solutions (28), and buggy code (1). Fifty-six percent of the participants never report the problems back to Stack Overflow. In addition, 85\% of the participants are not aware of Stack Overflow CC BY-SA 3.0 license and 62\% never give attributions to the Stack Overflow posts they copied the code snippets from. We found that 66\% of the visitors never check for software licensing conflicts between Stack Overflow code snippets and their projects. Interestingly, 9\% of the participants encountered legal issues. Unfortunately, due to the anonymity of the survey, we could not investigate further regarding the legal issues that the participants faced from using Stack Overflow code snippets.
+
 \rcomment{
-	The ``Overall Discussion'' section is not commensurate with the quality and breadth of the empirical study. The proposed preventative measure is actually two measures: a policy change and an IDE plugin. While an IDE plugin would provide early detection (and possible prevention) of license violations, the exact mechanics are not clear based on the description. Further, companies (and perhaps major open source projects?) use auditing platforms/services to detect such violations. Regarding the detective measure, I do not think that the paper establishes that a system to detect outdated code snippets on Stack Overflow is needed (but rather it establishes that outdated code snippets exist on Stack Overflow). Further, not all outdated code snippets are bad. For instance, a code snippet may show a solution using an older version of an API, and that older version may still be used in production. So, the definition of outdated would need to be a bit more nuanced to be used in an automated system for flagging or updating old Stack Overflow posts.
+	The \textbf{Overall Discussion} section is not commensurate with the quality and breadth of the empirical study. The proposed preventative measure is actually two measures: a policy change and an IDE plugin. While an IDE plugin would provide early detection (and possible prevention) of license violations, the exact mechanics are not clear based on the description. Further, companies (and perhaps major open source projects?) use auditing platforms/services to detect such violations. Regarding the detective measure, I do not think that the paper establishes that a system to detect outdated code snippets on Stack Overflow is needed (but rather it establishes that outdated code snippets exist on Stack Overflow). Further, not all outdated code snippets are bad. For instance, a code snippet may show a solution using an older version of an API, and that older version may still be used in production. So, the definition of outdated would need to be a bit more nuanced to be used in an automated system for flagging or updating old Stack Overflow posts.
 }
+
+Thanks for the suggestion.~We rewrote the Overall Discussion section to be more precise and practical as discussed below. 
+
+Using the updated definition of outdated code, we foresee the implementation of the IDE plugin using a combination of scalable code clone detection~\citep{Sajnani2016} or clone search techniques~\citep{Kim2018} and automated software licensing detection~\citep{German2010}.
+In this study, we performed the check using a set of code clone detectors (Simian and SourcererCC) and software licensing detector (Ninka) but we had to operate the tools manually. Using the knowledge obtained from this study, we plan to build an automated and scalable clone search with licensing detection. With the proposed solution, we can use the tool to create a database of code snippets on Stack Overflow and allow the users to search for clones and check their licenses. The clone search tool can offer a service via REST API and integrated into the IDE plugin. Every time a new code fragment is pasted into the IDE, the plugin performs the check by calling the clone search tool service and report the finding to the developers in real time.
+
+In addition, we also performed a small survey of software auditing platforms/services including:~\FIXME{Blackduck OpenHub, foo, and bar} and found that, while they check for code copied from open source projects and analyse their license compatibility, none of them offers the checking for cloned code from Stack Overflow. So, our proposed service will be useful as an add-on check for code copying from Stack Overflow and their license implications.
+
+For the detective measure, while checking if the copied code snippets on Stack Overflow are still up-to-date with the latest version of their originals can possibly be done automatically, it is a challenging task to automate the process of establishing the origin of code clones. As shown in this study, we still relied on manual validation to read the post, understand the context, and use multiple hints with human judgement (comments in the code, natural text in the question and answers, date/time of the posts) to conclude that the code snippets are actually copied from Qualitas to Stack Overflow. Thus, one viable solution for now is encouraging the Stack Overflow developers to always include the origin of the copied code snippet in the post so that this link is always established at the posting time. Even better, Stack Overflow can provide an optional form to fill in when an answerer post an answer if he or she copies code from other software projects. The form should include the origin of the code snippet and its original license.
 
 \rcomment{
 Other Comments
+While ``Toxic Code Snippets'' is a catchy phrase for the title, I think that online code clones are the dominant topic.}
 
-\begin{itemize}
-	\item While ``Toxic Code Snippets'' is a catchy phrase for the title, I think that online code clones are the dominant topic.
-	\item The introduction states that the erroneous code snippet in post 22262310 has been viewed 259 as of the writing of the paper. But I note that while the question was posted on Mar 7, 14 the answer was posted on Mar 11, 14. I also note that the question has a score of -1. So, I wonder (a) whether the view count is for the answer (i.e., the code snippet) or the post (which existed for a few days before the answer appeared), (b) how many people viewed the question before it was answered, and (c) if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question.
-	\item FYI, since this paper was authored, a Stack Overflow user has posted a comment in response to the answer for post 22262310. The comment highlights the missing line and refers to the relevant HADOOP issue report. Interestingly, the gap between the issue report being resolved (Nov 20, 14) and the comment appearing on Stack Overflow (Oct 31, 17) is nearly three years. I wonder how many views occurred during this gap and whether the addition of the comment mitigates the toxicity of the code snippet.
+You are right. We mainly study the online code clones and established their existence. However, we coined the term ``toxic code snippets'' in order to emphasise the possible ramifications from online code cloning. 
+We updated the Introduction to be clearer on this point~\FIXME{to do}.
+%Considering your suggestion and another suggestion by Reviewer 2 that the definition of ``toxic code snippets'' is vague, we also tightened the definition of toxic code snippets to be more precise.
+
+\rcomment{
+	The introduction states that the erroneous code snippet in post 22262310 has been viewed 259 as of the writing of the paper. But I note that while the question was posted on Mar 7, 14 the answer was posted on Mar 11, 14. I also note that the question has a score of -1. So, I wonder (a) whether the view count is for the answer (i.e., the code snippet) or the post (which existed for a few days before the answer appeared), (b) how many people viewed the question before it was answered, and (c) if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question.}
+
+That is a fair point and we would like to analyse the statistics as you suggested. Unfortunately, for our experiment, we extracted only the code snippets from the Stack Overflow dumps but not other information. They are the only available data of the January 2016 snapshot we currently have. We checked and found that the latest available Stack Overflow dump already contains different data than the one we used in our study since it is now more than 2 years newer, and will result in incorrect statistics and inconsistent results. Nevertheless, we have modified the text in the Introduction to include your concern ... \FIXME{do this}.
+
+\rcomment{
+	FYI, since this paper was authored, a Stack Overflow user has posted a comment in response to the answer for post 22262310. The comment highlights the missing line and refers to the relevant HADOOP issue report. Interestingly, the gap between the issue report being resolved (Nov 20, 14) and the comment appearing on Stack Overflow (Oct 31, 17) is nearly three years. I wonder how many views occurred during this gap and whether the addition of the comment mitigates the toxicity of the code snippet.
+}
+
+Thank you for the detailed checking of the Stack Overflow post. Interestingly, this is surprising to us as well. The comment in the post 22262310 by Joseph K on 31 October 2017 that highlights the missing line in HADOOP \texttt{compare} method is actually from a student in our class. His name is Joseph Kalash and he is a master student in Machine Learning MsC program at UCL Computer Science department \footnote{Joseph's CV can be found here: \url{https://jkala.sh/cv}}. We assigned a preprint of this paper to students in the COMPGS11 -- Research Seminar in Software Engineering course and had a discussion about the paper on Thu 2 November 2017. Joseph, who was an active Stack Overflow member, was one of the students in the class and he actively participated in the discussion. It seemed like he had seen the Hadoop's toxic code snippet in the paper and decided to post a comment to warn other users.
+
+Nevertheless, since this is a very interesting suggestion. We also performed an investigation of the 101 answers of our reported outdated code snippets on Stack Overflow on 6 May 2018 to see if there is any comment to mitigate or point out the toxicity of the code snippet. We include the result of this investigation in the RQ regarding outdated code (RQ?). We found that, out of 101 answers containing outdated code snippets, there were 6 answers that had a comment saying the code in the answer is outdated or containing issues (including Joseph's comment). Thus, there is about 6\% of outdated answers that were notified by the Stack Overflow users based on our analysed data. We added this discussion in the RQ\FIXME{?}.
+
+\rcomment{
+\begin{enumerate}
 	\item Table 1 has a median column. Median of what?
 	\item Section 2.1 states that comments were removed before clone detection, but as stated later in the paper, comments can provide clues regarding provenance. Can the manual inspection of comments to find evidence of copying be automated as part of the clone detection process?
 	\item Typo: ``how much the community trust them'' --> ``how much the community trusts them''
-\end{itemize}
+\end{enumerate}
 }
+
+\begin{enumerate}
+	\item For the Stack Overflow data set, the value represents the median size of Stack Overflow code snippets. For the Qualitas data set, the value represents the median of number of lines of code in each project. Since they are confusing as you pointed out, we decided to remove them from the table and only discuss the numbers in the text.
+	\item That is a good idea. We included this discussion in the future work.
+	\item Thanks. This has been fixed.
+\end{enumerate}
 
 \section{Reviewer 2}
 
@@ -115,29 +163,76 @@ Other Comments
 \textbf{The definition of toxic code snippets:} I understand that the authors are trying to put a new spin or name to the phenomena they study, but the definition the authors provide is, in my opinion, not sufficient. For example, their definition is ``toxic code snippets mean code snippets that are harmful for reuse and, \textbf{in several cases}, are caused by online...''. A definition should be clear - saying in several cases - means that in several other cases (1- your several cases) it is not harmful. So, I ask the authors to refine and clarify this definition, because as it stands now, this definition is confusing (at best). Given that your entire paper is about toxic code snippets, you can appreciate why this is important.
 }
 
-We appreciate the comments. 
+We appreciate the comments. We have refined our definition of toxic code snippets in the paper to:
 
+\FIXME{Is this ok?}~``Toxic code snippets mean cloned code snippets that
+are harmful for reuse due to (1) being outdated and containing bugs or (2) violating their original software license. They are two ramifications of code cloning
+including bug propagation~\citep{Bellon2007}
+and software license violations~\citep{An2017}.
+Toxic code snippets can occur in software projects or programming Q\&A websites, such
+as Stack Overflow.
+This study focuses on toxic code snippets that occur on Stack Overflow and how they occur.''
+ 
 \rcomment{
 	\textbf{RQs need to be better linked:} First, I can see a clear motivation for RQs 1-3, however, RQs 4 and 5 seem to be tagged on. I did not see a clear transition of why RQs 4 and 5 would follow RQs 1-3. This can be an easy fix, but it is an important one since it makes your paper seem less cohesive.
+}
 
-	\vspace{1ex}
+Regarding RQ4 (Software licensing violation), it needs to follow RQ 1--2 because the license violation needs evidence of cloning direction. To put it another way, we could tell that the code snippets on Stack Overflow may have incompatible licenses to their originals after we confirmed that (1) the Stack Overflow code snippets were actually clones of Qualitas projects and (2) the direction of cloning was from Qualitas to Stack Overflow, which both are addressed in RQ1 and RQ2.
+Nevertheless, RQ4 does not need to follow RQ3 (Outdated online code clones) because they are independent of each other.
+
+Regarding RQ5 (the Stack Overflow answerer survey), that is a good point. Since RQ5 actually supports the motivation of our experiment by showing that code copying from software projects to Stack Overflow actually occurs and showing that some of the answerers are not aware of outdated code and software license incompatibility. We moved them to RQ1 instead and reorganised the paper to discuss the survey results as a support for our experiment of online code clone detection and toxic code snippet identification. The findings in RQ2--5 will support the survey results by showing that the issues actually occur on Stack Overflow.
+
+\rcomment{
 	\textit{Issues related to RQs}
 	
 	Since we are talking about the RQs, this might be a good chance to discuss some of my other concerns with specific RQs.
 	
-	\begin{itemize}
-		\item RQ3.~I believe that the answer to this question is expected and perhaps the way that the authors answered this question is incorrect. If I use some code from SO that was posted in 2014, then I expect that it is outdated. Also, SO does not allow people to update their posts, so why would I expect the snippets to not be outdated, hence, I feel that your question is incorrect. Another issue that might impact the answer to this RQ is the fact that your Qualitas dataset is older than that of SO, so your setup encourages the finding of outdated snippets. What I think would be a better approach is to look if there are other answers (maybe not the accepted one) that are newer. For me, if I see an old accepted answer or a newer post with an upvoted answer, I will probably go for the newer post. This was never considered by the authors.
-		\item In section 2.4, you consider a change to the code in the Q project to be evidence that the snippet is outdated. How do you control for changes that are simply due to evolution? For example, what if I refactor the code and change the variable names of the snippet.
-	\end{itemize}
+	RQ3.~I believe that the answer to this question is expected and perhaps the way that the authors answered this question is incorrect. If I use some code from SO that was posted in 2014, then I expect that it is outdated. Also, SO does not allow people to update their posts, so why would I expect the snippets to not be outdated, hence, I feel that your question is incorrect. Another issue that might impact the answer to this RQ is the fact that your Qualitas dataset is older than that of SO, so your setup encourages the finding of outdated snippets. What I think would be a better approach is to look if there are other answers (maybe not the accepted one) that are newer. For me, if I see an old accepted answer or a newer post with an upvoted answer, I will probably go for the newer post. This was never considered by the authors.
 }
+
+Stack Overflow allows its users to edit their own posts, i.e.~questions/answers~\footnote{https://meta.stackoverflow.com/questions/315915/i-am-not-allowed-to-edit-my-own-question}, or other user's posts~\footnote{https://stackoverflow.com/help/privileges/edit}. Thus, if the code snippet in an answer is outdated and has an issue, the answerer or other high-reputation users can update the answer to be up-to-date or to warn other users that the code is already outdated and may contain problems. We found some discussions regarding this concern on Metaexchange as well so the Stack Overflow community is also considering this option~\footnote{Discussion about outdated answer: https://meta.stackexchange.com/questions/131495/how-to-handle-outdated-answers and https://meta.stackexchange.com/questions/180864/editing-outdated-source-code-in-an-answer}. We included this discussion in the paper.
+
+Based on your suggestion of looking at other newer or higher-voted answers, we performed an investigation of all the answers in 101 posts containing outdated code snippets as accepted answers. We discussed the findings in the relevant RQ. \FIXME{Add the findings.}
+		
+		
+\rcomment{
+	In section 2.4, you consider a change to the code in the Q project to be evidence that the snippet is outdated. How do you control for changes that are simply due to evolution? For example, what if I refactor the code and change the variable names of the snippet.
+}
+
+Good point. Although we grouped the code modifications that make Stack Overflow snippets outdated into 6 categories as shown in Table 9, we did not investigate the motivation of the changes such as code refactoring or variable renaming. We have performed the check as you suggested by checking the commit message of each change that make the code outdated and included the findings in RQ?. \FIXME{Add the findings.}
 
 \rcomment{
 	\textbf{Data used:} why is the SO data from Jan. 2016? This dump is now 2 years old! I can see why you used an older version of the Qualitas dataset, but I cannot understand why you would want to use an old version of the SO data. Please explain. 
 }
 
+We used the Stack Overflow data dump of January 2016 since it was the latest dump when we started our experiment. Nonetheless, we finally completed the whole experiment, the result analysis, and the survey two years later. That is why the dump is 2 years old.
+
+Fortunately, we could use this opportunity to study the evolution of the toxic code snippets on Stack Overflow. We manually investigated the outdated and license incompatible code snippets that we discovered to see if they are still the same or not. The check was performed on 6 May 2018, approximately 2 years after the snapshot was created. Moreover, we also checked if there is any comment regarding the outdated code or the license of the snippets from other Stack Overflow users. For the 101 outdated answers, we found that one answer was deleted and six answers contained a comment mentioning either the code is intended for a specific version of the software/API or complaining that the code is not working or having an issue. 
+For the xxx license-incompatible answers, \FIXME{add the results}.
+We included this discussion in RQ\FIXME{?} and RQ\FIXME{?}.
+
 \rcomment{
-	\textbf{Arbitrary use of parameter:} On page 4, you use snippets of at least 10 lines. Why 10, why not 15? Given that this is a journal paper, you have the space to examine the impact of your parameters (at least in brief) on your results. What I would like the authors to do is to actually examine the impact of such parameters on your work in a discussion section. A similar concern exists on page 5, where t=0.7 is chosen. Sure, it worked in another context, but did they show that a 0.7 threshold is OK to use for SO snippets? I think you can also vary this t value and examine its impact.
+	\textbf{Arbitrary use of parameter:} On page 4, you use snippets of at least 10 lines. Why 10, why not 15? Given that this is a journal paper, you have the space to examine the impact of your parameters (at least in brief) on your results. What I would like the authors to do is to actually examine the impact of such parameters on your work in a discussion section.}
+
+That is a fair point. The reason we chose the clone size of at least 10 lines is as follows. The minimum clone size of 10 lines is considered a standard setting for clone detection in large-scale data sets to avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and setter methods) in the analysis or the manual investigation phase~\citep{Sajnani2016}. 
+Choosing this size threshold larger than 10 could possibly remove some non-trivial clones from the analysis, i.e.~create more false negatives.
+On the other hand, decreasing the threshold to be lower than 10 lines will result in a larger number of clone candidate pairs to look at and a higher chance of getting false positives. Moreover, the large number of clone pairs will hinders the full manual validation of the clones and force us to rely on sampling of clone pairs. We performed a small analysis to confirm this.
+
+Regarding increasing the minimum clone size to more than 10 lines (e.g. 15 lines), we added an analysis of the clone size as shown in Figure 6. We found that the distribution of true clones; QS, SQ, UD, EX, BP, IN; mainly cover the size from about 10 to 20 lines. Increasing the threshold to be higher than 10 would remove some of the trivial BP and IN clone pairs which are not interesting for this study. However, it will also remove some of the true non-trivial clone pairs in QS, SQ, UD, and EX.
+
+Regarding decreasing the minimum clone size to be less than 10 lines, we reran the two clone detection tools (Simian and SourcererCC) again using a minimum clone size of 6 lines, another well-accepted minimum clone size in clone benchmark~\citep{Bellon2007}. Simian reported 67,172 clone candidate pairs and SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs using Bellon's ok-match threshold $t=0.5$. With this large amount of clone candidate pairs, it is not feasible to manually confirm all of the clones and we must rely on sampling. This will result in weaker findings and weaker conclusion. Thus, we decide to retain the minimum clone size of 10 lines to keep the balance between the number of non-trivial clone pairs and the feasibility of manual clone investigation.
+
+We have modified the paper to include this discussion.
+
+\rcomment{
+ A similar concern exists on page 5, where t=0.7 is chosen. Sure, it worked in another context, but did they show that a 0.7 threshold is OK to use for SO snippets? I think you can also vary this t value and examine its impact.
 }
+
+We selected the Bellon's ok-match threshold of 0.7 because it is a standard value in clone benchmarking \citep{Bellon2007} and also used in other study of clones, e.g.~\cite{Sajnani2016}. Nevertheless, we agree that varying the threshold ($t$) value is beneficial to the validity of the findings so we did an analysis by choosing five $t$ values of 0.1, 0.3, 0.5, 0.7, and 0.9 and studied the clone candidates. As shown in the our paper, by setting $t=0.7$ according to Bellon's study, we found 97 ok-match pairs reported. On the other hand, setting $t$ to 0.1, 0.3, 0.5, and 0.9 resulted in 111, 110, 110, and 94 ok-matched pairs respectively.
+Since the clone pairs of $t=0.1$ was the superset of other sets,  we manually checked all the 111 reported pairs.
+We found one false positive pair and 110 true positive pairs. By raising the $t$ to 0.3 and 0.5, we got rid of the false positive pair and still retained all the 110 true positive pairs. All the clone pairs of $t=0.7$ (97) and $t=0.9$ (94) were also true positives due to being a subset of $t=0.5$. However, since there is a fewer true positive pairs reported (i.e.~generating false negatives), we ended up leaving some duplicates in the final merged clone set.
+
+With this analysis, we can see that setting the threshold $t$ to 0.1 is too relaxed and results in having false positive ok-match pairs, while setting the $t$ to 0.7 or 0.9 is too strict and generates some false negative pairs. Thus, we decided to select the $t$ value at 0.5. This reduces the number of merged clone pairs to 2,290 pairs. All other numbers which derive from this merged clone pairs have been updated accordingly.
 
 \rcomment{
 	\textbf{Question about clone patterns:} Table 4 lists all the clone patterns you considered. First, I have a major concern about the two most interesting patterns Q->S and S->Q. Especially in the case of S->Q, how can you be sure that this code actually came from SO? It could have come from any other project or from SO or another forum. Also, for Q->S, how can you be sure these snippets came from the Q projects? This is somewhat of a major concern since the rest of your paper is built on this. I would like to see a clear explanation of how we can be sure about this.
@@ -147,20 +242,45 @@ We appreciate the comments.
 	
 	\vspace{1ex}
 	In fact, in the answer of RQ1, you explicitly say ``...share similar code with SO ...'', but throughout the paper, you present the work as if the code came from SO -> Q or vice versa.
-	
-	\vspace{1ex}
+}
+
+For the QS clone pairs, we \textbf{manually confirmed with evidence} that the Stack Overflow code snippets were actually copied from Qualitas projects. This was done by the two authors reading the Stack Overflow answers containing the QS code snippets and looked for evidence such as explanation in the text or the code comments and made their decision. The two authors also compared their results and discussed until a consensus was made. Similarly, the same process was applied for the SQ clone pair. 
+%For the SQ pair we discovered, we found
+%evidence of cloning from Stack Overflow post ID 698283 to
+%{\small\texttt{POIUtils.java}} in \textsf{jstock} project. The user
+%who asked the question on Stack Overflow is an author of
+%\textsf{jstock}. The question is about determining the right method to call
+%among 7 overloading methods of {\small\texttt{setCellValue}} during runtime. We
+%could not find evidence of copying or attribution to Stack Overflow in
+%\textsf{jstock}. However, considering that the 25 lines of code of
+%{\small\texttt{findMethodToInvoke}} method depicted in Figure 7 in Stack
+%Overflow is very similar to the code in \textsf{jstock} including comments, it is almost certain that
+%the two code snippets form a clone pair. In addition, the Stack Overflow answer was
+%posted on March 30, 2009, while the code in {\small\texttt{POIUtils}} class in
+%\textsf{jstock} was committed to GitHub on the next day of March 31, 2009.
+In case of a doubt or not enough evidence, we always categorised the clone pairs into UD (unknown direction) instead. 
+
+To emphasise this point, we also modified the answer of the RQ to be clearer. It now says ``\FIXME{...}''.
+
+\rcomment{
 	And given the types of clones you find (e.g., BP code), this can really come from anywhere (and more likely to come from things like tutorials or IDEs). Then, you report that 65\% of the closes are BP. AC is also not a clone really since even in your Table 4 you said AC is false clones - how can an Accidental *clone* be a false clone? If something is false, then it is not a clone.
 }
+
+You are correct regarding the BP clone pairs. They can really come from anywhere (we did find that some of the BP clone pairs were auto-generated code by NetBeans) and that is why we did not draw any conclusion about them. 
+Moreover, thank you for pointing out the inappropriate naming for AC. We now renamed them from AC to NC (i.e.~Not Clones).
 
 \rcomment{
 I feel that the strongest part of the paper is the survey section. I really enjoyed the findings and think that the community can learn something from the outcomes of the survey (especially section 3.5.5). However, I did find the question in section 3.5.3 to be unfair somehow since there is really no mechanism in SO to notify anyone who used a code snippet. In fact, no one even knows who used a code snippet from SO.
 }
 
+%Our apologies if the writing in section 3.5.3 confuses you. 
+The research question (section 3.5.3) is actually about notifying the answerers that their answers are already outdated, not notifying the users of the outdated code snippets. This notification to the answerer can be done by posting comments for that answer on Stack Overflow. For example, the answerer of the Stack Overflow question no.~10924648 posted a comment on his own answer saying that the answer is specifically for Spring 3.1. Moroever, another user posted a comment on the answer of the post no.~801935 that the code snippet is not of high quality and suggested an alternative in another post.
+
 \rcomment{
 Perhaps minor, but this issue really did not sit well with me, in the introduction, you say in RQ5 that you survey 607 participants, but later it turns out that only 201 responded. To me, this is somewhat misleading and does not sit well. I strongly encourage the authors to refactor such `marketing' statements.
 }
 
-\clearpage
+You are right. We fixed the text in the RQ to say that we surveyed 201 participants.
 
 \section{Reviewer 3}
 
@@ -169,25 +289,33 @@ There is also no discussion if partial updates to the outdate code clones where 
 Average and mean time/date of the clone postings on stackoverflow would be interesting to see the distribution of the clone age (simple boxplot would do).
 }
 
-We are grateful for the insightful comment.
+We are grateful for the insightful comment. We performed another manual check of the outdated clones as you suggested and the findings are discussed in Section X. We selected the 2013 snapshot of Qualitas data since it is the latest and the most complete snapshot (i.e.~having the highest number of Java projects) provided by the data set author. 
+
+Regarding the age of cloned code on Stack Overflow, we did the analysis and added a boxplot as you suggested in RQ X. We found that ... \FIXME{add the discussion}.
 
 \rcomment{
 I do believe the survey results from the StackOverflow contributors actually provides more meaningful insights then then the clone detection itself, since the responses by the contributors actually help explaining some of the results. The authors should provide further analysis and interpretation of the survey results.
 }
 
+We expanded the analysis of the survey results \FIXME{Where? and How?} and now moved them to RQ1 to better link with the motivation. We also added results of another survey, the Stack Overflow visitor survey, to understand the awareness of the developers who copied code snippets from Stack Overflow regarding outdated and license-incompatible code.
+
 \rcomment{
 Overall discussion is very weak. While the authors went through a lengthy and detailed study of code clones published on StackOverflow and the survey of StackOverflow contributors, the paper lacks really a take home message. At the end there is no real evidence that either code clones are really toxic or bad (are they actually causing problems ? due to the use of clones. Just because a code fragment is outdated does not mean it is necessarily bad or causes any problems. What is the actual take home message from your study? Should we stop reusing code from StackOverflow? I do believe there is a need to dig deeper in the observed data and draw some real conclusions on how the observed results can benefit both the StackOverflow community and the source code community.
 }
 
+We have performed an additional experiment to search for occurrences of outdated code snippets in open source GitHub projects. The findings show \FIXME{...}
+
 \vspace{1cm}
 
+\section{Conclusion}
 Finally, we would like to thank the reviewers again for the comments.
-We believe this new submission has been considerably improved from the previous version due to the insightful reviews and discussions.
+We have addressed every concern that has been pointed out by the reviewers which result in inclusion of a Stack Overflow visitors' survey, an analysis of toxic code snippets in GitHub projects, analysis of different tools' and technique's parameters, the definition of toxic code snippets, and the improvements in writing.
+We believe this new submission has been considerably improved from the previous version due to the insightful reviews and discussions and we are looking forward to the new reviews.
 
 % Uncomment in case references are needed
 %\bibliographystyle{plain}
 \bibliographystyle{spbasic}
-\bibliography{bib}
+\bibliography{references}
 
 
 \end{document}
