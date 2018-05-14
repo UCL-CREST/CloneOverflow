@@ -19,6 +19,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{natbib}
+\usepackage{float}
 \usepackage{booktabs} % For formal tables
 
 % 2. Complete the paper data
@@ -91,49 +92,164 @@ While~\cite{An2017} do suggest that copying from Stack Overflow to software proj
 We would like to thank the reviewer for the comments.~We agree with the suggestion and we made the following changes to the paper:
 
 \begin{enumerate}
-	\item We understand the concern of finding real evidence to support that code snippets on Stack Overflow do appear in software projects. Hence, we have performed a study of code clone detection between our reported outdated code snippets on Stack Overflow and 131,703 GitHub projects ranging from 29,465 stars to 1 star. We selected SourcererCC with 80\% similarity for this experiment because it could scale to a large-scale data set, while Simian could not. We found 102 cloned candidates appearing in 68 GitHub projects and manually investigated all of them. Out of the 102 cloned snippets, there were 47 cloned snippets that were exactly the same as the outdated code snippets and 42 cloned snippets that were not exactly the same (e.g.~they contained additional code modifications made by the projects' developers or they were copied from another source with a slightly different code). Lastly, there were 13 cloned snippets that matched with themselves because some of the Qualitas projects also appear on GitHub. 
+	\item We understand the concern of finding real evidence to support that code snippets on Stack Overflow do appear in software projects. Hence, we have performed a study of code clone detection between our 100 reported outdated code snippets on Stack Overflow and 131,703 GitHub projects ranging from 29,465 stars to 1 star. We selected SourcererCC with 80\% similarity for this experiment because it could scale to a large-scale data set, while Simian could not. We found 102 cloned candidates appearing in 68 GitHub projects and manually investigated all of them. As shown in Table~\ref{tab:outdated_github}, out of the 102 cloned snippets, there were 13 cloned snippets that matched with themselves because some of the Qualitas projects also appear on GitHub. For other projects besides the Qualitas projects, there were 47 cloned snippets that were exactly the same as the outdated code snippets and 42 cloned snippets that were not exactly the same (e.g.~they contained additional code modifications made by the projects' developers or they were copied from another source with a slightly different code). 
+	
+	\begin{table}[H]
+		\centering
+		\caption{Clones of the 100 Stack Overflow outdated code snippets in 131,703 GitHub projects}
+		\label{tab:outdated_github}
+		\begin{tabular}{lr}
+			\toprule
+			Clones & Amount \\
+			\midrule
+			\textit{Found in Qualitas GitHub repos} & 13 \\
+			\midrule
+			\textit{Found in other project repos} & \\
+			Exact copy & 47 \\
+			Non-exact copy & 32 \\
+			\midrule
+			Total & 102 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
 
 	Among the exact-copy of 47 outdated cloned snippets, there were only two cloned snippets that gave attributions to Stack Overflow. However, the attributions pointed to different posts than the ones we found, but containing the same code in the answers. The other 32 cloned snippets were very likely to be a file-level clone from its respective original project (e.g. JFreeChart, JUnit, Log4J, Hadoop) based on their license header and the Javadoc comments. Lastly, the remaining 13 cloned snippets did not have any hints or evidence of copying.
+	
 	Interestingly, we discovered that the buggy version of the \texttt{humanReadableInt()} method from Hadoop appears in two popular Java projects: deeplearning4j (8,830 stars and 4,223 forks) and Apache Hive (1,854 stars and 1,946 forks). Due to the lack of evidence, we could not conclude how this method, which is exactly the same as the toxic code snippet we found on Stack Overflow, appear in the two projects. It is possible that the developers retrieved them from Stack Overflow, other websites, or from Hadoop code base directly.  
 	Nevertheless, we decided to report the developers of the two projects regarding the issue. We created a bug report for each project (deeplearning4j \#4694\footnote{deeplearning4j bug report: \url{https://github.com/deeplearning4j/deeplearning4j/issues/4692}} and HIVE-18929\footnote{Apache Hive bug report: \url{ https://issues.apache.org/jira/browse/HIVE-18929}}) and communicated with the developers of the projects by describing the problem of race condition in the outdated version of \texttt{humanReadableInt()} method and proposed a fix by using the newest version of the method in Hadoop. The issue has been fixed in deeplearning4j. The developers of deeplearning4j agreed that the method was problematic and they decided to implement their own fix due to a concern of a potential software licensing conflict caused by copying the fix directly from Hadoop code base. On the other hand, the bug report in Apache Hive is still unfixed.
 	\item With the finding above, we show that the clones of Stack Overflow toxic code fragments do occur in several open source software projects on GitHub. However, we could not establish a strong evidence that the toxic code snippets were originated from Stack Overflow due to lack of supporting information. Hence, we softened our claim by changing the statement ``\textit{It is probably more important than studying the effects of reusing Stack Overflow code snippets ...}'' to ```\textit{It is \textbf{equally} important to studying the effects of reusing Stack Overflow code snippets ...}''.
+	We also updated the Overall Discussion section to reflect the findings that there is only a few toxic outdated code that are found in open source projects on GitHub. Moreover, the direction of copying is also unclear. The clones could come from Stack Overflow, the original project repositories, or other places. 
 \end{enumerate}
 
 \rcomment{
 	I think that the survey evidence is compelling. But I am missing the awareness of Stack Overflow questioners or information-seekers to toxic code snippets. I wonder: how skeptical are developers when considering code snippets on Stack Overflow, how often do developers use code snippets directly, and how often do developers use clues such as \textit{``A quick google search returned me this from Appache hadoop project. Copying from there:''} to seek out the latest version of the information provided in the answer. The survey responses described in Section 3.5.3 suggest that there are questioners/information-seekers that are aware of toxic code snippets (as they are reporting them to the answerers), and there is evidence that the Stack Overflow community is aware of the need to retire outdated information and of the many concerns related to software licensing, as these issues are discussed on meta.stackoverflow.com. So, again, I wonder about the impact of toxic code snippets on actual software projects.
 }
 
-We partially address this comment in the previous answer by performing an empirical study of code cloning between Stack Overflow toxic code snippets and GitHub projects. Furthermore, we also improved the paper on the aspect of the awareness of information-seekers to toxic code snippets on Stack Overflow by including the results from another survey of Stack Overflow visitors (i.e.~information seekers). This survey of the Stack Overflow visitors was performed during the same time as the Stack Overflow answerers (25 July 2017 to 25 September 2017) and the full results are reported in our technical report~\citep{Ragkhitwetsagul_RN2017}. We did not include the results in the previous version of the paper due to a smaller sample size compared to the answerers survey. However, we did find some interesting results so we have included them into this version and discussed the key findings in~RQ1 \ref{#}. We copied the text below.
+We partially address this comment in the previous answer by performing an empirical study of code cloning between Stack Overflow toxic code snippets and GitHub projects. Furthermore, we also improved the paper on the aspect of the awareness of information-seekers to toxic code snippets on Stack Overflow by including the results from another survey of Stack Overflow visitors (i.e.~information seekers). This survey of the Stack Overflow visitors was performed during the same time as the Stack Overflow answerers (25 July 2017 to 25 September 2017) and the full results are reported in our technical report~\citep{Ragkhitwetsagul_RN2017}. We did not include the results in the previous version of the paper due to a smaller sample size compared to the answerers survey. However, we did find some interesting results so we have included them into this version and discussed the key findings in~RQ1. The summary of the visitor survey is as follows.
 
 \textbf{Stack Overflow visitors' survey}
 
+The survey consists of 16 questions: 9 Likert's
+scale questions, 3 yes/no questions, 2 multiple-choice questions, and 2
+open-ended questions. 
+The full survey can be found in our research note~\citep{Ragkhitwetsagul_RN2017}.
+The first four questions are mandatory while the other 12
+questions will be shown to the participants based on their previous answers. 
+The survey collects information about the participant's software development
+experience, the importance of Stack Overflow, reasons for reusing Stack Overflow
+snippets, problems from Stack Overflow snippets, licensing of code on Stack
+Overflow, and additional feedback. 
 We adopted non-probability convenient sampling to invite participants for this
 survey. Participation in the survey requires experience of visiting Stack
 Overflow for solving programming tasks at least once. The participants were
-invited to take the survey via various channels: social media post (Facebook),
-Thailand's popular technology news and media community in Thailand called
-\texttt{blognone.com}, the University of Molise in Italy where the third author
+invited to take the survey via five channels: social media post (Facebook),
+\textsf{blognone.com}, a popular technology news and media community in Thailand, the University of Molise in Italy where the third author
 works, \texttt{comp.lang.java.programmer} group and the Software Engineering
-Facebook page. We received answers from 89 participants. Two participants never
-copy code from Stack Overflow so we analysed the answers of the remaining 87
-participants. The key findings are as follows.
+Facebook page. 
+The survey was open for participation for 2 months, 
+from 25 July 2017 to 25 September 2017, before we collected and analysed
+the responses.
 
+We received answers from 89 participants. 
+Two participants never
+copy code from Stack Overflow so we analysed the answers of the remaining 87
+participants.
+
+\textbf{General Information: }
+Twenty four (27\%) and twenty one (24\%) participants have over 10 years and 5--10
+years of experience respectively. There are 19 participants (21\%) who have 3--5
+years, 18 (20\%) who have 1-2 years, and 7 (8\%) participants who have less than a
+year of programming experience.
+
+\textbf{Choice for programming solutions: }
 Stack Overflow is ranked higher than official documentation, online
 repositories, and books as the resource to look for programming solutions.
 Developers rely on Stack Overflow answers because they are easy to search for on
 the web. Moreover, 64\% of the participants reuse code snippets from Stack
 Overflow at least once a week. They copy code from Stack Overflow because they
 can be found easily from search engine, solve similar problems to their
-problems, provide helpful context, and offer voting and accepted answers. The
-results show that 57 out of 87 Stack Overflow visitors encountered a problem
-from reusing Stack Overflow code snippets. Ten participants experienced problems
-for more than 80\% of the copied snippets and sixteen participants faced
-problems for 40--60\% of the reused code. The problems ranked by frequency
+problems, provide helpful context, and offer voting and accepted answers. 
+
+\vspace{0.25cm}
+\textit{Do Stack Overflow
+	visitors experience outdated code and check for licensing conflicts when
+	they copy and reuse answer from Stack Overflow?}
+\vspace{0.25cm}
+
+\begin{table}
+	\centering
+	\caption{Problems from Stack Overflow code snippets}
+	\label{tab:visitor_survey_code_problems}
+	\begin{tabular}{lr}
+		\toprule
+		Problem & Amount \\
+		\midrule
+		Mismatched solutions & 40 \\
+		Outdated solutions & 39 \\
+		Incorrect solutions	& 28 \\
+		Buggy code & 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Frequency of reporting the problems to Stack Overflow posts}
+	\label{tab:visitor_survey_report_problem}
+	\begin{tabular}{lrr}
+		\toprule
+		Report? & Amount & Percent \\
+		\midrule
+		Very Frequently (81--100\% of the time)	& 1 & 1.8\% \\
+		Frequently (61--80\% of the time) & 1 & 1.8\% \\
+		Occasionally (41--60\% of problematic snippets) & 3 & 5.3\% \\
+		Rarely (21--40\% of problematic snippets) & 8 & 14.0\% \\
+		Very rarely (1--20\% of problematic snippets) & 8 & 14.0\% \\
+		Never (0\% of problematic snippets) & 36 & 63.2\% \\
+		\midrule
+		Total & 57 & 100\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The survey results show that 57 out of 87 Stack Overflow visitors encountered a
+problem from reusing Stack Overflow code snippets. Ten participants experienced
+problems for more than 80\% of the copied snippets and sixteen participants
+faced problems for 40--60\% of the reused code. As shown in Table~\ref{tab:visitor_survey_code_problems}, 
+the problems ranked by frequency
 include mismatched solutions (40), outdated solutions (39), incorrect solutions
-(28), and buggy code (1). Fifty-six percent of the participants never report the
-problems back to Stack Overflow. In addition, 85\% of the participants are not
+(28), and buggy code (1). Sixty-three percent of the participants never report
+the problems back to Stack Overflow (Table~\ref{tab:visitor_survey_report_problem}). 
+The ways of reporting the problems
+(22 answers) included down-voting the answer containing the problematic code
+snippet (8), writing a comment saying that the code has problems (10),
+contacting the answerers regarding the problems directly (2), and posting a
+better snippet as new answer on same topic (2).
+
+\begin{table}
+	\centering
+	\caption{Check for licensing conflicts before using Stack Overflow snippets}
+	\label{tab:visitor_survey_license_check}
+	\begin{tabular}{lrr}
+		\toprule
+		License check? & Amount & Percent \\
+		\midrule
+		Very frequently (81--100\% of the time) & 0 & 0.0\% \\
+		Frequently (61--80\% of the time) & 7 & 8.1\%\\
+		Occasionally (41--60\% of the time) & 6 & 6.9\%\\
+		Rarely (21--40\% of the time) & 6 & 6.9\% \\
+		Very rarely (1--20\% of the time) & 11 & 12.6\% \\
+		Never (0\% of the time)	& 57 & 65.5\% \\
+		\midrule
+		Total & 87 & 100\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+In addition, 74 out of the 87 (85\%) participants are not
 aware of Stack Overflow CC BY-SA 3.0 license and 62\% never give attributions to
-the Stack Overflow posts they copied the code snippets from. We found that 66\%
+the Stack Overflow posts they copied the code snippets from. 
+As shown in Table~\ref{tab:visitor_survey_license_check}, we found that 66\%
 of the visitors never check for software licensing conflicts between Stack
 Overflow code snippets and their projects. Interestingly, 9\% of the
 participants encountered legal issues. Unfortunately, due to the anonymity of
@@ -150,18 +266,36 @@ the visitors rarely give attributions to Stack Overflow when they reuse code
 snippets from the website, similar to the findings reported
 by~\cite{Baltes2017}. The visitors are generally not aware of the CC BY-SA 3.0
 license, and more than half of them never check for license compatibility when
-reusing Stack Overflow code snippets. We also found that 9\% of the participants
+reusing Stack Overflow code snippets. 
+Sixty-nine Stack Overflow visitors (79\%) who adopted code from Stack Overflow never 
+check if the code snippet originated from a different source (e.g. an open source project) 
+with an incompatible license to their projects.
+Moreover, we also found that 9\% of the participants
 encountered legal issues by copying code from Stack Overflow. To the best of our
 knowledge, a study of legal problems from reusing Stack Overflow code snippets
 has never been done before and will be our future work.
+
+\textit{To answer RQ 1.2, Stack Overflow visitors experienced several issues from Stack
+Overflow answers including outdated code. The majority of them are not aware of
+CC BY-SA 3.0 license enforced by Stack Overflow and never check for license
+conflicts when reusing code snippets.}
 
 \rcomment{
 	The \textbf{Overall Discussion} section is not commensurate with the quality and breadth of the empirical study. The proposed preventative measure is actually two measures: a policy change and an IDE plugin. While an IDE plugin would provide early detection (and possible prevention) of license violations, the exact mechanics are not clear based on the description. Further, companies (and perhaps major open source projects?) use auditing platforms/services to detect such violations. Regarding the detective measure, I do not think that the paper establishes that a system to detect outdated code snippets on Stack Overflow is needed (but rather it establishes that outdated code snippets exist on Stack Overflow). Further, not all outdated code snippets are bad. For instance, a code snippet may show a solution using an older version of an API, and that older version may still be used in production. So, the definition of outdated would need to be a bit more nuanced to be used in an automated system for flagging or updating old Stack Overflow posts.
 }
 
-Thanks for the suggestion.~We rewrote the Overall Discussion section to be more precise and practical as discussed below. 
+Thanks for the suggestion.~We rewrote the Overall Discussion section to reflect yours and Reviewer 3's comments. The changes include:
 
-Using the updated definition of outdated code, we foresee the implementation of the IDE plugin using a combination of scalable code clone detection~\citep{Sajnani2016} or clone search techniques~\citep{Kim2018} and automated software licensing detection~\citep{German2010}.
+\begin{enumerate}
+	\item We added a discussion of toxicity of outdated and license-incompatible clones on Stack Overflow. Although we found some harmful outdated clones, we could not find evidence that they are widely reused in open source projects on GitHub.
+\end{enumerate} 
+
+We empirically show from the surveys and the clone detection experiment that online code clones occur on Stack Overflow and the clones may become toxic due to outdated code and software license incompatibility. 
+Nevertheless, we found only a small amount of toxic outdated code snippets in open source projects on GitHub. Besides 12 buggy and outdated code snippets found in 12 projects, the rest were non-harmful clones of the outdated code. Although other studies show that Stack Overflow code snippets may contain security vulnerabilities~\citep{Acar2016,Fischer2017} or API misuse~\citep{Zhang2018}, we found in this study that the damage caused by reusing outdated code on Stack Overflow is not high. 
+
+On the other hand, the missing of licensing statement of online code clones on Stack Overflow can be more harmful than outdated code. As shown in our study and also in the study by \cite{An2017}, some online clones on Stack Overflow are originally licensed under more restrictive license than Stack Overflow's CC BY-SA 3.0. If these missing-license online clones are reused in a software with incompatible license, the software owner may face legal issues. The software auditing service such as Black Duck Software or nexB, which can effectively check for license compliance of code copied from open source projects, cannot check for the original license of the code snippets on Stack Overflow. Although Stack Overflow answerers participated in our survey believe that most of the code snippets on Stack Overflow are too small to claim for copyright and they fall under fair-use, there is still a risk due to different legal system in each country. For example, Germany legal system does not have a concept of fair use or the number of minimum lines of code to be consider trivial, i.e.~de minimis, is also different from case to case or from country to country. 
+
+We foresee the implementation of the IDE plugin using a combination of scalable code clone detection~\citep{Sajnani2016} or clone search techniques~\citep{Kim2018} and automated software licensing detection~\citep{German2010}.
 In this study, we performed the check using a set of code clone detectors (Simian and SourcererCC) and software licensing detector (Ninka) but we had to operate the tools manually. Using the knowledge obtained from this study, we plan to build an automated and scalable clone search with licensing detection. With the proposed solution, we can use the tool to create a database of code snippets on Stack Overflow and allow the users to search for clones and check their licenses. The clone search tool can offer a service via REST API and integrated into the IDE plugin. Every time a new code fragment is pasted into the IDE, the plugin performs the check by calling the clone search tool service and report the finding to the developers in real time.
 
 In addition, we also performed a study of two open source software auditing platforms/services:~BlackDuck Software\footnote{https://www.blackducksoftware.com} and nexB\footnote{https://www.nexb.com}. For BlackDuck Software, we found from their report~\citep{CORSI2017} that while they check for code copied from open source projects including GitHub and Stack Overflow and analyse their license compatibility with their customer software, the BlackDuck auditing system will treat the code snippets on Stack Overflow as having ``unknown'' license because it does not know the original license of Stack Overflow code snippets. For nexB, their product does not mention checking of reused source code from Stack Overflow. So, our proposed service, which can offer more precise licensing information of Stack Overflow code snippets, will be useful as an add-on license check for code copying from Stack Overflow.
@@ -189,7 +323,7 @@ That is a fair point and we would like to analyse the statistics as you suggeste
 
 Thank you for the detailed checking of the Stack Overflow post. Interestingly, this is surprising to us as well. The comment in the post 22262310 by Joseph K on 31 October 2017 that highlights the missing line in HADOOP \texttt{compare} method is actually from a student in our class. His name is Joseph Kalash and he is a master student in Machine Learning MsC program at UCL Computer Science department \footnote{Joseph's CV can be found here: \url{https://jkala.sh/cv}}. We assigned a preprint of this paper to students in the COMPGS11 -- Research Seminar in Software Engineering course and had a discussion about the paper on Thu 2 November 2017. Joseph, who was an active Stack Overflow member, was one of the students in the class and he actively participated in the discussion. It seemed like he had seen the Hadoop's toxic code snippet in the paper and decided to post a comment to warn other users.
 
-Nevertheless, since this is a very interesting suggestion. We also performed an investigation of the 101 answers of our reported outdated code snippets on Stack Overflow on 6 May 2018 to see if there is any comment to mitigate or point out the toxicity of the code snippet. We include the result of this investigation in the RQ regarding outdated code (RQ?). We found that, out of 100 answers containing outdated code snippets, there were 6 answers that had a comment saying the code in the answer is outdated or containing issues (including Joseph's comment). Thus, there is about 6\% of outdated answers that were notified by the Stack Overflow users based on our analysed data. None of the 6 answers change their outdated code, but the comments themselves may help to warn other Stack Overflow users. We added this discussion in the RQ\FIXME{?}.
+Nevertheless, since this is a very interesting suggestion. We also performed an investigation of the 100 answers of our reported outdated code snippets on Stack Overflow on 6 May 2018 to see if there is any comment to mitigate or point out the toxicity of the code snippet. We include the result of this investigation in the RQ regarding outdated code (RQ?). We found that, out of 100 answers containing outdated code snippets, there were 6 answers that had a comment saying the code in the answer is outdated or containing issues (including Joseph's comment). Thus, there is about 6\% of outdated answers that were notified by the Stack Overflow users based on our analysed data. None of the 6 answers change their outdated code, but the comments themselves may help to warn other Stack Overflow users. We added this discussion in the RQ\FIXME{?}.
 
 \rcomment{
 \begin{enumerate}
@@ -364,7 +498,22 @@ Average and mean time/date of the clone postings on stackoverflow would be inter
 
 We are grateful for the insightful comment. We performed another manual check of the outdated clones as you suggested and the findings are discussed in Section X. We selected the 2013 snapshot of Qualitas data since it is the latest and the most complete snapshot (i.e.~having the highest number of Java projects) provided by the data set author. 
 
-Regarding the age of cloned code on Stack Overflow, we did the analysis and added a boxplot as you suggested in RQ X. We found that ... \FIXME{add the discussion}.
+Regarding the age of cloned code on Stack Overflow, we did an analysis of clone ages on the QS clone pairs since we successfully manually confirmed the direction of cloning. Moreover, we could searched for the date that the cloned version of the QS project appeared, which was not possible for UD, EX, BP, and IN clone pairs. 
+We calculated the clone ages by counting the number of month difference from the dates of each Qualitas project to the date the answers were posted on Stack Overflow.
+We drew a boxplot as you suggested and included the discussion of the statistics in RQ4. We found that the minimum, maximum, median, and average clone ages were 0, 64, 26.5 and 26 months respectively (also summarised in the table below).
+
+\begin{table}[H]
+	\centering
+\begin{tabular}{lrrrr}
+	\toprule
+	Pattern & Min & Max & Avg. & Median \\
+	\midrule
+	QS & 0 & 64 & 26.5 & 26.0 \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+From the data, we observed that the it took around 2 years for the clones from Qualitas projects to appear on Stack Overflow answers. Some of the clones appeared on Stack Overflow almost at the same time as the original, while the oldest clones took around 5 years.
 
 \rcomment{
 I do believe the survey results from the StackOverflow contributors actually provides more meaningful insights then then the clone detection itself, since the responses by the contributors actually help explaining some of the results. The authors should provide further analysis and interpretation of the survey results.
@@ -376,7 +525,16 @@ We moved them to RQ1 to better link with the motivation. We also expanded the fi
 Overall discussion is very weak. While the authors went through a lengthy and detailed study of code clones published on StackOverflow and the survey of StackOverflow contributors, the paper lacks really a take home message. At the end there is no real evidence that either code clones are really toxic or bad (are they actually causing problems ? due to the use of clones. Just because a code fragment is outdated does not mean it is necessarily bad or causes any problems. What is the actual take home message from your study? Should we stop reusing code from StackOverflow? I do believe there is a need to dig deeper in the observed data and draw some real conclusions on how the observed results can benefit both the StackOverflow community and the source code community.
 }
 
-We have performed an additional experiment to search for occurrences of outdated code snippets in open source GitHub projects. The findings show \FIXME{...}
+That is a good point. We relied on the two new analyses to include discussion about toxicity of outdated code in the Overall Discussion. 
+
+First, from the answer to Reviewer 2, we analysed the intent behind the changes that made the code outdated and found that only 10 and 15 out of 100 cases were bug fixing and dead code. Besides that, the code were outdated because of evolution in the software (adding or enhancing features, refactoring, changing coding style, and data change).
+
+Second, as previously discussed in the answer to Reviewer 1, we have performed an additional experiment to search for occurrences of the 100 outdated code snippets in 130,703 open source GitHub projects and found 102 occurrences of the outdated code. 47 were exact copy of the outdated versions, of which 12 were buggy. However, we could not establish evidence that the outdated code were cloned from Stack Overflow or somewhere else. We have reported the problem of race condition in two clone snippets found in deeplearning4j and Apache Hive to the developers.
+
+To summarise, we empirically show from the surveys and the clone detection experiment that online code clones occur on Stack Overflow and the clones may become toxic due to outdated code and software license incompatibility. 
+Nevertheless, we found only a small amount of toxic outdated code snippets in open source projects on GitHub. Besides 12 buggy and outdated code snippets found in 12 projects, the rest were non-harmful clones of the outdated code. Although other studies show that Stack Overflow code snippets may contain security vulnerabilities~\citep{Acar2016,Fischer2017} or API misuse~\citep{Zhang2018}, we found in this study that the damage caused by reusing outdated code on Stack Overflow is not high. 
+
+On the other hand, the missing of licensing statement of online code clones on Stack Overflow can be more harmful. As shown in our study and also in the study by \cite{An2017}, some online clones on Stack Overflow are originally licensed under more restrictive license than Stack Overflow's CC BY-SA 3.0. If these missing-license online clones are reused in a software with incompatible license, the software owner may face legal issues. The software auditing service such as Black Duck Software or nexB, which can effectively check for license compliance of code copied from open source projects, cannot check for the original license of the code snippets on Stack Overflow. Although Stack Overflow answerers participated in our survey believe that most of the code snippets on Stack Overflow are too small to claim for copyright and they fall under fair-use, there is still a risk due to different legal system in each country. For example, Germany legal system does not have a concept of fair use or the number of minimum lines of code to be consider trivial, i.e.~de minimis, is also different from case to case or from country to country. 
 
 \vspace{1cm}
 
