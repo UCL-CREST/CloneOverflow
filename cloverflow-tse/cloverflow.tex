@@ -34,6 +34,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{framed}
 
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
@@ -42,6 +43,8 @@
 	basicstyle=\ttfamily\footnotesize,
 	mathescape=true
 } 
+
+\newenvironment{boxquote}{\vspace{-1ex}\setlength{\FrameSep}{1\fboxsep}\begin{framed}\setlength{\parskip}{0.5\baselineskip}\setlength{\parindent}{0pt}}{\end{framed}}
 
 \newcommand{\squeezeup}{\vspace{-0.5mm}}
 
@@ -106,7 +109,7 @@ toxic code snippets, i.e.~they suffer from being outdated or violating the
 original software license. We present a study incorporating state-of-the-art
 tools and techniques to automatically extract and filter online clone pairs
 between 72,365 Java code snippets on Stack Overflow and 111 open source projects
-in the curated Qualitas corpus. We analysed 2,302 non-trivial online clone
+in the curated Qualitas corpus. We analysed 2,289 non-trivial online clone
 candidates. Our investigation revealed strong evidence that 154 clones have been
 copied from a Qualitas project to Stack Overflow. We found 101 of them (66\%) to
 be outdated and potentially harmful for reuse. Furthermore, we found 214 code
@@ -125,7 +128,7 @@ CC BY-SA 3.0.
 %incorporating several state-of-the-art tools and techniques to automatically
 %extract and filter detected online clone pairs between 72,365 Java code snippets
 %on Stack Overflow and 111 Java open source projects in the curated Qualitas
-%corpus. We discovered and analysed 2,302 non-trivial online clone candidates.
+%corpus. We discovered and analysed 2,289 non-trivial online clone candidates.
 %Our investigation of the online clone pairs revealed strong evidence that 154
 %clones have been copied from a Qualitas project to Stack Overflow.  We found 101
 %of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
@@ -392,31 +395,39 @@ toxic code snippets on Stack Overflow to developers in the future.
 This paper makes the following primary contributions:
 
 \begin{enumerate} 
-	\item \textbf{A manual study of online code clones:} We used
-	two clone detection tools to discover 2,302 similar code snippet pairs between
+	
+	\item \textbf{Awareness of Stack Overflow answerers and visitors to toxic code
+	snippets:} We performed an online survey and collected answers from 201
+highly-ranked Stack Overflow users. We found that they cloned code snippets
+from open source projects to Stack Overflow answers. While Stack Overflow
+answerers are aware of their outdated code snippets, 19\% of the participants
+rarely or never fix the code. 99\% of the answerers never include a software
+license in their snippets and 69\% never check for licensing conflicts between
+the cloned code snippets and Stack Overflow's CC BY-SA 3.0. On the other hand, we also
+surveyed 87 Stack Overflow visitors (i.e.~information seekers) on their
+experiences to toxic code snippets on Stack Overflow. Sixty-six percent of the
+visitors experienced a problem from reusing Stack Overflow code snippets. The
+visitors are generally not aware of the CC BY-SA 3.0 license, and more than
+half of them never check for license compatibility when reusing Stack Overflow
+code snippets.
+	
+	\item \textbf{A manual study of online code clones:} 
+	To confirm the results in the surveys, we used
+	two clone detection tools to discover 2,289 similar code snippet pairs between
 	72,365 Java code snippets obtained from Stack Overflow's accepted answers and
 	111 Java open source projects from the curated Qualitas
 	corpus~\cite{QualitasCorpus}. We manually
 	classified all of them.
 	
 	\item \textbf{An investigation of toxic code snippets on Stack Overflow:} Our study shows that from
-	the 2,302 online clones, at least 330 have been copied from open source
+	the 2,289 online clones, at least 330 have been copied from open source
 	projects or external online sources to Stack Overflow, potentially violating
-	software licenses. For 154 of them, we found evidence that they have been copied
-	from a specific open source project. 101 of them we found to be outdated. %
+	software licenses. For 153 of them, we found evidence that they have been copied
+	from a specific open source project. 100 of them we found to be outdated. %
 	% and questionable for being reused.
 	
-	\item \textbf{Awareness of Stack Overflow answerers to toxic code snippets:} We
-	performed an online survey and collected answers from 201 highly-ranked Stack
-	Overflow users. We found that they cloned code snippets from open source
-	projects to Stack Overflow answers. While Stack Overflow answerers are aware of
-	their outdated code snippets, 19\% of the participants rarely
-	or never fix the code. 99\% of the answerers never include a software
-	license in their snippets and 69\% never check for licensing conflicts between the
-	cloned code snippets and Stack Overflow's CC BY-SA 3.0.
-	
 	\item \textbf{An online code
-		clone oracle:} The 2,302 manually investigated and validated online clone pairs
+		clone oracle:} The 2,289 manually investigated and validated online clone pairs
 	are available for download\footnote{https://ucl-crest.github.io/cloverflow-web} and
 	can be used as a clone oracle. \end{enumerate}
 
@@ -426,35 +437,40 @@ We performed an empirical study of online code clones between Stack
 Overflow and 111 Java open source projects to answer the following
 research questions:
 \begin{itemize}
-	\item \textbf{RQ1 (Online code clones): }\textit{To what extent is source
+	
+	\item \textbf{RQ1 (Stack Overflow answerers' and visitors' awareness to toxic code snippets): }
+	
+	\textit{1)~How often are Stack Overflow
+		answerers aware of the outdated code and licensing conflicts when
+		they answer a question on Stack Overflow?} 
+	
+	\textit{2) How often are Stack Overflow
+		visitors experience the outdated code and licensing conflicts when
+		they copy an answer from Stack Overflow?} 
+	
+	We surveyed 201 high-reputation Stack Overflow answerers and 87 Stack Overflow visitors to study their
+	awareness of the two issues.
+
+	\item \textbf{RQ2 (Online code clones): }\textit{To what extent is source
 		code cloned between Stack Overflow and open source projects?} We
 	quantitatively measured the number of online code clones between Stack
 	Overflow and open source projects to understand the scale of the
 	problem. 
-	\item \textbf{RQ2 (Patterns of online code clones): }\textit{How do online
+	
+	\item \textbf{RQ3 (Patterns of online code clones): }\textit{How do online
 		code clones occur?} We categorised online clones into seven
 	categories allowing insights to how online code clones are created.
-	\item \textbf{RQ3 (Outdated online code clones): }\textit{Are
+	
+	\item \textbf{RQ4 (Outdated online code clones): }\textit{Are
 		online code clones up-to-date compared to their counterparts in the
 		original projects?} We were interested in the outdated Stack
 	Overflow code examples since users are potentially reusing
 	them. 
-	\item \textbf{RQ4 (Software licensing violation): }\textit{How often do
+	
+	\item \textbf{RQ5 (Software licensing violation): }\textit{How often do
 		license conflicts occur between Stack Overflow clones and their
 		originals?} We investigated whether the reuse of online code clones
 	can cause software developers to violate licenses.
-	\item \textbf{RQ5 (Stack Overflow answerers' awareness): }
-	
-	\textit{1)~How often are Stack Overflow
-		answerers aware of the outdated code when
-		they answer a question on Stack Overflow?} 
-	
-	\textit{2) How often are Stack Overflow
-			answerers aware of licensing conflicts when
-			they answer a question on Stack Overflow?} 
-	
-	We surveyed 201 high reputation Stack Overflow users to study their
-	awareness of the two issues.
 \end{itemize}
 
 \begin{figure}
@@ -466,17 +482,80 @@ research questions:
 
 %\subsection{Experimental Setup}
 %\vspace{1ex}
-To answer these five research questions, we perform an empirical study to
-locate and study the online code clones between Stack Overflow and open source
-projects. 
-%
-%\subsection{Methodology}
-%
-We designed our study in 6 phases as depicted in \Cref{fig:exp_framework} where
-we build different data sets to answer each of our five research
-questions. 
+To answer these five research questions, we perform two surveys and an empirical study to
+understand the developers' awareness of toxic code snippets on Stack Overflow and to
+empirically study the online code clones between Stack Overflow and open source
+projects and their toxicity. 
 
-\subsection{Phase 1: Clone Identification}
+\subsection{Stack Overflow Developers' Survey} We support our motivation of
+toxic code snippets on Stack Overflow and answer RQ1 by asking Stack
+Overflow users to take an online survey. The survey was used for assessing awareness of
+the developers on the two issues of outdated code and license-violating code
+snippets. We designed the survey using Google Forms by following the guidelines by Pfleeger and
+Kitchenham~\cite{Pfleeger2001,Kitchenham2002}. The survey was completely
+anonymous and the participants could decide to leave at any time. 
+We created two versions of the survey: \textbf{the answerer survey} and \textbf{the visitor survey}.
+The answerer survey targeted the developers who were experienced Stack Overflow users
+and were highly active in answering questions. On the other hand, the visitor survey
+targeted the developers who searched for solutions and reused code from Stack Overflow answers.
+
+\textbf{The answerer survey:} the survey contained
+11 questions. There were 7 Likert's scale questions, 3 yes/no questions, and one
+open-ended question for additional comments. The first two questions were
+mandatory while the other 9 questions were shown to the participants based on
+their previous answers. The full survey can be found in our research note~\cite{Ragkhitwetsagul_RN2017}.
+We selected the participants for the answerer survey based on their Stack Overflow
+reputation. On Stack Overflow, a user's reputation reflects how much the
+community trusts them. A user earns reputations when he or she receives up votes
+for good questions and useful answers. Accepted answers receive more reputation
+score than questions, and regular answers\footnote{Stack Overflow
+	Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
+Overflow reputation is an indicator of user's skills and their involvement in
+asking and answering questions on the site. In this study, we call Stack
+Overflow users who have high reputation ``Stack Overflow answerers.''
+The participants were invited to take the survey via email addresses available
+on their public Stack Overflow and GitHub profiles. We selected the answerers
+based on the all-time reputation ranking\footnote{Stack Overflow Users (data as
+	of 25 July 2017):~\url{https://stackoverflow.com/users?tab=Reputation&filter=all}}. The
+invited participants had a reputation from 963,731 (the highest) to 6,999 and
+we sent out 607 emails (excluding undelivered ones, e.g.\ due to
+illegal email addresses). 
+The survey was
+open for participation for two months, from 25 July to 25 September 2017, before
+we collected and analysed the responses.
+
+\textbf{The visitors' survey}
+The survey consists of 16 questions: 9 Likert's
+scale questions, 3 yes/no questions, 2 multiple-choice questions, and 2
+open-ended questions. 
+The full survey can be found in our research note~\cite{Ragkhitwetsagul_RN2017}.
+The first four questions are mandatory while the other 12
+questions will be shown to the participants based on their previous answers. 
+The survey collects information about the participant's software development
+experience, the importance of Stack Overflow, reasons for reusing Stack Overflow
+snippets, problems from Stack Overflow snippets, licensing of code on Stack
+Overflow, and additional feedback. 
+We adopted non-probability convenient sampling to invite participants for this
+survey. Participation in the survey requires experience of visiting Stack
+Overflow for solving programming tasks at least once. The participants were
+invited to take the survey via five channels: social media post (Facebook),
+\textsf{blognone.com}, a popular technology news and media community in Thailand, the University of Molise in Italy where the third author
+works, \texttt{comp.lang.java.programmer} group and the Software Engineering
+Facebook page. We received answers from 89 participants. Two participants never
+copy code from Stack Overflow so we analysed the answers of the remaining 87
+participants.
+The survey was open for participation for 2 months, 
+from 25 July 2017 to 25 September 2017, before we collected and analysed
+the responses.
+
+\subsection{Empirical Study of Online Code Clones}
+We support the motivation and the findings in the surveys by performing
+an empirical study of online code clones between Stack Overflow
+answers and 111 Java open source projects.
+We designed the study in 6 phases as depicted in \Cref{fig:exp_framework} where
+we build different data sets to answer RQ2 -- RQ5. 
+
+\subsubsection{Phase 1: Clone Identification}
 
 We rely on two source code data sets in this study: Java code snippets in answers
 on Stack Overflow and open source projects from the Qualitas corpus
@@ -670,7 +749,7 @@ The average clone size reported by Simian is
 	%}
 \end{table}
 
-\subsection{Phase 2: Clone Merging} Clones from the two detectors can be
+\subsubsection{Phase 2: Clone Merging} Clones from the two detectors can be
 duplicated. To avoid double-counting of the same clone pair, we adopted the idea
 of \textbf{clone agreement} which has been used in clone research
 studies~\cite{Funaro2010, Wang2013,cr2016ssbse} to merge clones from two data
@@ -729,7 +808,7 @@ ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) & \geq t
 
 Using the ok-match criterion with a predefined threshold \textit{t} of 0.7
 similar to Bellon's study~\cite{Bellon2007}, we merge 721 clone pairs from
-Simian and 1,678 clone pairs from SourcererCC into a single set of 2,302 online
+Simian and 1,678 clone pairs from SourcererCC into a single set of 2,289 online
 clone pairs. There are only 97 common clone pairs between the two clone sets 
 as depicted in~\Cref{fig:clonemerging}.  The low number of common
 clone pairs is due to SourcererCC reporting clones with method
@@ -742,8 +821,8 @@ boundaries while Simian is purely line-based.
 	\label{fig:clonemerging}
 \end{figure}
 
-\subsection{Phase 3-4: Validation and Classification}
-We used the 2,302 merged clone pairs for
+\subsubsection{Phase 3-4: Validation and Classification}
+We used the 2,289 merged clone pairs for
 manual validation and classification.
 The validation and classification of the pairs was done at the same time. 
 The clone validation process (phase 3 in \Cref{fig:exp_framework}) involves checking 
@@ -907,7 +986,7 @@ a Qualitas projects, the pair is classified into \textbf{EX}. Lastly, if there
 is no evidence of copying in any direction but the clone fragments are highly
 similar, we classify them into \textbf{UD}.
 
-\subsection{Phase 5: Outdated Clones} Outdated code occurs when a piece of code
+\subsubsection{Phase 5: Outdated Clones} Outdated code occurs when a piece of code
 has been copied from its origin to another location and later the original has
 been updated~\cite{Xia2014}. Usually code clone detection is used to locate
 clone instances and update them to match with the originals~\cite{Bellon2007}.
@@ -931,7 +1010,7 @@ of code and the timestamps. We also collected IDs of issue tracking information
 if the code change is linked to an automatic issue tracking system, such as Jira
 or BugZilla.
 
-\subsection{Phase 6: Licensing Analysis} Software licensing plays an important
+\subsubsection{Phase 6: Licensing Analysis} Software licensing plays an important
 role in software development. Violation of software licenses impacts software
 delivery and also leads to legal issues~\cite{Sprigman2015}. 
 One can run into a licensing issue if one integrates third-party source code
@@ -950,52 +1029,314 @@ to see if any license can be found. For EX clone pairs that are cloned from
 external sources such as JDK or websites, we manually searched for the license
 of the original code.
 
-\subsection{Stack Overflow Developers' Survey} We support our findings of
-toxic code snippets on Stack Overflow by asking Stack
-Overflow users to take an online survey. The survey was used for assessing awareness of
-the developers on the two issues of outdated code and license-violating code
-snippets. We designed the survey using Google Forms by following the guidelines by Pfleeger and
-Kitchenham~\cite{Pfleeger2001,Kitchenham2002}. The survey was completely
-anonymous and the participants could decide to leave at any time. It contained
-11 questions. There were 7 Likert's scale questions, 3 yes/no questions, and one
-open-ended question for additional comments. The first two questions were
-mandatory while the other 9 questions were shown to the participants based on
-their previous answers. The full survey can be found in our research note~\cite{Ragkhitwetsagul_RN2017}.
-
-We selected the participants for our survey based on their Stack Overflow
-reputation. On Stack Overflow, a user's reputation reflects how much the
-community trusts them. A user earns reputations when he or she receives up votes
-for good questions and useful answers. Accepted answers receive more reputation
-score than questions, and regular answers\footnote{Stack Overflow
-Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
-Overflow reputation is an indicator of user's skills and their involvement in
-asking and answering questions on the site. In this study, we call Stack
-Overflow users who have high reputation ``Stack Overflow answerers.''
-
-The participants were invited to take the survey via email addresses available
-on their public Stack Overflow and GitHub profiles. We selected the answerers
-based on the all-time reputation ranking\footnote{Stack Overflow Users (data as
-of 25 July 2017):~\url{https://stackoverflow.com/users?tab=Reputation&filter=all}}. The
-invited participants had a reputation from 963,731 (the highest) to 6,999 and
-we sent out 607 emails (excluding undelivered ones, e.g.\ due to
-illegal email addresses). The survey was
-open for participation for two months, from 25 July to 25 September 2017, before
-we collected and analysed the responses.
-
 \section{Results and Discussion}
 
-We followed the 6 phases in the experimental framework
-(\Cref{fig:exp_framework}) to answer our four research questions. To answer RQ1,
+We use the two online surveys of Stack Overflow answerers and visitors to answer RQ1
+and follow the 6 phases in the experimental framework
+(\Cref{fig:exp_framework}) to answer the other four research questions. To answer RQ2,
 we rely on the number of manually validated true positive online clone pairs in
 phase 3. We use the results of the manual classification by the seven patterns
-of online code cloning to answer RQ2 (phase 4). For RQ3, we looked at the true
+of online code cloning to answer RQ3 (phase 4). For RQ4, we looked at the true
 positive clone pairs that are classified as clones from Qualitas to Stack
 Overflow and checked if they have been changed after cloning (phase 5).
-Similarly, for RQ4, we looked at the license of each clone in the pattern QS,
-EX, UD and checked for a possibility of license violation (phase 6). We use
-the online survey to answer RQ5.
+Similarly, for RQ5, we looked at the license of each clone in the pattern QS,
+EX, UD and checked for a possibility of license violation (phase 6). 
 
-\subsection{RQ1: Online Code Clones} 
+\subsection{RQ1: Stack Overflow Answerers' and Visitors' Awareness}
+
+%\begin{table}
+%	\centering
+%	\caption{Stack Overflow answerers taken the survey}
+%	\label{tab:survey_target}
+%	\begin{tabular}{rrrr}
+%		\toprule
+%		Reputation & Sent emails & Answers & Rate \\
+%		\midrule
+%		963,731--6,999 & 607 & 201 & 33\% \\
+%		\bottomrule
+%	\end{tabular}
+%\end{table}
+
+\subsubsection{The Answerer Survey}
+
+We received 201 answers (33\% response rate) from 607 emails we sent to the
+Stack Overflow answerers. The response rate was high considering other
+online surveys in software engineering~\cite{Punter2003}. 
+We only present a summary of the survey answers in
+this paper and the full analysis is available as a research note~\cite{Ragkhitwetsagul_RN2017}.
+
+\textbf{General Information:} As shown in \Cref{tab:survey_exp}, the majority of the answerers are experienced
+developers with more than 10 years of experience (55.2\%) or between 5 to 10
+years (28.9\%). They are active users and regularly answer questions. 49
+participants (24\%) answer questions on Stack Overflow every day.
+
+\begin{table}
+	\centering
+	\caption{Experience of Stack Overflow answerers}
+	\label{tab:survey_exp}
+	\begin{tabular}{lrr}
+		\toprule
+		Experience & Amount & Percent \\
+		\midrule
+		Less than a year & 1 & 0.5\% \\
+		1 -- 2 years & 1 & 0.5\% \\
+		3 -- 5 years & 30 & 14.9\% \\
+		5 -- 10 years & 58 & 28.9\% \\
+		More than 10 years	& 111 & 55.2\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Frequency of including code snippets in answers}
+	\label{tab:survey_code_snippet_frequency}
+	\begin{tabular}{lrr}
+		\toprule
+		Include code snippets & Amount & Percent \\
+		\midrule
+		Very Frequently (81--100\% of the time)	& 84 & 42\% \\
+		Frequently (61--80\% of the time) &	63 & 31\% \\
+		Occasionally (41--60\% of the time) & 40 & 20\% \\
+		Rarely (21--40\% of the time) & 11 & 6\% \\
+		Very Rarely (1--20\% of the time) & 2 & 1\% \\
+		Never (0\% of the time) & 1 & 1\% \\
+		\midrule
+		Total & 201 & 100\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\textbf{Code Snippets in Answers:}
+84 and 63 answerers include code snippets in more than 80\% and 60\% of
+their answers respectively. Interestingly, there is one answerer who never
+include code snippet in his/her answers (\Cref{tab:survey_code_snippet_frequency}).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{survey_snippet_source}
+	\caption{The sources of code snippets in Stack Overflow answers}
+	\label{fig:survey_snippet_source}
+\end{figure}
+
+We asked the remaining 200 participants for the origins of code snippets in
+their answers. We provided six locations including the answerer's personal
+projects, the answerer's company projects, open source projects, writing the
+code from scratch, copying and modifying the code from the question, and others
+(e.g.\ code that are copied from other questions or answers on Stack Overflow)
+and we asked them to rate how often they copied the code from these locations. The
+results are shown in \Cref{fig:survey_snippet_source}. Looking at the Very
+Frequently section, we can see that the answerers mainly write new code from
+scratch (106) or copy and modify the code snippets from the question for each answer (66),
+while fewer numbers are from other sources including their personal projects
+(28), their company projects (4), and open source projects (9). Although
+copying from open source projects is not the most popular choice, the answerers
+still rely on them sometimes. As shown in the figure, there are 14, 31, and 33
+participants who frequently, occasionally, and rarely copied code snippets from
+open source projects.
+
+\vspace{0.25cm}
+\textit{RQ 1.1 How often are Stack Overflow
+	answerers aware of the outdated code and 
+	licensing conflicts when
+	they answer a question on Stack Overflow?} 
+\vspace{0.25cm}
+
+\textbf{Outdated Code Snippets:} We asked the answerers if they have ever been notified about outdated code in
+their answers. 111 participants selected \textit{Yes} while the other 89 participants
+selected \textit{No}. However, we found inconsistent results when we asked a follow up
+question on the frequency of being notified. As displayed in
+\Cref{tab:survey_code_snippet_outdated}, the number of participants who has
+\textit{Never} been notified about outdated code snippets in their answers drops
+from 89 to 69.
+
+\begin{table}
+	\centering
+	\caption{Notifications of outdated code snippets in answers}
+	\label{tab:survey_code_snippet_outdated}
+	\begin{tabular}{lrr}
+		\toprule
+		Notified of outdated code & Amount & Percent \\
+		\midrule
+		Very frequently (81--100\% of my answers) & 2 & 1\% \\
+		Frequently (61--80\% of my answers) & 1 & 0.5\% \\
+		Occasionally (41--60\% of my answers) & 9 & 4.5\% \\
+		Rarely (21--40\% of my answers) & 16 & 8\% \\
+		Very rarely (1--20\% of my answers) & 103 & 51.5\% \\
+		Never (0\% of my answers) & 69 & 34.5\% \\
+		\midrule
+		Total & 200 & 100\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+We found that although the answerer have been notified of
+outdated code in their answers, for 51.5\% of them such notifications occur very rarely (only 1--20\% of the answers). 
+Only 3 participants reported that they were notified in more than 60\% of their answers.
+
+\begin{table}
+	\centering
+	\caption{Fixing of outdated code snippets in answers}
+	\label{tab:survey_code_snippet_outdated_fix}
+	\begin{tabular}{lrr}
+		\toprule
+		Fixing of outdated code & Amount & Percent \\
+		\midrule
+		Very frequently (81--100\% of the cases) & 48 & 36.6\% \\
+		Frequently (61--80\% of the cases) & 27 & 20.6\% \\
+		Occasionally (41--60\% of the cases) & 30 & 22.9\% \\
+		Rarely (21--40\% of the cases) & 11 & 8.4\% \\
+		Very rarely (1--20\% of the cases) & 8 & 6.1\% \\
+		Never (0\% of the cases) & 7 & 5.3\% \\
+		\midrule
+		Total & 131 & 100.0\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+We then asked 131 participants who have been notified of their outdated code a
+follow-up question \textit{``how frequently did you fix your outdated code on Stack
+	Overflow?''}. The answers, depicted in
+\Cref{tab:survey_code_snippet_outdated_fix}, show that more than half of them
+(57.2\%) very frequently or frequently fix the outdated code snippets. However,
+there are 19.8\% of the answerers in both groups who rarely, very rarely, or never fix 
+their outdated code.
+
+The responses from the answerers support our findings of outdated online code
+clones in RQ3. The low percentage of outdated code notifications
+reflect the experience of high reputation answerers who accumulate the reputation for a
+long time. Due to the voting mechanism of Stack Overflow, high reputation users
+usually provide high quality answers to earn up votes from other users. They are
+careful when posting code snippets in the answer to avoid problems and, vice versa, 
+getting down votes. It would be interesting to compare the findings to
+Stack Overflow answerers who are newer and have lower reputation. However, we
+leave it to future work.
+
+%\vspace{0.25cm}
+%\textit{How often are Stack Overflow
+%	answerers aware of licensing conflicts when
+%	they answer a question on Stack Overflow?} 
+%\vspace{0.25cm}
+
+\begin{table}
+	\centering
+	\caption{Inclusion of software license in answer}
+	\label{tab:survey_license_include}
+	\begin{tabular}{lr}
+		\toprule
+		Include license? & Amount \\
+		\midrule
+		No. & 197 \\
+		Yes, in code comment &	1 \\
+		Yes, in text surrounding the code & 2 \\
+		\midrule
+		Total & 200 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\textbf{License of Code Snippets:} Among the 200 answerers who include code snippets in their answers, 124
+answerers are aware that Stack Overflow apply Creative Commons
+Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) to content in the posts,
+including code snippets, while the rest (76) are not. Nevertheless, as shown in
+\Cref{tab:survey_license_include}, almost all of them (197) reported that they
+did not include license statement in their code snippets due to several reasons.
+First, some answerers chose to post only their own code or code that was adapted
+from the question, hence they are automatically subjected to CC BY-SA 3.0.
+Second, they copied code from company or open source projects that they knew
+were permitted to be publicly distributed. Third, some answerers believe that
+code snippets in their answers are too small to claim any intellectual property
+on them and fall under fair use~\cite{fairuse}.
+
+While nobody explicitly includes a software license in their snippets,
+many users include a statement on their profile page that all their
+answers are under a certain license. For example, a Stack Overflow user includes 
+the following text in his/her profile page.
+
+\begin{quotation}
+	\noindent \textit{All code posted by me on
+		Stack Overflow should be considered public domain without copyright. For
+		countries where public domain is not applicable, I hereby grant everyone the
+		right to modify, use and redistribute any code posted by me on Stack Overflow
+		for any purpose. It is provided ``as-is'' without warranty of any kind.}
+\end{quotation}
+
+Many users either declare their snippets to be public domain, or they grant
+additional licenses, e.g.\ Apache 2.0 or MIT/Expat.
+
+\begin{table}
+	\centering
+	\caption{Checking for licensing conflicts with CC BY-SA 3.0}
+	\label{tab:survey_license_check}
+	\begin{tabular}{lrr}
+		\toprule
+		Check license conflicts? & Amount & Percent \\
+		\midrule
+		Very Frequently (81--100\% of the time)	& 14 & 7\% \\
+		Frequently (61--80\% of the time) & 7 & 3.5\% \\
+		Occasionally (41--60\% of the time) & 10 & 5\% \\
+		Rarely (21--40\% of the time) & 16 & 8\% \\
+		Very rarely (1--20\% of the time) & 15 & 7.5\% \\
+		Never (0\% of the time) & 138 & 69\% \\
+		\midrule
+		Total & 200 & 100\% \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+We asked the answerers a follow-up question of how frequently they checked for a
+conflict between software license of the code snippets they copied to their
+answers and Stack Overflow's CC BY-SA 3.0. As shown in
+\Cref{tab:survey_license_check}, approximately 69\% of answerers did not perform
+the checking. Nonetheless, there are about 10.5\% of the answerers who very
+frequently or frequently check for licensing conflicts when they copy code
+snippets to Stack Overflow.
+
+Similar to outdated code, the responses from the answerers support our findings
+of licensing conflicts in online code clones in RQ4 and possibly explain why most of
+the clones copied from open source projects and external sources do not include
+their original software license.
+
+\begin{boxquote}
+	To answer RQ 5.1, regarding outdated code, although most of the Stack Overflow answerers are aware that their code
+	can be outdated, 51.5\% of the answerers were very rarely notified and 35.5\% have never been notified of
+	outdated code in the answers. After being notified, 19.8\% of them rarely or never fix the outdated code.
+	
+	For licensing conflicts, 124 answerers out of 200 (62\%) are aware of Stack Overflow's
+	CC BY-SA 3.0 license applied to code snippets in questions and answers. However,
+	only 3 answerers explicitly include software license in their answers. Some 
+	answerers choose to include the license in their profile page instead. 69\% of the
+	answerers never check for licensing conflicts between their copied code snippets
+	and Stack Overflow's CC BY-SA 3.0.
+\end{boxquote}
+
+\textbf{Open Comments:} We also invited the participants to give a
+free-form comment regarding their concerns of answering Stack Overflow with code
+snippets. Besides the one we present earlier in the introduction, these are
+interesting comments we received.
+
+\begin{enumerate}
+	\item \textit{``When I copy code it's usually short enough to be considered "fair
+		use" but I am not a lawyer or copyright expert so some guidance from Stack Overflow would be
+		helpful. I'd also like the ability to flag/review questions that violate these
+		guidelines.''}
+	\item \textit{``My only concern, albeit minor, is that I know people blindly copy
+		my code without even understanding what the code does.''}
+	\item \textit{``The main problem for me/us is outdated code, esp. as old answers
+		have high google rank so that is what people see first, then try and fail. Thats
+		why we're moving more and more of those examples to knowledge base and docs and
+		rather link to those.''}
+	\item \textit{``Lot of the answers are from hobbyist so the quality is poor.
+		Usually they are hacks or workarounds (even MY best answer on Stack Overflow is a
+		workaround).''}
+\end{enumerate}
+
+The comments highlight that Stack Overflow users are unsure about the
+legal implications of copying code, that code is copied without
+understanding it, and that the quality of code on Stack Overflow is
+often low.
+
+\subsection{RQ2: Online Code Clones} 
 \vspace{0.25cm}
 \textit{To what extent is source
 	code cloned between Stack Overflow and open source projects?}
@@ -1025,25 +1366,27 @@ lines of the cloned Stack Overflow snippet).
 	\end{tabular}
 \end{table}
 
-During the manual investigation of 2,302 clone pairs, we identified 226 pairs
+During the manual investigation of 2,289 clone pairs, we identified 226 pairs
 as being accidental clones (AC), i.e.~false positives. After removing
 them, the set still contains 2,076 true positive clone pairs between 443 Stack
 Overflow snippets and 59 Qualitas projects. The average cloned ratio for the
 true positive clone pairs is 53.89\%.
 
-\textbf{To answer RQ1, we found more than half (53\%) of Qualitas projects to share
+\begin{boxquote}
+	To answer RQ2, we found more than half (53\%) of Qualitas projects to share
 	similar code with Stack Overflow code snippets. In the manually confirmed 
-	data set of 2,302 clone pairs, we found 2,076 pairs as true positives which 
+	data set of 2,289 clone pairs, we found 2,076 pairs as true positives which 
 	account for 59 Qualitas projects and
-	443 Stack Overflow code snippets.}
+	443 Stack Overflow code snippets.
+\end{boxquote}
 
-\subsection{RQ2: Patterns of Online Code Cloning}
+\subsection{RQ3: Patterns of Online Code Cloning}
 \vspace{0.25cm}
 \textit{How do online code clones occur?}
 \vspace{0.25cm}
 
 We performed a manual classification
-of the 2,302 merged clone pairs by following the classification process
+of the 2,289 merged clone pairs by following the classification process
 in \Cref{fig:classification_process}. 
 The classification results are shown in \Cref{tab:classification_good_o} 
 and explained in the following.
@@ -1287,17 +1630,18 @@ Examples of the AC clone instances include {\small\texttt{finally}} or
 to their very small sizes, and similar {\small\texttt{switch-case}}
 statements.
 
-\textbf{To answer RQ2, we found 154 pairs with
-	strong evidences to be cloned from 23 Qualitas projects to Stack Overflow, 1 pair
-	was cloned from Stack Overflow to Qualitas, and
-	111 pairs were found to be cloned to Stack Overflow from external
-	sources. However, the largest amount of the clone pairs
-	between Stack Overflow and Qualitas projects are \linebreak boiler-plate code
-	(217), followed by 65 clone pairs with no evidence that the code has actually been copied,
-	and 16 pairs of clones due to implementing the same interface or inheriting the same class.} 
+\begin{boxquote}
+To answer RQ3, we found 154 pairs with
+strong evidences to be cloned from 23 Qualitas projects to Stack Overflow, 1 pair
+was cloned from Stack Overflow to Qualitas, and
+111 pairs were found to be cloned to Stack Overflow from external
+sources. However, the largest amount of the clone pairs
+between Stack Overflow and Qualitas projects are \linebreak boiler-plate code
+(217), followed by 65 clone pairs with no evidence that the code has actually been copied,
+and 16 pairs of clones due to implementing the same interface or inheriting the same class.
+\end{boxquote}
 
-
-\subsection{RQ3: Outdated Online Code Clones}
+\subsection{RQ4: Outdated Online Code Clones}
 \vspace{0.25cm}
 \textit{Are online code clones up-to-date compared to their counterparts in the original projects?}
 \vspace{0.25cm}
@@ -1309,7 +1653,7 @@ statements.
 	\label{fig:outdated}
 \end{figure*}
 
-We discovered 101 outdated online clone pairs out of 154 pairs. As shown in
+We discovered 100 outdated online clone pairs out of 153 pairs. As shown in
 \Cref{fig:outdated}, \textsf{hibernate} has the highest number of 19 outdated
 pairs, followed by 14 from \textsf{spring}, 13 from \textsf{eclipse}, and 9 from
 \textsf{hadoop}. Besides the two examples of outdated code in % \textsf{hadoop}'s
@@ -1341,7 +1685,7 @@ heavily modified on February 5, 2016.
 			Statement removal & 18 \\
 			Method signature change & 16 \\
 			Method rewriting & 15 \\
-			File deletion & 15 \\
+			File deletion & 14 \\
 			\bottomrule 
 		\end{tabular}
 \end{table}
@@ -1421,13 +1765,15 @@ Although Stack Overflow has a voting mechanism that may mitigate this issue, the
 accepted answer is still used by naive developers who copy and reuse the
 outdated code.
 
-\textbf{For RQ3, our results show that 66\% (101) of QS clone pairs on Stack
-	Overflow are outdated. 86 pairs differ from their newest versions by
-	modifications applied to variable names or method names, added or deleted
-	statements, to a fully rewritten code with new method signatures. 15~pairs are
-	dead snippets.}
+\begin{boxquote}
+For RQ4, our results show that 66\% (101) of QS clone pairs on Stack
+Overflow are outdated. 86 pairs differ from their newest versions by
+modifications applied to variable names or method names, added or deleted
+statements, to a fully rewritten code with new method signatures. 15~pairs are
+dead snippets.
+\end{boxquote}
 
-\subsection{RQ4: Software Licensing Violations}
+\subsection{RQ5: Software Licensing Violations}
 \vspace{0.25cm}
 \textit{Do
 	licensing conflicts occur between Stack Overflow clones and their
@@ -1538,310 +1884,19 @@ clones in Qualitas contain a license while the Stack Overflow snippets do not.
 % dangerous for being reused because they can implicitly conflict with the
 % reused software's license.
 
-\textbf{For RQ4, we found 214 code snippets on Stack Overflow that
-	could potentially violate the license of their original software. The majority of them
-	do not contain licensing statements after they have been copied to
-	Stack Overflow. For 164 of them, we were able to identify,
-        with evidence, where the code snippet has been copied from.}
+\begin{boxquote}
+For RQ5, we found 214 code snippets on Stack Overflow that
+could potentially violate the license of their original software. The majority of them
+do not contain licensing statements after they have been copied to
+Stack Overflow. For 164 of them, we were able to identify,
+with evidence, where the code snippet has been copied from.
+\end{boxquote}
 
 Note that the code snippets could potentially violate the license, but do
 not necessarily do so. In the example where the JFreeChart
 developer copied his own code, she or he was free to change the
 license. The same may have occurred with any of the 214 code
 snippets.
-
-\subsection{RQ5: Stack Overflow Answerers' Awareness}
-
-%\begin{table}
-%	\centering
-%	\caption{Stack Overflow answerers taken the survey}
-%	\label{tab:survey_target}
-%	\begin{tabular}{rrrr}
-%		\toprule
-%		Reputation & Sent emails & Answers & Rate \\
-%		\midrule
-%		963,731--6,999 & 607 & 201 & 33\% \\
-%		\bottomrule
-%	\end{tabular}
-%\end{table}
-
-We received 201 answers (33\% response rate) from 607 emails we sent to the
-Stack Overflow answerers. The response rate was high considering other
-online surveys in software engineering~\cite{Punter2003}. 
-We only present a summary of the survey answers in
-this paper and the full analysis is available as a research note~\cite{Ragkhitwetsagul_RN2017}.
-
-\subsubsection{General Information}
-As shown in \Cref{tab:survey_exp}, the majority of the answerers are experienced
-developers with more than 10 years of experience (55.2\%) or between 5 to 10
-years (28.9\%). They are active users and regularly answer questions. 49
-participants (24\%) answer questions on Stack Overflow every day.
-
-\begin{table}
-	\centering
-	\caption{Experience of Stack Overflow answerers}
-	\label{tab:survey_exp}
-	\begin{tabular}{lrr}
-		\toprule
-		Experience & Amount & Percent \\
-		\midrule
-		Less than a year & 1 & 0.5\% \\
-		1 -- 2 years & 1 & 0.5\% \\
-		3 -- 5 years & 30 & 14.9\% \\
-		5 -- 10 years & 58 & 28.9\% \\
-		More than 10 years	& 111 & 55.2\% \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\subsubsection{Code Snippets in Answers} 
-
-\begin{table}
-	\centering
-	\caption{Frequency of including code snippets in answers}
-	\label{tab:survey_code_snippet_frequency}
-	\begin{tabular}{lrr}
-		\toprule
-		Include code snippets & Amount & Percent \\
-		\midrule
-		Very Frequently (81--100\% of the time)	& 84 & 42\% \\
-		Frequently (61--80\% of the time) &	63 & 31\% \\
-		Occasionally (41--60\% of the time) & 40 & 20\% \\
-		Rarely (21--40\% of the time) & 11 & 6\% \\
-		Very Rarely (1--20\% of the time) & 2 & 1\% \\
-		Never (0\% of the time) & 1 & 1\% \\
-		\midrule
-		Total & 201 & 100\% \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-84 and 63 answerers include code snippets in more than 80\% and 60\% of
-their answers respectively. Interestingly, there is one answerer who never
-include code snippet in his/her answers (\Cref{tab:survey_code_snippet_frequency}).
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.9\linewidth]{survey_snippet_source}
-	\caption{The sources of code snippets in Stack Overflow answers}
-	\label{fig:survey_snippet_source}
-\end{figure}
-
-We asked the remaining 200 participants for the origins of code snippets in
-their answers. We provided six locations including the answerer's personal
-projects, the answerer's company projects, open source projects, writing the
-code from scratch, copying and modifying the code from the question, and others
-(e.g.\ code that are copied from other questions or answers on Stack Overflow)
-and we asked them to rate how often they copied the code from these locations. The
-results are shown in \Cref{fig:survey_snippet_source}. Looking at the Very
-Frequently section, we can see that the answerers mainly write new code from
-scratch (106) or copy and modify the code snippets from the question for each answer (66),
-while fewer numbers are from other sources including their personal projects
-(28), their company projects (4), and open source projects (9). Although
-copying from open source projects is not the most popular choice, the answerers
-still rely on them sometimes. As shown in the figure, there are 14, 31, and 33
-participants who frequently, occasionally, and rarely copied code snippets from
-open source projects.
-
-\subsubsection{Outdated Code Snippets} 
-\vspace{0.25cm}
-\textit{How often are Stack Overflow
-	answerers aware of the outdated code when
-	they answer a question on Stack Overflow?} 
-\vspace{0.25cm}
-
-We asked the answerers if they have ever been notified about outdated code in
-their answers. 111 participants selected \textit{Yes} while the other 89 participants
-selected \textit{No}. However, we found inconsistent results when we asked a follow up
-question on the frequency of being notified. As displayed in
-\Cref{tab:survey_code_snippet_outdated}, the number of participants who has
-\textit{Never} been notified about outdated code snippets in their answers drops
-from 89 to 69.
-
-\begin{table}
-	\centering
-	\caption{Notifications of outdated code snippets in answers}
-	\label{tab:survey_code_snippet_outdated}
-	\begin{tabular}{lrr}
-		\toprule
-		Notified of outdated code & Amount & Percent \\
-		\midrule
-		Very frequently (81--100\% of my answers) & 2 & 1\% \\
-		Frequently (61--80\% of my answers) & 1 & 0.5\% \\
-		Occasionally (41--60\% of my answers) & 9 & 4.5\% \\
-		Rarely (21--40\% of my answers) & 16 & 8\% \\
-		Very rarely (1--20\% of my answers) & 103 & 51.5\% \\
-		Never (0\% of my answers) & 69 & 34.5\% \\
-		\midrule
-		Total & 200 & 100\% \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-We found that although the answerer have been notified of
-outdated code in their answers, for 51.5\% of them such notifications occur very rarely (only 1--20\% of the answers). 
-Only 3 participants reported that they were notified in more than 60\% of their answers.
-
-\begin{table}
-	\centering
-	\caption{Fixing of outdated code snippets in answers}
-	\label{tab:survey_code_snippet_outdated_fix}
-	\begin{tabular}{lrr}
-		\toprule
-		Fixing of outdated code & Amount & Percent \\
-		\midrule
-		Very frequently (81--100\% of the cases) & 48 & 36.6\% \\
-		Frequently (61--80\% of the cases) & 27 & 20.6\% \\
-		Occasionally (41--60\% of the cases) & 30 & 22.9\% \\
-		Rarely (21--40\% of the cases) & 11 & 8.4\% \\
-		Very rarely (1--20\% of the cases) & 8 & 6.1\% \\
-		Never (0\% of the cases) & 7 & 5.3\% \\
-		\midrule
-		Total & 131 & 100.0\% \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-We then asked 131 participants who have been notified of their outdated code a
-follow-up question \textit{``how frequently did you fix your outdated code on Stack
-Overflow?''}. The answers, depicted in
-\Cref{tab:survey_code_snippet_outdated_fix}, show that more than half of them
-(57.2\%) very frequently or frequently fix the outdated code snippets. However,
-there are 19.8\% of the answerers in both groups who rarely, very rarely, or never fix 
-their outdated code.
-
-\textbf{To answer RQ 5.1, although most of the Stack Overflow answerers are aware that their code
-can be outdated, 51.5\% of the answerers were very rarely notified and 35.5\% have never been notified of
-outdated code in the answers. After being notified, 19.8\% of them rarely or never fix the outdated code.}
-
-The responses from the answerers support our findings of outdated online code
-clones in RQ3. The low percentage of outdated code notifications
-reflect the experience of high reputation answerers who accumulate the reputation for a
-long time. Due to the voting mechanism of Stack Overflow, high reputation users
-usually provide high quality answers to earn up votes from other users. They are
-careful when posting code snippets in the answer to avoid problems and, vice versa, 
-getting down votes. It would be interesting to compare the findings to
-Stack Overflow answerers who are newer and have lower reputation. However, we
-leave it to future work.
-
-\subsubsection{License of Code Snippets} 
-\vspace{0.25cm}
-\textit{How often are Stack Overflow
-	answerers aware of licensing conflicts when
-	they answer a question on Stack Overflow?} 
-\vspace{0.25cm}
-
-\begin{table}
-	\centering
-	\caption{Inclusion of software license in answer}
-	\label{tab:survey_license_include}
-	\begin{tabular}{lr}
-		\toprule
-		Include license? & Amount \\
-		\midrule
-		No. & 197 \\
-		Yes, in code comment &	1 \\
-		Yes, in text surrounding the code & 2 \\
-		\midrule
-		Total & 200 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-Among the 200 answerers who include code snippets in their answers, 124
-answerers are aware that Stack Overflow apply Creative Commons
-Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) to content in the posts,
-including code snippets, while the rest (76) are not. Nevertheless, as shown in
-\Cref{tab:survey_license_include}, almost all of them (197) reported that they
-did not include license statement in their code snippets due to several reasons.
-First, some answerers chose to post only their own code or code that was adapted
-from the question, hence they are automatically subjected to CC BY-SA 3.0.
-Second, they copied code from company or open source projects that they knew
-were permitted to be publicly distributed. Third, some answerers believe that
-code snippets in their answers are too small to claim any intellectual property
-on them and fall under fair use~\cite{fairuse}.
-
-While nobody explicitly includes a software license in their snippets,
-many users include a statement on their profile page that all their
-answers are under a certain license. For example, a Stack Overflow user includes 
-the following text in his/her profile page.
-
-\begin{quotation}
-\noindent \textit{All code posted by me on
-	Stack Overflow should be considered public domain without copyright. For
-	countries where public domain is not applicable, I hereby grant everyone the
-	right to modify, use and redistribute any code posted by me on Stack Overflow
-	for any purpose. It is provided ``as-is'' without warranty of any kind.}
-\end{quotation}
-
-Many users either declare their snippets to be public domain, or they grant
-additional licenses, e.g.\ Apache 2.0 or MIT/Expat.
-
-\begin{table}
-	\centering
-	\caption{Checking for licensing conflicts with CC BY-SA 3.0}
-	\label{tab:survey_license_check}
-	\begin{tabular}{lrr}
-		\toprule
-		Check license conflicts? & Amount & Percent \\
-		\midrule
-		Very Frequently (81--100\% of the time)	& 14 & 7\% \\
-		Frequently (61--80\% of the time) & 7 & 3.5\% \\
-		Occasionally (41--60\% of the time) & 10 & 5\% \\
-		Rarely (21--40\% of the time) & 16 & 8\% \\
-		Very rarely (1--20\% of the time) & 15 & 7.5\% \\
-		Never (0\% of the time) & 138 & 69\% \\
-		\midrule
-		Total & 200 & 100\% \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-We asked the answerers a follow-up question of how frequently they checked for a
-conflict between software license of the code snippets they copied to their
-answers and Stack Overflow's CC BY-SA 3.0. As shown in
-\Cref{tab:survey_license_check}, approximately 69\% of answerers did not perform
-the checking. Nonetheless, there are about 10.5\% of the answerers who very
-frequently or frequently check for licensing conflicts when they copy code
-snippets to Stack Overflow.
-
-\textbf{To answer RQ 5.2, 124 answerers out of 200 (62\%) are aware of Stack Overflow's
-CC BY-SA 3.0 license applied to code snippets in questions and answers. However,
-only 3 answerers explicitly include software license in their answers. Some 
-answerers choose to include the license in their profile page instead. 69\% of the
-answerers never check for licensing conflicts between their copied code snippets
-and Stack Overflow's CC BY-SA 3.0.}
-
-Similar to outdated code, the responses from the answerers support our findings
-of licensing conflicts in online code clones in RQ4 and possibly explain why most of
-the clones copied from open source projects and external sources do not include
-their original software license.
-
-\subsubsection{Open Comments} We also invited the participants to give a
-free-form comment regarding their concerns of answering Stack Overflow with code
-snippets. Besides the one we present earlier in the introduction, these are
-interesting comments we received.
-
-\begin{enumerate}
-	\item \textit{``When I copy code it's usually short enough to be considered "fair
-		use" but I am not a lawyer or copyright expert so some guidance from Stack Overflow would be
-		helpful. I'd also like the ability to flag/review questions that violate these
-		guidelines.''}
-	\item \textit{``My only concern, albeit minor, is that I know people blindly copy
-		my code without even understanding what the code does.''}
-	\item \textit{``The main problem for me/us is outdated code, esp. as old answers
-		have high google rank so that is what people see first, then try and fail. Thats
-		why we're moving more and more of those examples to knowledge base and docs and
-		rather link to those.''}
-	\item \textit{``Lot of the answers are from hobbyist so the quality is poor.
-		Usually they are hacks or workarounds (even MY best answer on Stack Overflow is a
-		workaround).''}
-\end{enumerate}
-
-The comments highlight that Stack Overflow users are unsure about the
-legal implications of copying code, that code is copied without
-understanding it, and that the quality of code on Stack Overflow is
-often low.
 
 \subsection{Overall Discussion} %What can we learn for the results? For example,
 % if a developer explicitly reports in his/her code that the snippet was copied
@@ -1929,7 +1984,7 @@ resorted to extract them from the data sets. We derived them from a manual
 investigation of 679 online clone pairs and adopted one pattern from the study
 by Kapser et al.~\cite{Kapser2003}.
 
-The 2,302 clone pairs classified by the first and the third author are subject
+The 2,289 clone pairs classified by the first and the third author are subject
 to manual judgement and human errors.  Although we tried our best to be careful
 on searching for evidence and classifying the clones, some errors may still
 exist. We mitigated this problem by having two investigators to cross check the
@@ -2120,7 +2175,7 @@ such as Stack Overflow.
 % They are similar to classical clones in software
 % projects where they can be outdated and violating software license but
 % are much harder to detect. 
-We classified 2,302 clone pairs using seven patterns of online code
+We classified 2,289 clone pairs using seven patterns of online code
 cloning. We discovered 154 clone pairs that have been
 copied, with evidence, from Qualitas projects to Stack Overflow, 111
 clone pairs that have been copied from external sources besides
