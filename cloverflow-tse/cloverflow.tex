@@ -1421,8 +1421,10 @@ better snippet as new answer on same topic (2).
 		License check? & Amount & Percent \\
 		\midrule
 		Very frequently (81--100\% of the time) & 0 & 0.0\% \\
-		Frequently (61--80\% of the time) & 7 & 8.1\%\\
-		Occasionally (41--60\% of the time) & 6 & 6.9\%\\
+		Frequently (61--80\% of the time) & 7 & 8.1\%
+\\
+		Occasionally (41--60\% of the time) & 6 & 6.9\%
+\\
 		Rarely (21--40\% of the time) & 6 & 6.9\% \\
 		Very rarely (1--20\% of the time) & 11 & 12.6\% \\
 		Never (0\% of the time)	& 57 & 65.5\% \\
@@ -1505,11 +1507,12 @@ Overflow snippets and 59 Qualitas projects. The average cloned ratio for the
 true positive clone pairs is 53.89\%.
 
 \begin{boxquote}
-	To answer RQ2, we found more than half (53\%) of Qualitas projects to share
-	similar code with Stack Overflow code snippets. In the manually confirmed 
-	data set of 2,289 clone pairs, we found 2,076 pairs as true positives which 
-	account for 59 Qualitas projects and
-	443 Stack Overflow code snippets.
+	To answer RQ2, we found 2,076 manually confirmed clone pairs between 443 Stack Overflow code snippets
+	and 59 Qualitas proejcts. 
+	%After the manual confirmation, 2,076 pairs as true positives, i.e.~
+	%they are manually confirmed as clones, which 
+	%account for 59 Qualitas projects and
+	%443 Stack Overflow code snippets.
 \end{boxquote}
 
 \subsection{RQ3: Patterns of Online Code Cloning}
@@ -1961,6 +1964,23 @@ dead snippets.
 			\bottomrule
 		\end{tabular} 
 	}
+\end{table}
+
+\begin{table}
+\centering
+\label{tab:license_github}
+\caption{Clones of the 214 missing-license code snippets in 131,703 GitHub projects}
+\begin{tabular}{lrr}
+	\toprule
+	No. of stars & Qualitas & Other Projects \\
+	\midrule
+	29,540 to 10 stars & 71 & 1,836 \\
+	9 to 5 stars & 0 & 739 \\
+	4 to 1 stars & 19 & 4,541 \\
+	\midrule
+	Total & 90 & 7,116 \\
+	\bottomrule
+\end{tabular}
 \end{table}
 
 %If developers copy and reuse these licensed pieces of code in their projects,
