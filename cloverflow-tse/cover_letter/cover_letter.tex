@@ -166,7 +166,7 @@ We would like to thank the reviewer for the comments.~We agree with the suggesti
 	\end{table}
 	
 	\item With the finding above, we show that the clones of Stack Overflow toxic code fragments do occur in several open source software projects on GitHub. However, we could not establish a strong evidence that the toxic code snippets were originated from Stack Overflow due to lack of supporting information. Hence, we softened our claim by changing the statement ``\textit{It is probably more important than studying the effects of reusing Stack Overflow code snippets ...}'' to ```\textit{It is \textbf{equally} important to studying the effects of reusing Stack Overflow code snippets ...}''.
-	We also updated the Overall Discussion section to reflect the findings that there is only a few toxic outdated code that are found in open source projects on GitHub. %Moreover, the direction of copying is also unclear. The clones could come from Stack Overflow, the original project repositories, or other places. 
+	We also updated the Overall Discussion section to reflect the findings that (1) there is only a small number of toxic code snippets from outdated code that are found in GitHub projects, (2) there is a large number of toxic code snippets from missing license that are found in GitHub projects. %Moreover, the direction of copying is also unclear. The clones could come from Stack Overflow, the original project repositories, or other places. 
 \end{enumerate}
 
 \rcomment{
@@ -235,13 +235,26 @@ While ``Toxic Code Snippets'' is a catchy phrase for the title, I think that onl
 You are right. We mainly study the online code clones and established their existence. However, we used the term ``toxic code snippets'' in order to emphasise the possible ramifications from online code cloning. 
 Moreover, the term code cloning is not well known outside the code cloning community. Code clones are called differently in each research community or in practice, such as duplicated code, copy-and-paste code, code reuse, software similarity or software redundancy. So, we decided not to use the term in the title. 
 
-We also updated the Introduction to state that the dominant topic is about online code clones~\FIXME{do it}.
+We also updated the Introduction to state that the dominant topic is about online code clones as follows.
+
+``Although this activity of online code cloning is well-known, there is only a few
+empirical studies on the topic~\citep{An2017,Abdalkareem2017,Baltes2017}, especially
+the on finding the origins of the clones.
+We tackle this challenge of establishing existence of online code clones and
+investigate how they occur in this study.''
 %Considering your suggestion and another suggestion by Reviewer 2 that the definition of ``toxic code snippets'' is vague, we also tightened the definition of toxic code snippets to be more precise.
 
 \rcomment{
 	The introduction states that the erroneous code snippet in post 22262310 has been viewed 259 as of the writing of the paper. But I note that while the question was posted on Mar 7, 14 the answer was posted on Mar 11, 14. I also note that the question has a score of -1. So, I wonder (a) whether the view count is for the answer (i.e., the code snippet) or the post (which existed for a few days before the answer appeared), (b) how many people viewed the question before it was answered, and (c) if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question.}
 
-That is a fair point and we would like to analyse the statistics as you suggested. Unfortunately, for our experiment, we extracted only the code snippets from the Stack Overflow dumps but not other information. They are the only available data of the January 2016 snapshot we currently have. We checked and found that the latest available Stack Overflow dump already contains different data than the one we used in our study since it is now more than 2 years newer, and will result in incorrect statistics and inconsistent results. Nevertheless, we have modified the text in the Introduction to include your concern ... \FIXME{do it}.
+That is a fair point and we would like to analyse the statistics as you suggested. 
+For (a), the number of views
+is for the whole Stack Overflow post but we use it as a proxy of the number of views the accepted answer receives
+because the question and the answer of the two motivation examples have a short gap of posting time (within the same day and four days after).
+For (b), unfortunately, for our experiment we extracted only the code snippets from the Stack Overflow dumps but not other information. They are the only available data of the January 2016 snapshot we currently have. We checked and found that the latest available Stack Overflow dump already contains different data than the one we used in our study since it is now more than 2 years newer, and will result in incorrect statistics and inconsistent results.
+For (c), that is a really interesting idea. However, it is out of the scope of this study and would involve an extensive analysis of the data so we plan to do it in the future work.
+
+ Nevertheless, we have added a footnote to the text in the Introduction to clarify point (a).
 
 \rcomment{
 	FYI, since this paper was authored, a Stack Overflow user has posted a comment in response to the answer for post 22262310. The comment highlights the missing line and refers to the relevant HADOOP issue report. Interestingly, the gap between the issue report being resolved (Nov 20, 14) and the comment appearing on Stack Overflow (Oct 31, 17) is nearly three years. I wonder how many views occurred during this gap and whether the addition of the comment mitigates the toxicity of the code snippet.
@@ -249,7 +262,7 @@ That is a fair point and we would like to analyse the statistics as you suggeste
 
 Thank you for the detailed checking of the Stack Overflow post. Interestingly, this is surprising to us as well. The comment in the post 22262310 by Joseph K on 31 October 2017 that highlights the missing line in HADOOP \texttt{compare} method is actually from a student in our class. His name is Joseph Kalash and he is a master student in Machine Learning MsC program at UCL Computer Science department \footnote{Joseph's CV can be found here: \url{https://jkala.sh/cv}}. We assigned a preprint of this paper to students in the COMPGS11 -- Research Seminar in Software Engineering course and had a discussion about the paper on Thu 2 November 2017. Joseph, who was an active Stack Overflow member, was one of the students in the class and he actively participated in the discussion. It seemed like he had seen the Hadoop's toxic code snippet in the paper and decided to post a comment to warn other users.
 
-Nevertheless, since this is a very interesting suggestion. We also performed an investigation of the 100 answers of our reported outdated code snippets on Stack Overflow on 6 May 2018 to see if there is any comment to mitigate or point out the toxicity of the code snippet. We include the result of this investigation in the RQ regarding outdated code (RQ?). We found that, out of 100 answers containing outdated code snippets, there were 6 answers that had a comment saying the code in the answer is outdated or containing issues (including Joseph's comment). Thus, there is about 6\% of outdated answers that were notified by the Stack Overflow users based on our analysed data. None of the 6 answers change their outdated code, but the comments themselves may help to warn other Stack Overflow users. We added this discussion in the RQ4 \FIXME{do it}.
+Nevertheless, since this is a very interesting suggestion. We also performed an investigation of the 100 answers of our reported outdated code snippets on Stack Overflow on 6 May 2018 to see if there is any comment to mitigate or point out the toxicity of the code snippet. We include the result of this investigation in the RQ4. We found that, out of 100 answers containing outdated code snippets, there were 6 answers that had a comment saying the code in the answer is outdated or containing issues (including Joseph's comment). Thus, there is about 6\% of outdated answers that were notified by the Stack Overflow users based on our analysed data. None of the 6 answers change their outdated code, but the comments themselves may help to warn other Stack Overflow users. We added this discussion in the RQ4.
 
 \rcomment{
 \begin{enumerate}
@@ -342,12 +355,14 @@ The majority of the changes are due to code enhancement. There are 64 changes fo
 We used the Stack Overflow data dump of January 2016 since it was the latest dump when we started our experiment. Nonetheless, we finally completed the whole experiment, the result analysis, and the survey two years later. That is why the dump is 2 years old.
 
 Fortunately, we could use this opportunity to study the evolution of the toxic code snippets on Stack Overflow. We manually investigated the outdated and license incompatible code snippets that we discovered to see if they are still the same or not. The check was performed on 6 May 2018, approximately 2 years after the snapshot was created. Moreover, we also checked if there is any comment regarding the outdated code or the license of the snippets from other Stack Overflow users. From the 100 outdated answers, we found that four answers were deleted and six answers contained a comment mentioning either the code is intended for a specific version of the software/API or complaining that the code is not working or having an issue. 
-We included this discussion in RQ4 \FIXME{do it}.
+We included this discussion in RQ4.
 
 \rcomment{
 	\textbf{Arbitrary use of parameter:} On page 4, you use snippets of at least 10 lines. Why 10, why not 15? Given that this is a journal paper, you have the space to examine the impact of your parameters (at least in brief) on your results. What I would like the authors to do is to actually examine the impact of such parameters on your work in a discussion section.}
 
-That is a fair point. The reason we chose the clone size of at least 10 lines is as follows. The minimum clone size of 10 lines is considered a standard setting for clone detection in large-scale data sets to avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and setter methods) in the analysis or the manual investigation phase~\citep{Sajnani2016}. 
+That is a fair point. The reason we chose the clone size of at least 10 lines is as follows. 
+
+The minimum clone size of 10 lines is considered a standard setting for clone detection in large-scale data sets to avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and setter methods) in the analysis or the manual investigation phase~\citep{Sajnani2016}. 
 Choosing this size threshold larger than 10 could possibly remove some non-trivial clones from the analysis, i.e.~create more false negatives.
 On the other hand, decreasing the threshold to be lower than 10 lines will result in a larger number of clone candidate pairs to look at and a higher chance of getting false positives. Moreover, the large number of clone pairs will hinders the full manual validation of the clones and force us to rely on sampling of clone pairs. We performed a small analysis to confirm this.
 
@@ -360,15 +375,19 @@ On the other hand, decreasing the threshold to be lower than 10 lines will resul
 
 Regarding increasing the minimum clone size to more than 10 lines (e.g. 15 lines), we added an analysis of the clone size as shown in Figure \ref{fig:boxplotclonesize}. We found that the distribution of true clones; QS, SQ, UD, EX, BP, IN; mainly cover the size from about 10 to 20 lines. Increasing the threshold to be higher than 10 would remove some of the trivial BP and IN clone pairs which are not interesting for this study. However, it will also remove some of the true non-trivial clone pairs in QS, SQ, UD, and EX.
 
-Regarding decreasing the minimum clone size to be less than 10 lines, we reran the two clone detection tools (Simian and SourcererCC) again using a minimum clone size of 6 lines, another well-accepted minimum clone size in clone benchmark~\citep{Bellon2007}. Simian reported 67,172 clone candidate pairs and SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs using Bellon's ok-match threshold $t=0.5$. With this large amount of clone candidate pairs, it is not feasible to manually confirm all of the clones and we must rely on sampling. This will result in weaker findings and weaker conclusion. Thus, we decide to retain the minimum clone size of 10 lines to keep the balance between the number of non-trivial clone pairs and the feasibility of manual clone investigation.
+Regarding decreasing the minimum clone size to be less than 10 lines, we reran the two clone detection tools (Simian and SourcererCC) again using a minimum clone size of 6 lines, another well-accepted minimum clone size in clone benchmark~\citep{Bellon2007}. Simian reported 67,172 clone candidate pairs and SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs using Bellon's ok-match threshold $t=0.5$. With this large amount of clone candidate pairs, it is not feasible to manually confirm all of the clones and we must rely on sampling. Moreover, it is known that lowering the number of minimum clone lines is harmful to precision. This will result in weaker findings and weaker conclusion. Thus, we decide to retain the minimum clone size of 10 lines to keep the balance between the number of non-trivial clone pairs and the feasibility of manual clone investigation.
 
-We have modified the paper to include this discussion in RQ2 \FIXME{do it}.
+We have modified the paper to include this discussion in RQ2.
 
 \rcomment{
  A similar concern exists on page 5, where t=0.7 is chosen. Sure, it worked in another context, but did they show that a 0.7 threshold is OK to use for SO snippets? I think you can also vary this t value and examine its impact.
 }
 
-We selected the Bellon's ok-match threshold of 0.7 because it is a standard value in clone benchmarking \citep{Bellon2007} and also used in other study of clones, e.g.~\cite{Sajnani2016}. Nevertheless, we agree that varying the threshold ($t$) value is beneficial to the validity of the findings so we did an analysis by choosing five $t$ values of 0.1, 0.3, 0.5, 0.7, and 0.9 and studied the clone candidates. As shown in the our paper, by setting $t=0.7$ according to Bellon's study, we found 97 ok-match pairs reported. On the other hand, setting $t$ to 0.1, 0.3, 0.5, and 0.9 resulted in 111, 110, 110, and 94 ok-matched pairs respectively.
+We selected the Bellon's ok-match threshold of 0.7 because it is a standard value in clone benchmarking \citep{Bellon2007} and also used in other study of clones, e.g.~\cite{Sajnani2016}. Nevertheless, we agree that varying the threshold ($t$) value is beneficial to the validity of the findings so we did an analysis by choosing five $t$ values of 0.1, 0.3, 0.5, 0.7, and 0.9 and studied the clone candidates. As shown in the our paper, by setting $t=0.7$ according to Bellon's study, we found 97 ok-match pairs reported. On the other hand, setting $t$ to 0.1, 0.3, 0.5, and 0.9 resulted in 111, 110, 110, and 94 ok-matched pairs respectively. an analysis by choosing five $t$ values of 0.1, 0.3, 0.5, 0.7, and 0.9 and studied the clone candidates. As shown in the our paper, by setting $t=0.7$ according to Bellon's study, we found 97 ok-match pairs reported. On the other hand, setting $t$ to 0.1, 0.3, 0.5, and 0.9 resulted in 111, 110, 110, and 94 ok-matched pairs respectively.
+Since the clone pairs of $t=0.1$ was the superset of other sets,  we manually checked all the 111 reported pairs.
+We found one false positive pair and 110 true positive pairs. By raising the $t$ to 0.3 and 0.5, we got rid of the false positive pair and still retained all the 110 true positive pairs. All the clone pairs of $t=0.7$ (97) and $t=0.9$ (94) were also true positives due to being a subset of $t=0.5$. However, since there is a fewer true positive pairs reported (i.e.~generating false negatives), we ended up leaving some duplicates in the final merged clone set.
+
+With this analysis, we can see that setting the threshold $t$ to 0.1 is too relaxed and results in having false positive ok-match pairs, while setting the $t$ to 0.7 or 0.9 is too strict and generates some false negative pairs. Thus, we decided to select the $t$ value at 0.5. This reduces the number of merged clone pairs to 2,290 pairs. All other numbers which derive from this merged clone pairs have been updated accordingly.
 Since the clone pairs of $t=0.1$ was the superset of other sets,  we manually checked all the 111 reported pairs.
 We found one false positive pair and 110 true positive pairs. By raising the $t$ to 0.3 and 0.5, we got rid of the false positive pair and still retained all the 110 true positive pairs. All the clone pairs of $t=0.7$ (97) and $t=0.9$ (94) were also true positives due to being a subset of $t=0.5$. However, since there is a fewer true positive pairs reported (i.e.~generating false negatives), we ended up leaving some duplicates in the final merged clone set.
 
@@ -415,7 +434,7 @@ I feel that the strongest part of the paper is the survey section. I really enjo
 }
 
 %Our apologies if the writing in section 3.5.3 confuses you. 
-The research question (section 3.5.3) is actually about notifying the answerers that their answers are already outdated, not notifying the users of the outdated code snippets. This notification to the answerer can be done by posting comments for that answer on Stack Overflow. For example, the answerer of the Stack Overflow question no.~10924648 posted a comment on his own answer saying that the answer is specifically for Spring 3.1. Moroever, another user posted a comment on the answer of the post no.~801935 that the code snippet is not of high quality and suggested an alternative in another post. We extended this discussion in RQ4 \FIXME{do it}. 
+The research question (section 3.5.3) is actually about notifying the answerers that their answers are already outdated, not notifying the users of the outdated code snippets. This notification to the answerer can be done by posting comments for that answer on Stack Overflow. For example, the answerer of the Stack Overflow question no.~10924648 posted a comment on his own answer saying that the answer is specifically for Spring 3.1. Moroever, another user posted a comment on the answer of the post no.~801935 that the code snippet is not of high quality and suggested an alternative in another post. We extended this discussion in Section 3.1.1 (RQ1). 
 
 \rcomment{
 Perhaps minor, but this issue really did not sit well with me, in the introduction, you say in RQ5 that you survey 607 participants, but later it turns out that only 201 responded. To me, this is somewhat misleading and does not sit well. I strongly encourage the authors to refactor such `marketing' statements.
@@ -434,19 +453,19 @@ We are grateful for the insightful comment. We selected the 2013 snapshot of Qua
 
 Regarding the age of cloned code on Stack Overflow, we did an analysis of clone ages as you suggested. We only chose the QS clone pairs since we could manually confirmed the direction of cloning. Moreover, we could searched for the date that the cloned version of the QS project appeared, which was not possible for UD, EX, BP, and IN clone pairs. 
 We calculated the clone ages by counting the number of month difference from the dates of each Qualitas project to the date the answers were posted on Stack Overflow.
-We drew a boxplot as you suggested and included the discussion of the statistics in RQ4. We found that the minimum, maximum, median, and average clone ages were 0, 64, 26.5 and 26 months respectively (also summarised in the table below).
+We drew a boxplot as you suggested and included the discussion of the statistics in RQ4. We found that the minimum, maximum, median, and average clone ages were 0, 64, 26.5 and 26 months respectively.  %(also summarised in the table below).
 
-\begin{table}[H]
-	\centering
-\begin{tabular}{lrrrrr}
-	\toprule
-	\multirow{2}{*}{Clone pattern} & \multirow{2}{*}{Amount} & \multicolumn{4}{c}{Age of clones (months)} \\ \cmidrule{3-6}
-	& & Min & Max & Avg. & Median \\
-	\midrule
-	QS & 153 & 0 & 64 & 26.5 & 26.0 \\
-	\bottomrule
-\end{tabular}
-\end{table}
+%\begin{table}[H]
+%	\centering
+%\begin{tabular}{lrrrrr}
+%	\toprule
+%	\multirow{2}{*}{Clone pattern} & \multirow{2}{*}{Amount} & \multicolumn{4}{c}{Age of clones (months)} \\ \cmidrule{3-6}
+%	& & Min & Max & Avg. & Median \\
+%	\midrule
+%	QS & 153 & 0 & 64 & 26.5 & 26.0 \\
+%	\bottomrule
+%\end{tabular}
+%\end{table}
 
 From the data, we observed that, on average, it took around 2 years for the clones from Qualitas projects to appear on Stack Overflow answers. Some of the clones appeared on Stack Overflow almost at the same time as the original, while the oldest clones took around 5 years.
 
