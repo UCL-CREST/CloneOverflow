@@ -252,11 +252,6 @@ code clones can lead to license violations, bug propagation, introduction of
 vulnerabilities, and re-use of outdated code. Unfortunately, online clones are
 difficult to locate and fix since the search space in online code corpora is
 larger and no longer confined to a local repository.
-Although this activity of online code cloning is well-known, there is only a few
-empirical studies on the topic~\cite{An2017,Abdalkareem2017,Baltes2017}, especially
-the on finding the origins of the clones.
-We tackle this challenge of establishing existence of online code clones and
-investigate how they occur in this study.
 
 To have a deeper insight on online code clones, we surveyed 201 high-reputation
 Stack Overflow answerers. The results of such a survey show that online code
@@ -267,7 +262,7 @@ solution. The code cloning activity on Stack Overflow is obviously beneficial
 considered the popularity of Stack Overflow and its influence on software
 development~\cite{Ponzanelli2013,Ponzanelli2014,Park2014}. On the other hand,
 there is also a downside caused by low quality, defective, and harmful code
-snippets that are reused without an awareness by millions of users.
+snippets that are reused without an awareness by millions of users~\cite{Zhang2018,Acar2016,Fischer2017}.
 
 One participant in our survey expresses his/her concerns about this:
 
@@ -285,18 +280,24 @@ One participant in our survey expresses his/her concerns about this:
 	toxic code snippets.''}
 \end{quote}
 
-Using the same analogy, in this study, we are interested in mining Stack
-Overflow posts, detecting online code clones, and analysing the clones to reveal
+Although this activity of online code cloning is well-known, there is only a few
+empirical studies on the topic~\cite{An2017,Abdalkareem2017,Baltes2017}, especially
+on finding the origins of the clones on Q\&A websites.
+In this study, we tackle this challenge of establishing existence of online code 
+clones on Stack Overflow, investigate how they occur, and study the potential
+effects to software reusing them.
+%Using the same analogy, in this study, we are interested in 
+Therefore, we mine Stack Overflow posts, detected online code clones, and analysed the clones to reveal
 ``toxic code snippets''.
 
-``Toxic code snippets mean code snippets that, after incorporating into software,
-the cost of paying back the technical debt exceeds the value it generates in the long run.'' 
+Toxic code snippets mean code snippets that, after incorporating into software,
+the cost of paying back the technical debt exceeds the value it generates in the long run.
 Stack Overflow code snippets
 cloned from open source software or online sources can become toxic when they
 are (1)~outdated, (2)~violating their original software
 license, (3) exhibiting code smells, or (4) having security vulnerabilities. 
-We chose to study toxic code snippets caused by outdated code and license-violating code snippets in
-this study as the two problems are still under explored compared to code smells~\cite{Tufano2015} or vulnerabilities~\cite{Acar2016,Fischer2017}.
+In this study, we focus on the first two forms of toxic code snippets, outdated code and license-violating code,
+as these two problems are still under explored compared to code smells~\cite{Tufano2015} and vulnerabilities~\cite{Acar2016,Fischer2017}.
 Outdated code snippets can be harmful since they are not up-to-date with their originals and may
 contain defects. Code snippets from open source projects usually fall under a
 specific software license, e.g.\ GNU General Public License (GPL). If they are
@@ -381,10 +382,11 @@ because the question and the answer of the two motivation examples have a short 
 at
 the time of writing this paper (October 3, 2017). Our calculation finds that
 there will be a new viewer of the first toxic snippet approximately every 5
-days compared to almost every day for the second one. A quick web search shows
-that the defective {\small{\texttt{humanReadableInt}}} method in the second
-example already appears in approximately 500 projects on GitHub. Considering the
-popularity of Stack Overflow, which has more than 50 million developers visiting
+days compared to almost every day for the second one. 
+%A quick web search shows
+%that the defective {\small{\texttt{humanReadableInt}}} method in the second
+%example already appears in approximately 500 projects on GitHub. 
+Considering the popularity of Stack Overflow, which has more than 50 million developers visiting
 each month\footnote{Data as of 21 August 2017 from:
 	\url{https://stackoverflow.com}}, one toxic code snippet on Stack Overflow can
 spread and grow to hundred or thousand copies within only a year or two.
@@ -416,13 +418,13 @@ answerers are aware of their outdated code snippets, 19\% of the participants
 rarely or never fix the code. 99\% of the answerers never include a software
 license in their snippets and 69\% never check for licensing conflicts.
 On the other hand, 66\% of the
-Stack Overflow visitors experienced a problem from reusing Stack Overflow code snippets. 
+Stack Overflow visitors experienced problems from reusing Stack Overflow code snippets, including outdated code. 
 They are generally not aware of the CC BY-SA 3.0 license, and more than
 half of them never check for license compatibility when reusing Stack Overflow
 code snippets.
 	
 	\item \textbf{A manual study of online code clones:} 
-	To confirm the results in the surveys, we used
+	To empirically confirm the findings from the surveys, we used
 	two clone detection tools to discover 2,289 similar code snippet pairs between
 	72,365 Java code snippets obtained from Stack Overflow's accepted answers and
 	111 Java open source projects from the curated Qualitas
@@ -430,7 +432,7 @@ code snippets.
 	classified all of them.
 	
 	\item \textbf{An investigation of toxic code snippets on Stack Overflow:} Our study shows that from
-	the 2,289 online clones, at least 330 have been copied from open source
+	the 2,289 online clones, at least 328 have been copied from open source
 	projects or external online sources to Stack Overflow, potentially violating
 	software licenses. For 153 of them, we found evidence that they have been copied
 	from a specific open source project. 100 of them we found to be outdated. %
@@ -454,9 +456,9 @@ research questions:
 		answerers aware of the outdated code and licensing conflicts when
 		they answer a question on Stack Overflow?} 
 	
-	\textit{2) How often are Stack Overflow
+	\textit{2) How often do Stack Overflow
 		visitors experience the outdated code and licensing conflicts when
-		they copy an answer from Stack Overflow?} 
+		they reuse code in an answer from Stack Overflow?} 
 	
 	We surveyed 201 high-reputation Stack Overflow answerers and 87 Stack Overflow visitors to study their
 	awareness of the two issues.
@@ -506,7 +508,7 @@ Kitchenham~\cite{Pfleeger2001,Kitchenham2002}. The survey was completely
 anonymous and the participants could decide to leave at any time. 
 We created two versions of the survey: \textbf{the answerer survey} and \textbf{the visitor survey}.
 The answerer survey targeted the developers who were experienced Stack Overflow users
-and were highly active in answering questions. On the other hand, the visitor survey
+and were highly active in answering questions. The visitor survey
 targeted the developers who searched for solutions and reused code from Stack Overflow answers.
 
 \textbf{The answerer survey:} the survey contained
@@ -538,13 +540,13 @@ we collected and analysed the responses.
 The survey consists of 16 questions: 9 Likert's
 scale questions, 3 yes/no questions, 2 multiple-choice questions, and 2
 open-ended questions. 
-The full survey can be found in our research note~\cite{Ragkhitwetsagul_RN2017}.
 The first four questions are mandatory while the other 12
 questions will be shown to the participants based on their previous answers. 
 The survey collects information about the participant's software development
 experience, the importance of Stack Overflow, reasons for reusing Stack Overflow
 snippets, problems from Stack Overflow snippets, licensing of code on Stack
 Overflow, and additional feedback. 
+The full survey can be found in our research note~\cite{Ragkhitwetsagul_RN2017}.
 We adopted non-probability convenient sampling to invite participants for this
 survey. Participation in the survey requires experience of visiting Stack
 Overflow for solving programming tasks at least once. The participants were
@@ -552,16 +554,15 @@ invited to take the survey via five channels: social media post (Facebook),
 \textsf{blognone.com}, a popular technology news and media community in Thailand, the University of Molise in Italy where the third author
 works, \texttt{comp.lang.java.programmer} group and the Software Engineering
 Facebook page. 
-The survey was open for participation for 2 months, 
-from 25 July 2017 to 25 September 2017, before we collected and analysed
-the responses.
+The survey was open for participation for 2 months 
+from 25 July 2017 to 25 September 2017.
 
 \subsection{Empirical Study of Online Code Clones}
 We support the motivation and the findings in the surveys by performing
 an empirical study of online code clones between Stack Overflow
 answers and 111 Java open source projects.
 We designed the study in 6 phases as depicted in \Cref{fig:exp_framework} where
-we build different data sets to answer RQ2 -- RQ5. 
+we build different data sets to answer RQ2 to RQ5. 
 
 \subsubsection{Phase 1: Clone Identification}
 
@@ -713,48 +714,69 @@ The two clone detectors complement each
 other by having Simian detecting literal copies of code snippets (type-1) and SourcererCC
 detecting clones with renaming and added/deleted statements (type-2, type-3). 
 
-Nevertheless, we have tried varying the minimum clone lines of 6, 10, and larger
-than 10 for the two clone detection tools. The minimum clone size of 10 lines is
-considered a standard setting for clone detection in large-scale data sets to
-avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and
-setter methods) in the analysis or the manual investigation
-phase~\cite{Sajnani2016}. Choosing this size threshold larger than 10 could
-possibly remove some non-trivial clones from the analysis, i.e.~create more
-false negatives. On the other hand, decreasing the threshold to be lower than 10
-lines will result in a larger number of clone candidate pairs to look at and a
-higher chance of getting false positives. It is known that lowering the number
-of minimum clone lines is harmful to precision. Moreover, the large number of
-clone pairs will hinders the full manual validation of the clones and force us
-to rely on sampling of clone pairs. We performed an analysis to confirm this. We
-started by running the tools with minimum clone size of 10 lines and performing
-the manual clone confirmation. Then, we compared the number of true clone pairs
-detected if we increase or decrease the size.
-
-\begin{figure}[H] \centering
-	\includegraphics[width=0.8\linewidth]{boxplot_clone_size} 
-	\caption{Size of online code clones.} 
-	\label{fig:boxplotclonesize}
-\end{figure}
-
-Regarding increasing the minimum clone size to more than 10 lines (e.g. 15
-lines), the result is as shown in
-\Cref{fig:boxplotclonesize}. We found that the distribution of true clones; QS,
-SQ, UD, EX, BP, IN; mainly cover the size from about 10 to 20 lines. Increasing
-the threshold to be higher than 10 would remove some of the trivial BP and IN
-clone pairs which are not interesting for this study. However, it will also
-remove some of the true non-trivial clone pairs in QS, SQ, UD, and EX.
-
-Regarding decreasing the minimum clone size to be less than 10 lines, we reran
-the two clone detection tools again using a minimum
-clone size of 6 lines, another well-accepted minimum clone size in clone
+Nevertheless, we investigated a crucial parameter setting for clone detection: the minimum clone size threshold.
+Choosing a large clone size threshold can reduce the number of false clones reported,
+while at the same time creates some false negatives, i.e.~missing some of the true clones.
+On the other hand, setting a low threshold results in a larger number of clone
+candidate pairs to look at and a higher chance of getting false positives.
+It is known that lowering the number of minimum clone lines is harmful to precision.
+Moreover, the large number of clone pairs will hinders the full manual
+validation of the clones and one needs to rely on sampling of clone pairs.
+We started our investigation by using a minimum clone
+size of 6 lines, a well-accepted minimum clone size in clone
 benchmark~\cite{Bellon2007}. Simian reported 67,172 clone candidate pairs and
-SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs. 
-With this large amount of clone
-candidate pairs, it is not feasible to manually confirm all of the clones and we
-must rely on sampling. This will result in weaker findings and
-weaker conclusion. Thus, we decide pick the minimum clone size of 10 lines
-to keep the balance between the number of non-trivial clone pairs and the
-feasibility of manual clone investigation.
+SourcererCC reported 7,752 clone candidate pairs. We randomly sampled 382 pairs
+from the merged set of 74,148 clone pairs and the first author investigated them. This was
+a statistical significant sample with a 95\% confidence level and $\pm 5\%$ confidence interval.
+We found 322 trivial clone pairs including \texttt{equals}, \texttt{hashCode}, or getters/setters;
+26 non clone pairs, and 34 non-trivial clone pairs.
+We then increased the minimum clone size to 10 lines, another well-established 
+minimum clone size for large-scale data sets~\cite{Sajnani2016}, and retrieved 721 clone pairs from Simian and
+1,678 clone pairs from SourcererCC. We randomly sampled and manually checked the same amount of 382 pairs
+from the merged set of 2,289 clone pairs.
+We found 251 trivial clone pairs, 40 non-clone pairs, and 91 non-trivial clone pairs.
+
+The findings from the two samples show that selecting the minimum of 6 lines generated
+a large number of clones (74,148 pairs) with more trivial clone pairs, which we were not interesting for this study, 
+and fewer non-trivial pairs compared to the minimum of 10 lines.
+%To put it another way, lowering the number of clone lines is harmful to precision.
+Moreover, the amount of 2,289 clone pairs using minimum of 10 clone lines 
+was feasible for manual investigation in the next phase.
+Increasing the minimum clone size further will result in a smaller clone subset
+but may also remove some of the true clone pairs (generating false negatives).
+Thus, we selected the minimum clone size of 10 lines for both Simian and SourcererCC.
+
+%The minimum clone size of 10 lines is
+%considered a standard setting for clone detection in large-scale data sets to
+%avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and
+%setter methods) in the analysis or the manual investigation phase~\cite{Sajnani2016}.  
+%We
+% performed an analysis to confirm this.
+%\begin{figure} 
+%	\centering
+%	\includegraphics[width=\linewidth]{boxplot_clone_size_combined} 
+%	\caption{Size of online code clones.} 
+%	\label{fig:boxplotclonesize}
+%\end{figure}
+
+%The result is as shown in
+%\Cref{fig:boxplotclonesize}. We found that the distribution of the manually
+%confirmed true clones 
+%mainly cover the size from about 10 to 20 lines. Increasing
+%the threshold to be higher than 10 would remove some of the
+%true clone pairs.
+%
+%Regarding decreasing the minimum clone size to be less than 10 lines, we reran
+%the two clone detection tools again using a minimum
+%clone size of 6 lines, another well-accepted minimum clone size in clone
+%benchmark~\cite{Bellon2007}. Simian reported 67,172 clone candidate pairs and
+%SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs. 
+%With this large amount of clone
+%candidate pairs, it is not feasible to manually confirm all of the clones and we
+%must rely on sampling. This will result in weaker findings and
+%weaker conclusion. Thus, we decide pick the minimum clone size of 10 lines
+%to keep the balance between the number of non-trivial clone pairs and the
+%feasibility of manual clone investigation.
 %We made sure that they 
 %detected only non-trivial clones by increasing the minimum clone size to ten
 %lines.
@@ -920,7 +942,7 @@ validation, the results from the two investigators were compared.
 %and 607 (26\%)
 %conflicts were discussed and resolved. 
 There were 338 (15\%) conflicts between 
-true and false clones (QS, SQ, EX, UD, BP, IN vs.~AC).
+true and false clones (QS, SQ, EX, UD, BP, IN vs.~NC).
 The investigators looked at each conflicting pair together and
 discussed until a consensus was made. 
 Another 270 pairs (12\%) were
@@ -959,7 +981,7 @@ copying while the other could not. Thus, resolving the conflicts lead to a bette
 		
 		IN & Inheritance, interface implementation  \\ 
 		
-		AC & Accidental similarity, false clones \\ 
+		NC & Not clones \\ 
 		\bottomrule 
 	\end{tabular}  %
 	%}
@@ -988,7 +1010,7 @@ Kapser's patterns are too broad for our study and a more suitable and
 fine-grained classification scheme is needed. After a preliminary study, we
 adopted one of Kapser's cloning patterns, \emph{boiler-plate code}, and defined
 six new cloning patterns. The seven patterns include QS, SQ, EX, UD, BP, IN, and
-AC as presented in \Cref{tab:classification_scheme}. Pattern QS
+NC as presented in \Cref{tab:classification_scheme}. Pattern QS
 (\textbf{Q}ualitas to \textbf{S}tack Overflow) represents clones that have
 evidence of being copied from a Qualitas project to Stack Overflow. The evidence
 of copying can be found in comments in the Qualitas source code or in the Stack
@@ -1012,8 +1034,8 @@ definition in Kapser's~\cite{Kapser2008}.
 IN (\textbf{In}heritance/Interface) is cloning by inheritance of the
 same super class or implementation of the same interface. These two
 activities usually result in similar overriding methods. The last
-pattern, AC (\textbf{A}ccidental \textbf{C}lones), represents
-accidentally similar clone pairs. These are mainly false positive
+pattern, NC (\textbf{N}ot \textbf{C}lones), represents
+false clone pairs. These are mainly false positive
 clones from the clone detectors such as similar
 {\small\texttt{try-catch}} statements.
 
@@ -1046,11 +1068,11 @@ The classification of the filtered online clone pairs followed the steps
 depicted in \Cref{fig:classification_process}. First, we look at a pair of clone
 fragments to see their similarity. If they are accidentally similar clones after
 code normalisation or false positive clones from the clone detection tools, we
-classify the pair into \textbf{AC}. If the two fragments are boiler-plate code,
+classify the pair into \textbf{NC}. If the two fragments are boiler-plate code,
 the pair is classified into \textbf{BP}. If they implement the same interface or
 inherited the same class and share similar overriding methods, the pair is
 classified into \textbf{IN}. If the pair is not \textbf{BP}, \textbf{IN}, or
-\textbf{AC}, we start a detailed investigation. We check the corresponding Stack
+\textbf{NC}, we start a detailed investigation. We check the corresponding Stack
 Overflow post, read through it carefully and look for any evidence mentioning
 code copying. If evidence of copying has been found from a Qualitas project, the
 pair is classified in \textbf{QS}. In several occasions, we used extra
@@ -1265,7 +1287,7 @@ We found that although the answerer have been notified of outdated code in their
 answers, for 51.5\% of them such notifications occur very rarely (only 1--20\%
 of the answers). Only 3 participants reported that they were notified in more
 than 60\% of their answers. This notification to the answerer can be done by
-posting comments for that answer on Stack Overflow. For example, the answerer of
+posting comments below the answer on Stack Overflow. For example, the answerer of
 the Stack Overflow question no.~10924648 posted a comment on his own answer
 saying that the answer is specifically for Spring 3.1. Moroever, another user
 posted a comment on the answer of the post no.~801935 that the code snippet is
@@ -1456,9 +1478,9 @@ can be found easily from search engine, solve similar problems to their
 problems, provide helpful context, and offer voting and accepted answers. 
 
 \vspace{0.25cm}
-\textit{Do Stack Overflow
-	visitors experience outdated code and check for licensing conflicts when
-	they copy and reuse answer from Stack Overflow?}
+\textit{How often do Stack Overflow
+	visitors experience the outdated code and licensing conflicts when
+	they reuse code in an answer from Stack Overflow?}
 \vspace{0.25cm}
 
 \begin{table}
@@ -1600,7 +1622,7 @@ lines of the cloned Stack Overflow snippet).
 \end{table}
 
 Lastly, during the manual investigation of 2,289 clone pairs, we identified 226 pairs
-as being accidental clones (AC), i.e.~false positives. After removing
+as being accidental clones (NC), i.e.~false positives. After removing
 them, the set still contains 2,076 true positive clone pairs between 443 Stack
 Overflow snippets and 59 Qualitas projects. The average cloned ratio for the
 true positive clone pairs is 53.89\%.
@@ -1633,7 +1655,7 @@ and explained in the following.
 	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{lrrrrrrrr}
 		\toprule
-		Set & QS & SQ & EX & UD & BP & IN & AC & Total \\ 
+		Set & QS & SQ & EX & UD & BP & IN & NC & Total \\ 
 		\midrule
 		Before consolidation & 247 & 1 & 197 & 107 & 1,495 & 16 & 226 & 2,289 \\
 		After consolidation & 153 & 1 & 109 & 65 & 216 & 9 & 53 & 606 \\
@@ -1865,10 +1887,10 @@ custom data type which implements {\small\texttt{UserType}}. They share similar
 {\small\texttt{isMutable}}, {\small\texttt{assemble}},
 {\small\texttt{disassemble}}, and {\small\texttt{replace}}.
 
-\textbf{AC: Accidental Clones.} There were 226 accidental clone
+\textbf{NC: Not Clones.} There were 226 non-clone
 pairs, 53 after consolidation. Mainly, they are false positive clones caused by code
 normalisation and false type-3 clones from SourcererCC. 
-Examples of the AC clone instances include {\small\texttt{finally}} or
+Examples of the NC clone instances include {\small\texttt{finally}} or
 {\small\texttt{try-catch}} clauses that were accidentally the same due
 to their very small sizes, and similar {\small\texttt{switch-case}}
 statements.
@@ -2310,7 +2332,7 @@ This study empirically show from the surveys and the clone detection experiment 
 online code clones occur on Stack Overflow and the clones may become toxic due
 to outdated code and software license incompatibility. The findings lead to the
 insight about toxicity of online code clones and two actionable items
-we are proposing to the Stack Overflow community.
+we are proposing to the software engineering research and the Stack Overflow community.
 
 \subsubsection{Toxicity of outdated and license-incompatible clones}
 We found only a small amount of toxic outdated code snippets in open source projects on
@@ -2334,8 +2356,8 @@ Stack Overflow answerers participated in our survey believe that most of the
 code snippets on Stack Overflow are too small to claim for copyright and they
 fall under fair-use, there is still a risk due to different legal system in each
 country. For example, Germany legal system does not have a concept of fair use
-or the number of minimum lines of code to be consider trivial, i.e.~de minimis,
-is also different from case to case or from country to country.
+or the number of minimum lines of code to be consider copying, i.e.~de minimis,
+is also differently interpreted from case to case or from country to country.
 
 \subsubsection{Actionable Items}
 Our study discovers links from code in open source projects to code snippets on
