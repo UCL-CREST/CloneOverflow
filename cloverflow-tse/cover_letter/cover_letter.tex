@@ -377,24 +377,49 @@ We included this discussion in RQ4.
 \rcomment{
 	\textbf{Arbitrary use of parameter:} On page 4, you use snippets of at least 10 lines. Why 10, why not 15? Given that this is a journal paper, you have the space to examine the impact of your parameters (at least in brief) on your results. What I would like the authors to do is to actually examine the impact of such parameters on your work in a discussion section.}
 
-That is a fair point. The reason we chose the clone size of at least 10 lines is as follows. 
+That is a fair point. The reason we chose the clone size of at least 10 lines is because it is considered a standard setting for clone detection in large-scale data sets to avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and setter methods) in the analysis or the manual investigation phase~\citep{Sajnani2016}. 
 
-The minimum clone size of 10 lines is considered a standard setting for clone detection in large-scale data sets to avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and setter methods) in the analysis or the manual investigation phase~\citep{Sajnani2016}. 
-Choosing this size threshold larger than 10 could possibly remove some non-trivial clones from the analysis, i.e.~create more false negatives.
-On the other hand, decreasing the threshold to be lower than 10 lines will result in a larger number of clone candidate pairs to look at and a higher chance of getting false positives. Moreover, the large number of clone pairs will hinders the full manual validation of the clones and force us to rely on sampling of clone pairs. We performed a small analysis to confirm this.
+%Choosing this size threshold larger than 10 could possibly remove some non-trivial clones from the analysis, i.e.~create more false negatives.
+%On the other hand, decreasing the threshold to be lower than 10 lines will result in a larger number of clone candidate pairs to look at and a higher chance of getting false positives. Moreover, the large number of clone pairs will hinders the full manual validation of the clones and force us to rely on sampling of clone pairs. We performed a small analysis to confirm this.
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.5\linewidth]{../boxplot_clone_size}
+%	\caption{Size of online code clones.}
+%	\label{fig:boxplotclonesize}
+%\end{figure}
+%
+%Regarding increasing the minimum clone size to more than 10 lines (e.g. 15 lines), we added an analysis of the clone size as shown in Figure \ref{fig:boxplotclonesize}. We found that the distribution of true clones; QS, SQ, UD, EX, BP, IN; mainly cover the size from about 10 to 20 lines. Increasing the threshold to be higher than 10 would remove some of the trivial BP and IN clone pairs which are not interesting for this study. However, it will also remove some of the true non-trivial clone pairs in QS, SQ, UD, and EX.
+%
+%Regarding decreasing the minimum clone size to be less than 10 lines, we reran the two clone detection tools (Simian and SourcererCC) again using a minimum clone size of 6 lines, another well-accepted minimum clone size in clone benchmark~\citep{Bellon2007}. Simian reported 67,172 clone candidate pairs and SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs using Bellon's ok-match threshold $t=0.5$. With this large amount of clone candidate pairs, it is not feasible to manually confirm all of the clones and we must rely on sampling. Moreover, it is known that lowering the number of minimum clone lines is harmful to precision. This will result in weaker findings and weaker conclusion. Thus, we decide to retain the minimum clone size of 10 lines to keep the balance between the number of non-trivial clone pairs and the feasibility of manual clone investigation.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\linewidth]{../boxplot_clone_size}
-	\caption{Size of online code clones.}
-	\label{fig:boxplotclonesize}
-\end{figure}
+To measure the impact of this minimum clone size threshold on the clone results, 
+we performed an investigation of three different threshold values: six, ten, and fifteen lines. 
+We started the investigation by using a minimum clone size of six lines, a
+well-accepted minimum clone size in clone benchmark~\cite{Bellon2007}. Simian
+reported 67,172 clone candidate pairs and SourcererCC reported 7,752 clone
+candidate pairs. We randomly sampled 382 pairs from the two sets and the first
+author investigated them. This was a statistical significant sample with a 95\%
+confidence level and $\pm 5\%$ confidence interval. We found 26 non-clone pairs;
+322 trivial clone pairs including \texttt{equals}, \texttt{hashCode}, or
+getters/setters; and 34 non-trivial clone pairs. Next, we increased the minimum
+clone size to ten lines, another well-established minimum clone size for
+large-scale data sets~\cite{Sajnani2016}, and retrieved 721 clone pairs from
+Simian and 1,678 clone pairs from SourcererCC. We randomly sampled and manually
+checked the same amount of 382 pairs and found 27 non-clone pairs, 253 trivial
+clone pairs and 102 non-trivial clone pairs. Then, we increased the minimum
+clone size further to fifteen lines and retrieved 196 clone pairs from Simian
+and 1,230 clone pairs from SourcererCC. The manual check of the 382 randomly
+sampled pairs reveal zero non-clone pairs, 298 trivial clone pairs and 83
+non-trivial clone pairs.
 
-Regarding increasing the minimum clone size to more than 10 lines (e.g. 15 lines), we added an analysis of the clone size as shown in Figure \ref{fig:boxplotclonesize}. We found that the distribution of true clones; QS, SQ, UD, EX, BP, IN; mainly cover the size from about 10 to 20 lines. Increasing the threshold to be higher than 10 would remove some of the trivial BP and IN clone pairs which are not interesting for this study. However, it will also remove some of the true non-trivial clone pairs in QS, SQ, UD, and EX.
+The findings from the three samples show that selecting the minimum of ten lines
+was a sweet spot and was preferred over six and fifteen lines. First, it generated 
+a fewer number of clone pairs than using six lines, which made the manual clone
+investigation feasible. Second, it preserved the highest number of non-trivial clone
+pairs.
 
-Regarding decreasing the minimum clone size to be less than 10 lines, we reran the two clone detection tools (Simian and SourcererCC) again using a minimum clone size of 6 lines, another well-accepted minimum clone size in clone benchmark~\citep{Bellon2007}. Simian reported 67,172 clone candidate pairs and SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs using Bellon's ok-match threshold $t=0.5$. With this large amount of clone candidate pairs, it is not feasible to manually confirm all of the clones and we must rely on sampling. Moreover, it is known that lowering the number of minimum clone lines is harmful to precision. This will result in weaker findings and weaker conclusion. Thus, we decide to retain the minimum clone size of 10 lines to keep the balance between the number of non-trivial clone pairs and the feasibility of manual clone investigation.
-
-We have modified the paper to include this discussion in RQ2.
+We have modified the paper to include this discussion at the end of Section 2.2.1.
 
 \rcomment{
  A similar concern exists on page 5, where t=0.7 is chosen. Sure, it worked in another context, but did they show that a 0.7 threshold is OK to use for SO snippets? I think you can also vary this t value and examine its impact.

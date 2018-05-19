@@ -714,38 +714,48 @@ The two clone detectors complement each
 other by having Simian detecting literal copies of code snippets (type-1) and SourcererCC
 detecting clones with renaming and added/deleted statements (type-2, type-3). 
 
-Nevertheless, we investigated a crucial parameter setting for clone detection: the minimum clone size threshold.
-Choosing a large clone size threshold can reduce the number of false clones reported,
-while at the same time creates some false negatives, i.e.~missing some of the true clones.
-On the other hand, setting a low threshold results in a larger number of clone
-candidate pairs to look at and a higher chance of getting false positives.
-It is known that lowering the number of minimum clone lines is harmful to precision.
-Moreover, the large number of clone pairs will hinders the full manual
-validation of the clones and one needs to rely on sampling of clone pairs.
-We started our investigation by using a minimum clone
-size of 6 lines, a well-accepted minimum clone size in clone
-benchmark~\cite{Bellon2007}. Simian reported 67,172 clone candidate pairs and
-SourcererCC reported 7,752 clone candidate pairs. We randomly sampled 382 pairs
-from the merged set of 74,148 clone pairs and the first author investigated them. This was
-a statistical significant sample with a 95\% confidence level and $\pm 5\%$ confidence interval.
-We found 322 trivial clone pairs including \texttt{equals}, \texttt{hashCode}, or getters/setters;
-26 non clone pairs, and 34 non-trivial clone pairs.
-We then increased the minimum clone size to 10 lines, another well-established 
-minimum clone size for large-scale data sets~\cite{Sajnani2016}, and retrieved 721 clone pairs from Simian and
-1,678 clone pairs from SourcererCC. We randomly sampled and manually checked the same amount of 382 pairs
-from the merged set of 2,289 clone pairs.
-We found 251 trivial clone pairs, 40 non-clone pairs, and 91 non-trivial clone pairs.
+Nevertheless, we investigated a crucial parameter setting for clone detection: 
+the minimum clone size threshold.
+Choosing a large threshold value can reduce the number of trivial clones
+(e.g. \texttt{equals}, \texttt{hashCode}, or getter and setter methods) and
+false clones in the analysis or the manual investigation
+phase~\cite{Sajnani2016}, while at the same time may create some false negatives,
+i.e.~increasing precision. On the other hand, setting a low threshold
+results in a larger number of clone candidate pairs to look at, i.e.~increasing recall, 
+and a higher chance of getting false positives. 
+%It is known that lowering the threshold value 
+%is harmful to precision. 
+Moreover, the large number of clone
+pairs will hinders the full manual validation of the clones.
+% and one needs to
+%rely on sampling of clone pairs. 
+Three threshold values, six, ten, and fifteen lines, were chosen for our
+investigation. We started our investigation by using a threshold value of six
+lines, a well-accepted minimum clone size in clone benchmark~\cite{Bellon2007}.
+Simian reported 67,172 clone candidate pairs and SourcererCC reported 7,752
+clone candidate pairs. We randomly sampled 382 pairs from the two sets for
+manual check. This sample amount was a statistical significant sample with a
+95\% confidence level and $\pm 5\%$ confidence interval. The first author
+investigated the sampled clone pairs and classified them into three groups:
+non-clones, trivial clones (\texttt{equals}, \texttt{hashCode}, or getter and
+setter methods), and non-trivial clones. The manual check found 26 non-clone
+pairs; 322 trivial clone pairs and 34 non-trivial clone pairs. Next, we increased the
+threshold to ten lines, another well-established minimum clone size for
+large-scale data sets~\cite{Sajnani2016}, and retrieved 721 clone pairs from
+Simian and 1,678 clone pairs from SourcererCC. We randomly sampled and manually
+checked the same amount of 382 pairs and found 27 non-clone pairs, 253 trivial
+clone pairs and 102 non-trivial clone pairs. Then, we increased the threshold
+further to fifteen lines and retrieved 196 clone pairs from Simian and 1,230
+clone pairs from SourcererCC. The manual check of the 382 randomly sampled pairs
+reveal zero non-clone pairs, 298 trivial clone pairs and 83 non-trivial clone
+pairs.
 
-The findings from the two samples show that selecting the minimum of 6 lines generated
-a large number of clones (74,148 pairs) with more trivial clone pairs, which we were not interesting for this study, 
-and fewer non-trivial pairs compared to the minimum of 10 lines.
-%To put it another way, lowering the number of clone lines is harmful to precision.
-Moreover, the amount of 2,289 clone pairs using minimum of 10 clone lines 
-was feasible for manual investigation in the next phase.
-Increasing the minimum clone size further will result in a smaller clone subset
-but may also remove some of the true clone pairs (generating false negatives).
-Thus, we selected the minimum clone size of 10 lines for both Simian and SourcererCC.
-
+The findings from the three threshold values show that selecting the minimum clone size 
+of ten lines was preferred over six and fifteen lines. First, it generated 
+a fewer number of clone pairs than using six lines, which made the manual clone
+investigation feasible. Second, it preserved the highest number of non-trivial clone
+pairs.
+%
 %The minimum clone size of 10 lines is
 %considered a standard setting for clone detection in large-scale data sets to
 %avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and
@@ -758,7 +768,7 @@ Thus, we selected the minimum clone size of 10 lines for both Simian and Sourcer
 %	\caption{Size of online code clones.} 
 %	\label{fig:boxplotclonesize}
 %\end{figure}
-
+%
 %The result is as shown in
 %\Cref{fig:boxplotclonesize}. We found that the distribution of the manually
 %confirmed true clones 
@@ -788,7 +798,7 @@ Thus, we selected the minimum clone size of 10 lines for both Simian and Sourcer
 %configuration ($S_D$), Simian with the EvaClone configuration ($S_E$), 
 %NiCad with the default configuration ($N_D$)
 %and NiCad with the EvaClone configuration ($N_E$).
-
+%
 %We encountered NiCad failures with a few Qualitas projects.~$N_D$
 %could not detect clones in \textsf{hibernate} due to clustering
 %errors. $N_E$ generated errors during code normalisation for 5
@@ -797,12 +807,12 @@ Thus, we selected the minimum clone size of 10 lines for both Simian and Sourcer
 %contacted the creator of NiCad regarding the issues. They identified
 %the issues as problems in the TXL grammar and as problems of long file
 %paths, and will be fixed in the next NiCad releases.
-
-The number of online clone pairs reported % by running Simian and NiCad
+%
+The number of online clone pairs reported using the minimum clone size of 10 lines
 are presented in \Cref{tab:orig_stats}. Simian reports 721 clone
 pairs while SourcererCC reports 1,678 clone pairs. 
-SourcererCC reports more clones due to its capability of detecting
-clones of type-1 to type-3 while Simian only detects type-1 clones.
+%SourcererCC reports more clones due to its capability of detecting
+%clones of type-1 to type-3 while Simian only detects type-1 clones.
 The average clone size reported by Simian is
 16.61 lines which is slightly smaller than SourcererCC (17.86 lines).
 
@@ -901,13 +911,13 @@ subset of $t=0.5$. However, since there is a fewer true positive pairs reported
 same clones in the final merged clone set.
 With this analysis, we can see that setting the threshold $t$ to 0.1 is too
 relaxed and results in having false positive ok-match pairs, while setting the
-$t$ to 0.7 or 0.9 is too strict and generates some false negative pairs. Thus,
+$t$ to 0.7 or 0.9 is too strict. Thus,
 we decided to select the $t$ value at 0.5. 
 
 Using the ok-match criterion with the threshold \textit{t} of 0.5
 similar to Bellon's study~\cite{Bellon2007}, we merge 721 clone pairs from
 Simian and 1,678 clone pairs from SourcererCC into a single set of 2,289 online
-clone pairs. There are only 110 common clone pairs between the two clone sets 
+clone pairs. There are 110 common clone pairs between the two clone sets 
 as depicted in~\Cref{fig:clonemerging}.  The low number of common
 clone pairs is due to SourcererCC reporting clones with method
 boundaries while Simian is purely line-based.
@@ -921,7 +931,7 @@ boundaries while Simian is purely line-based.
 
 \subsubsection{Phase 3-4: Validation and Classification}
 We used the 2,289 merged clone pairs for
-manual validation and classification.
+manual validation and online clone classification.
 The validation and classification of the pairs was done at the same time. 
 The clone validation process (phase 3 in \Cref{fig:exp_framework}) involves checking 
 if a clone pair is a true positive or a false positive. 
@@ -1249,7 +1259,7 @@ participants who frequently, occasionally, and rarely copied code snippets from
 open source projects.
 
 \vspace{0.25cm}
-\textit{How often are Stack Overflow
+\textit{RQ1.1 How often are Stack Overflow
 	answerers aware of the outdated code and 
 	licensing conflicts when
 	they answer a question on Stack Overflow?} 
@@ -1289,9 +1299,17 @@ of the answers). Only 3 participants reported that they were notified in more
 than 60\% of their answers. This notification to the answerer can be done by
 posting comments below the answer on Stack Overflow. For example, the answerer of
 the Stack Overflow question no.~10924648 posted a comment on his own answer
-saying that the answer is specifically for Spring 3.1. Moroever, another user
+saying that the answer is specifically for Spring 3.1 and another user
 posted a comment on the answer of the post no.~801935 that the code snippet is
 not of high quality and suggested an alternative in another post.
+The low percentage of outdated code notifications
+reflect the experience of high reputation answerers who accumulate the reputation for a
+long time. Due to the voting mechanism of Stack Overflow, high reputation users
+usually provide high quality answers to earn up votes from other users. They are
+careful when posting code snippets in the answer to avoid problems and, vice versa, 
+getting down votes. It would be interesting to compare the findings to
+Stack Overflow answerers who are newer and have lower reputation. However, we
+leave it to future work.
 
 \begin{table}
 	\centering
@@ -1320,16 +1338,9 @@ follow-up question \textit{``how frequently did you fix your outdated code on St
 (57.2\%) very frequently or frequently fix the outdated code snippets. However,
 there are 19.8\% of the answerers in both groups who rarely, very rarely, or never fix 
 their outdated code.
-
-The responses from the answerers support our findings of outdated online code
-clones in RQ3. The low percentage of outdated code notifications
-reflect the experience of high reputation answerers who accumulate the reputation for a
-long time. Due to the voting mechanism of Stack Overflow, high reputation users
-usually provide high quality answers to earn up votes from other users. They are
-careful when posting code snippets in the answer to avoid problems and, vice versa, 
-getting down votes. It would be interesting to compare the findings to
-Stack Overflow answerers who are newer and have lower reputation. However, we
-leave it to future work.
+%
+%The responses from the answerers support our findings of outdated online code
+%clones in RQ3. 
 
 %\vspace{0.25cm}
 %\textit{How often are Stack Overflow
@@ -1411,20 +1422,18 @@ the checking. Nonetheless, there are about 10.5\% of the answerers who very
 frequently or frequently check for licensing conflicts when they copy code
 snippets to Stack Overflow.
 
-Similar to outdated code, the responses from the answerers support our findings
-of licensing conflicts in online code clones in RQ4 and possibly explain why most of
-the clones copied from open source projects and external sources do not include
-their original software license.
+%Similar to outdated code, the responses from the answerers support our findings
+%of licensing conflicts in online code clones in RQ4 and possibly explain why most of
+%the clones copied from open source projects and external sources do not include
+%their original software license.
 
 \begin{boxquote}
-	To answer RQ 1.1, regarding outdated code, although most of the Stack Overflow answerers are aware that their code
-	can be outdated, 51.5\% of the answerers were very rarely notified and 35.5\% have never been notified of
-	outdated code in the answers. After being notified, 19.8\% of them rarely or never fix the outdated code.
-	
-	For licensing conflicts, 124 answerers out of 200 (62\%) are aware of Stack Overflow's
-	CC BY-SA 3.0 license applied to code snippets in questions and answers. However,
-	only 3 answerers explicitly include software license in their answers. Some 
-	answerers choose to include the license in their profile page instead. 69\% of the
+	To answer RQ 1.1, although most of the Stack Overflow answerers are aware that their code
+	can be outdated, half of the answerers were very rarely notified of
+	outdated code in the answers. After being notified, some of them rarely or never fix the outdated code.
+	More than half of the answerers are aware of Stack Overflow's
+	CC BY-SA 3.0 license. Only 3 answerers explicitly include software license in their answers
+	while some of them choose to include the license in their profile page instead. More than half of the
 	answerers never check for licensing conflicts between their copied code snippets
 	and Stack Overflow's CC BY-SA 3.0.
 \end{boxquote}
@@ -1475,10 +1484,10 @@ Developers rely on Stack Overflow answers because they are easy to search for on
 the web. Moreover, 64\% of the participants reuse code snippets from Stack
 Overflow at least once a week. They copy code from Stack Overflow because they
 can be found easily from search engine, solve similar problems to their
-problems, provide helpful context, and offer voting and accepted answers. 
+problems, provide helpful context, and offer voting mechanism and accepted answers. 
 
 \vspace{0.25cm}
-\textit{How often do Stack Overflow
+\textit{RQ1.2 How often do Stack Overflow
 	visitors experience the outdated code and licensing conflicts when
 	they reuse code in an answer from Stack Overflow?}
 \vspace{0.25cm}
@@ -1561,28 +1570,30 @@ the Stack Overflow posts they copied the code snippets from.
 As shown in \Cref{tab:visitor_survey_license_check}, we found that 66\%
 of the visitors never check for software licensing conflicts between Stack
 Overflow code snippets and their projects. Interestingly, 9\% of the
-participants encountered legal issues. Unfortunately, due to the anonymity of
+participants encountered legal issues. Due to the anonymity of
 the survey, we could not investigate further regarding the legal issues that the
 participants faced from using Stack Overflow code snippets.
-
-The visitors survey confirms the findings from the previous studies that Stack
-Overflow code snippets can be problematic~\cite{Zhang2018,Acar2016,An2017,Fischer2017}. Sixty-six
-percent of the visitors experienced a problem from reusing Stack Overflow code
-snippets ranging from incorrect solutions, outdated solutions, mismatched
-solutions, to buggy code. Although they are aware of the problems, half of them
-(56\%) never reports back to the Stack Overflow discussions. On the other hand,
-the visitors rarely give attributions to Stack Overflow when they reuse code
-snippets from the website, similar to the findings reported
-by~\cite{Baltes2017}. The visitors are generally not aware of the CC BY-SA 3.0
-license, and more than half of them never check for license compatibility when
-reusing Stack Overflow code snippets. 
-Sixty-nine Stack Overflow visitors (79\%) who adopted code from Stack Overflow never 
-check if the code snippet originated from a different source (e.g. an open source project) 
-and if they had an incompatible license to their projects.
-Moreover, we also found that 9\% of the participants
-encountered legal issues by copying code from Stack Overflow. To the best of our
+To the best of our
 knowledge, a study of legal problems from reusing Stack Overflow code snippets
 has never been done before and will be our future work.
+
+%The visitors survey confirms the findings from the previous studies that Stack
+%Overflow code snippets can be problematic~\cite{Zhang2018,Acar2016,An2017,Fischer2017}. 
+%Sixty-six
+%percent of the visitors experienced a problem from reusing Stack Overflow code
+%snippets ranging from incorrect solutions, outdated solutions, mismatched
+%solutions, to buggy code. Although they are aware of the problems, half of them
+%(56\%) never reports back to the Stack Overflow discussions. On the other hand,
+%the visitors rarely give attributions to Stack Overflow when they reuse code
+%snippets from the website, similar to the findings reported
+%by~\cite{Baltes2017}. The visitors are generally not aware of the CC BY-SA 3.0
+%license, and more than half of them never check for license compatibility when
+%reusing Stack Overflow code snippets. 
+%Sixty-nine Stack Overflow visitors (79\%) who adopted code from Stack Overflow never 
+%check if the code snippet originated from a different source (e.g. an open source project) 
+%and if they had an incompatible license to their projects.
+%Moreover, we also found that 9\% of the participants
+%encountered legal issues by copying code from Stack Overflow.
 
 \begin{boxquote}
 	To answer RQ 1.2, Stack Overflow visitors experienced several issues from Stack
@@ -1602,7 +1613,7 @@ presented in~\Cref{tab:snippets}. Simian and SourcererCC
 reported clones in 460 snippets, approximately 0.6\% of the
 72,365 Stack Overflow snippets, associated with 59 Qualitas
 projects. For the cloned Stack Overflow snippets, the
-average ratio of cloned code is 53.10\% (i.e.\ the number of cloned
+average ratio of cloned code is 53.28\% (i.e.\ the number of cloned
 lines of the cloned Stack Overflow snippet).
 
 \begin{table}
@@ -1623,12 +1634,12 @@ lines of the cloned Stack Overflow snippet).
 
 Lastly, during the manual investigation of 2,289 clone pairs, we identified 226 pairs
 as being accidental clones (NC), i.e.~false positives. After removing
-them, the set still contains 2,076 true positive clone pairs between 443 Stack
+them, the set still contains 2,063 true positive clone pairs between 443 Stack
 Overflow snippets and 59 Qualitas projects. The average cloned ratio for the
-true positive clone pairs is 53.89\%.
+true positive clone pairs is 54.09\%.
 
 \begin{boxquote}
-	To answer RQ2, we found 2,076 manually confirmed clone pairs between 443 Stack Overflow code snippets
+	To answer RQ2, we found 2,063 manually confirmed clone pairs between 443 Stack Overflow code snippets
 	and 59 Qualitas proejcts. 
 	%After the manual confirmation, 2,076 pairs as true positives, i.e.~
 	%they are manually confirmed as clones, which 
@@ -1682,16 +1693,16 @@ and explained in the following.
 %	\end{tabular} 
 %\end{table}
 
-\textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 248 online clone
+\textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 247 online clone
 pairs with evidence of cloning from Qualitas projects to Stack Overflow.
 However, we observed that, in some cases, a cloned code snippet on Stack
 Overflow matched with more than one code snippet in Qualitas projects because of
 code cloning inside Qualitas projects themselves. To avoid double counting of
 such online clones, we consolidated multiple clone pairs having the same Stack
 Overflow snippet, starting line, and ending line into a single clone pair. We
-finally obtained 154 QS pairs (\Cref{tab:classification_good_o}) having unique Stack Overflow code snippets and
+finally obtained 153 QS pairs (\Cref{tab:classification_good_o}) having unique Stack Overflow code snippets and
 associated with 23 Qualitas projects listed in \Cref{tab:qs_qualitas_projects}.
-The most cloned project is \textsf{hibernate} with 24
+The most cloned project is \textsf{hibernate} with 23
 clone pairs, followed by \textsf{eclipse} (21 pairs), \textsf{jung2} (19 pairs),
 \textsf{spring} (17 pairs), and \textsf{jfreechart} (13 pairs). The clones are
 used as examples and are very similar to their original Qualitas code with
@@ -1875,7 +1886,7 @@ a free stock market software, and \textsf{compiere}, a customer
 relationship management (CRM) system.
 
 \textbf{BP: Boiler-Plate.} There were a large amount of boiler-plate clone pairs
-found in this study. We observed 1,505 such clone pairs and 217 after
+found in this study. We observed 1,495 such clone pairs and 216 after
 consolidation. The BP clone pairs account for 65\% of all clone pairs we
 classified. The majority of them are {\small{\texttt{equals()}}} methods.
 
@@ -1896,14 +1907,14 @@ to their very small sizes, and similar {\small\texttt{switch-case}}
 statements.
 
 \begin{boxquote}
-To answer RQ3, we found 154 pairs with
+To answer RQ3, we found 153 pairs with
 strong evidences to be cloned from 23 Qualitas projects to Stack Overflow, 1 pair
 was cloned from Stack Overflow to Qualitas, and
-111 pairs were found to be cloned to Stack Overflow from external
+109 pairs were found to be cloned to Stack Overflow from external
 sources. However, the largest amount of the clone pairs
 between Stack Overflow and Qualitas projects are \linebreak boiler-plate code
-(217), followed by 65 clone pairs with no evidence that the code has actually been copied,
-and 16 pairs of clones due to implementing the same interface or inheriting the same class.
+(216), followed by 65 clone pairs with no evidence that the code has actually been copied,
+and 9 pairs of clones due to implementing the same interface or inheriting the same class.
 \end{boxquote}
 
 \subsection{RQ4: Outdated Online Code Clones}
@@ -1957,7 +1968,7 @@ heavily modified on February 5, 2016.
 
 We analysed code modifications which made Stack Overflow code outdated by going
 though commits and git blame information. The six code modification
-types found in the 101 outdated online clone pairs are summarised in
+types found in the 100 outdated online clone pairs are summarised in
 \Cref{tab:mod_types}. They include statement addition, statement modification,
 statement removal, method rewriting, API change (changing in method signature),
 and file deletion. We occasionally found multiple code modifications applied to
@@ -2012,7 +2023,7 @@ enhancements, having an issue tracking ID can reflect that most of the changes a
 and not only a superficial fix such as code formatting. The intent behind
 the changes are grouped into six categories as shown in \Cref{tab:intent_outdated}.
 Enhancement are the majority intent accounting for 65 of the 100 outdated code (65\%), followed 
-by code deprecation (15\%). There were 10 outdated code snippets (10\%) due to bug fixing.
+by code deprecation (15\%). There were 10 outdated code snippets (10\%) caused by bug fixing.
 The rest of the changes are because of code refactoring (6\%), changing coding style (3\%), and 
 data format change (2\%).
 Not all outdated code are toxic. However, the 10 buggy and outdated code snippets 
