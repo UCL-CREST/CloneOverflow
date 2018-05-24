@@ -102,7 +102,7 @@ results in the paper to reflect the findings.
 
 \textbf{4.~An extended analysis of outdated code clones:}~We performed an
 extended analysis of the 100 outdated code snippets. For example, we analysed
-the age of the clones; studied effects of comments, newer answers, higher-voted
+the age of the clones; studied the effects of comments, newer answers, and higher-voted
 answers on the outdated answers; and summarised six intents that made the
 clones outdated. We found that, on average, the outdated code snippets were cloned to Stack Overflow
 2 years after it appeared in Qualitas projects, and comments/newer or
@@ -120,13 +120,13 @@ for preventive and detective measures, and (3) a suggestion for automation of
 code cloning direction detection.
 
 \clearpage
-We also tried our best to address all the comments from the reviewers. Every
+We tried our best to address all the comments from the reviewers. Every
 comment led to an improvement on this submission, and we discuss them in order as
 shown in the next sections.
 
 Lastly, we would also like to ask the reviewers to comment on how to address the
-newly established page limits of IEEE TSE that was enforced after our previous
-submission. After incorporating the suggestions from the reviewers and
+newly established page limits of IEEE TSE that was enforced on 18 February 2018, after our previous
+submission (15 November 2017). After incorporating the suggestions from the reviewers and
 rewriting, our paper is now extended to 22 pages. Are there any elements that
 could or should be removed, or should a split into two separate papers be
 considered?
@@ -177,7 +177,7 @@ suggestion, and we made the following changes to the paper:
 	of the 102 cloned snippets, 13 cloned snippets matched with
 	themselves because some of the Qualitas projects also appear on GitHub. For
 	other projects besides the Qualitas projects, 47 cloned snippets
-	were exactly the same as the outdated code snippet and 42 cloned snippets that
+	were the same as the outdated code snippet, and 42 cloned snippets
 	were not the same (e.g.,~they contained additional code modifications
 	made by the projects' developers, or they were copied from another source with a
 	slightly different code).
@@ -204,7 +204,8 @@ suggestion, and we made the following changes to the paper:
 Among the exact-copy of 47 outdated cloned snippets, there were only two cloned
 snippets that gave attributions to Stack Overflow. However, the attributions
 pointed to different posts than the ones we found but containing the same code
-in the answers. The other 32 cloned snippets were very likely to be a
+in the answers (the answers were not marked as accepted so they were not included in our experiment). 
+The other 32 cloned snippets were very likely to be a
 file-level clone from its respective original project (e.g.,~JFreeChart, JUnit,
 Log4J, Hadoop) based on their license header and the Javadoc comments. Lastly,
 the remaining 13 cloned snippets did not have any hints or evidence of copying.
@@ -310,8 +311,8 @@ awareness of information-seekers to toxic code snippets on Stack Overflow by
 including the results from another survey of Stack Overflow visitors
 (i.e.,~information seekers). This survey of the Stack Overflow visitors was
 performed during the same time as the Stack Overflow answerers (25 July 2017 to
-25 September 2017), and the full results are reported in our technical
-report~\citep{Ragkhitwetsagul_RN2017}. We did not include the results in the
+25 September 2017), and the full results are reported in our research note~\citep{Ragkhitwetsagul_RN2017}. 
+We did not include the results in the
 previous version of the paper due to a smaller sample size compared to the
 answerers' survey. However, we did find some interesting results, so we have
 included them in this version and discussed the key findings in~RQ1. The brief
@@ -378,7 +379,8 @@ yours and Reviewer 3's comments. The changes include:
 	
 	\item We improved the Actionable Items to be more precise about the mechanics
 	on how to automate the process of finding online code clones, detecting
-	outdated code, and finding license-incompatible code snippets.
+	outdated code, and finding license-incompatible code snippets as the means
+	to mitigate the problems from toxic code snippets.
 	
 	\item To address your point about auditing platforms/services, we performed a
 	study of two open source software auditing platforms/services:~BlackDuck
@@ -395,7 +397,7 @@ yours and Reviewer 3's comments. The changes include:
 	add-on license check for code copying from Stack Overflow. We include this in
 	the Overall Discussion. \end{enumerate}
 
-\rcomment{ Other Comments While ``Toxic Code Snippets'' is a catchy phrase for
+\rcomment{ Other Comments:\newline While ``Toxic Code Snippets'' is a catchy phrase for
 	the title, I think that online code clones are the dominant topic.}
 
 You are right. We mainly study online code clones and established their
@@ -544,7 +546,7 @@ the license violation needs evidence of cloning direction. To put it another
 way, we could tell that the code snippets on Stack Overflow may have
 incompatible licenses to their originals after we confirmed that (1) the Stack
 Overflow code snippets were actually clones of Qualitas projects and (2) the
-direction of cloning was from Qualitas to Stack Overflow, which both are
+direction of cloning was from Qualitas to Stack Overflow, which are both
 addressed in RQ1 and RQ2. Nevertheless, RQ4 does not need to follow RQ3
 (Outdated online code clones) because they are independent of each other.
 
@@ -714,7 +716,7 @@ non-clones, trivial clones (\texttt{equals}, \texttt{hashCode}, or getter and
 setter methods), and non-trivial clones. The manual check found 26 non-clone
 pairs; 322 trivial clone pairs, and 34 non-trivial clone pairs. Next, we
 increased the threshold to ten lines, another well-established minimum clone
-size for large-scale data sets~\cite{Sajnani2016}, and retrieved 721 clone pairs
+size for large-scale data sets~\citep{Sajnani2016}, and retrieved 721 clone pairs
 from Simian and 1,678 clone pairs from SourcererCC. We randomly sampled and
 manually checked the same amount of 382 pairs and found 27 non-clone pairs, 253
 trivial clone pairs, and 102 non-trivial clone pairs. Then, we increased the
@@ -728,7 +730,6 @@ clone size of ten lines was preferred over six and fifteen lines. First, it
 generated a fewer number of clone pairs than using six lines, which made the
 manual clone investigation feasible. Second, it preserved the highest number of
 non-trivial clone pairs.
-
 We have modified the paper to include this discussion at the end of Section
 2.2.1.
 
@@ -949,17 +950,16 @@ the Stack Overflow answerers who participated in our survey believe that most of
 the code snippets on Stack Overflow are too small to claim for copyright and
 they fall under fair-use, there is still a risk due to different legal systems
 in each country. For example, Germany's legal system does not have a concept of
-fair use or the number of minimum lines of code to be considered trivial,
+fair use. The number of minimum lines of code to be considered trivial,
 i.e.,~de minimis, is also different from case to case or from country to country.
-
-We also updated the Actionable Items section to reflect Reviewer 1's comment.
+Lastly, we also updated the Actionable Items section to reflect Reviewer 1's comment.
 
 \vspace{1cm}
 
 \section{Conclusion}
 We would like to thank the reviewers again for their comments.
 We have tried our best to address every concern that has been pointed out by the reviewers. This result in inclusion of a Stack Overflow visitors' survey, an analysis of toxic code snippets in GitHub projects, analysis of different tools' and technique's parameters, a more detailed analysis of online code clones, the updated definition of toxic code snippets, the improved overall discussion section, and other minor improvements throughout the paper.
-We believe this new submission has been considerably improved from the previous version due to the insightful reviews and discussions and we are looking forward to the new reviews.
+We believe this new submission has been considerably improved from the previous version due to the insightful reviews and discussions. We are looking forward to the new reviews.
 
 % Uncomment in case references are needed
 %\bibliographystyle{plain}
