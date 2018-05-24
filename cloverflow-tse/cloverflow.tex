@@ -313,7 +313,7 @@ as shown in several discussion threads\footnote{Discussions about outdated answe
 answers and license of code on Stack Overflow.
 Outdated code snippets can be harmful since they are not up-to-date with their originals and may
 contain defects. Code snippets from open source projects usually fall under a
-specific software license, e.g.\ GNU General Public License (GPL). If they are
+specific software license, e.g.,\ GNU General Public License (GPL). If they are
 cloned to Stack Overflow answers without the license, and then flow to other projects
 with conflicting licenses, legal issues may occur.
 
@@ -408,7 +408,7 @@ spread and grow to hundred or thousand copies within only a year or two.
 %This is an emerging and challenging problem. Since studies in this area are still limited, we aim to gain more insight of the problem in this study. %We are interested to gain more insights of online code clone in this study.
 
 While research has mostly focused on reusing code snippets \emph{from} Stack
-Overflow (e.g.~\cite{Keivanloo2014,An2017,Yang2016}), fewer studies have been
+Overflow (e.g.,~\cite{Keivanloo2014,An2017,Yang2016}), fewer studies have been
 conducted on finding the origins of code examples copied \emph{to} Stack
 Overflow and the awareness of Stack Overflow developers in doing so. Finding the
 origins of code examples reveals the problem of toxic code snippets
@@ -543,7 +543,7 @@ on their public Stack Overflow and GitHub profiles. We selected the answerers
 based on the all-time reputation ranking\footnote{Stack Overflow Users (data as
 	of 25 July 2017):~\url{https://stackoverflow.com/users?tab=Reputation&filter=all}}. The
 invited participants had a reputation from 963,731 (the highest) to 6,999 and
-we sent out 607 emails (excluding undelivered ones, e.g.\ due to
+we sent out 607 emails (excluding undelivered ones, e.g.,\ due to
 illegal email addresses). 
 The survey was
 open for participation for two months, from 25 July to 25 September 2017, before
@@ -564,8 +564,9 @@ We adopted non-probability convenient sampling to invite participants for this
 survey. Participation in the survey requires experience of visiting Stack
 Overflow for solving programming tasks at least once. The participants were
 invited to take the survey via five channels: social media post (Facebook),
-\textsf{blognone.com}, a popular technology news and media community in Thailand, the University of Molise in Italy where the third author
-works, \texttt{comp.lang.java.programmer} group and the Software Engineering
+\textsf{blognone.com} (a popular technology news and media community in Thailand), 
+the University of Molise in Italy where the third author
+works, the \texttt{comp.lang.java.programmer} group and the Software Engineering
 Facebook page. 
 The survey was open for participation for 2 months 
 from 25 July 2017 to 25 September 2017.
@@ -727,11 +728,11 @@ detecting clones with renaming and added/deleted statements (type-2, type-3).
 Nevertheless, we investigated a crucial parameter setting for clone detection: 
 the minimum clone size threshold.
 Choosing a large threshold value can reduce the number of trivial clones
-(e.g. \texttt{equals}, \texttt{hashCode}, or getter and setter methods) and
+(e.g.,~\texttt{equals}, \texttt{hashCode}, or getter and setter methods) and
 false clones in the analysis or the manual investigation
 phase~\cite{Sajnani2016}, while at the same time may create some false negatives,
-i.e.~increasing precision. On the other hand, setting a low threshold
-results in a larger number of clone candidate pairs to look at, i.e.~increasing recall, 
+i.e.,~increasing precision. On the other hand, setting a low threshold
+results in a larger number of clone candidate pairs to look at, i.e.,~increasing recall, 
 and a higher chance of getting false positives. 
 %It is known that lowering the threshold value 
 %is harmful to precision. 
@@ -768,7 +769,7 @@ pairs.
 %
 %The minimum clone size of 10 lines is
 %considered a standard setting for clone detection in large-scale data sets to
-%avoid trivial clones (e.g. \texttt{equals}, \texttt{hashCode}, or getter and
+%avoid trivial clones (e.g.,~\texttt{equals}, \texttt{hashCode}, or getter and
 %setter methods) in the analysis or the manual investigation phase~\cite{Sajnani2016}.  
 %We
 % performed an analysis to confirm this.
@@ -878,7 +879,7 @@ contained(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm
 \end{displaymath}
 \noindent%
 A clone pair \textit{CP} is formed by two clone fragments
-\textit{CF$_1$} and \textit{CF$_2$}, i.e.~\textit{CP} =
+\textit{CF$_1$} and \textit{CF$_2$}, i.e.,~\textit{CP} =
 (\textit{CF$_1$}, \textit{CF$_2$})
 %, and the \textit{good-value} and
 and the \textit{ok-value} of two clone pairs is defined as
@@ -969,7 +970,7 @@ conflicts in the classification of
 the true clone pairs. Among these pairs, 145 conflicts were caused by
 one investigator being more careful than the other and being able to find evidence of 
 copying while the other could not. Thus, resolving the conflicts lead to a better classification,
- i.e.~from UD to QS or EX.
+ i.e.,~from UD to QS or EX.
 %There were three conflicts where the two
 %investigators could not find a consensus and the third author was involved for
 %the final judgement.
@@ -1014,7 +1015,7 @@ We tried to classify 697 online clone pairs from
 the reported clones in phase 1 
 %Using the $S_D$ clone report,
 %snippets were ranked according to (1)~clone pair frequency,
-%(2)~popularity (i.e.~number of associated Qualitas projects),
+%(2)~popularity (i.e.,~number of associated Qualitas projects),
 %(3)~clone size in SLOC, and (4)~ratio of cloned code per snippet. We
 %selected these four criteria so that we could cover the online clones
 %from various aspects. We selected the top 10 from each ranking and
@@ -1256,7 +1257,7 @@ We asked the remaining 200 participants for the origins of code snippets in
 their answers. We provided six locations including the answerer's personal
 projects, the answerer's company projects, open source projects, writing the
 code from scratch, copying and modifying the code from the question, and others
-(e.g.\ code that are copied from other questions or answers on Stack Overflow)
+(e.g.,\ code that are copied from other questions or answers on Stack Overflow)
 and we asked them to rate how often they copied the code from these locations. The
 results are shown in \Cref{fig:survey_snippet_source}. Looking at the Very
 Frequently section, we can see that the answerers mainly write new code from
@@ -1400,7 +1401,7 @@ the following text in his/her profile page.
 \end{quotation}
 
 Many users either declare their snippets to be public domain, or they grant
-additional licenses, e.g.\ Apache 2.0 or MIT/Expat.
+additional licenses, e.g.,\ Apache 2.0 or MIT/Expat.
 
 \begin{table}
 	\centering
@@ -1607,7 +1608,7 @@ has never been done before and will be our future work.
 %license, and more than half of them never check for license compatibility when
 %reusing Stack Overflow code snippets. 
 %Sixty-nine Stack Overflow visitors (79\%) who adopted code from Stack Overflow never 
-%check if the code snippet originated from a different source (e.g. an open source project) 
+%check if the code snippet originated from a different source (e.g.,~an open source project) 
 %and if they had an incompatible license to their projects.
 %Moreover, we also found that 9\% of the participants
 %encountered legal issues by copying code from Stack Overflow.
@@ -1630,7 +1631,7 @@ presented in~\Cref{tab:snippets}. Simian and SourcererCC
 reported clones in 460 snippets, approximately 0.6\% of the
 72,365 Stack Overflow snippets, associated with 59 Qualitas
 projects. For the cloned Stack Overflow snippets, the
-average ratio of cloned code is 53.28\% (i.e.\ the number of cloned
+average ratio of cloned code is 53.28\% (i.e.,\ the number of cloned
 lines of the cloned Stack Overflow snippet).
 
 \begin{table}
@@ -1650,7 +1651,7 @@ lines of the cloned Stack Overflow snippet).
 \end{table}
 
 Lastly, during the manual investigation of 2,289 clone pairs, we identified 226 pairs
-as being accidental clones (NC), i.e.~false positives. After removing
+as being accidental clones (NC), i.e.,~false positives. After removing
 them, the set still contains 2,063 true positive clone pairs between 443 Stack
 Overflow snippets and 59 Qualitas projects. The average cloned ratio for the
 true positive clone pairs is 54.09\%.
@@ -1658,7 +1659,7 @@ true positive clone pairs is 54.09\%.
 \begin{boxquote}
 	To answer RQ2, we found 2,063 manually confirmed clone pairs between 443 Stack Overflow code snippets
 	and 59 Qualitas proejcts. 
-	%After the manual confirmation, 2,076 pairs as true positives, i.e.~
+	%After the manual confirmation, 2,076 pairs as true positives, i.e.,~
 	%they are manually confirmed as clones, which 
 	%account for 59 Qualitas projects and
 	%443 Stack Overflow code snippets.
@@ -1857,9 +1858,9 @@ Qualitas, in 60 pairs.
 Our
 analysis shows that the external sources fall into six groups as displayed in
 \Cref{fig:ex_sources}. There are 63 EX online clone pairs copied
-from source code of Java SDK (e.g.\ \textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}), 
+from source code of Java SDK (e.g.,\ \textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}), 
 18 pairs from websites, 14 pairs from open
-source systems not in Qualitas (e.g.\ \textsf{Mozilla
+source systems not in Qualitas (e.g.,\ \textsf{Mozilla
 	Rhino}), 10 pairs from Java official documentations from Sun
 Microsystems or Oracle, 3 pairs from books, and 1 pair from a company
 project. For example, Stack Overflow Post 9549009 contains a code comment saying
@@ -1992,7 +1993,7 @@ and file deletion. We occasionally found multiple code modifications applied to
 one clone pair at the same time but at a different location. The most often code
 change found is statement modification (50 occurrences), followed by statement
 addition (28 occurrences), statement removal (18 occurrences), change of
-method signature, i.e.~API change (16 occurrences), and method rewriting (15
+method signature, i.e.,~API change (16 occurrences), and method rewriting (15
 occurrences). Moreover, in the 101 outdated pairs, we found 15 ``dead''
 snippets. These snippets cannot be located in the latest version of the
 projects. For example, the snippet in Stack Overflow post 3758110, a copy of
@@ -2116,14 +2117,14 @@ of them. As shown in \Cref{tab:outdated_github}, out of the 102 cloned snippets,
 13 cloned snippets that matched with themselves because some of the Qualitas
 projects also appear on GitHub. For other projects besides the Qualitas
 projects, there were 32 cloned snippets that were not exactly the same
-(e.g.~they contained additional code modifications made by the projects'
+(e.g.,~they contained additional code modifications made by the projects'
 developers or they were copied from another source with a slightly different code).
 There were 47 cloned snippets that were exactly the same as the
 outdated code snippets, which of 12 were buggy.
 Two cloned snippets gave attributions to Stack Overflow. The attributions
 pointed to different posts than the ones we found, but containing the same code
 in the answers. 32 cloned snippets were very likely to be a file-level
-clone from its respective original project (e.g. JFreeChart, JUnit, Log4J,
+clone from its respective original project (e.g.,~JFreeChart, JUnit, Log4J,
 Hadoop) based on their license header and the Javadoc comments. 
 13 cloned snippets did not have any hints or evidence of copying.
 
@@ -2134,29 +2135,28 @@ stars and 1,946 forks). Due to the lack of evidence, we could not conclude how
 this method, which is exactly the same as the toxic code snippet we found on
 Stack Overflow, appears in the two projects. It is possible that the developers
 retrieved them from Stack Overflow, other websites, or from Hadoop code base
-directly. Nevertheless, we decided to report the developers of the two projects
+directly. Nevertheless, we reported them to the developers of the two projects
 regarding the issue. We created a bug report for each project (deeplearning4j
 \#4694\footnote{deeplearning4j bug report:
 	\url{https://github.com/deeplearning4j/deeplearning4j/issues/4692}} and
 HIVE-18929\footnote{Apache Hive bug report: \url{
 		https://issues.apache.org/jira/browse/HIVE-18929}}) and communicated with the
 developers of the projects by describing the problem of race condition in the
-outdated version of \texttt{humanReadableInt()} method and proposed a fix by
+outdated version of the \texttt{humanReadableInt()} method and proposed a fix by
 using the newest version of the method in Hadoop. The issue has been fixed in
 deeplearning4j. The developers of deeplearning4j agreed that the method was
 problematic and decided to implement their own fix due to a concern of a
 potential software licensing conflict caused by copying the fix directly from
-Hadoop code base. The bug report in Apache Hive is still
-unfixed.
+the Hadoop code base. The bug report in Apache Hive is still open.
 
 Although we did not find strong evidence of the outdated code snippets in GitHub
 projects, it would still be useful if Stack Overflow implements a flagging of
 outdated answers. The outdated online code clones cause problems ranging from
 uncompilable code (due to modifications and different API usage in the outdated
 code) to the introduction of vulnerabilities to the software~\cite{Xia2014}. An
-outdated code with a subtle change (e.g.\ \Cref{fig:before-after}) may be copied
+outdated code with a subtle change (e.g.,\ \Cref{fig:before-after}) may be copied
 and reused without awareness from developers. Moreover, an outdated code with a
-defect (e.g.\ a race condition problem in \Cref{fig:before-after_2}) is clearly
+defect (e.g.,\ a race condition problem in \Cref{fig:before-after_2}) is clearly
 harmful to be reused. Although Stack Overflow has a voting mechanism that may
 mitigate this issue, the accepted answer may still be used by naive developers
 who copy and reuse the outdated code.
@@ -2287,17 +2287,17 @@ We detected clones between the 214
 code snippets with their original license missing (86 QS, 78 EX and 50 UD)  and
 130,703 GitHub projects using SourcererCC with 80\% similarity threshold.
 Opposite to the outdated clones, we discovered a large number
-of 7,207 clone pairs. There were 95 pairs from 10 Qualitas projects on
-GitHub and 7,112 pairs from 2,427 other projects. From
+of 7,207 clone pairs. There were 95 pairs from 10 Qualitas projects hosted on
+GitHub and 7,112 pairs from 2,427 other projects. Shown in
 \Cref{tab:license_github}, the clones were found in highly-starred
 projects (29,465 to 10 stars) to 1-star projects.
 We found 12 code snippets with attributions to Stack Overflow questions/answers and
 6 of them refer to one of our QS or EX clone pairs.
-We used the Ninka tool to automatically identify software license of the 7,207 cloned
-code snippets. 
-Five code snippets did not have license while the originals had Apache-2, GPLv2,
-or EPLv1 license. One snippets had AGPLv3 license while the original had Apache-2 license.
-Only 995 code snippets in GitHub projects that have the same license
+We used the Ninka tool to identify software licenses of the 7,207 cloned
+code snippets automatically. 
+Five code snippets did not have a license while the originals had the Apache-2, GPLv2,
+or EPLv1 license. One snippets had the AGPLv3 license while the original had the Apache-2 license.
+Only 995 code snippets in GitHub projects have the same license
 as the originals in Qualitas.
 
 \begin{table}
@@ -2380,7 +2380,7 @@ Stack Overflow answerers participated in our survey believe that most of the
 code snippets on Stack Overflow are too small to claim for copyright and they
 fall under fair-use, there is still a risk due to different legal system in each
 country. For example, Germany legal system does not have a concept of fair use.
-In addition, the number of minimum lines of code to be consider copying, i.e.~de minimis,
+In addition, the number of minimum lines of code to be consider copying, i.e.,~de minimis,
 is also differently interpreted from case to case or from country to country.
 
 \subsubsection{Actionable Items}
@@ -2401,7 +2401,7 @@ automation of code cloning direction detection. From our experience in this
 paper, we found that code comments and accompanied natural text
 on Stack Overflow were good source of information to decide the direction of
 code copying. Thus, by using code clone detection to locate clone candidates
-and then applying information retrieval techniques, e.g. cosine similarity with tf-idf, 
+and then applying information retrieval techniques, e.g.,~cosine similarity with tf-idf, 
 we can rank the clone candidates based on the similarity of their project names (or classes) to the text in 
 comments or natural text surrounding the clones in Stack Overflow posts.
 For example, the Stack Overflow answer containing the text \textit{``Actually, you can learn how to compare in \textbf{Hadoop}
@@ -2489,7 +2489,7 @@ pairs for the manual classification and avoid double counting of the same clone
 pairs. We studied the impact of choosing different thresholds for Bellon's clone agreement and the minimum clone
 size of the two clone detectors and selected the optimal values.
 Nevertheless, our study might still suffer from false negatives,
-i.e.~online code clones that are not reported by the tools or are filtered out
+i.e.,~online code clones that are not reported by the tools or are filtered out
 by the size (less than 10 lines) within the clone detection process. We selected
 accepted answers on Stack Overflow in this study to focus on code snippets that
 solve the question's problem and are often showed on top of the answer list.
@@ -2534,7 +2534,7 @@ programming Q\&A websites available with approximately 7.6 million
 users. There are a large number of code snippets reused from the
 site~\cite{An2017} and there are also several studies encouraging of
 doing
-so~(e.g.~\cite{Ponzanelli2013,Ponzanelli2014,Keivanloo2014,Park2014}).
+so~(e.g.,~\cite{Ponzanelli2013,Ponzanelli2014,Keivanloo2014,Park2014}).
 Nonetheless, it may not be representative to all the programming Q\&A
 websites.
 
@@ -2586,7 +2586,7 @@ al.~\cite{Wang2013_StackOverflow} use Latent Dirichlet Allocation
 Overflow so that they can automatically categorise new
 questions. There are also studies trying to understand developers'
 behaviours on Stack Overflow,
-e.g.~\cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}.
+e.g.,~\cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}.
 % , while some studies aim to improve Stack Overflow itself~\cite{Diamantopoulos2015, Wang2014}. 
 
 \textbf{Code clone detection} is a long-standing research topic in
@@ -2642,7 +2642,7 @@ industrial software development. Di Penta et al.~\cite{DiPenta2010}
 studied the evolution of software licensing in open source 
 software and found that licensing statements change over 
 time. German et al.~\cite{German2009} found that licensing 
-conflicts occur between the clone siblings, i.e.~clones among 
+conflicts occur between the clone siblings, i.e.,~clones among 
 different systems that come from the same source. Later, 
 German et al.~\cite{German2010} created an automated tool 
 for software license identification, Ninka, which is used
@@ -2691,7 +2691,7 @@ Overflow do not contain attributions.
 %64 code snippets on Stack Overflow are outdated and possibly harmful for reuse.
 
 %\section{Future Work}
-%Since this study is limited to only Java language, we are interested in expanding the study further to other popular programming languages such as C, C++, Python, and Javascript on Stack Overflow. The similar study of outdated code and software licensing violation can be repeated. It is interesting to compare the findings among different programming languages. Moreover, other popular software project corpora (e.g.\ GitHub) can also be included to increase generalisation of the findings.
+%Since this study is limited to only Java language, we are interested in expanding the study further to other popular programming languages such as C, C++, Python, and Javascript on Stack Overflow. The similar study of outdated code and software licensing violation can be repeated. It is interesting to compare the findings among different programming languages. Moreover, other popular software project corpora (e.g.,\ GitHub) can also be included to increase generalisation of the findings.
 %
 %We are eager to tackle the issues of outdated and license-violating online code clones with an automated tool. The tool should incorporate a scalable clone detection method of locate similar code from programming Q\&A websites such as Stack Overflow and online code repositories like GitHub. It analyses a software project under development and reports clones that are copied from Stack Overflow. The reported clones have traces to their origins in open source projects or websites along with their freshness (fresh/outdated/dead) so that the developer of the project can be aware of changes made to the copied code snippets. Lastly, the license of the original source code is also reported so the developer can make an informed decision of whether he or she will incorporate that code snippet into their own project.
 
@@ -2716,7 +2716,7 @@ Overflow reveals that 101 of them are outdated.  Moreover, we found 214
 code snippets on Stack Overflow that could potentially violate the license of their
 original software.
 
-The online survey of 201 high-reputation Stack Overflow developers (i.e.~answerers)
+The online survey of 201 high-reputation Stack Overflow developers (i.e.,~answerers)
 show that although the developers are aware of outdated code in their answers,
 19.8\% of them rarely or never fix the outdated code. In addition, 62\% of the participants
 are aware of Stack Overflow CC BY-SA 3.0 license applied to code snippets on the website.
