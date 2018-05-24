@@ -286,7 +286,7 @@ One participant in our survey expresses his/her concerns about this:
 	toxic code snippets.''}
 \end{quote}
 
-Although this activity of online code cloning is well-known, there is only a few
+Although this activity of online code cloning is well-known, there are only a few
 empirical studies on the topic~\cite{An2017,Abdalkareem2017,Baltes2017}, especially
 on finding the origins of the clones on Q\&A websites.
 In this study, we tackle this challenge of establishing existence of online code 
@@ -745,7 +745,7 @@ investigation. We started our investigation by using a threshold value of six
 lines, a well-accepted minimum clone size in clone benchmark~\cite{Bellon2007}.
 Simian reported 67,172 clone candidate pairs and SourcererCC reported 7,752
 clone candidate pairs. We randomly sampled 382 pairs from the two sets for
-manual check. This sample amount was a statistical significant sample with a
+manual check. This sample number was a statistical significant sample with a
 95\% confidence level and $\pm 5\%$ confidence interval. The first author
 investigated the sampled clone pairs and classified them into three groups:
 non-clones, trivial clones (\texttt{equals}, \texttt{hashCode}, or getter and
@@ -1773,8 +1773,8 @@ from WritableComparator. Here is an example that borrows some ideas from it.''}
 
 We did an analysis of the time it took for the clone to appear from Qualitas
 projects to Stack Overflow. The clone ages were calculated by counting the
-number of month difference from the dates of each Qualitas project to the date
-the answers were posted on Stack Overflow as shown in~\ref{fig:boxplotcloneage}.
+number of months between the date of each Qualitas project and the date the answer
+was posted on Stack Overflow as shown in~\ref{fig:boxplotcloneage}.
 We found that, on average, it took the clones around 2 years since they appeared
 in Qualitas projects to appear on Stack Overflow answers. Some of the clones
 appeared on Stack Overflow almost at the same time as the original, while the
@@ -2112,7 +2112,8 @@ users.
 \end{table}
 
 Then, we performed code clone detection between the 100 outdated code snippets and 130,703 GitHub projects.
-We found 102 cloned candidates appearing in 68 GitHub projects and manually investigated all
+We found 102 cloned candidates, which were associated with 30 outdated code snippets, 
+appearing in 68 GitHub projects and manually investigated all
 of them. As shown in \Cref{tab:outdated_github}, out of the 102 cloned snippets, there were
 13 cloned snippets that matched with themselves because some of the Qualitas
 projects also appear on GitHub. For other projects besides the Qualitas
@@ -2359,7 +2360,7 @@ insight about toxicity of online code clones and we proposed three actionable it
 to the software engineering research and the Stack Overflow community.
 
 \subsubsection{Toxicity of outdated and license-incompatible clones}
-We found only a small amount of toxic outdated code snippets in open source projects on
+We found only a small number of toxic outdated code snippets in open source projects on
 GitHub. Besides 12 buggy and outdated code snippets found in 12 projects, the
 rest were non-harmful clones of the outdated code. Although other studies show
 that Stack Overflow code snippets may become toxic by containing security
@@ -2367,19 +2368,19 @@ vulnerabilities~\cite{Acar2016,Fischer2017} or API misuse~\cite{Zhang2018}, we
 found in this study that the damage caused by outdated code on Stack
 Overflow is not high.
 
-On the other hand, the missing of licensing statement of online code clones on
+On the other hand, the missing licensing statements of online code clones on
 Stack Overflow can cause more damage than outdated code. As shown in our study and
 also in the study by An et al. \cite{An2017}, some online clones on Stack Overflow are
 originally licensed under more restrictive license than Stack Overflow's CC
 BY-SA 3.0. If these missing-license online clones are reused in a software with
-incompatible license, the software owner may face legal issues. The software
-auditing service such as Black Duck Software or nexB, which can effectively
-check for license compliance of code copied from open source projects, cannot
+an incompatible license, the software owner may face legal issues. Software
+auditing services such as Black Duck Software or nexB, which can effectively
+check for license compliance of code copied from open source projects, do not
 check for the original license of the cloned code snippets on Stack Overflow. Although
-Stack Overflow answerers participated in our survey believe that most of the
+the Stack Overflow answerers who participated in our survey believe that most of the
 code snippets on Stack Overflow are too small to claim for copyright and they
-fall under fair-use, there is still a risk due to different legal system in each
-country. For example, Germany legal system does not have a concept of fair use.
+fall under fair-use, there is still a risk due to different legal systems in each
+country. For example, Germany's legal system does not have a concept of fair use.
 In addition, the number of minimum lines of code to be consider copying, i.e.,~de minimis,
 is also differently interpreted from case to case or from country to country.
 
@@ -2439,7 +2440,7 @@ nexB\footnote{https://www.nexb.com}. For BlackDuck Software, we found from their
 report~\cite{CORSI2017} that while they check for code copied from open source
 projects including GitHub and Stack Overflow and analyse their license
 compatibility with their customer software, the BlackDuck auditing system will
-treat the code snippets on Stack Overflow as having ``unknown'' license because
+treat the code snippets on Stack Overflow as having an ``unknown'' license because
 it does not know the original license of Stack Overflow code snippets. For nexB,
 their product does not mention checking of reused source code from Stack
 Overflow. So, our proposed service, which can offer more precise licensing
