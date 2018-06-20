@@ -1,16 +1,6 @@
-\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[10pt,journal]{IEEEtran}
 
-% *** CITATION PACKAGES ***
-%
-\ifCLASSOPTIONcompsoc
-  % IEEE Computer Society needs nocompress option
-  % requires cite.sty v4.0 or later (November 2003)
-  \usepackage[nocompress]{cite}
-\else
-  % normal IEEE
-  \usepackage{cite}
-\fi
-
+\usepackage{cite}
 \usepackage{booktabs} % For formal tables
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -32,76 +22,49 @@
 \usepackage{tikz}
 \usepackage[normalem]{ulem}
 \usepackage{amsmath}
-\usepackage{mathpazo}
+%\usepackage{mathpazo}
 \usepackage{amsfonts}
 \usepackage{framed}
 \usepackage{cleveref}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
 \lstset{language=Java,
 	tabsize=2,
 	basicstyle=\ttfamily\footnotesize,
-	mathescape=true
+        basewidth=0.56em,
+	mathescape=true,
+        fontadjust
 } 
 
 \newenvironment{boxquote}{\vspace{-1ex}\setlength{\FrameSep}{1\fboxsep}\begin{framed}\setlength{\parskip}{0.5\baselineskip}\setlength{\parindent}{0pt}}{\end{framed}}
 
-\newcommand{\squeezeup}{\vspace{-0.5mm}}
-
 \usepackage{etoolbox}
-\makeatletter
-\patchcmd{\@makecaption}
-{\scshape}
-{}
-{}
-{}
-\makeatother
 
 \newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
 
-\newcommand\FIXME[1]{{\color{red}\textbf{FIXME: #1}}}
-
-% correct bad hyphenation here
-%\hyphenation{op-tical net-works semi-conduc-tor}
+\overfullrule5pt
 
 \begin{document}
 
 \title{Toxic Code Snippets on Stack Overflow}
 
-\author{Chaiyong Ragkhitwetsagul,~Jens Krinke,~Matheus Paixao,~Giuseppe Bianco,~Rocco Oliveto}
+\author{
+  \IEEEauthorblockN{Chaiyong Ragkhitwetsagul\IEEEauthorrefmark{1},
+    Jens Krinke\IEEEauthorrefmark{1}, Matheus
+    Paixao\IEEEauthorrefmark{1},
+    Giuseppe Bianco\IEEEauthorrefmark{2},
+    Rocco Oliveto\IEEEauthorrefmark{2}}\\
+  \IEEEauthorblockA{\IEEEauthorrefmark{1}University College London,
+    London, UK}\\
+  \IEEEauthorblockA{\IEEEauthorrefmark{2}University of Molise,
+    Campobasso, Italy}
+}
 
-% The paper headers
-\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING,~Vol.~X, No.~Y, Month~2017}%
-{Ragkhitwetsagul \MakeLowercase{\textit{et al.}}: Toxic Code Snippets on Stack Overflow}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
+\maketitle
 
-% The publisher's ID mark at the bottom of the page is less important with
-% Computer Society journal papers as those publications place the marks
-% outside of the main text columns and, therefore, unlike regular IEEE
-% journals, the available text space is not reduced by their presence.
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
-% or like this to get the Computer Society new two part style.
-%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
-%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark (Computer Society jorunal
-% papers don't need this extra clearance.)
-
-% for Computer Society papers, we must declare the abstract and index terms
-% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
-% command as these need to go into the title area created by \maketitle.
-% As a general rule, do not put math, special symbols or citations
-% in the abstract or keywords.
-\IEEEtitleabstractindextext{%
 \begin{abstract}
 Online code clones are code fragments that are copied from software projects or
 online sources to Stack Overflow as examples. Due to an absence of a checking
@@ -126,62 +89,9 @@ a Qualitas project to Stack Overflow. We found 100 of them (66\%) to be outdated
 and potentially harmful for reuse. Furthermore, we found 214 code snippets that
 could potentially violate the license of their original software and appear 7,112
 times in 2,427 GitHub projects.
-
-%Online code clones are code fragments that are copied from software projects or
-%online sources to Stack Overflow as examples in questions and answers. % They
-%Due to an absence of a checking mechanism after the code has been copied to
-%Stack Overflow, they can become toxic code snippets, i.e.~they suffer from
-%being outdated or violating the original software license. We present a study
-%incorporating several state-of-the-art tools and techniques to automatically
-%extract and filter detected online clone pairs between 72,365 Java code snippets
-%on Stack Overflow and 111 Java open source projects in the curated Qualitas
-%corpus. We discovered and analysed 2,289 non-trivial online clone candidates.
-%Our investigation of the online clone pairs revealed strong evidence that 154
-%clones have been copied from a Qualitas project to Stack Overflow.  We found 101
-%of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
-%we found 214 code snippets on Stack Overflow that could potentially violate the license of their
-%original software. To better understand the phenomenon, we also surveyed 201 high-reputation Stack Overflow answerers
-%(33\% response rate) and found that 131 of the answerers (65\%) have ever been notified of
-%outdated code in the answers and 26 of them (20\%) rarely or never fix the outdated
-%code. Only 3 answerers explicitly include software licenses in their answers and
-%138 answerers (69\%) never check for licensing conflicts between their copied code
-%snippets and Stack Overflow's CC BY-SA 3.0.
 \end{abstract}
 
-% Note that keywords are not normally used for peerreview papers.
-\begin{IEEEkeywords}
-Code Clone Detection, Stack Overflow, Outdated Code, Software Licensing
-\end{IEEEkeywords}}
-
-
-% make the title area
-\maketitle
-
-
-% To allow for easy dual compilation without having to reenter the
-% abstract/keywords data, the \IEEEtitleabstractindextext text will
-% not be used in maketitle, but will appear (i.e., to be "transported")
-% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
-% or transmag modes are not selected <OR> if conference mode is selected 
-% - because all conference papers position the abstract like regular
-% papers do.
-\IEEEdisplaynontitleabstractindextext
-% \IEEEdisplaynontitleabstractindextext has no effect when using
-% compsoc or transmag under a non-conference mode.
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
-\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+\section{Introduction}\label{sec:introduction}
 
 %The popularity of the Internet encourages tremendous amount of source code
 % being shared online.
@@ -307,9 +217,9 @@ In this study, we focus on the first two forms of toxic code snippets, outdated 
 as these two problems are still underexplored compared to code smells~\cite{Tufano2015} and vulnerabilities~\cite{Acar2016,Fischer2017}.
 Moreover, Stack Overflow users also express their concerns about these two problems
 as shown in several discussion threads\footnote{Discussions about outdated answers and code license on
-	Stack Overflow: meta.stackexchange.com/questions/131495, 
-	meta.stackexchange.com/questions/11705/, meta.stackexchange.com/questions/12527,
-	meta.stackexchange.com/questions/25956, meta.stackoverflow.com/questions/321291.}
+  Stack Overflow:\\
+  meta.stackexchange.com/questions/131495, .../11705, .../12527,
+	.../25956,\\ .../321291.}
 	 on \textsf{meta.stackexchange.com} about outdated
 answers and license of code on Stack Overflow.
 Outdated code snippets can be harmful since they are not up-to-date with their originals and may
@@ -534,8 +444,7 @@ We selected the participants for the answerer survey based on their Stack Overfl
 reputation. On Stack Overflow, a user's reputation reflects how much the
 community trusts them. A user earns reputations when he or she receives upvotes
 for good questions and useful answers. Accepted answers receive more reputation
-score than questions and regular answers\footnote{Stack Overflow
-	Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
+score than questions and regular answers\footnote{\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
 Overflow reputation is an indicator of user's skills and their involvement in
 asking and answering questions on the site. In this study, we call Stack
 Overflow users who have a high reputation ``Stack Overflow answerers.''
@@ -879,7 +788,7 @@ fragments \textit{CF} are contained in each other:
 \begin{displaymath}
 contained(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}
 \end{displaymath}
-\noindent%
+\noindent
 A clone pair \textit{CP} is formed by two clone fragments
 \textit{CF$_1$} and \textit{CF$_2$}, i.e.,~\textit{CP} =
 (\textit{CF$_1$}, \textit{CF$_2$})
@@ -894,7 +803,7 @@ ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) = min(max(contained(\textrm{\t
 \\ max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2),~~ \\contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2)))
 \end{align*}
 
-\noindent%
+\noindent
 Two clone pairs $\textrm{\textit{CP}}_1$ and $\textrm{\textit{CP}}_2$
 are called an \textit{ok-match(t)}  iff, for threshold $t \in [0,1]$ holds 
 %\squeezeup
@@ -1867,7 +1776,7 @@ source systems not in Qualitas (e.g.,\ \textsf{Mozilla
 Microsystems or Oracle, 3 pairs from books, and 1 pair from a company
 project. For example, Stack Overflow Post 9549009 contains a code comment saying
 \textit{``Copied shamelessly from
-	org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator''} which is an
+	org.bouncycastle.crypto.generators.PKCS5S2ParametersGene\-rator''} which is an
 open source project not included in the Qualitas corpus. Post 92962 includes a {\small\texttt{VerticalLabelUI}}
 class with a license statement showing that it is developed by a private company
 called \textsf{Sapient}. Post 12879764 has a text saying \textit{``Code modified
@@ -2754,15 +2663,8 @@ code snippets, including outdated and license-violating online code clones, on
 programming Q\&A websites using a hybrid methodology of automatic code clone
 detection and a manual clone investigation.
 
-% use section* for acknowledgment
-\ifCLASSOPTIONcompsoc
-  % The Computer Society usually uses the plural form
-  \section*{Acknowledgments}
-\else
-  % regular IEEE prefers the singular form
-  \section*{Acknowledgment}
-\fi
 
+\section*{Acknowledgments}
 
 The authors would like to thank Prof.~Cristina Lopes and Di Yang
 from University of California, Irvine
@@ -2773,82 +2675,6 @@ a custom tokeniser for Stack Overflow snippets.
 \bibliographystyle{plain}
 \bibliography{sigproc}  
 
-% biography section
-% 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{cragkhit.jpg}}]{Chaiyong Ragkhitwetsagul}
-is working toward the PhD degree in Computer Science at University College London, where he is part of the Centre for Research on Evolution, Search, and Testing (CREST) and Software Systems Engineering (SSE) Group. He is supervised by Dr.~Jens Krinke and Dr.~David Clark. His research interests include code search, code clone detection, software plagiarism, search-based software engineering, and mining software repository.
-\end{IEEEbiography}
-\vspace{-1cm}
-
-% % if you will not have a photo at all:
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{jkrinke.jpg}}]{Jens Krinke}
-is Senior Lecturer in the Software Systems Engineering
-Group at the University College London, where he is Director of CREST,
-the Centre for Research on Evolution, Search, and Testing.  His main
-focus is software analysis for software engineering purposes. His
-current research interests include software
-similarity, modern code review, and mutation testing.  He is well known for his work on
-program slicing and clone detection.
-\end{IEEEbiography}
-\vspace{-1cm}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mpaixao.png}}]{Matheus Paixao}
-is currently a PhD candidate in the Computer Science Department at University College London, where he is part of the CREST centre.~He is supervised by Dr.~Jens Krinke, Prof.~Mark Harman, Dr.~Emmanuel Letier and Dr.~Yuanyuan Zhang.
-His research interests include software architecture, search based software engineering, technical debt, empirical software engineering and modern code review.
-\end{IEEEbiography}
-\vspace{-1cm}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{giuseppe.png}}]{Giuseppe Bianco}
-  received his bachelor degree in Computer Science from the University
-  of Molise (Italy) under the supervision of Dr.~Rocco Oliveto. As
-  part of an Erasmus+ traineeship, he spent three month at the
-  CREST centre, University College London, UK, under the supervision
-  of Dr.~Jens Krinke.~He is now a project manager at Corsi.it.
-\end{IEEEbiography}
-\vspace{-0.5cm}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{rocco.png}}]{Rocco Oliveto}
-is Associate Professor at University of Molise (Italy), where he is also the Director of the Computer Science Bachelor and Master programs and the Director of the Software and Knowledge Engineering Lab (STAKE Lab). He co-authored over 100 papers on topics related to software traceability, software maintenance and evolution, search-based software engineering, and empirical software engineering. His activities span various international software engineering research communities. He has served as organizing and program committee member of several international conferences in the field of software engineering. He was program co-chair of ICPC 2015, TEFSE 2009 and 2015, SCAM 2014, WCRE 2012, and 2013. He is general chair for SANER 2018 that will be held in Campobasso from March 20, 2018 to March 23, 2018. He is also one of the co-founders and CEO of DataSound, a spin-off of the University of Molise aiming at efficiently exploiting the priceless heritage that can be extracted from big data analysis via machine learning. 
-More info at \url{https://dibt.unimol.it/staff/oliveto}.
-\end{IEEEbiography}
-\vfill
-
-% \begin{IEEEbiographynophoto}{Giuseppe Bianco}
-% Biography text here.
-% \end{IEEEbiographynophoto}
-
-% % insert where needed to balance the two columns on the last page with
-% % biographies
-% %\newpage
-
-% \begin{IEEEbiographynophoto}{Rocco Oliveto}
-% Biography text here.
-% \end{IEEEbiographynophoto}
-
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
-
-%\vfill
-
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
-
-
-
-% that's all folks
 \end{document}
 
 

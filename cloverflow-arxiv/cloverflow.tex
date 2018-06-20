@@ -1,18 +1,7 @@
-\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[10pt,journal]{IEEEtran}
 
-% *** CITATION PACKAGES ***
-%
-\ifCLASSOPTIONcompsoc
-  % IEEE Computer Society needs nocompress option
-  % requires cite.sty v4.0 or later (November 2003)
-  \usepackage[nocompress]{cite}
-\else
-  % normal IEEE
-  \usepackage{cite}
-\fi
-
-\usepackage{booktabs} % For formal tables
-\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage{booktabs} \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{url}
@@ -24,7 +13,6 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \usepackage{multirow}
-%\usepackage[table]{xcolor}
 \usepackage{float}
 \usepackage{array}
 \usepackage{ragged2e}
@@ -32,76 +20,48 @@
 \usepackage{tikz}
 \usepackage[normalem]{ulem}
 \usepackage{amsmath}
-\usepackage{mathpazo}
 \usepackage{amsfonts}
 \usepackage{framed}
 \usepackage{cleveref}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 
 \newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
 \lstset{language=Java,
 	tabsize=2,
 	basicstyle=\ttfamily\footnotesize,
-	mathescape=true
+        basewidth=0.56em,
+	mathescape=true,
+        fontadjust
 } 
 
 \newenvironment{boxquote}{\vspace{-1ex}\setlength{\FrameSep}{1\fboxsep}\begin{framed}\setlength{\parskip}{0.5\baselineskip}\setlength{\parindent}{0pt}}{\end{framed}}
 
-\newcommand{\squeezeup}{\vspace{-0.5mm}}
-
 \usepackage{etoolbox}
-\makeatletter
-\patchcmd{\@makecaption}
-{\scshape}
-{}
-{}
-{}
-\makeatother
 
 \newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
 
-\newcommand\FIXME[1]{{\color{red}\textbf{FIXME: #1}}}
-
-% correct bad hyphenation here
-%\hyphenation{op-tical net-works semi-conduc-tor}
+\overfullrule5pt
 
 \begin{document}
 
 \title{Toxic Code Snippets on Stack Overflow}
 
-\author{Chaiyong Ragkhitwetsagul,~Jens Krinke,~Matheus Paixao,~Giuseppe Bianco,~Rocco Oliveto}
+\author{
+  \IEEEauthorblockN{Chaiyong Ragkhitwetsagul\IEEEauthorrefmark{1},
+    Jens Krinke\IEEEauthorrefmark{1}, Matheus
+    Paixao\IEEEauthorrefmark{1},
+    Giuseppe Bianco\IEEEauthorrefmark{2},
+    Rocco Oliveto\IEEEauthorrefmark{2}}\\
+  \IEEEauthorblockA{\IEEEauthorrefmark{1}University College London,
+    London, UK}\\
+  \IEEEauthorblockA{\IEEEauthorrefmark{2}University of Molise,
+    Campobasso, Italy}
+}
 
-% The paper headers
-\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING,~Vol.~X, No.~Y, Month~2017}%
-{Ragkhitwetsagul \MakeLowercase{\textit{et al.}}: Toxic Code Snippets on Stack Overflow}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
+\maketitle
 
-% The publisher's ID mark at the bottom of the page is less important with
-% Computer Society journal papers as those publications place the marks
-% outside of the main text columns and, therefore, unlike regular IEEE
-% journals, the available text space is not reduced by their presence.
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
-% or like this to get the Computer Society new two part style.
-%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
-%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark (Computer Society jorunal
-% papers don't need this extra clearance.)
-
-% for Computer Society papers, we must declare the abstract and index terms
-% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
-% command as these need to go into the title area created by \maketitle.
-% As a general rule, do not put math, special symbols or citations
-% in the abstract or keywords.
-\IEEEtitleabstractindextext{%
 \begin{abstract}
 Online code clones are code fragments that are copied from software projects or
 online sources to Stack Overflow as examples. Due to an absence of a checking
@@ -126,65 +86,10 @@ a Qualitas project to Stack Overflow. We found 100 of them (66\%) to be outdated
 and potentially harmful for reuse. Furthermore, we found 214 code snippets that
 could potentially violate the license of their original software and appear 7,112
 times in 2,427 GitHub projects.
-
-%Online code clones are code fragments that are copied from software projects or
-%online sources to Stack Overflow as examples in questions and answers. % They
-%Due to an absence of a checking mechanism after the code has been copied to
-%Stack Overflow, they can become toxic code snippets, i.e.~they suffer from
-%being outdated or violating the original software license. We present a study
-%incorporating several state-of-the-art tools and techniques to automatically
-%extract and filter detected online clone pairs between 72,365 Java code snippets
-%on Stack Overflow and 111 Java open source projects in the curated Qualitas
-%corpus. We discovered and analysed 2,289 non-trivial online clone candidates.
-%Our investigation of the online clone pairs revealed strong evidence that 154
-%clones have been copied from a Qualitas project to Stack Overflow.  We found 101
-%of them (66\%) to be outdated and potentially harmful for reuse.  Furthermore,
-%we found 214 code snippets on Stack Overflow that could potentially violate the license of their
-%original software. To better understand the phenomenon, we also surveyed 201 high-reputation Stack Overflow answerers
-%(33\% response rate) and found that 131 of the answerers (65\%) have ever been notified of
-%outdated code in the answers and 26 of them (20\%) rarely or never fix the outdated
-%code. Only 3 answerers explicitly include software licenses in their answers and
-%138 answerers (69\%) never check for licensing conflicts between their copied code
-%snippets and Stack Overflow's CC BY-SA 3.0.
 \end{abstract}
 
-% Note that keywords are not normally used for peerreview papers.
-\begin{IEEEkeywords}
-Code Clone Detection, Stack Overflow, Outdated Code, Software Licensing
-\end{IEEEkeywords}}
+\section{Introduction}\label{sec:introduction}
 
-
-% make the title area
-\maketitle
-
-
-% To allow for easy dual compilation without having to reenter the
-% abstract/keywords data, the \IEEEtitleabstractindextext text will
-% not be used in maketitle, but will appear (i.e., to be "transported")
-% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
-% or transmag modes are not selected <OR> if conference mode is selected 
-% - because all conference papers position the abstract like regular
-% papers do.
-\IEEEdisplaynontitleabstractindextext
-% \IEEEdisplaynontitleabstractindextext has no effect when using
-% compsoc or transmag under a non-conference mode.
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
-\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
-
-%The popularity of the Internet encourages tremendous amount of source code
-% being shared online.
 Stack Overflow is a popular online programming community with 7.6 million users,
 14 million questions, and 23 million answers\footnote{Data as of 21 August 2017
 	from~\url{https://stackexchange.com/sites}}. It allows programmers to ask
@@ -252,9 +157,7 @@ websites (such as Stack Overflow) and vice versa as ``online code clones.''
 There are two directions in creating online code clones: (1)~code is cloned from
 a software project to a Q\&A website as an example; or (2)~code is cloned from a
 Q\&A website to a software project to obtain a functionality, perform a
-particular task, or fixing a bug. % and (3)~code is transferred from one
-% software project to another via a Q\&A website;
-Similar to classic code clones, i.e.,~clones between software systems, online
+particular task, or fixing a bug. Similar to classic code clones, i.e.,~clones between software systems, online
 code clones can lead to license violations, bug propagation, an introduction of
 vulnerabilities, and re-use of outdated code. Unfortunately, online clones are
 difficult to locate and fix since the search space in online code corpora is
@@ -293,7 +196,6 @@ on finding the origins of the clones on Q\&A websites.
 In this study, we tackle this challenge of establishing the existence of online code 
 clones on Stack Overflow, investigate how they occur, and study the potential
 effects to software reusing them.
-%Using the same analogy, in this study, we are interested in 
 Therefore, we mine Stack Overflow posts, detected online code clones, and analysed the clones to reveal
 ``toxic code snippets.''
 
@@ -307,9 +209,9 @@ In this study, we focus on the first two forms of toxic code snippets, outdated 
 as these two problems are still underexplored compared to code smells~\cite{Tufano2015} and vulnerabilities~\cite{Acar2016,Fischer2017}.
 Moreover, Stack Overflow users also express their concerns about these two problems
 as shown in several discussion threads\footnote{Discussions about outdated answers and code license on
-	Stack Overflow: meta.stackexchange.com/questions/131495, 
-	meta.stackexchange.com/questions/11705/, meta.stackexchange.com/questions/12527,
-	meta.stackexchange.com/questions/25956, meta.stackoverflow.com/questions/321291.}
+  Stack Overflow:\\
+  meta.stackexchange.com/questions/131495, .../11705, .../12527,
+	.../25956,\\ .../321291.}
 	 on \textsf{meta.stackexchange.com} about outdated
 answers and license of code on Stack Overflow.
 Outdated code snippets can be harmful since they are not up-to-date with their originals and may
@@ -335,10 +237,7 @@ containing {\small{\verb|buffer.reset(null,0,0);|}} which was added on November
 no.~HADOOP-11323\footnote{https://issues.apache.org/jira/browse/HADOOP-11323}).
 While this change has already been introduced into the
 {\small{\texttt{compare}}} method several years ago, the code example in Stack
-Overflow post is still unchanged. %This example shows that inconsistencies
-%between online code clones and their originals can lead users of Stack Overflow
-%to reuse outdated code.
-In addition, the original code snippet of {\small\texttt{WritableComparator}}
+Overflow post is still unchanged. In addition, the original code snippet of {\small\texttt{WritableComparator}}
 class in Hadoop is distributed with Apache license version 2.0 while its cloned
 instance on Stack Overflow contains only the {\small{\texttt{compare}}} method
 and ignores its license statement on top of the file. There are two potential
@@ -386,8 +285,7 @@ the latest version of \textsf{Hadoop}. We can see that
 they are entirely different. The {\small{\texttt{humanReadableInt}}} method is
 rewritten on February 5, 2013 to solve an issue of a race condition
 (issue no.~HADOOP-9252\footnote{https://issues.apache.org/jira/browse/HADOOP-9252}).
-%Similar to the first example, the clone code snippet on Stack Overflow does not 
-%include its original Apache v.2.0 license.
+
 
 The two toxic code snippets in our examples have been posted on March 11, 2014 and
 April 9, 2009 respectively. They have already been viewed 259 and 2,886 times\footnote{The number of views
@@ -397,16 +295,12 @@ at
 the time of writing this paper (October 3, 2017). Our calculation finds that
 there will be a new viewer of the first toxic snippet approximately every 5
 days compared to almost every day for the second one. 
-%A quick web search shows
-%that the defective {\small{\texttt{humanReadableInt}}} method in the second
-%example already appears in approximately 500 projects on GitHub. 
 Considering the popularity of Stack Overflow, which has more than 50 million developers visiting
 each month\footnote{Data as of 21 August 2017 from:
 	\url{https://stackoverflow.com}}, one toxic code snippet on Stack Overflow can
 spread and grow to hundred or thousand copies within only a year or two.
 
-%The code snippet on Stack Overflow can be outdated. %Since reusing source code from Stack Overflow is considered a common practice nowadays, the scale of online code cloning is more than intra or inter project clone in a local code bases.
-%This is an emerging and challenging problem. Since studies in this area are still limited, we aim to gain more insight of the problem in this study. %We are interested to gain more insights of online code clone in this study.
+
 
 While research has mostly focused on reusing code snippets \emph{from} Stack
 Overflow (e.g.,~\cite{Keivanloo2014,An2017,Yang2016}), fewer studies have been
@@ -449,8 +343,7 @@ code snippets.
 	the 2,289 online clones, at least 328 have been copied from open source
 	projects or external online sources to Stack Overflow, potentially violating
 	software licenses. For 153 of them, we found evidence that they have been copied
-	from a specific open source project. 100 of them were found to be outdated. %
-	% and questionable for being reused.
+	from a specific open source project. 100 of them were found to be outdated. 
 	
 	\item \textbf{An online code
 		clone oracle:} The 2,289 manually investigated and validated online clone pairs
@@ -506,8 +399,6 @@ research questions:
 	\label{fig:exp_framework}
 \end{figure}
 
-%\subsection{Experimental Setup}
-%\vspace{1ex}
 To answer these five research questions, we perform two surveys and an empirical study to
 understand the developers' awareness of toxic code snippets on Stack Overflow and to
 empirically study the online code clones between Stack Overflow and open source
@@ -534,8 +425,7 @@ We selected the participants for the answerer survey based on their Stack Overfl
 reputation. On Stack Overflow, a user's reputation reflects how much the
 community trusts them. A user earns reputations when he or she receives upvotes
 for good questions and useful answers. Accepted answers receive more reputation
-score than questions and regular answers\footnote{Stack Overflow
-	Reputation:~\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
+score than questions and regular answers\footnote{\url{https://stackoverflow.com/help/whats-reputation}}. Thus, Stack
 Overflow reputation is an indicator of user's skills and their involvement in
 asking and answering questions on the site. In this study, we call Stack
 Overflow users who have a high reputation ``Stack Overflow answerers.''
@@ -587,8 +477,7 @@ on Stack Overflow and open source projects from the Qualitas corpus
 
 \textbf{Stack Overflow:} We extracted Java code snippets from a snapshot of a
 Stack Overflow dump\footnote{\url{https://archive.org/details/stackexchange}} in
-January 2016. % The archived dump has a size of 9 gigabytes.
-The data dump is in XML, and it contains information about posts (questions and
+January 2016. The data dump is in XML, and it contains information about posts (questions and
 answers). We were interested in code snippets embedded in posts which were
 located between {\small\texttt{<code>}...\texttt{</code>}} tags. A Stack
 Overflow thread contains a question and several answers. An answer can also be
@@ -635,7 +524,6 @@ lines of code (see \Cref{tab:datasets}). The median project size is 60,667 lines
 	\centering
 	\caption{Stack Overflow and Qualitas datasets}
 	\label{tab:datasets}
-	%\small
 	\begin{tabular}{lrr}
 		\toprule
 		Data set & No. of files & SLOC \\
@@ -647,8 +535,7 @@ lines of code (see \Cref{tab:datasets}). The median project size is 60,667 lines
 \end{table}
 
 \textbf{Clone Detection Tools: } We use clone detection to discover online code
-clones. %\textbf{Clone Detection and Configuration: }
-There are a number of restrictions in terms of choosing the clone detection
+clones. There are a number of restrictions in terms of choosing the clone detection
 tools for this study. The main restriction is due to the nature of code snippets
 posted on Stack Overflow, as most of them are incomplete Java classes or
 methods. Hence, a detector must be flexible enough to process code snippets that
@@ -736,12 +623,8 @@ Nonetheless, it may create some false negatives.
 On the other hand, setting a low threshold
 results in a larger number of clone candidate pairs to look at, i.e.,~increasing recall, 
 and a higher chance of getting false positives. 
-%It is known that lowering the threshold value 
-%is harmful to precision. 
 Moreover, the large number of clone
 pairs hinders a full manual validation of the clones.
-% and one needs to
-%rely on sampling of clone pairs. 
 Three threshold values, six, ten, and fifteen lines, were chosen for our
 investigation. We started our investigation by using a threshold value of six
 lines, a well-accepted minimum clone size in clone benchmark~\cite{Bellon2007}.
@@ -768,64 +651,9 @@ of ten lines was preferred over six and fifteen lines. First, it generated
 a fewer number of clone pairs than using six lines, which made the manual clone
 investigation feasible. Second, it preserved the highest number of non-trivial clone
 pairs.
-%
-%The minimum clone size of 10 lines is
-%considered a standard setting for clone detection in large-scale data sets to
-%avoid trivial clones (e.g.,~\texttt{equals}, \texttt{hashCode}, or getter and
-%setter methods) in the analysis or the manual investigation phase~\cite{Sajnani2016}.  
-%We
-% performed an analysis to confirm this.
-%\begin{figure} 
-%	\centering
-%	\includegraphics[width=\linewidth]{boxplot_clone_size_combined} 
-%	\caption{Size of online code clones.} 
-%	\label{fig:boxplotclonesize}
-%\end{figure}
-%
-%The result is as shown in
-%\Cref{fig:boxplotclonesize}. We found that the distribution of the manually
-%confirmed true clones 
-%mainly cover the size from about 10 to 20 lines. Increasing
-%the threshold to be higher than 10 would remove some of the
-%true clone pairs.
-%
-%Regarding decreasing the minimum clone size to be less than 10 lines, we reran
-%the two clone detection tools again using a minimum
-%clone size of 6 lines, another well-accepted minimum clone size in clone
-%benchmark~\cite{Bellon2007}. Simian reported 67,172 clone candidate pairs and
-%SourcererCC reported 7,752 clone candidate pairs with 776 common clone pairs. 
-%With this large amount of clone
-%candidate pairs, it is not feasible to manually confirm all of the clones and we
-%must rely on sampling. This will result in weaker findings and
-%weaker conclusion. Thus, we decide pick the minimum clone size of 10 lines
-%to keep the balance between the number of non-trivial clone pairs and the
-%feasibility of manual clone investigation.
-%We made sure that they 
-%detected only non-trivial clones by increasing the minimum clone size to ten
-%lines.
-%(denoted as \textit{D}), and (2)~the discovered configurations for
-%Bellon's Java projects from \textit{EvaClone}~\cite{Wang2013}, a study
-%of optimising clone detectors' configurations based on clone agreement
-%(denoted by \textit{E}). \Cref{t:param_tuning} shows the two configurations.
-%In total, we have four configurations: Simian with the default
-%configuration ($S_D$), Simian with the EvaClone configuration ($S_E$), 
-%NiCad with the default configuration ($N_D$)
-%and NiCad with the EvaClone configuration ($N_E$).
-%
-%We encountered NiCad failures with a few Qualitas projects.~$N_D$
-%could not detect clones in \textsf{hibernate} due to clustering
-%errors. $N_E$ generated errors during code normalisation for 5
-%projects including \textsf{vuze}, \textsf{hibernate},
-%\textsf{myfaces}, \textsf{netbeans}, and \textsf{spring}. We have
-%contacted the creator of NiCad regarding the issues. They identified
-%the issues as problems in the TXL grammar and as problems of long file
-%paths, and will be fixed in the next NiCad releases.
-%
 The number of online clone pairs reported using the minimum clone size of 10 lines
 are presented in \Cref{tab:orig_stats}. Simian reports 721 clone
 pairs while SourcererCC reports 1,678 clone pairs. 
-%SourcererCC reports more clones due to its capability of detecting
-%clones of type-1 to type-3 while Simian only detects type-1 clones.
 The average clone size reported by Simian is
 16.61 lines which is slightly smaller than SourcererCC (17.86 lines).
 
@@ -833,8 +661,6 @@ The average clone size reported by Simian is
 	\centering
 	\caption{Number of online clones reported by Simian and SourcererCC}
 	\label{tab:orig_stats}
-	%\small
-	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{lrr}
 		\toprule
 		Tool & \multicolumn{1}{c}{Total clone pairs} & \multicolumn{1}{c}{Average clone size} \\
@@ -842,9 +668,7 @@ The average clone size reported by Simian is
 		Simian & 721 & 16.61 \\
 		SourcererCC & 1,678 & 17.86 \\
 		\bottomrule
-	\end{tabular} %
-	%}
-\end{table}
+	\end{tabular} \end{table}
 
 \subsubsection{Phase 2: Clone Merging} Clones from the two detectors can be
 duplicated. To avoid double-counting of the same clone pair, we adopted the idea
@@ -852,10 +676,6 @@ of \textbf{clone agreement} which has been used in clone research
 studies~\cite{Funaro2010, Wang2013,cr2016ssbse} to merge clones from two data
 sets. Clone pairs agreed by both clone detection tools have a high
 likelihood to be duplicate and must be merged. 
-%By using this agreement-based
-%approach, we reduced the number of clone candidates for manual investigation and
-%avoid a threat to internal validity of double counting the same clone pair twice
-%by merging the ones agreed by the two tools. 
 To find agreement between two clone
 pairs reported by two different tools, we used the clone pair matching metric
 proposed by Bellon et al.~\cite{Bellon2007}. Two clone pairs that have a large
@@ -871,35 +691,23 @@ while SourcererCC's clone fragments are always confined to a method boundary.
 
 We follow Bellon's original definitions of ok-match~\cite{Bellon2007}, which are based on how much two clone
 fragments \textit{CF} are contained in each other:
-%\squeezeup
-%\begin{displaymath}
-%overlap(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1) \cup lines(\textrm{\textit{CF}}_2)|} 
-%\end{displaymath}
-% \squeezeup
 \begin{displaymath}
 contained(\textrm{\textit{CF}}_1, \textrm{\textit{CF}}_2) = \frac{|lines(\textrm{\textit{CF}}_1) \cap lines(\textrm{\textit{CF}}_2)|}{|lines(\textrm{\textit{CF}}_1)|}
 \end{displaymath}
-\noindent%
+\noindent
 A clone pair \textit{CP} is formed by two clone fragments
 \textit{CF$_1$} and \textit{CF$_2$}, i.e.,~\textit{CP} =
 (\textit{CF$_1$}, \textit{CF$_2$})
-%, and the \textit{good-value} and
 and the \textit{ok-value} of two clone pairs is defined as
-%\squeezeup
-%\begin{align*}
-%good(\textrm{\textit{CP}}_1, \textrm{\textit{CP}}_2) = min(overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1), \\ overlap(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2))
-%\end{align*}
 \begin{align*}
 ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) = min(max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1),~~ \\ contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_1,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_1)),~
 \\ max(contained(\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2),~~ \\contained(\textrm{\textit{CP}}_2.\textrm{\textit{CF}}_2,\textrm{\textit{CP}}_1.\textrm{\textit{CF}}_2)))
 \end{align*}
 
-\noindent%
+\noindent
 Two clone pairs $\textrm{\textit{CP}}_1$ and $\textrm{\textit{CP}}_2$
 are called an \textit{ok-match(t)}  iff, for threshold $t \in [0,1]$ holds 
-%\squeezeup
 \begin{align*}
-%good(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) & \geq t\\
 ok(\textrm{\textit{CP}}_1,\textrm{\textit{CP}}_2) & \geq t
 \end{align*}
 
@@ -961,8 +769,6 @@ the merged clone pairs. The two investigators separately went through each clone
 pair candidate, looked at the clones, and decided if they are a true positive or
 a false positive and classified them into an appropriate pattern. After the
 validation, the results from the two investigators were compared. 
-%and 607 (26\%)
-%conflicts were discussed and resolved. 
 There were 338 (15\%) conflicts between 
 true and false clones (QS, SQ, EX, UD, BP, IN vs.~NC).
 The investigators looked at each conflicting pair together and
@@ -973,19 +779,14 @@ the true clone pairs. Among these pairs, 145 conflicts were caused by
 one investigator being more careful than the other and being able to find evidence of 
 copying while the other could not. Thus, resolving the conflicts lead to a better classification,
  i.e.,~from UD to QS or EX.
-%There were three conflicts where the two
-%investigators could not find a consensus and the third author was involved for
-%the final judgement.
 
-% No. of conflicts = 37 (ok) + 352 (simian) + 218 (SCC)
-% 33 pairs are changed from MP.UD --> CR.EX,QS
-% 112 pairs are changed from CR.UD --> MP.EX,QS
+
+
 
 \begin{table}
 	\centering
 	\caption{The seven patterns of online code cloning}
 	\label{tab:classification_scheme}
-	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{c@{~~}p{7.35cm}}
 		\toprule
 		Patt. & Description \\ 
@@ -1005,9 +806,7 @@ copying while the other could not. Thus, resolving the conflicts lead to a bette
 		
 		NC & Not clones \\ 
 		\bottomrule 
-	\end{tabular}  %
-	%}
-\end{table}
+	\end{tabular}  \end{table}
 
 \textbf{The online cloning classification patterns:} 
 We studied the eight patterns of cloning from Kapser et
@@ -1015,19 +814,7 @@ al.~\cite{Kapser2006,Kapser2008} and performed a preliminary study to
 evaluate its applicability to our study. 
 We tried to classify 697 online clone pairs from
 the reported clones in phase 1 
-%Using the $S_D$ clone report,
-%snippets were ranked according to (1)~clone pair frequency,
-%(2)~popularity (i.e.,~number of associated Qualitas projects),
-%(3)~clone size in SLOC, and (4)~ratio of cloned code per snippet. We
-%selected these four criteria so that we could cover the online clones
-%from various aspects. We selected the top 10 from each ranking and
-%obtained 34 unique Stack Overflow snippets. The snippets were
-%associated with 697 clone pairs.
-%\subsection{Defining Online Code Cloning Patterns}
 using Kapser's cloning patterns. We found that 
-% the
-% clone pairs were categorised into either Customisation or Templating.
-% Thus, 
 Kapser's patterns are too broad for our study and a more suitable and
 fine-grained classification scheme is needed. After a preliminary study, we
 adopted one of Kapser's cloning patterns, \emph{boiler-plate code}, and defined
@@ -1048,10 +835,6 @@ represents clones containing boiler-plate. We define three cases of boiler-plate
 code and use in our classification as shown in \Cref{tab:boiler-plate_code}. Our
 definition is specific to Java and more suitable to our study than the general
 definition in Kapser's~\cite{Kapser2008}.
-%of {\small\verb|equals()|} methods,
-%getters/setters, well-known code patterns such as deleting a file
-%or implementing a {\small{\texttt{toString}} method,
-% or IDE-generated code such as GUI components. 
  Pattern
 IN (\textbf{In}heritance/Interface) is cloning by inheritance of the
 same super class or implementation of the same interface. These two
@@ -1075,9 +858,7 @@ clones from the clone detectors such as similar
 		\midrule
 		\textbf{Design patterns} & Java design patterns suggest a way of implementing similar pieces of code. For example, getters, setters, {\small\texttt{equals}}, {\small\texttt{hashCode}}, and {\small\texttt{toString}} method. \\
 		\bottomrule 
-	\end{tabular}  %
-	%}
-\end{table}
+	\end{tabular}  \end{table}
 
 \begin{figure}
 	\centering
@@ -1180,18 +961,7 @@ EX, UD and checked for a possibility of license violation (phase 6).
 
 \subsection{RQ1: Stack Overflow Answerers' and Visitors' Awareness}
 
-%\begin{table}
-%	\centering
-%	\caption{Stack Overflow answerers taken the survey}
-%	\label{tab:survey_target}
-%	\begin{tabular}{rrrr}
-%		\toprule
-%		Reputation & Sent emails & Answers & Rate \\
-%		\midrule
-%		963,731--6,999 & 607 & 201 & 33\% \\
-%		\bottomrule
-%	\end{tabular}
-%\end{table}
+
 
 \subsubsection{The Answerer Survey}
 
@@ -1349,15 +1119,9 @@ follow-up question \textit{``how frequently did you fix your outdated code on St
 (57.2\%) very frequently or frequently fix the outdated code snippets. However,
 there are 19.8\% of the answerers in both groups who rarely, very rarely, or never fix 
 their outdated code.
-%
-%The responses from the answerers support our findings of outdated online code
-%clones in RQ3. 
 
-%\vspace{0.25cm}
-%\textit{How often are Stack Overflow
-%	answerers aware of licensing conflicts when
-%	they answer a question on Stack Overflow?} 
-%\vspace{0.25cm}
+
+
 
 \begin{table}
 	\centering
@@ -1433,10 +1197,7 @@ the checking. Nonetheless, there are about 10.5\% of the answerers who very
 frequently or frequently check for licensing conflicts when they copy code
 snippets to Stack Overflow.
 
-%Similar to outdated code, the responses from the answerers support our findings
-%of licensing conflicts in online code clones in RQ4 and possibly explain why most of
-%the clones copied from open source projects and external sources do not include
-%their original software license.
+
 
 \begin{boxquote}
 	To answer RQ 1.1, although most of the Stack Overflow answerers are aware that their code
@@ -1448,14 +1209,6 @@ snippets to Stack Overflow.
 	answerers choose to include the license in their profile page instead. 69\% of the
 	answerers never check for licensing conflicts between their copied code snippets
 	and Stack Overflow's CC BY-SA 3.0.
-%	To answer RQ 1.1, although most of the Stack Overflow answerers are aware that their code
-%	can be outdated, half of the answerers were very rarely notified of
-%	outdated code in the answers. After being notified, some of them rarely or never fix the outdated code.
-%	More than half of the answerers are aware of Stack Overflow's
-%	CC BY-SA 3.0 license. Only 3 answerers explicitly include software license in their answers
-%	while some of them choose to include the license in their profile page instead. More than half of the
-%	answerers never check for licensing conflicts between their copied code snippets
-%	and Stack Overflow's CC BY-SA 3.0.
 \end{boxquote}
 
 \textbf{Open Comments:} We also invited the participants to give a
@@ -1597,23 +1350,7 @@ To the best of our
 knowledge, a study of legal problems from reusing Stack Overflow code snippets
 has never been done before and will be our future work.
 
-%The visitors survey confirms the findings from the previous studies that Stack
-%Overflow code snippets can be problematic~\cite{Zhang2018,Acar2016,An2017,Fischer2017}. 
-%Sixty-six
-%percent of the visitors experienced a problem from reusing Stack Overflow code
-%snippets ranging from incorrect solutions, outdated solutions, mismatched
-%solutions, to buggy code. Although they are aware of the problems, half of them
-%(56\%) never reports back to the Stack Overflow discussions. On the other hand,
-%the visitors rarely give attributions to Stack Overflow when they reuse code
-%snippets from the website, similar to the findings reported
-%by~\cite{Baltes2017}. The visitors are generally not aware of the CC BY-SA 3.0
-%license, and more than half of them never check for license compatibility when
-%reusing Stack Overflow code snippets. 
-%Sixty-nine Stack Overflow visitors (79\%) who adopted code from Stack Overflow never 
-%check if the code snippet originated from a different source (e.g.,~an open source project) 
-%and if they had an incompatible license to their projects.
-%Moreover, we also found that 9\% of the participants
-%encountered legal issues by copying code from Stack Overflow.
+
 
 \begin{boxquote}
 	To answer RQ 1.2, Stack Overflow visitors experienced several issues from Stack
@@ -1661,10 +1398,6 @@ true positive clone pairs is 54.09\%.
 \begin{boxquote}
 	To answer RQ2, we found 2,063 manually confirmed clone pairs between 443 Stack Overflow code snippets
 	and 59 Qualitas proejcts. 
-	%After the manual confirmation, 2,076 pairs as true positives, i.e.,~
-	%they are manually confirmed as clones, which 
-	%account for 59 Qualitas projects and
-	%443 Stack Overflow code snippets.
 \end{boxquote}
 
 \subsection{RQ3: Patterns of Online Code Cloning}
@@ -1682,8 +1415,6 @@ and explained in the following.
 	\centering
 	\caption{Classifications of online clone pairs.}
 	\label{tab:classification_good_o}
-	%\small
-	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{lrrrrrrrr}
 		\toprule
 		Set & QS & SQ & EX & UD & BP & IN & NC & Total \\ 
@@ -1692,26 +1423,9 @@ and explained in the following.
 		After consolidation & 153 & 1 & 109 & 65 & 216 & 9 & 53 & 606 \\
 		\bottomrule
 	\end{tabular} 
-	%}
 \end{table*}
 
-%\begin{table}
-%	\centering
-%	\caption{Statistics of clone sizes}
-%	\label{tab:clone_stats}
-%	\begin{tabular}{lrrrr}
-%		\toprule
-%		Clones & Min & Max & Mean & Median \\
-%		\midrule
-%		QS & 10 & 135 & 18.6 & 14 \\
-%		SQ & 21 & 21 & 21.0 & 21 \\
-%		UD & 10 & 104 & 18.1 & 14 \\
-%		EX & 10 & 48 & 16.7 & 14 \\
-%		BP & 10 & 55 & 19.9 & 21 \\
-%		IN & 11 & 22 & 13.8 & 13.0 \\
-%		\bottomrule
-%	\end{tabular} 
-%\end{table}
+
 
 \textbf{QS: Qualitas $\rightarrow$ Stack Overflow.} We found 247 online clone
 pairs with evidence of cloning from Qualitas projects to Stack Overflow.
@@ -1737,8 +1451,6 @@ from WritableComparator. Here is an example that borrows some ideas from it.''}
 	\centering
 	\caption{Qualitas projects associated with QS and UD online clone pairs}
 	\label{tab:qs_qualitas_projects}
-	%\small
-	%\resizebox{\columnwidth}{!}{%
 	\begin{tabular}{lrlr}
 		\toprule
 		\multicolumn{2}{c}{QS} & \multicolumn{2}{c}{UD} \\
@@ -1770,7 +1482,6 @@ from WritableComparator. Here is an example that borrows some ideas from it.''}
 		antlr4 & 1 & cayenne & 1 \\
 		\bottomrule
 	\end{tabular} 
-	%}
 \end{table}
 
 We analysed the time it took for the clone to appear from Qualitas
@@ -1867,7 +1578,7 @@ source systems not in Qualitas (e.g.,\ \textsf{Mozilla
 Microsystems or Oracle, 3 pairs from books, and 1 pair from a company
 project. For example, Stack Overflow Post 9549009 contains a code comment saying
 \textit{``Copied shamelessly from
-	org.bouncycastle.crypto.generators.PKCS5S2ParametersGenerator''} which is an
+	org.bouncycastle.crypto.generators.PKCS5S2ParametersGene\-rator''} which is an
 open source project not included in the Qualitas corpus. Post 92962 includes a {\small\texttt{VerticalLabelUI}}
 class with a license statement showing that it is developed by a private company
 called \textsf{Sapient}. Post 12879764 has a text saying \textit{``Code modified
@@ -1889,10 +1600,7 @@ research website. We found that a snippet to generate graphical \textit{Perlin
 (\url{http://mrl.nyu.edu/~perlin/noise/}) website and is used in both Stack Overflow
 answer and the \textsf{aoi} project with attribution. 
 
-%There are other EX pairs which
-%are copied from open source libraries or Java SDK such as \textsf{Mozilla
-%	Rhino}, \textsf{java.util}, \textsf{javax.swing}, \textsf{javax.servlet}, and
-%the \textsf{bouncycastle} cryptography project.
+
 
 \textbf{UD: Unknown Direction.} We found 107 online clone pairs, reduced to 65
 pairs after consolidating the clones, with no evidence of cloning between Qualitas
@@ -1952,8 +1660,7 @@ and 9 pairs of clones due to implementing the same interface or inheriting the s
 We discovered 100 outdated online clone pairs out of 153 pairs. As shown in
 \Cref{fig:outdated}, \textsf{hibernate} has the highest number of 19 outdated
 pairs, followed by 14 from \textsf{spring}, 13 from \textsf{eclipse}, and 9 from
-\textsf{hadoop}. Besides the two examples of outdated code in % \textsf{hadoop}'s
-{\small{\texttt{WritableComparator}}} and
+\textsf{hadoop}. Besides the two examples of outdated code in {\small{\texttt{WritableComparator}}} and
 {\small{\texttt{StringUtils}}} class from \textsf{hadoop} shown in
 \Cref{fig:before-after} and \Cref{fig:before-after_2}, we also found a few
 outdated code elements which contained a large number of modifications. For
@@ -1961,12 +1668,7 @@ example, the code snippet in Stack Overflow post 23520731 is a copy of
 {\small{\texttt{SchemaUpdate.java}}} in \textsf{hibernate}. The code has been
 heavily modified on February 5, 2016.
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.7\linewidth]{mod_types}
-%	\caption{Six code modification types found when comparing the outdated clone pairs to their latest versions}
-%	\label{fig:mod_types}
-%\end{figure}
+
 
 \begin{table}
 	\centering
@@ -2030,8 +1732,7 @@ January 20, 2012, two years after it was posted.
 					modified/added/deleted statements, \textit{D}: file
 					has been deleted,  \textit{R}: method has been
 					rewritten completely}}
-		\end{tabular} %
-	}
+		\end{tabular} 	}
 \end{table*}
 
 Moreover, using the information in git commit messages, we can associate each
@@ -2188,7 +1889,6 @@ code snippet with a race condition was found in two popular projects: deeplearni
 	\centering
 	\caption{License mapping of online clones (file-level)}
 	\label{tab:license_abc}
-	%\small
 	\resizebox{\linewidth}{!}{
 		\begin{tabular}{lp{2.3cm}p{2.3cm}rrr}
 			\toprule
@@ -2225,8 +1925,6 @@ code snippet with a race condition was found in two popular projects: deeplearni
 	}
 \end{table}
 
-%If developers copy and reuse these licensed pieces of code in their projects,
-% conflicts may happen without their realisation.
 In our study, we reveal another type of toxic code snippets which is software
 licensing issues caused by code cloning to Stack Overflow. We found evidence that
 153 pieces of code have been copied from Qualitas projects to Stack Overflow as
@@ -2267,25 +1965,11 @@ license in the distributing software or statement of changes.
 For \textbf{EX}
 clone pairs, we searched for licensing terms of the original source code from
 the external sources. We found that 78 out of 93 EX clone pairs have
-incompatible licenses. %They are clones that have been identified to be copied
-% from an external source.
-Similarly, the license statement was removed from Stack Overflow snippets. 
+incompatible licenses. Similarly, the license statement was removed from Stack Overflow snippets. 
 
 Of 53 \textbf{UD} clone pairs, 50 pairs have incompatible licenses. Again, most
 clones in Qualitas contain a license while the Stack Overflow snippets do not.
-%
-%\Cref{fig:sankey_license} shows the direction of changes in online code clone
-% license. The direction of the change is from left to right. The thickness of
-% the line reflects the number of clones for that relationship. In
-% \Cref{fig:sankey_license} (A), we can clearly see that most of the QS online
-% clones have their licenses changed from having a license to ``No license'' on
-% Stack Overflow. The same findings were found for EX online clones as depicted
-% in \Cref{fig:sankey_license} (B). We found that most of the EX clones have
-% their licensing information stripped of after copying to Stack Overflow. These
-% clones are instead covered by the default CC BY-NC-SA 3.0 license of Stack
-% Overflow which is strongly permissive. These used-to-be-licensed code are
-% dangerous for being reused because they can implicitly conflict with the
-% reused software's license.
+
 
 The same GitHub study has been done for license-incompatible code snippets. 
 We detected clones between the 214
@@ -2339,23 +2023,9 @@ snippets.
 	in 2,427 GitHub projects.
 \end{boxquote}
 
-\subsection{Overall Discussion} %What can we learn for the results? For example,
-% if a developer explicitly reports in his/her code that the snippet was copied
-% from stackoverfow, are there some benefits? We could notify - for instance -
-% the developer when some new issues related to the snippet are posted on
-% stackoverflow? Or could we force people posting code on SO to explicitly
-% report licensing information? Or, could we implement an intelligent IDE that
-% when pasting code from external resource checks for licensing violation? These
-% of course are only some (crazy?) ideas that could be developed on the top of
-% the results we have achieved with this study...
+\subsection{Overall Discussion} 
 
-%We discovered two issues regarding code snippets on Stack Overflow in this
-% study: (1)~outdated online clones on Stack Overflow and (2)~missing or
-% incompatible license in Stack Overflow snippets.
-%that there is a considerable amount of cloned code between Stack Overflow that
-% are cloned from 111 projects in the Qualitas corpus. 64 clone pairs are
-% outdated and 358 snippets have incompatible software licenses to their
-% originals.
+
 
 This study empirically shows from the surveys and the clone detection experiment that
 online code clones occur on Stack Overflow and the clones may become toxic due
@@ -2481,8 +2151,7 @@ plug-in, developers can also report the corrected version of outdated code back
 to the original Stack Overflow threads when they reuse outdated code and make
 corrections to them.
 
-%The implementation and the evaluation of the
-%above actionable items is part of the agenda of our future work.
+
 
 
 \section{Threats to Validity}
@@ -2503,20 +2172,12 @@ accepted answers on Stack Overflow in this study to focus on code snippets that
 solve the question's problem and are often shown on top of the answer list.
 We investigated the 72,365 Stack Overflow code snippets used in our study and
 found that 62,245 of them (86\%) are also the highest voted answers.
-%While most of the time they are also the highest voted answers, some
-%times they are not. 
 We plan to incorporate the highest voted answers in future work.
-% We also
-% applied the Bellon's clone agreement to 4 different combinations of
-% the tools' configurations.  For disagreed clone pairs, we applied
-% several filters to remove spurious and uninteresting clones.
 
-% The number of online clones we found are subject to the clone
-% detectors and their configurations.  
 
-% We also
-% performed a pairwise matching between the default and EvaClone
-% configurations of the two clone detection tools.
+
+
+
 
 Our seven patterns of online code cloning may not cover all possible online
 cloning patterns. However, instead of defining the patterns beforehand, we
@@ -2532,8 +2193,7 @@ classifications and found 145 cases that lead to better classification results.
 This validation process can be even improved by employing an external
 investigator. 
 
-%In addition, we are aware of voting mechanism in Stack Overflow and plan to
-%incorporate highest-vote answers in the future work.
+
 
 \textbf{External validity:} We carefully chose the data sets for our
 experiment so the findings could be generalised as much as possible.
@@ -2564,11 +2224,6 @@ found may differ from other project selection criteria.
 
 \textbf{Stack Overflow} is a gold mine for software engineering
 research and
-% Its rich and developer-driven data are invaluable. Since
-% posts on Stack Overflow may contain code snippets embedded within
-% natural language text, they become a huge database for source code and
-% code-relevant information. 
-%The Stack Overflow data set 
 has been put to
 use in several previous studies. Regarding developer-assisting
 tools, Seahawk is an Eclipse plug-in that searches and recommends
@@ -2595,15 +2250,12 @@ Overflow so that they can automatically categorise new
 questions. There are also studies trying to understand developers'
 behaviours on Stack Overflow,
 e.g.,~\cite{Movshovitz-Attias2013,Rosen2016,Choetkiertikul2015,Bosu2013}.
-% , while some studies aim to improve Stack Overflow itself~\cite{Diamantopoulos2015, Wang2014}. 
+
 
 \textbf{Code clone detection} is a long-standing research topic in
 software engineering. Whether clones are good or bad for software is
 still
 controversial~\cite{Sajnani2016,Kapser2003,Kapser2008,Krinke2008,Hotta2010,Gode2011,Harder2013}.
-% However, by only knowing how many code clones residing in software
-% and how they evolve~\cite{Pate2013,Mondal2011} can provide several
-% valuable insights into the software systems.
 Code clones have several
 applications such as software plagiarism
 detection~\cite{Prechelt2002}, source code
@@ -2616,10 +2268,6 @@ interpretation of ``definition of similarity,'' there are various
 clone detection tools and their siblings, code plagiarism detectors,
 invented based on a plethora of different code similarity
 measurements~\cite{Roy2008, Ragkhitwetsagul2016,emse,Svajlenko2014}. 
-% Some tools use string comparison techniques such as Simian~\cite{simian}. 
-% NiCad~\cite{Roy2008,Cordy} exploits the Longest Common Subsequence
-% (LCS) string similarity measure after applying code pretty-printing
-% using TXL~\cite{Cordy2006}. 
 Many tools do not work on original source code directly but detect clones
 at an intermediate representation such as tokens ~\cite{Sajnani2016,Kamiya2002,Li2006,Gode2009,Burrows2007, Smith2009, Duric2012, Prechelt2002, Schleimer2003}, AST~\cite{Baxter1998,Jiang2007a} or program dependence
 graphs~\cite{Krinke2001,Komondoor2001}. 
@@ -2630,20 +2278,12 @@ Linux file systems and deriving 11 patterns of code cloning.
 Our study adopted one of the patterns into our online code cloning patterns.
 
 \textbf{Clone agreement} is useful when a clone oracle is
-absent. %Since clone detectors are different in their detection
-%approaches, they may behave differently and report different clones
-%even on the same data set. 
-By exploiting the different behaviours of clone detectors,
+absent. By exploiting the different behaviours of clone detectors,
 one can look for their agreement and obtain
-highly-confident clones~\cite{Bellon2007,Wang2013}. %Using the same
-%data set, 
-Clone pairs that are agreed by multiple tools are more assured to be true
+highly-confident clones~\cite{Bellon2007,Wang2013}. Clone pairs that are agreed by multiple tools are more assured to be true
 clones than the ones reported by only a single
 tool~\cite{Wang2013,cr2016ssbse,Funaro2010}. 
-% There are studies that report sensitivities of the tools'
-% configurations to the results~\cite{Wang2013,cr2016ssbse}, showing
-% that searching for an optimal configuration for every new data set
-% is preferred.
+
 
 \textbf{Software licensing} is crucial for open source and 
 industrial software development. Di Penta et al.~\cite{DiPenta2010}
@@ -2655,8 +2295,7 @@ different systems that come from the same source. Later,
 German et al.~\cite{German2010} created an automated tool 
 for software license identification, Ninka, which is used
 in our online clone license analysis. 
-%We use Ninka to analyse software license from Stack 
-%Overflow snippets and Qualitas projects. 
+
 
 \textbf{Reusing of outdated third-party source code} occurs 
 in software development. Xia et al.~\cite{Xia2014} show that 
@@ -2664,7 +2303,6 @@ a large number of open source systems reuse outdated third-party
 libraries from popular open source projects. Using the outdated 
 code give detrimental effects to the software since they may 
 introduce vulnerabilities. Our study similarly finds the
-% on % the context of 
 outdated code on Stack Overflow.
 
 Work similar to ours are studies by An et al.~\cite{An2017},
@@ -2696,29 +2334,14 @@ Stack Overflow.
 They show that 31\% of the analysed Stack Overflow posts
 contain potential API usage violations and could lead to program
 crashes or resource leaks.
-%Our study presents another findings that the Stack Overflow code snippets
-%can be problematic due to being outdated or violating the original
-%licenses.
-%In our work, we defined seven patterns of online code cloning and 
-%performed a large-scale manual check of 3,632 clone pairs. 
-%We discovered 112 clone pairs with strong evidences, 
-%based on natural text in comments and post contents, that they 
-%were copied from Qualitas to Stack Overflow. By comparing the 
-%clones to their latest versions in the software, we found that 
-%64 code snippets on Stack Overflow are outdated and possibly harmful for reuse.
 
-%\section{Future Work}
-%Since this study is limited to only Java language, we are interested in expanding the study further to other popular programming languages such as C, C++, Python, and Javascript on Stack Overflow. The similar study of outdated code and software licensing violation can be repeated. It is interesting to compare the findings among different programming languages. Moreover, other popular software project corpora (e.g.,\ GitHub) can also be included to increase generalisation of the findings.
-%
-%We are eager to tackle the issues of outdated and license-violating online code clones with an automated tool. The tool should incorporate a scalable clone detection method of locate similar code from programming Q\&A websites such as Stack Overflow and online code repositories like GitHub. It analyses a software project under development and reports clones that are copied from Stack Overflow. The reported clones have traces to their origins in open source projects or websites along with their freshness (fresh/outdated/dead) so that the developer of the project can be aware of changes made to the copied code snippets. Lastly, the license of the original source code is also reported so the developer can make an informed decision of whether he or she will incorporate that code snippet into their own project.
+
+
 
 \section{Conclusions}
 
 Online code clones are clones that have been copied to Q\&A websites
 such as Stack Overflow. 
-% They are similar to classical clones in software
-% projects where they can be outdated and violating software license but
-% are much harder to detect. 
 We classified 2,289 clone pairs using seven patterns of online code cloning. We
 discovered 153 clone pairs that have been copied, with evidence, from Qualitas
 projects to Stack Overflow, 109 clone pairs that have been copied from external
@@ -2754,15 +2377,8 @@ code snippets, including outdated and license-violating online code clones, on
 programming Q\&A websites using a hybrid methodology of automatic code clone
 detection and a manual clone investigation.
 
-% use section* for acknowledgment
-\ifCLASSOPTIONcompsoc
-  % The Computer Society usually uses the plural form
-  \section*{Acknowledgments}
-\else
-  % regular IEEE prefers the singular form
-  \section*{Acknowledgment}
-\fi
 
+\section*{Acknowledgments}
 
 The authors would like to thank Prof.~Cristina Lopes and Di Yang
 from University of California, Irvine
@@ -2773,82 +2389,4 @@ a custom tokeniser for Stack Overflow snippets.
 \bibliographystyle{plain}
 \bibliography{sigproc}  
 
-% biography section
-% 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{cragkhit.jpg}}]{Chaiyong Ragkhitwetsagul}
-is working toward the PhD degree in Computer Science at University College London, where he is part of the Centre for Research on Evolution, Search, and Testing (CREST) and Software Systems Engineering (SSE) Group. He is supervised by Dr.~Jens Krinke and Dr.~David Clark. His research interests include code search, code clone detection, software plagiarism, search-based software engineering, and mining software repository.
-\end{IEEEbiography}
-\vspace{-1cm}
-
-% % if you will not have a photo at all:
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{jkrinke.jpg}}]{Jens Krinke}
-is Senior Lecturer in the Software Systems Engineering
-Group at the University College London, where he is Director of CREST,
-the Centre for Research on Evolution, Search, and Testing.  His main
-focus is software analysis for software engineering purposes. His
-current research interests include software
-similarity, modern code review, and mutation testing.  He is well known for his work on
-program slicing and clone detection.
-\end{IEEEbiography}
-\vspace{-1cm}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mpaixao.png}}]{Matheus Paixao}
-is currently a PhD candidate in the Computer Science Department at University College London, where he is part of the CREST centre.~He is supervised by Dr.~Jens Krinke, Prof.~Mark Harman, Dr.~Emmanuel Letier and Dr.~Yuanyuan Zhang.
-His research interests include software architecture, search based software engineering, technical debt, empirical software engineering and modern code review.
-\end{IEEEbiography}
-\vspace{-1cm}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{giuseppe.png}}]{Giuseppe Bianco}
-  received his bachelor degree in Computer Science from the University
-  of Molise (Italy) under the supervision of Dr.~Rocco Oliveto. As
-  part of an Erasmus+ traineeship, he spent three month at the
-  CREST centre, University College London, UK, under the supervision
-  of Dr.~Jens Krinke.~He is now a project manager at Corsi.it.
-\end{IEEEbiography}
-\vspace{-0.5cm}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{rocco.png}}]{Rocco Oliveto}
-is Associate Professor at University of Molise (Italy), where he is also the Director of the Computer Science Bachelor and Master programs and the Director of the Software and Knowledge Engineering Lab (STAKE Lab). He co-authored over 100 papers on topics related to software traceability, software maintenance and evolution, search-based software engineering, and empirical software engineering. His activities span various international software engineering research communities. He has served as organizing and program committee member of several international conferences in the field of software engineering. He was program co-chair of ICPC 2015, TEFSE 2009 and 2015, SCAM 2014, WCRE 2012, and 2013. He is general chair for SANER 2018 that will be held in Campobasso from March 20, 2018 to March 23, 2018. He is also one of the co-founders and CEO of DataSound, a spin-off of the University of Molise aiming at efficiently exploiting the priceless heritage that can be extracted from big data analysis via machine learning. 
-More info at \url{https://dibt.unimol.it/staff/oliveto}.
-\end{IEEEbiography}
-\vfill
-
-% \begin{IEEEbiographynophoto}{Giuseppe Bianco}
-% Biography text here.
-% \end{IEEEbiographynophoto}
-
-% % insert where needed to balance the two columns on the last page with
-% % biographies
-% %\newpage
-
-% \begin{IEEEbiographynophoto}{Rocco Oliveto}
-% Biography text here.
-% \end{IEEEbiographynophoto}
-
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
-
-%\vfill
-
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
-
-
-
-% that's all folks
 \end{document}
-
-
