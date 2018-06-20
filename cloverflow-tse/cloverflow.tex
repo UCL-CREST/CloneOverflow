@@ -72,7 +72,7 @@
 \author{Chaiyong Ragkhitwetsagul,~Jens Krinke,~Matheus Paixao,~Giuseppe Bianco,~Rocco Oliveto}
 
 % The paper headers
-\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING,~Vol.~X, No.~Y, Month~2017}%
+\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING,~Vol.~X, No.~Y, Month~2018}%
 {Ragkhitwetsagul \MakeLowercase{\textit{et al.}}: Toxic Code Snippets on Stack Overflow}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
@@ -750,7 +750,7 @@ clone candidate pairs. We randomly sampled 382 pairs from the two sets for
 a manual check. This sample number was a statistically significant sample with a
 95\% confidence level and $\pm 5\%$ confidence interval. The first author
 investigated the sampled clone pairs and classified them into three groups:
-non-clones, trivial clones (\texttt{equals}, \texttt{hashCode}, or getter and
+not clones, trivial clones (\texttt{equals}, \texttt{hashCode}, or getter and
 setter methods), and non-trivial clones. The manual check found 26 non-clone
 pairs, 322 trivial clone pairs, and 34 non-trivial clone pairs. Next, we increased the
 threshold to ten lines, another well-established minimum clone size for
@@ -1088,7 +1088,7 @@ clones from the clone detectors such as similar
 
 The classification of the filtered online clone pairs followed the steps
 depicted in \Cref{fig:classification_process}. First, we look at a pair of clone
-fragments to see their similarity. If they are accidentally similar clones after
+fragments to see their similarity. If they are accidentally similar code fragments after
 code normalisation or false positive clones from the clone detection tools, we
 classify the pair into \textbf{NC}. If the two fragments are boiler-plate code,
 the pair is classified into \textbf{BP}. If they implement the same interface or
@@ -1996,7 +1996,7 @@ one clone pair at the same time but at a different location. The most often code
 change found is statement modification (50 occurrences), followed by statement
 addition (28 occurrences), statement removal (18 occurrences), change of
 method signature, i.e.,~API change (16 occurrences), and method rewriting (15
-occurrences). Moreover, in the 101 outdated pairs, we found 15 ``dead''
+occurrences). Moreover, in the 100 outdated pairs, we found 14 ``dead''
 snippets. These snippets cannot be located in the latest version of the
 projects. For example, the snippet in Stack Overflow post 3758110, a copy of
 {\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in \textsf{spring}, was
@@ -2171,7 +2171,7 @@ who copy and reuse the outdated code.
 For RQ4, our results show that 66\% (101) of QS clone pairs on Stack
 Overflow are outdated. 86 pairs differ from their newest versions by
 modifications applied to variable names or method names, added or deleted
-statements, to a fully rewritten code with new method signatures. 15~pairs are
+statements, to a fully rewritten code with new method signatures. 14~pairs are
 dead snippets. 47 outdated code snippets are found in 130,703 GitHub projects
 without evidence of copying, which of 12 were buggy. A toxic 
 code snippet with a race condition was found in two popular projects: deeplearning4j and Apache Hive.
@@ -2747,7 +2747,7 @@ and 130,703 GitHub projects finds 102 candidates of the outdated code being
 used in the wild.
  Moreover, we found 214 code snippets on Stack Overflow that could
 potentially violate the license of their original software, and they
-occur in 7,112 projects on GitHub.
+occur in 7,112 times in 2,427 projects on GitHub.
 
 This study is among, if not the first, to address the important issues of toxic
 code snippets, including outdated and license-violating online code clones, on
