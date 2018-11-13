@@ -1,0 +1,191 @@
+% Copyright Javier Sánchez-Monedero.
+% Please report bugs and suggestions to (jsanchezm at uco.es)
+%
+% This document is released under a Creative Commons Licence 
+% CC-BY-SA (http://creativecommons.org/licenses/by-sa/3.0/) 
+%
+% BASIC INSTRUCTIONS: 
+% 1. Load and set up proper language packages
+% 2. Complete the paper data commands
+% 3. Use commands \rcomment and \newtext as shown in the example
+
+\documentclass[a4paper,twoside,10pt]{reviewresponse}
+
+% 1. Load and set up proper language packages
+%\usepackage[utf8x]{inputenc}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage[latin9]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{booktabs} % For formal tables
+
+% 2. Complete the paper data
+\newcommand{\myAuthors}{Chaiyong Ragkhitwetsagul,~Jens Krinke,~Matheus Paixao,~Giuseppe Bianco,~Rocco Oliveto}
+\newcommand{\myAuthorsShort}{Ragkhitwetsagul et. al}
+\newcommand{\myEmail}{{chaiyong.ragkhitwetsagul.14,j.krinke,matheus.paixao.14}@ucl.ac.uk, giuseppebianco92@gmail.com, rocco.oliveto@unimol.it}
+%\newcommand{\mySecEmail}{}
+\newcommand{\myTitle}{Cover Letter for the Reviewers of the Paper \\ ``Toxic Code Snippets on Stack Overflow''}
+\newcommand{\myShortTitle}{Cover Letter}
+\newcommand{\myJournal}{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING}
+\newcommand{\myDept}{University College London (UK), University of Molise (Italy)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\usepackage[linktoc=all]{hyperref}
+\usepackage[linktoc=all,bookmarks,bookmarksopen=true,bookmarksnumbered=true]{hyperref}
+
+\hypersetup{
+pdfauthor = {\myAuthorsShort},
+pdftitle = {\myTitle},
+pdfsubject = {\myJournal\xspace},
+colorlinks = true,
+linkcolor=blue,          % color of internal links
+citecolor=black!70!green,        % color of links to bibliography
+filecolor=magenta,      % color of file links
+urlcolor=black           % color of external links
+}
+
+\newcommand\FIXME[1]{{\color{red}\textbf{FIXME: #1}}}
+
+\begin{document}
+
+\thispagestyle{plain}
+
+\begin{center}
+ {\LARGE\myTitle} \vspace{0.3cm} \\
+ {\large\myJournal} \vspace{0.3cm} \\
+ \today \vspace{0.3cm} \\
+ \myAuthors \\
+ \url{\myEmail} \\
+ %\url{\mySecEmail} 
+ \vspace{0.3cm} 
+ \myDept \vspace{1cm}
+\end{center}
+
+%\tableofcontents
+
+%\begin{abstract}
+This paper is a journal-first submission to Transactions on Software
+Engineering. This is a minor revision the previous submission
+no.~TSE-2017-11-0335 and we would like to thank the anonymous reviewers for
+taking their time to read our paper carefully. With their useful and
+constructive reviews, we improved the work further by adding xxx minor
+improvements as listed below to our previous submission as discussed later in this letter.
+
+\begin{enumerate}
+	\item A
+	\item B
+\end{enumerate}
+
+We tried our best to address all the comments from the reviewers. Every
+comment led to an improvement on this submission, and we discuss them in order as
+shown in the next sections.
+
+%Lastly, we would also like to ask the reviewers to comment on how to address the
+%newly established page limits of IEEE TSE that was enforced on 18 February 2018, after our previous
+%submission (15 November 2017). After incorporating the suggestions from the reviewers and
+%rewriting, our paper is now extended to 22 pages. Are there any elements that
+%could or should be removed, or should a split into two separate papers be
+%considered?
+
+\clearpage
+
+\section{Reviewer 1}
+
+\rcomment{The paper presents an interesting empirical analysis of what the authors refers to as toxic code clones on Stack Overflow. The paper presents a study using state-of the art clone detection tools and techniques to automatically extract and filter online clone pairs between Stack Overflow and projects in the curated Qualitas corpus. The paper also includes a user survey conducted on Stack Overflow users to assess their awareness of such potential toxic code fragments.he paper is well organized,  sound and the authors spend amount of work in their empirical analysis.
+\vspace{0.2cm}
+	
+The authors did a very good job in explaining their methodology and the results they obtained from their user survey and the online clone detection experiment.
+\vspace{0.2cm}
+
+Probably the least convincing part of the paper is the study on toxic license violations. This limitations however is partially due to the grey zone these licenses proliferations have remained in. Even license violation detection tools only cover a subset of all possible license proliferations which might exist. This is a general issue for all open source developers and not limited to code reuse through Stack Overflow. Authors do acknowledge in their discussion this challenge, due to different legislation in different countries and their goal to increase the SO user awareness of this potential violations is welcome addition.
+\vspace{0.2cm}
+
+Threats to validity in terms of generalizability will basically always exist and the authors did a good job in mitigating these challenges or acknowledging the limitations of their studies.
+\vspace{0.2cm}
+
+Section 3.6.2 Actionable items is a good start to drive further research in this area. However, a general concern is that the potential overall impact of these toxic code snippets seems to be rather small in terms of number of posts on SO or even in terms of code reuse from SO. Should we really care about them? But then again, I guess any improvement to the overall quality of software is a desirable contribution.}
+
+\rcomment{
+\textbf{Minor issues}
+Page 17, Col.1, L14-15
+As shown in Table 23, the clones were found in highly starred projects (???  29,465 to 10 stars ???) to 1-star projects. Please rephrase
+\vspace{0.2cm}
+
+Page 17, Col.2, L11
+Software auditing services such as Black Duck Software or nexB, which can effectively check for ...
+Please provide the Reference for Black Duck Softwqre or nextB -- you have only later on Page 18
+}
+
+\section{Reviewer 2}
+
+\rcomment{Thank you to the authors for the revised manuscript. I think the authors did a great job addressing most comments, specifically, R2C2, C6, C7, C9 and C10.
+\vspace{0.2cm}
+
+That said, I still would like more clarification on some of the other comments. My detailed comments are below:
+\vspace{0.2cm}
+
+R2C1: I am not sure the new definition fits well within your study context. It was more about technical debt and I would remove that definition and stick to the next sentence where you specifically say that toxic code snippets are snippets that are 1) outdated, ...etc.}
+
+\rcomment{R2C3: After reading your response, I have a few questions - 1) what are these 100 posts you examined? how were they determined? how was the number 100 determined?}
+
+\rcomment{Also, I am not sure that you answered my comment with your analysis. My point was that some may actually expect the code to be outdated and how do you deal with that, they will usually use newer posts/answers. I am not sure you addressed my comments with your analysis.}
+
+\rcomment{R2C4: Again, what are the 100 posts (same issues/questions as above arise)? Also, from the table, I would say that only the deprecation posts (15/100) give an indication of outdated code. I am not sure what the rest of the categories in there tell me about the deprecated code.}
+
+\rcomment{R2C5: This is a major issue for me, and I was really hoping that with this revision the authors would update their dataset. By the time this paper hits publication, your data will be 3 years old! In any case, I will leave the decision to the editor, but really, think about a reader of your paper who might question the findings since the data is old. Again, it was not clear to me what the 100 posts and their analysis provide.}
+
+\rcomment{R2C8: Thank you for clarifying the manual analysis part. Can please provide more details on how this manual analysis determined that something actually originated from SO? Perhaps giving an example would help here. Also, who did this verification?}
+
+\section{Reviewer 3}
+
+\rcomment{I reviewed the previous submission and am impressed by the improvements to the paper. All of my major concerns are addressed in the new version, and I only have a few minor requests for further improvements:
+	
+\begin{itemize}
+	\item The abstract states that ``We found 100 of them (66\%) to be outdated and potentially harmful for reuse.'' Given the word ``potentially'' this statement is technically true, but the conclusion of the paper is that only 12/100 are actually buggy/harmful. Please revise the abstract to make this clear. The same concern applies to item 3 near the end of Section 1.
+\end{itemize}
+}
+
+\rcomment{
+\begin{itemize}
+	\item The introduction states that ``We found that the code snippets are usually not authored directly on the Stack Overflow website but copied from another location.'' To me, this is worded too strongly. Please revise.
+\end{itemize}
+}
+
+\rcomment{
+\begin{itemize}
+	\item The new definition of ``toxic code snippets'' is better in terms of content, but the wording is awkward. Please try to express the current definition more clearly/succinctly.
+\end{itemize}
+}
+
+\rcomment{
+\begin{itemize}
+	\item Regarding the previous Reviewer 1 Comment 5, please add a sentence or two to the paper that mentions point (c), even if only as potential future work.
+\end{itemize}
+}
+
+Reviewer 1 Comment 5:
+``\textit{(c) if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question.}''
+
+\rcomment{Typos, etc:
+	\begin{itemize}
+		\item In the second sentence of the abstract, ``i.e.'' should be ``e.g.''
+		\item On page 14, the sentence ``The intent behind the changes are grouped into six categories as shown in Section 3.4.'' is spurious (as it appears in Section 3.4).
+\end{itemize}}
+
+\section{Conclusion}
+We would like to thank the reviewers again for their comments.
+We have tried our best to address every concern that has been pointed out by the reviewers. This result in several minor improvements throughout the paper.
+We believe this new submission is an improvement from the previous version due to the insightful reviews and discussions. We are looking forward to the new reviews.
+
+% Uncomment in case references are needed
+%\bibliographystyle{plain}
+\bibliographystyle{spbasic}
+\bibliography{references}
+
+
+\end{document}
