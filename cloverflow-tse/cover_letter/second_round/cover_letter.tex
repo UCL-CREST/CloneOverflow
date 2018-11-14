@@ -20,18 +20,25 @@
 \usepackage[english]{babel}
 \usepackage{natbib}
 \usepackage{float}
+\usepackage{listings} 
 \usepackage{multirow}
 \usepackage{booktabs} % For formal tables
 
+\lstset{language=Java,
+	tabsize=2,
+	basicstyle=\ttfamily\footnotesize,
+	mathescape=true
+} 
+
 % 2. Complete the paper data
-\newcommand{\myAuthors}{Chaiyong Ragkhitwetsagul,~Jens Krinke,~Matheus Paixao,~Giuseppe Bianco,~Rocco Oliveto}
+\newcommand{\myAuthors}{Chaiyong Ragkhitwetsagul$^\ast$,~Jens Krinke$^\dagger$,~Matheus Paixao$^\dagger$,~Giuseppe Bianco$^\star$,~Rocco Oliveto$^\star$}
 \newcommand{\myAuthorsShort}{Ragkhitwetsagul et. al}
-\newcommand{\myEmail}{{chaiyong.ragkhitwetsagul.14,j.krinke,matheus.paixao.14}@ucl.ac.uk, giuseppebianco92@gmail.com, rocco.oliveto@unimol.it}
+%\newcommand{\myEmail}{cragkhit@gmail.com, {j.krinke,matheus.paixao.14}@ucl.ac.uk, giuseppebianco92@gmail.com, rocco.oliveto@unimol.it}
 %\newcommand{\mySecEmail}{}
 \newcommand{\myTitle}{Cover Letter for the Reviewers of the Paper \\ ``Toxic Code Snippets on Stack Overflow''}
 \newcommand{\myShortTitle}{Cover Letter}
 \newcommand{\myJournal}{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING}
-\newcommand{\myDept}{University College London (UK), University of Molise (Italy)}
+\newcommand{\myDept}{Mahidol University (Thailand)$^\ast$, University College London (UK)$^\dagger$, University of Molise (Italy)$^\star$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -60,7 +67,7 @@ urlcolor=black           % color of external links
  {\large\myJournal} \vspace{0.3cm} \\
  \today \vspace{0.3cm} \\
  \myAuthors \\
- \url{\myEmail} \\
+% \url{\myEmail} \\
  %\url{\mySecEmail} 
  \vspace{0.3cm} 
  \myDept \vspace{1cm}
@@ -70,8 +77,8 @@ urlcolor=black           % color of external links
 
 %\begin{abstract}
 This paper is a journal-first submission to Transactions on Software
-Engineering. This is a minor revision the previous submission
-no.~TSE-2017-11-0335 and we would like to thank the anonymous reviewers for
+Engineering. This is a minor revision the submission
+no.~TSE-2018-06-0228 and we would like to thank the anonymous reviewers for
 taking their time to read our paper carefully. With their useful and
 constructive reviews, we improved the work further by adding xxx minor
 improvements as listed below to our previous submission as discussed later in this letter.
@@ -110,16 +117,27 @@ Threats to validity in terms of generalizability will basically always exist and
 
 Section 3.6.2 Actionable items is a good start to drive further research in this area. However, a general concern is that the potential overall impact of these toxic code snippets seems to be rather small in terms of number of posts on SO or even in terms of code reuse from SO. Should we really care about them? But then again, I guess any improvement to the overall quality of software is a desirable contribution.}
 
+Thank you for your insightful comment regarding the toxic license violations. As the reviewer has mentioned, software license violation is difficult to identify and validate due to various number of software licenses, differences in country's legislation, and amount of code to be considered copyrighted (vs.~fair use). Nevertheless, the case of copying a licensed code snippet from an open source project to Stack Overflow without its license shows a clear potential for software license violation. By detecting such case, we can alleviate the license issues by stopping the accidental conversion of strictly licensed code (such as GPL) to permissively licensed code (such as CC BY-SA 3.0 on Stack Overflow). We hope that our study will raise awareness about this issue to Stack Overflow and the developers.
+
+Regarding the few number of toxic code snippets in SO posts and code reuse in GitHub, this is partially due to the data set of 111 Java projects from the Qualitas corpus. The clones (and the discovered outdated code and potentially license-violating code snippets) reported in this paper are only subject to these 111 projects. The number may increase if we expand the amount of open source projects. Moreover, this study only focuses on Java, and the situation may be worse or better for other programming languages. We have added this discussion into the Threats to Validity. \FIXME{To do}
+
 \rcomment{
 \textbf{Minor issues}
-Page 17, Col.1, L14-15
-As shown in Table 23, the clones were found in highly starred projects (???  29,465 to 10 stars ???) to 1-star projects. Please rephrase
 \vspace{0.2cm}
 
+Page 17, Col.1, L14--15
+As shown in Table 23, the clones were found in highly starred projects (???  29,465 to 10 stars ???) to 1-star projects. Please rephrase
+}
+
+We rephrased the sentence to ``As shown in Table 23, the clones were found in highly- starred projects (29,465 stars) to lowly-starred star projects (1 star).''
+
+\rcomment{
 Page 17, Col.2, L11
 Software auditing services such as Black Duck Software or nexB, which can effectively check for ...
 Please provide the Reference for Black Duck Softwqre or nextB -- you have only later on Page 18
 }
+
+We have moved the references for Black Duck Software and nextB to their first appearance on Page 17.
 
 \section{Reviewer 2}
 
@@ -133,13 +151,107 @@ R2C1: I am not sure the new definition fits well within your study context. It w
 
 \rcomment{R2C3: After reading your response, I have a few questions - 1) what are these 100 posts you examined? how were they determined? how was the number 100 determined?}
 
+The 100 posts we examined were the posts containing all the 100 outdated code snippets reported in RQ4, which were discovered by the clone detection tools and manually confirmed by the two investigators.
+
 \rcomment{Also, I am not sure that you answered my comment with your analysis. My point was that some may actually expect the code to be outdated and how do you deal with that, they will usually use newer posts/answers. I am not sure you addressed my comments with your analysis.}
+
+We agree that our analysis may not fully answer your comment because we could not capture what the Stack Overflow visitors actually did when they found an outdated answer. However, our investigation compared the popularity of the outdated answer and the newer answers based on the number of votes. If Stack Overflow visitors reuse the code (or learn from the answers) and they like the answer, they can reward the answer with an upvote. In our investigation of the 100 outdated answers, we found that only 5 of the newer answers had higher votes than the outdated answers and 99\% of the outdated answers were still marked as accepted. \FIXME{Shall we also discuss the issue of ``accepted answers'' that they are totally relied on the questioner and not other visitors?} We are aware that this may be affected by the duration that the answers appear on a Stack Overflow post. The newer answers have less visibility compared to the older answers. 
+
+An alternative solution might be directly comparing the number of code reuse from the outdated answers to their newer/higher-voted answers in open source projects (e.g., GitHub). 
+Nevertheless, although we had performed such comparison, we would still suffer from the same timing issue that the newer code snippets have less chance to be reused than the older ones.
+
+We have added this discussion in the Threats to Validity section \FIXME{To do}.
 
 \rcomment{R2C4: Again, what are the 100 posts (same issues/questions as above arise)? Also, from the table, I would say that only the deprecation posts (15/100) give an indication of outdated code. I am not sure what the rest of the categories in there tell me about the deprecated code.}
 
+The 100 posts are the posts containing the 100 outdated code snippets reported in RQ4. The 6 intents of changes in the 100 outdated code snippets shown in the table below (a copy of Table 3 in the previous response letter and Table 20 in the paper) cover \textbf{all} the cases of outdated code. 
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{llr}
+		\toprule
+		Intent & Detail & Amount \\
+		\midrule
+		Enhancement & Add or update existing features & 64 \\
+		Deprecation & Delete dead/deprecated code & 15 \\
+		Bug & Fix bugs & 10 \\
+		Refactoring & Refactor code for better design & 6 \\
+		Coding style & Update to a new style guideline & 3 \\
+		Data change & Changes in the data format & 2 \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:intent_outdated}
+	\caption{Intents of code changes in the 100 outdated code snippets}
+\end{table}
+
+The Deprecation intent partially indicates the cause of outdated code, but not all. It represents the code snippets that are outdated due to the use of deprecated functions or APIs. With this case of function/API deprecation, the code snippets that we analysed contained a few deprecated code statements while the newest version (based on the time we did the analysis) of the same code snippets no longer contain the deprecated part(s). Other intents represent different cases of a code snippet being outdated. For example, the Bug intent represents a code snippet that previously contained buggy code statements, and was fixed in the newest version. The Refactoring intent represents a code snippet that was different from the newest version due to code refactoring.
+To sum up, the table shows that outdated code can be caused by different intents and not all of them are harmful. Outdated code snippets with Bug intent are clearly harmful if they are posted on the Internet (e.g., Stack Overflow). We slightly modified the section explaining this table to be clearer \FIXME{To do}.
+
 \rcomment{R2C5: This is a major issue for me, and I was really hoping that with this revision the authors would update their dataset. By the time this paper hits publication, your data will be 3 years old! In any case, I will leave the decision to the editor, but really, think about a reader of your paper who might question the findings since the data is old. Again, it was not clear to me what the 100 posts and their analysis provide.}
 
+We understand your concern about the age of the data set. However, we do not expect large differences of the findings if we update the data set. The reason is that the Stack Overflow answers are rarely modified. As discussed in RQ4, we used this 2-year gap between the Stack Overflow snapshot that we analysed for clones, and the latest version on the web, as a chance to study the evolution of the 100 outdated answers. We found that 99\% of the outdated code are still marked as accepted. While there were a few newer posts in each of the 100 outdated answers, only 5 newer answers obtained higher votes than the outdated ones. Thus, updating the Stack Overflow data to the latest snapshot will mostly increase the chance of finding newer outdated code snippets.
+We have added this to the Threats to Validity section \FIXME{To do}.
+
+The 100 posts are the posts containing the 100 outdated code snippets reported in RQ4. Their analysis shows that only a number of the outdated code snippets are harmful. 47 of the 100 discovered outdated code are found in GitHub projects (12 are buggy code). So, according to the 111 Java projects in Qualitas, the outdated code snippets do not widely spread to open source projects.
+
 \rcomment{R2C8: Thank you for clarifying the manual analysis part. Can please provide more details on how this manual analysis determined that something actually originated from SO? Perhaps giving an example would help here. Also, who did this verification?}
+
+In the case of cloning direction from Stack Overflow $\rightarrow$ Qualitas
+(SQ), we found only one pair with evidence of cloning from Stack Overflow post
+ID 698283 to {\small\texttt{POIUtils.java}} in \textsf{jstock} project (as shown below). 
+The Stack Overflow post can be seen from \url{https://stackoverflow.com/questions/698176/determine-correct-method-signature-during-runtime/698283#698283}.
+The user who asked the question (i.e., Cheok Yan Cheng) on Stack Overflow is an author of \textsf{jstock} (the author's GitHub profile can be seen from \url{https://github.com/yccheok}). The
+question is about determining the right method to call among 7 overloading
+methods of {\small\texttt{setCellValue}} during runtime. We could not find
+evidence of copying or attribution to Stack Overflow in \textsf{jstock}.
+However, considering that the 25 lines of code of
+{\small\texttt{findMethodToInvoke}} method depicted in  in Stack Overflow is
+very similar to the code in \textsf{jstock} including comments, it is almost
+certain that the two code snippets form a clone pair. In addition, the Stack
+Overflow answer was posted on March 30, 2009, while the code in
+{\small\texttt{POIUtils}} class in \textsf{jstock} was committed to GitHub on
+the next day of March 31, 2009. 
+The git blame of the file \texttt{POIUtils.java} 
+containing the clone can be found from \url{https://github.com/yccheok/jstock/blame/master/src/org/yccheok/jstock/gui/POIUtils.java} (line 99--123).
+
+\begin{figure}[H]
+	\begin{lstlisting}
+private Method findMethodToInvoke(Object test) {
+	Method method = parameterTypeMap.get(test.getClass());
+	  if (method != null) {
+	    return method;
+	  }
+	
+	// Look for superclasses
+	Class<?> x = test.getClass().getSuperclass();
+	while (x != null && x != Object.class) {
+	  method = parameterTypeMap.get(x);
+	  if (method != null) {
+	    return method;
+	  }
+	  x = x.getSuperclass();
+	}
+	
+	// Look for interfaces
+	for (Class<?> i : test.getClass().getInterfaces()) {
+	  method = parameterTypeMap.get(i);
+	  if (method != null) {
+	    return method;
+	  }
+	}
+	return null;
+}
+	\end{lstlisting}
+	\caption{The {\small\texttt{findMethodToInvoke}} that is found to be copied from Stack Overflow post 698283 to {\small\texttt{POIUtils}} class in \textsf{jstock}.}
+	\label{fig:jstock_code}
+\end{figure}
+
+The verification was performed by the first and
+the third authors. The two investigators separately went through each clone pair
+candidate, looked at the clones, and decided if they are a true positive or a
+false positive and classified them into an appropriate pattern. After the
+validation, the results from the two investigators were compared. 
+This discussion can be found in Section 2.2.3 (Manual investigation).
 
 \section{Reviewer 3}
 
@@ -150,11 +262,21 @@ R2C1: I am not sure the new definition fits well within your study context. It w
 \end{itemize}
 }
 
+Thank you for the comment. We agree with your suggestion and we changed the statement in the abstract to:
+
+``We found 100 of them (66\%) to be outdated. \textbf{Ten of them were buggy and harmful for reuse.} ''
+
+Moreover, we modified the item 3 in the contributions to be:
+
+``100 of them were found to be outdated\textbf{, of which 12 were buggy code.}'' \FIXME{update in the paper}
+
 \rcomment{
 \begin{itemize}
 	\item The introduction states that ``We found that the code snippets are usually not authored directly on the Stack Overflow website but copied from another location.'' To me, this is worded too strongly. Please revise.
 \end{itemize}
 }
+
+Again, we agree with your suggestion. The statement has been changed to ``We found that the code snippets are \textbf{often} not authored directly on the Stack Overflow website but copied from another location.''. \FIXME{update in the paper}
 
 \rcomment{
 \begin{itemize}
@@ -168,6 +290,8 @@ R2C1: I am not sure the new definition fits well within your study context. It w
 \end{itemize}
 }
 
+We have added a discussion of the point (c) in the ??? section. \FIXME{To do}
+
 Reviewer 1 Comment 5:
 ``\textit{(c) if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question.}''
 
@@ -176,6 +300,8 @@ Reviewer 1 Comment 5:
 		\item In the second sentence of the abstract, ``i.e.'' should be ``e.g.''
 		\item On page 14, the sentence ``The intent behind the changes are grouped into six categories as shown in Section 3.4.'' is spurious (as it appears in Section 3.4).
 \end{itemize}}
+
+Thank you for spotting them. They are now fixed.
 
 \section{Conclusion}
 We would like to thank the reviewers again for their comments.

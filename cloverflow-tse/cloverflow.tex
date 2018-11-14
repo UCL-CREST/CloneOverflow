@@ -106,7 +106,7 @@
 Online code clones are code fragments that are copied from software projects or
 online sources to Stack Overflow as examples. Due to an absence of a checking
 mechanism after the code has been copied to Stack Overflow, they can become
-toxic code snippets, i.e.,~they suffer from being outdated or violating the
+toxic code snippets, e.g.,~they suffer from being outdated or violating the
 original software license. We present a study of online code clones on Stack
 Overflow and their toxicity by incorporating two developer surveys and a
 large-scale code clone detection. A survey of 201 high-reputation Stack Overflow
@@ -2051,6 +2051,8 @@ we found are toxic and are harmful to reuse.
 
 \begin{table}
 	\centering
+	\caption{Intents of code changes in the 100 outdated code snippets}
+	\label{tab:intent_outdated}
 	\begin{tabular}{llr}
 		\toprule
 		Intent & Detail & Amount \\
@@ -2063,8 +2065,6 @@ we found are toxic and are harmful to reuse.
 		Data change & Changes in the data format & 2 \\
 		\bottomrule
 	\end{tabular}
-	\label{tab:intent_outdated}
-	\caption{Intents of code changes in 100 outdated code snippets}
 \end{table}
 
 
@@ -2295,7 +2295,7 @@ Opposite to the outdated clones, we discovered a large number
 of 7,207 clone pairs. There were 95 pairs from 10 Qualitas projects hosted on
 GitHub and 7,112 pairs from 2,427 other projects. As shown in
 \Cref{tab:license_github}, the clones were found in highly-starred
-projects (29,465 to 10 stars) to 1-star projects.
+projects (29,465 stars) to lowly-starred star projects (1 star).
 We found 12 code snippets with attributions to Stack Overflow questions/answers and
 6 of them refer to one of our QS or EX clone pairs.
 We used the Ninka tool to identify software licenses of the 7,112 cloned
@@ -2380,7 +2380,8 @@ also in the study by An et al. \cite{An2017}, some online clones on Stack Overfl
 initially licensed under more restrictive license than Stack Overflow's CC
 BY-SA 3.0. If these missing-license online clones are reused in software with
 an incompatible license, the software owner may face legal issues. Software
-auditing services such as Black Duck Software or nexB, which can effectively
+auditing services such as Black Duck Software\footnote{https://www.blackducksoftware.com} 
+or nexB\footnote{https://www.nexb.com}, which can effectively
 check for license compliance of code copied from open source projects, do not
 check for the original license of the cloned code snippets on Stack Overflow. Although
 the Stack Overflow answerers who participated in our survey believe that most of the
@@ -2442,8 +2443,7 @@ finding to the developers in real time.
 
 Also, we also performed a study of two open source software auditing
 platforms/services:~BlackDuck
-Software\footnote{https://www.blackducksoftware.com} and
-nexB\footnote{https://www.nexb.com}. For BlackDuck Software, we found from their
+Software and nexB. For BlackDuck Software, we found from their
 report~\cite{CORSI2017} that while they check for code copied from open source
 projects including GitHub and Stack Overflow and analyse their license
 compatibility with their customer software, the BlackDuck auditing system will
