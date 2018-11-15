@@ -297,8 +297,7 @@ effects to software reusing them.
 Therefore, we mine Stack Overflow posts, detected online code clones, and analysed the clones to reveal
 ``toxic code snippets.''
 
-Toxic code snippets mean code snippets that, after incorporating into software,
-the cost of paying back the technical debt exceeds the value it generates in the long run.
+Toxic code snippets mean code snippets that, after incorporating into software, degrades the software quality.
 Stack Overflow code snippets
 cloned from open source software or online sources can become toxic when they
 are (1)~outdated, (2)~violating their original software
@@ -2080,7 +2079,7 @@ We performed a detailed investigation of the 100 outdated answers on Stack
 Overflow, on 6 May 2018, approximately two years after the snapshot we analysed was created
 to look for any changes, warnings, or mitigations made to the outdated code snippets.
 We investigated the answers on three aspects: newer answers, higher-voted answers, and comments on the
-outdated answers. We found
+outdated answers.\footnote{We also found that the Stack Overflow question ID 22262310 that has an outdated code answer from \texttt{WritableComparator.java} (\Cref{fig:before-after}), has a negative score of -1. It is interesting to see if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question. However, it is out of the scope of this study so we leave it as future work.} We found
 34 posts which contained newer answers and 5 posts which contained answers with a higher number of
 votes than the outdated answers. However, 99 of the 100 outdated answers were still
 marked as accepted answers. For the comments, we check if there is any comment
