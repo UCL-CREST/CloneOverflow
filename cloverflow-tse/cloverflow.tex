@@ -122,8 +122,9 @@ when reusing code snippets. Our clone detection found online clone pairs between
 72,365 Java code snippets on Stack Overflow and 111 open source projects in the
 curated Qualitas corpus. We analysed 2,289 non-trivial online clone candidates.
 Our investigation revealed strong evidence that 153 clones have been copied from
-a Qualitas project to Stack Overflow. We found 100 of them (66\%) to be outdated
-and potentially harmful for reuse. Furthermore, we found 214 code snippets that
+a Qualitas project to Stack Overflow. We found 100 of them (66\%) to be outdated,  
+of which 10 were buggy and harmful for reuse.
+Furthermore, we found 214 code snippets that
 could potentially violate the license of their original software and appear 7,112
 times in 2,427 GitHub projects.
 
@@ -195,7 +196,7 @@ development~\cite{Ponzanelli2013,Ponzanelli2014,Keivanloo2014,Park2014,
 educational purposes~\cite{Nasehi2012}. On Stack Overflow, each conversation
 contains a question and a list of answers. The answers frequently contain at
 least one code snippet as a solution to the question asked. We found that the
-code snippets are usually not authored directly on the Stack Overflow website
+code snippets are often not authored directly on the Stack Overflow website
 but copied from another location. A snippet in an answer could be copied and
 modified from a code snippet in the question, copied from the answerer's own
 code or from other locations including open source software (OSS) systems.
@@ -297,11 +298,11 @@ effects to software reusing them.
 Therefore, we mine Stack Overflow posts, detected online code clones, and analysed the clones to reveal
 ``toxic code snippets.''
 
-Toxic code snippets mean code snippets that, after incorporating into software, degrades the software quality.
+Toxic code snippets mean code snippets that, after incorporating into software, degrade the software quality.
 Stack Overflow code snippets
 cloned from open source software or online sources can become toxic when they
 are (1)~outdated, (2)~violating their original software
-license, (3) exhibiting code smells, or (4) having security vulnerabilities. 
+license, (3)~exhibiting code smells, (4)~containing faults, or (5)~having security vulnerabilities.
 In this study, we focus on the first two forms of toxic code snippets, outdated code and license-violating code,
 as these two problems are still underexplored compared to code smells~\cite{Tufano2015} and vulnerabilities~\cite{Acar2016,Fischer2017}.
 Moreover, Stack Overflow users also express their concerns about these two problems
@@ -448,8 +449,8 @@ code snippets.
 	the 2,289 online clones, at least 328 have been copied from open source
 	projects or external online sources to Stack Overflow, potentially violating
 	software licenses. For 153 of them, we found evidence that they have been copied
-	from a specific open source project. 100 of them were found to be outdated. %
-	% and questionable for being reused.
+	from a specific open source project. 
+	100 of them were found to be outdated, of which 10 were buggy code.
 	
 	\item \textbf{An online code
 		clone oracle:} The 2,289 manually investigated and validated online clone pairs
@@ -2041,12 +2042,17 @@ systems are also used, besides bug reports, for feature request and feature
 enhancements, having an issue tracking ID can reflect that most of the changes are important
 and not only a superficial fix such as code formatting. The intent behind
 the changes are grouped into six categories as shown in \Cref{tab:intent_outdated}.
-Enhancement is the majority intent accounting for 65 of the 100 outdated code (65\%), followed 
-by code deprecation (15\%). There were 10 outdated code snippets (10\%) caused by bug fixing.
+Enhancement is the majority intent accounting for 65 of the 100 outdated code (65\%). 
+Next is code deprecation (15\%), which represents the code snippets that are outdated due to the use of
+deprecated functions or APIs. The code snippets that we analysed contained a few deprecated code statements while
+the newest version (based on the time we did the analysis) of the same code
+snippets no longer contain the deprecated part.
+There were 10 outdated code snippets (10\%) caused by bug fixing.
+They contained buggy code statements, and were later fixed in the newest version.
 The rest of the changes are because of code refactoring (6\%), changing coding style (3\%), and 
 the data format change (2\%).
-Not all outdated code is toxic. However, the 10 buggy and outdated code snippets 
-we found are toxic and are harmful to reuse.
+Not all outdated code is toxic. 
+However, the 10 buggy and outdated code snippets we found are toxic and are harmful to reuse.
 
 \begin{table}
 	\centering
@@ -2487,6 +2493,7 @@ corrections to them.
 \section{Threats to Validity}
 
 \textbf{Internal validity:} 
+
 We applied different mechanisms to ensure the validity of the clone pairs we
 classified.  First, we used two widely-used clone detection tools, Simian and
 SourcererCC.  We tried five other clone detectors but could not add them to the
@@ -2502,20 +2509,13 @@ accepted answers on Stack Overflow in this study to focus on code snippets that
 solve the question's problem and are often shown on top of the answer list.
 We investigated the 72,365 Stack Overflow code snippets used in our study and
 found that 62,245 of them (86\%) are also the highest voted answers.
-%While most of the time they are also the highest voted answers, some
-%times they are not. 
 We plan to incorporate the highest voted answers in future work.
-% We also
-% applied the Bellon's clone agreement to 4 different combinations of
-% the tools' configurations.  For disagreed clone pairs, we applied
-% several filters to remove spurious and uninteresting clones.
-
-% The number of online clones we found are subject to the clone
-% detectors and their configurations.  
-
-% We also
-% performed a pairwise matching between the default and EvaClone
-% configurations of the two clone detection tools.
+We analysed the Stack Overflow data snapshot of January 2016. 
+The findings may be different based on the newer snapshots. 
+However, we do not expect large differences of the findings 
+if we update the data set. The reason is that the Stack Overflow answers 
+are rarely modified. Moreover, updating the dataset would eliminate the 
+possibility to study the evolution of outdated answers. 
 
 Our seven patterns of online code cloning may not cover all possible online
 cloning patterns. However, instead of defining the patterns beforehand, we
@@ -2531,8 +2531,13 @@ classifications and found 145 cases that lead to better classification results.
 This validation process can be even improved by employing an external
 investigator. 
 
-%In addition, we are aware of voting mechanism in Stack Overflow and plan to
-%incorporate highest-vote answers in the future work.
+The detailed investigation of the 100 outdated answers on Stack Overflow may not
+fully capture what Stack Overflow visitors actually do when they already expect
+an outdated answer. However, our investigation tries to at least shade light on
+this by comparing the popularity of the outdated answer and the newer answers
+based on the number of votes. This may be affected by the duration that the
+answers appear on a Stack Overflow post. The newer answers have less visibility
+compared to the older answers.
 
 \textbf{External validity:} We carefully chose the data sets for our
 experiment so the findings could be generalised as much as possible.
@@ -2550,14 +2555,24 @@ accepted answers since they are the most likely ones to be reused. Our findings
 are limited to these restrictions. They may not be generalised to all
 programming languages and all answers on Stack Overflow. We chose the curated
 Qualitas corpus for Java open source projects containing 111 projects
-\cite{QualitasCorpus}.  The projects span several areas of software and have
-been used in several empirical
+\cite{QualitasCorpus}. 
+The projects span several areas of software and have been used in several empirical
 studies~\cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. Although it
 is a curated and well-established corpus, it may not fully represent all Java
-open source software available. Lastly, we selected 130,703 GitHub Java projects
+open source software available. 
+
+We selected 130,703 GitHub Java projects
 based on the number of stars they obtained to represent their popularity. They
 might not represent all Java projects on GitHub, and the number of clone pairs
 found may differ from other project selection criteria.
+
+Regarding the few number of toxic code snippets in Stack Overflow posts and code reuse in
+GitHub, this is partially due to the data set of (only) 111 Java projects from
+the Qualitas corpus. The clones (and the discovered outdated code and
+potentially license-violating code snippets) reported in this paper are only
+subject to these 111 projects. The number may increase if we expand the amount
+of open source projects. Moreover, this study only focuses on Java, and the
+situation may be worse or better for other programming languages.
 
 \section{Related Work}
 

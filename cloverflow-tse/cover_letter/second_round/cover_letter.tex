@@ -77,7 +77,7 @@ urlcolor=black           % color of external links
 
 %\begin{abstract}
 
-This paper is a journal-first submission to Transactions on Software Engineering. This is a minor revision the submission no.~TSE-2018-06-0228 and we would like to thank the anonymous reviewers for taking their time to read our paper carefully. With their useful and constructive reviews, we improved the work further as listed below and as discussed later in this letter.
+This paper is a journal-first submission to Transactions on Software Engineering. This is a minor revision of the submission no.~TSE-2018-06-0228 and we would like to thank the anonymous reviewers for taking their time to read our paper carefully. With their useful and constructive reviews, we improved the work further as listed below and as discussed later in this letter.
 
 \begin{enumerate}
 \item We have softened the claims as suggested by Reviewer~3.
@@ -115,7 +115,7 @@ Section 3.6.2 Actionable items is a good start to drive further research in this
 
 We would like to thank you for your insightful comments regarding the license violations. As you have mentioned, software license violations are difficult to identify and validate due to the large number of software licenses, differences in countries' legislation, and the amount of code to be considered copyrighted (vs.~fair use). Nevertheless, the case of copying a licensed code snippet from an open source project to Stack Overflow without its license shows a clear potential for violating the project's license. By detecting such case, we can alleviate the license issues by highlighting or stopping the accidental conversion of strictly licensed code (such as GPL) to permissively licensed code (such as CC BY-SA 3.0 on Stack Overflow). As we highlight in the Introduction, Page~2 (and Footnote~2), developers are worried about copyright issues. We hope that our study will increase awareness on this issue to Stack Overflow and the developers using Stack Overflow.
 
-Regarding the few number of toxic code snippets in SO posts and code reuse in GitHub, this is partially due to the data set of (only) 111 Java projects from the Qualitas corpus. The clones (and the discovered outdated code and potentially license-violating code snippets) reported in this paper are only subject to these 111 projects. The number may increase if we expand the amount of open source projects. Moreover, this study only focuses on Java, and the situation may be worse or better for other programming languages. We have added this discussion into the Threats to Validity. \FIXME{To do}
+Regarding the few number of toxic code snippets in SO posts and code reuse in GitHub, this is partially due to the data set of (only) 111 Java projects from the Qualitas corpus. The clones (and the discovered outdated code and potentially license-violating code snippets) reported in this paper are only subject to these 111 projects. The number may increase if we expand the amount of open source projects. Moreover, this study only focuses on Java, and the situation may be worse or better for other programming languages. We have added this discussion into the Threats to Validity. \FIXME{Done}
 
 \rcomment{
 \textbf{Minor issues}
@@ -166,7 +166,7 @@ We agree that our analysis may not fully answer your comment because we could no
 An alternative solution might be directly comparing the number of code snippets reused from the outdated answers to their newer/higher-voted answers in open source projects (e.g., GitHub). 
 Nevertheless, if we had performed such comparison, we would still suffer from the same timing issue as the newer answers have shorter windows to be reused than the older ones.
 
-We have added this discussion in the Threats to Validity section \FIXME{To do}.
+We have added this discussion in the Threats to Validity section \FIXME{Done}.
 
 \rcomment{R2C4: Again, what are the 100 posts (same issues/questions as above arise)? Also, from the table, I would say that only the deprecation posts (15/100) give an indication of outdated code. I am not sure what the rest of the categories in there tell me about the deprecated code.}
 
@@ -190,8 +190,8 @@ The 100 posts are the posts containing the 100 outdated code snippets reported i
 	\caption{Intents of code changes in the 100 outdated code snippets}
 \end{table}
 
-The Deprecation intent partially indicates the cause of outdated code, but not all. It represents the code snippets that are outdated due to the use of deprecated functions or APIs. With this case of function/API deprecation, the code snippets that we analysed contained a few deprecated code statements while the newest version (based on the time we did the analysis) of the same code snippets no longer contain the deprecated part(s). The five other intents represent other cases of a code snippet being outdated. For example, the Bug intent represents a code snippet that previously contained buggy code statements, and was fixed in the newest version. The Refactoring intent represents a code snippet that was different from the newest version due to code refactoring.
-To sum up, the table shows that outdated code can be caused by different intents and not all of them are harmful. Outdated code snippets with Bug intent are clearly harmful if they are posted on the Internet (e.g., Stack Overflow). We slightly modified the section explaining this table to be clearer \FIXME{To do}.
+The Deprecation intent partially indicates the cause of outdated code, but not all. It represents the code snippets that are outdated due to the use of deprecated functions or APIs. With this case of function/API deprecation, the code snippets that we analysed contained a few deprecated code statements while the newest version (based on the time we did the analysis) of the same code snippets no longer contain the deprecated part(s). The five other intents represent other cases of a code snippet being outdated. For example, the Bug intent represents a code snippet that previously contained buggy code statements, and were fixed in the newest version. The Refactoring intent represents a code snippet that was different from the newest version due to code refactoring.
+To sum up, the table shows that outdated code can be caused by different intents and not all of them are harmful. Outdated code snippets with Bug intent are clearly harmful if they are posted on the Internet (e.g., Stack Overflow). We slightly modified the section explaining this table to be clearer \FIXME{Done}.
 
 \rcomment{R2C5: This is a major issue for me, and I was really hoping that with this revision the authors would update their dataset. By the time this paper hits publication, your data will be 3 years old! In any case, I will leave the decision to the editor, but really, think about a reader of your paper who might question the findings since the data is old. Again, it was not clear to me what the 100 posts and their analysis provide.}
 
@@ -204,7 +204,7 @@ The 100 posts are the posts containing the 100 outdated code snippets reported i
 	\item 47 of the 100 discovered snippets from outdated answers are found in GitHub projects, of which 12 are buggy code. 
 \end{enumerate}
 
-Nonetheless, we have added a discussion of the age of the Stack Overflow data set to the Threats to Validity section \FIXME{To do}.
+Nonetheless, we have added a discussion of the age of the Stack Overflow data set to the Threats to Validity section \FIXME{Done}.
 
 \rcomment{R2C8: Thank you for clarifying the manual analysis part. Can please provide more details on how this manual analysis determined that something actually originated from SO? Perhaps giving an example would help here. Also, who did this verification?}
 
@@ -276,11 +276,11 @@ The corresponding discussion can be found in Section~2.2.3 (Manual investigation
 
 Thank you for the comment. We agree with your suggestion and we changed the statement in the abstract to:
 
-``We found 100 of them (66\%) to be outdated. \textbf{Ten of them were buggy and harmful for reuse.} ''
+``We found 100 of them (66\%) to be outdated,  \textbf{of which 10 were buggy and harmful for reuse.}''
 
 Moreover, we modified Item 3 in the contributions to be:
 
-``100 of them were found to be outdated\textbf{, of which 10 were buggy code.}'' \FIXME{update in the paper}
+``100 of them were found to be outdated\textbf{, of which 10 were buggy code.}'' \FIXME{Done}
 
 \rcomment{
 \begin{itemize}
@@ -288,7 +288,7 @@ Moreover, we modified Item 3 in the contributions to be:
 \end{itemize}
 }
 
-Again, we agree with your suggestion. The statement has been changed to ``We found that the code snippets are \textbf{often} not authored directly on the Stack Overflow website but copied from another location.''. \FIXME{update in the paper}
+Again, we agree with your suggestion. The statement has been changed to ``We found that the code snippets are \textbf{often} not authored directly on the Stack Overflow website but copied from another location.''. \FIXME{Done}
 
 \rcomment{
 \begin{itemize}
