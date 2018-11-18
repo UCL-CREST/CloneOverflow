@@ -76,21 +76,16 @@ urlcolor=black           % color of external links
 %\tableofcontents
 
 %\begin{abstract}
-This paper is a journal-first submission to Transactions on Software
-Engineering. This is a minor revision the submission
-no.~TSE-2018-06-0228 and we would like to thank the anonymous reviewers for
-taking their time to read our paper carefully. With their useful and
-constructive reviews, we improved the work further by adding xxx minor
-improvements as listed below to our previous submission as discussed later in this letter.
+This paper is a journal-first submission to Transactions on Software Engineering. This is a minor revision the submission no.~TSE-2018-06-0228 and we would like to thank the anonymous reviewers for taking their time to read our paper carefully. With their useful and constructive reviews, we improved the work further as listed below and as discussed later in this letter.
 
 \begin{enumerate}
-	\item A
-	\item B
+\item We have softened the claims as suggested by Reviewer~3.
+\item While we have considered updating the dataset, we chose not to do so as that would require to remove an important part of our study, the evolution of the identified outdated code snippets. Moreover, we don't expect that an update would change the results because Stack Overflow answers are rarely modified.
+\item All other points regarding the experimental method have been addressed carefully and completely.
 \end{enumerate}
 
-We tried our best to address all the comments from the reviewers. Every
-comment led to an improvement on this submission, and we discuss them in order as
-shown in the next sections.
+We tried our best to address all the comments from the reviewers as discussed in the following.
+        
 
 %Lastly, we would also like to ask the reviewers to comment on how to address the
 %newly established page limits of IEEE TSE that was enforced on 18 February 2018, after our previous
@@ -117,9 +112,9 @@ Threats to validity in terms of generalizability will basically always exist and
 
 Section 3.6.2 Actionable items is a good start to drive further research in this area. However, a general concern is that the potential overall impact of these toxic code snippets seems to be rather small in terms of number of posts on SO or even in terms of code reuse from SO. Should we really care about them? But then again, I guess any improvement to the overall quality of software is a desirable contribution.}
 
-We would like to thank you for your insightful comment regarding the toxic license violations. As the reviewer has mentioned, software license violation is difficult to identify and validate due to various number of software licenses, differences in country's legislation, and amount of code to be considered copyrighted (vs.~fair use). Nevertheless, the case of copying a licensed code snippet from an open source project to Stack Overflow without its license shows a clear potential for software license violation. By detecting such case, we can alleviate the license issues by stopping the accidental conversion of strictly licensed code (such as GPL) to permissively licensed code (such as CC BY-SA 3.0 on Stack Overflow). We hope that our study will raise awareness about this issue to Stack Overflow and the developers.
+We would like to thank you for your insightful comments regarding the license violations. As you have mentioned, software license violations are difficult to identify and validate due to the large number of software licenses, differences in countries' legislation, and the amount of code to be considered copyrighted (vs.~fair use). Nevertheless, the case of copying a licensed code snippet from an open source project to Stack Overflow without its license shows a clear potential for violating the project's license. By detecting such case, we can alleviate the license issues by highlighting or stopping the accidental conversion of strictly licensed code (such as GPL) to permissively licensed code (such as CC BY-SA 3.0 on Stack Overflow). As we highlight in the Introduction, Page~2 (and Footnote~2), developers are worried about copyright issues. We hope that our study will increase awareness on this issue to Stack Overflow and the developers using Stack Overflow.
 
-Regarding the few number of toxic code snippets in SO posts and code reuse in GitHub, this is partially due to the data set of 111 Java projects from the Qualitas corpus. The clones (and the discovered outdated code and potentially license-violating code snippets) reported in this paper are only subject to these 111 projects. The number may increase if we expand the amount of open source projects. Moreover, this study only focuses on Java, and the situation may be worse or better for other programming languages. We have added this discussion into the Threats to Validity. \FIXME{To do}
+Regarding the few number of toxic code snippets in SO posts and code reuse in GitHub, this is partially due to the data set of (only) 111 Java projects from the Qualitas corpus. The clones (and the discovered outdated code and potentially license-violating code snippets) reported in this paper are only subject to these 111 projects. The number may increase if we expand the amount of open source projects. Moreover, this study only focuses on Java, and the situation may be worse or better for other programming languages. We have added this discussion into the Threats to Validity. \FIXME{To do}
 
 \rcomment{
 \textbf{Minor issues}
@@ -129,7 +124,7 @@ Page 17, Col.1, L14--15
 As shown in Table 23, the clones were found in highly starred projects (???  29,465 to 10 stars ???) to 1-star projects. Please rephrase
 }
 
-We rephrased the sentence to ``As shown in Table 23, the clones were found in highly- starred projects (29,465 stars) to lowly-starred star projects (1 star).''
+We rephrased the sentence to ``As shown in Table 23, the clones were found in highly-starred projects (29,465 stars) to lowly-starred star projects (1 star).''
 
 \rcomment{
 Page 17, Col.2, L11
@@ -149,15 +144,15 @@ That said, I still would like more clarification on some of the other comments. 
 
 R2C1: I am not sure the new definition fits well within your study context. It was more about technical debt and I would remove that definition and stick to the next sentence where you specifically say that toxic code snippets are snippets that are 1) outdated, ...etc.}
 
-Thank you for the suggestion on the definition of toxic code snippets. Since Reviewer 3 also expresses his/her concern regarding the definition, we revised the definition by removing the technical debt part and shorting it as follows:
+Thank you for the suggestion on the definition of toxic code snippets. Since Reviewer~3 also expresses his/her concern regarding the definition, we revised the definition by removing the technical debt part and shorting it as follows:
 
-``Toxic code snippets mean code snippets that, after incorporating into software, degrades the software quality.
+``Toxic code snippets mean code snippets that, after incorporating into software, degrade the software quality.
 Stack Overflow code snippets
 cloned from open source software or online sources can become toxic when they
 are (1)~outdated, (2)~violating their original software
-license, (3) exhibiting code smells, or (4) having security vulnerabilities.''
+license, (3)~exhibiting code smells, (4)~containing faults, or (5)~having security vulnerabilities.''
 
-We believe it is important to differentiate the definition of toxic code snippets from the concrete example of toxic code snippets on Stack Overflow since the idea of toxic code snippets can be applied to any other online sources (e.g., GitHub) as well.
+We believe it is important to differentiate the definition of toxic code snippets from the concrete example of toxic code snippets on Stack Overflow since the idea of toxic code snippets can be applied to any other online source (e.g., GitHub) as well.
 
 \rcomment{R2C3: After reading your response, I have a few questions - 1) what are these 100 posts you examined? how were they determined? how was the number 100 determined?}
 
@@ -165,16 +160,16 @@ The 100 posts we examined were the posts containing all the 100 outdated code sn
 
 \rcomment{Also, I am not sure that you answered my comment with your analysis. My point was that some may actually expect the code to be outdated and how do you deal with that, they will usually use newer posts/answers. I am not sure you addressed my comments with your analysis.}
 
-We agree that our analysis may not fully answer your comment because we could not capture what the Stack Overflow visitors actually did when they already expect an outdated answer. The most proper method for this may be doing another developer survey. However, our investigation tries to at least shade light on this by comparing the popularity of the outdated answer and the newer answers based on the number of votes. If Stack Overflow visitors reuse the code (or learn from the answers) and they like the answer, they can reward the answer with an upvote. In our investigation of the 100 outdated answers, we found that only 5 of the newer answers had higher votes than the outdated answers and 99\% of the outdated answers were still marked as accepted. \FIXME{Shall we also discuss the issue of ``accepted answers'' that they are totally relied on the questioner and not other visitors?} We are aware that this may be affected by the duration that the answers appear on a Stack Overflow post. The newer answers have less visibility compared to the older answers. 
+We agree that our analysis may not fully answer your comment because we could not capture what Stack Overflow visitors actually do when they already expect an outdated answer. The most proper method for this may be doing another developer survey. However, our investigation tries to at least shade light on this by comparing the popularity of the outdated answer and the newer answers based on the number of votes. If Stack Overflow visitors reuse the code (or learn from the answers) and they like the answer, they can reward the answer with an upvote. In our investigation of the 100 outdated answers, we found that only 5 of the newer answers had higher votes than the outdated answers and 99\% of the outdated answers were still marked as accepted. We are aware that this may be affected by the duration that the answers appear on a Stack Overflow post. The newer answers have less visibility compared to the older answers. 
 
-An alternative solution might be directly comparing the number of code reuse from the outdated answers to their newer/higher-voted answers in open source projects (e.g., GitHub). 
-Nevertheless, although we had performed such comparison, we would still suffer from the same timing issue as the newer answers have shorter window to be reused than the older ones.
+An alternative solution might be directly comparing the number of code snippets reused from the outdated answers to their newer/higher-voted answers in open source projects (e.g., GitHub). 
+Nevertheless, if we had performed such comparison, we would still suffer from the same timing issue as the newer answers have shorter windows to be reused than the older ones.
 
 We have added this discussion in the Threats to Validity section \FIXME{To do}.
 
 \rcomment{R2C4: Again, what are the 100 posts (same issues/questions as above arise)? Also, from the table, I would say that only the deprecation posts (15/100) give an indication of outdated code. I am not sure what the rest of the categories in there tell me about the deprecated code.}
 
-The 100 posts are the posts containing the 100 outdated code snippets reported in RQ4. The 6 intents of changes in the 100 outdated code snippets, as shown in the table below (a copy of Table 3 in the previous response letter and Table 20 in the paper), cover \textbf{all} the cases of outdated code. 
+The 100 posts are the posts containing the 100 outdated code snippets reported in RQ4. The 6 intents of changes in the 100 outdated code snippets, as shown in the table below (a copy of Table~3 in the previous response letter and Table~20 in the paper), cover \textbf{all} the cases of outdated code. 
 
 \begin{table}[H]
 	\centering
@@ -199,22 +194,23 @@ To sum up, the table shows that outdated code can be caused by different intents
 
 \rcomment{R2C5: This is a major issue for me, and I was really hoping that with this revision the authors would update their dataset. By the time this paper hits publication, your data will be 3 years old! In any case, I will leave the decision to the editor, but really, think about a reader of your paper who might question the findings since the data is old. Again, it was not clear to me what the 100 posts and their analysis provide.}
 
-We understand your concern about the age of the data set. However, we do not expect large differences of the findings if we update the data set. The reason is that the Stack Overflow answers are rarely modified. As discussed in RQ4, we used this 2-year gap between the Stack Overflow snapshot that we analysed for clones, and the latest version on the web, as a chance to study the evolution of the 100 outdated answers. We found that 99\% of the outdated code are still marked as accepted. While there were a few newer posts in each of the 100 outdated answers, only 5 newer answers obtained higher votes than the outdated ones. Thus, updating the Stack Overflow data to the latest snapshot will mostly increase the chance of finding newer outdated code snippets.
-Nonetheless, we have added a discussion of the age of the Stack Overflow data set to the Threats to Validity section \FIXME{To do}.
+We understand your concern about the age of the data set. However, we do not expect large differences of the findings if we update the data set. The reason is that the Stack Overflow answers are rarely modified. Moreover, updating the dataset would eliminate the possibility to study the evolution of outdated answers. As discussed in RQ4, we used this 2-year gap between the Stack Overflow snapshot that we analysed for clones and the latest version on the web as a chance to study the evolution of the 100 outdated answers. We found that 99\% of the outdated answers are still marked as accepted. While there were a few newer posts in each of the 100 outdated answers, only 5 newer answers obtained higher votes than the outdated ones.
 
-The 100 posts are the posts containing the 100 outdated code snippets reported in RQ4. Their analysis shows the following. 
+The 100 posts are the posts containing the 100 outdated code snippets reported in RQ4. Their analysis shows the following: 
 \begin{enumerate}
 	\item Although they are outdated, after 2 years they still have higher votes than other answers or they are still marked as accepted answers.
-	\item There is only 6\% of the outdated answers that have newer answers that mitigate or point out the toxicity of the outdated code snippets. 
-	\item 47 of the 100 discovered outdated code are found in GitHub projects, of which 12 are buggy code. So, based on the 111 Java projects in Qualitas, their outdated code snippets do not widely spread to open source projects.
+	\item Only 6 of the outdated answers have newer answers which mitigate or point out the toxicity of the outdated code snippets. 
+	\item 47 of the 100 discovered snippets from outdated answers are found in GitHub projects, of which 12 are buggy code. 
 \end{enumerate}
+
+Nonetheless, we have added a discussion of the age of the Stack Overflow data set to the Threats to Validity section \FIXME{To do}.
 
 \rcomment{R2C8: Thank you for clarifying the manual analysis part. Can please provide more details on how this manual analysis determined that something actually originated from SO? Perhaps giving an example would help here. Also, who did this verification?}
 
 In the case of cloning direction from Stack Overflow $\rightarrow$ Qualitas
 (SQ), we found only one pair with evidence of cloning from Stack Overflow post
-ID 698283 to {\small\texttt{POIUtils.java}} in \textsf{jstock} project (as shown below). 
-The Stack Overflow post can be seen from \url{https://stackoverflow.com/questions/698176/determine-correct-method-signature-during-runtime/698283#698283}.
+ID 698283 to {\small\texttt{POIUtils.java}} in the \textsf{jstock} project (as shown below). 
+The Stack Overflow post can be seen at \url{https://stackoverflow.com/questions/698176/determine-correct-method-signature-during-runtime/698283#698283}.
 The user who asked the question (i.e., Cheok Yan Cheng) on Stack Overflow is an author of \textsf{jstock} (the author's GitHub profile can be seen from \url{https://github.com/yccheok}). The
 question is about determining the right method to call among 7 overloading
 methods of {\small\texttt{setCellValue}} during runtime. We could not find
@@ -262,11 +258,11 @@ private Method findMethodToInvoke(Object test) {
 \end{figure}
 
 The investigation was performed by the first and
-the third authors. The two investigators separately went through each clone pair
+the third author. The two investigators separately went through each clone pair
 candidate, looked at the clones, and decided if they are a true positive or a
-false positive and classified them into an appropriate pattern by following the steps show in Figure 5. 
+false positive and classified them into an appropriate pattern by following the steps show in Figure~5. 
 After the validation, the results from the two investigators were compared. 
-This discussion can be found in Section 2.2.3 (Manual investigation).
+The corresponding discussion can be found in Section~2.2.3 (Manual investigation).
 
 \section{Reviewer 3}
 
@@ -281,7 +277,7 @@ Thank you for the comment. We agree with your suggestion and we changed the stat
 
 ``We found 100 of them (66\%) to be outdated. \textbf{Ten of them were buggy and harmful for reuse.} ''
 
-Moreover, we modified the item 3 in the contributions to be:
+Moreover, we modified Item 3 in the contributions to be:
 
 ``100 of them were found to be outdated\textbf{, of which 10 were buggy code.}'' \FIXME{update in the paper}
 
@@ -301,7 +297,7 @@ Again, we agree with your suggestion. The statement has been changed to ``We fou
 
 After incorporating yours and Reviewer 2's comment, we revised the definition of toxic code snippets to be more concise and removed the focus on technical debt as follows.
 
-``Toxic code snippets mean code snippets that, after incorporating into software, degrades the software quality.''
+``Toxic code snippets mean code snippets that, after incorporating into software, degrade the software quality.''
 
 \rcomment{
 \begin{itemize}
@@ -311,7 +307,7 @@ After incorporating yours and Reviewer 2's comment, we revised the definition of
 
 We have added a discussion of the point (c) as a footnote in Section 4 as shown below.
 
-``We also found that the Stack Overflow question ID 22262310 that has an outdated code answer from \texttt{WritableComparator.java} (Figure 1), has a negative score of -1. It is interesting to see if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question. However, it is out of the scope of this study so we leave it as future work.''
+``We also found that the Stack Overflow question ID 22262310, which has an outdated answer with a snippet from \texttt{WritableComparator.java} (Figure 1), has a negative score of -1. It would be interesting to see if the negative score for the question impacts the number of views and the trust that people place in the answer to a down-voted question. However, it is out of scope of this study and we leave it as future work.''
 
 \rcomment{Typos, etc:
 	\begin{itemize}
@@ -324,7 +320,6 @@ Thank you for spotting them. They are now fixed.
 \section{Conclusion}
 We would like to thank the reviewers again for their comments.
 We have tried our best to address every concern that has been pointed out by the reviewers. This result in several minor improvements throughout the paper.
-We believe this new submission is an improvement from the previous version due to the insightful reviews and discussions. We are looking forward to the new reviews.
 
 % Uncomment in case references are needed
 %\bibliographystyle{plain}
