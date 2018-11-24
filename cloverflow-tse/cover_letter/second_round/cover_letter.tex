@@ -31,14 +31,16 @@
 } 
 
 % 2. Complete the paper data
-\newcommand{\myAuthors}{Chaiyong Ragkhitwetsagul$^\ast$\footnote{This work has been done while Chaiyong was a PhD student at CREST, University College London},~Jens Krinke$^\dagger$,~Matheus Paixao$^\dagger$,~Giuseppe Bianco$^\star$,~Rocco Oliveto$^\star$}
+\newcommand{\myAuthors}{Chaiyong Ragkhitwetsagul$^\ast$\footnote{This work has been done while the first and the third author were PhD students at CREST, University College London},~Jens Krinke$^\dagger$,~Matheus Paixao$^\ddagger$,~Giuseppe Bianco$^\star$,~Rocco Oliveto$^\star$}
 \newcommand{\myAuthorsShort}{Ragkhitwetsagul et. al}
-%\newcommand{\myEmail}{cragkhit@gmail.com, {j.krinke,matheus.paixao.14}@ucl.ac.uk, giuseppebianco92@gmail.com, rocco.oliveto@unimol.it}
+\newcommand{\myEmail}{chaiyong.rag@mahidol.ac.th, j.krinke@ucl.ac.uk, matheus.paixao@uece.br, giuseppebianco92@gmail.com, rocco.oliveto@unimol.it}
 %\newcommand{\mySecEmail}{}
 \newcommand{\myTitle}{Cover Letter for the Reviewers of the Paper \\ ``Toxic Code Snippets on Stack Overflow''}
 \newcommand{\myShortTitle}{Cover Letter}
 \newcommand{\myJournal}{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING}
-\newcommand{\myDept}{Mahidol University (Thailand)$^\ast$, University College London (UK)$^\dagger$, University of Molise (Italy)$^\star$}
+\newcommand{\myDept}{Mahidol University (Thailand)$^\ast$, University College London (UK)$^\dagger$, 
+	State University of Ceara (Brazil)$^\ddagger$,
+	University of Molise (Italy)$^\star$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -67,7 +69,7 @@ urlcolor=black           % color of external links
  {\large\myJournal} \vspace{0.3cm} \\
  \today \vspace{0.3cm} \\
  \myAuthors \\
-% \url{\myEmail} \\
+ \url{\myEmail} \\
  %\url{\mySecEmail} 
  \vspace{0.3cm} 
  \myDept \vspace{1cm}
@@ -99,7 +101,7 @@ We tried our best to address all the comments from the reviewers as discussed in
 
 \section{Reviewer 1}
 
-\rcomment{The paper presents an interesting empirical analysis of what the authors refers to as toxic code clones on Stack Overflow. The paper presents a study using state-of the art clone detection tools and techniques to automatically extract and filter online clone pairs between Stack Overflow and projects in the curated Qualitas corpus. The paper also includes a user survey conducted on Stack Overflow users to assess their awareness of such potential toxic code fragments.he paper is well organized,  sound and the authors spend amount of work in their empirical analysis.
+\rcomment{The paper presents an interesting empirical analysis of what the authors refers to as toxic code clones on Stack Overflow. The paper presents a study using state-of the art clone detection tools and techniques to automatically extract and filter online clone pairs between Stack Overflow and projects in the curated Qualitas corpus. The paper also includes a user survey conducted on Stack Overflow users to assess their awareness of such potential toxic code fragments. The paper is well organized, sound and the authors spend amount of work in their empirical analysis.
 \vspace{0.2cm}
 	
 The authors did a very good job in explaining their methodology and the results they obtained from their user survey and the online clone detection experiment.
@@ -115,7 +117,7 @@ Section 3.6.2 Actionable items is a good start to drive further research in this
 
 We would like to thank you for your insightful comments regarding the license violations. As you have mentioned, software license violations are difficult to identify and validate due to the large number of software licenses, differences in countries' legislation, and the amount of code to be considered copyrighted (vs.~fair use). Nevertheless, the case of copying a licensed code snippet from an open source project to Stack Overflow without its license shows a clear potential for violating the project's license. By detecting such case, we can alleviate the license issues by highlighting or stopping the accidental conversion of strictly licensed code (such as GPL) to permissively licensed code (such as CC BY-SA 3.0 on Stack Overflow). As we highlight in the Introduction, Page~2 (and Footnote~2), developers are worried about copyright issues. We hope that our study will increase awareness on this issue to Stack Overflow and the developers using Stack Overflow.
 
-Regarding the few number of toxic code snippets in SO posts and code reuse in GitHub, this is partially due to the data set of (only) 111 Java projects from the Qualitas corpus. The clones (and the discovered outdated code and potentially license-violating code snippets) reported in this paper are only subject to these 111 projects. The number may increase if we expand the amount of open source projects. Moreover, this study only focuses on Java, and the situation may be worse or better for other programming languages. We have added this discussion into the Threats to Validity. \FIXME{Done}
+Regarding the few number of toxic code snippets in SO posts and code reuse in GitHub, this is partially due to the data set of (only) 111 Java projects from the Qualitas corpus. The clones (and the discovered outdated code and potentially license-violating code snippets) reported in this paper are only subject to these 111 projects. The number may increase if we expand the amount of open source projects. Moreover, this study only focuses on Java, and the situation may be worse or better for other programming languages. We have added this discussion into the Threats to Validity.
 
 \rcomment{
 \textbf{Minor issues}
@@ -166,7 +168,7 @@ We agree that our analysis may not fully answer your comment because we could no
 An alternative solution might be directly comparing the number of code snippets reused from the outdated answers to their newer/higher-voted answers in open source projects (e.g., GitHub). 
 Nevertheless, if we had performed such comparison, we would still suffer from the same timing issue as the newer answers have shorter windows to be reused than the older ones.
 
-We have added this discussion in the Threats to Validity section \FIXME{Done}.
+We have added this discussion in the Threats to Validity section.
 
 \rcomment{R2C4: Again, what are the 100 posts (same issues/questions as above arise)? Also, from the table, I would say that only the deprecation posts (15/100) give an indication of outdated code. I am not sure what the rest of the categories in there tell me about the deprecated code.}
 
@@ -191,7 +193,7 @@ The 100 posts are the posts containing the 100 outdated code snippets reported i
 \end{table}
 
 The Deprecation intent partially indicates the cause of outdated code, but not all. It represents the code snippets that are outdated due to the use of deprecated functions or APIs. With this case of function/API deprecation, the code snippets that we analysed contained a few deprecated code statements while the newest version (based on the time we did the analysis) of the same code snippets no longer contain the deprecated part(s). The five other intents represent other cases of a code snippet being outdated. For example, the Bug intent represents a code snippet that previously contained buggy code statements, and were fixed in the newest version. The Refactoring intent represents a code snippet that was different from the newest version due to code refactoring.
-To sum up, the table shows that outdated code can be caused by different intents and not all of them are harmful. Outdated code snippets with Bug intent are clearly harmful if they are posted on the Internet (e.g., Stack Overflow). We slightly modified the section explaining this table to be clearer \FIXME{Done}.
+To sum up, the table shows that outdated code can be caused by different intents and not all of them are harmful. Outdated code snippets with Bug intent are clearly harmful if they are posted on the Internet (e.g., Stack Overflow). We slightly modified the section explaining this table to be clearer.
 
 \rcomment{R2C5: This is a major issue for me, and I was really hoping that with this revision the authors would update their dataset. By the time this paper hits publication, your data will be 3 years old! In any case, I will leave the decision to the editor, but really, think about a reader of your paper who might question the findings since the data is old. Again, it was not clear to me what the 100 posts and their analysis provide.}
 
@@ -204,9 +206,9 @@ The 100 posts are the posts containing the 100 outdated code snippets reported i
 	\item 47 of the 100 discovered snippets from outdated answers are found in GitHub projects, of which 12 are buggy code. 
 \end{enumerate}
 
-Nonetheless, we have added a discussion of the age of the Stack Overflow data set to the Threats to Validity section \FIXME{Done}.
+Nonetheless, we have added a discussion of the age of the Stack Overflow data set to the Threats to Validity section.
 
-\rcomment{R2C8: Thank you for clarifying the manual analysis part. Can please provide more details on how this manual analysis determined that something actually originated from SO? Perhaps giving an example would help here. Also, who did this verification?}
+\rcomment{R2C8: Thank you for clarifying the manual analysis part. Can you please provide more details on how this manual analysis determined that something actually originated from SO? Perhaps giving an example would help here. Also, who did this verification?}
 
 In the case of cloning direction from Stack Overflow $\rightarrow$ Qualitas
 (SQ), we found only one pair with evidence of cloning from Stack Overflow post
@@ -217,7 +219,7 @@ question is about determining the right method to call among 7 overloading
 methods of {\small\texttt{setCellValue}} during runtime. We could not find
 evidence of copying or attribution to Stack Overflow in \textsf{jstock}.
 However, considering that the 25 lines of code of
-{\small\texttt{findMethodToInvoke}} method depicted in  in Stack Overflow is
+{\small\texttt{findMethodToInvoke}} method (depicted in Figure \ref{fig:jstock_code} below) on Stack Overflow is
 very similar to the code in \textsf{jstock} including comments, it is almost
 certain that the two code snippets form a clone pair. In addition, the Stack
 Overflow answer was posted on March 30, 2009, while the code in
@@ -280,7 +282,7 @@ Thank you for the comment. We agree with your suggestion and we changed the stat
 
 Moreover, we modified Item 3 in the contributions to be:
 
-``100 of them were found to be outdated\textbf{, of which 10 were buggy code.}'' \FIXME{Done}
+``100 of them were found to be outdated\textbf{, of which 10 were buggy code.}''
 
 \rcomment{
 \begin{itemize}
@@ -288,7 +290,7 @@ Moreover, we modified Item 3 in the contributions to be:
 \end{itemize}
 }
 
-Again, we agree with your suggestion. The statement has been changed to ``We found that the code snippets are \textbf{often} not authored directly on the Stack Overflow website but copied from another location.''. \FIXME{Done}
+Again, we agree with your suggestion. The statement has been changed to ``We found that the code snippets are \textbf{often} not authored directly on the Stack Overflow website but copied from another location.''.
 
 \rcomment{
 \begin{itemize}
