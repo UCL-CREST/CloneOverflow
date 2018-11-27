@@ -1131,7 +1131,7 @@ of code and the timestamps. We also read commit messages and investigated the is
 if the code change is linked to an automatic issue tracking system, such as Jira
 or BugZilla to gain insights into the intent behind the change.
 
-Lastly, we searched for the outdated code snippets in 130,703 GitHub projects to
+Lastly, we searched for the outdated code snippets in 130,719 GitHub projects to
 see how widespread is the outdated code in the wild. We mined GitHub
 based on the number of stars the projects received, which indicated their popularity. We relied on
 GitHub API to query the project metadata before cloning them.
@@ -1140,7 +1140,7 @@ query to retrieve most starred projects based on their sizes.
 The project size range started from 1KB to 2MB with 1KB step size, and the last query is
 for all the remaining projects that were larger than 2MB.
 With this method, we retrieved the top 1,000 most starred projects for each project size. 
-As a result, we cloned 130,703 GitHub projects ranging from 29,465 stars to 1 star.
+As a result, we cloned 130,719 GitHub projects ranging from 29,465 stars to 1 star.
 A clone detection was then performed between the outdated code snippets and the GitHub
 projects. We selected SourcererCC with the same settings (see \Cref{tab:clone_config}) 
 for this task because it could scale to a large-scale data set, while Simian could not. Finally, we analysed
@@ -2002,7 +2002,7 @@ snippets. These snippets cannot be located in the latest version of the
 projects. For example, the snippet in Stack Overflow post 3758110, a copy of
 {\small{\texttt{DefaultAnnotationHandlerMapping.java}}} in \textsf{spring}, was
 deleted in the commit
-{\small{\texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b}}} by Chris Beams on
+{\small{\texttt{02a4473c62d8240837bec297f0a1f3cb67ef8a7b}}} on
 January 20, 2012, two years after it was posted.
 
 \begin{table*}
@@ -2083,10 +2083,10 @@ along with the issue tracking number and the date of the change. The complete se
 100 outdated online clones can be found on the study website.
 
 We performed a detailed investigation of the 100 outdated answers on Stack
-Overflow, on 6 May 2018, approximately two years after the snapshot we analysed was created
+Overflow, on May 6, 2018, approximately two years after the snapshot we analysed was created
 to look for any changes, warnings, or mitigations made to the outdated code snippets.
 We investigated the answers on three aspects: newer answers, higher-voted answers, and comments on the
-outdated answers.\footnote{We also found that the Stack Overflow question ID 22262310 that has an outdated code answer from \texttt{WritableComparator.java} (\Cref{fig:before-after}), has a negative score of -1. It is interesting to see if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question. However, it is out of the scope of this study so we leave it as future work.} We found
+outdated answers.\footnote{We also found that the Stack Overflow question ID 22262310, which has an outdated answer from \texttt{WritableComparator.java} (\Cref{fig:before-after}), has a negative score of -1. It is interesting to see if the negative score for the question impacts both the number of views and the trust that people place in the answer to a down-voted question. However, it is out of the scope of this study so we leave it as future work.} We found
 34 posts which contained newer answers and 5 posts which contained answers with a higher number of
 votes than the outdated answers. However, 99 of the 100 outdated answers were still
 marked as accepted answers. For the comments, we check if there is any comment
@@ -2121,7 +2121,7 @@ users.
 	\caption{Clones of the 100 Stack Overflow outdated code snippets in 131,703 GitHub projects}
 \end{table}
 
-Then, we performed code clone detection between the 100 outdated code snippets and 130,703 GitHub projects.
+Then, we performed code clone detection between the 100 outdated code snippets and 130,719 GitHub projects.
 We found 102 cloned candidates, which were associated with 30 outdated code snippets, 
 appearing in 68 GitHub projects and manually investigated all
 of them. Out of the 102 cloned snippets,
@@ -2155,11 +2155,12 @@ HIVE-18929\footnote{Apache Hive bug report: \url{
 		https://issues.apache.org/jira/browse/HIVE-18929}}) and communicated with the
 developers of the projects by describing the problem of race condition in the
 outdated version of the \texttt{humanReadableInt()} method and proposed a fix by
-using the newest version of the method in Hadoop. The issue has been fixed in
-deeplearning4j. The developers of deeplearning4j agreed that the method was
+using the newest version of the method in Hadoop. The issue has been fixed in both projects.
+The developers of deeplearning4j agreed that the method was
 problematic and decided to implement their own fix due to a concern of a
 potential software licensing conflict caused by copying the fix directly from
-the Hadoop code base. The bug report in Apache Hive is still open.
+the Hadoop code base. The developers of Apache Hive found that the method is not used anywhere
+in the project, so they decided to delete it.
 
 Although we did not find strong evidence of the outdated code snippets in GitHub
 projects, it would still be useful if Stack Overflow implements a flagging of
@@ -2178,7 +2179,7 @@ For RQ4, our results show that 66\% (101) of QS clone pairs on Stack
 Overflow are outdated. 86 pairs differ from their newest versions by
 modifications applied to variable names or method names, added or deleted
 statements, to a fully rewritten code with new method signatures. 14~pairs are
-dead snippets. 47 outdated code snippets are found in 130,703 GitHub projects
+dead snippets. 47 outdated code snippets are found in 130,719 GitHub projects
 without evidence of copying, which of 12 were buggy. A toxic 
 code snippet with a race condition was found in two popular projects: deeplearning4j and Apache Hive.
 \end{boxquote}
@@ -2296,7 +2297,7 @@ clones in Qualitas contain a license while the Stack Overflow snippets do not.
 The same GitHub study has been done for license-incompatible code snippets. 
 We detected clones between the 214
 code snippets with their original license missing (86 QS, 78 EX, and 50 UD)  and
-130,703 GitHub projects using SourcererCC with 80\% similarity threshold.
+130,719 GitHub projects using SourcererCC with 80\% similarity threshold.
 Opposite to the outdated clones, we discovered a large number
 of 7,207 clone pairs. There were 95 pairs from 10 Qualitas projects hosted on
 GitHub and 7,112 pairs from 2,427 other projects. As shown in
@@ -2562,7 +2563,7 @@ studies~\cite{Taube-Schock2011,Beckman2011,Vasilescu2011,Omar2012}. Although it
 is a curated and well-established corpus, it may not fully represent all Java
 open source software available. 
 
-We selected 130,703 GitHub Java projects
+We selected 130,719 GitHub Java projects
 based on the number of stars they obtained to represent their popularity. They
 might not represent all Java projects on GitHub, and the number of clone pairs
 found may differ from other project selection criteria.
@@ -2758,7 +2759,7 @@ aspects: outdated code and potential license violation. The investigation of the
 153 clone pairs copied, with evidence, from Qualitas to Stack Overflow reveals
 that 100 of them are outdated. Twelve outdated clone pairs are buggy and toxic
 to reuse. Our large-scale clone detection between the outdated code snippets 
-and 130,703 GitHub projects finds 102 candidates of the outdated code being
+and 130,719 GitHub projects finds 102 candidates of the outdated code being
 used in the wild.
  Moreover, we found 214 code snippets on Stack Overflow that could
 potentially violate the license of their original software, and they
