@@ -289,7 +289,7 @@ One participant in our survey expresses his/her concerns about this:
 \end{quote}
 
 Although this activity of online code cloning is well-known, there are only a few
-empirical studies on the topic~\cite{An2017,Abdalkareem2017,Baltes2017}, especially
+empirical studies on the topic~\cite{An2017,Abdalkareem2017,Baltes2018}, especially
 on finding the origins of the clones on Q\&A websites.
 In this study, we tackle this challenge of establishing the existence of online code 
 clones on Stack Overflow, investigate how they occur, and study the potential
@@ -2141,12 +2141,12 @@ Hadoop) based on their license header and the Javadoc comments.
 13 cloned snippets did not have any hints or evidence of copying.
 
 Interestingly, we discovered that the buggy version of the
-\texttt{humanReadableInt()} method from Hadoop appeared in two popular Java
+\texttt{humanReadableInt()} method from \textsf{Hadoop} appeared in two popular Java
 projects: deeplearning4j (8,830 stars and 4,223 forks) and Apache Hive (1,854
 stars and 1,946 forks). Due to the lack of evidence, we could not conclude how
 this method, which is the same as the toxic code snippet we found on
 Stack Overflow, appears in the two projects. It is possible that the developers
-retrieved them from Stack Overflow, other websites, or from Hadoop code base
+retrieved them from Stack Overflow, other websites, or from \textsf{Hadoop} code base
 directly. Nevertheless, we reported them to the developers of the two projects
 regarding the issue. We created a bug report for each project (deeplearning4j
 \#4694\footnote{deeplearning4j bug report:
@@ -2159,7 +2159,7 @@ using the newest version of the method in Hadoop. The issue has been fixed in bo
 The developers of deeplearning4j agreed that the method was
 problematic and decided to implement their own fix due to a concern of a
 potential software licensing conflict caused by copying the fix directly from
-the Hadoop code base. The developers of Apache Hive found that the method was not used anywhere
+the \textsf{Hadoop} code base. The developers of Apache Hive found that the method was not used anywhere
 in the project, so they decided to delete it.
 
 Although we did not find strong evidence of the outdated code snippets in GitHub
@@ -2265,7 +2265,7 @@ requests an attribution when reused.
 licensing information after they are posted on Stack Overflow or contain a
 different license from their Qualitas clone counterparts. Almost all (85) of
 \textbf{QS} clone pairs have their licensing terms removed or changed when
-posted on Stack Overflow. One QS clone pair posted by a JFreeChart developer
+posted on Stack Overflow. One QS clone pair posted by a \textsf{JFreeChart} developer
 changed its license from Lesser GPL v2.1+ to New BSD 3-clause. The
 developer may intentionally changed the license to be more suitable to Stack
 Overflow since New BSD 3-clause license allows reuse without requiring the same
@@ -2326,12 +2326,12 @@ as the originals in Qualitas.
 		Total & 10 & 95 & 2,427 & 7,112 & 995 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Clones of the 214 Stack Overflow missing-license code snippets in 131,703 GitHub projects}
+	\caption{Clones of the 214 Stack Overflow missing-license code snippets in 130,719 GitHub projects}
 	\label{tab:license_github}
 \end{table}
 
 Note that the code snippets could potentially violate the license, but do
-not necessarily do so. In the example where the JFreeChart
+not necessarily do so. In the example where the \textsf{JFreeChart}
 developer copied his own code, she or he was free to change the
 license. The same may have occurred with any of the 214 code
 snippets.
@@ -2409,7 +2409,7 @@ actionable items:
 \textbf{Automated cloning direction detection:} 
 As shown in this study, we still relied on manual
 validation to read the post, understand the context, and use multiple hints
-based on human judgement (comments in the code, natural text in the question and
+based on human judgement (e.g., comments in the code, natural text in the question and
 answers, date/time of the posts) to conclude that the code snippets are actually
 copied from Qualitas or external sources to Stack Overflow. 
 This is a burdensome and time-consuming process. We call for more research in
@@ -2423,7 +2423,7 @@ comments or natural text surrounding the clones in Stack Overflow posts.
 For example, the Stack Overflow answer containing the text \textit{``Actually, you can learn how to compare in \textbf{Hadoop}
 from \textbf{WritableComparator}. Here is an example that borrows some ideas from it.''}
 must be ranked very high among the list of clone candidates of a code snippet
-from Hadoop since it contains two terms of the project name (Hadoop) and a class name (WritableComparator)
+from \textsf{Hadoop} since it contains two terms of the project name (Hadoop) and a class name (WritableComparator)
 in it.
 This technique will dramatically reduce the manual validation effort to establish
 the direction of cloning. The technique can also be used on Stack Overflow to 
@@ -2684,7 +2684,7 @@ introduce vulnerabilities. Our study similarly finds the
 outdated code on Stack Overflow.
 
 Work similar to ours are studies by An et al.~\cite{An2017},
-Abdalkareem et al.~\cite{Abdalkareem2017}, Baltes et al.~\cite{Baltes2017},
+Abdalkareem et al.~\cite{Abdalkareem2017}, Baltes et al.~\cite{Baltes2018},
 and~Zhang et al.~\cite{Zhang2018}. 
 An et al.~investigated clones
 between 399 Android apps and Stack Overflow posts. They found 1,226 code
@@ -2704,9 +2704,9 @@ analysis shows that the cloned code from Stack Overflow has detrimental effects 
 quality of the apps. The median percentage of bug fixing commits after adding
 Stack Overflow code (19.09\%) is higher than before adding the code (5.96\%)
 with statistical significance.
-Baltes et al.~\cite{Baltes2017} discovered that two-thirds of the clones 
+Baltes et al.~\cite{Baltes2018} discovered that only 23.2\% of the clones in GitHub projects
 from the 10 most frequently referenced Java code snippets on Stack
-Overflow do not contain attributions.
+Overflow contain attributions.
 Zhang et al.~\cite{Zhang2018} study quality of code snippets on
 Stack Overflow.
 They show that 31\% of the analysed Stack Overflow posts
