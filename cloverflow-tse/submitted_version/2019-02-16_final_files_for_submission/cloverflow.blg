@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: cloverflow.aux
+The style file: plain.bst
+Database file #1: sigproc.bib
+You've used 82 entries,
+            2118 wiz_defined-function locations,
+            982 strings with 17585 characters,
+and the built_in function-call counts, 33716 in all, are:
+= -- 3278
+> -- 1564
+< -- 48
++ -- 626
+- -- 532
+* -- 2215
+:= -- 5112
+add.period$ -- 243
+call.type$ -- 82
+change.case$ -- 516
+chr.to.int$ -- 0
+cite$ -- 82
+duplicate$ -- 1438
+empty$ -- 2756
+format.name$ -- 532
+if$ -- 7387
+int.to.chr$ -- 0
+int.to.str$ -- 82
+missing$ -- 78
+newline$ -- 410
+num.names$ -- 158
+pop$ -- 675
+preamble$ -- 1
+purify$ -- 433
+quote$ -- 0
+skip$ -- 1136
+stack$ -- 0
+substring$ -- 2145
+swap$ -- 519
+text.length$ -- 48
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 328
+warning$ -- 0
+while$ -- 325
+width$ -- 84
+write$ -- 883
